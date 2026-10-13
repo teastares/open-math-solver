@@ -1,0 +1,337 @@
+{
+  "verified_at_utc": "2026-10-13T14:58:04.379281+00:00",
+  "passed": true,
+  "final": false,
+  "verification_script_sha256": "98a98c9a4a7095fc96d7c784b47b582aaaa62e0e14803420fdc09afe0c870a7d",
+  "solver_sha256": "58291db80a9dc7faaa17d037060d6cc53fe26db06de3bf3e67107e6401a7c24c",
+  "source_files_verified": 90,
+  "source_zip_sha256": "11f8e2011e9fb1c3a09532fcdf6972403e82d9adaea39c5773fd9ecb9405e37f",
+  "production_identity_sha256": "b19afe8d5e314de62c8760466f7630a16844479835d24c0824728cee38598584",
+  "compiler_identity_record": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "library_identity_records_verified": 15,
+  "historical_test_logs_verified": {
+    "iteration-ipm-v44-build.log": "7cba74414f33545def2c56b4dbf8608289e3348b591d219205bd3eb733e648f9",
+    "iteration-ipm-v44-ctest-detail.log": "8432788ffb62db5b4cecc94d0fb8cfac392b17dacbe4ecb1ac6a5fe421a2cce3"
+  },
+  "referenced_prior_ctest_passed": 17,
+  "new_production_build": false,
+  "current_production_sources_or_build_libraries_required_unchanged": false,
+  "referenced_prior_trajectories_verified": {
+    "new_trajectory_runs": 0,
+    "scope": "引用并重核v44既有40对轨迹，不是本轮重新运行。",
+    "count": 40,
+    "sha256": "480d8b282720efda62e46ddcb4671ff24855324025cf126fed62258b109e9142",
+    "two_new_counts_integer_zero": true,
+    "two_new_scalars_null": true,
+    "new_method_default_mehrotra": true,
+    "program_and_input_pre_post_hashes_verified": true,
+    "exit_code_pairs": {
+      "[0, 0]": 36,
+      "[4, 4]": 4
+    }
+  },
+  "new_trajectory_runs": 0,
+  "actual_homogeneous_direction_solves_verified": 3044,
+  "actual_homogeneous_work_reports_verified": 58,
+  "counter_validator_self_check": {
+    "checked": true,
+    "valid_report_passed": true,
+    "invalid_counter_or_scalar_cases_rejected": 10,
+    "scope": "只在内存复制既有报告进行反例验证，不修改归档或启动求解。"
+  },
+  "runner_self_check_recomputed": {
+    "passed": true,
+    "command_configurations": 4,
+    "gate_scenarios": 7,
+    "checks": 11,
+    "solver_runs": 0
+  },
+  "plan_sha256": "6ee7cf6de90a43da905b379461c2e71e98b071db4bea7d5623660ffae5f193ea",
+  "runner_sha256": "8ae41d99bb31c8d51d1dc01c5732c202358c2ee733fb039e845bbdd3b5780de3",
+  "archive_groups_verified": [
+    {
+      "tag": "development-homogeneous-normal_multifrontal-retries0",
+      "stage": "development",
+      "retries": 0,
+      "raw_records": 48,
+      "quality_pass_count": 48,
+      "process_returncode": 0,
+      "manifest_sha256": "86cdb978399851ac59b680f6590466614bcbb4f527feef10c2ad78f61308a969",
+      "summary_sha256": "49dad18893a84c7477307b224f984500b60cb0538367321ab390496b7408ba61",
+      "raw_sha256": "b971e0bd47a1b644813b2df102125651a97a9d5a0f1d9f9058a9975c5a8200f0",
+      "command_sha256": "948fa377afed4d34d85e0421c3e40c5b1f0c05f7ad0cb80ebb38d82c7395eed3",
+      "process_sha256": "9b00d81eabff25aece182e2893c1fb0420a752f0770510a74f9cd5d069facdf6",
+      "missing_reports": 0,
+      "actual_factor_backends": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "normal": 24
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_multifrontal:prefilter=off:fixed=on:method=homogeneous": {
+          "normal_multifrontal": 24
+        }
+      },
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 585,
+          "ipm_homogeneous_direction_solves": 1170,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_multifrontal:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 582,
+          "ipm_homogeneous_direction_solves": 1164,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 2334,
+      "actual_homogeneous_work_reports": 48
+    },
+    {
+      "tag": "probe-homogeneous-normal_multifrontal-retries0",
+      "stage": "probe",
+      "retries": 0,
+      "raw_records": 10,
+      "quality_pass_count": 6,
+      "process_returncode": 1,
+      "manifest_sha256": "dd371d6864c32c574f749d1881d454524e581c49f527fc8d3a695ff9d96656d4",
+      "summary_sha256": "4fffebbcf6a74bf5807a78cfe9913042b5dc84d2ce6b19f4d34cc777472a0b94",
+      "raw_sha256": "9767b02993822ae7b063b904401a379aa8917870aad8b0e67b581fff8fef4788",
+      "command_sha256": "23b2976b795f4fcd886a9b531beba4ccf172dee2fb62b7f8243638bec3600d0f",
+      "process_sha256": "89c77febcf6d42b1c9061262a67f9ec17c5ad50e4504d2948819e98d7735c0aa",
+      "missing_reports": 0,
+      "actual_factor_backends": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "normal": 5
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_multifrontal:prefilter=off:fixed=on:method=homogeneous": {
+          "normal_multifrontal": 5
+        }
+      },
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 163,
+          "ipm_homogeneous_direction_solves": 325,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_multifrontal:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 194,
+          "ipm_homogeneous_direction_solves": 385,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 710,
+      "actual_homogeneous_work_reports": 10
+    }
+  ],
+  "raw_records_verified": 58,
+  "independent_input_files_verified": 13,
+  "pending_groups": [],
+  "derived_details_verified": [
+    {
+      "path": "v45-development-detail.json",
+      "sha256": "e59f5ac84e657b1cb966361fa775bf48c824c761f519553f374952eb650cfc03",
+      "groups": 1
+    },
+    {
+      "path": "v45-probe-detail.json",
+      "sha256": "74a93052545e3acfb121027fecde34658e05df28f67d05cc9533821efa4bc849",
+      "groups": 1
+    },
+    {
+      "path": "v45-coverage-detail.json",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+      "groups": 0
+    }
+  ],
+  "gates_recomputed": [
+    {
+      "retries": 0,
+      "development_lost": [],
+      "development_time_improved": false,
+      "probe_gain": [],
+      "probe_lost": [],
+      "eligible_for_netlib": false,
+      "plan_sha256": "6ee7cf6de90a43da905b379461c2e71e98b071db4bea7d5623660ffae5f193ea"
+    }
+  ],
+  "probe_failures": [
+    {
+      "model": "dfl001",
+      "side": "reference",
+      "quality_failure": "incomplete",
+      "status": "time_limit",
+      "numerical_seconds": 5.085554,
+      "message": "内点求解已达到时间预算",
+      "work": {
+        "ipm_iterations": 15,
+        "ipm_factorizations": 17,
+        "ipm_refinement_steps": 2,
+        "ipm_regularized_pivots": 0,
+        "ipm_factor_backend": "normal",
+        "ipm_structural_fallbacks": 0,
+        "ipm_homogeneous_constant_solves": 15,
+        "ipm_homogeneous_direction_solves": 30,
+        "ipm_homogeneous_tau": 9.074340581916735,
+        "ipm_homogeneous_kappa": 0.0018105553190967958
+      }
+    },
+    {
+      "model": "dfl001",
+      "side": "candidate",
+      "quality_failure": "incomplete",
+      "status": "numerical_error",
+      "numerical_seconds": 3.1659577,
+      "message": "KKT Krylov 改进未达到原方程精度",
+      "work": {
+        "ipm_iterations": 30,
+        "ipm_factorizations": 32,
+        "ipm_refinement_steps": 147,
+        "ipm_regularized_pivots": 0,
+        "ipm_factor_backend": "normal_multifrontal",
+        "ipm_structural_fallbacks": 0,
+        "ipm_homogeneous_constant_solves": 31,
+        "ipm_homogeneous_direction_solves": 60,
+        "ipm_homogeneous_tau": 9.25155283209756,
+        "ipm_homogeneous_kappa": 2.50482451806983e-06
+      }
+    },
+    {
+      "model": "greenbea",
+      "side": "reference",
+      "quality_failure": "incomplete",
+      "status": "numerical_error",
+      "numerical_seconds": 0.5555841,
+      "message": "齐次标量消元的分母不是有限正数",
+      "work": {
+        "ipm_iterations": 55,
+        "ipm_factorizations": 69,
+        "ipm_refinement_steps": 146,
+        "ipm_regularized_pivots": 0,
+        "ipm_factor_backend": "normal",
+        "ipm_structural_fallbacks": 0,
+        "ipm_homogeneous_constant_solves": 56,
+        "ipm_homogeneous_direction_solves": 111,
+        "ipm_homogeneous_tau": 0.005326821718263348,
+        "ipm_homogeneous_kappa": 1.2155118872650678e-08
+      }
+    },
+    {
+      "model": "greenbea",
+      "side": "candidate",
+      "quality_failure": "incomplete",
+      "status": "numerical_error",
+      "numerical_seconds": 0.9898791,
+      "message": "齐次标量消元的分母不是有限正数",
+      "work": {
+        "ipm_iterations": 70,
+        "ipm_factorizations": 72,
+        "ipm_refinement_steps": 302,
+        "ipm_regularized_pivots": 0,
+        "ipm_factor_backend": "normal_multifrontal",
+        "ipm_structural_fallbacks": 0,
+        "ipm_homogeneous_constant_solves": 71,
+        "ipm_homogeneous_direction_solves": 141,
+        "ipm_homogeneous_tau": 0.0007131973345245841,
+        "ipm_homogeneous_kappa": 1.6724299070370955e-09
+      }
+    }
+  ],
+  "prior_v44_cost_audit": {
+    "source": "v44-highs-runs.jsonl.gz",
+    "raw_sha256": "cf336e817d26a17521de0f1f56bb56f8e8f26f8725b22d55abf2892343871bd8",
+    "prior_records_recomputed": 182,
+    "new_solver_runs": 0,
+    "common_successes": 89,
+    "excluded_failed_models": [
+      "dfl001",
+      "greenbea"
+    ],
+    "nonzero_buckets": [
+      {
+        "nonzeros_min": 0,
+        "nonzeros_max_exclusive": 1000,
+        "models": 13,
+        "highs": {
+          "numerical_sgm10_seconds": 0.0009616728694297194,
+          "wall_sgm10_seconds": 0.010017780562805001
+        },
+        "homogeneous": {
+          "numerical_sgm10_seconds": 0.002321808446055229,
+          "wall_sgm10_seconds": 0.011593052432676387
+        }
+      },
+      {
+        "nonzeros_min": 1000,
+        "nonzeros_max_exclusive": 10000,
+        "models": 55,
+        "highs": {
+          "numerical_sgm10_seconds": 0.007098302583223415,
+          "wall_sgm10_seconds": 0.019068543254798342
+        },
+        "homogeneous": {
+          "numerical_sgm10_seconds": 0.04660773010188812,
+          "wall_sgm10_seconds": 0.05917501378109691
+        }
+      },
+      {
+        "nonzeros_min": 10000,
+        "nonzeros_max_exclusive": 100000,
+        "models": 19,
+        "highs": {
+          "numerical_sgm10_seconds": 0.1697832444214118,
+          "wall_sgm10_seconds": 0.1941383426314207
+        },
+        "homogeneous": {
+          "numerical_sgm10_seconds": 0.4427867345318024,
+          "wall_sgm10_seconds": 0.4687753845368601
+        }
+      },
+      {
+        "nonzeros_min": 100000,
+        "nonzeros_max_exclusive": null,
+        "models": 2,
+        "highs": {
+          "numerical_sgm10_seconds": 0.18919510635517334,
+          "wall_sgm10_seconds": 0.25191564400027033
+        },
+        "homogeneous": {
+          "numerical_sgm10_seconds": 1.19238041851127,
+          "wall_sgm10_seconds": 1.2578443899137497
+        }
+      }
+    ],
+    "common_total": {
+      "highs": {
+        "numerical_sgm10_seconds": 0.044778916901233146,
+        "wall_sgm10_seconds": 0.06005384034866523
+      },
+      "homogeneous": {
+        "numerical_sgm10_seconds": 0.14796746772271696,
+        "wall_sgm10_seconds": 0.16390778028876518
+      }
+    },
+    "homogeneous_numerical_sum_seconds": 14.2164735,
+    "recorded_verification_sum_seconds": 0.4781067,
+    "recorded_verification_fraction": 0.03363047101659916,
+    "net_numerical_difference_seconds": 10.116878,
+    "pilot87_and_maros_r7_difference_seconds": 4.9304581,
+    "pilot87_and_maros_r7_net_difference_fraction": 0.4873497634349253,
+    "absolute_difference_fraction_for_distinction": 0.4864184654207053,
+    "actual_homogeneous_factor_backends": {
+      "normal": 88,
+      "factorhighs": 1
+    },
+    "fit1p_factor_dimension": 627,
+    "fit1p_factor_nonzeros": 196878,
+    "limitations": "事后只读成本审计；累计差按自主减HiGHS的有符号净差。原坐标提取不在verification计时内，未细分形成/分解/回代；共同集不能替代91例总成绩。"
+  },
+  "runtime_scope": "仅读归档，不编译、不求解、不重新测量。质量/摘要用v44源码zip内冻结Python执行，门槛/成本聚合独立实现。当前生产可以继续开发。",
+  "all_raw_and_archived_bytes_equal": true,
+  "all_model_and_program_pre_post_hashes_verified": true,
+  "per_record_quality_and_penalties_recomputed": true,
+  "full_summaries_recomputed": true,
+  "actual_compare_process_exit_codes_verified": true
+}

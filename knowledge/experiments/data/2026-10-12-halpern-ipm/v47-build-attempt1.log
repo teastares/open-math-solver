@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "D:\Documents\codes\solver\knowledge\experiments\data\2026-10-12-halpern-ipm\v47-profile-build.py", line 537, in <module>
+    main()
+    ~~~~^^
+  File "D:\Documents\codes\solver\knowledge\experiments\data\2026-10-12-halpern-ipm\v47-profile-build.py", line 533, in main
+    build(root, (args.output or root / ".tools/v47-profile").resolve())
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\codes\solver\knowledge\experiments\data\2026-10-12-halpern-ipm\v47-profile-build.py", line 475, in build
+    link_result = execute(link, build_dir, output / "link.json")
+  File "D:\Documents\codes\solver\knowledge\experiments\data\2026-10-12-halpern-ipm\v47-profile-build.py", line 363, in execute
+    require(row["returncode"] == 0, f"独立构建或自测失败，已保留 {destination}")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\codes\solver\knowledge\experiments\data\2026-10-12-halpern-ipm\v47-profile-build.py", line 203, in require
+    raise RuntimeError(message)
+RuntimeError: 独立构建或自测失败，已保留 D:\Documents\codes\solver\.tools\v47-profile\link.json

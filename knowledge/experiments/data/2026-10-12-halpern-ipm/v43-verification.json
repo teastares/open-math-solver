@@ -1,0 +1,172 @@
+{
+  "verified_at_utc": "2026-10-13T14:03:48.535668+00:00",
+  "passed": true,
+  "final": true,
+  "verification_script_sha256": "1d48c7e500290d1d693344f4f1a15b31b639effb1f8e1c26a85659415e388899",
+  "solver_sha256": "ef6e30f5fb386f4d77f0dd491dba0c5811ea773ed510e86cad82ee3d9775bc4e",
+  "source_files_verified": 89,
+  "source_zip_sha256": "425cef4b39fcc507d3f8472892ab052fe63db0ba0c80d2e3c06fbf32711d9952",
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "libraries_verified": 15,
+  "test_logs_verified": {
+    "iteration-ipm-v43-build.log": "e22e198da25f778dbc07865a37062cdd0a7015bbc8a9ed45af8632b3a584425d",
+    "iteration-ipm-v43-ctest-detail.log": "6b0a2036bca4f7f70a5a40eeb6c9ecfe61445798b63158dba7c410a22c8a39e0"
+  },
+  "ctest_passed": 17,
+  "ctest_seconds": 11.88,
+  "ipm_checks": 74537,
+  "analytic_full_newton_branch": {
+    "refinement_steps": 3,
+    "krylov_steps": 1,
+    "preconditioner_solves": 4,
+    "products": 5
+  },
+  "analytic_bounded_newton_branch": {
+    "refinement_steps": 3,
+    "krylov_steps": 0,
+    "preconditioner_solves": 4,
+    "products": 4
+  },
+  "actual_inexact_direction_returns_verified": 1947,
+  "actual_inexact_return_reports_verified": 19,
+  "counter_validator_self_check": {
+    "checked": true,
+    "valid_report_passed": true,
+    "invalid_counter_cases_rejected": 6,
+    "scope": "只在内存复制既有报告进行反例验证，不修改归档或启动求解。"
+  },
+  "plan_sha256": "ef4cd15401b29f3ed56f67cc5d5e88a4e543c4a6be9b70b8d14d9b3f7d806d09",
+  "runner_sha256": "8536eec998661e83575ef37c458798c6edd67a96fbe68abed356e0e5430acc98",
+  "changed_production_files": [
+    "include/solver/backend.hpp",
+    "include/solver/detail/ipm_full_newton.hpp",
+    "include/solver/ipm_options.hpp",
+    "scripts/benchmark.py",
+    "scripts/compare_lp.py",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_compare_lp.py",
+    "tests/test_ipm.cpp"
+  ],
+  "archive_groups_verified": [
+    {
+      "tag": "development-normal_augmented-bounded_newton-retries0",
+      "stage": "development",
+      "retries": 0,
+      "raw_records": 48,
+      "quality_pass_count": 45,
+      "process_returncode": 1,
+      "manifest_sha256": "1faccfba66936b12d464733d7f71d5682be4bb902b8e29aedbcb9a4d5db3096e",
+      "summary_sha256": "db0667f4b2ea8a56aceb6ea11e298c7d0c83375a8ad236872017faa0a27b795c",
+      "raw_sha256": "d804336b477a26895fac7d86e8fe58964b1f9d5b40e66b0e49d7659d6549df43",
+      "command_sha256": "ea1a89628e3d5b2e6a03035c56ce6da897e2dcb564e1dfb77b5e1eee0fa29a10",
+      "process_sha256": "98c45a98ec3697552c897d48b4627c86aea547ac2f77e7a32aeb15c41eb5ae04",
+      "missing_reports": 0,
+      "bounded_newton_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_bounded_newton_returns": 0,
+          "ipm_bounded_newton_inexact_returns": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=bounded_newton:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_bounded_newton_returns": 1998,
+          "ipm_bounded_newton_inexact_returns": 1191,
+          "ipm_full_newton_preconditioner_solves": 6336,
+          "ipm_full_newton_products": 6336
+        }
+      },
+      "actual_inexact_direction_returns": 1191,
+      "actual_inexact_return_reports": 15
+    },
+    {
+      "tag": "probe-normal_augmented-bounded_newton-retries0",
+      "stage": "probe",
+      "retries": 0,
+      "raw_records": 10,
+      "quality_pass_count": 4,
+      "process_returncode": 1,
+      "manifest_sha256": "9a560d7b43ae21cf4bd1fdc0f8ef8983620f5eeb58345c3724a55335f459f74e",
+      "summary_sha256": "e47542bbe4c9a1ab63de346062046006e8a554a17bd14a430e4f79411d6cc11b",
+      "raw_sha256": "151d0340a90b1224e1cc43a91f34c167462a1b0a02795ce3b6c7c7bfd4e78916",
+      "command_sha256": "595c3568c984b974021257b7b4da18b1e029e810c52d2b36674993a6e34520a9",
+      "process_sha256": "98c45a98ec3697552c897d48b4627c86aea547ac2f77e7a32aeb15c41eb5ae04",
+      "missing_reports": 0,
+      "bounded_newton_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_bounded_newton_returns": 0,
+          "ipm_bounded_newton_inexact_returns": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=bounded_newton:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_bounded_newton_returns": 930,
+          "ipm_bounded_newton_inexact_returns": 756,
+          "ipm_full_newton_preconditioner_solves": 2939,
+          "ipm_full_newton_products": 2939
+        }
+      },
+      "actual_inexact_direction_returns": 756,
+      "actual_inexact_return_reports": 4
+    }
+  ],
+  "raw_records_verified": 58,
+  "independent_input_files_verified": 13,
+  "pending_groups": [],
+  "old_mode_trajectories_verified": {
+    "count": 32,
+    "sha256": "cf6f8de774e9db0a12be54a7a4de2a4aa15b7fc74bc783e1e5be89afe554302e",
+    "two_new_counts_integer_zero": true,
+    "program_and_input_pre_post_hashes_verified": true,
+    "exit_code_pairs": {
+      "[0, 0]": 29,
+      "[4, 4]": 3
+    }
+  },
+  "derived_details_verified": [
+    {
+      "path": "v43-development-detail.json",
+      "sha256": "52a995ec0c59cf02fa54333f6ceb97aa214cb383a096f29a7b96b9a9aaeb7859",
+      "groups": 1
+    },
+    {
+      "path": "v43-probe-detail.json",
+      "sha256": "3a248b35dac5201d722d3f1502b2ee14fe168c5872e7311feceeae0ea7cc5319",
+      "groups": 1
+    },
+    {
+      "path": "v43-coverage-detail.json",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+      "groups": 0
+    }
+  ],
+  "gates_recomputed": [
+    {
+      "retries": 0,
+      "development_lost": [
+        "80bau3b"
+      ],
+      "development_time_improved": false,
+      "probe_gain": [],
+      "probe_lost": [],
+      "eligible_for_netlib": false,
+      "plan_sha256": "ef4cd15401b29f3ed56f67cc5d5e88a4e543c4a6be9b70b8d14d9b3f7d806d09"
+    }
+  ],
+  "trajectory_exclusions": [
+    "timings",
+    "backend_version",
+    "新增且强制整数零的两项有界Newton返回计数"
+  ],
+  "runtime_scope": "仅读归档，不编译、不求解、不重新测量。冻结Python协议负责质量与摘要复算；门槛另行实现核对。",
+  "all_raw_and_archived_bytes_equal": true,
+  "all_model_and_program_pre_post_hashes_verified": true,
+  "per_record_quality_and_penalties_recomputed": true,
+  "full_summaries_recomputed": true,
+  "actual_compare_process_exit_codes_verified": true,
+  "markdown_files_checked": 25,
+  "local_links_checked": 1720,
+  "verification_report_links": 2,
+  "broken_links": []
+}

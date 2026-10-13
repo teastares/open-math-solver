@@ -1,0 +1,23 @@
+{
+  "说明": "仅八模型开发探针，单次探索，不是正式性能结论。时间为 solve_file 内部 total_seconds，不含启动进程；5秒求解预算、200000步、history_size=8。外推改善时强制重启的第一版。",
+  "binary_sha256": "53141D451D8DC44B76AA9B276C949C0802EE5B8B639350615B5C475B2FE7E305",
+  "columns": ["model", "mode", "status", "iterations", "total_seconds", "solve_seconds", "verification_seconds", "attempts", "accepted", "operator_passes"],
+  "runs": [
+    ["afiro", "adaptive", "optimal", 600, 0.0007866, 0.0002058, 0.0000355, 0, 0, 1245],
+    ["afiro", "subspace", "optimal", 600, 0.0008188, 0.0002516, 0.0000362, 10, 3, 1265],
+    ["adlittle", "adaptive", "optimal", 6650, 0.0055192, 0.0044097, 0.0004562, 0, 0, 13681],
+    ["adlittle", "subspace", "optimal", 4150, 0.0048335, 0.0038422, 0.0003318, 81, 36, 8705],
+    ["e226", "adaptive", "optimal", 36000, 0.1133013, 0.1013843, 0.0104475, 0, 0, 73743],
+    ["e226", "subspace", "optimal", 40000, 0.1833693, 0.153152, 0.0287548, 798, 601, 83421],
+    ["israel", "adaptive", "optimal", 22350, 0.0498635, 0.045938, 0.0025082, 0, 0, 45753],
+    ["israel", "subspace", "optimal", 8700, 0.0265172, 0.0222284, 0.0029374, 172, 115, 18233],
+    ["stair", "adaptive", "optimal", 118250, 0.5287221, 0.5006126, 0.0259978, 0, 0, 241237],
+    ["stair", "subspace", "iteration_limit", 200000, 1.1632844, 1.1324833, 0.0288221, 3999, 981, 416037],
+    ["25fv47", "adaptive", "optimal", 135050, 1.7465124, 1.5957438, 0.1457676, 0, 0, 275791],
+    ["25fv47", "subspace", "iteration_limit", 200000, 3.2937227, 3.2113661, 0.0775697, 3999, 1054, 416379],
+    ["80bau3b", "adaptive", "time_limit", 109317, 5.0147817, 4.8653815, 0.1361442, 0, 0, 223147],
+    ["80bau3b", "subspace", "time_limit", 73266, 5.0146922, 4.9078183, 0.0938465, 1464, 599, 152501],
+    ["perold", "adaptive", "iteration_limit", 200000, 1.751381, 1.6888677, 0.0574291, 0, 0, 408199],
+    ["perold", "subspace", "iteration_limit", 200000, 2.4084269, 2.3501104, 0.0553811, 3999, 1551, 416311]
+  ]
+}

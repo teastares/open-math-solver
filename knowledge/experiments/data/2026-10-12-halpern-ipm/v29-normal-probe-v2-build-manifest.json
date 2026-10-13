@@ -1,0 +1,30 @@
+{
+  "production": {
+    "src\\ipm.cpp": "9fc2258ed82c2cb08fb0e41c73636f94901775c30fe2f76f2d4639f5e65ffcd6",
+    "src\\normal_cholesky.cpp": "ae80af7fb7555906c06b896132acfb71da521b7d9fd7335aba8f51ac15ab866f",
+    "build\\release\\solver.exe": "3a223fec88caa410f0b2a576f57bd298722488b8dca4eb47d86489772a358b80"
+  },
+  "script_sha256": "73316c1a2d83613a83c7e37c59fe3b791a94a80f16b434f5be574e6cfce0585a",
+  "instrumented_sha256": "feb365e22c4cedbc77a5eb938291821166cc0ebd525534efb19a2813c526af06",
+  "solver_sha256": "7414e15eeaf4fdceab1684c6accfb8212362795863f2bc8c45fa74fbefe2158b",
+  "commands": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe -DEIGEN_DONT_PARALLELIZE -DEIGEN_MPL2_ONLY -ID:/Documents/codes/solver/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-src/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-build/include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/AMD/Include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/SuiteSparse_config -isystem D:/Documents/codes/solver/build/release/_deps/eigen-src -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -o \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\normal-probe.obj\" -c \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\normal-probe.cpp\"",
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe -O3 -DNDEBUG -static -municode CMakeFiles/solver.dir/src/main.cpp.obj -o \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\solver-probe.exe\" -Wl,--major-image-version,0,--minor-image-version,0  libsolver_highs.a  libsolver_pdlp.a  \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\ipm\\ipm-profile.obj\" CMakeFiles/solver_ipm.dir/src/regularized_ldl.cpp.obj  libsolver_core.a  libsolver_qdldl_extended.a  libsolver_sparse_lu.a  \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\normal-probe.obj\"  _deps/suitesparse-build/AMD/libamd.a  _deps/suitesparse-build/SuiteSparse_config/libsuitesparseconfig.a  libsolver_multifrontal_ldl.a  _deps/qdldl-build/out/libqdldl.a  libsolver_factorhighs_kernel.a  bin/libhighs.a  bin/libhighs_extras.a  -lpthread  _deps/solver-openblas-install/lib/libopenblas.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
+  ],
+  "ipm_build": {
+    "production": {
+      "src\\ipm.cpp": "9fc2258ed82c2cb08fb0e41c73636f94901775c30fe2f76f2d4639f5e65ffcd6",
+      "build\\release\\solver.exe": "3a223fec88caa410f0b2a576f57bd298722488b8dca4eb47d86489772a358b80"
+    },
+    "script_sha256": "228ef1ca037b29ce90d34c8dffe088adb1a3687838d99c613710f7ad78c091f0",
+    "instrumented_sha256": "c896ebd284188610d5374dac000b3b73a2acf9624e7ff9c8ca99eb2e830af6fc",
+    "solver_sha256": "6d56fbcc1f4b75ab2f3925c9ff2aec482c79bd2579decf02a24764ce32f605d9",
+    "commands": [
+      "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe  -ID:/Documents/codes/solver/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-src/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-build/include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/AMD/Include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/SuiteSparse_config -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -o \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\ipm\\ipm-profile.obj\" -c \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\ipm\\ipm-profile.cpp\" -DSOLVER_IPM_TRACE",
+      "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe -O3 -DNDEBUG -static -municode CMakeFiles/solver.dir/src/main.cpp.obj -o \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\ipm\\solver-profile.exe\" -Wl,--major-image-version,0,--minor-image-version,0  libsolver_highs.a  libsolver_pdlp.a  \"D:\\Documents\\codes\\solver\\.tools\\ipm-v29-normal-probe-v2\\ipm\\ipm-profile.obj\" CMakeFiles/solver_ipm.dir/src/regularized_ldl.cpp.obj  libsolver_core.a  libsolver_qdldl_extended.a  libsolver_sparse_lu.a  libsolver_normal_cholesky.a  _deps/suitesparse-build/AMD/libamd.a  _deps/suitesparse-build/SuiteSparse_config/libsuitesparseconfig.a  libsolver_multifrontal_ldl.a  _deps/qdldl-build/out/libqdldl.a  libsolver_factorhighs_kernel.a  bin/libhighs.a  bin/libhighs_extras.a  -lpthread  _deps/solver-openblas-install/lib/libopenblas.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
+    ],
+    "trace": true,
+    "scope": "阶段包含/独占墙钟诊断，含插桩成本，不用于性能验收"
+  },
+  "scope": "逐次 Schur 与实际正则约化 KKT 残差诊断；包含额外乘积/复制/打印，不用于性能结论"
+}

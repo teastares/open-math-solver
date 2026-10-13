@@ -1,0 +1,430 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 48,
+  "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl",
+  "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl",
+  "both_variants_all_repeats_pass_count": 8,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 2,
+    "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 6
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.05690906826880921,
+      "penalized_numerical_sgm10_seconds": 0.04382296025808094,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.09308952301375809,
+      "penalized_numerical_sgm10_seconds": 0.0801820312886719,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.008227100013755262,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.007332000066526234
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0002215,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.0002046
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.007849100045859814,
+          0.009259099955670536
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.007116599939763546,
+          0.008704599924385548
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.0002055,
+          0.0003002
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.0002026,
+          0.0002224
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.1220812792017758,
+      "numerical_speedup_reference_over_candidate": 1.0826001955034212,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.008031500037759542,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.008442700025625527
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0007288,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.0012751
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.007760799955576658,
+          0.009469099924899638
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.008404200081713498,
+          0.010398800019174814
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.0006949,
+          0.0007309999999999999
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.0012667,
+          0.0012751
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.951295203356995,
+      "numerical_speedup_reference_over_candidate": 0.5715630146655165,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.015850799973122776,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.03453720000106841
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0069749,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.0250384
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.01576270000077784,
+          0.01728439994622022
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.03358359995763749,
+          0.03480560006573796
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.0068798,
+          0.0071275
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.0249394,
+          0.025167
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.4589486111390741,
+      "numerical_speedup_reference_over_candidate": 0.2785681193686498,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.011189299984835088,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.011127299978397787
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0029991,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.0029688000000000006
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.010983800049871206,
+          0.013445599935948849
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.010918200016021729,
+          0.01258920005057007
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.0029684,
+          0.0030457999999999995
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.0029627,
+          0.0030203
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.005571882357595,
+      "numerical_speedup_reference_over_candidate": 1.0102061438965237,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.020505200023762882,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.04911469994112849
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0110514,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.0391674
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.020436899969354272,
+          0.022469599964097142
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.049028499983251095,
+          0.04922670009545982
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.010980300000000002,
+          0.0111621
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.0379741,
+          0.039311
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.41749618848005815,
+      "numerical_speedup_reference_over_candidate": 0.2821581212947502,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.06868619995657355,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.1277954000979662
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0543831,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.1135477
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.06811839994043112,
+          0.07700569997541606
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.1275419999146834,
+          0.15237929997965693
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.0541494,
+          0.057724
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.1134057,
+          0.1344071
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.53747004903087,
+      "numerical_speedup_reference_over_candidate": 0.4789449720249727,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.21677549998275936,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.3297284999862313
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.1850524,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.2968556
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.21555109997279942,
+          0.22262359992600977
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.32780209998600185,
+          0.34243129997048527
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.184864,
+          0.1899571
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.2956137,
+          0.3115896
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6574363453320273,
+      "numerical_speedup_reference_over_candidate": 0.6233751359246719,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.10098690004087985,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.16776899993419647
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": 0.0882437,
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": 0.1554868
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.1005426999181509,
+          0.10262120002880692
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.16771990002598614,
+          0.1691681999946013
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": [
+          0.0871827,
+          0.0886285
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": [
+          0.154584,
+          0.155643
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6019401682103942,
+      "numerical_speedup_reference_over_candidate": 0.5675317776171352,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=on:dynamic=off:equilibrate=off:linear=strict:corrections=0:solver=qdldl": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "off",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": 0,
+      "ipm_linear_solver": "qdldl",
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=off:linear=inexact:corrections=0:solver=qdldl": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "off",
+      "ipm_linear_accuracy": "inexact",
+      "ipm_central_corrections": 0,
+      "ipm_linear_solver": "qdldl",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v12-development-son-eoff"
+}

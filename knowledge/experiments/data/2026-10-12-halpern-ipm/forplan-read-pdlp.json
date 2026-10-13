@@ -1,0 +1,101 @@
+{
+  "command": [
+    ".tools/solver-ipm-v9.exe",
+    "solve",
+    ".deps/netlib/forplan.mps",
+    "--backend",
+    "pdlp",
+    "--time-limit",
+    "0"
+  ],
+  "input_sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+  "solver_sha256": "3b5aab7cce9164c21fd4c36880e87fa3f3d5198d07c9ae1cc2f8a6d53a6c3395",
+  "returncode": 4,
+  "report": {
+    "schema_version": 1,
+    "solver_version": "0.5.0",
+    "backend": "pdlp",
+    "backend_version": "pdhg-cpu-0.4.0",
+    "input": "D:\\Documents\\codes\\solver\\.deps/netlib/forplan.mps",
+    "options": {
+      "backend": "pdlp",
+      "time_limit": 0,
+      "threads": 1,
+      "seed": 0,
+      "mip_relative_gap": 0.0001,
+      "pdlp": {
+        "mode": "adaptive",
+        "history_size": 8,
+        "max_iterations": 200000,
+        "check_interval": 50,
+        "scaling_passes": 5,
+        "optimality": {
+          "dual_absolute": 1e-07,
+          "dual_relative": 1e-09,
+          "gap_absolute": 1e-07,
+          "gap_relative": 1e-09
+        }
+      },
+      "ipm": null,
+      "highs": null,
+      "tolerances": {
+        "feasibility_absolute": 1e-07,
+        "feasibility_relative": 1e-09,
+        "integrality": 1e-06,
+        "objective_absolute": 1e-07,
+        "objective_relative": 1e-09
+      }
+    },
+    "status": "time_limit",
+    "backend_status": "time_limit",
+    "verification_level": "none",
+    "message": "求解时间预算为零，未启动自主迭代",
+    "model": {
+      "name": "forplan",
+      "columns": 421,
+      "rows": 161,
+      "nonzeros": 4563,
+      "sense": "minimize",
+      "objective_offset": 0,
+      "is_mip": false
+    },
+    "has_solution": false,
+    "solution": null,
+    "objective": null,
+    "best_bound": null,
+    "absolute_gap": null,
+    "relative_gap": null,
+    "nodes": null,
+    "simplex_iterations": null,
+    "pdlp_iterations": 0,
+    "pdlp_acceleration_attempts": null,
+    "pdlp_acceleration_accepted": null,
+    "pdlp_operator_passes": null,
+    "ipm_iterations": null,
+    "ipm_factorizations": null,
+    "ipm_refinement_steps": null,
+    "ipm_kkt_dimension": null,
+    "ipm_factor_nonzeros": null,
+    "ipm_eliminated_singletons": null,
+    "ipm_regularized_pivots": null,
+    "ipm_backward_error_acceptances": null,
+    "lp_optimality": null,
+    "timings": {
+      "read_seconds": 0.0024782,
+      "solve_seconds": 3.34e-05,
+      "verification_seconds": 0,
+      "total_seconds": 0.0027835
+    },
+    "verification": {
+      "valid_input": false,
+      "feasible": false,
+      "objective_consistent": false,
+      "recomputed_objective": null,
+      "max_row_violation": 0,
+      "max_bound_violation": 0,
+      "max_integrality_violation": 0,
+      "errors": []
+    }
+  },
+  "stderr": ""
+}

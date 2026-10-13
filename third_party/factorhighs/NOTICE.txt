@@ -1,0 +1,13 @@
+本项目的 factorhighs 实验路径仅复用依赖锁中 HiGHS 源码的
+highs/ipm/hipo/factorhighs 线性代数内核及 Auxiliary、Logger 辅助实现。
+上游地址：https://github.com/ERGO-Code/HiGHS
+作者与 MIT 许可见随包安装的 HiGHS-LICENSE.txt。
+
+未编译 HiPO 的 LP 迭代、预求解或 KrylovMethodsIpm。
+构建时将 CallAndTimeBlas.cpp 的 HighsExtras 调用转接到独立 OpenBLAS；
+将 Factorise.cpp 和 DgemmParallel.cpp 的调度调用转接到本项目同步适配层。
+将 DenseFactKernel.cpp 中 staticReg 的扰动记录改为累计，避免第二次零增量
+覆盖已施加的动态扰动；只改变记账，不改变矩阵、主元选择或数值正则运算。
+其余内核保持锁定源码，包括块内主元选择和动态数值正则。
+OpenBLAS 为单线程完整构建，与 CHOLMOD 共用同一静态库；本内核使用其双精度 CBLAS，许可见 OpenBLAS-LICENSE.txt。
+本项目仍独立验证未正则化的 KKT 方向和原模型的原始/对偶残差。

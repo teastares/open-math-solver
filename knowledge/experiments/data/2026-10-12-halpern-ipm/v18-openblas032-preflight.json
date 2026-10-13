@@ -1,0 +1,21 @@
+{
+  "dependency": {
+    "version": "0.3.32",
+    "url": "https://codeload.github.com/OpenMathLib/OpenBLAS/tar.gz/refs/tags/v0.3.32",
+    "sha256": "f8a1138e01fddca9e4c29f9684fd570ba39dedc9ca76055e1425d5d4b1a4a766"
+  },
+  "tests": [
+    {
+      "core": "COOPERLAKE",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "多波前系统数值分解失败\n"
+    },
+    {
+      "core": "HASWELL",
+      "returncode": 0,
+      "stdout": "分块 LDL 检查通过：10929；BLAS 配置：OpenBLAS 0.3.32 NO_LAPACK NO_LAPACKE DYNAMIC_ARCH NO_AFFINITY USE_LOCKING Haswell SINGLE_THREADED；CPU 内核：Haswell\n",
+      "stderr": ""
+    }
+  ]
+}

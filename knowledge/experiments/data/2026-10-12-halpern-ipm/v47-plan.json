@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-10-13T15:35:53.552202+00:00",
+  "purpose": "将当前HSD strict的规范化、结构准备、Gram装配、数值分解、回代与验算分开，决定下一轮减少哪部分工作量；不是算法候选或正式加速比。",
+  "production_sha256": "e3d9f917f96fe3332b84faf8c160b1377d3ee5c1640ec3b34114c009bbe74c98",
+  "v46_identity_sha256": "ec4984faa34d10979568b6dcf8b9b8a17084dda26212d0896b8863d7b411f918",
+  "runner_sha256": "bb6872b9d2d2d827842cc3e0106a00a08e4c1f993bdd9b032b9ecb7565d07e80",
+  "builder_sha256": "130eb2755228b2814f69cf6cec21cf638a4912388daaace17bd992b79b1e1572",
+  "quality_scripts": {
+    "benchmark.py": "15dfc2d2d5f0dc1f02a45e4414c6dd8cbe33e745885d184d7fa24015f3bbc3f8",
+    "compare_lp.py": "dd5c1a686b1dfbd640273002aaf788d27e32a2864f432862317719ff5845d143"
+  },
+  "development_list_sha256": "7820566b72b30ad276a5a20ddcfacc830867dc860d40ee714af6563b12a072d8",
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "hash_error": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "hash_error": null
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "hash_error": null
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "hash_error": null
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "hash_error": null
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "hash_error": null
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "hash_error": null
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "hash_error": null
+    },
+    {
+      "model_index": 8,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+      "hash_error": null
+    },
+    {
+      "model_index": 9,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+      "hash_error": null
+    },
+    {
+      "model_index": 10,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+      "hash_error": null
+    },
+    {
+      "model_index": 11,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "hash_error": null
+    },
+    {
+      "model_index": 12,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "hash_error": null
+    }
+  ],
+  "options": [
+    "--backend",
+    "ipm",
+    "--time-limit",
+    "5",
+    "--threads",
+    "1",
+    "--seed",
+    "0",
+    "--iteration-limit",
+    "200",
+    "--scaling-passes",
+    "5",
+    "--ipm-method",
+    "homogeneous",
+    "--ipm-linear-accuracy",
+    "strict",
+    "--ipm-direction-retries",
+    "0",
+    "--ipm-linear-solver",
+    "normal_augmented",
+    "--ipm-singleton-elimination",
+    "on",
+    "--ipm-dynamic-regularization",
+    "off",
+    "--ipm-kkt-equilibration",
+    "on",
+    "--ipm-fixed-variable-elimination",
+    "on",
+    "--ipm-singleton-presolve",
+    "off",
+    "--ipm-presolve-fixed-elimination",
+    "off",
+    "--ipm-krylov-history-size",
+    "0",
+    "--ipm-central-corrections",
+    "0",
+    "--ipm-inexact-prefilter",
+    "off"
+  ],
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "modes": [
+    "production",
+    "off",
+    "on0",
+    "on1",
+    "on2"
+  ],
+  "runs": 65,
+  "schedule": "每模型将production/off/on0/on1/on2列表向左轮转model_index mod 5位，全部串行；每个输入有生产1次、同诊断exe关闭1次、开启3次。",
+  "profile_environment": "SOLVER_V47_PROFILE",
+  "profile_prefix": "V47_PROFILE ",
+  "trajectory": "比较production/off及off/on三个对子，覆盖全部非timings顶层字段及退出码；一对任一方time_limit/墙钟超时或实际数值预算超限时单列，不要求迭代数相同；其他差异不得忽略。",
+  "aggregation": "每模型先取三个开启重复的各阶段整数纳秒中位数，再按阶段累加；每调用成本为阶段包含时间中位数除以启动次数中位数，不是各次平均的中位数。保留全部原始时间及失败。包含时间有嵌套，不可直接加总；每次运行独占纳秒之和须等于total包含纳秒。",
+  "failure_policy": "保留失败与超时，不改预算或重跑替换。模型/程序/脚本变化、结构或计时错误均失败。",
+  "research_sources": [
+    "https://ergo-code.github.io/HiGHS/dev/solvers/",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/normal_matrix.cc",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/hipo/ipm/KktMatrix.cpp",
+    "https://github.com/DrTimothyAldenDavis/SuiteSparse/blob/v7.14.1/CHOLMOD/Supernodal/cholmod_super_numeric.c",
+    "https://docs.mosek.com/slides/ismp2012/dense.pdf"
+  ],
+  "source_caveat": "当前HiGHS构建HIPO关闭，choose基线为单纯形；IPX/HiPO/CHOLMOD只作为技术素材，不冒称本轮比较了其LP算法。旧v19的factor_kernel含装配，不能当作当前纯分解占比。"
+}

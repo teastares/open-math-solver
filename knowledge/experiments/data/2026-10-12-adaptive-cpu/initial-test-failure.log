@@ -1,0 +1,96 @@
+-- HIGHS_VCPKG: OFF
+-- HIGHS version: 1.15.1
+-- Git hash: 04024d7
+-- Build C++ library: ON
+-- Build C++ executable: OFF
+-- Build shared extras library: OFF
+-- Build Fortran: OFF
+-- Build CSharp: OFF
+-- Build HIPO: OFF
+-- Build all tests: OFF
+-- ZLIB: OFF
+-- Build examples: OFF
+-- Build pdlp with GPU: OFF
+-- Use FindCUDAConf: OFF
+-- Build GPU with delayed loading: OFF
+-- Build OpenBLAS: OFF
+-- Build type: Release
+-- Found long size: 4
+-- Found long long size: 8
+-- Found int64_t size: 8
+-- Found unsigned long size: 4
+-- Found unsigned long long size: 8
+-- Found uint64_t size: 8
+-- Found int * size: 8
+-- IPO / LTO not currently supported building HiGHS on MinGW
+-- IPO / LTO: disabled because it is not supported
+-- FAST_BUILD set to on.
+-- Build C++ example: OFF
+-- Build CSharp example: OFF
+-- Build dotnet package: OFF
+-- No CSharp support
+-- .Net: Use .Net Framework 2.1 support: ON
+-- Configuring highs_extras version 1.15.1
+-- Configuring done (0.5s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/Documents/codes/solver/build/release
+[1/17] Building CXX object CMakeFiles/solver_core.dir/src/lp_optimality.cpp.obj
+[2/17] Linking CXX static library libsolver_core.a
+[3/17] Building CXX object CMakeFiles/solver_pdlp.dir/src/pdlp.cpp.obj
+[4/17] Linking CXX static library libsolver_pdlp.a
+[5/17] Building CXX object CMakeFiles/solver.dir/src/main.cpp.obj
+[6/17] Building CXX object CMakeFiles/test_lp_optimality.dir/tests/test_lp_optimality.cpp.obj
+[7/17] Building CXX object CMakeFiles/solver_highs.dir/src/highs_backend.cpp.obj
+In file included from D:/Documents/codes/solver/src/highs_backend.cpp:4:
+In file included from D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:20:
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/lp_data/HighsRunData.h:150:25: warning: unused variable 'record_int64' [-Wunused-variable]
+  150 |     RunDataRecordInt64* record_int64;
+      |                         ^~~~~~~~~~~~
+In file included from D:/Documents/codes/solver/src/highs_backend.cpp:4:
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:1563:43: warning: unused parameter 'hot_start' [-Wunused-parameter]
+ 1563 |   HighsStatus setHotStart(const HotStart& hot_start) {
+      |                                           ^
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:1574:37: warning: unused parameter 'frozen_basis_id' [-Wunused-parameter]
+ 1574 |   HighsStatus freezeBasis(HighsInt& frozen_basis_id) {
+      |                                     ^
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:1583:44: warning: unused parameter 'frozen_basis_id' [-Wunused-parameter]
+ 1583 |   HighsStatus unfreezeBasis(const HighsInt frozen_basis_id) {
+      |                                            ^
+4 warnings generated.
+[8/17] Building CXX object CMakeFiles/test_pdlp.dir/tests/test_pdlp.cpp.obj
+[9/17] Linking CXX static library libsolver_highs.a
+[10/17] Linking CXX executable test_verification.exe
+[11/17] Linking CXX executable solver.exe
+[12/17] Linking CXX executable test_lp_optimality.exe
+[13/17] Linking CXX executable test_pdlp.exe
+[14/17] Building CXX object CMakeFiles/test_backend.dir/tests/test_backend.cpp.obj
+[15/17] Building CXX object CMakeFiles/test_pdlp_adversarial.dir/tests/test_pdlp_adversarial.cpp.obj
+[16/17] Linking CXX executable test_backend.exe
+[17/17] Linking CXX executable test_pdlp_adversarial.exe
+Test project D:/Documents/codes/solver/build/release
+    Start 1: verification
+1/8 Test #1: verification .....................   Passed    0.02 sec
+    Start 2: lp_optimality
+2/8 Test #2: lp_optimality ....................   Passed    0.02 sec
+    Start 3: pdlp
+3/8 Test #3: pdlp .............................***Failed    0.02 sec
+自主 PDHG 集成检查失败：应达到数值最优：error；自主求解失败：模型无效：CSC 列指针长度必须等于变量数加一
+
+    Start 4: pdlp_adversarial
+4/8 Test #4: pdlp_adversarial .................   Passed    0.03 sec
+    Start 5: backend
+5/8 Test #5: backend ..........................   Passed    0.03 sec
+    Start 6: cli_and_benchmark
+6/8 Test #6: cli_and_benchmark ................   Passed    1.48 sec
+    Start 7: pdlp_comparison
+7/8 Test #7: pdlp_comparison ..................   Passed    0.28 sec
+    Start 8: comparison_protocol
+8/8 Test #8: comparison_protocol ..............   Passed    0.37 sec
+
+88% tests passed, 1 tests failed out of 8
+
+Total Test time (real) =   2.30 sec
+
+The following tests FAILED:
+	  3 - pdlp (Failed)
+Errors while running CTest

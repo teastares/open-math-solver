@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 48,
+  "reference_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference",
+  "candidate_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate",
+  "both_variants_all_repeats_pass_count": 8,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 6,
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 2
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.1389484299649667,
+      "penalized_numerical_sgm10_seconds": 0.12584569748608065,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.13517996804225174,
+      "penalized_numerical_sgm10_seconds": 0.12217929128844443,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.007821899955160916,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.007807399961166084
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.0007104,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.0007025
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.007510000024922192,
+          0.010437399963848293
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.007620100048370659,
+          0.00988959998358041
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.000703,
+          0.0007823
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.0006964,
+          0.0007429000000000001
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.001857211628321,
+      "numerical_speedup_reference_over_candidate": 1.0112455516014236,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.010113300057128072,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.010976099991239607
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.0025866,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.0026907
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.009867499931715429,
+          0.011817699996754527
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.010518600000068545,
+          0.0114911999553442
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.002568,
+          0.0025977
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.0025601,
+          0.0027209
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9213928503931118,
+      "numerical_speedup_reference_over_candidate": 0.9613111829635411,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.025687400018796325,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.024853700073435903
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.0164084,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.0160047
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.024786500027403235,
+          0.027429700014181435
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.02451470005325973,
+          0.02674020000267774
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.0162324,
+          0.0165073
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.0158632,
+          0.0160845
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0335442989533576,
+      "numerical_speedup_reference_over_candidate": 1.025223840496854,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.018022799980826676,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.018258200027048588
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.009331599999999999,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.0092367
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.017820500070229173,
+          0.019958500051870942
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.018110800068825483,
+          0.019095299998298287
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.0092686,
+          0.0093552
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.0092032,
+          0.0093017
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9871071602965693,
+      "numerical_speedup_reference_over_candidate": 1.0102742321391838,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.04325809993315488,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.04077809990849346
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.0319005,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.0309121
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.04204700002446771,
+          0.04437860008329153
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.04054740001447499,
+          0.042724200058728456
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.0318364,
+          0.0336474
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.0307501,
+          0.0309303
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0608169588633745,
+      "numerical_speedup_reference_over_candidate": 1.031974534243872,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.17964470002334565,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.17579979996662587
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.1650871,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.1614093
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.17949899996165186,
+          0.18241979996673763
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.1748131999047473,
+          0.17845839995425195
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.1647513,
+          0.1660988
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.1605488,
+          0.1621578
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0218709012038107,
+      "numerical_speedup_reference_over_candidate": 1.0227855520097044,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.725456399959512,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.7147655000444502
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.6940661,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.6824059
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.7155514999758452,
+          0.7484955999534577
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.7084082999499515,
+          0.7167643998982385
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.6828639,
+          0.7176426
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.6772444,
+          0.6854481
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.014957213120103,
+      "numerical_speedup_reference_over_candidate": 1.017086897988426,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.10554369993042201,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.10339349997229874
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": 0.0932213,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": 0.0912478
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.10431419999804348,
+          0.13342919992282987
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.10285579995252192,
+          0.11301440000534058
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": [
+          0.0918023,
+          0.1171932
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": [
+          0.0906635,
+          0.09705270000000002
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0207962778965733,
+      "numerical_speedup_reference_over_candidate": 1.0216279187005057,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=reference": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": null,
+      "ipm_linear_solver": "factorhighs",
+      "ipm_inexact_prefilter": null,
+      "ipm_fixed_variable_elimination": "off",
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=factorhighs:prefilter=off:fixed=off:binary=candidate": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": null,
+      "ipm_linear_solver": "factorhighs",
+      "ipm_inexact_prefilter": null,
+      "ipm_fixed_variable_elimination": "off",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v20-development-factorhighs"
+}

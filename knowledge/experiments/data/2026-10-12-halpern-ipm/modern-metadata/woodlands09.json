@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "purpose": "仅输入解析与零迭代元数据审计，不是性能测量",
+  "input": "D:\\Documents\\codes\\solver\\benchmarks\\data\\modern-lp-smoke\\woodlands09.mps",
+  "command": [
+    "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v5.exe",
+    "solve",
+    "D:\\Documents\\codes\\solver\\benchmarks\\data\\modern-lp-smoke\\woodlands09.mps",
+    "--backend",
+    "ipm",
+    "--time-limit",
+    "0"
+  ],
+  "solver_sha256": "fe41132ea4148f5382daf8347aa973065ac53dc3a197fad15df682c2c89364c6",
+  "lock_sha256": "14483cf7aeb7176b167941c0a7d044b9a7cd4562e961e05bfe4fd56d80e66519",
+  "locked_model_sha256": "ea301f013124c18341fd0cafef66c9295493e94fe93079c2767402623e8f3602",
+  "published_nonzeros": 2646003,
+  "wall_timeout": 35,
+  "returncode": 4,
+  "stdout": "{\"schema_version\":1,\"solver_version\":\"0.5.0\",\"backend\":\"ipm\",\"backend_version\":\"ipm-cpu-0.2.0\",\"input\":\"D:\\\\Documents\\\\codes\\\\solver\\\\benchmarks\\\\data\\\\modern-lp-smoke\\\\woodlands09.mps\",\"options\":{\"backend\":\"ipm\",\"time_limit\":0,\"threads\":1,\"seed\":0,\"mip_relative_gap\":0.0001,\"pdlp\":null,\"ipm\":{\"max_iterations\":200,\"scaling_passes\":5},\"highs\":null,\"tolerances\":{\"feasibility_absolute\":9.9999999999999995e-08,\"feasibility_relative\":1.0000000000000001e-09,\"integrality\":9.9999999999999995e-07,\"objective_absolute\":9.9999999999999995e-08,\"objective_relative\":1.0000000000000001e-09}},\"status\":\"time_limit\",\"backend_status\":\"time_limit\",\"verification_level\":\"none\",\"message\":\"时间预算为零，未启动自主内点法\",\"model\":{\"name\":\"woodlands09\",\"columns\":382147,\"rows\":194599,\"nonzeros\":2646003,\"sense\":\"minimize\",\"objective_offset\":0,\"is_mip\":false},\"has_solution\":false,\"solution\":null,\"objective\":null,\"best_bound\":null,\"absolute_gap\":null,\"relative_gap\":null,\"nodes\":null,\"simplex_iterations\":null,\"pdlp_iterations\":null,\"pdlp_acceleration_attempts\":null,\"pdlp_acceleration_accepted\":null,\"pdlp_operator_passes\":null,\"ipm_iterations\":0,\"ipm_factorizations\":0,\"ipm_refinement_steps\":0,\"lp_optimality\":null,\"timings\":{\"read_seconds\":1.6317598,\"solve_seconds\":0.0071149000000000004,\"verification_seconds\":0,\"total_seconds\":1.6565143},\"verification\":{\"valid_input\":false,\"feasible\":false,\"objective_consistent\":false,\"recomputed_objective\":null,\"max_row_violation\":0,\"max_bound_violation\":0,\"max_integrality_violation\":0,\"errors\":[]}}\r\n",
+  "stderr": "",
+  "report": {
+    "schema_version": 1,
+    "solver_version": "0.5.0",
+    "backend": "ipm",
+    "backend_version": "ipm-cpu-0.2.0",
+    "input": "D:\\Documents\\codes\\solver\\benchmarks\\data\\modern-lp-smoke\\woodlands09.mps",
+    "options": {
+      "backend": "ipm",
+      "time_limit": 0,
+      "threads": 1,
+      "seed": 0,
+      "mip_relative_gap": 0.0001,
+      "pdlp": null,
+      "ipm": {
+        "max_iterations": 200,
+        "scaling_passes": 5
+      },
+      "highs": null,
+      "tolerances": {
+        "feasibility_absolute": 1e-07,
+        "feasibility_relative": 1e-09,
+        "integrality": 1e-06,
+        "objective_absolute": 1e-07,
+        "objective_relative": 1e-09
+      }
+    },
+    "status": "time_limit",
+    "backend_status": "time_limit",
+    "verification_level": "none",
+    "message": "时间预算为零，未启动自主内点法",
+    "model": {
+      "name": "woodlands09",
+      "columns": 382147,
+      "rows": 194599,
+      "nonzeros": 2646003,
+      "sense": "minimize",
+      "objective_offset": 0,
+      "is_mip": false
+    },
+    "has_solution": false,
+    "solution": null,
+    "objective": null,
+    "best_bound": null,
+    "absolute_gap": null,
+    "relative_gap": null,
+    "nodes": null,
+    "simplex_iterations": null,
+    "pdlp_iterations": null,
+    "pdlp_acceleration_attempts": null,
+    "pdlp_acceleration_accepted": null,
+    "pdlp_operator_passes": null,
+    "ipm_iterations": 0,
+    "ipm_factorizations": 0,
+    "ipm_refinement_steps": 0,
+    "lp_optimality": null,
+    "timings": {
+      "read_seconds": 1.6317598,
+      "solve_seconds": 0.0071149,
+      "verification_seconds": 0,
+      "total_seconds": 1.6565143
+    },
+    "verification": {
+      "valid_input": false,
+      "feasible": false,
+      "objective_consistent": false,
+      "recomputed_objective": null,
+      "max_row_violation": 0,
+      "max_bound_violation": 0,
+      "max_integrality_violation": 0,
+      "errors": []
+    }
+  },
+  "error": null,
+  "model_sha256": "ea301f013124c18341fd0cafef66c9295493e94fe93079c2767402623e8f3602",
+  "matches_lock": true,
+  "elapsed_wall_seconds": 1.6705473000183702,
+  "zero_iterations_observed": true,
+  "parsed_continuous_lp": true,
+  "nonzeros_match_published": true
+}

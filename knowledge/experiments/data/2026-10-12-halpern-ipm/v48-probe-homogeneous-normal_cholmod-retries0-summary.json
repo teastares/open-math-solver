@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "model_count": 5,
+  "repeats": 1,
+  "run_count": 10,
+  "quality_pass_count": 6,
+  "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous",
+  "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous",
+  "both_variants_all_repeats_pass_count": 3,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 2,
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 1
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+      "run_count": 5,
+      "quality_pass_count": 3,
+      "all_repeats_quality_pass_model_count": 3,
+      "quality_failure_counts": {
+        "incomplete": 2
+      },
+      "status_counts": {
+        "time_limit": 1,
+        "optimal": 3,
+        "numerical_error": 1
+      },
+      "penalized_wall_sgm10_seconds": 8.3877012742856,
+      "penalized_numerical_sgm10_seconds": 1.8378339843933156,
+      "numerical_budget_exceeded_count": 1,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": {
+      "run_count": 5,
+      "quality_pass_count": 3,
+      "all_repeats_quality_pass_model_count": 3,
+      "quality_failure_counts": {
+        "incomplete": 2
+      },
+      "status_counts": {
+        "numerical_error": 2,
+        "optimal": 3
+      },
+      "penalized_wall_sgm10_seconds": 8.362752112668602,
+      "penalized_numerical_sgm10_seconds": 1.8215296740992706,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+      "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 1,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0.03475529991555959,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0361471000360325
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0.0223708,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0238908
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": [
+          0.03475529991555959,
+          0.03475529991555959
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0361471000360325,
+          0.0361471000360325
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": [
+          0.0223708,
+          0.0223708
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0238908,
+          0.0238908
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9614962163192754,
+      "numerical_speedup_reference_over_candidate": 0.9363771828486279,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+      "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 1,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0.30053189990576357,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.22736100002657622
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0.2793213,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.2055121
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": [
+          0.30053189990576357,
+          0.30053189990576357
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.22736100002657622,
+          0.22736100002657622
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": [
+          0.2793213,
+          0.2793213
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.2055121,
+          0.2055121
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.3218269618388132,
+      "numerical_speedup_reference_over_candidate": 1.3591477095509217,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+      "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 1,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0.04258999996818602,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.044613400008529425
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": 0.0286806,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0303188
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": [
+          0.04258999996818602,
+          0.04258999996818602
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.044613400008529425,
+          0.044613400008529425
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": [
+          0.0286806,
+          0.0286806
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0303188,
+          0.0303188
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9546459126639852,
+      "numerical_speedup_reference_over_candidate": 0.9459675185033709,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+      "backend": "ipm",
+      "mode": null,
+      "ipm_method": "homogeneous",
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": 0,
+      "ipm_direction_retries": 0,
+      "ipm_krylov_history_size": 0,
+      "ipm_linear_solver": "normal_augmented",
+      "ipm_inexact_prefilter": "off",
+      "ipm_fixed_variable_elimination": "on",
+      "ipm_singleton_presolve": "off",
+      "ipm_presolve_fixed_elimination": "off",
+      "iteration_limit": 200,
+      "scaling_passes": 5
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": {
+      "backend": "ipm",
+      "mode": null,
+      "ipm_method": "homogeneous",
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": 0,
+      "ipm_direction_retries": 0,
+      "ipm_krylov_history_size": 0,
+      "ipm_linear_solver": "normal_cholmod",
+      "ipm_inexact_prefilter": "off",
+      "ipm_fixed_variable_elimination": "on",
+      "ipm_singleton_presolve": "off",
+      "ipm_presolve_fixed_elimination": "off",
+      "iteration_limit": 200,
+      "scaling_passes": 5
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v48-probe-homogeneous-normal_cholmod-retries0"
+}

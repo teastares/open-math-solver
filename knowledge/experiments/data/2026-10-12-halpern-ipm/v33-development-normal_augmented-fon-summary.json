@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 48,
+  "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on",
+  "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on",
+  "both_variants_all_repeats_pass_count": 8,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 7,
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 1
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.1917631951823627,
+      "penalized_numerical_sgm10_seconds": 0.17922907789246567,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.17013367985953487,
+      "penalized_numerical_sgm10_seconds": 0.15735470622673942,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.007652999949641526,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.007752000004984438
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0003975,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0004032
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.007469999953173101,
+          0.009199399966746569
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.007695700041949749,
+          0.00926320010330528
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0003908,
+          0.000398
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0003942,
+          0.0004081
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9872290950362156,
+      "numerical_speedup_reference_over_candidate": 0.9858630952380953,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.008472400018945336,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.009074899950064719
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0013446,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0015764999999999998
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.00842160009779036,
+          0.009944900055415928
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.008915199898183346,
+          0.011133100022561848
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0013433,
+          0.0013583
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0015476,
+          0.0018415000000000003
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9336080910605427,
+      "numerical_speedup_reference_over_candidate": 0.8529019980970506,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.017839299980551004,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.019246799987740815
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0092704,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0106735
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.017580399988219142,
+          0.019574600039049983
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.01920930005144328,
+          0.021686700056307018
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0091974,
+          0.0094001
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0106517,
+          0.0106937
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9268709599472996,
+      "numerical_speedup_reference_over_candidate": 0.8685435892631282,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.025051500066183507,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.025221699965186417
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.016753499999999998,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0167507
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.02491299994289875,
+          0.026536499965004623
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.025164099992252886,
+          0.026609799941070378
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0166943,
+          0.0167882
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.016724,
+          0.0169932
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9932518466543557,
+      "numerical_speedup_reference_over_candidate": 1.0001671571934305,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.028484700014814734,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.028804500005207956
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0190499,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0190276
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.028449299978092313,
+          0.0298526999540627
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.028675699955783784,
+          0.029859500005841255
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0190177,
+          0.0190631
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0189503,
+          0.0190501
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9888975684238435,
+      "numerical_speedup_reference_over_candidate": 1.0011719817528224,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.07674109993968159,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.07810620008967817
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0623194,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0637935
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.07635119999758899,
+          0.07847340009175241
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.07774109998717904,
+          0.07974209997337312
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.06213579999999999,
+          0.0624465
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0635219,
+          0.0638229
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9825225123174699,
+      "numerical_speedup_reference_over_candidate": 0.9768926301268938,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 1.3752073999494314,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.8858557000057772
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 1.3439094,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.8547404
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          1.3747902000322938,
+          1.3755648999940604
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.8774358000373468,
+          0.891584699973464
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          1.3410086,
+          1.3442962
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.8461754,
+          0.8587825
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.5524056569715168,
+      "numerical_speedup_reference_over_candidate": 1.5723012507657297,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.06421039998531342,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.33611420006491244
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.0521741,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": 0.3238334
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.06393639999441803,
+          0.0659182999515906
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.33411070005968213,
+          0.3386608000146225
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.0519638,
+          0.0523338
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": [
+          0.3216205,
+          0.32457
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.19103745088101814,
+      "numerical_speedup_reference_over_candidate": 0.16111401726937372,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": null,
+      "ipm_linear_solver": "normal_augmented",
+      "ipm_inexact_prefilter": null,
+      "ipm_fixed_variable_elimination": "on",
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=primal_dual_regularization:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "primal_dual_regularization",
+      "ipm_central_corrections": null,
+      "ipm_linear_solver": "normal_augmented",
+      "ipm_inexact_prefilter": null,
+      "ipm_fixed_variable_elimination": "on",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v33-development-normal_augmented-fon"
+}

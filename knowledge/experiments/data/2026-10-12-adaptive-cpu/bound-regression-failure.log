@@ -1,0 +1,70 @@
+-- HIGHS_VCPKG: OFF
+-- HIGHS version: 1.15.1
+-- Git hash: 04024d7
+-- Build C++ library: ON
+-- Build C++ executable: OFF
+-- Build shared extras library: OFF
+-- Build Fortran: OFF
+-- Build CSharp: OFF
+-- Build HIPO: OFF
+-- Build all tests: OFF
+-- ZLIB: OFF
+-- Build examples: OFF
+-- Build pdlp with GPU: OFF
+-- Use FindCUDAConf: OFF
+-- Build GPU with delayed loading: OFF
+-- Build OpenBLAS: OFF
+-- Build type: Release
+-- Found long size: 4
+-- Found long long size: 8
+-- Found int64_t size: 8
+-- Found unsigned long size: 4
+-- Found unsigned long long size: 8
+-- Found uint64_t size: 8
+-- Found int * size: 8
+-- IPO / LTO not currently supported building HiGHS on MinGW
+-- IPO / LTO: disabled because it is not supported
+-- FAST_BUILD set to on.
+-- Build C++ example: OFF
+-- Build CSharp example: OFF
+-- Build dotnet package: OFF
+-- No CSharp support
+-- .Net: Use .Net Framework 2.1 support: ON
+-- Configuring highs_extras version 1.15.1
+-- Configuring done (0.5s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/Documents/codes/solver/build/release
+[1/7] Building CXX object CMakeFiles/test_pdlp.dir/tests/test_pdlp.cpp.obj
+[2/7] Building CXX object CMakeFiles/solver_pdlp.dir/src/pdlp.cpp.obj
+[3/7] Linking CXX static library libsolver_pdlp.a
+[4/7] Linking CXX executable test_pdlp.exe
+[5/7] Linking CXX executable test_pdlp_adversarial.exe
+[6/7] Linking CXX executable solver.exe
+[7/7] Linking CXX executable test_backend.exe
+Test project D:/Documents/codes/solver/build/release
+    Start 1: verification
+1/8 Test #1: verification .....................   Passed    0.01 sec
+    Start 2: lp_optimality
+2/8 Test #2: lp_optimality ....................   Passed    0.01 sec
+    Start 3: pdlp
+3/8 Test #3: pdlp .............................***Failed    0.02 sec
+自主 PDHG 集成检查失败：应达到数值最优：numerical_error；自主对偶界与已检查候选的目标方向矛盾或间隙溢出
+
+    Start 4: pdlp_adversarial
+4/8 Test #4: pdlp_adversarial .................   Passed    0.02 sec
+    Start 5: backend
+5/8 Test #5: backend ..........................   Passed    0.03 sec
+    Start 6: cli_and_benchmark
+6/8 Test #6: cli_and_benchmark ................   Passed    1.47 sec
+    Start 7: pdlp_comparison
+7/8 Test #7: pdlp_comparison ..................   Passed    0.27 sec
+    Start 8: comparison_protocol
+8/8 Test #8: comparison_protocol ..............   Passed    0.36 sec
+
+88% tests passed, 1 tests failed out of 8
+
+Total Test time (real) =   2.22 sec
+
+The following tests FAILED:
+	  3 - pdlp (Failed)
+Errors while running CTest

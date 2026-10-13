@@ -1,0 +1,186 @@
+{
+  "verified_at_utc": "2026-10-13T15:45:56.264676+00:00",
+  "passed": true,
+  "final": false,
+  "script_sha256": "2d71e4bbe7337a21781a130fb353569ab317a861185f73aec4291c6fe05c7a84",
+  "production_sha256": "e3d9f917f96fe3332b84faf8c160b1377d3ee5c1640ec3b34114c009bbe74c98",
+  "diagnostic_sha256": "751368be43679154f1a3c35b8f93af6404a6c4645ca3e7426343d9982e2b165e",
+  "plan_sha256": "a618c8d629da0bd630154aa8c278eeec77159b0cbd56b7f3e08acbfe6428ca24",
+  "build_manifest_sha256": "47415558de06609dc44ffd3a854e231056bd344e4fd41f48cb385c9029032b62",
+  "source_files_verified": 90,
+  "stages_verified": 26,
+  "self_tests": {
+    "False": {
+      "raw_sha256": "e9d3909c8d633c0c132b2efb6fb718ec38a0feae86dedd187bc6bff128c09e46",
+      "passed": true
+    },
+    "True": {
+      "raw_sha256": "cd0fccafb42eb28957d9aa4f38204e150e8642f2fab762c75e5e006f8f036cd7",
+      "passed": true
+    }
+  },
+  "build_artifacts_sha256": "2e141b1cad02c16b6a265ee0d631870355f24a82f0e7f9f721a72f9ff554f5da",
+  "build_artifact_files_verified": 72,
+  "build_correction_sha256": "a058597be62155a793ab93d286aa1c432e1f34a2124124cef42ae839cb5bbd81",
+  "implicit_link_inputs_verified": false,
+  "build_evidence_counts": {
+    "outputs": 18,
+    "protected_before_and_after": 27,
+    "link_explicit_before_and_after": 17,
+    "compile_inputs_after_and_final": 1077
+  },
+  "runs": {
+    "records": 65,
+    "pairs": 52,
+    "non_budget_limited_pairs_equal": 48,
+    "budget_limited_pairs": [
+      {
+        "model": "dfl001",
+        "reference": "production",
+        "candidate": "off",
+        "equal": false,
+        "budget_limited": true
+      },
+      {
+        "model": "dfl001",
+        "reference": "off",
+        "candidate": "on0",
+        "equal": true,
+        "budget_limited": true
+      },
+      {
+        "model": "dfl001",
+        "reference": "off",
+        "candidate": "on1",
+        "equal": false,
+        "budget_limited": true
+      },
+      {
+        "model": "dfl001",
+        "reference": "off",
+        "candidate": "on2",
+        "equal": false,
+        "budget_limited": true
+      }
+    ],
+    "profiles_checked": 39,
+    "quality_pass_counts": {
+      "production": 11,
+      "off": 11,
+      "on0": 11,
+      "on1": 11,
+      "on2": 11
+    },
+    "status_counts": {
+      "optimal": 55,
+      "time_limit": 5,
+      "numerical_error": 5
+    },
+    "cohort_costs": {
+      "development": {
+        "models": 8,
+        "sum_of_model_inclusive_ns_medians": {
+          "total": 532665000,
+          "canonicalize": 12513800,
+          "kkt_setup": 25397800,
+          "normal_setup": 13851400,
+          "ordering": 7950500,
+          "symbolic_analysis": 835400,
+          "factor": 207105500,
+          "normal_factor": 173165300,
+          "gram_assembly": 92295300,
+          "numeric_factor": 74790300,
+          "factor_check": 5484000,
+          "solve": 199772400,
+          "krylov": 0,
+          "direct": 159083600,
+          "solve_factored": 123816900,
+          "normal_solve": 123717200,
+          "triangular_solve": 15393700,
+          "kkt_product": 35663100,
+          "assess_homogeneous": 42491000,
+          "assess": 37342400,
+          "verify_original": 33882200,
+          "homogeneous_direction": 145249200,
+          "initialize": 11320900,
+          "run_homogeneous": 524370600,
+          "fallback_factor_adapter": 0,
+          "fallback_solve_adapter": 0
+        },
+        "numeric_factor_share": 0.1404077609754724,
+        "gram_assembly_share": 0.17327081749317114
+      },
+      "all_five_modes_quality_pass": {
+        "models": 11,
+        "sum_of_model_inclusive_ns_medians": {
+          "total": 7003409800,
+          "canonicalize": 33851800,
+          "kkt_setup": 264537000,
+          "normal_setup": 202607000,
+          "ordering": 53155200,
+          "symbolic_analysis": 6202200,
+          "factor": 5692164000,
+          "normal_factor": 5592390600,
+          "gram_assembly": 1468737100,
+          "numeric_factor": 4080552700,
+          "factor_check": 34691100,
+          "solve": 733864700,
+          "krylov": 0,
+          "direct": 599148800,
+          "solve_factored": 516700600,
+          "normal_solve": 516492200,
+          "triangular_solve": 172735000,
+          "kkt_product": 122480100,
+          "assess_homogeneous": 164585300,
+          "assess": 152935500,
+          "verify_original": 144616800,
+          "homogeneous_direction": 470755200,
+          "initialize": 195554300,
+          "run_homogeneous": 6978401700,
+          "fallback_factor_adapter": 0,
+          "fallback_solve_adapter": 0
+        },
+        "numeric_factor_share": 0.5826522817499555,
+        "gram_assembly_share": 0.20971742935848192
+      },
+      "all": {
+        "models": 13,
+        "sum_of_model_inclusive_ns_medians": {
+          "total": 12609342000,
+          "canonicalize": 46826600,
+          "kkt_setup": 317578200,
+          "normal_setup": 230323800,
+          "ordering": 79961200,
+          "symbolic_analysis": 9257800,
+          "factor": 10702050700,
+          "normal_factor": 10554480700,
+          "gram_assembly": 1627524900,
+          "numeric_factor": 8865442400,
+          "factor_check": 52434600,
+          "solve": 1167833500,
+          "krylov": 78991300,
+          "direct": 948252600,
+          "solve_factored": 812031500,
+          "normal_solve": 811741800,
+          "triangular_solve": 274306800,
+          "kkt_product": 184535600,
+          "assess_homogeneous": 218783600,
+          "assess": 201731200,
+          "verify_original": 188957500,
+          "homogeneous_direction": 680252200,
+          "initialize": 499747800,
+          "run_homogeneous": 12573631100,
+          "fallback_factor_adapter": 0,
+          "fallback_solve_adapter": 0
+        },
+        "numeric_factor_share": 0.7030852521884171,
+        "gram_assembly_share": 0.1290729444883008
+      }
+    },
+    "raw_sha256": "df22b91f79cd859b2e0bb4100e10bd2d9294260215ac880daa31c70071ea1229",
+    "summary_sha256": "7d0d6e76f9164f8361adbc87612d1e25c3a2e4133f317f1f422a7585c31377ed",
+    "complete_summary_recomputed": true,
+    "timing_scope": "逐次纳秒守恒；中位数聚合不强制守恒；不作为性能成绩。"
+  },
+  "runtime_scope": "只读重核既有来源、计时器自测和结果，不编译、不调用LP、不重新测量。"
+}

@@ -1,0 +1,3664 @@
+{
+  "schema": 1,
+  "plan_sha256": "a618c8d629da0bd630154aa8c278eeec77159b0cbd56b7f3e08acbfe6428ca24",
+  "raw_sha256": "df22b91f79cd859b2e0bb4100e10bd2d9294260215ac880daa31c70071ea1229",
+  "runs": 65,
+  "models": [
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "comparisons": {
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 511400,
+          "exclusive_ns": 6800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005114
+        },
+        "canonicalize": {
+          "inclusive_ns": 31400,
+          "exclusive_ns": 31400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.14e-05
+        },
+        "kkt_setup": {
+          "inclusive_ns": 85200,
+          "exclusive_ns": 30400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 8.52e-05
+        },
+        "normal_setup": {
+          "inclusive_ns": 39300,
+          "exclusive_ns": 27700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.93e-05
+        },
+        "ordering": {
+          "inclusive_ns": 21600,
+          "exclusive_ns": 21600,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.08e-05
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 5600,
+          "exclusive_ns": 5600,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.8e-06
+        },
+        "factor": {
+          "inclusive_ns": 99800,
+          "exclusive_ns": 34400,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 9.98e-06
+        },
+        "normal_factor": {
+          "inclusive_ns": 62800,
+          "exclusive_ns": 5300,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.279999999999999e-06
+        },
+        "gram_assembly": {
+          "inclusive_ns": 43900,
+          "exclusive_ns": 43900,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.39e-06
+        },
+        "numeric_factor": {
+          "inclusive_ns": 6700,
+          "exclusive_ns": 6700,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.7e-07
+        },
+        "factor_check": {
+          "inclusive_ns": 7200,
+          "exclusive_ns": 7200,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 7.2e-07
+        },
+        "solve": {
+          "inclusive_ns": 163900,
+          "exclusive_ns": 12300,
+          "started": 29,
+          "completed": 29,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.651724137931034e-06
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 129100,
+          "exclusive_ns": 34600,
+          "started": 31,
+          "completed": 31,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.164516129032258e-06
+        },
+        "solve_factored": {
+          "inclusive_ns": 94500,
+          "exclusive_ns": 2900,
+          "started": 31,
+          "completed": 31,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.0483870967741937e-06
+        },
+        "normal_solve": {
+          "inclusive_ns": 91900,
+          "exclusive_ns": 83000,
+          "started": 31,
+          "completed": 31,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.964516129032258e-06
+        },
+        "triangular_solve": {
+          "inclusive_ns": 8900,
+          "exclusive_ns": 8900,
+          "started": 31,
+          "completed": 31,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.8709677419354837e-07
+        },
+        "kkt_product": {
+          "inclusive_ns": 23900,
+          "exclusive_ns": 23900,
+          "started": 31,
+          "completed": 31,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 7.709677419354839e-07
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 64000,
+          "exclusive_ns": 8200,
+          "started": 11,
+          "completed": 11,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.818181818181818e-06
+        },
+        "assess": {
+          "inclusive_ns": 55800,
+          "exclusive_ns": 9600,
+          "started": 11,
+          "completed": 11,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.072727272727273e-06
+        },
+        "verify_original": {
+          "inclusive_ns": 46200,
+          "exclusive_ns": 46200,
+          "started": 11,
+          "completed": 11,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.2e-06
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 114200,
+          "exclusive_ns": 27500,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.344444444444445e-06
+        },
+        "initialize": {
+          "inclusive_ns": 38300,
+          "exclusive_ns": 1800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.83e-05
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 473500,
+          "exclusive_ns": 37000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0004735
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0004958,
+          "wall_seconds": 0.011586799984797835,
+          "iterations": 9,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.000533,
+          "wall_seconds": 0.027679599937982857,
+          "iterations": 9,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0005111,
+          "wall_seconds": 0.012731799972243607,
+          "iterations": 9,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0005114,
+          "wall_seconds": 0.011096300091594458,
+          "iterations": 9,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0005359,
+          "wall_seconds": 0.010831700055859983,
+          "iterations": 9,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "comparisons": {
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 1808100,
+          "exclusive_ns": 13500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0018081
+        },
+        "canonicalize": {
+          "inclusive_ns": 80000,
+          "exclusive_ns": 80000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 8e-05
+        },
+        "kkt_setup": {
+          "inclusive_ns": 235300,
+          "exclusive_ns": 76600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0002353
+        },
+        "normal_setup": {
+          "inclusive_ns": 111800,
+          "exclusive_ns": 85000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001118
+        },
+        "ordering": {
+          "inclusive_ns": 67200,
+          "exclusive_ns": 67200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.36e-05
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 10200,
+          "exclusive_ns": 10200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.1e-06
+        },
+        "factor": {
+          "inclusive_ns": 493800,
+          "exclusive_ns": 121900,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.2919999999999997e-05
+        },
+        "normal_factor": {
+          "inclusive_ns": 371900,
+          "exclusive_ns": 8700,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.4793333333333332e-05
+        },
+        "gram_assembly": {
+          "inclusive_ns": 304000,
+          "exclusive_ns": 304000,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.0266666666666667e-05
+        },
+        "numeric_factor": {
+          "inclusive_ns": 36500,
+          "exclusive_ns": 36500,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.4333333333333335e-06
+        },
+        "factor_check": {
+          "inclusive_ns": 23500,
+          "exclusive_ns": 23500,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.5666666666666666e-06
+        },
+        "solve": {
+          "inclusive_ns": 592200,
+          "exclusive_ns": 24200,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.3459090909090908e-05
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 462800,
+          "exclusive_ns": 113800,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.006086956521739e-05
+        },
+        "solve_factored": {
+          "inclusive_ns": 349000,
+          "exclusive_ns": 4900,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 7.586956521739131e-06
+        },
+        "normal_solve": {
+          "inclusive_ns": 343800,
+          "exclusive_ns": 315100,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 7.473913043478261e-06
+        },
+        "triangular_solve": {
+          "inclusive_ns": 28700,
+          "exclusive_ns": 28700,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.239130434782609e-07
+        },
+        "kkt_product": {
+          "inclusive_ns": 105200,
+          "exclusive_ns": 105200,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.2869565217391303e-06
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 185400,
+          "exclusive_ns": 22900,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.15875e-05
+        },
+        "assess": {
+          "inclusive_ns": 162500,
+          "exclusive_ns": 20700,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.015625e-05
+        },
+        "verify_original": {
+          "inclusive_ns": 141800,
+          "exclusive_ns": 141800,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 8.8625e-06
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 422400,
+          "exclusive_ns": 78200,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.5085714285714286e-05
+        },
+        "initialize": {
+          "inclusive_ns": 85800,
+          "exclusive_ns": 3200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 8.58e-05
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 1712800,
+          "exclusive_ns": 113600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0017128
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0018017,
+          "wall_seconds": 0.011441999929957092,
+          "iterations": 14,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0018081,
+          "wall_seconds": 0.012449000030755997,
+          "iterations": 14,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.001821,
+          "wall_seconds": 0.012715499964542687,
+          "iterations": 14,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.001801,
+          "wall_seconds": 0.01287960004992783,
+          "iterations": 14,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0019239,
+          "wall_seconds": 0.011876099975779653,
+          "iterations": 14,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "comparisons": {
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 12304700,
+          "exclusive_ns": 29800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0123047
+        },
+        "canonicalize": {
+          "inclusive_ns": 256600,
+          "exclusive_ns": 256600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0002566
+        },
+        "kkt_setup": {
+          "inclusive_ns": 1264500,
+          "exclusive_ns": 260600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0012645
+        },
+        "normal_setup": {
+          "inclusive_ns": 794800,
+          "exclusive_ns": 622700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0007948
+        },
+        "ordering": {
+          "inclusive_ns": 324500,
+          "exclusive_ns": 324500,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00016225
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 38300,
+          "exclusive_ns": 38300,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.915e-05
+        },
+        "factor": {
+          "inclusive_ns": 5652600,
+          "exclusive_ns": 650600,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.000235525
+        },
+        "normal_factor": {
+          "inclusive_ns": 4998100,
+          "exclusive_ns": 26400,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00020825416666666666
+        },
+        "gram_assembly": {
+          "inclusive_ns": 4072600,
+          "exclusive_ns": 4072600,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00016969166666666667
+        },
+        "numeric_factor": {
+          "inclusive_ns": 764600,
+          "exclusive_ns": 764600,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.185833333333333e-05
+        },
+        "factor_check": {
+          "inclusive_ns": 133900,
+          "exclusive_ns": 133900,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.5791666666666665e-06
+        },
+        "solve": {
+          "inclusive_ns": 3198700,
+          "exclusive_ns": 69900,
+          "started": 71,
+          "completed": 71,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.505211267605634e-05
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 2460600,
+          "exclusive_ns": 514200,
+          "started": 73,
+          "completed": 73,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.370684931506849e-05
+        },
+        "solve_factored": {
+          "inclusive_ns": 1945000,
+          "exclusive_ns": 7600,
+          "started": 73,
+          "completed": 73,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.6643835616438354e-05
+        },
+        "normal_solve": {
+          "inclusive_ns": 1937600,
+          "exclusive_ns": 1658400,
+          "started": 73,
+          "completed": 73,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.654246575342466e-05
+        },
+        "triangular_solve": {
+          "inclusive_ns": 248700,
+          "exclusive_ns": 248700,
+          "started": 73,
+          "completed": 73,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.4068493150684928e-06
+        },
+        "kkt_product": {
+          "inclusive_ns": 664600,
+          "exclusive_ns": 664600,
+          "started": 73,
+          "completed": 73,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 9.104109589041095e-06
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 1106700,
+          "exclusive_ns": 83600,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.4268e-05
+        },
+        "assess": {
+          "inclusive_ns": 1023100,
+          "exclusive_ns": 82600,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.0924e-05
+        },
+        "verify_original": {
+          "inclusive_ns": 943200,
+          "exclusive_ns": 943200,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.7728e-05
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 2297300,
+          "exclusive_ns": 341400,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.9941304347826084e-05
+        },
+        "initialize": {
+          "inclusive_ns": 366100,
+          "exclusive_ns": 7600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0003661
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 12024800,
+          "exclusive_ns": 485500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0120248
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0122811,
+          "wall_seconds": 0.02623330010101199,
+          "iterations": 23,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0123374,
+          "wall_seconds": 0.02433960000053048,
+          "iterations": 23,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0123046,
+          "wall_seconds": 0.024759499938227236,
+          "iterations": 23,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0125416,
+          "wall_seconds": 0.02433219994418323,
+          "iterations": 23,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0122588,
+          "wall_seconds": 0.02244769991375506,
+          "iterations": 23,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "comparisons": {
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 20534800,
+          "exclusive_ns": 22600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0205348
+        },
+        "canonicalize": {
+          "inclusive_ns": 193900,
+          "exclusive_ns": 193900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001939
+        },
+        "kkt_setup": {
+          "inclusive_ns": 2015200,
+          "exclusive_ns": 226500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0020152
+        },
+        "normal_setup": {
+          "inclusive_ns": 1616500,
+          "exclusive_ns": 1443200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0016165
+        },
+        "ordering": {
+          "inclusive_ns": 279800,
+          "exclusive_ns": 279800,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001399
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 98400,
+          "exclusive_ns": 98400,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.92e-05
+        },
+        "factor": {
+          "inclusive_ns": 14027100,
+          "exclusive_ns": 457100,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006098739130434783
+        },
+        "normal_factor": {
+          "inclusive_ns": 13570000,
+          "exclusive_ns": 24500,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00059
+        },
+        "gram_assembly": {
+          "inclusive_ns": 7927400,
+          "exclusive_ns": 7927400,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00034466956521739126
+        },
+        "numeric_factor": {
+          "inclusive_ns": 5405100,
+          "exclusive_ns": 5405100,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00023500434782608697
+        },
+        "factor_check": {
+          "inclusive_ns": 200800,
+          "exclusive_ns": 200800,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 8.730434782608695e-06
+        },
+        "solve": {
+          "inclusive_ns": 2660800,
+          "exclusive_ns": 52500,
+          "started": 68,
+          "completed": 68,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.912941176470588e-05
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 2111600,
+          "exclusive_ns": 331800,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.9327777777777776e-05
+        },
+        "solve_factored": {
+          "inclusive_ns": 1783400,
+          "exclusive_ns": 8300,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.4769444444444446e-05
+        },
+        "normal_solve": {
+          "inclusive_ns": 1775100,
+          "exclusive_ns": 1078700,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.4654166666666665e-05
+        },
+        "triangular_solve": {
+          "inclusive_ns": 693100,
+          "exclusive_ns": 693100,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 9.62638888888889e-06
+        },
+        "kkt_product": {
+          "inclusive_ns": 498400,
+          "exclusive_ns": 498400,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.9222222222222215e-06
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 912400,
+          "exclusive_ns": 53300,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.8016666666666665e-05
+        },
+        "assess": {
+          "inclusive_ns": 859100,
+          "exclusive_ns": 67100,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.5795833333333334e-05
+        },
+        "verify_original": {
+          "inclusive_ns": 792000,
+          "exclusive_ns": 792000,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.2999999999999996e-05
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 1817600,
+          "exclusive_ns": 220400,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.130909090909091e-05
+        },
+        "initialize": {
+          "inclusive_ns": 729200,
+          "exclusive_ns": 5200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0007292
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 20322000,
+          "exclusive_ns": 369100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.020322
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0206453,
+          "wall_seconds": 0.03386349999345839,
+          "iterations": 22,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0205347,
+          "wall_seconds": 0.032218300038948655,
+          "iterations": 22,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.020156,
+          "wall_seconds": 0.031249399995431304,
+          "iterations": 22,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.020921,
+          "wall_seconds": 0.03051640000194311,
+          "iterations": 22,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0204789,
+          "wall_seconds": 0.03252100001554936,
+          "iterations": 22,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "comparisons": {
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 22440600,
+          "exclusive_ns": 31600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0224406
+        },
+        "canonicalize": {
+          "inclusive_ns": 699100,
+          "exclusive_ns": 406200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00034955
+        },
+        "kkt_setup": {
+          "inclusive_ns": 2433500,
+          "exclusive_ns": 441500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0024335
+        },
+        "normal_setup": {
+          "inclusive_ns": 1589600,
+          "exclusive_ns": 1294700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0015896
+        },
+        "ordering": {
+          "inclusive_ns": 521300,
+          "exclusive_ns": 521300,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00026065
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 103100,
+          "exclusive_ns": 103100,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.155e-05
+        },
+        "factor": {
+          "inclusive_ns": 10049600,
+          "exclusive_ns": 780000,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005583111111111111
+        },
+        "normal_factor": {
+          "inclusive_ns": 9269600,
+          "exclusive_ns": 28100,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005149777777777777
+        },
+        "gram_assembly": {
+          "inclusive_ns": 5370900,
+          "exclusive_ns": 5370900,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0002983833333333333
+        },
+        "numeric_factor": {
+          "inclusive_ns": 3614600,
+          "exclusive_ns": 3614600,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0002008111111111111
+        },
+        "factor_check": {
+          "inclusive_ns": 255500,
+          "exclusive_ns": 255500,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.4194444444444443e-05
+        },
+        "solve": {
+          "inclusive_ns": 7335000,
+          "exclusive_ns": 212100,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00013839622641509435
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 5760300,
+          "exclusive_ns": 1077600,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.434245283018868e-05
+        },
+        "solve_factored": {
+          "inclusive_ns": 4670500,
+          "exclusive_ns": 11700,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.406132075471698e-05
+        },
+        "normal_solve": {
+          "inclusive_ns": 4658900,
+          "exclusive_ns": 3417000,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.3951886792452824e-05
+        },
+        "triangular_solve": {
+          "inclusive_ns": 1243700,
+          "exclusive_ns": 1243700,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.1733018867924527e-05
+        },
+        "kkt_product": {
+          "inclusive_ns": 1360900,
+          "exclusive_ns": 1360900,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 1.2838679245283019e-05
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 1349900,
+          "exclusive_ns": 96500,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 7.104736842105263e-05
+        },
+        "assess": {
+          "inclusive_ns": 1254600,
+          "exclusive_ns": 107200,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.603157894736842e-05
+        },
+        "verify_original": {
+          "inclusive_ns": 1149300,
+          "exclusive_ns": 1149300,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.0489473684210525e-05
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 4836100,
+          "exclusive_ns": 337200,
+          "started": 34,
+          "completed": 34,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00014223823529411765
+        },
+        "initialize": {
+          "inclusive_ns": 1090400,
+          "exclusive_ns": 8900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010904
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 21977600,
+          "exclusive_ns": 492600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0219776
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.022062,
+          "wall_seconds": 0.03653809998650104,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0220462,
+          "wall_seconds": 0.03585910005494952,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0217348,
+          "wall_seconds": 0.03247690002899617,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0224405,
+          "wall_seconds": 0.035579599905759096,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0225807,
+          "wall_seconds": 0.035296999965794384,
+          "iterations": 17,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "comparisons": {
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 78876000,
+          "exclusive_ns": 100200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.078876
+        },
+        "canonicalize": {
+          "inclusive_ns": 1078800,
+          "exclusive_ns": 1078800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010788
+        },
+        "kkt_setup": {
+          "inclusive_ns": 5569700,
+          "exclusive_ns": 1151500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0055697
+        },
+        "normal_setup": {
+          "inclusive_ns": 3043900,
+          "exclusive_ns": 2245100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0030439
+        },
+        "ordering": {
+          "inclusive_ns": 1962400,
+          "exclusive_ns": 1962400,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009812
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 192500,
+          "exclusive_ns": 192500,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 9.625e-05
+        },
+        "factor": {
+          "inclusive_ns": 40809300,
+          "exclusive_ns": 3955600,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.001457475
+        },
+        "normal_factor": {
+          "inclusive_ns": 36853700,
+          "exclusive_ns": 113200,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0013162035714285715
+        },
+        "gram_assembly": {
+          "inclusive_ns": 17382600,
+          "exclusive_ns": 17382600,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006208071428571429
+        },
+        "numeric_factor": {
+          "inclusive_ns": 18410500,
+          "exclusive_ns": 18410500,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006575178571428572
+        },
+        "factor_check": {
+          "inclusive_ns": 960700,
+          "exclusive_ns": 960700,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.4310714285714284e-05
+        },
+        "solve": {
+          "inclusive_ns": 20870300,
+          "exclusive_ns": 354700,
+          "started": 83,
+          "completed": 83,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00025144939759036146
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 16556300,
+          "exclusive_ns": 3162900,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00018813977272727272
+        },
+        "solve_factored": {
+          "inclusive_ns": 13393400,
+          "exclusive_ns": 13800,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00015219772727272728
+        },
+        "normal_solve": {
+          "inclusive_ns": 13380000,
+          "exclusive_ns": 10629900,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00015204545454545454
+        },
+        "triangular_solve": {
+          "inclusive_ns": 2745700,
+          "exclusive_ns": 2745700,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.120113636363636e-05
+        },
+        "kkt_product": {
+          "inclusive_ns": 3959300,
+          "exclusive_ns": 3959300,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.4992045454545454e-05
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 5875200,
+          "exclusive_ns": 468700,
+          "started": 29,
+          "completed": 29,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00020259310344827584
+        },
+        "assess": {
+          "inclusive_ns": 5414000,
+          "exclusive_ns": 410800,
+          "started": 29,
+          "completed": 29,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001866896551724138
+        },
+        "verify_original": {
+          "inclusive_ns": 5003800,
+          "exclusive_ns": 5003800,
+          "started": 29,
+          "completed": 29,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001725448275862069
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 14424500,
+          "exclusive_ns": 1857000,
+          "started": 54,
+          "completed": 54,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00026712037037037036
+        },
+        "initialize": {
+          "inclusive_ns": 2164200,
+          "exclusive_ns": 31900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0021642
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 77753200,
+          "exclusive_ns": 2739800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0777532
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0777014,
+          "wall_seconds": 0.09402459999546409,
+          "iterations": 27,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0780704,
+          "wall_seconds": 0.09518910001497716,
+          "iterations": 27,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0782532,
+          "wall_seconds": 0.09560560004319996,
+          "iterations": 27,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0788759,
+          "wall_seconds": 0.09651469998061657,
+          "iterations": 27,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0806612,
+          "wall_seconds": 0.09825220005586743,
+          "iterations": 27,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "comparisons": {
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 294288800,
+          "exclusive_ns": 252100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.2942888
+        },
+        "canonicalize": {
+          "inclusive_ns": 8600500,
+          "exclusive_ns": 4814800,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00430025
+        },
+        "kkt_setup": {
+          "inclusive_ns": 10477500,
+          "exclusive_ns": 3180900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0104775
+        },
+        "normal_setup": {
+          "inclusive_ns": 4741500,
+          "exclusive_ns": 3317800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0047415
+        },
+        "ordering": {
+          "inclusive_ns": 3597800,
+          "exclusive_ns": 3597800,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0017989
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 247200,
+          "exclusive_ns": 247200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001236
+        },
+        "factor": {
+          "inclusive_ns": 93550100,
+          "exclusive_ns": 23173800,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0023987205128205126
+        },
+        "normal_factor": {
+          "inclusive_ns": 70376300,
+          "exclusive_ns": 408000,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0018045205128205128
+        },
+        "gram_assembly": {
+          "inclusive_ns": 41959200,
+          "exclusive_ns": 41959200,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010758769230769232
+        },
+        "numeric_factor": {
+          "inclusive_ns": 25461500,
+          "exclusive_ns": 25461500,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006528589743589744
+        },
+        "factor_check": {
+          "inclusive_ns": 2697200,
+          "exclusive_ns": 2697200,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.915897435897435e-05
+        },
+        "solve": {
+          "inclusive_ns": 122188300,
+          "exclusive_ns": 3014200,
+          "started": 116,
+          "completed": 116,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010533474137931033
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 97569300,
+          "exclusive_ns": 22826800,
+          "started": 116,
+          "completed": 116,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0008411146551724137
+        },
+        "solve_factored": {
+          "inclusive_ns": 74742500,
+          "exclusive_ns": 21400,
+          "started": 116,
+          "completed": 116,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006443318965517242
+        },
+        "normal_solve": {
+          "inclusive_ns": 74721100,
+          "exclusive_ns": 69539200,
+          "started": 116,
+          "completed": 116,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006441474137931035
+        },
+        "triangular_solve": {
+          "inclusive_ns": 5220800,
+          "exclusive_ns": 5220800,
+          "started": 116,
+          "completed": 116,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.500689655172414e-05
+        },
+        "kkt_product": {
+          "inclusive_ns": 21604800,
+          "exclusive_ns": 21604800,
+          "started": 116,
+          "completed": 116,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00018624827586206897
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 26657600,
+          "exclusive_ns": 3779600,
+          "started": 40,
+          "completed": 40,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00066644
+        },
+        "assess": {
+          "inclusive_ns": 22878000,
+          "exclusive_ns": 2277200,
+          "started": 40,
+          "completed": 40,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00057195
+        },
+        "verify_original": {
+          "inclusive_ns": 20627000,
+          "exclusive_ns": 20627000,
+          "started": 40,
+          "completed": 40,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005156749999999999
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 93471600,
+          "exclusive_ns": 16005400,
+          "started": 76,
+          "completed": 76,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0012298894736842106
+        },
+        "initialize": {
+          "inclusive_ns": 5076100,
+          "exclusive_ns": 295100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0050761
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 289147700,
+          "exclusive_ns": 19973700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.2891477
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.2973618,
+          "wall_seconds": 0.3305496000684798,
+          "iterations": 38,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.292807,
+          "wall_seconds": 0.32704790006391704,
+          "iterations": 38,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.3032337,
+          "wall_seconds": 0.3384909000014886,
+          "iterations": 38,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.2942888,
+          "wall_seconds": 0.32862610009033233,
+          "iterations": 38,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.295056,
+          "wall_seconds": 0.33026760001666844,
+          "iterations": 38,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "comparisons": {
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 101900600,
+          "exclusive_ns": 75200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.1019006
+        },
+        "canonicalize": {
+          "inclusive_ns": 1573500,
+          "exclusive_ns": 894200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00078675
+        },
+        "kkt_setup": {
+          "inclusive_ns": 3316900,
+          "exclusive_ns": 728600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0033169
+        },
+        "normal_setup": {
+          "inclusive_ns": 1914000,
+          "exclusive_ns": 1272300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.001914
+        },
+        "ordering": {
+          "inclusive_ns": 1175900,
+          "exclusive_ns": 1175900,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00058795
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 140100,
+          "exclusive_ns": 140100,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 7.005e-05
+        },
+        "factor": {
+          "inclusive_ns": 42423200,
+          "exclusive_ns": 4791600,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009222434782608696
+        },
+        "normal_factor": {
+          "inclusive_ns": 37662900,
+          "exclusive_ns": 117500,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0008187586956521739
+        },
+        "gram_assembly": {
+          "inclusive_ns": 15234700,
+          "exclusive_ns": 15234700,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0003311891304347826
+        },
+        "numeric_factor": {
+          "inclusive_ns": 21090800,
+          "exclusive_ns": 21090800,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.000458495652173913
+        },
+        "factor_check": {
+          "inclusive_ns": 1205200,
+          "exclusive_ns": 1205200,
+          "started": 46,
+          "completed": 46,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.62e-05
+        },
+        "solve": {
+          "inclusive_ns": 42763200,
+          "exclusive_ns": 1286900,
+          "started": 137,
+          "completed": 137,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0003121401459854015
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 34033600,
+          "exclusive_ns": 7195000,
+          "started": 237,
+          "completed": 237,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00014360168776371307
+        },
+        "solve_factored": {
+          "inclusive_ns": 26838600,
+          "exclusive_ns": 29800,
+          "started": 237,
+          "completed": 237,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00011324303797468355
+        },
+        "normal_solve": {
+          "inclusive_ns": 26808800,
+          "exclusive_ns": 21604700,
+          "started": 237,
+          "completed": 237,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00011311729957805908
+        },
+        "triangular_solve": {
+          "inclusive_ns": 5204100,
+          "exclusive_ns": 5204100,
+          "started": 237,
+          "completed": 237,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.1958227848101266e-05
+        },
+        "kkt_product": {
+          "inclusive_ns": 7446000,
+          "exclusive_ns": 7446000,
+          "started": 237,
+          "completed": 237,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.1417721518987346e-05
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 6339800,
+          "exclusive_ns": 648300,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00013488936170212766
+        },
+        "assess": {
+          "inclusive_ns": 5695300,
+          "exclusive_ns": 512200,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00012117659574468086
+        },
+        "verify_original": {
+          "inclusive_ns": 5178900,
+          "exclusive_ns": 5178900,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00011018936170212767
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 27865500,
+          "exclusive_ns": 2509100,
+          "started": 90,
+          "completed": 90,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00030961666666666667
+        },
+        "initialize": {
+          "inclusive_ns": 1770800,
+          "exclusive_ns": 27100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0017708
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 100959000,
+          "exclusive_ns": 3570500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.100959
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.1019005,
+          "wall_seconds": 0.11822160007432103,
+          "iterations": 45,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.1008316,
+          "wall_seconds": 0.11605720000807196,
+          "iterations": 45,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.1029787,
+          "wall_seconds": 0.11976699996739626,
+          "iterations": 45,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.1030716,
+          "wall_seconds": 0.11772480001673102,
+          "iterations": 45,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.1029165,
+          "wall_seconds": 0.11688850005157292,
+          "iterations": 45,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "comparisons": {
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 3896930100,
+          "exclusive_ns": 277600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.8969301
+        },
+        "canonicalize": {
+          "inclusive_ns": 10774100,
+          "exclusive_ns": 5923300,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00538705
+        },
+        "kkt_setup": {
+          "inclusive_ns": 60543300,
+          "exclusive_ns": 5807100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0605433
+        },
+        "normal_setup": {
+          "inclusive_ns": 46720700,
+          "exclusive_ns": 39969700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0467207
+        },
+        "ordering": {
+          "inclusive_ns": 13193100,
+          "exclusive_ns": 13193100,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00659655
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 1297800,
+          "exclusive_ns": 1297800,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0006489
+        },
+        "factor": {
+          "inclusive_ns": 3323797400,
+          "exclusive_ns": 47127900,
+          "started": 87,
+          "completed": 87,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.03820456781609195
+        },
+        "normal_factor": {
+          "inclusive_ns": 3276669500,
+          "exclusive_ns": 1830400,
+          "started": 87,
+          "completed": 87,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.037662867816091954
+        },
+        "gram_assembly": {
+          "inclusive_ns": 824969400,
+          "exclusive_ns": 824969400,
+          "started": 87,
+          "completed": 87,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.009482406896551724
+        },
+        "numeric_factor": {
+          "inclusive_ns": 2431660300,
+          "exclusive_ns": 2431660300,
+          "started": 87,
+          "completed": 87,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.027950118390804597
+        },
+        "factor_check": {
+          "inclusive_ns": 18285900,
+          "exclusive_ns": 18285900,
+          "started": 87,
+          "completed": 87,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00021018275862068965
+        },
+        "solve": {
+          "inclusive_ns": 368160200,
+          "exclusive_ns": 4097100,
+          "started": 260,
+          "completed": 260,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0014160007692307693
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 299188500,
+          "exclusive_ns": 33411200,
+          "started": 292,
+          "completed": 292,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010246181506849317
+        },
+        "solve_factored": {
+          "inclusive_ns": 265063600,
+          "exclusive_ns": 79000,
+          "started": 292,
+          "completed": 292,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009077520547945205
+        },
+        "normal_solve": {
+          "inclusive_ns": 264984600,
+          "exclusive_ns": 166858100,
+          "started": 292,
+          "completed": 292,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009074815068493151
+        },
+        "triangular_solve": {
+          "inclusive_ns": 95880100,
+          "exclusive_ns": 95880100,
+          "started": 292,
+          "completed": 292,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00032835650684931504
+        },
+        "kkt_product": {
+          "inclusive_ns": 63421200,
+          "exclusive_ns": 63421200,
+          "started": 292,
+          "completed": 292,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00021719589041095888
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 87394100,
+          "exclusive_ns": 4594900,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009931147727272728
+        },
+        "assess": {
+          "inclusive_ns": 82813100,
+          "exclusive_ns": 3523100,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009410579545454545
+        },
+        "verify_original": {
+          "inclusive_ns": 79290000,
+          "exclusive_ns": 79290000,
+          "started": 88,
+          "completed": 88,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0009010227272727273
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 222525800,
+          "exclusive_ns": 20313700,
+          "started": 172,
+          "completed": 172,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0012937546511627906
+        },
+        "initialize": {
+          "inclusive_ns": 44986000,
+          "exclusive_ns": 124000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.044986
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 3890733400,
+          "exclusive_ns": 26242500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 3.8907334
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 3.8382198,
+          "wall_seconds": 3.882684899959713,
+          "iterations": 86,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 3.89693,
+          "wall_seconds": 3.940040500019677,
+          "iterations": 86,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 3.9293741,
+          "wall_seconds": 3.9717393000610173,
+          "iterations": 86,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 3.9767536,
+          "wall_seconds": 4.018551700050011,
+          "iterations": 86,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 3.9735706,
+          "wall_seconds": 4.021666800021194,
+          "iterations": 86,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "comparisons": {
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 2049111500,
+          "exclusive_ns": 553200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.0491115
+        },
+        "canonicalize": {
+          "inclusive_ns": 9087800,
+          "exclusive_ns": 9087800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0090878
+        },
+        "kkt_setup": {
+          "inclusive_ns": 129486300,
+          "exclusive_ns": 8442400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.1294863
+        },
+        "normal_setup": {
+          "inclusive_ns": 95254500,
+          "exclusive_ns": 88298300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0952545
+        },
+        "ordering": {
+          "inclusive_ns": 29744400,
+          "exclusive_ns": 29744400,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0148722
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 3001200,
+          "exclusive_ns": 3001200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0015006
+        },
+        "factor": {
+          "inclusive_ns": 1715966200,
+          "exclusive_ns": 15655100,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.1072478875
+        },
+        "normal_factor": {
+          "inclusive_ns": 1700038100,
+          "exclusive_ns": 718100,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.10625238125
+        },
+        "gram_assembly": {
+          "inclusive_ns": 361195400,
+          "exclusive_ns": 361195400,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0225747125
+        },
+        "numeric_factor": {
+          "inclusive_ns": 1325346800,
+          "exclusive_ns": 1325346800,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.082834175
+        },
+        "factor_check": {
+          "inclusive_ns": 9281000,
+          "exclusive_ns": 9281000,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005800625
+        },
+        "solve": {
+          "inclusive_ns": 144245600,
+          "exclusive_ns": 1153500,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0030690553191489362
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 122054300,
+          "exclusive_ns": 10403900,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0024410860000000003
+        },
+        "solve_factored": {
+          "inclusive_ns": 111367000,
+          "exclusive_ns": 22000,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00222734
+        },
+        "normal_solve": {
+          "inclusive_ns": 111347800,
+          "exclusive_ns": 58679500,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.002226956
+        },
+        "triangular_solve": {
+          "inclusive_ns": 52668300,
+          "exclusive_ns": 52668300,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.001053366
+        },
+        "kkt_product": {
+          "inclusive_ns": 20827800,
+          "exclusive_ns": 20827800,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.000416556
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 30884600,
+          "exclusive_ns": 1558700,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0018167411764705883
+        },
+        "assess": {
+          "inclusive_ns": 29325900,
+          "exclusive_ns": 1059900,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0017250529411764704
+        },
+        "verify_original": {
+          "inclusive_ns": 28262600,
+          "exclusive_ns": 28262600,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.001662505882352941
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 88988200,
+          "exclusive_ns": 5535700,
+          "started": 30,
+          "completed": 30,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0029662733333333333
+        },
+        "initialize": {
+          "inclusive_ns": 113462100,
+          "exclusive_ns": 271500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.1134621
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 2039682000,
+          "exclusive_ns": 10697100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 2.039682
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.0148822,
+          "wall_seconds": 2.0892524000955746,
+          "iterations": 15,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.1447668,
+          "wall_seconds": 2.21880630007945,
+          "iterations": 15,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.0061953,
+          "wall_seconds": 2.0760049000382423,
+          "iterations": 15,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.0491113,
+          "wall_seconds": 2.1215899999951944,
+          "iterations": 15,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.0667749,
+          "wall_seconds": 2.1389702999731526,
+          "iterations": 15,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "comparisons": {
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 524703200,
+          "exclusive_ns": 96700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.5247032
+        },
+        "canonicalize": {
+          "inclusive_ns": 1476100,
+          "exclusive_ns": 1476100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0014761
+        },
+        "kkt_setup": {
+          "inclusive_ns": 49109600,
+          "exclusive_ns": 1169000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0491096
+        },
+        "normal_setup": {
+          "inclusive_ns": 46780400,
+          "exclusive_ns": 44806000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0467804
+        },
+        "ordering": {
+          "inclusive_ns": 2267200,
+          "exclusive_ns": 2267200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0011336
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 1067800,
+          "exclusive_ns": 1067800,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005339
+        },
+        "factor": {
+          "inclusive_ns": 445294900,
+          "exclusive_ns": 2764000,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.024738605555555557
+        },
+        "normal_factor": {
+          "inclusive_ns": 442517700,
+          "exclusive_ns": 86600,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.024584316666666668
+        },
+        "gram_assembly": {
+          "inclusive_ns": 190277000,
+          "exclusive_ns": 190277000,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.010570944444444445
+        },
+        "numeric_factor": {
+          "inclusive_ns": 248755300,
+          "exclusive_ns": 248755300,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.01381973888888889
+        },
+        "factor_check": {
+          "inclusive_ns": 1640200,
+          "exclusive_ns": 1640200,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 9.112222222222223e-05
+        },
+        "solve": {
+          "inclusive_ns": 21686500,
+          "exclusive_ns": 273700,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0004091792452830189
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 18822400,
+          "exclusive_ns": 2303600,
+          "started": 56,
+          "completed": 56,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0003361142857142857
+        },
+        "solve_factored": {
+          "inclusive_ns": 16453100,
+          "exclusive_ns": 10200,
+          "started": 56,
+          "completed": 56,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00029380535714285713
+        },
+        "normal_solve": {
+          "inclusive_ns": 16442600,
+          "exclusive_ns": 7649700,
+          "started": 56,
+          "completed": 56,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00029361785714285716
+        },
+        "triangular_solve": {
+          "inclusive_ns": 8792900,
+          "exclusive_ns": 8792900,
+          "started": 56,
+          "completed": 56,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00015701607142857142
+        },
+        "kkt_product": {
+          "inclusive_ns": 2568000,
+          "exclusive_ns": 2568000,
+          "started": 56,
+          "completed": 56,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 4.5857142857142855e-05
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 3815600,
+          "exclusive_ns": 361500,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00020082105263157895
+        },
+        "assess": {
+          "inclusive_ns": 3454100,
+          "exclusive_ns": 282300,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00018179473684210525
+        },
+        "verify_original": {
+          "inclusive_ns": 3182000,
+          "exclusive_ns": 3182000,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0001674736842105263
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 13992000,
+          "exclusive_ns": 1359500,
+          "started": 34,
+          "completed": 34,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0004115294117647059
+        },
+        "initialize": {
+          "inclusive_ns": 25785300,
+          "exclusive_ns": 58500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0257853
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 523615700,
+          "exclusive_ns": 2261300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.5236157
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "production": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.5188256,
+          "wall_seconds": 0.535877599962987,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.5353867,
+          "wall_seconds": 0.5522309999214485,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "on0": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.5247031,
+          "wall_seconds": 0.5425748999696225,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.5288501,
+          "wall_seconds": 0.5480807999847457,
+          "iterations": 17,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.5227976,
+          "wall_seconds": 0.5428617999423295,
+          "iterations": 17,
+          "budget_limited": false
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "comparisons": {
+        "off": {
+          "equal": false,
+          "budget_limited": true
+        },
+        "on0": {
+          "equal": true,
+          "budget_limited": true
+        },
+        "on1": {
+          "equal": false,
+          "budget_limited": true
+        },
+        "on2": {
+          "equal": false,
+          "budget_limited": true
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 5044784900,
+          "exclusive_ns": 363900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 5.0447849
+        },
+        "canonicalize": {
+          "inclusive_ns": 6409100,
+          "exclusive_ns": 6409100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0064091
+        },
+        "kkt_setup": {
+          "inclusive_ns": 36697800,
+          "exclusive_ns": 6194300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0366978
+        },
+        "normal_setup": {
+          "inclusive_ns": 18950500,
+          "exclusive_ns": 7428700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0189505
+        },
+        "ordering": {
+          "inclusive_ns": 20448900,
+          "exclusive_ns": 20448900,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.01022445
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 2652100,
+          "exclusive_ns": 2652100,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00132605
+        },
+        "factor": {
+          "inclusive_ns": 4780559400,
+          "exclusive_ns": 17388300,
+          "started": 17,
+          "completed": 16,
+          "unwound": 1,
+          "ratio_of_medians_seconds_per_started_call": 0.2812093764705882
+        },
+        "normal_factor": {
+          "inclusive_ns": 4763171100,
+          "exclusive_ns": 452700,
+          "started": 17,
+          "completed": 16,
+          "unwound": 1,
+          "ratio_of_medians_seconds_per_started_call": 0.28018653529411763
+        },
+        "gram_assembly": {
+          "inclusive_ns": 37006000,
+          "exclusive_ns": 37006000,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0021768235294117645
+        },
+        "numeric_factor": {
+          "inclusive_ns": 4713967900,
+          "exclusive_ns": 4713967900,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.27729222941176473
+        },
+        "factor_check": {
+          "inclusive_ns": 12570100,
+          "exclusive_ns": 12570100,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00078563125
+        },
+        "solve": {
+          "inclusive_ns": 181125300,
+          "exclusive_ns": 1643700,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0038537297872340425
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "direct": {
+          "inclusive_ns": 163692000,
+          "exclusive_ns": 17388400,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0033406530612244897
+        },
+        "solve_factored": {
+          "inclusive_ns": 146303600,
+          "exclusive_ns": 31000,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.002985787755102041
+        },
+        "normal_solve": {
+          "inclusive_ns": 146277300,
+          "exclusive_ns": 66127900,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0029852510204081634
+        },
+        "triangular_solve": {
+          "inclusive_ns": 80149400,
+          "exclusive_ns": 80149400,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0016357020408163264
+        },
+        "kkt_product": {
+          "inclusive_ns": 15615400,
+          "exclusive_ns": 15615400,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0003186816326530612
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 22149700,
+          "exclusive_ns": 2326500,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0013029235294117647
+        },
+        "assess": {
+          "inclusive_ns": 19767200,
+          "exclusive_ns": 2216000,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0011627764705882352
+        },
+        "verify_original": {
+          "inclusive_ns": 17453600,
+          "exclusive_ns": 17453600,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010266823529411764
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 115138700,
+          "exclusive_ns": 7806400,
+          "started": 30,
+          "completed": 30,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0038379566666666668
+        },
+        "initialize": {
+          "inclusive_ns": 298871100,
+          "exclusive_ns": 312600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.2988711
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 5038018300,
+          "exclusive_ns": 14041800,
+          "started": 1,
+          "completed": 0,
+          "unwound": 1,
+          "ratio_of_medians_seconds_per_started_call": 5.0380183
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "off": {
+          "status": "time_limit",
+          "quality_pass": false,
+          "numerical_seconds": 5.1734816,
+          "wall_seconds": 5.208368499996141,
+          "iterations": 15,
+          "budget_limited": true
+        },
+        "on0": {
+          "status": "time_limit",
+          "quality_pass": false,
+          "numerical_seconds": 5.3811759,
+          "wall_seconds": 5.416393500054255,
+          "iterations": 15,
+          "budget_limited": true
+        },
+        "on1": {
+          "status": "time_limit",
+          "quality_pass": false,
+          "numerical_seconds": 5.0447848,
+          "wall_seconds": 5.084881099988706,
+          "iterations": 14,
+          "budget_limited": true
+        },
+        "on2": {
+          "status": "time_limit",
+          "quality_pass": false,
+          "numerical_seconds": 5.0385081,
+          "wall_seconds": 5.074379700003192,
+          "iterations": 15,
+          "budget_limited": true
+        },
+        "production": {
+          "status": "time_limit",
+          "quality_pass": false,
+          "numerical_seconds": 5.090039,
+          "wall_seconds": 5.124799499986693,
+          "iterations": 15,
+          "budget_limited": true
+        }
+      }
+    },
+    {
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "comparisons": {
+        "on0": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on1": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "on2": {
+          "equal": true,
+          "budget_limited": false
+        },
+        "off": {
+          "equal": true,
+          "budget_limited": false
+        }
+      },
+      "median_stages": {
+        "total": {
+          "inclusive_ns": 561147300,
+          "exclusive_ns": 244700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.5611473
+        },
+        "canonicalize": {
+          "inclusive_ns": 6565700,
+          "exclusive_ns": 3614200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00328285
+        },
+        "kkt_setup": {
+          "inclusive_ns": 16343400,
+          "exclusive_ns": 3371600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0163434
+        },
+        "normal_setup": {
+          "inclusive_ns": 8766300,
+          "exclusive_ns": 6144500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0087663
+        },
+        "ordering": {
+          "inclusive_ns": 6357100,
+          "exclusive_ns": 6357100,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00317855
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 403500,
+          "exclusive_ns": 403500,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00020175
+        },
+        "factor": {
+          "inclusive_ns": 229327300,
+          "exclusive_ns": 30440300,
+          "started": 57,
+          "completed": 57,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.004023285964912281
+        },
+        "normal_factor": {
+          "inclusive_ns": 198919000,
+          "exclusive_ns": 755200,
+          "started": 69,
+          "completed": 69,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0028828840579710148
+        },
+        "gram_assembly": {
+          "inclusive_ns": 121781800,
+          "exclusive_ns": 121781800,
+          "started": 69,
+          "completed": 69,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0017649536231884057
+        },
+        "numeric_factor": {
+          "inclusive_ns": 70921800,
+          "exclusive_ns": 70921800,
+          "started": 69,
+          "completed": 69,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0010278521739130434
+        },
+        "factor_check": {
+          "inclusive_ns": 5173400,
+          "exclusive_ns": 5173400,
+          "started": 57,
+          "completed": 57,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 9.076140350877192e-05
+        },
+        "solve": {
+          "inclusive_ns": 252843500,
+          "exclusive_ns": 4857600,
+          "started": 169,
+          "completed": 169,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0014961153846153846
+        },
+        "krylov": {
+          "inclusive_ns": 78991300,
+          "exclusive_ns": 16134000,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.003761490476190476
+        },
+        "direct": {
+          "inclusive_ns": 185411800,
+          "exclusive_ns": 36384500,
+          "started": 315,
+          "completed": 315,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005886088888888888
+        },
+        "solve_factored": {
+          "inclusive_ns": 149027300,
+          "exclusive_ns": 54700,
+          "started": 315,
+          "completed": 315,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0004731025396825397
+        },
+        "normal_solve": {
+          "inclusive_ns": 148972300,
+          "exclusive_ns": 127549900,
+          "started": 315,
+          "completed": 315,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0004729279365079365
+        },
+        "triangular_solve": {
+          "inclusive_ns": 21422400,
+          "exclusive_ns": 21422400,
+          "started": 315,
+          "completed": 315,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 6.800761904761905e-05
+        },
+        "kkt_product": {
+          "inclusive_ns": 46440100,
+          "exclusive_ns": 46440100,
+          "started": 336,
+          "completed": 336,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.00013821458333333333
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 32048600,
+          "exclusive_ns": 2949200,
+          "started": 57,
+          "completed": 57,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005622561403508771
+        },
+        "assess": {
+          "inclusive_ns": 29028500,
+          "exclusive_ns": 2141400,
+          "started": 57,
+          "completed": 57,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0005092719298245614
+        },
+        "verify_original": {
+          "inclusive_ns": 26887100,
+          "exclusive_ns": 26887100,
+          "started": 57,
+          "completed": 57,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0004717035087719298
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 94358300,
+          "exclusive_ns": 12716200,
+          "started": 111,
+          "completed": 110,
+          "unwound": 1,
+          "ratio_of_medians_seconds_per_started_call": 0.0008500747747747749
+        },
+        "initialize": {
+          "inclusive_ns": 5322400,
+          "exclusive_ns": 91100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": 0.0053224
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 557211100,
+          "exclusive_ns": 13606600,
+          "started": 1,
+          "completed": 0,
+          "unwound": 1,
+          "ratio_of_medians_seconds_per_started_call": 0.5572111
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0,
+          "ratio_of_medians_seconds_per_started_call": null
+        }
+      },
+      "runs": {
+        "on0": {
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 0.5611472,
+          "wall_seconds": 0.5878976999083534,
+          "iterations": 55,
+          "budget_limited": false
+        },
+        "on1": {
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 0.5541276,
+          "wall_seconds": 0.5783844999969006,
+          "iterations": 55,
+          "budget_limited": false
+        },
+        "on2": {
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 0.5635276,
+          "wall_seconds": 0.5886431999970227,
+          "iterations": 55,
+          "budget_limited": false
+        },
+        "production": {
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 0.5567868999999999,
+          "wall_seconds": 0.5799645000370219,
+          "iterations": 55,
+          "budget_limited": false
+        },
+        "off": {
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 0.5612851,
+          "wall_seconds": 0.5829052999615669,
+          "iterations": 55,
+          "budget_limited": false
+        }
+      }
+    }
+  ],
+  "sum_of_model_stage_medians": {
+    "total": {
+      "inclusive_ns": 12609342000,
+      "exclusive_ns": 2067900
+    },
+    "canonicalize": {
+      "inclusive_ns": 46826600,
+      "exclusive_ns": 34266400
+    },
+    "kkt_setup": {
+      "inclusive_ns": 317578200,
+      "exclusive_ns": 31081000
+    },
+    "normal_setup": {
+      "inclusive_ns": 230323800,
+      "exclusive_ns": 196955700
+    },
+    "ordering": {
+      "inclusive_ns": 79961200,
+      "exclusive_ns": 79961200
+    },
+    "symbolic_analysis": {
+      "inclusive_ns": 9257800,
+      "exclusive_ns": 9257800
+    },
+    "factor": {
+      "inclusive_ns": 10702050700,
+      "exclusive_ns": 147340600
+    },
+    "normal_factor": {
+      "inclusive_ns": 10554480700,
+      "exclusive_ns": 4574700
+    },
+    "gram_assembly": {
+      "inclusive_ns": 1627524900,
+      "exclusive_ns": 1627524900
+    },
+    "numeric_factor": {
+      "inclusive_ns": 8865442400,
+      "exclusive_ns": 8865442400
+    },
+    "factor_check": {
+      "inclusive_ns": 52434600,
+      "exclusive_ns": 52434600
+    },
+    "solve": {
+      "inclusive_ns": 1167833500,
+      "exclusive_ns": 17052400
+    },
+    "krylov": {
+      "inclusive_ns": 78991300,
+      "exclusive_ns": 16134000
+    },
+    "direct": {
+      "inclusive_ns": 948252600,
+      "exclusive_ns": 135148300
+    },
+    "solve_factored": {
+      "inclusive_ns": 812031500,
+      "exclusive_ns": 297300
+    },
+    "normal_solve": {
+      "inclusive_ns": 811741800,
+      "exclusive_ns": 535191100
+    },
+    "triangular_solve": {
+      "inclusive_ns": 274306800,
+      "exclusive_ns": 274306800
+    },
+    "kkt_product": {
+      "inclusive_ns": 184535600,
+      "exclusive_ns": 184535600
+    },
+    "assess_homogeneous": {
+      "inclusive_ns": 218783600,
+      "exclusive_ns": 16951900
+    },
+    "assess": {
+      "inclusive_ns": 201731200,
+      "exclusive_ns": 12710100
+    },
+    "verify_original": {
+      "inclusive_ns": 188957500,
+      "exclusive_ns": 188957500
+    },
+    "homogeneous_direction": {
+      "inclusive_ns": 680252200,
+      "exclusive_ns": 69107700
+    },
+    "initialize": {
+      "inclusive_ns": 499747800,
+      "exclusive_ns": 1238500
+    },
+    "run_homogeneous": {
+      "inclusive_ns": 12573631100,
+      "exclusive_ns": 94631100
+    },
+    "fallback_factor_adapter": {
+      "inclusive_ns": 0,
+      "exclusive_ns": 0
+    },
+    "fallback_solve_adapter": {
+      "inclusive_ns": 0,
+      "exclusive_ns": 0
+    }
+  },
+  "qualification": "包含计时互相嵌套；逐阶段中位数不保证加总守恒，守恒仅逐次原始记录验证。异常展开表示作用域被异常退出，不等同于整个LP失败。诊断程序耗时不计入公开性能成绩。"
+}

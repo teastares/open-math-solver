@@ -1,0 +1,233 @@
+{
+  "verified_at_utc": "2026-10-13T15:25:59.864487+00:00",
+  "passed": true,
+  "final": true,
+  "verification_script_sha256": "1eaac6ed6948b5eb1a4863d1bfb5b836de086dca5f0f419e25bcf6d7015dd37a",
+  "solver_sha256": "e3d9f917f96fe3332b84faf8c160b1377d3ee5c1640ec3b34114c009bbe74c98",
+  "source_files_verified": 90,
+  "source_zip_sha256": "323b34ca2c514d2cf35336e639291981a950a2e5055f2dea6ed73621b163691c",
+  "compiler_identity_record": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "library_identity_records_verified": 15,
+  "test_logs_verified": {
+    "iteration-ipm-v46-build.log": "eddc90a906657fb51f37f785612262af351fd359d50e948a41b11a3dd743e8be",
+    "iteration-ipm-v46-ctest-detail.log": "051ee7bd66d89f77cf634dbc4701cb4b4cbf44fcbede7a53138da3d156afcbca"
+  },
+  "ctest_passed": 17,
+  "ctest_seconds": 14.5,
+  "ipm_checks": 82801,
+  "initial_failure_and_final_test_evidence": {
+    "evidence_sha256": "bd15cb0e717687efd09855a947cf49cf9fe294d0964079cb998568ef77cecf50",
+    "first_logs_verified": {
+      "iteration-ipm-v46-build-attempt1.log": "fec985aadf3057299d52e0641cf37617e6b28d20f3454c4aad26de5ba105203e",
+      "iteration-ipm-v46-ctest-attempt1.log": "79d9f2c38dcc8d578ff2564de652764dfd85e559d6636a49f2f5f2ec7bf3bc98"
+    },
+    "first_ctest_passed": 16,
+    "first_ctest_total": 17,
+    "final_ctest_passed": 17,
+    "solver_and_ipm_library_identities_unchanged": true,
+    "final_tolerance_diagnostics": [
+      {
+        "block": 0,
+        "name": "对偶",
+        "actual_hex": "0x1.13271ce87221p-30",
+        "logged_old_expression_equal": true,
+        "error_in_reported_ulps": 0.78466796875,
+        "error_vs_exact_decimal_formula_in_ulps": 0.784476471296
+      },
+      {
+        "block": 1,
+        "name": "原始",
+        "actual_hex": "0x1.9c744cf6a679cp-29",
+        "logged_old_expression_equal": true,
+        "error_in_reported_ulps": 0.306640625,
+        "error_vs_exact_decimal_formula_in_ulps": 0.306586468352
+      },
+      {
+        "block": 2,
+        "name": "间隙",
+        "actual_hex": "0x1.12f2561bee974p-28",
+        "logged_old_expression_equal": true,
+        "error_in_reported_ulps": 0.671875,
+        "error_vs_exact_decimal_formula_in_ulps": 0.672000589824
+      },
+      {
+        "block": 3,
+        "name": "互补",
+        "actual_hex": "0x1.57aa85bc89f19p-28",
+        "logged_old_expression_equal": true,
+        "error_in_reported_ulps": 0.4970703125,
+        "error_vs_exact_decimal_formula_in_ulps": 0.497294413824
+      },
+      {
+        "block": 4,
+        "name": "标量互补",
+        "actual_hex": "0x1.9c62b55d254bep-28",
+        "logged_old_expression_equal": true,
+        "error_in_reported_ulps": 0.322265625,
+        "error_vs_exact_decimal_formula_in_ulps": 0.322588237824
+      }
+    ],
+    "analytic_homogeneous_total_work": {
+      "constant_solves": 40,
+      "direction_solves": 104
+    },
+    "limitation": "首次失败的具体浮点值未记录；第二次实际值与当次旧double表达式相同，不能据此确认首次编译舍入原因。"
+  },
+  "plan_sha256": "1c93d4b19b68ee717a428684895ac61849fd0bda3fb9820dec0b78540c912250",
+  "runner_sha256": "c5513189857e1ebc0ff6e29b10fcc7aab9e3af12aa8a31017b21668abf4239d5",
+  "changed_production_files": [
+    "include/solver/backend.hpp",
+    "include/solver/detail/ipm_homogeneous.hpp",
+    "include/solver/ipm_options.hpp",
+    "scripts/benchmark.py",
+    "scripts/compare_lp.py",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_compare_lp.py",
+    "tests/test_ipm.cpp"
+  ],
+  "archive_groups_verified": [
+    {
+      "tag": "development-normal_augmented-homogeneous_scaled-retries0",
+      "stage": "development",
+      "retries": 0,
+      "raw_records": 48,
+      "quality_pass_count": 48,
+      "process_returncode": 0,
+      "manifest_sha256": "a67384b243532bcc1faf2a6ad9ff708bf399682d13ce42a774f1979bc075cf24",
+      "summary_sha256": "080a0a16caff80f7a2c046965e280d4fce04d988d94e2a7a6e08f0a8a9ddf89d",
+      "raw_sha256": "e1e2374c0d5d62c56908ab5ceddc594da5839464424d29012f074f0b6285bbcf",
+      "command_sha256": "26c6cc74885ca5aa7265682c58f8a63bc420ba3afca2e12ae63b0c972ee532de",
+      "process_sha256": "29acab4d90f09feedf4eb2f81268aaba2fbcbc1a983387f1a802d2e317fef646",
+      "missing_reports": 0,
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 585,
+          "ipm_homogeneous_direction_solves": 1170,
+          "ipm_homogeneous_scaled_products": 0,
+          "ipm_homogeneous_scaled_refinement_steps": 0,
+          "ipm_homogeneous_scaled_inexact_returns": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_scaled:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 585,
+          "ipm_homogeneous_direction_solves": 3093,
+          "ipm_homogeneous_scaled_products": 3093,
+          "ipm_homogeneous_scaled_refinement_steps": 1923,
+          "ipm_homogeneous_scaled_inexact_returns": 186,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 4263,
+      "actual_homogeneous_work_reports": 48
+    },
+    {
+      "tag": "probe-normal_augmented-homogeneous_scaled-retries0",
+      "stage": "probe",
+      "retries": 0,
+      "raw_records": 10,
+      "quality_pass_count": 6,
+      "process_returncode": 1,
+      "manifest_sha256": "c2c1c3c7efa3f40a55781e344f23f80b8b67804ce46f644b810924c427c460d8",
+      "summary_sha256": "06ac7e2fb3cfa3e43d670a3074931478727943b5da5a61729732ca254065dd5b",
+      "raw_sha256": "fb882294d3f5af5c43fde5893d963209d8ab86839397a5a874e2fb34084ae12e",
+      "command_sha256": "71de8d43f5f0febef45683c0095a54c4dfc58c9b74afd5deb40b149e621e17b7",
+      "process_sha256": "fe38257f1f998a24f0408832b330389452754cad8f323c7f201d7684bddb5639",
+      "missing_reports": 0,
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 164,
+          "ipm_homogeneous_direction_solves": 327,
+          "ipm_homogeneous_scaled_products": 0,
+          "ipm_homogeneous_scaled_refinement_steps": 0,
+          "ipm_homogeneous_scaled_inexact_returns": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_scaled:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 308,
+          "ipm_homogeneous_direction_solves": 1975,
+          "ipm_homogeneous_scaled_products": 1975,
+          "ipm_homogeneous_scaled_refinement_steps": 1359,
+          "ipm_homogeneous_scaled_inexact_returns": 380,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 2302,
+      "actual_homogeneous_work_reports": 10
+    }
+  ],
+  "raw_records_verified": 58,
+  "independent_input_files_verified": 13,
+  "pending_groups": [],
+  "actual_scaled_work_verified": {
+    "ipm_homogeneous_scaled_products": 5068,
+    "ipm_homogeneous_scaled_refinement_steps": 3282,
+    "ipm_homogeneous_scaled_inexact_returns": 566
+  },
+  "actual_inexact_return_observed": true,
+  "counter_validator_self_check": {
+    "checked": true,
+    "actual_scaled_positive_report": true,
+    "invalid_cases_rejected": 20,
+    "scope": "只复制既有报告作纯内存反例，不修改归档或调用求解器。"
+  },
+  "old_mode_trajectories_verified": {
+    "count": 56,
+    "sha256": "25b049cec3ed5180e8b8a44b9dbfb57e4d72fe471203ef3dc2d5d62d720c26cb",
+    "three_new_counts_integer_zero": true,
+    "all_other_non_time_fields_equal": true,
+    "program_and_input_pre_post_hashes_verified": true,
+    "exit_code_pairs": {
+      "[0, 0]": 52,
+      "[4, 4]": 4
+    }
+  },
+  "derived_details_verified": [
+    {
+      "path": "v46-development-detail.json",
+      "sha256": "dd5422f9564e3ec14c813999299ead93cb36079b0208a0c67ffec868aa6e9409",
+      "groups": 1
+    },
+    {
+      "path": "v46-probe-detail.json",
+      "sha256": "a7975163d6ac0bdcb8b98b41b14e958a59d0ca95ce8a6b8d50fcb8c059395b76",
+      "groups": 1
+    },
+    {
+      "path": "v46-coverage-detail.json",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+      "groups": 0
+    }
+  ],
+  "gates_recomputed": [
+    {
+      "retries": 0,
+      "development_lost": [],
+      "development_time_improved": false,
+      "probe_gain": [],
+      "probe_lost": [],
+      "eligible_for_netlib": false,
+      "plan_sha256": "1c93d4b19b68ee717a428684895ac61849fd0bda3fb9820dec0b78540c912250"
+    }
+  ],
+  "trajectory_exclusions": [
+    "timings",
+    "backend_version",
+    "新增且强制整数零的三个缩放齐次计数"
+  ],
+  "runtime_scope": "仅读归档，不编译、不求解、不重新测量。冻结zip中的Python负责质量与摘要复算；计数边界及门槛另行实现。",
+  "all_raw_and_archived_bytes_equal": true,
+  "all_model_and_program_pre_post_hashes_verified": true,
+  "per_record_quality_and_penalties_recomputed": true,
+  "full_summaries_recomputed": true,
+  "actual_compare_process_exit_codes_verified": true,
+  "markdown_files_checked": 25,
+  "local_links_checked": 1832,
+  "verification_report_links": 2,
+  "broken_links": []
+}

@@ -1,0 +1,262 @@
+cmake_minimum_required(VERSION 3.26)
+project(solver VERSION 0.5.0 LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+option(SOLVER_BUILD_TESTS "构建本项目的回归测试" ON)
+
+# 第三方版本和校验值只在依赖锁文件维护。
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/dependencies.lock.json" dependency_lock)
+string(JSON highs_url GET "${dependency_lock}" highs url)
+string(JSON highs_hash GET "${dependency_lock}" highs sha256)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(BUILD_CXX_EXE OFF CACHE BOOL "" FORCE)
+set(BUILD_SHARED_EXTRAS_LIB OFF CACHE BOOL "" FORCE)
+set(HIPO OFF CACHE BOOL "" FORCE)
+set(ZLIB OFF CACHE BOOL "" FORCE)
+set(CUPDLP_GPU OFF CACHE BOOL "" FORCE)
+set(HIGHS_GPU_LIB OFF CACHE BOOL "" FORCE)
+include(FetchContent)
+FetchContent_Declare(highs URL "${highs_url}" URL_HASH "SHA256=${highs_hash}"
+                    DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+FetchContent_MakeAvailable(highs)
+
+# 内点法仅复用稀疏线性代数，不调用第三方 LP 数值算法。
+string(JSON qdldl_url GET "${dependency_lock}" qdldl url)
+string(JSON qdldl_hash GET "${dependency_lock}" qdldl sha256)
+string(JSON qdldl_version GET "${dependency_lock}" qdldl version)
+set(QDLDL_BUILD_STATIC_LIB ON CACHE BOOL "" FORCE)
+set(QDLDL_BUILD_SHARED_LIB OFF CACHE BOOL "" FORCE)
+set(QDLDL_BUILD_DEMO_EXE OFF CACHE BOOL "" FORCE)
+set(QDLDL_UNITTESTS OFF CACHE BOOL "" FORCE)
+set(QDLDL_FLOAT OFF CACHE BOOL "" FORCE)
+set(QDLDL_LONG ON CACHE BOOL "" FORCE)
+FetchContent_Declare(qdldl URL "${qdldl_url}" URL_HASH "SHA256=${qdldl_hash}"
+  DOWNLOAD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.tools/downloads"
+  DOWNLOAD_NAME "qdldl-${qdldl_version}.tar.gz" DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+FetchContent_MakeAvailable(qdldl)
+
+# 复用同一锁定源码，仅改变数值类型和符号前缀；函数作用域隔离上游配置变量。
+function(solver_add_extended_qdldl)
+  set(QDLDL_FLOAT_TYPE "long double")
+  set(QDLDL_INT_TYPE "long long")
+  set(QDLDL_INT_TYPE_MAX "LLONG_MAX")
+  set(QDLDL_BOOL_TYPE "unsigned char")
+  set(QDLDL_FLOAT OFF)
+  set(QDLDL_LONG ON)
+  set(extended_include "${CMAKE_CURRENT_BINARY_DIR}/qdldl_extended/include")
+  configure_file("${qdldl_SOURCE_DIR}/configure/qdldl_types.h.in"
+                 "${extended_include}/qdldl_types.h" NEWLINE_STYLE LF)
+  add_library(solver_qdldl_extended STATIC "${qdldl_SOURCE_DIR}/src/qdldl.c")
+  target_include_directories(solver_qdldl_extended PRIVATE "${extended_include}"
+    "${qdldl_SOURCE_DIR}/include" "${qdldl_BINARY_DIR}/include")
+  foreach(operation etree factor solve Lsolve Ltsolve)
+    target_compile_definitions(solver_qdldl_extended PRIVATE
+      "QDLDL_${operation}=solver_qdldl_extended_${operation}")
+  endforeach()
+endfunction()
+solver_add_extended_qdldl()
+
+string(JSON suitesparse_url GET "${dependency_lock}" suitesparse url)
+string(JSON suitesparse_hash GET "${dependency_lock}" suitesparse sha256)
+string(JSON suitesparse_version GET "${dependency_lock}" suitesparse version)
+set(SOLVER_OPENBLAS_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/build/openblas/install" CACHE PATH "预构建的单线程完整 OpenBLAS 安装目录")
+set(solver_blas_archive "${SOLVER_OPENBLAS_ROOT}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}openblas${CMAKE_STATIC_LIBRARY_SUFFIX}")
+if(NOT EXISTS "${solver_blas_archive}")
+  message(FATAL_ERROR "请先构建 third_party/openblas 依赖项目；Windows 可直接使用 scripts/build-windows.ps1")
+endif()
+add_library(solver_openblas STATIC IMPORTED GLOBAL)
+set_target_properties(solver_openblas PROPERTIES IMPORTED_LOCATION "${solver_blas_archive}"
+  INTERFACE_INCLUDE_DIRECTORIES "${SOLVER_OPENBLAS_ROOT}/include/openblas")
+set(BLAS_LIBRARIES "${solver_blas_archive}" CACHE STRING "共享的单线程 BLAS" FORCE)
+set(LAPACK_LIBRARIES "${solver_blas_archive}" CACHE STRING "同一 OpenBLAS 内的 C LAPACK" FORCE)
+set(BLAS_INCLUDE_DIRS "${SOLVER_OPENBLAS_ROOT}/include/openblas" CACHE STRING "BLAS 头文件" FORCE)
+set(BLA_VENDOR "OpenBLAS" CACHE STRING "BLAS 实现" FORCE)
+set(BLA_STATIC ON CACHE BOOL "" FORCE)
+set(BLA_SIZEOF_INTEGER 4 CACHE STRING "" FORCE)
+set(SUITESPARSE_ENABLE_PROJECTS "amd;colamd;cholmod;suitesparse_config" CACHE STRING "" FORCE)
+set(BUILD_STATIC_LIBS ON CACHE BOOL "" FORCE)
+set(SUITESPARSE_REQUIRE_BLAS ON CACHE BOOL "" FORCE)
+set(SUITESPARSE_USE_64BIT_BLAS OFF CACHE BOOL "" FORCE)
+set(SUITESPARSE_USE_OPENMP OFF CACHE BOOL "" FORCE)
+set(SUITESPARSE_CONFIG_USE_OPENMP OFF CACHE BOOL "" FORCE)
+set(SUITESPARSE_USE_CUDA OFF CACHE BOOL "" FORCE)
+set(SUITESPARSE_USE_FORTRAN OFF CACHE BOOL "" FORCE)
+set(SUITESPARSE_USE_PYTHON OFF CACHE BOOL "" FORCE)
+set(SUITESPARSE_DEMOS OFF CACHE BOOL "" FORCE)
+set(CHOLMOD_GPL ON CACHE BOOL "" FORCE)
+set(CHOLMOD_CHOLESKY ON CACHE BOOL "" FORCE)
+set(CHOLMOD_SUPERNODAL ON CACHE BOOL "" FORCE)
+set(CHOLMOD_CHECK ON CACHE BOOL "" FORCE)
+set(CHOLMOD_MATRIXOPS OFF CACHE BOOL "" FORCE)
+set(CHOLMOD_MODIFY OFF CACHE BOOL "" FORCE)
+set(CHOLMOD_CAMD OFF CACHE BOOL "" FORCE)
+set(CHOLMOD_PARTITION OFF CACHE BOOL "" FORCE)
+set(CHOLMOD_USE_OPENMP OFF CACHE BOOL "" FORCE)
+set(CHOLMOD_USE_CUDA OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(suitesparse URL "${suitesparse_url}" URL_HASH "SHA256=${suitesparse_hash}"
+  DOWNLOAD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.tools/downloads"
+  DOWNLOAD_NAME "suitesparse-${suitesparse_version}.tar.gz" DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+FetchContent_MakeAvailable(suitesparse)
+
+# 仅取头文件，不进入 Eigen 的构建树，避免引入测试、BLAS 或 Fortran。
+string(JSON eigen_url GET "${dependency_lock}" eigen url)
+string(JSON eigen_hash GET "${dependency_lock}" eigen sha256)
+string(JSON eigen_version GET "${dependency_lock}" eigen version)
+FetchContent_Declare(eigen URL "${eigen_url}" URL_HASH "SHA256=${eigen_hash}"
+  DOWNLOAD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.tools/downloads"
+  DOWNLOAD_NAME "eigen-${eigen_version}.tar.gz" DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+  SOURCE_SUBDIR "solver-headers-only")
+FetchContent_MakeAvailable(eigen)
+include(third_party/factorhighs/build.cmake)
+
+function(solver_target_defaults target)
+  target_compile_features(${target} PUBLIC cxx_std_20)
+  if(MSVC)
+    target_compile_options(${target} PRIVATE /W4 /permissive- /utf-8)
+  else()
+    target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic)
+  endif()
+endfunction()
+
+add_library(solver_core src/model.cpp src/verification.cpp src/lp_optimality.cpp)
+target_include_directories(solver_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+solver_target_defaults(solver_core)
+
+add_library(solver_pdlp src/pdlp.cpp)
+target_link_libraries(solver_pdlp PUBLIC solver_core)
+solver_target_defaults(solver_pdlp)
+
+add_library(solver_sparse_lu src/sparse_lu.cpp)
+target_include_directories(solver_sparse_lu PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(solver_sparse_lu SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
+target_compile_definitions(solver_sparse_lu PRIVATE EIGEN_MPL2_ONLY EIGEN_DONT_PARALLELIZE)
+solver_target_defaults(solver_sparse_lu)
+
+add_library(solver_normal_cholesky src/normal_cholesky.cpp)
+target_include_directories(solver_normal_cholesky PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(solver_normal_cholesky SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
+target_compile_definitions(solver_normal_cholesky PRIVATE EIGEN_MPL2_ONLY EIGEN_DONT_PARALLELIZE)
+target_link_libraries(solver_normal_cholesky PRIVATE qdldlstatic SuiteSparse::AMD_static SuiteSparse::CHOLMOD_static solver_multifrontal_ldl)
+solver_target_defaults(solver_normal_cholesky)
+
+add_library(solver_multifrontal_ldl src/multifrontal_ldl.cpp)
+target_include_directories(solver_multifrontal_ldl PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(solver_multifrontal_ldl PRIVATE solver_factorhighs_kernel highs::highs qdldlstatic)
+solver_target_defaults(solver_multifrontal_ldl)
+
+add_library(solver_ipm src/ipm.cpp src/regularized_ldl.cpp)
+target_link_libraries(solver_ipm PUBLIC solver_core PRIVATE qdldlstatic solver_qdldl_extended SuiteSparse::AMD_static solver_sparse_lu solver_normal_cholesky solver_multifrontal_ldl)
+solver_target_defaults(solver_ipm)
+
+add_library(solver_highs src/highs_backend.cpp)
+target_link_libraries(solver_highs PUBLIC solver_core PRIVATE highs::highs solver_pdlp solver_ipm)
+solver_target_defaults(solver_highs)
+
+add_executable(solver src/main.cpp)
+target_link_libraries(solver PRIVATE solver_highs)
+target_compile_definitions(solver PRIVATE SOLVER_VERSION="${PROJECT_VERSION}")
+solver_target_defaults(solver)
+if(MINGW)
+  target_link_options(solver PRIVATE -municode)
+endif()
+
+if(SOLVER_BUILD_TESTS)
+  enable_testing()
+  add_executable(test_verification tests/test_verification.cpp)
+  target_link_libraries(test_verification PRIVATE solver_core)
+  solver_target_defaults(test_verification)
+  add_test(NAME verification COMMAND test_verification)
+
+  add_executable(test_lp_optimality tests/test_lp_optimality.cpp)
+  target_link_libraries(test_lp_optimality PRIVATE solver_core)
+  solver_target_defaults(test_lp_optimality)
+  add_test(NAME lp_optimality COMMAND test_lp_optimality)
+
+  add_executable(test_pdlp tests/test_pdlp.cpp)
+  target_link_libraries(test_pdlp PRIVATE solver_pdlp)
+  solver_target_defaults(test_pdlp)
+  add_test(NAME pdlp COMMAND test_pdlp)
+
+  add_executable(test_pdlp_adversarial tests/test_pdlp_adversarial.cpp)
+  target_link_libraries(test_pdlp_adversarial PRIVATE solver_pdlp)
+  solver_target_defaults(test_pdlp_adversarial)
+  add_test(NAME pdlp_adversarial COMMAND test_pdlp_adversarial)
+
+  add_executable(test_pdlp_acceleration tests/test_pdlp_acceleration.cpp)
+  target_link_libraries(test_pdlp_acceleration PRIVATE solver_pdlp)
+  solver_target_defaults(test_pdlp_acceleration)
+  add_test(NAME pdlp_acceleration COMMAND test_pdlp_acceleration)
+
+  add_executable(test_pdlp_halpern tests/test_pdlp_halpern.cpp)
+  target_link_libraries(test_pdlp_halpern PRIVATE solver_pdlp)
+  solver_target_defaults(test_pdlp_halpern)
+  add_test(NAME pdlp_halpern COMMAND test_pdlp_halpern)
+
+  add_executable(test_ipm tests/test_ipm.cpp)
+  target_link_libraries(test_ipm PRIVATE solver_ipm)
+  solver_target_defaults(test_ipm)
+  add_test(NAME ipm COMMAND test_ipm)
+
+  add_executable(test_regularized_ldl tests/test_regularized_ldl.cpp)
+  target_link_libraries(test_regularized_ldl PRIVATE solver_ipm qdldlstatic)
+  solver_target_defaults(test_regularized_ldl)
+  add_test(NAME regularized_ldl COMMAND test_regularized_ldl)
+
+  add_executable(test_sparse_lu tests/test_sparse_lu.cpp)
+  target_link_libraries(test_sparse_lu PRIVATE solver_sparse_lu)
+  solver_target_defaults(test_sparse_lu)
+  add_test(NAME sparse_lu COMMAND test_sparse_lu)
+
+  add_executable(test_normal_cholesky tests/test_normal_cholesky.cpp)
+  target_link_libraries(test_normal_cholesky PRIVATE solver_normal_cholesky)
+  solver_target_defaults(test_normal_cholesky)
+  add_test(NAME normal_cholesky COMMAND test_normal_cholesky)
+
+  add_executable(test_multifrontal_ldl tests/test_multifrontal_ldl.cpp)
+  target_link_libraries(test_multifrontal_ldl PRIVATE solver_multifrontal_ldl solver_openblas)
+  solver_target_defaults(test_multifrontal_ldl)
+  add_test(NAME multifrontal_ldl COMMAND test_multifrontal_ldl)
+
+  add_executable(test_extended_ldl tests/test_extended_ldl.cpp)
+  target_link_libraries(test_extended_ldl PRIVATE solver_ipm solver_qdldl_extended qdldlstatic)
+  solver_target_defaults(test_extended_ldl)
+  add_test(NAME extended_ldl COMMAND test_extended_ldl)
+
+  add_executable(test_backend tests/test_backend.cpp)
+  target_link_libraries(test_backend PRIVATE solver_highs)
+  target_compile_definitions(test_backend PRIVATE SOLVER_FIXTURE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures")
+  solver_target_defaults(test_backend)
+  add_test(NAME backend COMMAND test_backend)
+
+  find_package(Python3 3.10 REQUIRED COMPONENTS Interpreter)
+  add_test(NAME cli_and_benchmark COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_cli.py" "$<TARGET_FILE:solver>"
+    "${CMAKE_CURRENT_SOURCE_DIR}/scripts/benchmark.py")
+  add_test(NAME pdlp_comparison COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_pdlp_comparison.py" "$<TARGET_FILE:solver>")
+  add_test(NAME comparison_protocol COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_compare_lp.py" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/compare_lp.py")
+  add_test(NAME modern_lp_data COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_fetch_modern_lp.py" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/fetch_modern_lp.py")
+  set_tests_properties(verification lp_optimality pdlp pdlp_adversarial pdlp_acceleration pdlp_halpern ipm regularized_ldl sparse_lu normal_cholesky multifrontal_ldl extended_ldl backend cli_and_benchmark pdlp_comparison comparison_protocol modern_lp_data PROPERTIES TIMEOUT 120)
+  set_tests_properties(pdlp_comparison PROPERTIES TIMEOUT 360)
+endif()
+
+install(TARGETS solver RUNTIME DESTINATION bin)
+install(FILES "${highs_SOURCE_DIR}/LICENSE.txt" DESTINATION share/solver RENAME HiGHS-LICENSE.txt)
+install(FILES "${qdldl_SOURCE_DIR}/LICENSE" DESTINATION share/solver RENAME QDLDL-LICENSE.txt)
+install(FILES "${suitesparse_SOURCE_DIR}/AMD/Doc/License.txt" DESTINATION share/solver RENAME AMD-LICENSE.txt)
+install(FILES "${suitesparse_SOURCE_DIR}/COLAMD/Doc/License.txt" DESTINATION share/solver RENAME COLAMD-LICENSE.txt)
+install(FILES "${suitesparse_SOURCE_DIR}/CHOLMOD/Doc/License.txt" DESTINATION share/solver RENAME CHOLMOD-LICENSE.txt)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/third_party/cholmod/NOTICE.txt" DESTINATION share/solver RENAME CHOLMOD-NOTICE.txt)
+install(FILES "${suitesparse_SOURCE_DIR}/LICENSE.txt" DESTINATION share/solver RENAME SuiteSparse-LICENSES.txt)
+install(FILES "${suitesparse_SOURCE_DIR}/SuiteSparse_config/README.txt" DESTINATION share/solver RENAME SuiteSparse-config-NOTICE.txt)
+install(FILES "${eigen_SOURCE_DIR}/COPYING.MPL2" DESTINATION share/solver RENAME Eigen-LICENSE.txt)
+install(FILES "${eigen_SOURCE_DIR}/COPYING.README" DESTINATION share/solver RENAME Eigen-NOTICE.txt)
+install(FILES "${eigen_SOURCE_DIR}/COPYING.BSD" DESTINATION share/solver RENAME Eigen-BSD-LICENSE.txt)
+install(FILES "${eigen_SOURCE_DIR}/COPYING.APACHE" DESTINATION share/solver RENAME Eigen-APACHE-LICENSE.txt)
+install(FILES "${eigen_SOURCE_DIR}/COPYING.MINPACK" DESTINATION share/solver RENAME Eigen-MINPACK-LICENSE.txt)

@@ -1,0 +1,3816 @@
+{
+  "schema_version": 1,
+  "model_count": 91,
+  "repeats": 1,
+  "run_count": 182,
+  "quality_pass_count": 173,
+  "reference_variant": "highs",
+  "candidate_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward",
+  "both_variants_all_repeats_pass_count": 82,
+  "both_backends_all_repeats_pass_count": 82,
+  "wall_winner_counts": {
+    "highs": 75,
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 7
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "highs": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.095227184368707,
+      "penalized_numerical_sgm10_seconds": 0.07972046522436727,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": {
+      "run_count": 91,
+      "quality_pass_count": 82,
+      "all_repeats_quality_pass_model_count": 82,
+      "quality_failure_counts": {
+        "incomplete": 9
+      },
+      "status_counts": {
+        "optimal": 82,
+        "numerical_error": 5,
+        "time_limit": 2,
+        "iteration_limit": 2
+      },
+      "penalized_wall_sgm10_seconds": 1.7125905250423958,
+      "penalized_numerical_sgm10_seconds": 0.49229899252809545,
+      "numerical_budget_exceeded_count": 2,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": {
+    "highs": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.095227184368707,
+      "penalized_numerical_sgm10_seconds": 0.07972046522436727,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": {
+      "run_count": 91,
+      "quality_pass_count": 82,
+      "all_repeats_quality_pass_model_count": 82,
+      "quality_failure_counts": {
+        "incomplete": 9
+      },
+      "status_counts": {
+        "optimal": 82,
+        "numerical_error": 5,
+        "time_limit": 2,
+        "iteration_limit": 2
+      },
+      "penalized_wall_sgm10_seconds": 1.7125905250423958,
+      "penalized_numerical_sgm10_seconds": 0.49229899252809545,
+      "numerical_budget_exceeded_count": 2,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\25fv47.mps",
+      "sha256": "e0da0d47ae56bef34f11ac03563027da57dd4ab792d978c0dc8e27a16117f627",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.10045339993666857,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2194189999718219
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0774727,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1977416
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.10045339993666857,
+          0.10045339993666857
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2194189999718219,
+          0.2194189999718219
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0774727,
+          0.0774727
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1977416,
+          0.1977416
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.4578154122914102,
+      "numerical_speedup_reference_over_candidate": 0.39178756518608127,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\80bau3b.mps",
+      "sha256": "22aef70f5ce164435b15c5c0aa3be93a99932dc136eb936eb17835a661087b9f",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.09109170001465827,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.4019594000419602
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0611196,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.3692599
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.09109170001465827,
+          0.09109170001465827
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.4019594000419602,
+          0.4019594000419602
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0611196,
+          0.0611196
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.3692599,
+          0.3692599
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.22661915607683086,
+      "numerical_speedup_reference_over_candidate": 0.16551919122547562,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\adlittle.mps",
+      "sha256": "db211f7bf735518a246a2a0e385ec51abc09cd601da7ae50d6c3fe083cb6f94b",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.0099222999997437,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.011265899986028671
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0010593,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0019218
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.0099222999997437,
+          0.0099222999997437
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.011265899986028671,
+          0.011265899986028671
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0010593,
+          0.0010593
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0019218,
+          0.0019218
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8807374477004742,
+      "numerical_speedup_reference_over_candidate": 0.5512019981267562,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\afiro.mps",
+      "sha256": "04992b87e57e57c1c417c96b846833bfa12e055eeaa623f043c45fc773b5be41",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009155999985523522,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.008525499957613647
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0004939,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0003177
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009155999985523522,
+          0.009155999985523522
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.008525499957613647,
+          0.008525499957613647
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0004939,
+          0.0004939
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0003177,
+          0.0003177
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0739546104093063,
+      "numerical_speedup_reference_over_candidate": 1.5546112684922884,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg.mps",
+      "sha256": "d7844795d0c799f5cdc1416c8d242f5e8f351f5a3271f42a2d428f170abf1f03",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.011573700001463294,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.022045199992135167
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0022335,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0116045
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.011573700001463294,
+          0.011573700001463294
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.022045199992135167,
+          0.022045199992135167
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0022335,
+          0.0022335
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0116045,
+          0.0116045
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5249986394132201,
+      "numerical_speedup_reference_over_candidate": 0.19246843896764185,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg2.mps",
+      "sha256": "0515e9b78a802f9473578b23a7a60075554fc39ea7b5796fb41530cd760e4534",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.013597299926914275,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.028007299988530576
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0032469,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0168473
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.013597299926914275,
+          0.013597299926914275
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.028007299988530576,
+          0.028007299988530576
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0032469,
+          0.0032469
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0168473,
+          0.0168473
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.48549128021917787,
+      "numerical_speedup_reference_over_candidate": 0.1927252438076131,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg3.mps",
+      "sha256": "1a6e78a0b7d210c935c97527ce49449d0655f9605fcbc33bfdfc93952f3b12d1",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01405009999871254,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.027933600009419024
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0032412,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0171792
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01405009999871254,
+          0.01405009999871254
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.027933600009419024,
+          0.027933600009419024
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0032412,
+          0.0032412
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0171792,
+          0.0171792
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5029820715545057,
+      "numerical_speedup_reference_over_candidate": 0.18867001955853593,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bandm.mps",
+      "sha256": "696daa77a79a0715c2fad877285e49bd7fcd7f5513f3cb83fbe0be916b6d8c81",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01591219997499138,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.024128600023686886
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0058296,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0140011
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01591219997499138,
+          0.01591219997499138
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.024128600023686886,
+          0.024128600023686886
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0058296,
+          0.0058296
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0140011,
+          0.0140011
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6594746466587569,
+      "numerical_speedup_reference_over_candidate": 0.4163672854275735,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 8,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\beaconfd.mps",
+      "sha256": "7138e7b58b1d6160f1ad42112a61ed00b5db1c92d73dc48d77f6a26fc717dbfc",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.011166200041770935,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.022788899950683117
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0016736000000000001,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0130537
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.011166200041770935,
+          0.011166200041770935
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.022788899950683117,
+          0.022788899950683117
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0016736000000000001,
+          0.0016736000000000001
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0130537,
+          0.0130537
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.489984161847892,
+      "numerical_speedup_reference_over_candidate": 0.12820886032312678,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 9,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\blend.mps",
+      "sha256": "38e1d84a38f1e0adaa16d3dd0abe758f6cea13a21f33681aa92742b693260aef",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009605599916540086,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.010459000011906028
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0011624,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0018973
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009605599916540086,
+          0.009605599916540086
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.010459000011906028,
+          0.010459000011906028
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0011624,
+          0.0011624
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0018973,
+          0.0018973
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9184051922368801,
+      "numerical_speedup_reference_over_candidate": 0.6126600959257893,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 10,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl1.mps",
+      "sha256": "7a842adca058eaa3cb712b3bbae357602f22df6cc318c4d278f6600167fe2300",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.02585380000527948,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.07469260005746037
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0131964,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0620168
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.02585380000527948,
+          0.02585380000527948
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.07469260005746037,
+          0.07469260005746037
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0131964,
+          0.0131964
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0620168,
+          0.0620168
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.34613602934414356,
+      "numerical_speedup_reference_over_candidate": 0.21278750274119274,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 11,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+      "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 12,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\boeing1.mps",
+      "sha256": "1d9d58afaf41bad6866d5355330b261d3776ca86753d121eb9b688ee6128ab9e",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01681609998922795,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.02902889996767044
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0061072,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0189781
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01681609998922795,
+          0.01681609998922795
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.02902889996767044,
+          0.02902889996767044
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0061072,
+          0.0061072
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0189781,
+          0.0189781
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5792882268345023,
+      "numerical_speedup_reference_over_candidate": 0.32180249866951904,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 13,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\boeing2.mps",
+      "sha256": "e12e729b8c09bf6e6934af40b728e460d4eb360c42419b791b68fb2271ddd61a",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010927199968136847,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.01266190002206713
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0018147,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0031953
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.010927199968136847,
+          0.010927199968136847
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.01266190002206713,
+          0.01266190002206713
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0018147,
+          0.0018147
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0031953,
+          0.0031953
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.862998440130861,
+      "numerical_speedup_reference_over_candidate": 0.5679278940944512,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 14,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bore3d.mps",
+      "sha256": "c7cfe0d4abd466346e3cda4e16d00651f44f3ce1da317cf583c5fed5dfc0515a",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010540699935518205,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.02187459997367114
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0014145,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0112112
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.010540699935518205,
+          0.010540699935518205
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.02187459997367114,
+          0.02187459997367114
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0014145,
+          0.0014145
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0112112,
+          0.0112112
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.48186938038662547,
+      "numerical_speedup_reference_over_candidate": 0.1261684743827601,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 15,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\brandy.mps",
+      "sha256": "56fa020b84a0a106b7883b7da006c2852449598898c41ec8dd2575151d0e0917",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.012216400005854666,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.01838189992122352
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0030288,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0088135
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.012216400005854666,
+          0.012216400005854666
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.01838189992122352,
+          0.01838189992122352
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0030288,
+          0.0030288
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0088135,
+          0.0088135
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6645885386281403,
+      "numerical_speedup_reference_over_candidate": 0.34365462075225506,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 16,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\capri.mps",
+      "sha256": "4932bc8861fcdaf19256827b7ee229941fa6f2e84f2044b65300326c226fba78",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.0119387999875471,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.02106840000487864
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0022859,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0115332
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.0119387999875471,
+          0.0119387999875471
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.02106840000487864,
+          0.02106840000487864
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0022859,
+          0.0022859
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0115332,
+          0.0115332
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5666685645223428,
+      "numerical_speedup_reference_over_candidate": 0.1982017133146048,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 17,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\cycle.mps",
+      "sha256": "bfc8edde30952b8dfa354679ea3a3231c2e7eb762c0ff8f0f845505741816d53",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 18,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\czprob.mps",
+      "sha256": "b1f30bd25705fcc3c4f195d7e627e437788035f81fae9198e3096471b947f704",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 19,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\d2q06c.mps",
+      "sha256": "fb1516a10aba6a4101cea6cec90c1da775ac60d2d2cd96e902bbe21a430790c9",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.36991430004127324,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.7321932000340894
+      },
+      "median_numerical_seconds": {
+        "highs": 0.3419762,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.7030938
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.36991430004127324,
+          0.36991430004127324
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.7321932000340894,
+          0.7321932000340894
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.3419762,
+          0.3419762
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.7030938,
+          0.7030938
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5052140610211223,
+      "numerical_speedup_reference_over_candidate": 0.48638773375615035,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 20,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\d6cube.mps",
+      "sha256": "8cd94ee7783bcbce884acde1f4769f5c79739c9460fe73cb948924e724b02dfa",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.0913064000196755,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.3875773000763729
+      },
+      "median_numerical_seconds": {
+        "highs": 0.060744599999999996,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.3579972
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.0913064000196755,
+          0.0913064000196755
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.3875773000763729,
+          0.3875773000763729
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.060744599999999996,
+          0.060744599999999996
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.3579972,
+          0.3579972
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.23558242446521863,
+      "numerical_speedup_reference_over_candidate": 0.1696789807294582,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 21,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\degen2.mps",
+      "sha256": "755cf6ca5f3a8ed1b8b68372e8d2d3b5efee784ee69b1dada923c6ff04ee0edb",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.018836000002920628,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0319267000304535
+      },
+      "median_numerical_seconds": {
+        "highs": 0.007903,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.02084
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.018836000002920628,
+          0.018836000002920628
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0319267000304535,
+          0.0319267000304535
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.007903,
+          0.007903
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.02084,
+          0.02084
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5899764142537055,
+      "numerical_speedup_reference_over_candidate": 0.37922264875239925,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 22,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\degen3.mps",
+      "sha256": "08d600688c524fea548e946af5551ef8c359c7a7e71b8841acc839b00eefadeb",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.10580979997757822,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.19968899991363287
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0860079,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1770323
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.10580979997757822,
+          0.10580979997757822
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.19968899991363287,
+          0.19968899991363287
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0860079,
+          0.0860079
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1770323,
+          0.1770323
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5298729525579368,
+      "numerical_speedup_reference_over_candidate": 0.48583168156319495,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 23,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 24,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\e226.mps",
+      "sha256": "ddf56486daea52c8592b520aeb83d329223a1b45a3e5a269bd663ef9195bd8d8",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.015270099975168705,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.02266440005041659
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0042129,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0124247
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.015270099975168705,
+          0.015270099975168705
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.02266440005041659,
+          0.02266440005041659
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0042129,
+          0.0042129
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0124247,
+          0.0124247
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6737482545843092,
+      "numerical_speedup_reference_over_candidate": 0.3390745853018584,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 25,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\etamacro.mps",
+      "sha256": "41701e1add7af2ed2b21a421ab7271bc867e6bc7ad98ac189748d6522e7d4926",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 26,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fffff800.mps",
+      "sha256": "9d6695686c15d5f1b4f43b2ce8830c1d38df3a204717d8875f144aa21b33901e",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.017908299923874438,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.06871919997502118
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0060468,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0566555
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.017908299923874438,
+          0.017908299923874438
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.06871919997502118,
+          0.06871919997502118
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0060468,
+          0.0060468
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0566555,
+          0.0566555
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.2606011119219075,
+      "numerical_speedup_reference_over_candidate": 0.10672926723795571,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 27,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+      "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 28,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1d.mps",
+      "sha256": "59cee4fedd040a05c05d8410474ee014f42ef910e083689202be708491fe8717",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.02029939997009933,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.03869369998574257
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0062265,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0246139
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.02029939997009933,
+          0.02029939997009933
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.03869369998574257,
+          0.03869369998574257
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0062265,
+          0.0062265
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0246139,
+          0.0246139
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.524617702043977,
+      "numerical_speedup_reference_over_candidate": 0.2529668195613048,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 29,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.03181900002527982,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.040211400017142296
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0174546,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0255279
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.03181900002527982,
+          0.03181900002527982
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.040211400017142296,
+          0.040211400017142296
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0174546,
+          0.0174546
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0255279,
+          0.0255279
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7912930166996235,
+      "numerical_speedup_reference_over_candidate": 0.6837460190614975,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 30,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2d.mps",
+      "sha256": "1c16c328c0358ab175596bdd6b9a2c5d1cb4bb53b099d5d1f2a208a889c7bafc",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.13219889998435974,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.352967599988915
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0737871,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2879457
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.13219889998435974,
+          0.13219889998435974
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.352967599988915,
+          0.352967599988915
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0737871,
+          0.0737871
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2879457,
+          0.2879457
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.37453550974228644,
+      "numerical_speedup_reference_over_candidate": 0.2562535227996111,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 31,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2p.mps",
+      "sha256": "0f44de8ea974ed4cc04fb60ccd2707c2f887dc65f8b6b9bd1e9f01bb59dd4a4f",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.42056639993097633,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2631373000331223
+      },
+      "median_numerical_seconds": {
+        "highs": 0.37653719999999996,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2159635
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.42056639993097633,
+          0.42056639993097633
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2631373000331223,
+          0.2631373000331223
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.37653719999999996,
+          0.37653719999999996
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2159635,
+          0.2159635
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.5982774007259242,
+      "numerical_speedup_reference_over_candidate": 1.7435224007760568,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 32,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.014627299970015883,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.04224670003168285
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0033628,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.031181
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.014627299970015883,
+          0.014627299970015883
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.04224670003168285,
+          0.04224670003168285
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0033628,
+          0.0033628
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.031181,
+          0.031181
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.34623532628693277,
+      "numerical_speedup_reference_over_candidate": 0.10784772778294474,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 33,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ganges.mps",
+      "sha256": "f655f33ba979a59d659a8605acaf480c2fe5c610f3a50921bbcac7be40546067",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.02239170006942004,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.07599959999788553
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0078906,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0610618
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.02239170006942004,
+          0.02239170006942004
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.07599959999788553,
+          0.07599959999788553
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0078906,
+          0.0078906
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0610618,
+          0.0610618
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.2946291831804776,
+      "numerical_speedup_reference_over_candidate": 0.12922318044997036,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 34,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\gfrd-pnc.mps",
+      "sha256": "d66ea78a803e91e4f38dcd74ca4c575aa742e27e7120c1c3494d4d424ee5c936",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.015311600058339536,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.046549899969249964
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0038505,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0344032
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.015311600058339536,
+          0.015311600058339536
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.046549899969249964,
+          0.046549899969249964
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0038505,
+          0.0038505
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0344032,
+          0.0344032
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.3289287424560334,
+      "numerical_speedup_reference_over_candidate": 0.11192272811831458,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 35,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 36,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 37,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow15.mps",
+      "sha256": "ab84e2f83d00c5bd26291e0505f23804b050bc96dc1e576d9da8f04e1f6ed51f",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.031124999979510903,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.024309300002641976
+      },
+      "median_numerical_seconds": {
+        "highs": 0.019662199999999998,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0120865
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.031124999979510903,
+          0.031124999979510903
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.024309300002641976,
+          0.024309300002641976
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.019662199999999998,
+          0.019662199999999998
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0120865,
+          0.0120865
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.2803741768018078,
+      "numerical_speedup_reference_over_candidate": 1.6267902204939393,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 38,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+      "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.05317970004398376,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.030690700048580766
+      },
+      "median_numerical_seconds": {
+        "highs": 0.040361100000000004,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0176494
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.05317970004398376,
+          0.05317970004398376
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.030690700048580766,
+          0.030690700048580766
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.040361100000000004,
+          0.040361100000000004
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0176494,
+          0.0176494
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.7327626922750154,
+      "numerical_speedup_reference_over_candidate": 2.286825614468481,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 39,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow7.mps",
+      "sha256": "6b8734ffdf991a36f17cfddf306834a4a3ced3e17964cac9fa2983a043906cd4",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.015525500057265162,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.014590099919587374
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0061406,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.004887
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.015525500057265162,
+          0.015525500057265162
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.014590099919587374,
+          0.014590099919587374
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0061406,
+          0.0061406
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.004887,
+          0.004887
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0641119761230697,
+      "numerical_speedup_reference_over_candidate": 1.2565172907714346,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 40,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\israel.mps",
+      "sha256": "96564e1fddcbb6e3d46447fceb54b9d18260b95e95075c3a19f5812f9bf5ceeb",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.011256000027060509,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.014245099970139563
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0020743,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0047316
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.011256000027060509,
+          0.011256000027060509
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.014245099970139563,
+          0.014245099970139563
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0020743,
+          0.0020743
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0047316,
+          0.0047316
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7901664467539873,
+      "numerical_speedup_reference_over_candidate": 0.4383929326232141,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 41,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\kb2.mps",
+      "sha256": "f0eb647d1d9aac84f49d88662b6b02c6cecc04496e5435be733eced36d7f48f2",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009202799992635846,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.010588800068944693
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0006773,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0027198
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009202799992635846,
+          0.009202799992635846
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.010588800068944693,
+          0.010588800068944693
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0006773,
+          0.0006773
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0027198,
+          0.0027198
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8691069746067102,
+      "numerical_speedup_reference_over_candidate": 0.24902566365173912,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 42,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\lotfi.mps",
+      "sha256": "fcb90a1b5e02b2eae67adacd0937a073d420ca92ac6af514ee13a348d7f31623",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010383900022134185,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.013341299956664443
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0016702000000000002,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0042245
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.010383900022134185,
+          0.010383900022134185
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.013341299956664443,
+          0.013341299956664443
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0016702000000000002,
+          0.0016702000000000002
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0042245,
+          0.0042245
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.77832745353627,
+      "numerical_speedup_reference_over_candidate": 0.39536039768019887,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 43,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.39050109998788685,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1.5218418000731617
+      },
+      "median_numerical_seconds": {
+        "highs": 0.32399239999999996,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1.451624
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.39050109998788685,
+          0.39050109998788685
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          1.5218418000731617,
+          1.5218418000731617
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.32399239999999996,
+          0.32399239999999996
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          1.451624,
+          1.451624
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.2565976962711326,
+      "numerical_speedup_reference_over_candidate": 0.22319305825751018,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 44,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros.mps",
+      "sha256": "4910e97a363fca07d2fb72838fa26629329a9a8dcd6a4da186f560424bd67077",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.03662469994742423,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1310777000617236
+      },
+      "median_numerical_seconds": {
+        "highs": 0.022019900000000002,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1155241
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.03662469994742423,
+          0.03662469994742423
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1310777000617236,
+          0.1310777000617236
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.022019900000000002,
+          0.022019900000000002
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1155241,
+          0.1155241
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.2794121344071334,
+      "numerical_speedup_reference_over_candidate": 0.1906087128140362,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 45,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\modszk1.mps",
+      "sha256": "af109be42aa6bd62fc307b623184c69f1030db2f8e1682c636b387a49fd8da43",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.020512600080110133,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.37494090001564473
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0080412,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.3611217
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.020512600080110133,
+          0.020512600080110133
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.37494090001564473,
+          0.37494090001564473
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0080412,
+          0.0080412
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.3611217,
+          0.3611217
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.0547088889989175,
+      "numerical_speedup_reference_over_candidate": 0.022267285516212404,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 46,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\nesm.mps",
+      "sha256": "20b55063a879a649ef5c7a1a701f81917717b414943f58dea37a1c30495bc5ba",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.09282879997044802,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.12040609994437546
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0742271,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1007073
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.09282879997044802,
+          0.09282879997044802
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.12040609994437546,
+          0.12040609994437546
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0742271,
+          0.0742271
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1007073,
+          0.1007073
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7709642618881647,
+      "numerical_speedup_reference_over_candidate": 0.7370577902495649,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 47,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\perold.mps",
+      "sha256": "040ed4572876366cd979b6811ee20d706abba6998616b0e53201ea1e043acacd",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.04171439993660897,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.12674520001746714
+      },
+      "median_numerical_seconds": {
+        "highs": 0.028131800000000002,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1130005
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.04171439993660897,
+          0.04171439993660897
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.12674520001746714,
+          0.12674520001746714
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.028131800000000002,
+          0.028131800000000002
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1130005,
+          0.1130005
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.32912015548407497,
+      "numerical_speedup_reference_over_candidate": 0.24895288073946575,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 48,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot.mps",
+      "sha256": "26916951225f695c68c474adb2e1e052e4c1b3479d6a11fbd579fd20d4e7d2eb",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.49446080008056015,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.6452879999997094
+      },
+      "median_numerical_seconds": {
+        "highs": 0.4646477,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.6155785
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.49446080008056015,
+          0.49446080008056015
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.6452879999997094,
+          0.6452879999997094
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.4646477,
+          0.4646477
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.6155785,
+          0.6155785
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7662637459255136,
+      "numerical_speedup_reference_over_candidate": 0.7548146986939926,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 49,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot4.mps",
+      "sha256": "67e872aae722a493f5c2c8f88e3d70d093eea116093874ea43852c864a687cba",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.02599619992543012,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.08171310008037835
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0139325,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0692692
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.02599619992543012,
+          0.02599619992543012
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.08171310008037835,
+          0.08171310008037835
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0139325,
+          0.0139325
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0692692,
+          0.0692692
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.3181399298259221,
+      "numerical_speedup_reference_over_candidate": 0.20113556963267945,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 50,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 51,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilotnov.mps",
+      "sha256": "2b000b6da9fb539e3303d5b81f00cc74f430e7ed52d7666ff1ef835bf060773d",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.09034080000128597,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1961278000380844
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0733867,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1777059
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.09034080000128597,
+          0.09034080000128597
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1961278000380844,
+          0.1961278000380844
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0733867,
+          0.0733867
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1777059,
+          0.1777059
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.46062210448362473,
+      "numerical_speedup_reference_over_candidate": 0.41296715528297034,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 52,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\recipe.mps",
+      "sha256": "277b34645cc89526db4a3365fa781ce28aa9768a65c4f301416a8a05c934af61",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009951299987733364,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.012771899928338826
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0009439,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0039325
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009951299987733364,
+          0.009951299987733364
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.012771899928338826,
+          0.012771899928338826
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0009439,
+          0.0009439
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0039325,
+          0.0039325
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7791558063850003,
+      "numerical_speedup_reference_over_candidate": 0.2400254291163382,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 53,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc105.mps",
+      "sha256": "062d034400be956757316a9bde8e6de3d221a88fb5dc502def743f1883e23ec3",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009358500014059246,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.010481799952685833
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0008903,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0019839
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009358500014059246,
+          0.009358500014059246
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.010481799952685833,
+          0.010481799952685833
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0008903,
+          0.0008903
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0019839,
+          0.0019839
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8928332973633258,
+      "numerical_speedup_reference_over_candidate": 0.44876253843439695,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 54,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc205.mps",
+      "sha256": "bcecc8d8cafd08c6d97cf8e39a740f5d777e317600bb9f6f158f2ceb550005f9",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009939700015820563,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.013859599945135415
+      },
+      "median_numerical_seconds": {
+        "highs": 0.001464,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0052316
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009939700015820563,
+          0.009939700015820563
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.013859599945135415,
+          0.013859599945135415
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.001464,
+          0.001464
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0052316,
+          0.0052316
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7171707736996623,
+      "numerical_speedup_reference_over_candidate": 0.2798379080969493,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 55,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc50a.mps",
+      "sha256": "36bfce2f419555712bf1b9a8477541199073c7654475d933475cea6db0abe2f2",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009179499931633472,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.009102600044570863
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0005535000000000001,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0009625
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009179499931633472,
+          0.009179499931633472
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.009102600044570863,
+          0.009102600044570863
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0005535000000000001,
+          0.0005535000000000001
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0009625,
+          0.0009625
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0084481232489695,
+      "numerical_speedup_reference_over_candidate": 0.5750649350649352,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 56,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc50b.mps",
+      "sha256": "bfc47ffcf8f037552130a75142a203dc768d82d15c3b7b9f718c444ffa472f15",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009824400069192052,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.00953730009496212
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0006175999999999999,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.000855
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009824400069192052,
+          0.009824400069192052
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.00953730009496212,
+          0.00953730009496212
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0006175999999999999,
+          0.0006175999999999999
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.000855,
+          0.000855
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0301028562980403,
+      "numerical_speedup_reference_over_candidate": 0.7223391812865496,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward"
+    },
+    {
+      "model_index": 57,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scagr25.mps",
+      "sha256": "7bac79b91dec46966af26a236d593c823f1e61eb055597426365e4f6bc36df76",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.014472399954684079,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.040660700062289834
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0039244,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.029917
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.014472399954684079,
+          0.014472399954684079
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.040660700062289834,
+          0.040660700062289834
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0039244,
+          0.0039244
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.029917,
+          0.029917
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.3559309095149174,
+      "numerical_speedup_reference_over_candidate": 0.13117625430357321,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 58,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scagr7.mps",
+      "sha256": "2170c16fd0cc04a823172c1564e89593e75aac5225e2c2f893a6837ba0b26085",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010442600003443658,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.012212500092573464
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0013151,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0027723
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.010442600003443658,
+          0.010442600003443658
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.012212500092573464,
+          0.012212500092573464
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0013151,
+          0.0013151
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0027723,
+          0.0027723
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8550747123264222,
+      "numerical_speedup_reference_over_candidate": 0.4743714605201457,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 59,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm1.mps",
+      "sha256": "3e602523ca64bb4fd7387da7eca577d964e08d7c04326c59937a0d58add7de25",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.014527099905535579,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.023921500076539814
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0047402,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0141141
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.014527099905535579,
+          0.014527099905535579
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.023921500076539814,
+          0.023921500076539814
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0047402,
+          0.0047402
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0141141,
+          0.0141141
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6072821461469522,
+      "numerical_speedup_reference_over_candidate": 0.3358485486145061,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 60,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm2.mps",
+      "sha256": "64d44da9d2e6329705e73b1e083f52a7560124c13af4c67ff60d55b0a46b0f0e",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.024914500070735812,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.04926349991001189
+      },
+      "median_numerical_seconds": {
+        "highs": 0.010307499999999999,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0367654
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.024914500070735812,
+          0.024914500070735812
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.04926349991001189,
+          0.04926349991001189
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.010307499999999999,
+          0.010307499999999999
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0367654,
+          0.0367654
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5057395458350779,
+      "numerical_speedup_reference_over_candidate": 0.2803587068276151,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 61,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm3.mps",
+      "sha256": "515b442feba7cb583e03d4466da264782d898cc69093848052a7fa98ba4eac7b",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.03031220007687807,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.06741659995168447
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0161315,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0531051
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.03031220007687807,
+          0.03031220007687807
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.06741659995168447,
+          0.06741659995168447
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0161315,
+          0.0161315
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0531051,
+          0.0531051
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.44962516796459545,
+      "numerical_speedup_reference_over_candidate": 0.3037655517078397,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 62,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scorpion.mps",
+      "sha256": "39b61cae042ce4adffb441faec77f5cc003fa725baa25edfb1738aef93a83c5d",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.011709499987773597,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.016564800054766238
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0018004,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0068524
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.011709499987773597,
+          0.011709499987773597
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.016564800054766238,
+          0.016564800054766238
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0018004,
+          0.0018004
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0068524,
+          0.0068524
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7068905117514165,
+      "numerical_speedup_reference_over_candidate": 0.26274006187613097,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 63,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scrs8.mps",
+      "sha256": "33b12d5e3d07b47a8b837ab0bf445fbfb5980af5c825bf049c23e71fb3faf026",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01616760005708784,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.040044000023044646
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0050509,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0283959
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01616760005708784,
+          0.01616760005708784
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.040044000023044646,
+          0.040044000023044646
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0050509,
+          0.0050509
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0283959,
+          0.0283959
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.4037458807257931,
+      "numerical_speedup_reference_over_candidate": 0.1778742705813163,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 64,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd1.mps",
+      "sha256": "8c4aac4987a81ef66715b5cb2debdb1993afe6cb5e2a29f32556a03802bf55f5",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.011448699980974197,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.015437200083397329
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0015798,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0052154
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.011448699980974197,
+          0.011448699980974197
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.015437200083397329,
+          0.015437200083397329
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0015798,
+          0.0015798
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0052154,
+          0.0052154
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7416306013476658,
+      "numerical_speedup_reference_over_candidate": 0.3029106108831537,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 65,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd6.mps",
+      "sha256": "f3da742cfa24cfadb99d510847ea1f7a361ba61537d4c2900c09b674912a5891",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.015383100020699203,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.023878600099124014
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0041307,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0111505
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.015383100020699203,
+          0.015383100020699203
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.023878600099124014,
+          0.023878600099124014
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0041307,
+          0.0041307
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0111505,
+          0.0111505
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6442211836892202,
+      "numerical_speedup_reference_over_candidate": 0.3704497556163401,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 66,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd8.mps",
+      "sha256": "2090a22840fe2c75730cd76336702ece7c27a739d58740926b67c4b2e57b8e5c",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.03390919999219477,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.03596869995817542
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0189813,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0199444
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.03390919999219477,
+          0.03390919999219477
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.03596869995817542,
+          0.03596869995817542
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0189813,
+          0.0189813
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0199444,
+          0.0199444
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9427418847949621,
+      "numerical_speedup_reference_over_candidate": 0.9517107559014059,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 67,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap1.mps",
+      "sha256": "2b1ab5950d3e37fd21327892e2bc830c5f0d8d3fc1f687c0f57a5cdefd9caa21",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.013198400032706559,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.016393200028687716
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0035343,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0053094
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.013198400032706559,
+          0.013198400032706559
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.016393200028687716,
+          0.016393200028687716
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0035343,
+          0.0035343
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0053094,
+          0.0053094
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8051143162780707,
+      "numerical_speedup_reference_over_candidate": 0.6656684371115381,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 68,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap2.mps",
+      "sha256": "673d50e3b929f83b1719d28ee09500890294107099518161bcf2a4f452e95fb2",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.020730299991555512,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.037685499992221594
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0071662,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0228924
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.020730299991555512,
+          0.020730299991555512
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.037685499992221594,
+          0.037685499992221594
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0071662,
+          0.0071662
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0228924,
+          0.0228924
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5500869033403911,
+      "numerical_speedup_reference_over_candidate": 0.3130383882860687,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 69,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap3.mps",
+      "sha256": "44e105b02a722bf19292b8aeb4779480c4eb81f40da35d64d8f4534f85000168",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.02440370002295822,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.04563179996330291
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0091914,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0292796
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.02440370002295822,
+          0.02440370002295822
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.04563179996330291,
+          0.04563179996330291
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0091914,
+          0.0091914
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0292796,
+          0.0292796
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5347959108030731,
+      "numerical_speedup_reference_over_candidate": 0.31391822292654276,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 70,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\seba.mps",
+      "sha256": "539733cdb036e2d2e8e80e7ea1666848b6b67a36a34b1c6cf9a883e1c868ef1e",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01665729994419962,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.029482900048606098
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0033361,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0173782
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01665729994419962,
+          0.01665729994419962
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.029482900048606098,
+          0.029482900048606098
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0033361,
+          0.0033361
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0173782,
+          0.0173782
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5649817323512295,
+      "numerical_speedup_reference_over_candidate": 0.19197039969617105,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 71,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\share1b.mps",
+      "sha256": "fafdf8b5e3d50d27f5eff40e46eb104d1e614bf2721cb5be38081f1678dbd562",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010934900026768446,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.022323000011965632
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0018701,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0127914
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.010934900026768446,
+          0.010934900026768446
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.022323000011965632,
+          0.022323000011965632
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0018701,
+          0.0018701
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0127914,
+          0.0127914
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.489849035564534,
+      "numerical_speedup_reference_over_candidate": 0.1461997904842316,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 72,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\share2b.mps",
+      "sha256": "2816c0a71096acc08fd88f65c960366856802c074601e5fa544f9c3eab640c96",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009774800040759146,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0115728999953717
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0012183,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0028496
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009774800040759146,
+          0.009774800040759146
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0115728999953717,
+          0.0115728999953717
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0012183,
+          0.0012183
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0028496,
+          0.0028496
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8446284029645413,
+      "numerical_speedup_reference_over_candidate": 0.42753368893879845,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 73,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\shell.mps",
+      "sha256": "e21331e8282f8d8616cbee27e093e50d140ea03f9bc3fd0b6da0ccff638d2f91",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.019353599986061454,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.06155430001672357
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0068895,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0489611
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.019353599986061454,
+          0.019353599986061454
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.06155430001672357,
+          0.06155430001672357
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0068895,
+          0.0068895
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0489611,
+          0.0489611
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.3144150771075832,
+      "numerical_speedup_reference_over_candidate": 0.1407137503038126,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 74,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship04l.mps",
+      "sha256": "e7c46bfd6492a400220cf1f5f093f264901fd0e8534dd8cbb060d491612dc881",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.018069999990984797,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.03981540002860129
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0045207,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0259385
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.018069999990984797,
+          0.018069999990984797
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.03981540002860129,
+          0.03981540002860129
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0045207,
+          0.0045207
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0259385,
+          0.0259385
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.4538444917796697,
+      "numerical_speedup_reference_over_candidate": 0.17428532875840932,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 75,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship04s.mps",
+      "sha256": "2ed2828b251173a05004349121cd9a271a3434bf2efe4e1b70d7e0bdf2d76f94",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.016096999985165894,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.031795999966561794
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0033810000000000003,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0193277
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.016096999985165894,
+          0.016096999985165894
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.031795999966561794,
+          0.031795999966561794
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0033810000000000003,
+          0.0033810000000000003
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0193277,
+          0.0193277
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5062586489525184,
+      "numerical_speedup_reference_over_candidate": 0.17493028140958317,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 76,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship08l.mps",
+      "sha256": "58b6142628facaa1b056f32f9f47167097db66825f0c6b42c6f65e4da1b5da07",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.027281400049105287,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.06527459993958473
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0094214,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.045325
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.027281400049105287,
+          0.027281400049105287
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.06527459993958473,
+          0.06527459993958473
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0094214,
+          0.0094214
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.045325,
+          0.045325
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.41794817699925757,
+      "numerical_speedup_reference_over_candidate": 0.20786321014892445,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 77,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship08s.mps",
+      "sha256": "bdf5671548dde27b0d83c244914036e58081c4683786b2fd132277f577c9a7d8",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01965380006004125,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.048838799935765564
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0053833,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0331252
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01965380006004125,
+          0.01965380006004125
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.048838799935765564,
+          0.048838799935765564
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0053833,
+          0.0053833
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0331252,
+          0.0331252
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.40242184668522957,
+      "numerical_speedup_reference_over_candidate": 0.16251373576612366,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 78,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12l.mps",
+      "sha256": "87bf21f83ae0c5a87aa73ee2d8e2bd4a6a72b3c6cbdc603853dbb7b43b824911",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.034434399916790426,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.09161240002140403
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0136297,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0679369
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.034434399916790426,
+          0.034434399916790426
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.09161240002140403,
+          0.09161240002140403
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0136297,
+          0.0136297
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0679369,
+          0.0679369
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.3758705143489886,
+      "numerical_speedup_reference_over_candidate": 0.20062293098448708,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 79,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12s.mps",
+      "sha256": "43bacbc026b0b5588ed9bec06b11fadfbff8beb19b4e84881370a57cc6540e5d",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.02387449995148927,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.07030309992842376
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0065639,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0526568
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.02387449995148927,
+          0.02387449995148927
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.07030309992842376,
+          0.07030309992842376
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0065639,
+          0.0065639
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0526568,
+          0.0526568
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.33959384402389253,
+      "numerical_speedup_reference_over_candidate": 0.12465436562799108,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 80,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sierra.mps",
+      "sha256": "dbabb4bb56b9de7efbca7df842922c7c1ef620bcbee2aeb28f4bf3c5a3868cc9",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.024327200022526085,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2535319000016898
+      },
+      "median_numerical_seconds": {
+        "highs": 0.008435,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2360581
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.024327200022526085,
+          0.024327200022526085
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2535319000016898,
+          0.2535319000016898
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.008435,
+          0.008435
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2360581,
+          0.2360581
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.09595321149868692,
+      "numerical_speedup_reference_over_candidate": 0.03573272851048111,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 81,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stair.mps",
+      "sha256": "30a16ec0d02cf6c490495340d2a718f533d8e5d88f839693eb4bc06671bd8649",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.018194700009189546,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.030464000068604946
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0074765,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0192136
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.018194700009189546,
+          0.018194700009189546
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.030464000068604946,
+          0.030464000068604946
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0074765,
+          0.0074765
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0192136,
+          0.0192136
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.5972524937045388,
+      "numerical_speedup_reference_over_candidate": 0.38912541116708993,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 82,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standata.mps",
+      "sha256": "a513e8587cb8d72ac1f6fb07b33642a212f55646fb2c04521cdfd04b959c6fb1",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.013295099954120815,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.032354600029066205
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0026321,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0205774
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.013295099954120815,
+          0.013295099954120815
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.032354600029066205,
+          0.032354600029066205
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0026321,
+          0.0026321
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0205774,
+          0.0205774
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.4109183838519709,
+      "numerical_speedup_reference_over_candidate": 0.1279121754935026,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 83,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standgub.mps",
+      "sha256": "ce813a2b3750969cf58b48bd7f05dd43be240296acdde9141e09523b1f21e1cf",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01365590002387762,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.030452100094407797
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0026725,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0186404
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.01365590002387762,
+          0.01365590002387762
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.030452100094407797,
+          0.030452100094407797
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0026725,
+          0.0026725
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0186404,
+          0.0186404
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.44843869491895505,
+      "numerical_speedup_reference_over_candidate": 0.14337138688010986,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 84,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standmps.mps",
+      "sha256": "93bd6bc6251b7fee0f943e1c69a7b7e836b4b34e4c011c1a871be66a1cb7e00d",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.015221399953588843,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.04202449996955693
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0038215000000000002,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0297169
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.015221399953588843,
+          0.015221399953588843
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.04202449996955693,
+          0.04202449996955693
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0038215000000000002,
+          0.0038215000000000002
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0297169,
+          0.0297169
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.3622029997885856,
+      "numerical_speedup_reference_over_candidate": 0.1285968590263453,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 85,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stocfor1.mps",
+      "sha256": "98e1cb3940233e044e3d0e50869539087acdf8f0862916f777e553afc705ba90",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.009571400005370378,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.013101999997161329
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0010538000000000001,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.004061
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009571400005370378,
+          0.009571400005370378
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.013101999997161329,
+          0.013101999997161329
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0010538000000000001,
+          0.0010538000000000001
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.004061,
+          0.004061
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7305296906918113,
+      "numerical_speedup_reference_over_candidate": 0.2594927357793647,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 86,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stocfor2.mps",
+      "sha256": "d54988bc39e9c48d13c8a3248913e9b6b77c2f8e9b9f4c3e4c76b060f6096b50",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.030217900057323277,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.1082033000420779
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0143671,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0911996
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.030217900057323277,
+          0.030217900057323277
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.1082033000420779,
+          0.1082033000420779
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0143671,
+          0.0143671
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0911996,
+          0.0911996
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.2792696714940505,
+      "numerical_speedup_reference_over_candidate": 0.15753468216965863,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 87,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\tuff.mps",
+      "sha256": "768782d2ab2d7d044061f56ba54ddd53cf5ea0666a965edd33d48803098e15e2",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.015376999974250793,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.03688899998087436
+      },
+      "median_numerical_seconds": {
+        "highs": 0.004517,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0253855
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.015376999974250793,
+          0.015376999974250793
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.03688899998087436,
+          0.03688899998087436
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.004517,
+          0.004517
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0253855,
+          0.0253855
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.4168451295026491,
+      "numerical_speedup_reference_over_candidate": 0.1779362234346379,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 88,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\vtpbase.mps",
+      "sha256": "7c34b37d7714796bc0fe30d920f3ecf9866c018a018ee0349ceb85350581dc68",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010017800028435886,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.015406799968332052
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0009448,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.0062361
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.010017800028435886,
+          0.010017800028435886
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.015406799968332052,
+          0.015406799968332052
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0009448,
+          0.0009448
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.0062361,
+          0.0062361
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6502193868309447,
+      "numerical_speedup_reference_over_candidate": 0.15150494700213274,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 89,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\wood1p.mps",
+      "sha256": "af3cac48f0727f1d9e1f1ecfa6de30168678800b39e38a808b5df90a48d61330",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.06701300002168864,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.30788479989860207
+      },
+      "median_numerical_seconds": {
+        "highs": 0.034084100000000006,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.272926
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.06701300002168864,
+          0.06701300002168864
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.30788479989860207,
+          0.30788479989860207
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.034084100000000006,
+          0.034084100000000006
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.272926,
+          0.272926
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.21765608449575463,
+      "numerical_speedup_reference_over_candidate": 0.12488403450019421,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 90,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\woodw.mps",
+      "sha256": "01450b5407d3bb282595e2874e78c26dd7cdde87d70d663065e58bd3e6c288b0",
+      "quality_pass_counts": {
+        "highs": 1,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.05732210003770888,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.3072249999968335
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0301476,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": 0.2747371
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.05732210003770888,
+          0.05732210003770888
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.3072249999968335,
+          0.3072249999968335
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0301476,
+          0.0301476
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": [
+          0.2747371,
+          0.2747371
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.1865801937937983,
+      "numerical_speedup_reference_over_candidate": 0.1097325406725193,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "highs"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "highs": {
+      "backend": "highs",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": null,
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": null,
+      "ipm_linear_accuracy": null,
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=backward": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "backward",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v9-netlib-soff-eon"
+}

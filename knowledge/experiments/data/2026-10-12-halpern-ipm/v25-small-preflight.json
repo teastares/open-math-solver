@@ -1,0 +1,380 @@
+[
+  {
+    "command": [
+      "build/release/solver.exe",
+      "solve",
+      ".tools\\weighted-small.lp",
+      "--backend",
+      "ipm",
+      "--scaling-passes",
+      "0",
+      "--ipm-linear-accuracy",
+      "strict",
+      "--time-limit",
+      "5"
+    ],
+    "report": {
+      "schema_version": 1,
+      "solver_version": "0.5.0",
+      "backend": "ipm",
+      "backend_version": "ipm-cpu-0.22.0",
+      "input": "D:\\Documents\\codes\\solver\\.tools\\weighted-small.lp",
+      "options": {
+        "backend": "ipm",
+        "time_limit": 5,
+        "threads": 1,
+        "seed": 0,
+        "mip_relative_gap": 0.0001,
+        "pdlp": null,
+        "ipm": {
+          "max_iterations": 200,
+          "scaling_passes": 0,
+          "eliminate_singletons": false,
+          "dynamic_regularization": false,
+          "equilibrate_kkt": false,
+          "linear_accuracy": "strict",
+          "central_corrections": 0,
+          "linear_solver": "qdldl",
+          "eliminate_fixed_variables": false,
+          "inexact_prefilter": false
+        },
+        "highs": null,
+        "tolerances": {
+          "feasibility_absolute": 1e-07,
+          "feasibility_relative": 1e-09,
+          "integrality": 1e-06,
+          "objective_absolute": 1e-07,
+          "objective_relative": 1e-09
+        }
+      },
+      "status": "numerical_error",
+      "backend_status": "numerical_error",
+      "verification_level": "primal_checked",
+      "message": "KKT Krylov 改进未达到原方程精度",
+      "model": {
+        "name": "weighted-small",
+        "columns": 1,
+        "rows": 1,
+        "nonzeros": 1,
+        "sense": "minimize",
+        "objective_offset": 0,
+        "is_mip": false
+      },
+      "has_solution": true,
+      "solution": [
+        0
+      ],
+      "objective": 0,
+      "best_bound": null,
+      "absolute_gap": null,
+      "relative_gap": null,
+      "nodes": null,
+      "simplex_iterations": null,
+      "pdlp_iterations": null,
+      "pdlp_acceleration_attempts": null,
+      "pdlp_acceleration_accepted": null,
+      "pdlp_operator_passes": null,
+      "ipm_iterations": 0,
+      "ipm_factorizations": 1,
+      "ipm_refinement_steps": 8,
+      "ipm_weighted_krylov_steps": 0,
+      "ipm_kkt_dimension": 2,
+      "ipm_factor_nonzeros": 3,
+      "ipm_factor_backend": "qdldl",
+      "ipm_structural_fallbacks": 0,
+      "ipm_eliminated_singletons": 0,
+      "ipm_regularized_pivots": 0,
+      "ipm_backward_error_acceptances": 0,
+      "ipm_inexact_acceptances": 0,
+      "ipm_inexact_prefilter_rejections": 0,
+      "ipm_eliminated_fixed_variables": 0,
+      "ipm_central_correction_attempts": 0,
+      "ipm_central_correction_acceptances": 0,
+      "lp_optimality": {
+        "valid_input": true,
+        "dual_feasible": false,
+        "gap_satisfied": true,
+        "numerically_optimal": false,
+        "max_dual_residual": 0.99999999,
+        "dual_objective_estimate": 1e-08,
+        "corrected_dual_bound": null,
+        "objective_gap": 1e-08,
+        "relative_objective_gap": 1e-08,
+        "errors": [
+          "指向无穷变量界的对偶残差超出容差：0"
+        ]
+      },
+      "row_dual": [
+        1
+      ],
+      "timings": {
+        "read_seconds": 0.0039147,
+        "solve_seconds": 0.0001642,
+        "verification_seconds": 1.67e-05,
+        "total_seconds": 0.0044589
+      },
+      "verification": {
+        "valid_input": true,
+        "feasible": true,
+        "objective_consistent": true,
+        "recomputed_objective": 0,
+        "max_row_violation": 1e-08,
+        "max_bound_violation": 0,
+        "max_integrality_violation": 0,
+        "errors": []
+      }
+    }
+  },
+  {
+    "command": [
+      "build/release/solver.exe",
+      "solve",
+      ".tools\\weighted-small.lp",
+      "--backend",
+      "ipm",
+      "--scaling-passes",
+      "0",
+      "--ipm-linear-accuracy",
+      "blockwise",
+      "--time-limit",
+      "5"
+    ],
+    "report": {
+      "schema_version": 1,
+      "solver_version": "0.5.0",
+      "backend": "ipm",
+      "backend_version": "ipm-cpu-0.22.0",
+      "input": "D:\\Documents\\codes\\solver\\.tools\\weighted-small.lp",
+      "options": {
+        "backend": "ipm",
+        "time_limit": 5,
+        "threads": 1,
+        "seed": 0,
+        "mip_relative_gap": 0.0001,
+        "pdlp": null,
+        "ipm": {
+          "max_iterations": 200,
+          "scaling_passes": 0,
+          "eliminate_singletons": false,
+          "dynamic_regularization": false,
+          "equilibrate_kkt": false,
+          "linear_accuracy": "blockwise",
+          "central_corrections": 0,
+          "linear_solver": "qdldl",
+          "eliminate_fixed_variables": false,
+          "inexact_prefilter": false
+        },
+        "highs": null,
+        "tolerances": {
+          "feasibility_absolute": 1e-07,
+          "feasibility_relative": 1e-09,
+          "integrality": 1e-06,
+          "objective_absolute": 1e-07,
+          "objective_relative": 1e-09
+        }
+      },
+      "status": "numerical_error",
+      "backend_status": "numerical_error",
+      "verification_level": "primal_checked",
+      "message": "KKT Krylov 改进未达到原方程精度",
+      "model": {
+        "name": "weighted-small",
+        "columns": 1,
+        "rows": 1,
+        "nonzeros": 1,
+        "sense": "minimize",
+        "objective_offset": 0,
+        "is_mip": false
+      },
+      "has_solution": true,
+      "solution": [
+        0
+      ],
+      "objective": 0,
+      "best_bound": null,
+      "absolute_gap": null,
+      "relative_gap": null,
+      "nodes": null,
+      "simplex_iterations": null,
+      "pdlp_iterations": null,
+      "pdlp_acceleration_attempts": null,
+      "pdlp_acceleration_accepted": null,
+      "pdlp_operator_passes": null,
+      "ipm_iterations": 0,
+      "ipm_factorizations": 1,
+      "ipm_refinement_steps": 8,
+      "ipm_weighted_krylov_steps": 0,
+      "ipm_kkt_dimension": 2,
+      "ipm_factor_nonzeros": 3,
+      "ipm_factor_backend": "qdldl",
+      "ipm_structural_fallbacks": 0,
+      "ipm_eliminated_singletons": 0,
+      "ipm_regularized_pivots": 0,
+      "ipm_backward_error_acceptances": 0,
+      "ipm_inexact_acceptances": 0,
+      "ipm_inexact_prefilter_rejections": 0,
+      "ipm_eliminated_fixed_variables": 0,
+      "ipm_central_correction_attempts": 0,
+      "ipm_central_correction_acceptances": 0,
+      "lp_optimality": {
+        "valid_input": true,
+        "dual_feasible": false,
+        "gap_satisfied": true,
+        "numerically_optimal": false,
+        "max_dual_residual": 0.99999999,
+        "dual_objective_estimate": 1e-08,
+        "corrected_dual_bound": null,
+        "objective_gap": 1e-08,
+        "relative_objective_gap": 1e-08,
+        "errors": [
+          "指向无穷变量界的对偶残差超出容差：0"
+        ]
+      },
+      "row_dual": [
+        1
+      ],
+      "timings": {
+        "read_seconds": 0.0002065,
+        "solve_seconds": 0.0001098,
+        "verification_seconds": 1.22e-05,
+        "total_seconds": 0.0005628
+      },
+      "verification": {
+        "valid_input": true,
+        "feasible": true,
+        "objective_consistent": true,
+        "recomputed_objective": 0,
+        "max_row_violation": 1e-08,
+        "max_bound_violation": 0,
+        "max_integrality_violation": 0,
+        "errors": []
+      }
+    }
+  },
+  {
+    "command": [
+      "build/release/solver.exe",
+      "solve",
+      ".tools\\weighted-small.lp",
+      "--backend",
+      "ipm",
+      "--scaling-passes",
+      "0",
+      "--ipm-linear-accuracy",
+      "blockwise_weighted",
+      "--time-limit",
+      "5"
+    ],
+    "report": {
+      "schema_version": 1,
+      "solver_version": "0.5.0",
+      "backend": "ipm",
+      "backend_version": "ipm-cpu-0.22.0",
+      "input": "D:\\Documents\\codes\\solver\\.tools\\weighted-small.lp",
+      "options": {
+        "backend": "ipm",
+        "time_limit": 5,
+        "threads": 1,
+        "seed": 0,
+        "mip_relative_gap": 0.0001,
+        "pdlp": null,
+        "ipm": {
+          "max_iterations": 200,
+          "scaling_passes": 0,
+          "eliminate_singletons": false,
+          "dynamic_regularization": false,
+          "equilibrate_kkt": false,
+          "linear_accuracy": "blockwise_weighted",
+          "central_corrections": 0,
+          "linear_solver": "qdldl",
+          "eliminate_fixed_variables": false,
+          "inexact_prefilter": false
+        },
+        "highs": null,
+        "tolerances": {
+          "feasibility_absolute": 1e-07,
+          "feasibility_relative": 1e-09,
+          "integrality": 1e-06,
+          "objective_absolute": 1e-07,
+          "objective_relative": 1e-09
+        }
+      },
+      "status": "numerical_error",
+      "backend_status": "numerical_error",
+      "verification_level": "primal_checked",
+      "message": "KKT Krylov 改进未达到原方程精度",
+      "model": {
+        "name": "weighted-small",
+        "columns": 1,
+        "rows": 1,
+        "nonzeros": 1,
+        "sense": "minimize",
+        "objective_offset": 0,
+        "is_mip": false
+      },
+      "has_solution": true,
+      "solution": [
+        0
+      ],
+      "objective": 0,
+      "best_bound": null,
+      "absolute_gap": null,
+      "relative_gap": null,
+      "nodes": null,
+      "simplex_iterations": null,
+      "pdlp_iterations": null,
+      "pdlp_acceleration_attempts": null,
+      "pdlp_acceleration_accepted": null,
+      "pdlp_operator_passes": null,
+      "ipm_iterations": 0,
+      "ipm_factorizations": 1,
+      "ipm_refinement_steps": 8,
+      "ipm_weighted_krylov_steps": 0,
+      "ipm_kkt_dimension": 2,
+      "ipm_factor_nonzeros": 3,
+      "ipm_factor_backend": "qdldl",
+      "ipm_structural_fallbacks": 0,
+      "ipm_eliminated_singletons": 0,
+      "ipm_regularized_pivots": 0,
+      "ipm_backward_error_acceptances": 0,
+      "ipm_inexact_acceptances": 0,
+      "ipm_inexact_prefilter_rejections": 0,
+      "ipm_eliminated_fixed_variables": 0,
+      "ipm_central_correction_attempts": 0,
+      "ipm_central_correction_acceptances": 0,
+      "lp_optimality": {
+        "valid_input": true,
+        "dual_feasible": false,
+        "gap_satisfied": true,
+        "numerically_optimal": false,
+        "max_dual_residual": 0.99999999,
+        "dual_objective_estimate": 1e-08,
+        "corrected_dual_bound": null,
+        "objective_gap": 1e-08,
+        "relative_objective_gap": 1e-08,
+        "errors": [
+          "指向无穷变量界的对偶残差超出容差：0"
+        ]
+      },
+      "row_dual": [
+        1
+      ],
+      "timings": {
+        "read_seconds": 0.0002269,
+        "solve_seconds": 8.76e-05,
+        "verification_seconds": 8.7e-06,
+        "total_seconds": 0.0005447
+      },
+      "verification": {
+        "valid_input": true,
+        "feasible": true,
+        "objective_consistent": true,
+        "recomputed_objective": 0,
+        "max_row_violation": 1e-08,
+        "max_bound_violation": 0,
+        "max_integrality_violation": 0,
+        "errors": []
+      }
+    }
+  }
+]

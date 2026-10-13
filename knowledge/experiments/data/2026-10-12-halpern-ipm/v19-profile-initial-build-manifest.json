@@ -1,0 +1,14 @@
+{
+  "production": {
+    "src\\ipm.cpp": "a78105174ce4d7fa1dfd43ecd5f17ee7ea0b0fd7f6e3cbbaa3e41ec77b94fc91",
+    "build\\release\\solver.exe": "0c14f4e34e4a4da961cbaedf791d8bb4bde51ca4be1b93fb606da7f7b7025ef9"
+  },
+  "script_sha256": "62423e593b929c11b0923348b5a1d6ed3078a4d655bbb4930d62d3c75fc1ba9e",
+  "instrumented_sha256": "e8a2b70e58e8ae1b9317d0cc100d8e6f0b6adc8086cf1bfe62c0417780e4be48",
+  "solver_sha256": "8d2b48ac3ccde11a0af6ab10dda32b8a6d953383c6b60e6c0a1eee47c855ca80",
+  "commands": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe  -ID:/Documents/codes/solver/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-src/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-build/include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/AMD/Include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/SuiteSparse_config -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -o \"D:\\Documents\\codes\\solver\\.tools\\ipm-v19-profile\\ipm-profile.obj\" -c \"D:\\Documents\\codes\\solver\\.tools\\ipm-v19-profile\\ipm-profile.cpp\"",
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe -O3 -DNDEBUG -static -municode CMakeFiles/solver.dir/src/main.cpp.obj -o \"D:\\Documents\\codes\\solver\\.tools\\ipm-v19-profile\\solver-profile.exe\" -Wl,--major-image-version,0,--minor-image-version,0  libsolver_highs.a  libsolver_pdlp.a  \"D:\\Documents\\codes\\solver\\.tools\\ipm-v19-profile\\ipm-profile.obj\" CMakeFiles/solver_ipm.dir/src/regularized_ldl.cpp.obj  libsolver_core.a  libsolver_qdldl_extended.a  libsolver_sparse_lu.a  libsolver_normal_cholesky.a  _deps/suitesparse-build/AMD/libamd.a  _deps/suitesparse-build/SuiteSparse_config/libsuitesparseconfig.a  libsolver_multifrontal_ldl.a  _deps/qdldl-build/out/libqdldl.a  libsolver_factorhighs_kernel.a  bin/libhighs.a  bin/libhighs_extras.a  -lpthread  _deps/solver-openblas-install/lib/libopenblas.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
+  ],
+  "scope": "阶段包含/独占墙钟诊断，含插桩成本，不用于性能验收"
+}

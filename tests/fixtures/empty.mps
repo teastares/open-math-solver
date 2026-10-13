@@ -1,0 +1,6 @@
+NAME          EMPTY
+ROWS
+ N  OBJ
+COLUMNS
+RHS
+ENDATA

@@ -1,0 +1,96 @@
+{
+  "command": [
+    ".tools/solver-ipm-v9.exe",
+    "solve",
+    ".deps/netlib/forplan.mps",
+    "--backend",
+    "ipm",
+    "--time-limit",
+    "0"
+  ],
+  "input_sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+  "solver_sha256": "3b5aab7cce9164c21fd4c36880e87fa3f3d5198d07c9ae1cc2f8a6d53a6c3395",
+  "returncode": 4,
+  "report": {
+    "schema_version": 1,
+    "solver_version": "0.5.0",
+    "backend": "ipm",
+    "backend_version": "ipm-cpu-0.6.0",
+    "input": "D:\\Documents\\codes\\solver\\.deps/netlib/forplan.mps",
+    "options": {
+      "backend": "ipm",
+      "time_limit": 0,
+      "threads": 1,
+      "seed": 0,
+      "mip_relative_gap": 0.0001,
+      "pdlp": null,
+      "ipm": {
+        "max_iterations": 200,
+        "scaling_passes": 5,
+        "eliminate_singletons": false,
+        "dynamic_regularization": false,
+        "equilibrate_kkt": false,
+        "linear_accuracy": "strict"
+      },
+      "highs": null,
+      "tolerances": {
+        "feasibility_absolute": 1e-07,
+        "feasibility_relative": 1e-09,
+        "integrality": 1e-06,
+        "objective_absolute": 1e-07,
+        "objective_relative": 1e-09
+      }
+    },
+    "status": "time_limit",
+    "backend_status": "time_limit",
+    "verification_level": "none",
+    "message": "时间预算为零，未启动自主内点法",
+    "model": {
+      "name": "forplan",
+      "columns": 421,
+      "rows": 161,
+      "nonzeros": 4563,
+      "sense": "minimize",
+      "objective_offset": 0,
+      "is_mip": false
+    },
+    "has_solution": false,
+    "solution": null,
+    "objective": null,
+    "best_bound": null,
+    "absolute_gap": null,
+    "relative_gap": null,
+    "nodes": null,
+    "simplex_iterations": null,
+    "pdlp_iterations": null,
+    "pdlp_acceleration_attempts": null,
+    "pdlp_acceleration_accepted": null,
+    "pdlp_operator_passes": null,
+    "ipm_iterations": 0,
+    "ipm_factorizations": 0,
+    "ipm_refinement_steps": 0,
+    "ipm_kkt_dimension": null,
+    "ipm_factor_nonzeros": null,
+    "ipm_eliminated_singletons": null,
+    "ipm_regularized_pivots": 0,
+    "ipm_backward_error_acceptances": 0,
+    "lp_optimality": null,
+    "timings": {
+      "read_seconds": 0.0029549,
+      "solve_seconds": 4.22e-05,
+      "verification_seconds": 0,
+      "total_seconds": 0.0033027
+    },
+    "verification": {
+      "valid_input": false,
+      "feasible": false,
+      "objective_consistent": false,
+      "recomputed_objective": null,
+      "max_row_violation": 0,
+      "max_bound_violation": 0,
+      "max_integrality_violation": 0,
+      "errors": []
+    }
+  },
+  "stderr": ""
+}

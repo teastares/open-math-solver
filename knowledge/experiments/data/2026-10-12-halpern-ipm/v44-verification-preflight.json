@@ -1,0 +1,236 @@
+{
+  "verified_at_utc": "2026-10-13T14:24:53.251860+00:00",
+  "passed": true,
+  "final": false,
+  "verification_script_sha256": "2e587948157e6cd6bb7b12218e21ac1743e321ff7d9ea67108ade71c90e79f4a",
+  "solver_sha256": "58291db80a9dc7faaa17d037060d6cc53fe26db06de3bf3e67107e6401a7c24c",
+  "source_files_verified": 90,
+  "source_zip_sha256": "11f8e2011e9fb1c3a09532fcdf6972403e82d9adaea39c5773fd9ecb9405e37f",
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "libraries_verified": 15,
+  "test_logs_verified": {
+    "iteration-ipm-v44-build.log": "7cba74414f33545def2c56b4dbf8608289e3348b591d219205bd3eb733e648f9",
+    "iteration-ipm-v44-ctest-detail.log": "8432788ffb62db5b4cecc94d0fb8cfac392b17dacbe4ecb1ac6a5fe421a2cce3"
+  },
+  "ctest_passed": 17,
+  "ctest_seconds": 13.68,
+  "ipm_checks": 78614,
+  "analytic_homogeneous_work": {
+    "constant_solves": 20,
+    "direction_solves": 40
+  },
+  "analytic_full_newton_branch": {
+    "refinement_steps": 3,
+    "krylov_steps": 1,
+    "preconditioner_solves": 4,
+    "products": 5
+  },
+  "analytic_bounded_newton_branch": {
+    "refinement_steps": 3,
+    "krylov_steps": 0,
+    "preconditioner_solves": 4,
+    "products": 4
+  },
+  "actual_homogeneous_direction_solves_verified": 10241,
+  "actual_homogeneous_work_reports_verified": 211,
+  "counter_validator_self_check": {
+    "checked": true,
+    "valid_report_passed": true,
+    "invalid_counter_or_scalar_cases_rejected": 10,
+    "scope": "只在内存复制既有报告进行反例验证，不修改归档或启动求解。"
+  },
+  "plan_sha256": "497c54a5a664c47b2f56c1180451ff6283cf65badb406ba3fdd3dc0a876bfb81",
+  "runner_sha256": "428a14a34063142855232aea5feb20d6c3611eb3f4a05f54f09c6daf1cdf9558",
+  "changed_production_files": [
+    "include/solver/backend.hpp",
+    "include/solver/detail/ipm_homogeneous.hpp",
+    "include/solver/ipm_options.hpp",
+    "scripts/benchmark.py",
+    "scripts/compare_lp.py",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_compare_lp.py",
+    "tests/test_ipm.cpp"
+  ],
+  "archive_groups_verified": [
+    {
+      "tag": "development-normal_augmented-homogeneous-retries0",
+      "stage": "development",
+      "retries": 0,
+      "raw_records": 48,
+      "quality_pass_count": 48,
+      "process_returncode": 0,
+      "manifest_sha256": "b429a7586cd309bae4e50c82ae0742d6aaa4b208cdcc11e72cf4d4141942bb34",
+      "summary_sha256": "569a1b5733275975a069aa4e57c093b74bff47526a0c27918ed3f616909960d5",
+      "raw_sha256": "b3525fa53036328cc6682bc9ca86843c18b32d358a5cb66e260babccbbdc1ed9",
+      "command_sha256": "4cf33dda8d64cd7657d2279786723c2b5bf87f36bd32d54ba2af20459cfac716",
+      "process_sha256": "b302133b6e90178c1469c21853f19fcb4ccfa8c5620483e76a9ea8e827c0b075",
+      "missing_reports": 0,
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_homogeneous_constant_solves": 0,
+          "ipm_homogeneous_direction_solves": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 585,
+          "ipm_homogeneous_direction_solves": 1170,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 1170,
+      "actual_homogeneous_work_reports": 24
+    },
+    {
+      "tag": "highs",
+      "stage": "highs",
+      "retries": 0,
+      "raw_records": 182,
+      "quality_pass_count": 180,
+      "process_returncode": 1,
+      "manifest_sha256": "6c1227c70a11b84de44a136ae978aa8be2bf3e451160257a5e3d2430c85611c8",
+      "summary_sha256": "229c1cf9c49fa278789bade8e3ed67c0793d91dc8a8b768dd475e731a42f0428",
+      "raw_sha256": "cf336e817d26a17521de0f1f56bb56f8e8f26f8725b22d55abf2892343871bd8",
+      "command_sha256": "355fc3c40b5d87abfd1d58fcf4caa4240304d390345e546778ef2f828de7cdf5",
+      "process_sha256": "6940b66d7668480e8fc231f91424978a2d2ebf2f3cfdcda52e233959521346d0",
+      "missing_reports": 0,
+      "homogeneous_work": {
+        "highs:solver=choose:crossover=on:presolve=choose": {
+          "ipm_homogeneous_constant_solves": 0,
+          "ipm_homogeneous_direction_solves": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 2187,
+          "ipm_homogeneous_direction_solves": 4373,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 4373,
+      "actual_homogeneous_work_reports": 91
+    },
+    {
+      "tag": "netlib-normal_augmented-homogeneous-retries0",
+      "stage": "netlib",
+      "retries": 0,
+      "raw_records": 182,
+      "quality_pass_count": 177,
+      "process_returncode": 1,
+      "manifest_sha256": "3595ba54ae0f9d14b3fe7a989f2c0ccb993fcad7acc88252aad418f98843c5dc",
+      "summary_sha256": "de7b49790bbdb6e055a36a53b5f7da9875d111b8de629b3d990fb24138ee2107",
+      "raw_sha256": "b167255796cd53041d960bf40a414ea3e7e3f47f20926c84290dafe8eff07628",
+      "command_sha256": "76b2577d0cf0035a9b254e7c73a19f8a9a50e827b125d05cc877aae29eedaa56",
+      "process_sha256": "6940b66d7668480e8fc231f91424978a2d2ebf2f3cfdcda52e233959521346d0",
+      "missing_reports": 0,
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_homogeneous_constant_solves": 0,
+          "ipm_homogeneous_direction_solves": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 2187,
+          "ipm_homogeneous_direction_solves": 4373,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 4373,
+      "actual_homogeneous_work_reports": 91
+    },
+    {
+      "tag": "probe-normal_augmented-homogeneous-retries0",
+      "stage": "probe",
+      "retries": 0,
+      "raw_records": 10,
+      "quality_pass_count": 5,
+      "process_returncode": 1,
+      "manifest_sha256": "ccf7874ad035ee3723d52a6c0ca5be9319b303b537416c0fcfd1eac435dbdb6e",
+      "summary_sha256": "d99282016b1481c28d660b080f390f75143efdb20555fd17204ebc91ea7ce53a",
+      "raw_sha256": "8aa640c02c8a6bc743926a48ea4bc33c5afb64452d43f77f21a1c347bbae655f",
+      "command_sha256": "b84e67b9b78335be0dbd1d027d02ef3457118f7929f7835d71bf724c9486d280",
+      "process_sha256": "6940b66d7668480e8fc231f91424978a2d2ebf2f3cfdcda52e233959521346d0",
+      "missing_reports": 0,
+      "homogeneous_work": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_homogeneous_constant_solves": 0,
+          "ipm_homogeneous_direction_solves": 0,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:method=homogeneous": {
+          "ipm_homogeneous_constant_solves": 163,
+          "ipm_homogeneous_direction_solves": 325,
+          "ipm_full_newton_preconditioner_solves": 0,
+          "ipm_full_newton_products": 0
+        }
+      },
+      "actual_homogeneous_direction_solves": 325,
+      "actual_homogeneous_work_reports": 5
+    }
+  ],
+  "raw_records_verified": 422,
+  "independent_input_files_verified": 99,
+  "pending_groups": [],
+  "old_mode_trajectories_verified": {
+    "count": 40,
+    "sha256": "480d8b282720efda62e46ddcb4671ff24855324025cf126fed62258b109e9142",
+    "two_new_counts_integer_zero": true,
+    "two_new_scalars_null": true,
+    "new_method_default_mehrotra": true,
+    "program_and_input_pre_post_hashes_verified": true,
+    "exit_code_pairs": {
+      "[0, 0]": 36,
+      "[4, 4]": 4
+    }
+  },
+  "derived_details_verified": [
+    {
+      "path": "v44-development-detail.json",
+      "sha256": "abc612be0285d6da36cc74370f0b3070114b65850f4f820e870f769de8d631db",
+      "groups": 1
+    },
+    {
+      "path": "v44-probe-detail.json",
+      "sha256": "7857955fc8dd4f47bd428254058bd2af4f4ba01b3e7723f01c810af3345332ec",
+      "groups": 1
+    },
+    {
+      "path": "v44-coverage-detail.json",
+      "sha256": "7cac66eecff4f7d4a626e3e7d13460084d700c3d30503e4ca1256da5883a4937",
+      "groups": 1
+    }
+  ],
+  "gates_recomputed": [
+    {
+      "retries": 0,
+      "development_lost": [],
+      "development_time_improved": true,
+      "probe_gain": [
+        "finnis"
+      ],
+      "probe_lost": [],
+      "eligible_for_netlib": true,
+      "plan_sha256": "497c54a5a664c47b2f56c1180451ff6283cf65badb406ba3fdd3dc0a876bfb81"
+    }
+  ],
+  "trajectory_exclusions": [
+    "timings",
+    "backend_version",
+    "新增且强制整数零的两项齐次求解启动计数",
+    "新增且强制null的tau/kappa",
+    "新增且强制mehrotra的method"
+  ],
+  "runtime_scope": "仅读归档，不编译、不求解、不重新测量。冻结Python协议负责质量与摘要复算；门槛另行实现核对。",
+  "all_raw_and_archived_bytes_equal": true,
+  "all_model_and_program_pre_post_hashes_verified": true,
+  "per_record_quality_and_penalties_recomputed": true,
+  "full_summaries_recomputed": true,
+  "actual_compare_process_exit_codes_verified": true
+}

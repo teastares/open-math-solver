@@ -1,0 +1,173 @@
+-- HIGHS_VCPKG: OFF
+-- HIGHS version: 1.15.1
+-- Git hash: 04024d7
+-- Build C++ library: ON
+-- Build C++ executable: OFF
+-- Build shared extras library: OFF
+-- Build Fortran: OFF
+-- Build CSharp: OFF
+-- Build HIPO: OFF
+-- Build all tests: OFF
+-- ZLIB: OFF
+-- Build examples: OFF
+-- Build pdlp with GPU: OFF
+-- Use FindCUDAConf: OFF
+-- Build GPU with delayed loading: OFF
+-- Build OpenBLAS: OFF
+-- Build type: Release
+-- Found long size: 4
+-- Found long long size: 8
+-- Found int64_t size: 8
+-- Found unsigned long size: 4
+-- Found unsigned long long size: 8
+-- Found uint64_t size: 8
+-- Found int * size: 8
+-- IPO / LTO not currently supported building HiGHS on MinGW
+-- IPO / LTO: disabled because it is not supported
+-- FAST_BUILD set to on.
+-- Build C++ example: OFF
+-- Build CSharp example: OFF
+-- Build dotnet package: OFF
+-- No CSharp support
+-- .Net: Use .Net Framework 2.1 support: ON
+-- Configuring highs_extras version 1.15.1
+-- Using double precision floats
+-- Long integers (64bit) are ON
+-- Static library build is ON
+-- Shared library build is OFF
+-- Demo executable build is OFF
+-- Not building demo executable
+-- Unit testing suite build is OFF
+-- Source:           D:/Documents/codes/solver 
+-- Build:            D:/Documents/codes/solver/build/release 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- Building SuiteSparse_config version: v7.14.1 (Sept 12, 2026)
+-- Source:           D:/Documents/codes/solver 
+-- Build:            D:/Documents/codes/solver/build/release 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- SuiteSparse_config has OpenMP: OFF
+-- No OpenMP and no clock_gettime available. Timing functions won't work.
+-- C to Fortran calling protocol: 
+--     SUITESPARSE_HAS_FORTRAN  : OFF
+--     FortranCInterface_GLOBAL_MACRO  : (name,NAME) name##_
+--     FortranCInterface_GLOBAL__MACRO : (name,NAME) name##_
+-- ------------------------------------------------------------------------
+-- SuiteSparse CMAKE report for: SuiteSparseConfig
+-- ------------------------------------------------------------------------
+-- build type:           Release
+-- BUILD_SHARED_LIBS:    OFF
+-- BUILD_STATIC_LIBS:    ON
+-- C compiler:           D:/Documents/codes/solver/.tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang.exe 
+-- C flags:              
+-- C++ compiler:         D:/Documents/codes/solver/.tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang++.exe
+-- C++ flags:            
+-- C Flags release:      -O3 -DNDEBUG -Wno-extra-semi -Wno-extra-semi 
+-- C++ Flags release:    -O3 -DNDEBUG -Wno-extra-semi -Wno-extra-semi 
+-- Fortran compiler:     none
+-- compile definitions:  _CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;BLAS_Generic
+-- BLAS integer:         int32_t
+-- ------------------------------------------------------------------------
+-- CMAKE_SYSTEM_PROCESSOR: AMD64
+-- Building AMD version: v3.3.4 (July 25, 2025)
+-- Source:           D:/Documents/codes/solver 
+-- Build:            D:/Documents/codes/solver/build/release 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- Skipping the demos in AMD/Demo
+-- ------------------------------------------------------------------------
+-- SuiteSparse CMAKE report for: AMD
+-- ------------------------------------------------------------------------
+-- build type:           Release
+-- BUILD_SHARED_LIBS:    OFF
+-- BUILD_STATIC_LIBS:    ON
+-- C compiler:           D:/Documents/codes/solver/.tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang.exe 
+-- C flags:              
+-- C++ compiler:         D:/Documents/codes/solver/.tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang++.exe
+-- C++ flags:            
+-- C Flags release:      -O3 -DNDEBUG -Wno-extra-semi -Wno-extra-semi 
+-- C++ Flags release:    -O3 -DNDEBUG -Wno-extra-semi -Wno-extra-semi 
+-- Fortran compiler:     none
+-- compile definitions:  _CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS
+-- ------------------------------------------------------------------------
+-- ------------------------------------------------------------------------
+-- SuiteSparse CMAKE report for: SuiteSparse
+-- ------------------------------------------------------------------------
+-- build type:           Release
+-- BUILD_SHARED_LIBS:    OFF
+-- BUILD_STATIC_LIBS:    ON
+-- C compiler:           D:/Documents/codes/solver/.tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang.exe 
+-- C flags:              
+-- C++ compiler:         D:/Documents/codes/solver/.tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang++.exe
+-- C++ flags:            
+-- C Flags release:      -O3 -DNDEBUG -Wno-extra-semi 
+-- C++ Flags release:    -O3 -DNDEBUG -Wno-extra-semi 
+-- Fortran compiler:     none
+-- compile definitions:  _CRT_SECURE_NO_WARNINGS
+-- ------------------------------------------------------------------------
+-- Configuring done (1.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: D:/Documents/codes/solver/build/release
+[1/2] Building CXX object CMakeFiles/test_ipm.dir/tests/test_ipm.cpp.obj
+[2/2] Linking CXX executable test_ipm.exe
+Test project D:/Documents/codes/solver/build/release
+      Start  1: verification
+ 1/17 Test  #1: verification .....................   Passed    0.01 sec
+      Start  2: lp_optimality
+ 2/17 Test  #2: lp_optimality ....................   Passed    0.01 sec
+      Start  3: pdlp
+ 3/17 Test  #3: pdlp .............................   Passed    0.01 sec
+      Start  4: pdlp_adversarial
+ 4/17 Test  #4: pdlp_adversarial .................   Passed    0.01 sec
+      Start  5: pdlp_acceleration
+ 5/17 Test  #5: pdlp_acceleration ................   Passed    0.01 sec
+      Start  6: pdlp_halpern
+ 6/17 Test  #6: pdlp_halpern .....................   Passed    0.01 sec
+      Start  7: ipm
+ 7/17 Test  #7: ipm ..............................   Passed    0.09 sec
+      Start  8: regularized_ldl
+ 8/17 Test  #8: regularized_ldl ..................   Passed    0.01 sec
+      Start  9: sparse_lu
+ 9/17 Test  #9: sparse_lu ........................   Passed    0.01 sec
+      Start 10: normal_cholesky
+10/17 Test #10: normal_cholesky ..................   Passed    0.01 sec
+      Start 11: multifrontal_ldl
+11/17 Test #11: multifrontal_ldl .................   Passed    0.02 sec
+      Start 12: extended_ldl
+12/17 Test #12: extended_ldl .....................   Passed    0.01 sec
+      Start 13: backend
+13/17 Test #13: backend ..........................   Passed    0.03 sec
+      Start 14: cli_and_benchmark
+14/17 Test #14: cli_and_benchmark ................   Passed    2.39 sec
+      Start 15: pdlp_comparison
+15/17 Test #15: pdlp_comparison ..................   Passed    0.61 sec
+      Start 16: comparison_protocol
+16/17 Test #16: comparison_protocol ..............   Passed    3.31 sec
+      Start 17: modern_lp_data
+17/17 Test #17: modern_lp_data ...................   Passed    0.33 sec
+
+100% tests passed out of 17
+
+Total Test time (real) =   6.88 sec

@@ -1,0 +1,432 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 48,
+  "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off",
+  "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on",
+  "both_variants_all_repeats_pass_count": 8,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 7,
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 1
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.0992713570484917,
+      "penalized_numerical_sgm10_seconds": 0.08644527335428334,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.072420148815422,
+      "penalized_numerical_sgm10_seconds": 0.05957573060214682,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.007671200088225305,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.007127100019715726
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.0002554,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0002679
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.007285000057891011,
+          0.009680500021204352
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.006807100027799606,
+          0.008314800099469721
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.000251,
+          0.00039539999999999996
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0002628,
+          0.0002692
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.076342420760819,
+      "numerical_speedup_reference_over_candidate": 0.9533407988055244,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.009047399973496795,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.008930000010877848
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.0013033,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0014445
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.008379400009289384,
+          0.010327299940399826
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.00862869992852211,
+          0.010892600053921342
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.0012940999999999999,
+          0.0014654
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0014426,
+          0.0014605
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0131466923265329,
+      "numerical_speedup_reference_over_candidate": 0.9022499134648667,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.03269419993739575,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.024389500031247735
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.0241247,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0151538
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.03238810005132109,
+          0.034290899988263845
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.023631099960766733,
+          0.025383900036104023
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.0239254,
+          0.0241717
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0150262,
+          0.0156909
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.340503081059803,
+      "numerical_speedup_reference_over_candidate": 1.5919901278887143,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.011577000026591122,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.011856599943712354
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.0035311,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.003636
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.011358599993400276,
+          0.013331800000742078
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.011429599951952696,
+          0.014792499947361648
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.0034784,
+          0.0035783
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0035703,
+          0.0043819
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9764182043377869,
+      "numerical_speedup_reference_over_candidate": 0.9711496149614962,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.04671039991080761,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.03189740004017949
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.0371615,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0223862
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.04631530004553497,
+          0.04764649993740022
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0318886999739334,
+          0.033473300049081445
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.0370709,
+          0.0376223
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0223828,
+          0.0225031
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.4643952125241855,
+      "numerical_speedup_reference_over_candidate": 1.6600182255139329,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.15150790009647608,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.10655240004416555
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.1370518,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.091621
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.1513472000369802,
+          0.1521023999666795
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.10571010003332049,
+          0.106700100004673
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.1363861,
+          0.1371944
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0913386,
+          0.0917568
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.4219097836714767,
+      "numerical_speedup_reference_over_candidate": 1.4958557535936086,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.3564139000372961,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.2874092999845743
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.3235313,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.2549386
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.35492760001216084,
+          0.3612965999636799
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.2864789000013843,
+          0.2885521000716835
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.3230709,
+          0.3282355
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.2543029,
+          0.256727
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.2400917439220838,
+      "numerical_speedup_reference_over_candidate": 1.2690557647998382,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.18105499993544072,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.10250300006009638
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": 0.1673254,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0891577
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.17948669998440892,
+          0.18144680000841618
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.1016063999850303,
+          0.10256339993793517
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": [
+          0.1672208,
+          0.1688892
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0883503,
+          0.0896648
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.766338544523479,
+      "numerical_speedup_reference_over_candidate": 1.8767352679577871,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=off": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "inexact",
+      "ipm_central_corrections": 0,
+      "ipm_linear_solver": "qdldl",
+      "ipm_inexact_prefilter": "off",
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "inexact",
+      "ipm_central_corrections": 0,
+      "ipm_linear_solver": "qdldl",
+      "ipm_inexact_prefilter": "on",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v13-development-son-eon"
+}

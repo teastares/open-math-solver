@@ -1,0 +1,790 @@
+{
+  "verified_at_utc": "2026-10-12T18:50:30.288981+00:00",
+  "passed": true,
+  "final": true,
+  "diagnostic_only": true,
+  "verification_script_sha256": "c2cd7ccf3f5ec3169d81a50a29c354ac867c7babea8e5fcfecc38fa02269b435",
+  "production_solver_sha256": "75c20fc0b39f31125f745540fc2a46f218ccf28c713cb30c341b4705b86ac7bf",
+  "diagnostic_solver_sha256": "617621a44e1b4f1bd1423efa035bb1e880e890b21fc93c6008a02a8d38759079",
+  "production_source_files_verified": 88,
+  "diagnostic_sources_verified": 5,
+  "compiler_and_library_hashes_verified": true,
+  "instrumented_source_reconstructed": true,
+  "identity_sha256": "64e8984c8e36fc53c32f7508e9343a616d211c2c64467ccab1ac064f0f020a37",
+  "self_test": {
+    "events": 5,
+    "exact_rational_formula_checks": 21,
+    "disabled_no_scans_or_events": true,
+    "range_guards": 3,
+    "sha256": "a482cbe6c4abcb1c6034b6d8091d67d4a97563229cd89b9acf85b33be7915ebf",
+    "limitation": "已冻结runner在解析自检stderr后才保存；本次成功且原始输出完整，未修改已测来源，异常归档顺序留待后续模板改进。"
+  },
+  "runs": {
+    "raw_records": 102,
+    "raw_sha256": "f311e6a87934f09ff792a2d7a087c4bb505bfe02e27ac00dee4d0b0eac2c7422",
+    "compressed_sha256": "191dc4be0125c32f8a3ca85248b103c7a3e55014ea4fab8fb0d33db69cb18d88",
+    "summary_sha256": "512cbaf132b157b728d423ed457b93b1581388add4dd1409b15ce032f328463d",
+    "summary_recomputed": true,
+    "on_off_pairs": 39,
+    "production_off_pairs": 24,
+    "non_time_comparisons_equal": 60,
+    "time_limited_comparisons": [
+      {
+        "accuracy": "strict",
+        "model": "dfl001",
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "time_limited": true,
+        "non_time_equal": true,
+        "reference_status": "time_limit",
+        "candidate_status": "time_limit"
+      },
+      {
+        "accuracy": "curvature_regularization",
+        "model": "dfl001",
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "time_limited": true,
+        "non_time_equal": true,
+        "reference_status": "time_limit",
+        "candidate_status": "time_limit"
+      },
+      {
+        "accuracy": "blockwise",
+        "model": "dfl001",
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "time_limited": true,
+        "non_time_equal": false,
+        "reference_status": "time_limit",
+        "candidate_status": "time_limit"
+      }
+    ],
+    "missing_reports": 0,
+    "diagnostic_parse_errors": 0,
+    "events": 7429,
+    "event_audits": [
+      {
+        "model": "afiro",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 11,
+          "begin": 9,
+          "before_step": 9,
+          "after_step": 9
+        },
+        "events": 39,
+        "diagnostic_csc_scans": 27,
+        "diagnostic_vector_products": 63,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 11,
+        "scalar_gap_identity_checks": 18,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "adlittle",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 15,
+          "begin": 13,
+          "before_step": 13,
+          "after_step": 13
+        },
+        "events": 55,
+        "diagnostic_csc_scans": 39,
+        "diagnostic_vector_products": 91,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 15,
+        "scalar_gap_identity_checks": 26,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "e226",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 22,
+          "begin": 20,
+          "before_step": 20,
+          "after_step": 20
+        },
+        "events": 83,
+        "diagnostic_csc_scans": 60,
+        "diagnostic_vector_products": 140,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 22,
+        "scalar_gap_identity_checks": 40,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "israel",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 22,
+          "begin": 20,
+          "before_step": 20,
+          "after_step": 20
+        },
+        "events": 83,
+        "diagnostic_csc_scans": 60,
+        "diagnostic_vector_products": 140,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 22,
+        "scalar_gap_identity_checks": 40,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "stair",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 20,
+          "begin": 18,
+          "before_step": 18,
+          "after_step": 18
+        },
+        "events": 75,
+        "diagnostic_csc_scans": 54,
+        "diagnostic_vector_products": 126,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 20,
+        "scalar_gap_identity_checks": 36,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "25fv47",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 27,
+          "begin": 25,
+          "before_step": 25,
+          "after_step": 25
+        },
+        "events": 103,
+        "diagnostic_csc_scans": 75,
+        "diagnostic_vector_products": 175,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 27,
+        "scalar_gap_identity_checks": 50,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "80bau3b",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 129,
+          "begin": 127,
+          "before_step": 127,
+          "after_step": 127
+        },
+        "events": 511,
+        "diagnostic_csc_scans": 381,
+        "diagnostic_vector_products": 889,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 129,
+        "scalar_gap_identity_checks": 254,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "perold",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 30,
+          "begin": 28,
+          "before_step": 28,
+          "after_step": 28
+        },
+        "events": 115,
+        "diagnostic_csc_scans": 84,
+        "diagnostic_vector_products": 196,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 30,
+        "scalar_gap_identity_checks": 56,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "bnl2",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 37,
+          "begin": 35,
+          "before_step": 35,
+          "after_step": 35
+        },
+        "events": 143,
+        "diagnostic_csc_scans": 105,
+        "diagnostic_vector_products": 245,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 37,
+        "scalar_gap_identity_checks": 70,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "dfl001",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 26,
+          "begin": 24,
+          "before_step": 23,
+          "after_step": 23
+        },
+        "events": 97,
+        "diagnostic_csc_scans": 70,
+        "diagnostic_vector_products": 163,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 26,
+        "scalar_gap_identity_checks": 47,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "finnis",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 203,
+          "begin": 200,
+          "before_step": 200,
+          "after_step": 200
+        },
+        "events": 804,
+        "diagnostic_csc_scans": 600,
+        "diagnostic_vector_products": 1400,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 203,
+        "scalar_gap_identity_checks": 400,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "greenbea",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 203,
+          "begin": 200,
+          "before_step": 200,
+          "after_step": 200
+        },
+        "events": 804,
+        "diagnostic_csc_scans": 600,
+        "diagnostic_vector_products": 1400,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 203,
+        "scalar_gap_identity_checks": 400,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "grow22",
+        "accuracy": "strict",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 16,
+          "begin": 14,
+          "before_step": 14,
+          "after_step": 14
+        },
+        "events": 59,
+        "diagnostic_csc_scans": 42,
+        "diagnostic_vector_products": 98,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 16,
+        "scalar_gap_identity_checks": 28,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "afiro",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 11,
+          "begin": 9,
+          "before_step": 9,
+          "after_step": 9
+        },
+        "events": 39,
+        "diagnostic_csc_scans": 27,
+        "diagnostic_vector_products": 63,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 11,
+        "scalar_gap_identity_checks": 18,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "adlittle",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 15,
+          "begin": 13,
+          "before_step": 13,
+          "after_step": 13
+        },
+        "events": 55,
+        "diagnostic_csc_scans": 39,
+        "diagnostic_vector_products": 91,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 15,
+        "scalar_gap_identity_checks": 26,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "e226",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 23,
+          "begin": 21,
+          "before_step": 21,
+          "after_step": 21
+        },
+        "events": 87,
+        "diagnostic_csc_scans": 63,
+        "diagnostic_vector_products": 147,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 23,
+        "scalar_gap_identity_checks": 42,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "israel",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 22,
+          "begin": 20,
+          "before_step": 20,
+          "after_step": 20
+        },
+        "events": 83,
+        "diagnostic_csc_scans": 60,
+        "diagnostic_vector_products": 140,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 22,
+        "scalar_gap_identity_checks": 40,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "stair",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 20,
+          "begin": 18,
+          "before_step": 18,
+          "after_step": 18
+        },
+        "events": 75,
+        "diagnostic_csc_scans": 54,
+        "diagnostic_vector_products": 126,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 20,
+        "scalar_gap_identity_checks": 36,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "25fv47",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 27,
+          "begin": 25,
+          "before_step": 25,
+          "after_step": 25
+        },
+        "events": 103,
+        "diagnostic_csc_scans": 75,
+        "diagnostic_vector_products": 175,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 27,
+        "scalar_gap_identity_checks": 50,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "80bau3b",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 99,
+          "begin": 97,
+          "before_step": 97,
+          "after_step": 97
+        },
+        "events": 391,
+        "diagnostic_csc_scans": 291,
+        "diagnostic_vector_products": 679,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 99,
+        "scalar_gap_identity_checks": 194,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "perold",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 30,
+          "begin": 28,
+          "before_step": 28,
+          "after_step": 28
+        },
+        "events": 115,
+        "diagnostic_csc_scans": 84,
+        "diagnostic_vector_products": 196,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 30,
+        "scalar_gap_identity_checks": 56,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "bnl2",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 160,
+          "begin": 157,
+          "before_step": 157,
+          "after_step": 157
+        },
+        "events": 632,
+        "diagnostic_csc_scans": 471,
+        "diagnostic_vector_products": 1099,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 160,
+        "scalar_gap_identity_checks": 314,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "dfl001",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 24,
+          "begin": 22,
+          "before_step": 21,
+          "after_step": 21
+        },
+        "events": 89,
+        "diagnostic_csc_scans": 64,
+        "diagnostic_vector_products": 149,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 24,
+        "scalar_gap_identity_checks": 43,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "finnis",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 30,
+          "begin": 28,
+          "before_step": 28,
+          "after_step": 28
+        },
+        "events": 115,
+        "diagnostic_csc_scans": 84,
+        "diagnostic_vector_products": 196,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 30,
+        "scalar_gap_identity_checks": 56,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "greenbea",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 138,
+          "begin": 136,
+          "before_step": 136,
+          "after_step": 136
+        },
+        "events": 547,
+        "diagnostic_csc_scans": 408,
+        "diagnostic_vector_products": 952,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 138,
+        "scalar_gap_identity_checks": 272,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "grow22",
+        "accuracy": "curvature_regularization",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 203,
+          "begin": 200,
+          "before_step": 200,
+          "after_step": 200
+        },
+        "events": 804,
+        "diagnostic_csc_scans": 600,
+        "diagnostic_vector_products": 1400,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 203,
+        "scalar_gap_identity_checks": 400,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "afiro",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 11,
+          "begin": 9,
+          "before_step": 9,
+          "after_step": 9
+        },
+        "events": 39,
+        "diagnostic_csc_scans": 27,
+        "diagnostic_vector_products": 63,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 11,
+        "scalar_gap_identity_checks": 18,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "adlittle",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 15,
+          "begin": 13,
+          "before_step": 13,
+          "after_step": 13
+        },
+        "events": 55,
+        "diagnostic_csc_scans": 39,
+        "diagnostic_vector_products": 91,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 15,
+        "scalar_gap_identity_checks": 26,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "e226",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 23,
+          "begin": 21,
+          "before_step": 21,
+          "after_step": 21
+        },
+        "events": 87,
+        "diagnostic_csc_scans": 63,
+        "diagnostic_vector_products": 147,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 23,
+        "scalar_gap_identity_checks": 42,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "israel",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 22,
+          "begin": 20,
+          "before_step": 20,
+          "after_step": 20
+        },
+        "events": 83,
+        "diagnostic_csc_scans": 60,
+        "diagnostic_vector_products": 140,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 22,
+        "scalar_gap_identity_checks": 40,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "stair",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 20,
+          "begin": 18,
+          "before_step": 18,
+          "after_step": 18
+        },
+        "events": 75,
+        "diagnostic_csc_scans": 54,
+        "diagnostic_vector_products": 126,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 20,
+        "scalar_gap_identity_checks": 36,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "25fv47",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 27,
+          "begin": 25,
+          "before_step": 25,
+          "after_step": 25
+        },
+        "events": 103,
+        "diagnostic_csc_scans": 75,
+        "diagnostic_vector_products": 175,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 27,
+        "scalar_gap_identity_checks": 50,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "80bau3b",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 48,
+          "begin": 46,
+          "before_step": 46,
+          "after_step": 46
+        },
+        "events": 187,
+        "diagnostic_csc_scans": 138,
+        "diagnostic_vector_products": 322,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 48,
+        "scalar_gap_identity_checks": 92,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "perold",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 30,
+          "begin": 28,
+          "before_step": 28,
+          "after_step": 28
+        },
+        "events": 115,
+        "diagnostic_csc_scans": 84,
+        "diagnostic_vector_products": 196,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 30,
+        "scalar_gap_identity_checks": 56,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "bnl2",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 38,
+          "begin": 36,
+          "before_step": 36,
+          "after_step": 36
+        },
+        "events": 147,
+        "diagnostic_csc_scans": 108,
+        "diagnostic_vector_products": 252,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 38,
+        "scalar_gap_identity_checks": 72,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "dfl001",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 27,
+          "begin": 25,
+          "before_step": 24,
+          "after_step": 24
+        },
+        "events": 101,
+        "diagnostic_csc_scans": 73,
+        "diagnostic_vector_products": 170,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 27,
+        "scalar_gap_identity_checks": 49,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "finnis",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 30,
+          "begin": 28,
+          "before_step": 28,
+          "after_step": 28
+        },
+        "events": 115,
+        "diagnostic_csc_scans": 84,
+        "diagnostic_vector_products": 196,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 30,
+        "scalar_gap_identity_checks": 56,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "greenbea",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 41,
+          "begin": 39,
+          "before_step": 38,
+          "after_step": 38
+        },
+        "events": 157,
+        "diagnostic_csc_scans": 115,
+        "diagnostic_vector_products": 268,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 41,
+        "scalar_gap_identity_checks": 77,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      },
+      {
+        "model": "grow22",
+        "accuracy": "blockwise",
+        "event_counts": {
+          "run_start": 1,
+          "current_assess": 16,
+          "begin": 14,
+          "before_step": 14,
+          "after_step": 14
+        },
+        "events": 59,
+        "diagnostic_csc_scans": 42,
+        "diagnostic_vector_products": 98,
+        "invalid_numeric_events": 0,
+        "current_assess_events": 16,
+        "scalar_gap_identity_checks": 28,
+        "recorded_kkt_blocks_over_active_tolerance": 0
+      }
+    ],
+    "hash_scope": "核对冻结身份、当前文件及每条已记录身份；运行器前后assert成功不等同于另有逐次前后hash字段。"
+  },
+  "posthoc_analysis": {
+    "records": 39,
+    "anchors": 155,
+    "nonempty_intervals": 119,
+    "complete_steps": 1825,
+    "analysis_sha256": "532295b37960a2d6a27982d81b8c8d9998d466e2f20805488c8791f1b770e947",
+    "analysis_script_sha256": "cc279f40f3021ca0160939b30f632d482a1cdec27a6d818b08063a015a4134d2",
+    "independent_numeric_recomputation": true,
+    "current_and_retained_separate": true,
+    "scope": "采用已核对分析脚本的字段名单作投影schema；锚点选择、比值、区间统计及当前/保留报告另行从原始事件重算。统一事后分析不是预注册或因果实验。"
+  },
+  "markdown_files_checked": 25,
+  "local_links_checked": 1560,
+  "verification_report_links": 2,
+  "broken_links": [],
+  "verification_scope": "仅读取及重算归档；未调用编译器、求解器或任何性能采集。诊断时间不作性能成绩。",
+  "numeric_scope": "事件只存范数与标量：可核其恒等式、门槛、阶段和账本，不能从摘要重新形成完整矩阵向量乘积；独立解析自检使用精确有理数。",
+  "optional_validity_scope": "可选值缺失时value=null/valid=false不等同于数值异常；finite_fields跟踪实际输出的数值范围异常。"
+}

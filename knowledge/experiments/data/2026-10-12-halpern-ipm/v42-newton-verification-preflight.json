@@ -1,0 +1,522 @@
+{
+  "verified_at_utc": "2026-10-12T19:40:15.746792+00:00",
+  "passed": true,
+  "final": false,
+  "verification_script_sha256": "113f9c85c8a97cedd678cfec75eeaf482e86b05d8ce33ae6faa935ab2082676e",
+  "reused_source_checker_sha256": "37490f9b9dc02dc983783f80f579bd993bb8eaccf2f81d1a7e3312a2b9d6dbe6",
+  "production_solver_sha256": "5a283adb07ed7e15dd3575b021c6a42e1643558a75f4ab09d8cae2a27ff06aa7",
+  "diagnostic_solver_sha256": "9ecee9d1d75505ebd44682b9cefd533581609cab33a63fffc6ce7445daf74469",
+  "plan_sha256": "31985d25aa6f75bd872dd644eaab9c714fe516b6a77aaeb959d7432bb3300540",
+  "diagnostic_sources": {
+    "v42-newton-diagnostic.hpp": "3f9c14ca70ba1a59ada80d0315a5acddf3ed03baae33e16007f561efc09a5cc2",
+    "v42-newton-driver.cpp": "e1674273a3379bc342094d7a2133658708659a84b8dc1114dc8ad84e167890de",
+    "v42-newton-instrument.py": "143d3934252270f03ad94b6bedbbbc4392eec3ae731521502ceae5e65f68af37",
+    "v42-newton-build-run.py": "fd67c3460ae5860116f4a11e953bdf1ce84b0b71c74ca9e5a429086e23c49b94",
+    "v42-newton-self-test.cpp": "63c41b144ce096f2dae694baad02882aad733f1e6ca44ffe1bf092fa95ed5652"
+  },
+  "production_source_files": 89,
+  "diagnostic_source_files": 5,
+  "libraries": 15,
+  "insertion_blocks": 21,
+  "self_test": {
+    "checks": 26,
+    "events": 8,
+    "sha256": "fe6732566af5648965b98796b55ecdba690549fbf9a1528e989851264e85fe29",
+    "independent_rational_formulas_verified": true,
+    "enabled_candidate_wiring_verified": true,
+    "extra_csc_scans": 2,
+    "production_counts_unchanged": true
+  },
+  "analyzer_self_test": {
+    "passed": true,
+    "checks": 15,
+    "analyzer_sha256": "ed490c72c9c05c6ece262b2b35942783cb09ec66e97901bf0356a0788d3a2a4a",
+    "script_sha256": "ab0ce64a0f9e8e29a4d8d947f4430db27ac50fe9b655d6b2edd666485a77361c",
+    "archived_stdout_sha256": "f95a7fc347a86fab81761d5d8e049820379c4754f5e1f03c84bab2461e4bf637",
+    "scope": "测量后保存并复跑冻结前的纯合成规则断言；不读取实测，不运行求解。"
+  },
+  "runs": {
+    "records": 39,
+    "events": 4186,
+    "comparisons": 26,
+    "time_limited_comparisons": 2,
+    "non_time_limited_equal_comparisons": 24,
+    "raw_sha256": "b17e22389f1c67df5a75aba782266724667c0bc9871d98059e06d50da5ae4e38",
+    "groups": [
+      {
+        "model": "afiro",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "afiro",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "afiro",
+        "variant": "diagnostic_on",
+        "events": 70,
+        "directions": 18,
+        "candidates": 0,
+        "extra_csc_scans": 0,
+        "extra_nnz_visits": 0
+      },
+      {
+        "model": "adlittle",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "adlittle",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "adlittle",
+        "variant": "diagnostic_on",
+        "events": 101,
+        "directions": 26,
+        "candidates": 0,
+        "extra_csc_scans": 0,
+        "extra_nnz_visits": 0
+      },
+      {
+        "model": "e226",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "e226",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "e226",
+        "variant": "diagnostic_on",
+        "events": 208,
+        "directions": 42,
+        "candidates": 5,
+        "extra_csc_scans": 10,
+        "extra_nnz_visits": 28600
+      },
+      {
+        "model": "israel",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "israel",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "israel",
+        "variant": "diagnostic_on",
+        "events": 168,
+        "directions": 40,
+        "candidates": 0,
+        "extra_csc_scans": 0,
+        "extra_nnz_visits": 0
+      },
+      {
+        "model": "stair",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "stair",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "stair",
+        "variant": "diagnostic_on",
+        "events": 170,
+        "directions": 36,
+        "candidates": 2,
+        "extra_csc_scans": 4,
+        "extra_nnz_visits": 16204
+      },
+      {
+        "model": "25fv47",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "25fv47",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "25fv47",
+        "variant": "diagnostic_on",
+        "events": 433,
+        "directions": 32,
+        "candidates": 96,
+        "extra_csc_scans": 192,
+        "extra_nnz_visits": 2298432
+      },
+      {
+        "model": "80bau3b",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "80bau3b",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "80bau3b",
+        "variant": "diagnostic_on",
+        "events": 396,
+        "directions": 23,
+        "candidates": 96,
+        "extra_csc_scans": 192,
+        "extra_nnz_visits": 6278400
+      },
+      {
+        "model": "perold",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "perold",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "perold",
+        "variant": "diagnostic_on",
+        "events": 295,
+        "directions": 56,
+        "candidates": 3,
+        "extra_csc_scans": 6,
+        "extra_nnz_visits": 43932
+      },
+      {
+        "model": "dfl001",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "dfl001",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "dfl001",
+        "variant": "diagnostic_on",
+        "events": 728,
+        "directions": 52,
+        "candidates": 34,
+        "extra_csc_scans": 68,
+        "extra_nnz_visits": 3255500
+      },
+      {
+        "model": "finnis",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "finnis",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "finnis",
+        "variant": "diagnostic_on",
+        "events": 414,
+        "directions": 26,
+        "candidates": 97,
+        "extra_csc_scans": 194,
+        "extra_nnz_visits": 523218
+      },
+      {
+        "model": "greenbea",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "greenbea",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "greenbea",
+        "variant": "diagnostic_on",
+        "events": 550,
+        "directions": 56,
+        "candidates": 97,
+        "extra_csc_scans": 194,
+        "extra_nnz_visits": 7043558
+      },
+      {
+        "model": "bnl2",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "bnl2",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "bnl2",
+        "variant": "diagnostic_on",
+        "events": 523,
+        "directions": 30,
+        "candidates": 128,
+        "extra_csc_scans": 256,
+        "extra_nnz_visits": 4476928
+      },
+      {
+        "model": "grow22",
+        "variant": "production",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "grow22",
+        "variant": "diagnostic_off",
+        "events": 0,
+        "directions": 0,
+        "candidates": 0,
+        "extra_csc_scans": 0
+      },
+      {
+        "model": "grow22",
+        "variant": "diagnostic_on",
+        "events": 130,
+        "directions": 28,
+        "candidates": 0,
+        "extra_csc_scans": 0,
+        "extra_nnz_visits": 0
+      }
+    ],
+    "extra_csc_scans": 1116,
+    "candidate_events": 558
+  },
+  "analysis": {
+    "sha256": "26a5545e13e3d981da764b3770cf9cb1a23cc09e2d92422683225dace92884bf",
+    "script_sha256": "ed490c72c9c05c6ece262b2b35942783cb09ec66e97901bf0356a0788d3a2a4a",
+    "directions": 465,
+    "checks_independently_verified": 1654,
+    "records_with_issues": 0,
+    "selection_rules_independently_recomputed": true,
+    "last_failed_directions_independently_recomputed": [
+      {
+        "model": "25fv47",
+        "direction_id": 32,
+        "outer_iteration": 16,
+        "phase": "corrector",
+        "failure_kind": "numerical_failure",
+        "arnoldi_steps": 96,
+        "restarts": 3,
+        "candidate_count": 94,
+        "candidate_residual_gate_counts": {
+          "production_accepted": 0,
+          "ld_sum": 94,
+          "once_cast": 0
+        },
+        "last_candidate": {
+          "givens_weighted_l2": 5.3567197113814e-178,
+          "image_weighted_l2": 2.5440530519408987e-17,
+          "true_weighted_l2": 1.4583946463270847,
+          "ld_sum_weighted_l2": 0.0009091165616005626,
+          "once_cast_weighted_l2": 1.4583946463270854,
+          "true_scaled_inf": 1.4569345077236584,
+          "ld_sum_scaled_inf": 0.0009079108991087722,
+          "once_cast_scaled_inf": 1.4569345077236584,
+          "image_minus_true_weighted_l2": 1.4583946463270847,
+          "once_cast_minus_ld_sum_weighted_l2": 1.4593036240921857
+        }
+      },
+      {
+        "model": "80bau3b",
+        "direction_id": 23,
+        "outer_iteration": 12,
+        "phase": "predictor",
+        "failure_kind": "numerical_failure",
+        "arnoldi_steps": 96,
+        "restarts": 3,
+        "candidate_count": 96,
+        "candidate_residual_gate_counts": {
+          "production_accepted": 0,
+          "ld_sum": 96,
+          "once_cast": 0
+        },
+        "last_candidate": {
+          "givens_weighted_l2": 2.7245387370764715e-104,
+          "image_weighted_l2": 5.672286996125425e-16,
+          "true_weighted_l2": 4.673388216345185,
+          "ld_sum_weighted_l2": 0.009796698231313511,
+          "once_cast_weighted_l2": 4.673388216345185,
+          "true_scaled_inf": 1.5188799204896468,
+          "ld_sum_scaled_inf": 0.004006902018576345,
+          "once_cast_scaled_inf": 1.5188799204896468,
+          "image_minus_true_weighted_l2": 4.673388216345185,
+          "once_cast_minus_ld_sum_weighted_l2": 4.672512575091431
+        }
+      },
+      {
+        "model": "finnis",
+        "direction_id": 26,
+        "outer_iteration": 13,
+        "phase": "corrector",
+        "failure_kind": "numerical_failure",
+        "arnoldi_steps": 96,
+        "restarts": 3,
+        "candidate_count": 94,
+        "candidate_residual_gate_counts": {
+          "production_accepted": 0,
+          "ld_sum": 94,
+          "once_cast": 0
+        },
+        "last_candidate": {
+          "givens_weighted_l2": 2.2249127603888155e-94,
+          "image_weighted_l2": 4.367464020957798e-16,
+          "true_weighted_l2": 6.695215013166662,
+          "ld_sum_weighted_l2": 0.0061049829049712135,
+          "once_cast_weighted_l2": 6.771135239181365,
+          "true_scaled_inf": 3.1808165473470154,
+          "ld_sum_scaled_inf": 0.002607226678153291,
+          "once_cast_scaled_inf": 3.1808165473470154,
+          "image_minus_true_weighted_l2": 6.695215013166662,
+          "once_cast_minus_ld_sum_weighted_l2": 6.768926398017671
+        }
+      },
+      {
+        "model": "greenbea",
+        "direction_id": 56,
+        "outer_iteration": 28,
+        "phase": "corrector",
+        "failure_kind": "numerical_failure",
+        "arnoldi_steps": 96,
+        "restarts": 3,
+        "candidate_count": 96,
+        "candidate_residual_gate_counts": {
+          "production_accepted": 0,
+          "ld_sum": 96,
+          "once_cast": 0
+        },
+        "last_candidate": {
+          "givens_weighted_l2": 7.128127584621838e-118,
+          "image_weighted_l2": 5.744536583431203e-16,
+          "true_weighted_l2": 3.687972303097254,
+          "ld_sum_weighted_l2": 0.0037309692303075163,
+          "once_cast_weighted_l2": 3.6879723030956444,
+          "true_scaled_inf": 1.3815943434927866,
+          "ld_sum_scaled_inf": 0.0014375971502128759,
+          "once_cast_scaled_inf": 1.3815943434927866,
+          "image_minus_true_weighted_l2": 3.6879723030972547,
+          "once_cast_minus_ld_sum_weighted_l2": 3.688178885195051
+        }
+      },
+      {
+        "model": "bnl2",
+        "direction_id": 30,
+        "outer_iteration": 15,
+        "phase": "corrector",
+        "failure_kind": "numerical_failure",
+        "arnoldi_steps": 96,
+        "restarts": 3,
+        "candidate_count": 95,
+        "candidate_residual_gate_counts": {
+          "production_accepted": 0,
+          "ld_sum": 95,
+          "once_cast": 0
+        },
+        "last_candidate": {
+          "givens_weighted_l2": 1.959641697282895e-62,
+          "image_weighted_l2": 1.3562697579115695e-15,
+          "true_weighted_l2": 15.164795570120088,
+          "ld_sum_weighted_l2": 0.014141834939381426,
+          "once_cast_weighted_l2": 15.907252109915879,
+          "true_scaled_inf": 3.9596019145499626,
+          "ld_sum_scaled_inf": 0.0048524533266543655,
+          "once_cast_scaled_inf": 3.9596019145499626,
+          "image_minus_true_weighted_l2": 15.164795570120088,
+          "once_cast_minus_ld_sum_weighted_l2": 15.906778266139469
+        }
+      }
+    ]
+  },
+  "runtime_scope": "读取既有归档并复跑15项纯合成分析规则断言，不编译、不运行求解。公式用有理数独立核对；实际事件只存标量，不能据此重建全部向量或证明不可表示。",
+  "source_scope": "复用逐字节锁定的v41核验器检查生产身份，不运行其main或改写历史证明；本轮独立检查诊断源码、插桩、事件、账本和选择。"
+}

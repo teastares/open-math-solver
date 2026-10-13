@@ -1,0 +1,78 @@
+{
+  "diagnostic_only": true,
+  "models": 91,
+  "iterations": 0,
+  "factorizations": 0,
+  "models_with_merged_rows": 68,
+  "models_with_new_fixed_bounds": 58,
+  "models_losing_singleton_inequality_support": 56,
+  "regression_models_from_archived_performance": {
+    "strict": [
+      "bnl2",
+      "boeing1",
+      "cycle",
+      "etamacro",
+      "fffff800",
+      "greenbeb",
+      "pilot87",
+      "scorpion"
+    ],
+    "curvature_regularization": [
+      "cycle",
+      "etamacro",
+      "finnis",
+      "greenbea",
+      "greenbeb",
+      "pilot87"
+    ]
+  },
+  "totals": {
+    "presolved_singleton_rows": 3430,
+    "new_fixed_bound_columns": 2311,
+    "lost_singleton_inequality_support_columns": 2308,
+    "gained_singleton_inequality_support_columns": 0
+  },
+  "support_loss_performance_context": {
+    "strict": {
+      "no_loss": {
+        "resolved_to_resolved": 34,
+        "resolved_to_incomplete": 0,
+        "incomplete_to_resolved": 0,
+        "incomplete_to_incomplete": 1
+      },
+      "loss": {
+        "resolved_to_resolved": 46,
+        "resolved_to_incomplete": 8,
+        "incomplete_to_resolved": 0,
+        "incomplete_to_incomplete": 2
+      }
+    },
+    "curvature_regularization": {
+      "no_loss": {
+        "resolved_to_resolved": 33,
+        "resolved_to_incomplete": 0,
+        "incomplete_to_resolved": 0,
+        "incomplete_to_incomplete": 2
+      },
+      "loss": {
+        "resolved_to_resolved": 49,
+        "resolved_to_incomplete": 6,
+        "incomplete_to_resolved": 0,
+        "incomplete_to_incomplete": 1
+      }
+    }
+  },
+  "checks": {
+    "unique_models": 91,
+    "presolve_counts_match_both_archived_performance_modes": true,
+    "fixed_variable_mappings_match_off_on": true,
+    "zero_budget_parser_iterations_and_factorizations": true
+  },
+  "metric_definitions": {
+    "off_and_on": "同一解析模型，先沿用原固定变量消除，再按五遍原缩放构造锥模型；仅归并开关不同。",
+    "new_fixed_bound_columns": "归并后出现原列界来源的单非零等式，归并前无此列界等式，且原输入列并非有限相等界；包含此前已被单非零输入等式隐含固定的变量，不代表新增数学约束。",
+    "lost_singleton_inequality_support_columns": "归并前至少有一个仅含该坐标的非零不等式行，归并后完全没有；按实际 canonicalize 合并重复项后的矩阵计数，不等价于完整曲率矩阵失秩。",
+    "column_indices": "零基原模型列序号，经过现有固定变量消除映射还原。"
+  },
+  "scope": "冻结实现只解析和 canonicalize；性能上下文来自已有归档，不是本诊断的性能成绩或因果证明。"
+}

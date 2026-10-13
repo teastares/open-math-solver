@@ -1,0 +1,223 @@
+{
+  "verified_at_utc": "2026-10-12T18:27:30.069334+00:00",
+  "passed": true,
+  "final": false,
+  "verification_script_sha256": "99025081e9e13a309bc4c66dfc03cc4943a097d1c635fb5d28ef151e2b573ba1",
+  "solver_sha256": "75c20fc0b39f31125f745540fc2a46f218ccf28c713cb30c341b4705b86ac7bf",
+  "source_files_verified": 88,
+  "source_current_scope": "当前88份生产文件、冻结源码包、身份清单以及build/.tools程序逐一核对。",
+  "source_zip_sha256": "b08cf30db8fafaf6a7310cc3ba09b22b55ff436b17e1353a0204d40099adb266",
+  "changed_production_files": [
+    "include/solver/backend.hpp",
+    "include/solver/detail/ipm_recycling.hpp",
+    "include/solver/ipm_options.hpp",
+    "scripts/benchmark.py",
+    "scripts/compare_lp.py",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_compare_lp.py",
+    "tests/test_ipm.cpp"
+  ],
+  "archive_groups_verified": [
+    {
+      "tag": "development-factorhighs-blockwise-presolve_off-ipm",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "8b46bab4441f7b94036f3febd7d9b3cc34ce09bb0a6a18fc45f39f88cf878b7f",
+      "summary_sha256": "5c65e3c354dfe0bc95e53f09bacfb0b010528e6abe6ae37c1eb9600581ccb67f",
+      "compressed_raw_sha256": "f3199e104c62290be1e2f02add4289f341bf45e7a29af56e0a30fe44dfcc0079",
+      "command_sha256": "cbc70dde40dea88f83baf882a92542450c58a7f4aa23c13670c8ccf8e45bdd4e",
+      "quality_pass_count": 48,
+      "quality_failure_count": 0,
+      "compare_exit_code_implied_by_complete_results": 0,
+      "recycle_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=on:retries=8": {
+          "ipm_krylov_recycle_projections": 0,
+          "ipm_krylov_recycle_acceptances": 0,
+          "ipm_krylov_recycle_vectors": 0,
+          "peak_dimension": 0,
+          "projection_runs": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=on:retries=8:krylov_history=4": {
+          "ipm_krylov_recycle_projections": 309,
+          "ipm_krylov_recycle_acceptances": 0,
+          "ipm_krylov_recycle_vectors": 1173,
+          "peak_dimension": 4,
+          "projection_runs": 15
+        }
+      }
+    },
+    {
+      "tag": "development-normal_augmented-blockwise-presolve_off-ipm",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "2bdb74dd499ec834ec178a84430406907a2f2b4782f31f3b31acf88523860a00",
+      "summary_sha256": "e58a08e1acd3d31f9236029ecfd8050cd5d5d6b2de77a6306929c90d436d7ae4",
+      "compressed_raw_sha256": "01d4cf50ba4d1c296fe655cc1a0bfa987930c71106b6a3f2ced5d9222026572e",
+      "command_sha256": "3291189d8f2cf4624299bf302647d0992a3a045cc61289e35ef1ba0bddda0957",
+      "quality_pass_count": 45,
+      "quality_failure_count": 3,
+      "compare_exit_code_implied_by_complete_results": 1,
+      "recycle_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:retries=8": {
+          "ipm_krylov_recycle_projections": 0,
+          "ipm_krylov_recycle_acceptances": 0,
+          "ipm_krylov_recycle_vectors": 0,
+          "peak_dimension": 0,
+          "projection_runs": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:retries=8:krylov_history=4": {
+          "ipm_krylov_recycle_projections": 212,
+          "ipm_krylov_recycle_acceptances": 0,
+          "ipm_krylov_recycle_vectors": 1152,
+          "peak_dimension": 4,
+          "projection_runs": 12
+        }
+      }
+    },
+    {
+      "tag": "development-normal_augmented-blockwise-presolve_on-ipm",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "cdc4775683f7282c0d8778aae32527566acf037c7fcf8d82e52e2cabfc258370",
+      "summary_sha256": "ad5ba992f7566236a121e4841d6874a93e4158f75a1c0177c6283ddac1d7e639",
+      "compressed_raw_sha256": "3ebb19a6cc095c001ffe5ca1fc2659bc45c906f17f2c53e5ca9f802ffaebde47",
+      "command_sha256": "395ff75b8e34a33acdd940d11610f3c08eaf88a557e034d504ebb4f4582415e3",
+      "quality_pass_count": 42,
+      "quality_failure_count": 6,
+      "compare_exit_code_implied_by_complete_results": 1,
+      "recycle_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:retries=8:presolve_singletons=on:presolve_fixed=on": {
+          "ipm_krylov_recycle_projections": 0,
+          "ipm_krylov_recycle_acceptances": 0,
+          "ipm_krylov_recycle_vectors": 0,
+          "peak_dimension": 0,
+          "projection_runs": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:retries=8:presolve_singletons=on:presolve_fixed=on:krylov_history=4": {
+          "ipm_krylov_recycle_projections": 222,
+          "ipm_krylov_recycle_acceptances": 3,
+          "ipm_krylov_recycle_vectors": 1176,
+          "peak_dimension": 4,
+          "projection_runs": 15
+        }
+      }
+    },
+    {
+      "tag": "development-normal_augmented-strict-presolve_off-ipm",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "b51e9baae39d0744d82651d24310056d26f7276bbb8e84b999ae4a0634a1780e",
+      "summary_sha256": "a28b6c64b33794854e7ec8d73a8fdd425295020fe692e172b50f54a1ecc5b47e",
+      "compressed_raw_sha256": "26c45787db9444f6b154c110acc33b0c326a4ede631df04cb0d6b6dd29609b05",
+      "command_sha256": "a894d1e07525dbf081ef833da1c61a06f99109de94fcb31ee36801b3584de513",
+      "quality_pass_count": 45,
+      "quality_failure_count": 3,
+      "compare_exit_code_implied_by_complete_results": 1,
+      "recycle_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on": {
+          "ipm_krylov_recycle_projections": 0,
+          "ipm_krylov_recycle_acceptances": 0,
+          "ipm_krylov_recycle_vectors": 0,
+          "peak_dimension": 0,
+          "projection_runs": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=normal_augmented:prefilter=off:fixed=on:krylov_history=4": {
+          "ipm_krylov_recycle_projections": 60,
+          "ipm_krylov_recycle_acceptances": 12,
+          "ipm_krylov_recycle_vectors": 2004,
+          "peak_dimension": 4,
+          "projection_runs": 3
+        }
+      }
+    }
+  ],
+  "raw_records_verified": 192,
+  "model_and_solver_pre_post_hash_records_verified": 192,
+  "independent_input_files_verified": 8,
+  "pending_groups": [],
+  "all_archived_stdout_reports_match": true,
+  "complete_summaries_recomputed": true,
+  "per_record_quality_and_penalties_recomputed": true,
+  "alternating_schedule_verified": true,
+  "history_zero_trajectories_verified": {
+    "count": 32,
+    "compressed_sha256": "d63e72a0cf4fcc915b406e772c75aff584393d1bd0029cb78d837f7a4bc50718",
+    "solver_current_hashes_verified": {
+      "38": "aded23f7f25ba4f13836c9f1b8c4d0a22dcbe0ad20720b008b15029bcaaa8ead",
+      "39": "75c20fc0b39f31125f745540fc2a46f218ccf28c713cb30c341b4705b86ac7bf"
+    },
+    "four_new_counts_present_and_integer_zero": true,
+    "exit_code_pairs": {
+      "[0, 0]": 31,
+      "[4, 4]": 1
+    }
+  },
+  "trajectory_exclusions": [
+    "timings",
+    "backend_version",
+    "新增且为零的krylov_history_size及四项回收计数"
+  ],
+  "analytic_diagnostics_verified": [
+    {
+      "path": "v39-analytic-probe-runs.json.gz",
+      "compressed_sha256": "9515809c2d0308384c85d7100dadd8ef89939eb2c45969ed7d964d205dbc8943",
+      "records": 56,
+      "recorded_solver_sha256": "75c20fc0b39f31125f745540fc2a46f218ccf28c713cb30c341b4705b86ac7bf",
+      "matches_final_frozen_solver": true,
+      "projection_runs": 22,
+      "missing_reports": 0,
+      "statuses": {
+        "optimal": 38,
+        "numerical_error": 18
+      },
+      "scope": "仅解析构造的分支诊断，全部保留，不计入公开性能或覆盖成绩。"
+    },
+    {
+      "path": "v39-analytic-probe-pre-cache-runs.json.gz",
+      "compressed_sha256": "eac56afd75a4a98e269d9d3aaf761db0271797efac7bdad21c9a0e7c11d13c8d",
+      "records": 56,
+      "recorded_solver_sha256": "7f7a69d47f182f6768dad014018ff03a80f3f215d57f837997fe1ec4e7136236",
+      "matches_final_frozen_solver": false,
+      "projection_runs": 22,
+      "missing_reports": 0,
+      "statuses": {
+        "optimal": 38,
+        "numerical_error": 18
+      },
+      "scope": "缓存改造前的旧版本诊断；仅核对已记录身份与数据一致性，不声称现存旧程序或旧源码已核验。"
+    }
+  ],
+  "derived_details_verified": [
+    {
+      "path": "v39-development-detail.json",
+      "sha256": "002667ba71360fba90d0d4a56bdd304bcaaedc1e79dcb5121bd0fbf1c4d980fd",
+      "groups": 4
+    },
+    {
+      "path": "v39-coverage-detail.json",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+      "groups": 0
+    }
+  ],
+  "missing_derived_detail_groups": [],
+  "ctest": {
+    "passed": 17,
+    "total": 17,
+    "seconds": 10.91,
+    "ipm_checks": 66512,
+    "recycle_vectors": 166,
+    "recycle_projections": 10,
+    "recycle_direct_acceptances": 1,
+    "build_log_sha256": "1e6b3d8c76f280afe1e5a15e6e7c743ca6ad9ed55e4d030ff62faf48463eca33",
+    "detail_log_sha256": "1b90c186083d96f6f77b4f4ba1fd3c2fbe88c915765a8f55baaf7ddcabcbbb18"
+  },
+  "runner_sha256": "dd86e78ff4e7164646a9a16a4071011b382de59619a64acc57aafab95eb9c70e",
+  "runtime_scope": "本核验仅读取归档，不运行编译、求解或性能。质量与摘要按身份已核对的冻结Python协议重新计算。",
+  "compare_exit_scope": "比较工具退出码由完整结果按协议推导；原始逐次求解退出码另逐条核验。"
+}

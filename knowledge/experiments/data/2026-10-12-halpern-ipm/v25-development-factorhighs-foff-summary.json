@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 48,
+  "reference_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off",
+  "candidate_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off",
+  "both_variants_all_repeats_pass_count": 8,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 4,
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 4
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.1962178047540539,
+      "penalized_numerical_sgm10_seconds": 0.18337903825289698,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.1919554532612688,
+      "penalized_numerical_sgm10_seconds": 0.17916292346544493,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.007560199941508472,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.007839799975045025
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0007271,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0007279
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.007429499994032085,
+          0.010146299959160388
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.007764499983750284,
+          0.009190800017677248
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0007215,
+          0.0008461
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0007251,
+          0.0007341
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9643358205022383,
+      "numerical_speedup_reference_over_candidate": 0.9989009479324082,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.01080369995906949,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.009909499902278185
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0026064,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0025762
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.010023099952377379,
+          0.01152250007726252
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.009887999971397221,
+          0.012251000036485493
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0025501,
+          0.0026813
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0025449,
+          0.0030451
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0902366482273973,
+      "numerical_speedup_reference_over_candidate": 1.0117226923375515,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.028301899903453887,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.028433799976482987
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0191656,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0193249
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.02795520005747676,
+          0.03016840002965182
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.02815050003118813,
+          0.029127499903552234
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0189354,
+          0.0194932
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0192251,
+          0.0193469
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9953611521098765,
+      "numerical_speedup_reference_over_candidate": 0.9917567490646784,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.019512799917720258,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.019018199993297458
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0104097,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0103924
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.01893769996240735,
+          0.020559799973852932
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0188444999512285,
+          0.02086839999537915
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0103887,
+          0.0104569
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0103765,
+          0.0104764
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.026006663332866,
+      "numerical_speedup_reference_over_candidate": 1.0016646780339478,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.044635499943979084,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.04481859994120896
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.0346641,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.034174
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.04435189999639988,
+          0.04607360006775707
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.04411589994560927,
+          0.04610370006412268
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0345805,
+          0.034745
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.0341375,
+          0.035016
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9959146426378768,
+      "numerical_speedup_reference_over_candidate": 1.0143413121086207,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.2522605999838561,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.2456747000105679
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.2373812,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.2314281
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.25140639999881387,
+          0.253889900050126
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.24499180004931986,
+          0.24923700001090765
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.2368547,
+          0.2375667
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.2305878,
+          0.2321954
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0268074000823237,
+      "numerical_speedup_reference_over_candidate": 1.025723324004302,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 1.1188858000095934,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 1.101302900002338
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 1.0884119,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 1.0703933
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          1.1169141000136733,
+          1.1575291000772268
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          1.0934677000623196,
+          1.1048170999856666
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          1.0841214,
+          1.1263933
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          1.0629146,
+          1.0720712
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0159655440907476,
+      "numerical_speedup_reference_over_candidate": 1.0168336255467967,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.12135289993602782,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.12259530008304864
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.1089986,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": 0.1100046
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.12120739999227226,
+          0.12293059995863587
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.12193649995606393,
+          0.12381720007397234
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.1088856,
+          0.1091171
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": [
+          0.1093049,
+          0.1100238
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9898658419516965,
+      "numerical_speedup_reference_over_candidate": 0.990854927884834,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise:corrections=0:solver=factorhighs:prefilter=off:fixed=off": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "blockwise",
+      "ipm_central_corrections": null,
+      "ipm_linear_solver": "factorhighs",
+      "ipm_inexact_prefilter": null,
+      "ipm_fixed_variable_elimination": "off",
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=blockwise_weighted:corrections=0:solver=factorhighs:prefilter=off:fixed=off": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": null,
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "blockwise_weighted",
+      "ipm_central_corrections": null,
+      "ipm_linear_solver": "factorhighs",
+      "ipm_inexact_prefilter": null,
+      "ipm_fixed_variable_elimination": "off",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v25-development-factorhighs-foff"
+}

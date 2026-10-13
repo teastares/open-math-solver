@@ -1,0 +1,59 @@
+[
+  {
+    "group": "development-foff",
+    "pairs": 24,
+    "equal_except_time_and_requested_solver": 24,
+    "differences": [],
+    "fallbacks": []
+  },
+  {
+    "group": "development-fon",
+    "pairs": 24,
+    "equal_except_time_and_requested_solver": 24,
+    "differences": [],
+    "fallbacks": []
+  },
+  {
+    "group": "netlib-ablation",
+    "pairs": 91,
+    "equal_except_time_and_requested_solver": 90,
+    "differences": [
+      {
+        "input": "fit2p.mps",
+        "repetition": 0,
+        "fields": [
+          "status",
+          "backend_status",
+          "verification_level",
+          "message",
+          "has_solution",
+          "solution",
+          "objective",
+          "best_bound",
+          "absolute_gap",
+          "relative_gap",
+          "ipm_iterations",
+          "ipm_factorizations",
+          "ipm_kkt_dimension",
+          "ipm_factor_nonzeros",
+          "ipm_factor_backend",
+          "ipm_structural_fallbacks",
+          "ipm_eliminated_singletons",
+          "lp_optimality",
+          "row_dual",
+          "verification"
+        ]
+      }
+    ],
+    "fallbacks": [
+      {
+        "input": "fit2p.mps",
+        "status": "optimal",
+        "backend": "factorhighs",
+        "count": 1,
+        "numerical_seconds": 0.3816747,
+        "iterations": 20
+      }
+    ]
+  }
+]

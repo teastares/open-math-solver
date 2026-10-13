@@ -1,0 +1,12 @@
+normal_cholmod 实验仅复用依赖锁中 SuiteSparse 的 CHOLMOD 线性代数实现。
+不复用其外部 LP 求解流程；Gram 装配、AMD 排列、KKT 残差和原模型验算由本项目管理。
+
+上游地址：https://github.com/DrTimothyAldenDavis/SuiteSparse
+CHOLMOD Supernodal 模块为 GPL-2.0-or-later，其他模块的具体许可见
+随包安装的 CHOLMOD-LICENSE.txt 和 SuiteSparse-LICENSES.txt。
+本配置启用了 GPL 模块，不能表述成仅使用 BSD 或 LGPL 的分解器。
+AMD、COLAMD 与 SuiteSparse_config 的许可文件同时随包保存。
+
+CHOLMOD 与 FactorHiGHS 共用同一份锁定版本的单线程完整 OpenBLAS。
+OpenBLAS 提供 Fortran ABI BLAS、CBLAS 和由 C 源码构建的 LAPACK，
+没有新增 Fortran 编译器依赖。上游许可见 OpenBLAS-LICENSE.txt 与 LAPACK-LICENSE.txt。

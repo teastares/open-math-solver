@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 33,
+  "reference_variant": "pdlp:adaptive:history=0",
+  "candidate_variant": "pdlp:subspace:history=8",
+  "both_variants_all_repeats_pass_count": 5,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "pdlp:adaptive:history=0": 3,
+    "pdlp:subspace:history=8": 2
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "pdlp:adaptive:history=0": {
+      "run_count": 24,
+      "quality_pass_count": 18,
+      "all_repeats_quality_pass_model_count": 6,
+      "quality_failure_counts": {
+        "incomplete": 6
+      },
+      "status_counts": {
+        "optimal": 18,
+        "time_limit": 3,
+        "iteration_limit": 3
+      },
+      "penalized_wall_sgm10_seconds": 4.9982238375029056,
+      "penalized_numerical_sgm10_seconds": 1.3884031540610553,
+      "numerical_budget_exceeded_count": 3,
+      "wall_budget_exceeded_count": 0
+    },
+    "pdlp:subspace:history=8": {
+      "run_count": 24,
+      "quality_pass_count": 15,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 9
+      },
+      "status_counts": {
+        "optimal": 15,
+        "iteration_limit": 6,
+        "time_limit": 3
+      },
+      "penalized_wall_sgm10_seconds": 8.002094699345514,
+      "penalized_numerical_sgm10_seconds": 1.9167607703537326,
+      "numerical_budget_exceeded_count": 3,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 3,
+        "pdlp:subspace:history=8": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "pdlp:adaptive:history=0": 0.006857700063847005,
+        "pdlp:subspace:history=8": 0.007293700007721782
+      },
+      "median_numerical_seconds": {
+        "pdlp:adaptive:history=0": 0.0002231,
+        "pdlp:subspace:history=8": 0.0002715
+      },
+      "wall_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.006829099962487817,
+          0.00947350007481873
+        ],
+        "pdlp:subspace:history=8": [
+          0.006745999911800027,
+          0.008801499963738024
+        ]
+      },
+      "numerical_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.0002209,
+          0.0002379
+        ],
+        "pdlp:subspace:history=8": [
+          0.0002638,
+          0.0002768
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9402223914593161,
+      "numerical_speedup_reference_over_candidate": 0.821731123388582,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "pdlp:adaptive:history=0"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 3,
+        "pdlp:subspace:history=8": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "pdlp:adaptive:history=0": 0.011670300038531423,
+        "pdlp:subspace:history=8": 0.01223059999756515
+      },
+      "median_numerical_seconds": {
+        "pdlp:adaptive:history=0": 0.0045824,
+        "pdlp:subspace:history=8": 0.0045796
+      },
+      "wall_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.011492399964481592,
+          0.012847400037571788
+        ],
+        "pdlp:subspace:history=8": [
+          0.011446599964983761,
+          0.012756299925968051
+        ]
+      },
+      "numerical_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.004552499999999999,
+          0.0045919
+        ],
+        "pdlp:subspace:history=8": [
+          0.0045016,
+          0.0045873
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9541886776490711,
+      "numerical_speedup_reference_over_candidate": 1.0006114071097914,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "pdlp:adaptive:history=0"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 3,
+        "pdlp:subspace:history=8": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "pdlp:adaptive:history=0": 0.11818639992270619,
+        "pdlp:subspace:history=8": 0.08600370003841817
+      },
+      "median_numerical_seconds": {
+        "pdlp:adaptive:history=0": 0.1094155,
+        "pdlp:subspace:history=8": 0.0774667
+      },
+      "wall_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.1180817000567913,
+          0.1204966000514105
+        ],
+        "pdlp:subspace:history=8": [
+          0.08597030001692474,
+          0.08758040005341172
+        ]
+      },
+      "numerical_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.1084582,
+          0.1114982
+        ],
+        "pdlp:subspace:history=8": [
+          0.077408,
+          0.0777587
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.3742013409877933,
+      "numerical_speedup_reference_over_candidate": 1.4124197881154097,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "pdlp:subspace:history=8"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 3,
+        "pdlp:subspace:history=8": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "pdlp:adaptive:history=0": 0.05580039997585118,
+        "pdlp:subspace:history=8": 0.04205819999333471
+      },
+      "median_numerical_seconds": {
+        "pdlp:adaptive:history=0": 0.047066,
+        "pdlp:subspace:history=8": 0.0337577
+      },
+      "wall_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.0551351000322029,
+          0.0561273000203073
+        ],
+        "pdlp:subspace:history=8": [
+          0.04168459994252771,
+          0.04382330004591495
+        ]
+      },
+      "numerical_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          0.0469987,
+          0.0472934
+        ],
+        "pdlp:subspace:history=8": [
+          0.0337382,
+          0.0338159
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.3267424660278924,
+      "numerical_speedup_reference_over_candidate": 1.3942300571425184,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "pdlp:subspace:history=8"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 3,
+        "pdlp:subspace:history=8": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 3,
+        "pdlp:subspace:history=8": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "pdlp:adaptive:history=0": 1.7693426000187173,
+        "pdlp:subspace:history=8": 1.9258785999845713
+      },
+      "median_numerical_seconds": {
+        "pdlp:adaptive:history=0": 1.7542666,
+        "pdlp:subspace:history=8": 1.9116124
+      },
+      "wall_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          1.7652335000457242,
+          1.7914454999845475
+        ],
+        "pdlp:subspace:history=8": [
+          1.9203806000296026,
+          1.9325912001077086
+        ]
+      },
+      "numerical_range_seconds": {
+        "pdlp:adaptive:history=0": [
+          1.751271,
+          1.7775711
+        ],
+        "pdlp:subspace:history=8": [
+          1.9062449999999997,
+          1.9164029999999999
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9187196950175842,
+      "numerical_speedup_reference_over_candidate": 0.9176894855881872,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "pdlp:adaptive:history=0"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 0,
+        "pdlp:subspace:history=8": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "pdlp:adaptive:history=0": 0,
+        "pdlp:subspace:history=8": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。time_limit 是后端求解预算，并非严格端到端截止；质量复核可能产生少量超限，超限次数单列。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\subspace-development-ablation"
+}

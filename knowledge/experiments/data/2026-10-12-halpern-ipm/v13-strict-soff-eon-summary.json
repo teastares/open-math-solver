@@ -1,0 +1,432 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 48,
+  "reference_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off",
+  "candidate_variant": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on",
+  "both_variants_all_repeats_pass_count": 8,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 1,
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 7
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.07620093476318436,
+      "penalized_numerical_sgm10_seconds": 0.06338059810317162,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.08477497739469099,
+      "penalized_numerical_sgm10_seconds": 0.0720118255982467,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.007534799980930984,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.007402600022032857
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.0002741,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0002855
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.007320200093090534,
+          0.009175100014545023
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.006835700012743473,
+          0.008477600058540702
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.0002721,
+          0.0002799
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0002829,
+          0.0002886
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.017858584619546,
+      "numerical_speedup_reference_over_candidate": 0.9600700525394046,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.008594700018875301,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.009320899960584939
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.0009735,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0019525
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.008086999994702637,
+          0.009764800081029534
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.008437399985268712,
+          0.010892000049352646
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.000952,
+          0.0009984
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0015732,
+          0.0020691
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9220890745764356,
+      "numerical_speedup_reference_over_candidate": 0.49859154929577465,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.017022800049744546,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.024565699975937605
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.0084581,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0157328
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.016823099926114082,
+          0.017969900043681264
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.024200999992899597,
+          0.025715499999932945
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.0083377,
+          0.008493
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0156351,
+          0.015815
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.6929499288202079,
+      "numerical_speedup_reference_over_candidate": 0.5376093257398555,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.01179949997458607,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.011898000026121736
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.0037294,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0039516
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.011581099941395223,
+          0.013702900032512844
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.01181610010098666,
+          0.013318400015123188
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.0037283,
+          0.0037545999999999994
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0038276,
+          0.0041056
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9917212933838114,
+      "numerical_speedup_reference_over_candidate": 0.9437696123089381,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.02309649996459484,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.03289050003513694
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.0138983,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0228991
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.022985999938100576,
+          0.02484209998510778
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.03255530004389584,
+          0.0331612000009045
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.0137605,
+          0.013932
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0224787,
+          0.0234435
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7022240446305419,
+      "numerical_speedup_reference_over_candidate": 0.6069365171556962,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.13505589996930212,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.15082550002261996
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.1197428,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.1356312
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.13449019996915013,
+          0.13564729993231595
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.14986989996396005,
+          0.15232930006459355
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.1195741,
+          0.1203831
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.1349858,
+          0.1378297
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8954447354661327,
+      "numerical_speedup_reference_over_candidate": 0.8828558620730332,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.3064462000038475,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.33253150002565235
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.2741938,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.2992045
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.30537409998942167,
+          0.30803920002654195
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.33127280010376126,
+          0.3373849999625236
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.2737967,
+          0.2748401
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.2990516,
+          0.3046949
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9215554014588315,
+      "numerical_speedup_reference_over_candidate": 0.9164093454476787,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 3,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.10062669997569174,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.11008730006869882
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": 0.0885009,
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": 0.0978204
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.10043840005528182,
+          0.10371509997639805
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.10969680000562221,
+          0.11239429994020611
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": [
+          0.0881528,
+          0.0897469
+        ],
+        "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": [
+          0.0975173,
+          0.0986431
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9140627475911999,
+      "numerical_speedup_reference_over_candidate": 0.9047284615478979,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=strict:corrections=0:solver=qdldl:prefilter=off": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "strict",
+      "ipm_central_corrections": 0,
+      "ipm_linear_solver": "qdldl",
+      "ipm_inexact_prefilter": "off",
+      "iteration_limit": null,
+      "scaling_passes": null
+    },
+    "ipm:singletons=off:dynamic=off:equilibrate=on:linear=inexact:corrections=0:solver=qdldl:prefilter=on": {
+      "backend": "ipm",
+      "mode": null,
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "off",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_linear_accuracy": "inexact",
+      "ipm_central_corrections": 0,
+      "ipm_linear_solver": "qdldl",
+      "ipm_inexact_prefilter": "on",
+      "iteration_limit": null,
+      "scaling_passes": null
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v13-strict-soff-eon"
+}

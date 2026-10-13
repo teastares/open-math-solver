@@ -1,0 +1,89 @@
+-- HIGHS_VCPKG: OFF
+-- HIGHS version: 1.15.1
+-- Git hash: 04024d7
+-- Build C++ library: ON
+-- Build C++ executable: OFF
+-- Build shared extras library: OFF
+-- Build Fortran: OFF
+-- Build CSharp: OFF
+-- Build HIPO: OFF
+-- Build all tests: OFF
+-- ZLIB: OFF
+-- Build examples: OFF
+-- Build pdlp with GPU: OFF
+-- Use FindCUDAConf: OFF
+-- Build GPU with delayed loading: OFF
+-- Build OpenBLAS: OFF
+-- Build type: Release
+-- Found long size: 4
+-- Found long long size: 8
+-- Found int64_t size: 8
+-- Found unsigned long size: 4
+-- Found unsigned long long size: 8
+-- Found uint64_t size: 8
+-- Found int * size: 8
+-- IPO / LTO not currently supported building HiGHS on MinGW
+-- IPO / LTO: disabled because it is not supported
+-- FAST_BUILD set to on.
+-- Build C++ example: OFF
+-- Build CSharp example: OFF
+-- Build dotnet package: OFF
+-- No CSharp support
+-- .Net: Use .Net Framework 2.1 support: ON
+-- Configuring highs_extras version 1.15.1
+-- Configuring done (0.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/Documents/codes/solver/build/release
+[1/14] Building CXX object CMakeFiles/test_pdlp.dir/tests/test_pdlp.cpp.obj
+[2/14] Building CXX object CMakeFiles/solver_pdlp.dir/src/pdlp.cpp.obj
+[3/14] Linking CXX static library libsolver_pdlp.a
+[4/14] Building CXX object CMakeFiles/solver.dir/src/main.cpp.obj
+[5/14] Building CXX object CMakeFiles/test_pdlp_adversarial.dir/tests/test_pdlp_adversarial.cpp.obj
+[6/14] Linking CXX executable test_pdlp.exe
+[7/14] Linking CXX executable test_pdlp_adversarial.exe
+[8/14] Building CXX object CMakeFiles/solver_highs.dir/src/highs_backend.cpp.obj
+In file included from D:/Documents/codes/solver/src/highs_backend.cpp:4:
+In file included from D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:20:
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/lp_data/HighsRunData.h:150:25: warning: unused variable 'record_int64' [-Wunused-variable]
+  150 |     RunDataRecordInt64* record_int64;
+      |                         ^~~~~~~~~~~~
+In file included from D:/Documents/codes/solver/src/highs_backend.cpp:4:
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:1563:43: warning: unused parameter 'hot_start' [-Wunused-parameter]
+ 1563 |   HighsStatus setHotStart(const HotStart& hot_start) {
+      |                                           ^
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:1574:37: warning: unused parameter 'frozen_basis_id' [-Wunused-parameter]
+ 1574 |   HighsStatus freezeBasis(HighsInt& frozen_basis_id) {
+      |                                     ^
+D:/Documents/codes/solver/build/release/_deps/highs-src/highs/Highs.h:1583:44: warning: unused parameter 'frozen_basis_id' [-Wunused-parameter]
+ 1583 |   HighsStatus unfreezeBasis(const HighsInt frozen_basis_id) {
+      |                                            ^
+4 warnings generated.
+[9/14] Linking CXX static library libsolver_highs.a
+[10/14] Linking CXX executable solver.exe
+[11/14] Building CXX object CMakeFiles/test_backend.dir/tests/test_backend.cpp.obj
+[12/14] Building CXX object CMakeFiles/test_pdlp_acceleration.dir/tests/test_pdlp_acceleration.cpp.obj
+[13/14] Linking CXX executable test_backend.exe
+[14/14] Linking CXX executable test_pdlp_acceleration.exe
+Test project D:/Documents/codes/solver/build/release
+    Start 1: verification
+1/9 Test #1: verification .....................   Passed    0.01 sec
+    Start 2: lp_optimality
+2/9 Test #2: lp_optimality ....................   Passed    0.01 sec
+    Start 3: pdlp
+3/9 Test #3: pdlp .............................   Passed    0.02 sec
+    Start 4: pdlp_adversarial
+4/9 Test #4: pdlp_adversarial .................   Passed    0.02 sec
+    Start 5: pdlp_acceleration
+5/9 Test #5: pdlp_acceleration ................   Passed    0.03 sec
+    Start 6: backend
+6/9 Test #6: backend ..........................   Passed    0.03 sec
+    Start 7: cli_and_benchmark
+7/9 Test #7: cli_and_benchmark ................   Passed    1.59 sec
+    Start 8: pdlp_comparison
+8/9 Test #8: pdlp_comparison ..................   Passed    0.29 sec
+    Start 9: comparison_protocol
+9/9 Test #9: comparison_protocol ..............   Passed    0.46 sec
+
+100% tests passed out of 9
+
+Total Test time (real) =   2.51 sec

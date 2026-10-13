@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "model_count": 8,
+  "repeats": 3,
+  "run_count": 48,
+  "quality_pass_count": 42,
+  "both_backends_all_repeats_pass_count": 6,
+  "wall_winner_counts": {
+    "highs": 6
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "backends": {
+    "highs": {
+      "run_count": 24,
+      "quality_pass_count": 24,
+      "all_repeats_quality_pass_model_count": 8,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 24
+      },
+      "penalized_wall_sgm10_seconds": 0.033468930728797384,
+      "penalized_numerical_sgm10_seconds": 0.021136453253339613,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "pdlp": {
+      "run_count": 24,
+      "quality_pass_count": 18,
+      "all_repeats_quality_pass_model_count": 6,
+      "quality_failure_counts": {
+        "incomplete": 6
+      },
+      "status_counts": {
+        "optimal": 18,
+        "time_limit": 3,
+        "iteration_limit": 3
+      },
+      "penalized_wall_sgm10_seconds": 4.9575361000521765,
+      "penalized_numerical_sgm10_seconds": 1.3574544811697689,
+      "numerical_budget_exceeded_count": 3,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.007574700051918626,
+        "pdlp": 0.007650499930605292
+      },
+      "median_numerical_seconds": {
+        "highs": 0.000515,
+        "pdlp": 0.0002138
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.0070714999455958605,
+          0.009809699957259
+        ],
+        "pdlp": [
+          0.007097400026395917,
+          0.008236499968916178
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0004988000000000001,
+          0.0005371
+        ],
+        "pdlp": [
+          0.0002134,
+          0.0002155
+        ]
+      },
+      "wall_speedup_highs_over_pdlp": 0.99009216660686,
+      "numerical_speedup_highs_over_pdlp": 2.408793264733396,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.008050699951127172,
+        "pdlp": 0.011254000011831522
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0010708,
+        "pdlp": 0.004139
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.007923500030301511,
+          0.010105599998496473
+        ],
+        "pdlp": [
+          0.010989899979904294,
+          0.012659400003030896
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0010195,
+          0.0010987999999999998
+        ],
+        "pdlp": [
+          0.0041258,
+          0.0041634
+        ]
+      },
+      "wall_speedup_highs_over_pdlp": 0.7153634212425212,
+      "numerical_speedup_highs_over_pdlp": 0.25870983329306596,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01261600002180785,
+        "pdlp": 0.10615700006019324
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0041129,
+        "pdlp": 0.09711129999999998
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.012341500027105212,
+          0.013699300005100667
+        ],
+        "pdlp": [
+          0.10556689999066293,
+          0.10678620007820427
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0040384999999999996,
+          0.004122799999999999
+        ],
+        "pdlp": [
+          0.0970958,
+          0.0974421
+        ]
+      },
+      "wall_speedup_highs_over_pdlp": 0.11884284611146051,
+      "numerical_speedup_highs_over_pdlp": 0.04235243478359368,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.010198200005106628,
+        "pdlp": 0.051643499988131225
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0019993,
+        "pdlp": 0.0433043
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.009724700008518994,
+          0.011272500036284328
+        ],
+        "pdlp": [
+          0.051623100065626204,
+          0.053166499943472445
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0019574,
+          0.0020145000000000002
+        ],
+        "pdlp": [
+          0.0432662,
+          0.0435932
+        ]
+      },
+      "wall_speedup_highs_over_pdlp": 0.19747306064558737,
+      "numerical_speedup_highs_over_pdlp": 0.04616862528663435,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.01638939999975264,
+        "pdlp": 0.4834555999841541
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0069275000000000005,
+        "pdlp": 0.4730199
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.016057400032877922,
+          0.017559299943968654
+        ],
+        "pdlp": [
+          0.4824079000391066,
+          0.4843932999065146
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0069223999999999996,
+          0.006931
+        ],
+        "pdlp": [
+          0.4726009,
+          0.4735006
+        ]
+      },
+      "wall_speedup_highs_over_pdlp": 0.03390052778432978,
+      "numerical_speedup_highs_over_pdlp": 0.014645261224739171,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "highs": 0.07939669990446419,
+        "pdlp": 1.5892764000454918
+      },
+      "median_numerical_seconds": {
+        "highs": 0.0650372,
+        "pdlp": 1.5751887
+      },
+      "wall_range_seconds": {
+        "highs": [
+          0.07875019998755306,
+          0.0796942999586463
+        ],
+        "pdlp": [
+          1.5581748000113294,
+          1.6375949999783188
+        ]
+      },
+      "numerical_range_seconds": {
+        "highs": [
+          0.0643918,
+          0.065722
+        ],
+        "pdlp": [
+          1.5434352,
+          1.6225606
+        ]
+      },
+      "wall_speedup_highs_over_pdlp": 0.049957766881954274,
+      "numerical_speedup_highs_over_pdlp": 0.04128851356031186,
+      "wall_winner": "highs"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "highs": 3,
+        "pdlp": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。time_limit 是后端求解预算，并非严格端到端截止；质量复核可能产生少量超限，超限次数单列。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\adaptive-final-development"
+}

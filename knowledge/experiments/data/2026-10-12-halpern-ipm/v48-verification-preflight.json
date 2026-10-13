@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "final": false,
+  "verified_at_utc": "2026-10-13T16:18:21.318213+00:00",
+  "script_sha256": "8bbeab9ae5436dd495c8233efe8b5047a30e181ff605b7da8ff19a5d65648500",
+  "scope": "仅重核既有来源和数据，不编译、不求解、不重新测量。",
+  "self_test": {
+    "passed": true,
+    "invalid_cases_rejected": 17,
+    "gate_cases": 7,
+    "valid_counter_cases": 2,
+    "solver_runs": 0
+  },
+  "solver_sha256": "38b90b7034120b57405cfcdff5e4569cca8622a4ed2aa7a7a7eb580217e7484c",
+  "source_files_verified": 92,
+  "libraries_verified": 17,
+  "source_zip_sha256": "a03a899eeba74e255952bc0c2fab5af1abfeed7f8fa6d488d264a1dd9f9ee2f5",
+  "plan_sha256": "160ad4060e3135a1146e9b034e0d38103288cd2c377c94e4c28f0145837fb179",
+  "build_attempt_evidence": {
+    "files": {
+      "v48-freeze-attempt1.py": "034c0572908226add8be768912914da68a08a87dcf27b11c3bdcecc8235345fb",
+      "v48-blas-build-attempt1.log": "524eece1967e64a1328c2bb6f33cf9574f69943983908c7cca88b4a6c8089675",
+      "v48-blas-build-attempt2.log": "7d02ad85201d70a73b078b3c6f0b6a74c1f0c6e355ad6aa184a2c491b766de7b"
+    },
+    "original_guard_precedes_copy": true,
+    "scope": "保留初次依赖配置失败、随后依赖构建及原冻结器来源；源码顺序不代替实际构建日志。"
+  },
+  "trajectories": {
+    "pairs": 56,
+    "budget_limited_pairs": [],
+    "non_budget_pairs_equal": 56,
+    "sha256": "eea6442dca9c9fc26f775a3a5c0a1b955cbc01aeb0070c649f4a4c52833f9f07"
+  },
+  "groups": [
+    {
+      "tag": "development-homogeneous-normal_cholmod-retries0",
+      "stage": "development",
+      "raw_records": 66,
+      "quality_pass_count": 66,
+      "process_returncode": 0,
+      "manifest_sha256": "3442e56f7ddfe6d46260dc44486a7d751a3d90e2b88aeef01b1a66eb23fe901f",
+      "summary_sha256": "807a744af2e87e96dd65bf235d9db5092012490880669d4ac91b1e1d1f275b30",
+      "raw_sha256": "b61ef0067431ee66be2b39506d53d41826ca9ca4a1073dddd761315b153d0891",
+      "missing_reports": 0,
+      "status_counts": {
+        "optimal": 66
+      },
+      "actual_factor_backends": {
+        "normal": 33,
+        "normal_cholmod": 33
+      }
+    },
+    {
+      "tag": "highs",
+      "stage": "highs",
+      "raw_records": 182,
+      "quality_pass_count": 179,
+      "process_returncode": 1,
+      "manifest_sha256": "92c6d74fef697a7c7d0f8cce050f79f5661859b5acf1c509289cc7ff69b1e432",
+      "summary_sha256": "8ebaef3109138896257db05ae2a0878891cbda75f89e171abebd9b8aad1bc504",
+      "raw_sha256": "af539a51d1395140f3cff30f3edc0e39c0e0a8269aed890b3ff5f1d63feac3b8",
+      "missing_reports": 0,
+      "status_counts": {
+        "optimal": 179,
+        "numerical_error": 3
+      },
+      "actual_factor_backends": {
+        "null": 91,
+        "normal_cholmod": 90,
+        "factorhighs": 1
+      }
+    },
+    {
+      "tag": "netlib-homogeneous-normal_cholmod-retries0",
+      "stage": "netlib",
+      "raw_records": 182,
+      "quality_pass_count": 177,
+      "process_returncode": 1,
+      "manifest_sha256": "3d1a55ae6f651c4776028ccdb92e01ef2f5c43106f6d6a5f71bbe6bc2738651b",
+      "summary_sha256": "e34f07a6929603c9ee76418095c44e831dfea718e189c037884c8c1af0567969",
+      "raw_sha256": "6ca91c8699d62d632cdde1cc62bfecbc5dd955487361fd3e442f48544fcce714",
+      "missing_reports": 0,
+      "status_counts": {
+        "optimal": 177,
+        "numerical_error": 4,
+        "time_limit": 1
+      },
+      "actual_factor_backends": {
+        "normal": 90,
+        "normal_cholmod": 90,
+        "factorhighs": 2
+      }
+    },
+    {
+      "tag": "probe-homogeneous-normal_cholmod-retries0",
+      "stage": "probe",
+      "raw_records": 10,
+      "quality_pass_count": 6,
+      "process_returncode": 1,
+      "manifest_sha256": "e3c2f955e0e977e349b86d355e97ca3d84329f843d1ab28ada6bb7bd7d3ee2af",
+      "summary_sha256": "312c375dac2a2ccc5bd6b49335302583be8669f12c02f2f7a500cfecc7b95476",
+      "raw_sha256": "c475b2b700a52053f828d0d8c27939ac27a2210ba70c887f1aff190dc0bf130d",
+      "missing_reports": 0,
+      "status_counts": {
+        "time_limit": 1,
+        "numerical_error": 3,
+        "optimal": 6
+      },
+      "actual_factor_backends": {
+        "normal": 5,
+        "normal_cholmod": 5
+      }
+    }
+  ],
+  "raw_records": 440,
+  "derived": {
+    "gate": {
+      "retries": 0,
+      "development_lost": [],
+      "development_time_improved": true,
+      "probe_gain": [],
+      "probe_lost": [],
+      "eligible_for_netlib": true,
+      "plan_sha256": "160ad4060e3135a1146e9b034e0d38103288cd2c377c94e4c28f0145837fb179"
+    },
+    "details": [
+      {
+        "path": "v48-development-detail.json",
+        "sha256": "e63d1afef495fdcda683744d438f38c7c0b023f34e5fd87ec81daf21d4da04f5"
+      },
+      {
+        "path": "v48-probe-detail.json",
+        "sha256": "859021691b9338222fed9728d076d950b92b1e972befcbb33fc0595b7adb0458"
+      },
+      {
+        "path": "v48-coverage-detail.json",
+        "sha256": "359c656227b059d1e4e462d6e9899f7650c0d1197039c21392b60442ec2cb981"
+      }
+    ],
+    "expanded_netlib": true,
+    "direct_highs": true
+  },
+  "candidate_backend_usage": {
+    "reports": 220,
+    "actual_cholmod_reports": 218,
+    "factor_attempts_in_cholmod_reports": 6035,
+    "largest_reported_xsize": 3200112
+  }
+}

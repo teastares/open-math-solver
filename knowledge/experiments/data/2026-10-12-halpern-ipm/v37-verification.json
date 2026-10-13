@@ -1,0 +1,95 @@
+{
+  "verified_at_utc": "2026-10-12T17:43:40.143181+00:00",
+  "solver_sha256": "3390d85ea78792133b7fed79abde4d5de61dc477336a545e428549fb131ad126",
+  "source_files_verified": 87,
+  "source_current_scope": "当前生产文件与build程序在v38修改前快照核对；本次核验继续检查冻结包与v37程序，不把后续生产改动当作v37偏差。",
+  "pre_v38_source_snapshot": "v37-pre-v38-source-verification.json",
+  "pre_v38_source_snapshot_sha256": "b42a54a5ce0af6fb8e00bba2fe19570e9254e9d8f2240b2ef876025a64b247fc",
+  "changed_production_files": [
+    "include/solver/backend.hpp",
+    "include/solver/detail/ipm_presolve.hpp",
+    "include/solver/ipm_options.hpp",
+    "scripts/benchmark.py",
+    "scripts/compare_lp.py",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_compare_lp.py",
+    "tests/test_ipm.cpp"
+  ],
+  "archive_groups_verified": [
+    {
+      "tag": "development-factorhighs-strict",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "7b0a5c96dc5d803f591e50b915bfedaeb79556281a76c4a30ab6c12f3651c1a1",
+      "summary_sha256": "03a181229615e92a56de8381209f3386f655d4bd10500bb7decc74234be50791",
+      "compressed_raw_sha256": "abcb6c1e69b3f2c133cf3dcca551c570466d7c3d79ec6f29adf982d9234434d0"
+    },
+    {
+      "tag": "development-normal_augmented-blockwise",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "5c55d9c5fa81139db62f48533b882047bd2caa5a284f4709de02ceb58bb3535b",
+      "summary_sha256": "b9a7e2dcd1bd8c1a3f8ec97e9b088b4d78bcfa653c7fe97eef76a91da3cc0d5f",
+      "compressed_raw_sha256": "5ccd8c386fd71a0176854bee58f9774fdd819ddefc067e59ea2e1ae9809cdbf0"
+    },
+    {
+      "tag": "development-normal_augmented-curvature_regularization",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "4c35a2d113f61cbfcc55edab7400da86c227da19f3468c9ccbcb221e3540642c",
+      "summary_sha256": "0b06a97e0db3d2a9d243b02157d2066565f9ffaaeba6a98229978516448e7920",
+      "compressed_raw_sha256": "ae6067fedfcb68e8625cf9d2e2ffe649d84adff71071c094d9e82ed155d05428"
+    },
+    {
+      "tag": "development-normal_augmented-strict",
+      "models": 8,
+      "repeats": 3,
+      "raw_records": 48,
+      "manifest_sha256": "3fb2c31869aa56834142541ba22e306ad0e937f8b1fa6d3b679c482ff91c8018",
+      "summary_sha256": "2641ca8d7df212f1d65c01b1e35b25543d7f5d0ab8b8b95783586c7bf48f40e5",
+      "compressed_raw_sha256": "b0aca615b2ec1661ba9860fddb1da5126e728fc39d914a1b2b674edeefffbcbd"
+    },
+    {
+      "tag": "netlib-normal_augmented-curvature_regularization-ipm",
+      "models": 91,
+      "repeats": 1,
+      "raw_records": 182,
+      "manifest_sha256": "3128743670a17eb71522018fc06bc0c8465224acd26b34cb2d09a2910ca991ff",
+      "summary_sha256": "1e44296ef516e93c3f1003c6597662520396795a70e91d2382be6acdf4926c72",
+      "compressed_raw_sha256": "04d2692a8f711b4b36095958a1b8141ee6d76259839d8c71af0ffd9e556b3744"
+    },
+    {
+      "tag": "netlib-normal_augmented-strict-ipm",
+      "models": 91,
+      "repeats": 1,
+      "raw_records": 182,
+      "manifest_sha256": "deaeec3201a935c65a02e84210ee68ca652c7f7eddfff8f61ebf0cad726c616f",
+      "summary_sha256": "0341c420c7b33efa73e9f06f1a1154d3f6ba81d28b31d9233a5aad71dbcc5594",
+      "compressed_raw_sha256": "c11bb54ec8af8bca4c31567cd42a087a962e5031e4801799c1e9e752793002fc"
+    }
+  ],
+  "raw_records_verified": 556,
+  "model_and_solver_pre_post_hash_records_verified": 556,
+  "presolve_off_trajectories_verified": 24,
+  "trajectory_exclusions": [
+    "timings",
+    "backend_version",
+    "新增且关闭的presolve_singleton_rows与其零计数"
+  ],
+  "structural_audit_inputs_verified": 91,
+  "structural_performance_count_matches": 364,
+  "structural_driver_identity_verified": true,
+  "structural_summary_recomputed": true,
+  "structural_scope": "0次迭代和分解，仅解析及变换；相关性不构成因果证明。",
+  "markdown_files_checked": 25,
+  "local_links_checked": 1416,
+  "broken_links": [],
+  "markdown_scope": "项目维护文档，不含build第三方依赖、.tools与results。",
+  "verification_script_sha256": "a6f9dc8ede1b740079617894dd6eecea2930a057b2a0512a1bd7f728611a7c5a",
+  "passed": true
+}
