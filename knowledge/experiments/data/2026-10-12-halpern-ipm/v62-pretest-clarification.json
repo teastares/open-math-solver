@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-10-23T09:43:03.991550+00:00",
+  "plan_sha256": "72bfab365ee388a4db2357f111531558772cf5ac07e28e1b0e9fbd5c0cf96c9b",
+  "before_first_build_and_lp": true,
+  "scope": "新增谓词仅用于原有限非正分母触发的 homogeneous_extended blockwise 常数恢复；普通常数右端、方向右端及所有其他模式不启用。计划 changes[1] 的常数右端及其修复特指此恢复调用。",
+  "validation_scope": "单测直接验证标量 helper 输入、数值和预算语义及小LP计数关系；KktFactor 拒绝后继续/耗尽只先静态审查，是否实际触发须由固定公开探针记录确认，不预称已获执行覆盖。",
+  "supplemental_references": [
+    "https://petsc.org/release/manualpages/KSP/KSPSetConvergenceTest/",
+    "https://petsc.org/release/src/ksp/ksp/impls/gmres/gmres.c.html",
+    "https://github.com/oxfordcontrol/Clarabel.rs/blob/v0.11.1/src/solver/implementations/default/kktsystem.rs"
+  ],
+  "unchanged": "数值与墙钟预算、3×32搜索、容差、模型集、兼容和性能门槛均不变；未查看本轮LP结果。"
+}

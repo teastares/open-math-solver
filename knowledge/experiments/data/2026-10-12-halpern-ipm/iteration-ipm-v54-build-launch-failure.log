@@ -1,0 +1,45 @@
+At D:\Documents\codes\solver\scripts\build-windows.ps1:11 char:61
++ ... Path $workspaceRoot 'dependencies.lock.json') -Raw | ConvertFrom-Json
++                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'dependencies.lock.json') -Raw | ConvertFrom-Json
+$compiler = Join-Path $workspaceRoot ('.tools/' + ($lock.windows_tools | Where-Object name -eq 'llvm-mingw').directory 
++ '/bin')
+$cmake = Join-Path $workspaceRoot ('.tools/' + ($lock.windows_tools | Where-Object name -eq 'cmake').directory + '/bin'
+)
+$ninja = Join-Path $workspaceRoot ('.tools/' + ($lock.windows_tools | Where-Object name -eq 'ninja').directory)
+$python = Join-Path $workspaceRoot ('.tools/' + ($lock.windows_tools | Where-Object name -eq 'python').directory + '/py
+thon.exe')
+if (-not (Test-Path -LiteralPath (Join-Path $compiler 'clang++.exe'))) {
+    throw '璇峰厛杩愯' in expression or statement.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:25 char:26
++ ...  & (Join-Path $cmake 'cmake.exe') --build $blasBuild --parallel $Jobs
++                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'cmake.exe') --build $blasBuild --parallel $Jobs
+    if ($LASTEXITCODE -ne 0) { throw 'OpenBLAS' in expression or statement.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:30 char:26
++     & (Join-Path $cmake 'cmake.exe') --build $build --parallel $Jobs
++                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'cmake.exe') --build $build --parallel $Jobs
+    if ($LASTEXITCODE -ne 0) { throw '缂栬瘧澶辫触銆?' in expression or statement.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:34 char:42
++         if ($LASTEXITCODE -ne 0) { throw '鍥炲綊娴嬭瘯澶辫触銆? }
++                                          ~~~~~~~~~~~~~~
+The string is missing the terminator: '.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:34 char:34
++         if ($LASTEXITCODE -ne 0) { throw '鍥炲綊娴嬭瘯澶辫触銆? }
++                                  ~
+Missing closing '}' in statement block or type definition.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:32 char:26
++     if (-not $SkipTests) {
++                          ~
+Missing closing '}' in statement block or type definition.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:20 char:5
++ try {
++     ~
+Missing closing '}' in statement block or type definition.
+At D:\Documents\codes\solver\scripts\build-windows.ps1:39 char:1
++ 
+The Try statement is missing its Catch or Finally block.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+ 

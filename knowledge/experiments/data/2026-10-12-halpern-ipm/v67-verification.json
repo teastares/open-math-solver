@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-24T05:19:58.747980+00:00",
+  "plan_sha256": "0dafab3cc269cec22abe22bb2dbff014dd7a8d2d45255acd54ac3bfad0f42c8b",
+  "analysis_sha256": "6b709f26d36184003b8fcb2db80cdf7e83f4d2307c7592bed90165982658cb3f",
+  "source_sha256": "5063999bb98e3a17c947219b18b69fed2d250f0395cad725cf688e6fba341364",
+  "checks": 1471386,
+  "identity_files_checked": 1511,
+  "source_count": 95,
+  "library_count": 17,
+  "external_library_count": 8,
+  "runs": 18,
+  "non_budget_equal_pairs": 12,
+  "capture_files": 12,
+  "unique_numerical_captures": 1,
+  "oracle_runs_preserved": 1,
+  "analysis_outcomes": [
+    {
+      "witness": false,
+      "oracle_runs": 1,
+      "replay_equal": true,
+      "oracle_candidate_available": false,
+      "oracle_status": "error",
+      "oracle_returncode": 2,
+      "oracle_solve_seconds": 0,
+      "continuous_baseline_witness": true,
+      "production_baseline_witness": false,
+      "production_stored_accepted": false,
+      "continuous_baseline_maximum_normalized_residual": "0.00057897843784559501420138110799831416821468159296230064287804521907385240513831077",
+      "production_baseline_maximum_normalized_residual": "2.6353780999742188695321198411054365417683740973573598635699353119371282901703840"
+    }
+  ],
+  "solver_runs_by_verifier": 0,
+  "oracle_runs_by_verifier": 0,
+  "limits": [
+    "独立复核原系数重放与原K0残差；不调用runner判定或分析数学实现。",
+    "逐行核MPS全约束和中心RHS，不重复整块精确K0Z投影及其逐项写模误差统计。",
+    "只核本轮诊断证据，不新增公开LP性能成绩；离线oracle失败保留，不作不可行证明。"
+  ]
+}

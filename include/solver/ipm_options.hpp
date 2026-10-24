@@ -10,6 +10,8 @@ struct IpmOptions {
   std::string method = "mehrotra";
   std::int64_t max_iterations = 200;
   int scaling_passes = 5;
+  // 仅控制行列缩放完成后的目标归一化；关闭时保留其成本与单位目标恢复系数。
+  bool objective_scaling = true;
   bool eliminate_singletons = false;
   bool dynamic_regularization = false;
   bool equilibrate_kkt = false;
@@ -22,6 +24,7 @@ struct IpmOptions {
   // full_newton 在未消元的三块 Newton 方程上做有界加权 FGMRES，初始化仍严格。
   // bounded_newton 仅保留最多三次改进中的最佳有限方向，内层未达标仍交由外层验算。
   // homogeneous_scaled 仅用于齐次法：正能量预条件与最多三次完整五块改进，初始化仍严格。
+  // homogeneous_repair 仅在齐次标量分母有限非正时，用同一因子按块严格重算一次常数方向。
   std::string linear_accuracy = "strict";  // 另有 backward、inexact 实验规则。
   int central_corrections = 0;
   // 初始化/预测校正组失败后的重分解预算；另支持完整 Newton 方程模式。
@@ -31,6 +34,7 @@ struct IpmOptions {
   // normal_extended 保留 Schur 装配、分解、回代和恢复的 long double，结构超限回退增广。
   // normal_refined 复用 double 因子，在 Schur 层做有界扩展精度残差校正。
   // normal_cholmod 保持原 Gram 装配和 AMD，仅换用 CHOLMOD 超节点分解；结构超限回退增广。
+  // normal_cholmod_aat 保持原 AMD 和结构预算，将矩形输入的 Gram 数值乘积交由 CHOLMOD 完成。
   std::string linear_solver = "qdldl";
   bool inexact_prefilter = false;
   bool eliminate_fixed_variables = false;

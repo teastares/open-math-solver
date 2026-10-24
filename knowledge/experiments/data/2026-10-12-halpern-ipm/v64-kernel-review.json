@@ -1,0 +1,33 @@
+{
+  "ancestor": "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v62-source.zip",
+  "ancestor_sha256": "7e5b5f13b1481feeab8d6e2ef0db51d999a56799635f6abb39509ab47105e4ce",
+  "version": "ipm-cpu-0.51.0",
+  "files": {
+    "src/ipm.cpp": "a6b1b7e84ba0e9f482999dae0131dd634a78a54533f5a5d1485e19b3823a6e5d",
+    "include/solver/detail/ipm_homogeneous.hpp": "61a8c91170ff91ecdf0761a45c5956ed3443546f31fb7419e8be17337c23cab4",
+    "tests/test_ipm.cpp": "7c3f560ed9705e7f3c675fc7bcfaf53b6b6113f66be2bc69588ac0aa8340dda0"
+  },
+  "changes": [
+    "src/ipm.cpp：Krylov候选组合改用实际模板辅助，原finite_direction和预算位置保持不动，版本0.51.0。",
+    "include/solver/detail/ipm_homogeneous.hpp：小模板仅在long double候选中提升系数乘法；double分支保留原表达式。",
+    "tests/test_ipm.cpp：生产模板的解析消去、符号、连续累加、有限范围及非有限传播，并以生成常数调用原D谓词和齐次标量消元。"
+  ],
+  "static_checks": {
+    "ancestor_three_files_match_identity": true,
+    "source_normalizes_byte_exactly_to_v62": true,
+    "header_normalizes_byte_exactly_to_v62": true,
+    "tests_normalize_byte_exactly_to_v62": true,
+    "finite_direction_unchanged": true,
+    "new_test_called_once": true
+  },
+  "execution": {
+    "build_executed": false,
+    "tests_executed": false,
+    "lp_executed": false
+  },
+  "new_require_count_expected_when_long_double_digits_ge_54_and_wider_range": 11,
+  "review_history": [
+    "首次静态文本逆变换因read_text归一化混合换行不符而失败；随后改用原字节核验通过，候选代码未因此修改。"
+  ],
+  "manifest_sha256": "ea08ab07355d14d36730baf248b9962ca3b2167784e3a8a214fdd400ac182873"
+}

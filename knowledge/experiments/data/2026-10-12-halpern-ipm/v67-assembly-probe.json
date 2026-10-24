@@ -1,0 +1,514 @@
+{
+  "schema": "v67_assembly_probe_1",
+  "posthoc": true,
+  "started_at_utc": "2026-10-24T05:18:22.132440+00:00",
+  "script_path": "D:\\Documents\\codes\\solver\\.tools\\v67-assembly-probe-inline.py",
+  "script_sha256": "02d1be018effc202aa01f9c114dd50c191faea9a389876bdec4282d1129d4ca0",
+  "script_source": "\"\"\"事后固定已有 a0 检查三种候选组装；不搜索系数、不调用 LP 或修改生产。\"\"\"\n\nimport hashlib\nimport importlib.util\nimport json\nfrom fractions import Fraction\nfrom pathlib import Path\nimport struct\nimport sys\nimport time\n\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / \"knowledge/experiments/data/2026-10-12-halpern-ipm\"\nHELPER = DATA / \"v67-analyze.py\"\nHELPER_SHA = \"e79200011b53a3d982681365b5134a546223515837e0ece870de4cb860e14322\"\nANALYSIS = DATA / \"v67-analysis.json\"\nANALYSIS_SHA = \"6b709f26d36184003b8fcb2db80cdf7e83f4d2307c7592bed90165982658cb3f\"\nOUTPUT = DATA / \"v67-assembly-probe.json\"\n\n\ndef digest(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n\nif digest(HELPER) != HELPER_SHA:\n    raise ValueError(\"冻结 v67 分析辅助来源改变\")\nspec = importlib.util.spec_from_file_location(\"v67_assembly_helpers\", HELPER)\nA = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(A)\n\n\ndef accumulated(base, z, coefficients, wide_format, product_format):\n    \"\"\"按实际 j 顺序在指定宽格式累加，保留到最后一次 binary64 写回。\"\"\"\n    values = [Fraction.from_float(x) for x in base]\n    negative_zeros = [x == 0 and A.negative(x) for x in base]\n    dimension = len(base)\n    for j, coefficient in enumerate(coefficients):\n        exact_coefficient = Fraction.from_float(coefficient)\n        for i in range(dimension):\n            direction = z[j * dimension + i]\n            product = A.rounded_binary(exact_coefficient * Fraction.from_float(direction), *product_format)\n            product_negative_zero = not product and A.negative(coefficient) != A.negative(direction)\n            total = values[i] + product\n            negative_zero = not total and not values[i] and not product and negative_zeros[i] and product_negative_zero\n            values[i] = A.rounded_binary(total, *wide_format)\n            negative_zeros[i] = not values[i] and (total < 0 or negative_zero)\n    return values, [A.cast64(value, negative_zero=sign) for value, sign in zip(values, negative_zeros)]\n\n\ndef self_test():\n    wide = (64, -16381, 16384)\n    narrow = (53, -1021, 1024)\n    checks = 0\n\n    def check(value):\n        nonlocal checks\n        A.require(value, \"候选组装纯合成自检失败\")\n        checks += 1\n\n    base, z, coefficients = [2.0 ** 53], [1.0, -(2.0 ** 53)], [1.0, 1.0]\n    check(accumulated(base, z, coefficients, wide, wide)[1] == [1.0])\n    check(accumulated(base, z, coefficients, wide, narrow)[1] == [1.0])\n    check(A.production_combination(base, z, coefficients, wide) == [0.0])\n    base, z, coefficients = [-1.0], [1.0 - 2.0 ** -27], [1.0 + 2.0 ** -27]\n    check(accumulated(base, z, coefficients, wide, wide)[1] == [-2.0 ** -54])\n    check(accumulated(base, z, coefficients, wide, narrow)[1] == [0.0])\n    increment = float(A.power2(-53) + A.power2(-65))\n    check(accumulated([1.0], [1.0], [increment], wide, wide)[1] == [1.0])\n    check(A.cast64(Fraction(1) + Fraction.from_float(increment)) == 1.0 + 2.0 ** -52)\n    check(A.negative(accumulated([-0.0], [1.0], [-0.0], wide, narrow)[1][0]))\n    return {\"passed\": True, \"checks\": checks, \"oracle_runs\": 0, \"original_lp_runs\": 0}\n\n\ndef inspect_point(data, name, formula, before, point, production, construction_seconds):\n    started = time.perf_counter()\n    exact_point = [Fraction.from_float(x) for x in point]\n    final_residual = A.exact_residual(data, exact_point)\n    before_residual = A.exact_residual(data, before)\n    return {\"name\": name, \"arithmetic\": formula, \"assembly_seconds\": construction_seconds,\n        \"before_final_binary64\": A.residual_summary(data, before_residual),\n        \"after_final_binary64\": A.residual_summary(data, final_residual),\n        \"final_rounding_error\": A.BASE.vector_summary([x - y for x, y in zip(exact_point, before)]),\n        \"point_sha256\": hashlib.sha256(b\"\".join(struct.pack(\"<d\", x) for x in point)).hexdigest(),\n        \"bitwise_different_from_production_coordinates\": sum(struct.pack(\"<d\", x) != struct.pack(\"<d\", y)\n                                                              for x, y in zip(point, production)),\n        \"exact_residual_verification_seconds\": time.perf_counter() - started}\n\n\ndef main():\n    A.require(len(sys.argv) == 1, \"本次事后探针不接受额外输入或搜索参数\")\n    A.require(not OUTPUT.exists(), \"不覆盖已保存的补充证据\")\n    started, started_at = time.perf_counter(), A.utc()\n    A.require(digest(ANALYSIS) == ANALYSIS_SHA, \"冻结分析结果改变\")\n    analysis = A.read_json(ANALYSIS)\n    A.require(analysis.get(\"completed\") is True and len(analysis[\"analyses\"]) == 1,\n              \"本次只处理已有唯一数值捕获\")\n    reference = analysis[\"analyses\"][0]\n    A.require(reference[\"production_replay\"][\"bitwise_equal\"] is True,\n              \"原生产逐项重放尚未逐位通过\")\n    identity, metadata, data = A.load_snapshot(reference[\"capture\"][\"metadata\"])\n    A.require(identity == reference[\"capture\"] and data[\"numerical_sha256\"] == reference[\"numerical_sha256\"],\n              \"捕获身份改变\")\n    a = data[\"arrays\"]\n    source = Path(__file__).read_bytes()\n    result = {\"schema\": \"v67_assembly_probe_1\", \"posthoc\": True, \"started_at_utc\": started_at,\n        \"script_path\": str(Path(__file__).resolve()), \"script_sha256\": hashlib.sha256(source).hexdigest(),\n        \"script_source\": source.decode(\"utf-8\"), \"helper_sha256\": HELPER_SHA,\n        \"analysis_path\": str(ANALYSIS), \"analysis_sha256\": ANALYSIS_SHA, \"capture\": identity,\n        \"numerical_sha256\": data[\"numerical_sha256\"], \"event\": reference[\"event\"],\n        \"dimension\": data[\"dimension\"], \"coefficient_count\": data[\"cc\"], \"wide_format\": list(data[\"wide_format\"]),\n        \"self_test\": self_test(), \"oracle_runs\": 0, \"original_lp_runs\": 0, \"coefficient_searches\": 0,\n        \"production_evidence_reused\": {\"replay\": reference[\"production_replay\"],\n            \"exact_residual\": reference[\"baseline\"][\"production_candidate_exact\"],\n            \"exact_continuous\": reference[\"baseline\"][\"exact_continuous\"]}, \"points\": [],\n        \"historical_evidence\": [\n            {\"path\": str(DATA / \"v42-newton-analysis.json\"),\n             \"sha256\": \"26a5545e13e3d981da764b3770cf9cb1a23cc09e2d92422683225dace92884bf\",\n             \"scope\": \"旧完整Newton固定候选已观测LD累加通过而回double失败；不与当前普通常数状态混同。\"},\n            {\"path\": str(DATA / \"v59-representability.json\"),\n             \"sha256\": \"c904a8a32c8bde1dda1916b002ca8183eeeb3d44619bd2dfccceadf79b00d422\",\n             \"scope\": \"旧terminal固定x时两消元行最优binary64 z仍超限；不是本次可变全向量的不可表示证明。\"}],\n        \"limits\": [\"正式分析完成后追加，仅解释已有a0，不回改事前计划或重跑oracle。\",\n                   \"三种组装均保留原base/Z/a0及j顺序；不搜索系数、邻接格点或其他舍入方向。\",\n                   \"宽乘法与宽加法分开最近偶数舍入，不使用融合乘加；最后统一round53。\",\n                   \"精确残差达标不证明生产浮点残差检查、HSD方向或原LP接受。\",\n                   \"某一种最近舍入点失败不证明所有binary64点或当前空间均不可行。\",\n                   \"全部额外组装和原K0精确扫描是离线成本，不计作公开LP性能改善。\"]}\n    try:\n        point_start = time.perf_counter()\n        exact = A.continuous_combination(a[\"base\"], a[\"z\"], [Fraction.from_float(x) for x in a[\"coefficients\"]])\n        point = [A.cast64(x) for x in exact]\n        result[\"points\"].append(inspect_point(data, \"exact_sum_round53_once\", \"精确base+Za0，最后每坐标round53一次\",\n            exact, point, a[\"last_candidate\"], time.perf_counter() - point_start))\n        for name, product_format, formula in (\n            (\"wide_products_wide_sum_round53_once\", data[\"wide_format\"], \"每项宽乘积舍入，逐j宽加法舍入，最后round53一次\"),\n            (\"double_products_wide_sum_round53_once\", (53, -1021, 1024), \"每项double乘积舍入，逐j宽加法舍入，最后round53一次\")):\n            point_start = time.perf_counter()\n            before, point = accumulated(a[\"base\"], a[\"z\"], a[\"coefficients\"], data[\"wide_format\"], product_format)\n            result[\"points\"].append(inspect_point(data, name, formula, before, point, a[\"last_candidate\"], time.perf_counter() - point_start))\n        result[\"completed\"] = True\n    except Exception as failure:\n        result.update(completed=False, error_type=type(failure).__name__, error=str(failure))\n        raise\n    finally:\n        result.update(completed_at_utc=A.utc(), elapsed_wall_seconds=time.perf_counter() - started)\n        A.write_json(OUTPUT, result)\n    print(json.dumps({\"completed\": result[\"completed\"], \"self_test\": result[\"self_test\"], \"oracle_runs\": 0,\n        \"points\": [{\"name\": p[\"name\"], \"ratio\": p[\"after_final_binary64\"][\"maximum_normalized_residual\"][\"decimal80\"],\n                    \"satisfies_original_tolerances\": p[\"after_final_binary64\"][\"satisfies_original_tolerances\"]}\n                   for p in result[\"points\"]], \"output_sha256\": digest(OUTPUT)}, ensure_ascii=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+  "helper_sha256": "e79200011b53a3d982681365b5134a546223515837e0ece870de4cb860e14322",
+  "analysis_path": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v67-analysis.json",
+  "analysis_sha256": "6b709f26d36184003b8fcb2db80cdf7e83f4d2307c7592bed90165982658cb3f",
+  "capture": {
+    "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\0-diagnostic_on.json",
+    "metadata_sha256": "9d8dd82d5874a1962aed721369a6839716ef724b44adc70590eb8f238c7ac710",
+    "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\0-diagnostic_on.bin",
+    "binary_sha256": "309c713cc029c6eee3697cfabc990b06f9de42f6af9761e3a1480ad0c641bb86",
+    "status": "captured"
+  },
+  "numerical_sha256": "2a58048ef9a8589ac1ef38502cff0bc440494766cd025bb7bb227b3d0fa6a37d",
+  "event": {
+    "phase": "ordinary_constant",
+    "iteration": 80,
+    "restart_index": 2,
+    "column_index": 31,
+    "generated_columns": 32,
+    "coefficient_count": 32
+  },
+  "dimension": 13286,
+  "coefficient_count": 32,
+  "wide_format": [
+    64,
+    -16381,
+    16384
+  ],
+  "self_test": {
+    "passed": true,
+    "checks": 8,
+    "oracle_runs": 0,
+    "original_lp_runs": 0
+  },
+  "oracle_runs": 0,
+  "original_lp_runs": 0,
+  "coefficient_searches": 0,
+  "production_evidence_reused": {
+    "replay": {
+      "bitwise_equal": true,
+      "mismatch_count": 0,
+      "first_mismatches": [],
+      "seconds": 7.800546000013128,
+      "arithmetic": "每项先round53(coeff*Z)，再roundLDBL_MANT_DIG(candidate+product)，再round53写回；j顺序不变"
+    },
+    "exact_residual": {
+      "satisfies_original_tolerances": false,
+      "maximum_normalized_residual": {
+        "numerator": "7428558762266848",
+        "denominator": "2818782914808133",
+        "decimal80": "2.6353780999742188695321198411054365417683740973573598635699353119371282901703840",
+        "sign": 1
+      },
+      "worst_coordinate": 12008,
+      "signed_residual_at_worst": {
+        "numerator": "232142461320839",
+        "denominator": "73786976294838206464",
+        "decimal80": "0.000003146117011127322836937236782972604487440548837184906005859375",
+        "sign": 1
+      },
+      "upper_infinity": {
+        "infinity": {
+          "numerator": "7807409425186120339455",
+          "denominator": "162259276829213363391578010288128",
+          "decimal80": "4.8116875520182674508361788321502705675152803848248545979734980271302902110619470E-11",
+          "sign": 1
+        },
+        "argmax": 4877,
+        "signed_at_argmax": {
+          "numerator": "7807409425186120339455",
+          "denominator": "162259276829213363391578010288128",
+          "decimal80": "4.8116875520182674508361788321502705675152803848248545979734980271302902110619470E-11",
+          "sign": 1
+        }
+      },
+      "lower_infinity": {
+        "infinity": {
+          "numerator": "232142461320839",
+          "denominator": "73786976294838206464",
+          "decimal80": "0.000003146117011127322836937236782972604487440548837184906005859375",
+          "sign": 1
+        },
+        "argmax": 6706,
+        "signed_at_argmax": {
+          "numerator": "232142461320839",
+          "denominator": "73786976294838206464",
+          "decimal80": "0.000003146117011127322836937236782972604487440548837184906005859375",
+          "sign": 1
+        }
+      }
+    },
+    "exact_continuous": {
+      "satisfies_original_tolerances": true,
+      "maximum_normalized_residual": {
+        "numerator": "1299826434411906646107017102997098260383447292752139687",
+        "denominator": "2245034269753843804880644087817767127070822991725881982976",
+        "decimal80": "0.00057897843784559501420138110799831416821468159296230064287804521907385240513831077",
+        "sign": 1
+      },
+      "worst_coordinate": 12013,
+      "signed_residual_at_worst": {
+        "numerator": "-9098785040883346522749119720979687822684131049264977809",
+        "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+        "decimal80": "-6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+        "sign": -1
+      },
+      "upper_infinity": {
+        "infinity": {
+          "numerator": "6741790287482077938003206889225396955600884803529865",
+          "denominator": "421249166674228746791672110734681729275580381602196445017243910144",
+          "decimal80": "1.6004281600622875087458878445675106446840909463461567503658633987308898600024161E-14",
+          "sign": 1
+        },
+        "argmax": 4851,
+        "signed_at_argmax": {
+          "numerator": "-6741790287482077938003206889225396955600884803529865",
+          "denominator": "421249166674228746791672110734681729275580381602196445017243910144",
+          "decimal80": "-1.6004281600622875087458878445675106446840909463461567503658633987308898600024161E-14",
+          "sign": -1
+        }
+      },
+      "lower_infinity": {
+        "infinity": {
+          "numerator": "9098785040883346522749119720979687822684131049264977809",
+          "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+          "decimal80": "6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+          "sign": 1
+        },
+        "argmax": 6711,
+        "signed_at_argmax": {
+          "numerator": "-9098785040883346522749119720979687822684131049264977809",
+          "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+          "decimal80": "-6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+          "sign": -1
+        }
+      }
+    }
+  },
+  "points": [
+    {
+      "name": "exact_sum_round53_once",
+      "arithmetic": "精确base+Za0，最后每坐标round53一次",
+      "assembly_seconds": 1.334870900027454,
+      "before_final_binary64": {
+        "satisfies_original_tolerances": true,
+        "maximum_normalized_residual": {
+          "numerator": "1299826434411906646107017102997098260383447292752139687",
+          "denominator": "2245034269753843804880644087817767127070822991725881982976",
+          "decimal80": "0.00057897843784559501420138110799831416821468159296230064287804521907385240513831077",
+          "sign": 1
+        },
+        "worst_coordinate": 12013,
+        "signed_residual_at_worst": {
+          "numerator": "-9098785040883346522749119720979687822684131049264977809",
+          "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+          "decimal80": "-6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+          "sign": -1
+        },
+        "upper_infinity": {
+          "infinity": {
+            "numerator": "6741790287482077938003206889225396955600884803529865",
+            "denominator": "421249166674228746791672110734681729275580381602196445017243910144",
+            "decimal80": "1.6004281600622875087458878445675106446840909463461567503658633987308898600024161E-14",
+            "sign": 1
+          },
+          "argmax": 4851,
+          "signed_at_argmax": {
+            "numerator": "-6741790287482077938003206889225396955600884803529865",
+            "denominator": "421249166674228746791672110734681729275580381602196445017243910144",
+            "decimal80": "-1.6004281600622875087458878445675106446840909463461567503658633987308898600024161E-14",
+            "sign": -1
+          }
+        },
+        "lower_infinity": {
+          "infinity": {
+            "numerator": "9098785040883346522749119720979687822684131049264977809",
+            "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+            "decimal80": "6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+            "sign": 1
+          },
+          "argmax": 6711,
+          "signed_at_argmax": {
+            "numerator": "-9098785040883346522749119720979687822684131049264977809",
+            "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+            "decimal80": "-6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+            "sign": -1
+          }
+        }
+      },
+      "after_final_binary64": {
+        "satisfies_original_tolerances": false,
+        "maximum_normalized_residual": {
+          "numerator": "8492183252156466049088676854742965191452493109317454203",
+          "denominator": "3836728488348854158731569486016691867552676011250286592",
+          "decimal80": "2.2133917679984435546850712166147367670275811428642217822558891795905770188577493",
+          "sign": 1
+        },
+        "worst_coordinate": 7150,
+        "signed_residual_at_worst": {
+          "numerator": "-8492183252156466049088676854742965191452493109317454203",
+          "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+          "decimal80": "-0.0000026423493060283102300476458472065445387741637646862164523315362013152665807485984",
+          "sign": -1
+        },
+        "upper_infinity": {
+          "infinity": {
+            "numerator": "4963413888944378375",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "1.5661772693676819536664701054645760992471958386249020200864379148697480559349060E-11",
+            "sign": 1
+          },
+          "argmax": 4851,
+          "signed_at_argmax": {
+            "numerator": "4963413888944378375",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "1.5661772693676819536664701054645760992471958386249020200864379148697480559349060E-11",
+            "sign": 1
+          }
+        },
+        "lower_infinity": {
+          "infinity": {
+            "numerator": "8492183252156466049088676854742965191452493109317454203",
+            "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+            "decimal80": "0.0000026423493060283102300476458472065445387741637646862164523315362013152665807485984",
+            "sign": 1
+          },
+          "argmax": 1848,
+          "signed_at_argmax": {
+            "numerator": "-8492183252156466049088676854742965191452493109317454203",
+            "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+            "decimal80": "-0.0000026423493060283102300476458472065445387741637646862164523315362013152665807485984",
+            "sign": -1
+          }
+        }
+      },
+      "final_rounding_error": {
+        "infinity": {
+          "numerator": "5240646855490527641919080255133082441475961",
+          "denominator": "2923003274661805836407369665432566039311865085952",
+          "decimal80": "0.0000017928980445965717559855557400402235808746541528937384156140343868265475377391840",
+          "sign": 1
+        },
+        "argmax": 4080,
+        "signed_at_argmax": {
+          "numerator": "5240646855490527641919080255133082441475961",
+          "denominator": "2923003274661805836407369665432566039311865085952",
+          "decimal80": "0.0000017928980445965717559855557400402235808746541528937384156140343868265475377391840",
+          "sign": 1
+        }
+      },
+      "point_sha256": "f5e3175133927054cad852f478192293985e2ee7d4435c5123398166c4e27756",
+      "bitwise_different_from_production_coordinates": 8199,
+      "exact_residual_verification_seconds": 0.4781547000166029
+    },
+    {
+      "name": "wide_products_wide_sum_round53_once",
+      "arithmetic": "每项宽乘积舍入，逐j宽加法舍入，最后round53一次",
+      "assembly_seconds": 7.150745299877599,
+      "before_final_binary64": {
+        "satisfies_original_tolerances": true,
+        "maximum_normalized_residual": {
+          "numerator": "13245791787266473",
+          "denominator": "5772867409527056384",
+          "decimal80": "0.0022944909085226396750303715057564311545059046082381921913517902889581314023863132",
+          "sign": 1
+        },
+        "worst_coordinate": 12008,
+        "signed_residual_at_worst": {
+          "numerator": "-13245791787266473",
+          "denominator": "4835703278458516698824704",
+          "decimal80": "-2.7391655410852360942910636195366837208897692335085594095289707183837890625E-9",
+          "sign": -1
+        },
+        "upper_infinity": {
+          "infinity": {
+            "numerator": "495458964967538263485",
+            "denominator": "10384593717069655257060992658440192",
+            "decimal80": "4.7710962842304420228247993255244655016263472353239050079707142537621678002324188E-14",
+            "sign": 1
+          },
+          "argmax": 4825,
+          "signed_at_argmax": {
+            "numerator": "-495458964967538263485",
+            "denominator": "10384593717069655257060992658440192",
+            "decimal80": "-4.7710962842304420228247993255244655016263472353239050079707142537621678002324188E-14",
+            "sign": -1
+          }
+        },
+        "lower_infinity": {
+          "infinity": {
+            "numerator": "13245791787266473",
+            "denominator": "4835703278458516698824704",
+            "decimal80": "2.7391655410852360942910636195366837208897692335085594095289707183837890625E-9",
+            "sign": 1
+          },
+          "argmax": 6706,
+          "signed_at_argmax": {
+            "numerator": "-13245791787266473",
+            "denominator": "4835703278458516698824704",
+            "decimal80": "-2.7391655410852360942910636195366837208897692335085594095289707183837890625E-9",
+            "sign": -1
+          }
+        }
+      },
+      "after_final_binary64": {
+        "satisfies_original_tolerances": false,
+        "maximum_normalized_residual": {
+          "numerator": "8492183252156466049088676854742965296464904971949741079",
+          "denominator": "3836728488348854158731569486016691867552676011250286592",
+          "decimal80": "2.2133917679984435546850712166147367943978816948912026663648862829121358364660868",
+          "sign": 1
+        },
+        "worst_coordinate": 7150,
+        "signed_residual_at_worst": {
+          "numerator": "-8492183252156466049088676854742965296464904971949741079",
+          "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+          "decimal80": "-0.0000026423493060283102300476458472065445714488559339965821666064029731088241749937019",
+          "sign": -1
+        },
+        "upper_infinity": {
+          "infinity": {
+            "numerator": "4963413888944378375",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "1.5661772693676819536664701054645760992471958386249020200864379148697480559349060E-11",
+            "sign": 1
+          },
+          "argmax": 4851,
+          "signed_at_argmax": {
+            "numerator": "4963413888944378375",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "1.5661772693676819536664701054645760992471958386249020200864379148697480559349060E-11",
+            "sign": 1
+          }
+        },
+        "lower_infinity": {
+          "infinity": {
+            "numerator": "8492183252156466049088676854742965296464904971949741079",
+            "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+            "decimal80": "0.0000026423493060283102300476458472065445714488559339965821666064029731088241749937019",
+            "sign": 1
+          },
+          "argmax": 1848,
+          "signed_at_argmax": {
+            "numerator": "-8492183252156466049088676854742965296464904971949741079",
+            "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+            "decimal80": "-0.0000026423493060283102300476458472065445714488559339965821666064029731088241749937019",
+            "sign": -1
+          }
+        }
+      },
+      "final_rounding_error": {
+        "infinity": {
+          "numerator": "963",
+          "denominator": "536870912",
+          "decimal80": "0.00000179372727870941162109375",
+          "sign": 1
+        },
+        "argmax": 4080,
+        "signed_at_argmax": {
+          "numerator": "963",
+          "denominator": "536870912",
+          "decimal80": "0.00000179372727870941162109375",
+          "sign": 1
+        }
+      },
+      "point_sha256": "9a61d287fabec4b287de99a002bbaf56cdcce7b113a1330f78ab44a2191bb36f",
+      "bitwise_different_from_production_coordinates": 8200,
+      "exact_residual_verification_seconds": 0.4031758999917656
+    },
+    {
+      "name": "double_products_wide_sum_round53_once",
+      "arithmetic": "每项double乘积舍入，逐j宽加法舍入，最后round53一次",
+      "assembly_seconds": 5.973099200055003,
+      "before_final_binary64": {
+        "satisfies_original_tolerances": true,
+        "maximum_normalized_residual": {
+          "numerator": "13245791787266473",
+          "denominator": "5772867409527056384",
+          "decimal80": "0.0022944909085226396750303715057564311545059046082381921913517902889581314023863132",
+          "sign": 1
+        },
+        "worst_coordinate": 12008,
+        "signed_residual_at_worst": {
+          "numerator": "-13245791787266473",
+          "denominator": "4835703278458516698824704",
+          "decimal80": "-2.7391655410852360942910636195366837208897692335085594095289707183837890625E-9",
+          "sign": -1
+        },
+        "upper_infinity": {
+          "infinity": {
+            "numerator": "495458964967538263485",
+            "denominator": "10384593717069655257060992658440192",
+            "decimal80": "4.7710962842304420228247993255244655016263472353239050079707142537621678002324188E-14",
+            "sign": 1
+          },
+          "argmax": 4825,
+          "signed_at_argmax": {
+            "numerator": "-495458964967538263485",
+            "denominator": "10384593717069655257060992658440192",
+            "decimal80": "-4.7710962842304420228247993255244655016263472353239050079707142537621678002324188E-14",
+            "sign": -1
+          }
+        },
+        "lower_infinity": {
+          "infinity": {
+            "numerator": "13245791787266473",
+            "denominator": "4835703278458516698824704",
+            "decimal80": "2.7391655410852360942910636195366837208897692335085594095289707183837890625E-9",
+            "sign": 1
+          },
+          "argmax": 6706,
+          "signed_at_argmax": {
+            "numerator": "-13245791787266473",
+            "denominator": "4835703278458516698824704",
+            "decimal80": "-2.7391655410852360942910636195366837208897692335085594095289707183837890625E-9",
+            "sign": -1
+          }
+        }
+      },
+      "after_final_binary64": {
+        "satisfies_original_tolerances": false,
+        "maximum_normalized_residual": {
+          "numerator": "8492183252156466049088676854742874027338076640636062593",
+          "denominator": "3836728488348854158731569486016691867552676011250286592",
+          "decimal80": "2.2133917679984435546850712166147130061295417558266015760078756977387611249778179",
+          "sign": 1
+        },
+        "worst_coordinate": 7150,
+        "signed_residual_at_worst": {
+          "numerator": "-8492183252156466049088676854742874027338076640636062593",
+          "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+          "decimal80": "-0.0000026423493060283102300476458472065161729903234463979259068680005167295368136732687",
+          "sign": -1
+        },
+        "upper_infinity": {
+          "infinity": {
+            "numerator": "4963413888944378375",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "1.5661772693676819536664701054645760992471958386249020200864379148697480559349060E-11",
+            "sign": 1
+          },
+          "argmax": 4851,
+          "signed_at_argmax": {
+            "numerator": "4963413888944378375",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "1.5661772693676819536664701054645760992471958386249020200864379148697480559349060E-11",
+            "sign": 1
+          }
+        },
+        "lower_infinity": {
+          "infinity": {
+            "numerator": "8492183252156466049088676854742874027338076640636062593",
+            "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+            "decimal80": "0.0000026423493060283102300476458472065161729903234463979259068680005167295368136732687",
+            "sign": 1
+          },
+          "argmax": 1848,
+          "signed_at_argmax": {
+            "numerator": "-8492183252156466049088676854742874027338076640636062593",
+            "denominator": "3213876088517980551083924184682325205044405987565585670602752",
+            "decimal80": "-0.0000026423493060283102300476458472065161729903234463979259068680005167295368136732687",
+            "sign": -1
+          }
+        }
+      },
+      "final_rounding_error": {
+        "infinity": {
+          "numerator": "963",
+          "denominator": "536870912",
+          "decimal80": "0.00000179372727870941162109375",
+          "sign": 1
+        },
+        "argmax": 4080,
+        "signed_at_argmax": {
+          "numerator": "963",
+          "denominator": "536870912",
+          "decimal80": "0.00000179372727870941162109375",
+          "sign": 1
+        }
+      },
+      "point_sha256": "70ba268fe5c17ce42f47767415d41cc454618fb6ba1ed7b2a0050e856efae135",
+      "bitwise_different_from_production_coordinates": 8199,
+      "exact_residual_verification_seconds": 0.41817549988627434
+    }
+  ],
+  "historical_evidence": [
+    {
+      "path": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v42-newton-analysis.json",
+      "sha256": "26a5545e13e3d981da764b3770cf9cb1a23cc09e2d92422683225dace92884bf",
+      "scope": "旧完整Newton固定候选已观测LD累加通过而回double失败；不与当前普通常数状态混同。"
+    },
+    {
+      "path": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v59-representability.json",
+      "sha256": "c904a8a32c8bde1dda1916b002ca8183eeeb3d44619bd2dfccceadf79b00d422",
+      "scope": "旧terminal固定x时两消元行最优binary64 z仍超限；不是本次可变全向量的不可表示证明。"
+    }
+  ],
+  "limits": [
+    "正式分析完成后追加，仅解释已有a0，不回改事前计划或重跑oracle。",
+    "三种组装均保留原base/Z/a0及j顺序；不搜索系数、邻接格点或其他舍入方向。",
+    "宽乘法与宽加法分开最近偶数舍入，不使用融合乘加；最后统一round53。",
+    "精确残差达标不证明生产浮点残差检查、HSD方向或原LP接受。",
+    "某一种最近舍入点失败不证明所有binary64点或当前空间均不可行。",
+    "全部额外组装和原K0精确扫描是离线成本，不计作公开LP性能改善。"
+  ],
+  "completed": true,
+  "completed_at_utc": "2026-10-24T05:18:37.926902+00:00",
+  "elapsed_wall_seconds": 15.794477100018412
+}

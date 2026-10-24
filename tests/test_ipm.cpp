@@ -30,6 +30,7 @@ int full_newton_test_products = 0, full_newton_test_preconditions = 0;
 std::int64_t bounded_newton_test_refinements = 0;
 int bounded_newton_test_products = 0, bounded_newton_test_preconditions = 0;
 std::int64_t homogeneous_test_constant_solves = 0, homogeneous_test_direction_solves = 0;
+int homogeneous_repair_test_attempts = 0, homogeneous_repair_test_successes = 0;
 
 void require(bool condition, const std::string& message) {
   ++checks;
@@ -63,6 +64,16 @@ solver::SolveResult optimal_mode(const solver::Model& model, double expected, co
   require(result.ipm_homogeneous_constant_solves && result.ipm_homogeneous_direction_solves &&
               *result.ipm_homogeneous_constant_solves >= 0 && *result.ipm_homogeneous_direction_solves >= 0,
           "IPM 必须初始化齐次常数和方向求解启动计数");
+  require(result.ipm_homogeneous_constant_repairs && result.ipm_homogeneous_constant_repair_successes &&
+              *result.ipm_homogeneous_constant_repairs >= 0 && *result.ipm_homogeneous_constant_repair_successes >= 0 &&
+              *result.ipm_homogeneous_constant_repair_successes <= *result.ipm_homogeneous_constant_repairs &&
+              *result.ipm_homogeneous_constant_repairs <= *result.ipm_homogeneous_constant_solves,
+          "齐次常数恢复次数必须初始化，成功属于尝试，尝试属于真实常数求解");
+  if (options.ipm.linear_accuracy != "homogeneous_repair") {
+    require(*result.ipm_homogeneous_constant_repairs == 0 &&
+                *result.ipm_homogeneous_constant_repair_successes == 0,
+            "旧精度模式不能伪造齐次常数恢复工作");
+  }
   require(result.ipm_homogeneous_scaled_products && result.ipm_homogeneous_scaled_refinement_steps &&
               result.ipm_homogeneous_scaled_inexact_returns && *result.ipm_homogeneous_scaled_products >= 0 &&
               *result.ipm_homogeneous_scaled_refinement_steps >= 0 &&
@@ -78,8 +89,10 @@ solver::SolveResult optimal_mode(const solver::Model& model, double expected, co
             "旧精度模式不得产生齐次缩放工作");
   }
   if (options.ipm.method == "homogeneous") {
-    require(*result.ipm_homogeneous_constant_solves == *result.ipm_iterations,
-            "成功的齐次完整迭代必须每次求一个常数右端");
+    require(*result.ipm_homogeneous_constant_solves ==
+                *result.ipm_iterations + *result.ipm_homogeneous_constant_repairs &&
+                *result.ipm_homogeneous_constant_repairs <= *result.ipm_iterations,
+            "成功的齐次完整迭代每次求一个常数右端，并最多追加一次有账本的恢复");
     if (options.ipm.linear_accuracy == "homogeneous_scaled") {
       require(*result.ipm_homogeneous_direction_solves >= 2 * *result.ipm_iterations &&
                   *result.ipm_homogeneous_direction_solves <= 8 * *result.ipm_iterations &&
@@ -291,8 +304,8 @@ solver::SolveResult optimal_mode(const solver::Model& model, double expected, co
   if (*result.ipm_factorizations > 0) {
     require(result.ipm_factor_backend.has_value() && result.ipm_structural_fallbacks.has_value(),
             "实际分解必须报告选中的内核与结构切换次数");
-    if (options.ipm.linear_solver == "normal_cholmod") {
-      require(result.ipm_factor_backend == (*result.ipm_structural_fallbacks > 0 ? "factorhighs" : "normal_cholmod"),
+    if (options.ipm.linear_solver == "normal_cholmod" || options.ipm.linear_solver == "normal_cholmod_aat") {
+      require(result.ipm_factor_backend == (*result.ipm_structural_fallbacks > 0 ? "factorhighs" : options.ipm.linear_solver),
               "CHOLMOD 请求必须报告实际内核，仅结构预算切换允许报告增广分解");
     }
     require(result.ipm_kkt_dimension && result.ipm_factor_nonzeros && result.ipm_eliminated_singletons,
@@ -734,6 +747,175 @@ void check_homogeneous_algebra() {
   require(interrupted, "标量消元末尾超预算必须传播，不能返回已算好的标量方向");
 }
 
+void check_homogeneous_repair() {
+  using solver::detail::IpmHomogeneousRepairInfo;
+  using solver::detail::ipm_homogeneous_scalar_direction;
+  using solver::detail::ipm_homogeneous_scalar_direction_repair;
+  // G=1、H=1/2 的手算 K0。正确常数 v=(5/2,1)，故分母=3/2。
+  // 错误常数 (4,4) 给出有限负分母 -3，回调执行解析逆而非直接复制期望方向。
+  const std::vector<double> costs = {-1}, bounds = {2}, u = {1.5, -1}, bad = {4, 4};
+  const auto inverse = [](double dual, double primal) {
+    return std::vector<double>{primal + 0.5 * dual, dual};
+  };
+  const auto exact_constant = inverse(1, 2);
+  int calls = 0;
+  const auto repair = [&] {
+    ++calls;
+    ++homogeneous_repair_test_attempts;
+    return inverse(-costs[0], bounds[0]);
+  };
+  auto constant = exact_constant;
+  IpmHomogeneousRepairInfo info;
+  const auto normal = ipm_homogeneous_scalar_direction_repair(
+      costs, bounds, u, constant, 1, 1, -5, -1, repair, info);
+  const auto reference = ipm_homogeneous_scalar_direction(costs, bounds, u, exact_constant, 1, 1, -5, -1);
+  require(normal.tau == reference.tau && normal.kappa == reference.kappa && calls == 0 &&
+              !info.attempted && !info.succeeded && constant == exact_constant,
+          "正分母不得启动恢复，标量结果与旧函数逐值一致");
+  for (const auto& initial : {bad, std::vector<double>{1, 1}}) {
+    // 第二组 c^T v_x+b^T v_z=1 恰好令分母为零。
+    constant = initial;
+    info = {};
+    calls = 0;
+    const auto scalar = ipm_homogeneous_scalar_direction_repair(
+        costs, bounds, u, constant, 1, 1, -5, -1, repair, info);
+    require(calls == 1 && info.attempted && info.succeeded && constant == exact_constant &&
+                scalar.tau == reference.tau && scalar.kappa == reference.kappa,
+            "有限零或负分母须实际触发一次解析恢复，成功后提交共享常数");
+    ++homogeneous_repair_test_successes;
+    const double dx = u[0] + constant[0] * scalar.tau;
+    const double dz = u[1] + constant[1] * scalar.tau;
+    const double ds = (-2 - dz) / 2;
+    require(std::abs(dz - scalar.tau + 1) < 1e-14 &&
+                std::abs(dx + ds - 2 * scalar.tau - 1) < 1e-14 &&
+                std::abs(-dx + 2 * dz + scalar.kappa + 5) < 1e-14 &&
+                std::abs(2 * ds + dz + 2) < 1e-14 &&
+                std::abs(scalar.tau + scalar.kappa + 1) < 1e-14,
+            "恢复后方向须同时满足手算三类线性方程与两个互补方程");
+    const std::vector<double> corrected_u = {0.25, -0.125};
+    const auto corrected = ipm_homogeneous_scalar_direction_repair(
+        costs, bounds, corrected_u, constant, 1, 1, -0.75, -0.5, repair, info);
+    const auto expected = ipm_homogeneous_scalar_direction(costs, bounds, corrected_u, exact_constant, 1, 1, -0.75, -0.5);
+    require(calls == 1 && corrected.tau == expected.tau && corrected.kappa == expected.kappa,
+            "同一迭代的校正方向必须复用已恢复常数，不再调用回调");
+    constant = bad;
+    bool failed = false;
+    try { ipm_homogeneous_scalar_direction_repair(costs, bounds, u, constant, 1, 1, -5, -1, repair, info); }
+    catch (const std::runtime_error&) { failed = true; }
+    require(failed && calls == 1 && constant == bad,
+            "同一状态的恢复额度耗尽后不得再次调用，不能形成隐式重试循环");
+  }
+  for (const auto& candidate : {bad, std::vector<double>{1, 1},
+                                std::vector<double>{inf, 1}, std::vector<double>{1}}) {
+    constant = bad;
+    info = {};
+    calls = 0;
+    bool failed = false;
+    try {
+      ipm_homogeneous_scalar_direction_repair(costs, bounds, u, constant, 1, 1, -5, -1,
+          [&] { ++calls; return candidate; }, info);
+    } catch (const std::exception&) { failed = true; }
+    require(failed && calls == 1 && info.attempted && !info.succeeded && constant == bad,
+            "回调返回仍非正、非有限或错误维数时必须失败并保留原常数");
+  }
+  {
+    const std::vector<double> one = {1}, empty, zero = {0};
+    constant = {2};
+    info = {};
+    calls = 0;
+    bool failed = false;
+    try {
+      ipm_homogeneous_scalar_direction_repair(one, empty, zero, constant, 1, 1, 0,
+          std::numeric_limits<double>::max(), [&] {
+            ++calls;
+            return std::vector<double>{std::nextafter(1.0, 0.0)};
+          }, info);
+    } catch (const std::runtime_error&) { failed = true; }
+    require(failed && calls == 1 && info.attempted && !info.succeeded && constant == std::vector<double>{2},
+            "恢复候选虽有正分母，但标量方向溢出时仍不得提交常数或宣称成功");
+  }
+  for (int invalid = 0; invalid < 7; ++invalid) {
+    constant = bad;
+    info = {};
+    calls = 0;
+    auto input_u = u;
+    auto input_costs = costs;
+    double tau = 1, kappa = 1;
+    long double gap = -5, complementarity = -1;
+    if (invalid == 0) tau = 0;
+    if (invalid == 1) kappa = inf;
+    if (invalid == 2) input_u[0] = inf;
+    if (invalid == 3) input_costs[0] = inf;
+    if (invalid == 4) gap = std::numeric_limits<long double>::infinity();
+    if (invalid == 5) complementarity = std::numeric_limits<long double>::infinity();
+    if (invalid == 6) constant[0] = inf;
+    const auto original = constant;
+    bool failed = false;
+    try {
+      ipm_homogeneous_scalar_direction_repair(input_costs, bounds, input_u, constant,
+          tau, kappa, gap, complementarity, repair, info);
+    } catch (const std::runtime_error&) { failed = true; }
+    require(failed && calls == 0 && !info.attempted && !info.succeeded && constant == original,
+            "其他数值异常不得冒充有限非正分母并启动恢复");
+  }
+  // 正分母存在，但最终 double 标量溢出；这属于后续方向数值错误，不可恢复常数。
+  {
+    const std::vector<double> zero = {0}, empty;
+    constant = zero;
+    info = {};
+    calls = 0;
+    bool failed = false;
+    try {
+      ipm_homogeneous_scalar_direction_repair(zero, empty, zero, constant,
+          1, std::numeric_limits<double>::denorm_min(), 0, 1, repair, info);
+    } catch (const std::runtime_error&) { failed = true; }
+    require(failed && calls == 0 && !info.attempted && constant == zero,
+            "正分母后的 double 标量溢出不得触发常数恢复");
+  }
+  struct TestBudgetExpired {};
+  for (int failure : {0, 1, 2}) {
+    constant = bad;
+    info = {};
+    calls = 0;
+    bool propagated = false;
+    try {
+      ipm_homogeneous_scalar_direction_repair(costs, bounds, u, constant, 1, 1, -5, -1,
+          [&]() -> std::vector<double> {
+            ++calls;
+            if (failure == 0) throw TestBudgetExpired{};
+            if (failure == 1) throw std::bad_alloc{};
+            // 从原函数产生真正的其他 NumericalFailure，不能被一次恢复 helper 吞掉。
+            ipm_homogeneous_scalar_direction(costs, bounds, u, exact_constant, 0, 1, -5, -1);
+            return exact_constant;
+          }, info);
+    } catch (const TestBudgetExpired&) { propagated = failure == 0; }
+      catch (const std::bad_alloc&) { propagated = failure == 1; }
+      catch (const std::runtime_error&) { propagated = failure == 2; }
+    require(propagated && calls == 1 && info.attempted && !info.succeeded && constant == bad,
+            "恢复回调的预算、内存及其他数值异常须原样传播且不提交常数");
+  }
+  int checks_to_commit = 0;
+  constant = bad;
+  info = {};
+  ipm_homogeneous_scalar_direction_repair(costs, bounds, u, constant, 1, 1, -5, -1,
+      [&] { return exact_constant; }, info, [&] { ++checks_to_commit; });
+  for (int stop : {1, checks_to_commit}) {
+    constant = bad;
+    info = {};
+    calls = 0;
+    int budgets = 0;
+    bool interrupted = false;
+    try {
+      ipm_homogeneous_scalar_direction_repair(costs, bounds, u, constant, 1, 1, -5, -1,
+          [&] { ++calls; return exact_constant; }, info,
+          [&] { if (++budgets == stop) throw TestBudgetExpired{}; });
+    } catch (const TestBudgetExpired&) { interrupted = true; }
+    require(interrupted && constant == bad && !info.succeeded &&
+                (stop == 1 ? !info.attempted && calls == 0 : info.attempted && calls == 1),
+            "首次或提交前最后预算中断必须保留旧常数，成功不能提前记账");
+  }
+}
+
 void check_homogeneous_scaled_algebra() {
   using namespace solver::detail;
   const auto close = [](long double value, long double target, const std::string& message) {
@@ -955,8 +1137,55 @@ void check_homogeneous_scaled_refinement() {
               info.tolerance_satisfied, "末尾预算检查必须在提交 info 和有限方向之前生效");
 }
 
+void check_objective_scaling() {
+  require(solver::IpmOptions{}.objective_scaling, "目标归一化必须默认开启，保持既有路径");
+  // 4x=8，成本为8、目标常数为7；原模型最优值23，最小化行对偶为2，最大化为-2。
+  // 保留默认行列缩放，独立检查目标开关下的原坐标与对偶恢复。
+  for (const std::string method : {"mehrotra", "homogeneous"}) {
+    for (bool objective_scaling : {true, false}) {
+      solver::SolveOptions options;
+      options.ipm.method = method;
+      options.ipm.objective_scaling = objective_scaling;
+      if (method == "homogeneous") options.ipm.linear_accuracy = "homogeneous_repair";
+      for (bool maximize : {false, true}) {
+        auto model = one_variable(8, -inf, inf, 4, 8, 8);
+        model.objective_offset = 7;
+        model.sense = maximize ? solver::ObjectiveSense::maximize : solver::ObjectiveSense::minimize;
+        const auto result = optimal_mode(model, 23, options);
+        require(result.solution.size() == 1 && std::abs(result.solution[0] - 2) < 1e-7 &&
+                    result.row_dual.size() == 1 && std::abs(result.row_dual[0] - (maximize ? -2 : 2)) < 1e-7,
+                "目标归一化开关不能破坏最小化/最大化的原变量与原行对偶恢复");
+        require(result.model.costs == model.costs && result.model.values == model.values &&
+                    result.model.objective_offset == 7 && result.model.sense == model.sense,
+                "工作目标尺度不得修改用于独立验算的原模型");
+      }
+    }
+  }
+
+  // 两个有限非零成本的比值超出 double 指数范围。on 应保留既有下溢拒绝，
+  // off 则不做这次除法；x=0 已是原模型可直接验证的最优点，无须大数值迭代。
+  solver::Model extreme;
+  extreme.costs = {1e200, 1e-200};
+  extreme.column_lower = {0, 0};
+  extreme.column_upper = {inf, inf};
+  extreme.kinds.assign(2, solver::VariableKind::continuous);
+  extreme.column_start = {0, 0, 0};
+  solver::SolveOptions options;
+  options.ipm.method = "homogeneous";
+  const auto normalized = solver::solve_ipm(extreme, options);
+  require(normalized.status == "numerical_error" && normalized.message.find("下溢") != std::string::npos &&
+              !normalized.has_solution && *normalized.ipm_factorizations == 0,
+          "默认目标归一化仍须拒绝非零成本下溢，不能静默丢弃目标项");
+  options.ipm.objective_scaling = false;
+  const auto unnormalized = optimal_mode(extreme, 0, options);
+  require(unnormalized.solution == std::vector<double>({0, 0}) &&
+              unnormalized.model.costs == extreme.costs && *unnormalized.ipm_factorizations == 0 &&
+              *unnormalized.ipm_iterations == 0,
+          "关闭目标归一化须真正避开目标除法，并在原模型上验证有限成本的零最优点");
+}
+
 void check_homogeneous_solves(const std::string& accuracy = "strict") {
-  for (const std::string linear : {"qdldl", "normal_augmented", "sparselu", "normal_cholmod"}) {
+  for (const std::string linear : {"qdldl", "normal_augmented", "sparselu", "normal_cholmod", "normal_cholmod_aat"}) {
     solver::SolveOptions options;
     options.ipm.method = "homogeneous";
     options.ipm.linear_accuracy = accuracy;
@@ -995,6 +1224,7 @@ void check_homogeneous_solves(const std::string& accuracy = "strict") {
   const auto early = solver::solve_ipm(one_variable(3, 2, 2, 1, 2, 2), options);
   require(early.status == "optimal" && *early.ipm_factorizations == 0 &&
               *early.ipm_homogeneous_constant_solves == 0 && *early.ipm_homogeneous_direction_solves == 0 &&
+              *early.ipm_homogeneous_constant_repairs == 0 && *early.ipm_homogeneous_constant_repair_successes == 0 &&
               *early.ipm_homogeneous_scaled_products == 0 && *early.ipm_homogeneous_scaled_refinement_steps == 0 &&
               *early.ipm_homogeneous_scaled_inexact_returns == 0 &&
               !early.ipm_homogeneous_tau && !early.ipm_homogeneous_kappa,
@@ -1023,6 +1253,7 @@ void check_homogeneous_solves(const std::string& accuracy = "strict") {
   const auto stopped = solver::solve_ipm(model, options);
   require(stopped.status == "time_limit" && *stopped.ipm_factorizations == 0 &&
               *stopped.ipm_homogeneous_constant_solves == 0 && *stopped.ipm_homogeneous_direction_solves == 0 &&
+              *stopped.ipm_homogeneous_constant_repairs == 0 && *stopped.ipm_homogeneous_constant_repair_successes == 0 &&
               *stopped.ipm_homogeneous_scaled_products == 0 && *stopped.ipm_homogeneous_scaled_refinement_steps == 0 &&
               *stopped.ipm_homogeneous_scaled_inexact_returns == 0 &&
               !stopped.ipm_homogeneous_tau && !stopped.ipm_homogeneous_kappa,
@@ -1037,9 +1268,9 @@ void check_homogeneous_solves(const std::string& accuracy = "strict") {
   }
   options.ipm.method = "unknown";
   require(solver::solve_ipm(model, options).status == "error", "未知内点方法必须明确拒绝");
-  if (accuracy == "homogeneous_scaled") {
+  if (accuracy == "homogeneous_scaled" || accuracy == "homogeneous_repair") {
     options.ipm.method = "mehrotra";
-    require(solver::solve_ipm(model, options).status == "error", "缩放齐次精度不能静默应用到普通预测校正方法");
+    require(solver::solve_ipm(model, options).status == "error", "齐次专属精度不能静默应用到普通预测校正方法");
   }
 }
 
@@ -1564,6 +1795,20 @@ void check_direction_retries() {
               *scaled_initialization.ipm_homogeneous_scaled_inexact_returns == 0 &&
               !scaled_initialization.ipm_homogeneous_tau && !scaled_initialization.ipm_homogeneous_kappa,
           "缩放策略必须保持严格齐次初始化失败轨迹，不能提前产生缩放方向或齐次标量");
+  options.ipm.linear_accuracy = "homogeneous_repair";
+  const auto repair_initialization = solver::solve_ipm(equality, options);
+  require(repair_initialization.status == homogeneous_initialization.status &&
+              repair_initialization.message == homogeneous_initialization.message &&
+              repair_initialization.solution == homogeneous_initialization.solution &&
+              repair_initialization.ipm_iterations == homogeneous_initialization.ipm_iterations &&
+              repair_initialization.ipm_factorizations == homogeneous_initialization.ipm_factorizations &&
+              repair_initialization.ipm_refinement_steps == homogeneous_initialization.ipm_refinement_steps &&
+              *repair_initialization.ipm_homogeneous_constant_solves == 0 &&
+              *repair_initialization.ipm_homogeneous_direction_solves == 0 &&
+              *repair_initialization.ipm_homogeneous_constant_repairs == 0 &&
+              *repair_initialization.ipm_homogeneous_constant_repair_successes == 0 &&
+              !repair_initialization.ipm_homogeneous_tau && !repair_initialization.ipm_homogeneous_kappa,
+          "常数恢复模式必须保留 strict 初始化失败轨迹，不能恢复尚未出现的齐次标量故障");
   options.ipm.method = "mehrotra";
   for (int budget : {1, 8}) {
     options.ipm.linear_accuracy = "strict";
@@ -1690,7 +1935,7 @@ void check_blockwise_residual() {
 }
 
 void check_normal_budget_fallback() {
-  // 一列连接大量等式，原始矩阵稀疏，但显式 Gram 展开会超过既定工作预算。
+  // 一列连接大量等式，原始矩阵稀疏，但会超过两种 CHOLMOD 路径共同保留的 Gram 结构贡献预算。
   constexpr std::int64_t rows = 4'000;
   const double inf = std::numeric_limits<double>::infinity();
   auto model = one_variable(1, -inf, inf, 1, 1, 1);
@@ -1708,7 +1953,7 @@ void check_normal_budget_fallback() {
   require(explicit_normal.status == "error" && explicit_normal.ipm_structural_fallbacks == 0 &&
               !explicit_normal.ipm_factor_backend && explicit_normal.ipm_factorizations == 0,
           "显式 normal 必须保留结构超限语义，不能自动切换");
-  for (const std::string mode : {"normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod"}) {
+  for (const std::string mode : {"normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod", "normal_cholmod_aat"}) {
     if ((mode == "normal_extended" || mode == "normal_refined") && std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) continue;
     options.ipm.linear_solver = mode;
     const auto fallback = solver::solve_ipm(model, options);
@@ -1735,7 +1980,7 @@ void check_normal_budget_fallback() {
     const auto numerical = solver::solve_ipm(one_variable(1, -inf, inf, 1e200, 1, inf), options);
     require(numerical.status == "numerical_error" && numerical.ipm_structural_fallbacks == 0 &&
                 numerical.ipm_factor_backend == (mode == "normal_augmented" ? "normal" : mode), "非结构数值失败不能触发备用分解");
-    if (mode == "normal_cholmod") {
+    if (mode == "normal_cholmod" || mode == "normal_cholmod_aat") {
       auto invalid = options;
       invalid.ipm.eliminate_singletons = false;
       require(solver::solve_ipm(model, invalid).status == "error", "CHOLMOD 正规方程要求显式单行消元");
@@ -1760,7 +2005,7 @@ void check_fixed_variables() {
   model.values = {2, 1, 1, -1, 1};
   solver::SolveOptions options;
   options.ipm.eliminate_fixed_variables = true;
-  for (const std::string backend : {"qdldl", "sparselu", "normal", "qdldl_extended", "factorhighs", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod"}) {
+  for (const std::string backend : {"qdldl", "sparselu", "normal", "qdldl_extended", "factorhighs", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod", "normal_cholmod_aat"}) {
     if ((backend == "normal_extended" || backend == "normal_refined") && std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) continue;
     if (backend == "qdldl_extended" && std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) continue;
     options.ipm.linear_solver = backend;
@@ -2245,10 +2490,13 @@ int main() {
     check_bounded_newton_algebra();
     check_bounded_newton_solves();
     check_homogeneous_algebra();
+    check_homogeneous_repair();
     check_homogeneous_scaled_algebra();
     check_homogeneous_scaled_refinement();
+    check_objective_scaling();
     check_homogeneous_solves();
     check_homogeneous_solves("homogeneous_scaled");
+    check_homogeneous_solves("homogeneous_repair");
     check_backward_residual();
     check_inexact_direction();
     check_fixed_variables();
@@ -2604,7 +2852,8 @@ int main() {
               << " 次；有界 Newton 解析改进 " << bounded_newton_test_refinements << " 步，预条件 "
               << bounded_newton_test_preconditions << " 次，乘积 " << bounded_newton_test_products
               << " 次；齐次常数求解 " << homogeneous_test_constant_solves << " 次，方向求解 "
-              << homogeneous_test_direction_solves << " 次。\n";
+              << homogeneous_test_direction_solves << " 次；齐次恢复解析尝试 " << homogeneous_repair_test_attempts
+              << " 次，成功 " << homogeneous_repair_test_successes << " 次。\n";
     return 0;
   } catch (const std::exception& error) {
     std::cerr << "自主稀疏内点法检查失败：" << error.what() << '\n';

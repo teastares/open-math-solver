@@ -1,0 +1,17 @@
+本项目使用 OpenBLAS 0.3.33，并保留其原始许可证和版权声明。
+版本、下载校验和本地补丁校验统一记录在 ../../dependencies.lock.json。
+
+本地补丁 patch_dgemm_stack.cmake 修复 dgemm_kernel_16x2_skylakex.S：
+两个三列缓冲区依据本内核的 DGEMM_DEFAULT_Q 分配，避免 K 超过 341
+时原有 8192 字节间距导致重叠；Windows 栈空间从保存区向下逐页触碰，
+覆盖缓冲区和向下对齐所需的全部空间。补丁不改变 GEMM 分块参数。
+SKYLAKEX、COOPERLAKE、SAPPHIRERAPIDS 的 DGEMM 和 DTRMM 共用该文件。
+这是本项目的局部修复，不代表上游已接纳或发布同一补丁。
+
+上游源码：
+https://github.com/OpenMathLib/OpenBLAS/blob/v0.3.33/kernel/x86_64/dgemm_kernel_16x2_skylakex.S
+上游构建选择：
+https://github.com/OpenMathLib/OpenBLAS/blob/v0.3.33/kernel/x86_64/KERNEL.SKYLAKEX
+
+安装目录的 share/solver 保留 OpenBLAS-LICENSE.txt、LAPACK-LICENSE.txt
+和本说明 OpenBLAS-NOTICE.txt；补丁不删除或替换上游许可证。

@@ -25,13 +25,15 @@ def report(backend):
     return {"schema_version": 1, "backend": backend, "status": "optimal", "has_solution": True,
             "options": {"pdlp": {"mode": "baseline", "history_size": 8, "max_iterations": 200000, "scaling_passes": 5} if backend == "pdlp" else None,
                         "ipm": {"method": "mehrotra", "max_iterations": 200, "scaling_passes": 5, "eliminate_singletons": False,
-                                "dynamic_regularization": False, "equilibrate_kkt": False,
+                                "dynamic_regularization": False, "equilibrate_kkt": False, "objective_scaling": True,
                                 "linear_accuracy": "strict", "central_corrections": 0, "direction_retries": 0, "krylov_history_size": 0, "linear_solver": "qdldl",
                                 "inexact_prefilter": False, "eliminate_fixed_variables": False,
                                 "presolve_singleton_rows": False, "eliminate_presolved_fixed_variables": False} if backend == "ipm" else None,
                         "highs": {"solver": "choose", "run_crossover": "on", "presolve": "choose"} if backend == "highs" else None},
             "objective": 1.0, "solution": [1.0], "row_dual": [1.0], "best_bound": None,
             "ipm_homogeneous_constant_solves": 0 if backend == "ipm" else None,
+            "ipm_homogeneous_constant_repairs": 0 if backend == "ipm" else None,
+            "ipm_homogeneous_constant_repair_successes": 0 if backend == "ipm" else None,
             "ipm_homogeneous_direction_solves": 0 if backend == "ipm" else None,
             "ipm_homogeneous_tau": None, "ipm_homogeneous_kappa": None,
             "ipm_homogeneous_scaled_products": 0 if backend == "ipm" else None,
@@ -49,6 +51,11 @@ def report(backend):
 
 
 class CompareTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # Windows 的首次平台探测可能启动系统命令，须在模拟求解子进程之前完成。
+        COMPARISON.platform.platform()
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix="solver comparison ")
         self.root = Path(self.temporary.name)
@@ -86,6 +93,7 @@ class CompareTests(unittest.TestCase):
             for flag, field in (("--ipm-singleton-elimination", "eliminate_singletons"),
                                 ("--ipm-dynamic-regularization", "dynamic_regularization"),
                                 ("--ipm-kkt-equilibration", "equilibrate_kkt"),
+                                ("--ipm-objective-scaling", "objective_scaling"),
                                 ("--ipm-inexact-prefilter", "inexact_prefilter"),
                                 ("--ipm-fixed-variable-elimination", "eliminate_fixed_variables"),
                                 ("--ipm-singleton-presolve", "presolve_singleton_rows"),
@@ -98,6 +106,9 @@ class CompareTests(unittest.TestCase):
             if value["options"]["ipm"]["linear_accuracy"] == "homogeneous_scaled":
                 value.update(ipm_homogeneous_scaled_products=10, ipm_homogeneous_scaled_refinement_steps=4,
                              ipm_homogeneous_scaled_inexact_returns=2, ipm_homogeneous_direction_solves=8)
+            if value["options"]["ipm"]["linear_accuracy"] == "homogeneous_repair":
+                value.update(ipm_homogeneous_constant_repairs=2, ipm_homogeneous_constant_repair_successes=1,
+                             ipm_homogeneous_constant_solves=5)
             for flag, field in (("--ipm-central-corrections", "central_corrections"),
                                 ("--ipm-direction-retries", "direction_retries"),
                                 ("--ipm-krylov-history-size", "krylov_history_size")):
@@ -426,7 +437,7 @@ class CompareTests(unittest.TestCase):
             if record["requested_backend"] == "ipm":
                 self.assertEqual(record["report"]["options"]["ipm"],
                                  {"method": "mehrotra", "max_iterations": 123, "scaling_passes": 0, "eliminate_singletons": False,
-                                  "dynamic_regularization": False, "equilibrate_kkt": False, "linear_accuracy": "strict",
+                                  "dynamic_regularization": False, "equilibrate_kkt": False, "objective_scaling": True, "linear_accuracy": "strict",
                                   "central_corrections": 0, "direction_retries": 0, "krylov_history_size": 0, "linear_solver": "qdldl", "inexact_prefilter": False,
                                   "eliminate_fixed_variables": False, "presolve_singleton_rows": False, "eliminate_presolved_fixed_variables": False})
                 self.assertNotIn("--ipm-singleton-elimination", command)
@@ -763,7 +774,7 @@ class CompareTests(unittest.TestCase):
 
     def test_homogeneous_combinations_are_rejected_before_process_start(self):
         combinations = [["ipm-linear-accuracy", accuracy] for accuracy in COMPARISON.benchmark.IPM_LINEAR_ACCURACIES
-                        if accuracy not in ("strict", "homogeneous_scaled")]
+                        if accuracy not in ("strict", "homogeneous_scaled", "homogeneous_repair")]
         combinations += [["ipm-central-corrections", "1"], ["ipm-direction-retries", "1"],
                          ["ipm-krylov-history-size", "1"], ["ipm-inexact-prefilter", "on"]]
         for flag, value in combinations:
@@ -881,12 +892,111 @@ class CompareTests(unittest.TestCase):
             process.assert_not_called()
             self.assertFalse(self.output.exists())
 
+    def test_homogeneous_repair_accuracy_and_counts_are_independent(self):
+        for side in ("candidate", "reference"):
+            for other_method in ("mehrotra", "homogeneous"):
+                with self.subTest(side=side, other_method=other_method):
+                    self.output = self.root / f"repair-{side}-{other_method}"
+                    prefix = "--" if side == "candidate" else "--reference-"
+                    other = "--reference-" if side == "candidate" else "--"
+                    flags = ["--candidate-backend", "ipm", "--reference-backend", "ipm",
+                             prefix + "ipm-method", "homogeneous", prefix + "ipm-linear-accuracy", "homogeneous_repair",
+                             prefix + "ipm-central-corrections", "0", prefix + "ipm-direction-retries", "0",
+                             prefix + "ipm-krylov-history-size", "0", prefix + "ipm-inexact-prefilter", "off",
+                             other + "ipm-method", other_method, other + "ipm-linear-accuracy", "strict"]
+                    status, records, summary = self.run_comparison(default_pdlp=False, repeats=1, extra_args=flags)
+                    self.assertEqual(status, 0)
+                    manifest = json.loads((self.output / "manifest.json").read_text(encoding="utf-8"))
+                    for record in records:
+                        enabled = record["requested_variant"] == summary[side + "_variant"]
+                        accuracy = "homogeneous_repair" if enabled else "strict"
+                        self.assertEqual(record["report"]["options"]["ipm"]["linear_accuracy"], accuracy)
+                        self.assertEqual(record["report"]["options"]["ipm"]["method"], "homogeneous" if enabled else other_method)
+                        self.assertEqual(record["command"][record["command"].index("--ipm-linear-accuracy") + 1], accuracy)
+                        self.assertIn(":linear=" + accuracy + ":", record["requested_variant"])
+                        self.assertEqual(manifest["variants"][record["requested_variant"]]["ipm_linear_accuracy"], accuracy)
+                        for field, count in (("ipm_homogeneous_constant_repairs", 2),
+                                             ("ipm_homogeneous_constant_repair_successes", 1)):
+                            self.assertIs(type(record["report"][field]), int)
+                            self.assertEqual(record["report"][field], count if enabled else 0)
+
+    def test_homogeneous_repair_rejects_invalid_reports_on_both_sides(self):
+        missing = object()
+        fields = ("ipm_homogeneous_constant_repairs", "ipm_homogeneous_constant_repair_successes")
+        failure = "ipm_homogeneous_repair_work_mismatch"
+        cases = [(field, value, failure) for field in fields
+                 for value in (missing, None, False, 1.0, "1", -1, 9223372036854775808)]
+        cases += [(fields[0], 6, failure), (fields[1], 3, failure), ("ipm_homogeneous_constant_solves", 1, failure)]
+        cases += [("linear_accuracy", value, "ipm_linear_accuracy_mismatch")
+                  for value in (missing, None, False, 1, "strict", "homogeneous_scaled")]
+        for side in ("candidate", "reference"):
+            for index, (field, invalid, failure) in enumerate(cases):
+                with self.subTest(side=side, field=field, invalid=invalid):
+                    self.output = self.root / f"repair-report-{side}-{index}"
+                    def responder(command, **kwargs):
+                        process = self.fake_process(command, **kwargs)
+                        value = json.loads(process.stdout)
+                        if value["backend"] == "ipm":
+                            target = value["options"]["ipm"] if field == "linear_accuracy" else value
+                            if invalid is missing:
+                                del target[field]
+                            else:
+                                target[field] = invalid
+                            process.stdout = json.dumps(value).encode()
+                        return process
+                    prefix = "--" if side == "candidate" else "--reference-"
+                    flags = ["--candidate-backend", "ipm"] if side == "candidate" else [
+                        "--candidate-backend", "highs", "--reference-backend", "ipm"]
+                    flags += [prefix + "ipm-method", "homogeneous", prefix + "ipm-linear-accuracy", "homogeneous_repair"]
+                    status, records, summary = self.run_comparison(responder, default_pdlp=False, repeats=1, extra_args=flags)
+                    self.assertEqual(status, 1)
+                    self.assertEqual(summary["variants"][summary[side + "_variant"]]["quality_failure_counts"], {failure: 2})
+
+    def test_homogeneous_repair_combinations_fail_before_running(self):
+        combinations = [[], ["ipm-method", "mehrotra"]]
+        combinations += [["ipm-method", "homogeneous", flag, value] for flag, value in (
+            ("ipm-central-corrections", "1"), ("ipm-direction-retries", "1"),
+            ("ipm-krylov-history-size", "1"), ("ipm-inexact-prefilter", "on"))]
+        for combination in combinations:
+            for side in ("candidate", "reference"):
+                prefix = "--" if side == "candidate" else "--reference-"
+                other = "--reference-" if side == "candidate" else "--"
+                flags = ["--candidate-backend", "ipm", "--reference-backend", "ipm",
+                         prefix + "ipm-linear-accuracy", "homogeneous_repair", other + "ipm-method", "homogeneous"]
+                flags += [prefix + item if i % 2 == 0 else item for i, item in enumerate(combination)]
+                with self.subTest(side=side, combination=combination), self.assertRaises(SystemExit) as error, \
+                        contextlib.redirect_stderr(io.StringIO()):
+                    self.run_comparison(default_pdlp=False, extra_args=flags)
+                self.assertEqual(error.exception.code, 2)
+                self.assertFalse(self.commands)
+                self.assertFalse(self.output.exists())
+            flags = ["--" + item if i % 2 == 0 else item for i, item in enumerate(combination)]
+            arguments = [str(COMPARISON.benchmark.__file__), str(self.models[0]), "--solver", str(self.solver),
+                         "--backend", "ipm", "--ipm-linear-accuracy", "homogeneous_repair", *flags,
+                         "--output-dir", str(self.output)]
+            with self.subTest(benchmark=True, combination=combination), mock.patch.object(sys, "argv", arguments), \
+                    mock.patch.object(COMPARISON.benchmark.subprocess, "run") as process, \
+                    self.assertRaises(SystemExit) as error, contextlib.redirect_stderr(io.StringIO()):
+                COMPARISON.benchmark.main()
+            self.assertEqual(error.exception.code, 2)
+            process.assert_not_called()
+            self.assertFalse(self.output.exists())
+
+    def test_homogeneous_repair_zero_work_is_valid(self):
+        value = report("ipm")
+        self.assertTrue(COMPARISON.benchmark.valid_homogeneous_repair_work(value))
+        value.update(ipm_homogeneous_constant_repairs=1, ipm_homogeneous_constant_repair_successes=0,
+                     ipm_homogeneous_constant_solves=2)
+        self.assertTrue(COMPARISON.benchmark.valid_homogeneous_repair_work(value))
+
     def test_homogeneous_strict_old_reports_need_no_scaled_statistics(self):
         def responder(command, **kwargs):
             process = self.fake_process(command, **kwargs)
             value = json.loads(process.stdout)
             for field in tuple(value):
-                if field.startswith("ipm_homogeneous_scaled_"):
+                if field.startswith("ipm_homogeneous_scaled_") or field in (
+                    "ipm_homogeneous_constant_repairs", "ipm_homogeneous_constant_repair_successes"
+                ):
                     del value[field]
             process.stdout = json.dumps(value).encode()
             return process
@@ -1094,7 +1204,8 @@ class CompareTests(unittest.TestCase):
                                         ("linear_accuracy", "blockwise_weighted", "blockwise"),
                                         ("linear_solver", "sparselu", "qdldl"),
                                         ("linear_solver", "normal", "sparselu"),
-                                        ("linear_solver", "normal_cholmod", "normal_augmented")):
+                                        ("linear_solver", "normal_cholmod", "normal_augmented"),
+                                        ("linear_solver", "normal_cholmod_aat", "normal_cholmod")):
             for index, reported in enumerate((None, 1, True, other)):
                 with self.subTest(field=field, reported=reported):
                     self.output = self.root / f"bad-{field}-{requested}-{index}"
@@ -1110,7 +1221,7 @@ class CompareTests(unittest.TestCase):
                         return process
                     status, records, summary = self.run_comparison(responder, default_pdlp=False, repeats=1,
                         extra_args=["--candidate-backend", "ipm", "--ipm-" + field.replace("_", "-"), requested]
-                        + (["--ipm-singleton-elimination", "on"] if requested in ("normal", "normal_cholmod") else []))
+                        + (["--ipm-singleton-elimination", "on"] if requested in ("normal", "normal_cholmod", "normal_cholmod_aat") else []))
                     self.assertEqual(status, 1)
                     self.assertEqual(summary["quality_pass_count"], 2)
                     self.assertEqual(summary["variants"][summary["candidate_variant"]]["quality_failure_counts"],
@@ -1121,6 +1232,8 @@ class CompareTests(unittest.TestCase):
                  ("qdldl_extended", None), (None, "qdldl_extended"),
                  ("factorhighs", None), (None, "factorhighs"),
                  ("normal_cholmod", None), (None, "normal_cholmod"),
+                 ("normal_cholmod_aat", None), (None, "normal_cholmod_aat"),
+                 ("normal_cholmod_aat", "normal_cholmod"), ("normal_cholmod", "normal_cholmod_aat"),
                  ("normal_cholmod", "normal_augmented"), ("normal_augmented", "normal_cholmod"),
                  ("normal_augmented", "normal"), ("normal", "normal_augmented"), ("normal_multifrontal", "normal_augmented"), ("normal_augmented", "normal_multifrontal"), ("normal_extended", "normal_augmented"), ("normal_augmented", "normal_extended"), ("normal_refined", "normal_augmented"), ("normal_augmented", "normal_refined")]
         for index, (candidate, reference) in enumerate(cases):
@@ -1132,7 +1245,7 @@ class CompareTests(unittest.TestCase):
                     flags += ["--ipm-linear-solver", candidate]
                 if reference is not None:
                     flags += ["--reference-ipm-linear-solver", reference]
-                reference_singletons = "on" if reference in ("normal", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod") else "off"
+                reference_singletons = "on" if reference in ("normal", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod", "normal_cholmod_aat") else "off"
                 if reference_singletons == "on":
                     flags += ["--reference-ipm-singleton-elimination", "on"]
                 status, records, summary = self.run_comparison(default_pdlp=False, repeats=1, extra_args=flags)
@@ -1156,34 +1269,35 @@ class CompareTests(unittest.TestCase):
                  ("ipm", ["singleton-elimination", "on", "dynamic-regularization", "on"]),
                  ("highs", ["singleton-elimination", "on"]),
                  ("pdlp", ["singleton-elimination", "on"])]
-        for backend, switches in cases:
-            flags = ["--ipm-linear-solver", "normal_cholmod"]
-            for index in range(0, len(switches), 2):
-                flags += ["--ipm-" + switches[index], switches[index + 1]]
-            with self.subTest(tool="benchmark", backend=backend, switches=switches):
-                arguments = [str(COMPARISON.benchmark.__file__), str(self.models[0]), "--solver", str(self.solver),
-                             "--backend", backend, "--output-dir", str(self.output), *flags]
-                with mock.patch.object(sys, "argv", arguments), \
-                        mock.patch.object(COMPARISON.benchmark.subprocess, "run") as process, \
-                        self.assertRaises(SystemExit) as error, contextlib.redirect_stderr(io.StringIO()):
-                    COMPARISON.benchmark.main()
-                self.assertEqual(error.exception.code, 2)
-                process.assert_not_called()
-                self.assertFalse(self.output.exists())
-            for side in ("candidate", "reference"):
-                with self.subTest(tool="compare", side=side, backend=backend, switches=switches):
-                    # 另一侧开启单行消元也不能替代本侧必需的配置。
-                    prefix = "--" if side == "candidate" else "--reference-"
-                    other = "reference" if side == "candidate" else "candidate"
-                    other_prefix = "--reference-" if side == "candidate" else "--"
-                    side_flags = [prefix + flag[2:] if flag.startswith("--") else flag for flag in flags]
-                    with self.assertRaises(SystemExit) as error, contextlib.redirect_stderr(io.StringIO()):
-                        self.run_comparison(default_pdlp=False, extra_args=[
-                            "--" + side + "-backend", backend, "--" + other + "-backend", "ipm",
-                            other_prefix + "ipm-singleton-elimination", "on", *side_flags])
+        for linear in ("normal_cholmod", "normal_cholmod_aat"):
+            for backend, switches in cases:
+                flags = ["--ipm-linear-solver", linear]
+                for index in range(0, len(switches), 2):
+                    flags += ["--ipm-" + switches[index], switches[index + 1]]
+                with self.subTest(linear=linear, tool="benchmark", backend=backend, switches=switches):
+                    arguments = [str(COMPARISON.benchmark.__file__), str(self.models[0]), "--solver", str(self.solver),
+                                 "--backend", backend, "--output-dir", str(self.output), *flags]
+                    with mock.patch.object(sys, "argv", arguments), \
+                            mock.patch.object(COMPARISON.benchmark.subprocess, "run") as process, \
+                            self.assertRaises(SystemExit) as error, contextlib.redirect_stderr(io.StringIO()):
+                        COMPARISON.benchmark.main()
                     self.assertEqual(error.exception.code, 2)
-                    self.assertFalse(self.commands)
+                    process.assert_not_called()
                     self.assertFalse(self.output.exists())
+                for side in ("candidate", "reference"):
+                    with self.subTest(linear=linear, tool="compare", side=side, backend=backend, switches=switches):
+                        # 另一侧开启单行消元也不能替代本侧必需的配置。
+                        prefix = "--" if side == "candidate" else "--reference-"
+                        other = "reference" if side == "candidate" else "candidate"
+                        other_prefix = "--reference-" if side == "candidate" else "--"
+                        side_flags = [prefix + flag[2:] if flag.startswith("--") else flag for flag in flags]
+                        with self.assertRaises(SystemExit) as error, contextlib.redirect_stderr(io.StringIO()):
+                            self.run_comparison(default_pdlp=False, extra_args=[
+                                "--" + side + "-backend", backend, "--" + other + "-backend", "ipm",
+                                other_prefix + "ipm-singleton-elimination", "on", *side_flags])
+                        self.assertEqual(error.exception.code, 2)
+                        self.assertFalse(self.commands)
+                        self.assertFalse(self.output.exists())
 
     def test_inexact_mode_preserves_counts_and_independent_solver_combinations(self):
         for index, (candidate_accuracy, reference_accuracy) in enumerate((("inexact", None), ("strict", "inexact"),
@@ -1219,6 +1333,52 @@ class CompareTests(unittest.TestCase):
                     self.assertEqual(record["report"]["ipm_inexact_acceptances"], 5 if requested == "inexact" else 0)
                     self.assertEqual(record["report"]["ipm_backward_error_acceptances"], 0)
                     self.assertEqual(manifest["variants"][record["requested_variant"]]["ipm_linear_accuracy"], requested)
+
+    def test_objective_scaling_has_independent_configuration_and_default(self):
+        for index, (candidate, reference) in enumerate((("off", None), (None, "off"), ("off", "on"), ("on", "off"))):
+            self.output = self.root / f"objective-scaling-{index}"
+            flags = ["--candidate-backend", "ipm", "--reference-backend", "ipm"]
+            if candidate is not None:
+                flags += ["--ipm-objective-scaling", candidate]
+            if reference is not None:
+                flags += ["--reference-ipm-objective-scaling", reference]
+            status, records, summary = self.run_comparison(default_pdlp=False, repeats=1, extra_args=flags)
+            self.assertEqual(status, 0)
+            manifest = json.loads((self.output / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["ipm_objective_scaling"], candidate)
+            self.assertEqual(manifest["reference_ipm_objective_scaling"], reference)
+            for record in records:
+                variant = record["requested_variant"]
+                requested = candidate if variant == summary["candidate_variant"] else reference
+                self.assertIs(record["report"]["options"]["ipm"]["objective_scaling"], requested != "off")
+                self.assertEqual("--ipm-objective-scaling" in record["command"], requested is not None)
+                self.assertEqual(variant.endswith(":objective_scaling=off"), requested == "off")
+                self.assertEqual(manifest["variants"][variant]["ipm_objective_scaling"], requested)
+
+    def test_objective_scaling_report_requires_matching_boolean_on_both_sides(self):
+        responses = [("on", "missing"), ("on", None), ("on", 1), ("on", "on"), ("on", False),
+                     ("off", "missing"), ("off", None), ("off", 0), ("off", "off"), ("off", True)]
+        for side in ("candidate", "reference"):
+            for index, (requested, reported) in enumerate(responses):
+                with self.subTest(side=side, requested=requested, reported=reported):
+                    self.output = self.root / f"bad-objective-scaling-{side}-{index}"
+                    def responder(command, **kwargs):
+                        process = self.fake_process(command, **kwargs)
+                        value = json.loads(process.stdout)
+                        if value["backend"] == "ipm":
+                            if reported == "missing":
+                                del value["options"]["ipm"]["objective_scaling"]
+                            else:
+                                value["options"]["ipm"]["objective_scaling"] = reported
+                            process.stdout = json.dumps(value).encode()
+                        return process
+                    flags = ["--candidate-backend", "ipm", "--ipm-objective-scaling", requested] if side == "candidate" else [
+                        "--candidate-backend", "highs", "--reference-backend", "ipm", "--reference-ipm-objective-scaling", requested]
+                    status, records, summary = self.run_comparison(responder, repeats=1, default_pdlp=False, extra_args=flags)
+                    self.assertEqual(status, 1)
+                    variant = summary[side + "_variant"]
+                    self.assertEqual(summary["variants"][variant]["quality_failure_counts"], {"ipm_objective_scaling_mismatch": 2})
+                    self.assertEqual(summary["quality_pass_count"], 2)
 
     def test_fixed_variable_elimination_has_independent_configuration_and_counts(self):
         for index, (candidate, reference) in enumerate((("on", None), (None, "on"), ("off", "on"))):
@@ -1706,7 +1866,7 @@ class CompareTests(unittest.TestCase):
     def test_krylov_history_accuracy_and_zero_budget_remain_independent(self):
         for index, accuracy in enumerate(COMPARISON.benchmark.IPM_LINEAR_ACCURACIES):
             self.output = self.root / f"krylov-zero-accuracy-{index}"
-            method = ["--ipm-method", "homogeneous"] if accuracy == "homogeneous_scaled" else []
+            method = ["--ipm-method", "homogeneous"] if accuracy in ("homogeneous_scaled", "homogeneous_repair") else []
             status, records, summary = self.run_comparison(default_pdlp=False, repeats=1, extra_args=[
                 "--candidate-backend", "ipm", "--reference-backend", "ipm",
                 "--ipm-linear-accuracy", accuracy, "--ipm-krylov-history-size", "0",
@@ -1837,6 +1997,8 @@ class CompareTests(unittest.TestCase):
         cases = [("ipm", ["--ipm-singleton-elimination", "off"], "ipm_requested_options", "eliminate_singletons", False),
                  ("ipm", ["--ipm-dynamic-regularization", "on"], "ipm_requested_options", "dynamic_regularization", True),
                  ("ipm", ["--ipm-kkt-equilibration", "on"], "ipm_requested_options", "equilibrate_kkt", True),
+                 ("ipm", ["--ipm-objective-scaling", "on"], "ipm_requested_options", "objective_scaling", True),
+                 ("ipm", ["--ipm-objective-scaling", "off"], "ipm_requested_options", "objective_scaling", False),
                  ("ipm", ["--ipm-method", "mehrotra"], "ipm_requested_options", "method", "mehrotra"),
                  ("ipm", ["--ipm-method", "homogeneous"], "ipm_requested_options", "method", "homogeneous"),
                  ("ipm", ["--ipm-linear-accuracy", "homogeneous_scaled", "--ipm-method", "homogeneous"], "ipm_requested_options", "linear_accuracy", "homogeneous_scaled"),
@@ -1863,6 +2025,7 @@ class CompareTests(unittest.TestCase):
                  ("ipm", ["--ipm-linear-solver", "sparselu"], "ipm_requested_options", "linear_solver", "sparselu"),
                  ("ipm", ["--ipm-linear-solver", "normal", "--ipm-singleton-elimination", "on"], "ipm_requested_options", "linear_solver", "normal"),
                  ("ipm", ["--ipm-linear-solver", "normal_cholmod", "--ipm-singleton-elimination", "on"], "ipm_requested_options", "linear_solver", "normal_cholmod"),
+                 ("ipm", ["--ipm-linear-solver", "normal_cholmod_aat", "--ipm-singleton-elimination", "on"], "ipm_requested_options", "linear_solver", "normal_cholmod_aat"),
                  ("ipm", ["--ipm-inexact-prefilter", "on", "--ipm-linear-accuracy", "inexact"], "ipm_requested_options", "inexact_prefilter", True),
                  ("ipm", ["--ipm-inexact-prefilter", "off"], "ipm_requested_options", "inexact_prefilter", False),
                  ("ipm", ["--ipm-fixed-variable-elimination", "on"], "ipm_requested_options", "eliminate_fixed_variables", True),
@@ -1896,6 +2059,9 @@ class CompareTests(unittest.TestCase):
                                ("highs", ["--ipm-singleton-elimination", "off"]),
                                ("pdlp", ["--ipm-dynamic-regularization", "on"]),
                                ("highs", ["--ipm-kkt-equilibration", "on"]),
+                               ("highs", ["--ipm-objective-scaling", "on"]),
+                               ("pdlp", ["--ipm-objective-scaling", "off"]),
+                               ("ipm", ["--ipm-objective-scaling", "invalid"]),
                                ("highs", ["--ipm-linear-accuracy", "backward"]),
                                ("pdlp", ["--ipm-central-corrections", "1"]),
                                ("highs", ["--ipm-central-corrections", "0"]),
@@ -1966,6 +2132,11 @@ class CompareTests(unittest.TestCase):
                       ["--reference-ipm-dynamic-regularization", "on"],
                       ["--ipm-kkt-equilibration", "on"],
                       ["--reference-ipm-kkt-equilibration", "off"],
+                      ["--ipm-objective-scaling", "off"],
+                      ["--reference-ipm-objective-scaling", "on"],
+                      ["--candidate-backend", "ipm", "--ipm-objective-scaling", "invalid"],
+                      ["--candidate-backend", "ipm", "--reference-backend", "ipm", "--ipm-objective-scaling", "on"],
+                      ["--candidate-backend", "ipm", "--reference-backend", "ipm", "--reference-ipm-objective-scaling", "on"],
                       ["--ipm-linear-accuracy", "backward"],
                       ["--reference-ipm-linear-accuracy", "strict"],
                       ["--candidate-backend", "ipm", "--ipm-linear-accuracy", "loose"],

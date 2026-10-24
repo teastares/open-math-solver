@@ -1,0 +1,15 @@
+(lldb) target create "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v48.exe"
+Current executable set to 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64).
+(lldb) settings set -- target.run-args  "solve" "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps" "--backend" "ipm" "--time-limit" "5.0" "--threads" "1" "--seed" "0" "--mip-gap" "0.0001" "--iteration-limit" "200" "--scaling-passes" "5" "--ipm-method" "homogeneous" "--ipm-singleton-elimination" "on" "--ipm-dynamic-regularization" "off" "--ipm-kkt-equilibration" "on" "--ipm-linear-accuracy" "strict" "--ipm-central-corrections" "0" "--ipm-direction-retries" "0" "--ipm-krylov-history-size" "0" "--ipm-linear-solver" "normal_cholmod" "--ipm-inexact-prefilter" "off" "--ipm-fixed-variable-elimination" "on" "--ipm-singleton-presolve" "off" "--ipm-presolve-fixed-elimination" "off"
+(lldb) process launch --stdout "D:/Documents/codes/solver/knowledge/experiments/data/2026-10-12-halpern-ipm/v50-lldb-attempt2-target.stdout" --stderr "D:/Documents/codes/solver/knowledge/experiments/data/2026-10-12-halpern-ipm/v50-lldb-attempt2-target.stderr"
+Process 31604 launched: 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64)
+Process 31604 stopped
+* thread #1, stop reason = Exception 0xc0000005 encountered at address 0x7ff7c38df71d: Access violation reading location 0xffffffffffffffff
+      frame #0: 0x00007ff7c38df71d solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE + 18685
+solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE:
+->  0x7ff7c38df71d <+18685>: retq   
+    0x7ff7c38df71e <+18686>: int3   
+    0x7ff7c38df71f <+18687>: int3   
+
+solver-ipm-v48.exe`dgemm_beta_COOPERLAKE:
+    0x7ff7c38df720 <+0>:     pushq  %r15

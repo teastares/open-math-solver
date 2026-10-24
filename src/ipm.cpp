@@ -35,6 +35,7 @@ using Clock = std::chrono::steady_clock;
 using Index = std::int64_t;
 
 struct NumericalFailure : std::runtime_error { using std::runtime_error::runtime_error; };
+struct HomogeneousNonpositiveDenominator : NumericalFailure { using NumericalFailure::NumericalFailure; };
 struct BudgetExpired {};
 
 double elapsed(Clock::time_point start) {
@@ -469,8 +470,10 @@ ConeModel canonicalize(const Model& original, const SolveOptions& options,
       }
     }
   }
-  for (double cost : model.costs) model.objective_scale = std::max(model.objective_scale, std::abs(cost));
-  for (double& cost : model.costs) cost = scaled(cost, 1 / model.objective_scale);
+  if (options.ipm.objective_scaling) {
+    for (double cost : model.costs) model.objective_scale = std::max(model.objective_scale, std::abs(cost));
+    for (double& cost : model.costs) cost = scaled(cost, 1 / model.objective_scale);
+  }
   return model;
 }
 
@@ -611,7 +614,8 @@ class KktFactor {
     const bool normal_extended = options.ipm.linear_solver == "normal_extended";
     const bool normal_refined = options.ipm.linear_solver == "normal_refined";
     const bool normal_cholmod = options.ipm.linear_solver == "normal_cholmod";
-    const bool normal_augmented = options.ipm.linear_solver == "normal_augmented" || normal_multifrontal || normal_extended || normal_refined || normal_cholmod;
+    const bool normal_cholmod_aat = options.ipm.linear_solver == "normal_cholmod_aat";
+    const bool normal_augmented = options.ipm.linear_solver == "normal_augmented" || normal_multifrontal || normal_extended || normal_refined || normal_cholmod || normal_cholmod_aat;
     if (options.ipm.linear_solver == "sparselu" || options.ipm.linear_solver == "normal" || normal_augmented ||
         options.ipm.linear_solver == "factorhighs") {
       // 适配器均接收实际 AMD 后的 KKT；外部缩放、消元和完整方向恢复保持一致。
@@ -626,6 +630,7 @@ class KktFactor {
           try {
             normal_cholesky_ = std::make_unique<detail::NormalCholesky>(factor_dimension_, starts, rows, signs,
                 [&options, &start] { check_budget(options, start); }, normal_multifrontal, normal_extended, normal_refined ? 2 : 0,
+                normal_cholmod_aat ? detail::NormalCholeskyKernel::cholmod_supernodal_aat :
                 normal_cholmod ? detail::NormalCholeskyKernel::cholmod_supernodal : detail::NormalCholeskyKernel::eigen);
           } catch (const detail::NormalCholeskyBudgetExceeded&) {
             if (!normal_augmented) throw;
@@ -642,7 +647,7 @@ class KktFactor {
         } else {
           // factor_dimension_ 仍是输入向量的维数；报告字段使用实际 Cholesky 分解维数。
           result.ipm_kkt_dimension = normal_cholesky_->factor_dimension();
-          result.ipm_factor_backend = normal_cholmod ? "normal_cholmod" : normal_multifrontal ? "normal_multifrontal" : normal_extended ? "normal_extended" : normal_refined ? "normal_refined" : "normal";
+          result.ipm_factor_backend = normal_cholmod_aat ? "normal_cholmod_aat" : normal_cholmod ? "normal_cholmod" : normal_multifrontal ? "normal_multifrontal" : normal_extended ? "normal_extended" : normal_refined ? "normal_refined" : "normal";
         }
       } else {
         sparse_lu_ = std::make_unique<detail::SparseLu>(factor_dimension_, starts, rows);
@@ -1828,8 +1833,9 @@ bool assess_homogeneous(const ConeModel& model, const Point& point, double tau,
 HomogeneousDirection homogeneous_direction(const ConeModel& model, const Point& point,
     double tau, double kappa, const std::vector<double>& primal_residual,
     const std::vector<double>& dual_residual, long double gap_residual, double theta,
-    const std::vector<double>& h, long double h_tau, const std::vector<double>& constant,
-    const KktFactor& factor, const SolveOptions& options, Clock::time_point start, SolveResult& result) {
+    const std::vector<double>& h, long double h_tau, std::vector<double>& constant,
+    const KktFactor& factor, const SolveOptions& options, Clock::time_point start, SolveResult& result,
+    detail::IpmHomogeneousRepairInfo* repair_info = nullptr) {
   check_budget(options, start);
   const auto n = point.x.size(), m = point.s.size();
   std::vector<double> rhs(n + m);
@@ -1847,8 +1853,31 @@ HomogeneousDirection homogeneous_direction(const ConeModel& model, const Point& 
   const auto u = factor.solve(rhs, options, start, result);
   const auto budget = [&] { check_budget(options, start); };
   HomogeneousDirection direction;
-  direction.scalars = detail::ipm_homogeneous_scalar_direction(model.costs, model.rhs, u, constant,
-      tau, kappa, -static_cast<long double>(theta) * gap_residual, h_tau, budget);
+  if (repair_info) {
+    const auto repair = [&] {
+      budget();
+      auto recovery_options = options;
+      recovery_options.ipm.linear_accuracy = "blockwise";
+      std::vector<double> constant_rhs(n + m);
+      for (std::size_t col = 0; col < n; ++col) {
+        if ((col & 4095) == 0) budget();
+        constant_rhs[col] = -model.costs[col];
+      }
+      std::copy(model.rhs.begin(), model.rhs.end(), constant_rhs.begin() + static_cast<std::ptrdiff_t>(n));
+      budget();
+      ++*result.ipm_homogeneous_constant_repairs;
+      ++*result.ipm_homogeneous_constant_solves;
+      // 复用同一因子，原全局门槛与两块门槛同时满足才返回；不重建分解。
+      return factor.solve(constant_rhs, recovery_options, start, result);
+    };
+    const bool previously_succeeded = repair_info->succeeded;
+    direction.scalars = detail::ipm_homogeneous_scalar_direction_repair(model.costs, model.rhs, u, constant,
+        tau, kappa, -static_cast<long double>(theta) * gap_residual, h_tau, repair, *repair_info, budget);
+    if (!previously_succeeded && repair_info->succeeded) ++*result.ipm_homogeneous_constant_repair_successes;
+  } else {
+    direction.scalars = detail::ipm_homogeneous_scalar_direction(model.costs, model.rhs, u, constant,
+        tau, kappa, -static_cast<long double>(theta) * gap_residual, h_tau, budget);
+  }
   direction.point.x.resize(n);
   direction.point.z.resize(m);
   direction.point.s.assign(m, 0);
@@ -2020,10 +2049,12 @@ void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
       constant = factor.solve(constant_rhs, options, start, result);
     }
     const long double affine_h_tau = -static_cast<long double>(tau) * kappa;
+    detail::IpmHomogeneousRepairInfo repair_info;
+    auto* repair = options.ipm.linear_accuracy == "homogeneous_repair" ? &repair_info : nullptr;
     const auto affine = scaled_direction ? homogeneous_scaled_direction(model, point, tau, kappa, primal_residual,
         dual_residual, gap_residual, 1, h, affine_h_tau, constant, scaling, denominator, factor, options, start, result) :
         homogeneous_direction(model, point, tau, kappa, primal_residual,
-            dual_residual, gap_residual, 1, h, affine_h_tau, constant, factor, options, start, result);
+            dual_residual, gap_residual, 1, h, affine_h_tau, constant, factor, options, start, result, repair);
     const double affine_step = homogeneous_step(model, point, tau, kappa, affine, options, start);
     const double remaining = 1 - affine_step;
     const double sigma = remaining * remaining * remaining;
@@ -2041,7 +2072,7 @@ void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
     const auto corrected = scaled_direction ? homogeneous_scaled_direction(model, point, tau, kappa, primal_residual,
         dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, scaling, denominator, factor, options, start, result) :
         homogeneous_direction(model, point, tau, kappa, primal_residual,
-            dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, factor, options, start, result);
+            dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, factor, options, start, result, repair);
     const double step = 0.995 * homogeneous_step(model, point, tau, kappa, corrected, options, start);
     if (!(step > 0) || !std::isfinite(step)) throw NumericalFailure("齐次共同步长不是有限正数");
     Point candidate;
@@ -2082,13 +2113,16 @@ void validate_options(const SolveOptions& options) {
     throw std::invalid_argument("内点方法必须为 mehrotra 或 homogeneous");
   }
   if (options.ipm.method == "homogeneous" && ((options.ipm.linear_accuracy != "strict" &&
-      options.ipm.linear_accuracy != "homogeneous_scaled") ||
+      options.ipm.linear_accuracy != "homogeneous_scaled" && options.ipm.linear_accuracy != "homogeneous_repair") ||
       options.ipm.krylov_history_size != 0 || options.ipm.direction_retries != 0 ||
       options.ipm.central_corrections != 0)) {
-    throw std::invalid_argument("齐次嵌入仅支持 strict 或 homogeneous_scaled，且要求关闭历史、方向重试和额外中心校正");
+    throw std::invalid_argument("齐次嵌入仅支持 strict、homogeneous_scaled 或 homogeneous_repair，且要求关闭历史、方向重试和额外中心校正");
   }
   if (options.ipm.linear_accuracy == "homogeneous_scaled" && options.ipm.method != "homogeneous") {
     throw std::invalid_argument("homogeneous_scaled 精度仅支持 homogeneous 方法");
+  }
+  if (options.ipm.linear_accuracy == "homogeneous_repair" && options.ipm.method != "homogeneous") {
+    throw std::invalid_argument("homogeneous_repair 精度仅支持 homogeneous 方法");
   }
   if (options.ipm.krylov_history_size < 0 || options.ipm.krylov_history_size > 8) {
     throw std::invalid_argument("Krylov 历史维数必须为 0 到 8");
@@ -2113,8 +2147,8 @@ void validate_options(const SolveOptions& options) {
       options.ipm.linear_solver != "normal" && options.ipm.linear_solver != "qdldl_extended" &&
       options.ipm.linear_solver != "factorhighs" && options.ipm.linear_solver != "normal_augmented" &&
       options.ipm.linear_solver != "normal_multifrontal" && options.ipm.linear_solver != "normal_extended" && options.ipm.linear_solver != "normal_refined" &&
-      options.ipm.linear_solver != "normal_cholmod") {
-    throw std::invalid_argument("内点法线性求解器必须为 qdldl、sparselu、normal、qdldl_extended、factorhighs、normal_augmented、normal_multifrontal、normal_extended、normal_refined 或 normal_cholmod");
+      options.ipm.linear_solver != "normal_cholmod" && options.ipm.linear_solver != "normal_cholmod_aat") {
+    throw std::invalid_argument("内点法线性求解器必须为 qdldl、sparselu、normal、qdldl_extended、factorhighs、normal_augmented、normal_multifrontal、normal_extended、normal_refined、normal_cholmod 或 normal_cholmod_aat");
   }
   if ((options.ipm.linear_solver == "qdldl_extended" || options.ipm.linear_solver == "normal_extended" || options.ipm.linear_solver == "normal_refined") &&
       std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) {
@@ -2125,7 +2159,7 @@ void validate_options(const SolveOptions& options) {
   }
   if ((options.ipm.linear_solver == "normal" || options.ipm.linear_solver == "normal_augmented" ||
        options.ipm.linear_solver == "normal_multifrontal" || options.ipm.linear_solver == "normal_extended" || options.ipm.linear_solver == "normal_refined" ||
-       options.ipm.linear_solver == "normal_cholmod") &&
+       options.ipm.linear_solver == "normal_cholmod" || options.ipm.linear_solver == "normal_cholmod_aat") &&
       !options.ipm.eliminate_singletons) {
     throw std::invalid_argument("正规方程实验要求启用单非零不等式行消元");
   }
@@ -2139,8 +2173,9 @@ void validate_options(const SolveOptions& options) {
       options.ipm.linear_accuracy != "adaptive_regularization" &&
       options.ipm.linear_accuracy != "primal_dual_regularization" &&
       options.ipm.linear_accuracy != "curvature_regularization" && options.ipm.linear_accuracy != "full_newton" &&
-      options.ipm.linear_accuracy != "bounded_newton" && options.ipm.linear_accuracy != "homogeneous_scaled") {
-    throw std::invalid_argument("内点法线性精度模式必须为 strict、backward、inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton 或 homogeneous_scaled");
+      options.ipm.linear_accuracy != "bounded_newton" && options.ipm.linear_accuracy != "homogeneous_scaled" &&
+      options.ipm.linear_accuracy != "homogeneous_repair") {
+    throw std::invalid_argument("内点法线性精度模式必须为 strict、backward、inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled 或 homogeneous_repair");
   }
   if ((options.ipm.linear_accuracy == "full_newton" || options.ipm.linear_accuracy == "bounded_newton") &&
       options.ipm.central_corrections != 0) {
@@ -3263,8 +3298,11 @@ detail::IpmHomogeneousScalarDirection detail::ipm_homogeneous_scalar_direction(
     dot_v += static_cast<long double>(coefficient) * v[i];
   }
   const long double denominator = static_cast<long double>(kappa) / tau - dot_v;
-  if (!(denominator > 0) || !std::isfinite(denominator) || !std::isfinite(dot_u))
+  if (!(denominator > 0) || !std::isfinite(denominator) || !std::isfinite(dot_u)) {
+    if (std::isfinite(denominator) && denominator <= 0 && std::isfinite(dot_u))
+      throw HomogeneousNonpositiveDenominator("齐次标量消元的分母不是有限正数");
     throw NumericalFailure("齐次标量消元的分母不是有限正数");
+  }
   const long double dtau = (complementarity_rhs / tau + dot_u - gap_rhs) / denominator;
   IpmHomogeneousScalarDirection result;
   result.tau = finite(dtau);
@@ -3272,6 +3310,29 @@ detail::IpmHomogeneousScalarDirection detail::ipm_homogeneous_scalar_direction(
   result.kappa = finite((complementarity_rhs - static_cast<long double>(kappa) * result.tau) / tau);
   full_newton_budget(check);
   return result;
+}
+
+detail::IpmHomogeneousScalarDirection detail::ipm_homogeneous_scalar_direction_repair(
+    std::span<const double> costs, std::span<const double> rhs,
+    std::span<const double> u, std::vector<double>& v, double tau, double kappa,
+    long double gap_rhs, long double complementarity_rhs,
+    const IpmHomogeneousConstantRepair& repair, IpmHomogeneousRepairInfo& info,
+    const std::function<void()>& check) {
+  try {
+    return ipm_homogeneous_scalar_direction(costs, rhs, u, v, tau, kappa, gap_rhs, complementarity_rhs, check);
+  } catch (const HomogeneousNonpositiveDenominator&) {
+    if (info.attempted) throw;
+    full_newton_budget(check);
+    info.attempted = true;
+    auto candidate = repair();
+    full_newton_budget(check);
+    const auto direction = ipm_homogeneous_scalar_direction(
+        costs, rhs, u, candidate, tau, kappa, gap_rhs, complementarity_rhs, check);
+    full_newton_budget(check);
+    v = std::move(candidate);
+    info.succeeded = true;
+    return direction;
+  }
 }
 
 double detail::ipm_homogeneous_step_limit(double cone_limit, double tau, double kappa,
@@ -3289,7 +3350,7 @@ double detail::ipm_homogeneous_step_limit(double cone_limit, double tau, double 
   return result;
 }
 
-std::string ipm_version() { return "ipm-cpu-0.41.0"; }
+std::string ipm_version() { return "ipm-cpu-0.53.0"; }
 
 SolveResult solve_ipm(const Model& model, const SolveOptions& options) {
   const auto start = Clock::now();
@@ -3306,6 +3367,8 @@ SolveResult solve_ipm(const Model& model, const SolveOptions& options) {
   result.ipm_bounded_newton_returns = 0;
   result.ipm_bounded_newton_inexact_returns = 0;
   result.ipm_homogeneous_constant_solves = 0;
+  result.ipm_homogeneous_constant_repairs = 0;
+  result.ipm_homogeneous_constant_repair_successes = 0;
   result.ipm_homogeneous_direction_solves = 0;
   result.ipm_homogeneous_scaled_products = 0;
   result.ipm_homogeneous_scaled_refinement_steps = 0;

@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "stage": "compatibility-probe",
+  "started_at_utc": "2026-10-24T05:32:44.529034+00:00",
+  "plan_sha256": "05c279eae47e297757fc56cf3096aa3271e99dd0eb8829fbe396ac4833d7e8bb",
+  "identity_sha256": "c9c7e26e250003769d9eeb0f5227212d57991d7d38e7e50d8754e5755bfd756b",
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "hash_error": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+      "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+      "hash_error": null
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "hash_error": null
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+      "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+      "hash_error": null
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+      "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+      "hash_error": null
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "hash_error": null
+    }
+  ],
+  "models_file_sha256": "d73d79cb0bb7e7559591d4417da58b88e978f1d360fae6595abc37c0f5482399",
+  "repeats": 1,
+  "variants": [
+    "frozen_v66",
+    "diagnostic_off"
+  ],
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "threads": 1,
+  "seed": 0,
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "environment_rule": "每次清除所有SOLVER_V前缀及OPENBLAS_CORETYPE；仅diagnostic_on设置SOLVER_V68_BASIS_RECOVERY=1；结束恢复原环境。",
+  "execution": "复用benchmark.run_one子进程35秒硬终止；串行轮转；额外恢复计入solve_seconds，5秒超限按失败计罚。"
+}

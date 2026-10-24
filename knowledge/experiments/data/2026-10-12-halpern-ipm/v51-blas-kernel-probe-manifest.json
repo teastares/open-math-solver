@@ -1,0 +1,29 @@
+{
+  "diagnostic_only": true,
+  "script_sha256": "269281c65130e9ecc31c3a199043e7a26cadbe59419399499aee5b1bdb3526fd",
+  "source_sha256": "455496f29b7a48edab9301ebd14cd1d2876c47ddbe64dc726ac4bdb318fffe75",
+  "library_sha256": "d48d029591fd1ec86ad5bcf80826081a44a771ca56160b4795805e29a899cbcd",
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "build_command": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe",
+    "-std=c++20",
+    "-O2",
+    "-g",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v51-blas-kernel-probe.cpp",
+    "D:\\Documents\\codes\\solver\\build\\openblas\\install\\lib\\libopenblas.a",
+    "-o",
+    "D:\\Documents\\codes\\solver\\.tools\\v51-blas-kernel-probe.exe"
+  ],
+  "k_cases": [
+    128,
+    256,
+    340,
+    341,
+    342,
+    384
+  ],
+  "m": 16,
+  "n": 6,
+  "timeout_seconds": 10,
+  "expected_rule": "C[i,j] = K*(i+1)*(j+1)，输入与结果均可精确表示"
+}

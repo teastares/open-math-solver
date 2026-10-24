@@ -1,0 +1,6 @@
+(lldb) target create "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v48.exe"
+Current executable set to 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64).
+(lldb) settings set -- target.run-args  "solve" "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps" "--backend" "ipm" "--time-limit" "5.0" "--threads" "1" "--seed" "0" "--mip-gap" "0.0001" "--iteration-limit" "200" "--scaling-passes" "5" "--ipm-method" "homogeneous" "--ipm-singleton-elimination" "on" "--ipm-dynamic-regularization" "off" "--ipm-kkt-equilibration" "on" "--ipm-linear-accuracy" "strict" "--ipm-central-corrections" "0" "--ipm-direction-retries" "0" "--ipm-krylov-history-size" "0" "--ipm-linear-solver" "normal_cholmod" "--ipm-inexact-prefilter" "off" "--ipm-fixed-variable-elimination" "on" "--ipm-singleton-presolve" "off" "--ipm-presolve-fixed-elimination" "off"
+(lldb) breakpoint set --name dgemm_kernel_COOPERLAKE --skip-prologue false --condition "$r8 > 341 && $rdx >= 6"
+Breakpoint 1: where = solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE, address = 0x000000014090ae20
+(lldb) process launch --stdout "D:/Documents/codes/solver/knowledge/experiments/data/2026-10-12-halpern-ipm/v51-blas-lldb-probe-target.stdout" --stderr "D:/Documents/codes/solver/knowledge/experiments/data/2026-10-12-halpern-ipm/v51-blas-lldb-probe-target.stderr"

@@ -142,8 +142,7 @@ void check_multifrontal_normal(bool extended = false, int refinement_budget = 0,
   }
 }
 
-void check_cholmod_normal() {
-  constexpr auto kernel = NormalCholeskyKernel::cholmod_supernodal;
+void check_cholmod_normal(NormalCholeskyKernel kernel = NormalCholeskyKernel::cholmod_supernodal) {
   check_multifrontal_normal(false, 0, kernel);
   const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
   const std::vector<std::int8_t> signs{1, -1, -1};
@@ -156,17 +155,19 @@ void check_cholmod_normal() {
           "二阶稠密超节点应报告含上三角占位的四项 xsize，而非三项数学因子");
   auto rhs = multiply(starts, rows, values, {1, 2, -3});
   const auto original = rhs;
+  const std::vector<double> changed_values{5, -3, -11, 0, -13};
   int factor_checks = 0;
-  require(factor.factor(values, [&] { ++factor_checks; }), "CHOLMOD 预算计数基准应分解成功");
+  require(factor.factor(changed_values, [&] { ++factor_checks; }), "CHOLMOD 预算计数基准应分解成功");
   // 扫过本小系统的全部回调边界，实际覆盖库调用后的预算中断与因子失效。
   for (int stop = 1; stop <= factor_checks; ++stop) {
     int calls = 0;
     bool interrupted = false;
-    try { factor.factor(values, [&] { if (++calls == stop) throw std::runtime_error("CHOLMOD 分解中断"); }); }
+    try { factor.factor(changed_values, [&] { if (++calls == stop) throw std::runtime_error("CHOLMOD 分解中断"); }); }
     catch (const std::runtime_error& error) { interrupted = std::string(error.what()) == "CHOLMOD 分解中断"; }
     require(interrupted && !factor.solve(rhs) && rhs == original,
             "分解任一边界中断必须作废因子且不写回右端");
-    require(factor.factor(values), "预算中断之后应能复用符号结构重新分解");
+    // 中断前后的数值不同，恢复必须覆盖缓存，不能沿用已复制的另一组数值。
+    check_solution(factor, starts, rows, values, {1, 2, -3});
   }
   int solve_checks = 0;
   require(factor.solve(rhs, [&] { ++solve_checks; }), "CHOLMOD 预算计数基准应回代成功");
@@ -305,6 +306,75 @@ void check_refined_normal() {
           "校正不应偷偷替换 double 因子，也不能修复未成功分解的矩阵");
 }
 
+void check_extreme_gram_ranges() {
+  // 两例使用 binary64 的精确二次幂；窄指数平台不承诺这些中间量可表示。
+  if constexpr (std::numeric_limits<double>::radix != 2 ||
+                std::numeric_limits<double>::digits != 53 ||
+                std::numeric_limits<double>::max_exponent != 1024 ||
+                std::numeric_limits<double>::min_exponent != -1021 ||
+                std::numeric_limits<long double>::max_exponent < 4096 ||
+                std::numeric_limits<long double>::min_exponent > -4096) return;
+  const auto power = [](int exponent) { return std::ldexp(1.0, exponent); };
+  const std::vector<Index> two_starts{0, 1, 3}, two_rows{0, 0, 1};
+  const std::vector<std::int8_t> two_signs{1, -1};
+  const std::vector<double> overflow_values{power(-1074), power(-37), -power(1000)};
+  const std::vector<double> overflow_scale{power(-537), power(500)};
+  const std::vector<Index> three_starts{0, 1, 3, 5}, three_rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> three_signs{1, -1, -1};
+  const std::vector<double> underflow_values{power(500), power(500), -power(500), power(-700), -power(-1074)};
+  const std::vector<double> underflow_scale{power(500), power(500), power(-700)};
+  for (const auto kernel : {NormalCholeskyKernel::eigen, NormalCholeskyKernel::cholmod_supernodal,
+                           NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    // 这是 [[1,1],[1,-1]] 的对称尺度变换。商超过 double 范围，Gram 为有限的 2^1001。
+    // 已知原坐标解为 (1,2)，完整 RHS 的两项均非零，避免对大数相消的零右端施加绝对误差要求。
+    NormalCholesky overflow(2, two_starts, two_rows, two_signs, {}, false, false, 0, kernel);
+    check_solution(overflow, two_starts, two_rows, overflow_values,
+        {power(537), power(-499)}, true, overflow_scale);
+    // 较小系数除以 B 会落到 double 以下，但它与另一系数的交叉 Gram 项仍为 2^-700。
+    // 从完整 KKT 的已知解生成 RHS=(2,-1,-2^-374)，分别归一化三个解坐标以检出丢项。
+    NormalCholesky underflow(3, three_starts, three_rows, three_signs, {}, false, false, 0, kernel);
+    check_solution(underflow, three_starts, three_rows, underflow_values,
+        {0, power(-500), power(700)}, true, underflow_scale);
+  }
+}
+
+void check_rectangular_normal() {
+  constexpr auto kernel = NormalCholeskyKernel::cholmod_supernodal_aat;
+  // 复用完整 KKT、逐行不同对角、重复分解及全部预算边界，实际调用矩形生产分支。
+  check_cholmod_normal(kernel);
+  const std::vector<Index> starts{0, 1, 3}, rows{0, 0, 1};
+  NormalCholesky reversed(2, starts, rows, std::vector<std::int8_t>{-1, 1}, {}, false, false, 0, kernel);
+  check_solution(reversed, starts, rows, {-3, 4, 2}, {-1, 2});
+  check_solution(reversed, starts, rows, {-6, 0, 8}, {2, 3});
+  check_solution(reversed, starts, rows, {-5, -2, 3}, {-4, 1});
+  NormalCholesky diagonal(3, std::vector<Index>{0, 1, 2, 3}, std::vector<Index>{0, 1, 2},
+      std::vector<std::int8_t>{-1, -1, -1}, {}, false, false, 0, kernel);
+  check_solution(diagonal, {0, 1, 2, 3}, {0, 1, 2}, {-1, -4, -9}, {2, -3, 4});
+  require(diagonal.factor_dimension() == 3 && diagonal.regularized_pivots() == 0,
+          "无原始列时矩形输入的逐行平方根仍须恢复独立的对偶对角");
+  NormalCholesky forward(2, starts, rows, std::vector<std::int8_t>{1, -1}, {}, false, false, 0, kernel);
+  check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+  for (const auto& invalid : std::vector<std::vector<double>>{{0, 4, -3}, {-2, 4, -3}, {2, 4, 0},
+       {2, 4, 3}, {2, std::numeric_limits<double>::infinity(), -3},
+       {2, std::numeric_limits<double>::quiet_NaN(), -3}, {2}, {1e-300, 1e300, -1}}) {
+    require(!forward.factor(invalid), "矩形输入必须拒绝非法对角、非有限数、长度错误及不可表示的缩放值");
+    std::vector<double> rhs{1, 2};
+    require(!forward.solve(rhs) && rhs == std::vector<double>({1, 2}) && forward.factor_nonzeros() == 0,
+            "矩形分解失败不能复用之前的因子或部分写回");
+    check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+  }
+  if constexpr (std::numeric_limits<double>::radix == 2 && std::numeric_limits<double>::digits == 53 &&
+                std::numeric_limits<double>::min_exponent == -1021 &&
+                std::numeric_limits<double>::has_denorm == std::denorm_present) {
+    // 非零 G/sqrt(D) 超出 binary64 下界时拒绝；不能让上游收到被静默删除的系数。
+    const std::vector<double> underflow{std::ldexp(1.0, 1000), std::ldexp(1.0, -1074), -1};
+    require(!forward.factor(underflow), "非零矩形缩放项下溢必须拒绝");
+    std::vector<double> rhs{1, 2};
+    require(!forward.solve(rhs) && rhs == std::vector<double>({1, 2}), "缩放下溢后旧因子必须失效");
+    check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+  }
+}
+
 }  // 匿名命名空间
 
 int main() {
@@ -313,6 +383,8 @@ int main() {
     check_extended_normal();
     check_refined_normal();
     check_cholmod_normal();
+    check_rectangular_normal();
+    check_extreme_gram_ranges();
     const std::vector<Index> starts{0, 1, 3}, rows{0, 0, 1};
     NormalCholesky reversed(2, starts, rows, std::vector<std::int8_t>{-1, 1});
     std::vector<double> rhs{11, 0};
@@ -351,13 +423,38 @@ int main() {
     NormalCholesky star(9, star_starts, star_rows, std::vector<std::int8_t>{1, 1, 1, 1, -1, -1, -1, -1, -1});
     check_solution(star, star_starts, star_rows, star_values, {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
     require(star.factor_dimension() == 5 && star.factor_nonzeros() == 9, "星形结构排序后应保持无额外填充");
-    NormalCholesky star_cholmod(9, star_starts, star_rows,
-        std::vector<std::int8_t>{1, 1, 1, 1, -1, -1, -1, -1, -1}, {}, false, false, 0,
-        NormalCholeskyKernel::cholmod_supernodal);
-    check_solution(star_cholmod, star_starts, star_rows, star_values, {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
-    check_solution(star_cholmod, star_starts, star_rows, star_values, {-2, 1, 4, -1, 2, 3, -2, 1, 0}, false);
-    require(star_cholmod.factor_dimension() == 5 && star_cholmod.regularized_pivots() == 0,
-            "同 AMD 的 CHOLMOD 必须恢复原坐标且不新增主元正则");
+    for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+      NormalCholesky star_cholmod(9, star_starts, star_rows,
+          std::vector<std::int8_t>{1, 1, 1, 1, -1, -1, -1, -1, -1}, {}, false, false, 0,
+          kernel);
+      check_solution(star_cholmod, star_starts, star_rows, star_values, {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
+      check_solution(star_cholmod, star_starts, star_rows, star_values, {-2, 1, 4, -1, 2, 3, -2, 1, 0}, false);
+      require(star_cholmod.factor_dimension() == 5 && star_cholmod.regularized_pivots() == 0,
+              "同 AMD 的 CHOLMOD 必须恢复原坐标且不新增主元正则");
+      // 稀疏星形经 AMD 后每列长度不同，逐次改变值可发现转置槽错位或旧数值残留。
+      const auto star_storage = star_cholmod.factor_nonzeros();
+      auto changed_star = star_values;
+      for (Index col = 0; col < 9; ++col) {
+        for (Index entry = star_starts[static_cast<std::size_t>(col)];
+             entry < star_starts[static_cast<std::size_t>(col + 1)]; ++entry) {
+          const auto source = static_cast<std::size_t>(entry);
+          if (star_rows[source] == col) {
+            changed_star[source] *= 2 + static_cast<double>(col) / 8;
+          } else {
+            // 保留结构中的零项，再恢复非零，验证缓存的是结构而不是数值支持集。
+            changed_star[source] = col == 6 ? 0 : -static_cast<double>(entry + 1) / 8;
+          }
+        }
+      }
+      check_solution(star_cholmod, star_starts, star_rows, changed_star,
+          {-2, 1, 4, -1, 2, 3, -2, 1, 0});
+      check_solution(star_cholmod, star_starts, star_rows, changed_star,
+          {0.5, -1, 2, 3, -2, 1, 0, 2, -4}, false);
+      check_solution(star_cholmod, star_starts, star_rows, star_values,
+          {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
+      require(star_cholmod.factor_nonzeros() == star_storage,
+              "同一结构改变数值和显式零项不能重新改变超节点符号存储");
+    }
 
     for (const auto& invalid : std::vector<std::vector<double>>{{0, 4, -3}, {-2, 4, -3}, {2, 4, 0},
          {2, 4, 3}, {2, std::numeric_limits<double>::infinity(), -3}, {2}}) {
@@ -434,6 +531,12 @@ int main() {
     try { NormalCholesky dense(static_cast<std::size_t>(dense_degree + 1), dense_starts, dense_rows, dense_signs); }
     catch (const solver::detail::NormalCholeskyBudgetExceeded&) { limited = true; }
     require(limited, "单列诱发的 Gram 贡献超预算应在实际展开前明确拒绝");
+    limited = false;
+    try {
+      NormalCholesky dense(static_cast<std::size_t>(dense_degree + 1), dense_starts, dense_rows, dense_signs,
+          {}, false, false, 0, NormalCholeskyKernel::cholmod_supernodal_aat);
+    } catch (const solver::detail::NormalCholeskyBudgetExceeded&) { limited = true; }
+    require(limited, "矩形数值路径不能扩大原有的 Gram 贡献结构预算");
     bool budget_propagated = false;
     try {
       NormalCholesky stopped(static_cast<std::size_t>(dense_degree + 1), dense_starts, dense_rows, dense_signs,

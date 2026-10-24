@@ -1,0 +1,575 @@
+{
+  "schema_version": 1,
+  "model_count": 11,
+  "repeats": 3,
+  "run_count": 66,
+  "quality_pass_count": 66,
+  "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous",
+  "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off",
+  "both_variants_all_repeats_pass_count": 11,
+  "both_backends_all_repeats_pass_count": null,
+  "wall_winner_counts": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 9,
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 2
+  },
+  "failure_wall_penalty_seconds": 35.0,
+  "failure_numerical_penalty_seconds": 5.0,
+  "variants": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": {
+      "run_count": 33,
+      "quality_pass_count": 33,
+      "all_repeats_quality_pass_model_count": 11,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 33
+      },
+      "penalized_wall_sgm10_seconds": 0.32860934855979457,
+      "penalized_numerical_sgm10_seconds": 0.30701086731603633,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": {
+      "run_count": 33,
+      "quality_pass_count": 33,
+      "all_repeats_quality_pass_model_count": 11,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 33
+      },
+      "penalized_wall_sgm10_seconds": 0.31771536909998677,
+      "penalized_numerical_sgm10_seconds": 0.29641995143151795,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": null,
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.00879930006340146,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.00878729997202754
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0006125,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.0005906
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.008242000127211213,
+          0.010424199979752302
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.00817580008879304,
+          0.009761099936440587
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0006076,
+          0.0006142
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.0005728,
+          0.0005942
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0013656175858479,
+      "numerical_speedup_reference_over_candidate": 1.037080934642736,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0101131999399513,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.009724400006234646
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0019774,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.0018445
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.010035699931904674,
+          0.011234199861064553
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.00945580005645752,
+          0.011504799826070666
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0019329,
+          0.0019825
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.0018334,
+          0.0018911
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0399818943551666,
+      "numerical_speedup_reference_over_candidate": 1.0720520466251016,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.02350669982843101,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.021680300123989582
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0124228,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.0118508
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.02160899993032217,
+          0.023761299904435873
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.021092700073495507,
+          0.023210400016978383
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.012284,
+          0.0139958
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.0118204,
+          0.012122
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0842423626055107,
+      "numerical_speedup_reference_over_candidate": 1.0482667836770514,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.029954200144857168,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.02571370010264218
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0199744,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.015192
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.026653399923816323,
+          0.031059099826961756
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.02469819993712008,
+          0.03476650011725724
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0171895,
+          0.0203934
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.015053300000000002,
+          0.0242542
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.1649120906477113,
+      "numerical_speedup_reference_over_candidate": 1.314797261716693,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.03296829992905259,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.03296910016797483
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0208003,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.0205777
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0314994000364095,
+          0.044601199915632606
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.03140010009519756,
+          0.03338489984162152
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0207441,
+          0.0313988
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.0203271,
+          0.022612
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9999757276080281,
+      "numerical_speedup_reference_over_candidate": 1.0108175354874451,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.09693380002863705,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.08980730012990534
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0800126,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.0734685
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.09090210008434951,
+          0.11717589991167188
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.08380400016903877,
+          0.1093562999740243
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0725879,
+          0.09731320000000002
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.068159,
+          0.0913858
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0793532361892997,
+      "numerical_speedup_reference_over_candidate": 1.0890735485276002,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.33800980006344616,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.3624621999915689
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.3049109,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.3299804
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.3326210000086576,
+          0.36162839992903173
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.3585635998751968,
+          0.3661428999621421
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.3006312,
+          0.3259833
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.3266185,
+          0.3307594
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9325380689939764,
+      "numerical_speedup_reference_over_candidate": 0.924027305864227,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.1026821001432836,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.1022798998747021
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.0886534,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.0886388
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.10120309982448816,
+          0.1039881999604404
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.10089180013164878,
+          0.10386969987303019
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.0883666,
+          0.0913617
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.0884355,
+          0.089839
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0039323490644225,
+      "numerical_speedup_reference_over_candidate": 1.0001647134212104,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 8,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 1.894160500029102,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 1.7369846999645233
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 1.8514349,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 1.6961973
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          1.8854662999510765,
+          1.8964553999248892
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          1.7360543999820948,
+          1.7963604999240488
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          1.8439107,
+          1.8552547
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          1.6934135,
+          1.7558693
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0904877285722718,
+      "numerical_speedup_reference_over_candidate": 1.0915209569075486,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 9,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.9155513001605868,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.9105398999527097
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.8440589,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.838335
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.9036366001237184,
+          0.9241102000232786
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.9043779000639915,
+          0.9150355001911521
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.832698,
+          0.8479185
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.8339042,
+          0.8402905
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.005503767828447,
+      "numerical_speedup_reference_over_candidate": 1.0068277001437371,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    },
+    {
+      "model_index": 10,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+      "quality_pass_counts": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 3,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.3026984999887645,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.3021459998562932
+      },
+      "median_numerical_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": 0.2880824,
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": 0.2871433
+      },
+      "wall_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.30253960005939007,
+          0.3059052999597043
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.30148599995300174,
+          0.3030584000516683
+        ]
+      },
+      "numerical_range_seconds": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": [
+          0.2875977,
+          0.2885033
+        ],
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": [
+          0.2848978,
+          0.2877368
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0018285866194956,
+      "numerical_speedup_reference_over_candidate": 1.0032704924683948,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "configurations": {
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": {
+      "backend": "ipm",
+      "mode": null,
+      "ipm_method": "homogeneous",
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_objective_scaling": "on",
+      "ipm_linear_accuracy": "homogeneous_repair",
+      "ipm_central_corrections": 0,
+      "ipm_direction_retries": 0,
+      "ipm_krylov_history_size": 0,
+      "ipm_linear_solver": "normal_cholmod",
+      "ipm_inexact_prefilter": "off",
+      "ipm_fixed_variable_elimination": "on",
+      "ipm_singleton_presolve": "off",
+      "ipm_presolve_fixed_elimination": "off",
+      "iteration_limit": 200,
+      "scaling_passes": 5
+    },
+    "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": {
+      "backend": "ipm",
+      "mode": null,
+      "ipm_method": "homogeneous",
+      "history_size": null,
+      "highs_solver": null,
+      "highs_crossover": null,
+      "highs_presolve": null,
+      "ipm_singleton_elimination": "on",
+      "ipm_dynamic_regularization": "off",
+      "ipm_kkt_equilibration": "on",
+      "ipm_objective_scaling": "off",
+      "ipm_linear_accuracy": "homogeneous_repair",
+      "ipm_central_corrections": 0,
+      "ipm_direction_retries": 0,
+      "ipm_krylov_history_size": 0,
+      "ipm_linear_solver": "normal_cholmod",
+      "ipm_inexact_prefilter": "off",
+      "ipm_fixed_variable_elimination": "on",
+      "ipm_singleton_presolve": "off",
+      "ipm_presolve_fixed_elimination": "off",
+      "iteration_limit": 200,
+      "scaling_passes": 5
+    }
+  },
+  "output_dir": "D:\\Documents\\codes\\solver\\results\\round-ipm-v54-development"
+}

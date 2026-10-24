@@ -58,6 +58,16 @@
   "openblas": {
     "version": "0.3.33",
     "url": "https://codeload.github.com/OpenMathLib/OpenBLAS/tar.gz/refs/tags/v0.3.33",
-    "sha256": "6761af1d9f5d353ab4f0b7497be2643313b36c8f31caec0144bfef198e71e6ab"
+    "sha256": "6761af1d9f5d353ab4f0b7497be2643313b36c8f31caec0144bfef198e71e6ab",
+    "local_patches": [
+      {
+        "id": "dgemm-skylakex-stack-capacity-v1",
+        "path": "third_party/openblas/patch_dgemm_stack.cmake",
+        "sha256": "893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+        "source_file": "kernel/x86_64/dgemm_kernel_16x2_skylakex.S",
+        "source_sha256": "b64d4c34defbdd3e5cb62d259d35ee8fa488c01d90af13cb3c4c7367e5fc7e26",
+        "patched_sha256": "7ad33091ab73c53684d1b4302335ac80969ccc4e4371d4895ca5564424a84e9b"
+      }
+    ]
   }
 }

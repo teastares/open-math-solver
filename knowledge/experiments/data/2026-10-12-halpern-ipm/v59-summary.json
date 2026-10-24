@@ -1,0 +1,236 @@
+{
+  "diagnostic_only": true,
+  "runs": 16,
+  "pairs": [
+    {
+      "case_index": 0,
+      "model": "greenbea",
+      "repetition": 0,
+      "left": "frozen_v57",
+      "right": "production_baseline",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 0,
+      "model": "greenbea",
+      "repetition": 0,
+      "left": "production_baseline",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 0,
+      "model": "greenbea",
+      "repetition": 0,
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "repetition": 1,
+      "left": "frozen_v57",
+      "right": "production_baseline",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "repetition": 1,
+      "left": "production_baseline",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "repetition": 1,
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 2,
+      "model": "greenbeb",
+      "repetition": 0,
+      "left": "frozen_v57",
+      "right": "production_baseline",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 2,
+      "model": "greenbeb",
+      "repetition": 0,
+      "left": "production_baseline",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 2,
+      "model": "greenbeb",
+      "repetition": 0,
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 3,
+      "model": "greenbeb",
+      "repetition": 1,
+      "left": "frozen_v57",
+      "right": "production_baseline",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 3,
+      "model": "greenbeb",
+      "repetition": 1,
+      "left": "production_baseline",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 3,
+      "model": "greenbeb",
+      "repetition": 1,
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    }
+  ],
+  "cases": [
+    {
+      "case_index": 0,
+      "model": "greenbea",
+      "repetition": 0,
+      "status": {
+        "frozen_v57": "numerical_error",
+        "production_baseline": "numerical_error",
+        "diagnostic_off": "numerical_error",
+        "diagnostic_on": "numerical_error"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\0-diagnostic_on-kkt.bin": {
+          "sha256": "3b7a0ff9b1fdf30f42c435f1ef8ca44e5b6ccaf7c43210a417895ee6bda1c0b8",
+          "bytes": 2765280
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\0-diagnostic_on-kkt.json": {
+          "sha256": "4471cf56d2eee5b5efd0613e9c958678959f49187f2798c595ed2e410c16dd56",
+          "bytes": 2276
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\0-diagnostic_on"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "repetition": 1,
+      "status": {
+        "production_baseline": "numerical_error",
+        "diagnostic_off": "numerical_error",
+        "diagnostic_on": "numerical_error",
+        "frozen_v57": "numerical_error"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\1-diagnostic_on-kkt.bin": {
+          "sha256": "3b7a0ff9b1fdf30f42c435f1ef8ca44e5b6ccaf7c43210a417895ee6bda1c0b8",
+          "bytes": 2765280
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\1-diagnostic_on-kkt.json": {
+          "sha256": "4471cf56d2eee5b5efd0613e9c958678959f49187f2798c595ed2e410c16dd56",
+          "bytes": 2276
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\1-diagnostic_on"
+    },
+    {
+      "case_index": 2,
+      "model": "greenbeb",
+      "repetition": 0,
+      "status": {
+        "diagnostic_off": "optimal",
+        "diagnostic_on": "optimal",
+        "frozen_v57": "optimal",
+        "production_baseline": "optimal"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\2-diagnostic_on-kkt.bin": {
+          "sha256": "6d5cf2b88036dd539c694a2a0b9ad692487bb928871a7b8e36b72f9c566984ae",
+          "bytes": 8
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\2-diagnostic_on-kkt.json": {
+          "sha256": "46ff4d4360f3e11bcf28bbd4032845644fa69783e3ec4b8adf4a5a5913c82b84",
+          "bytes": 653
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\2-diagnostic_on"
+    },
+    {
+      "case_index": 3,
+      "model": "greenbeb",
+      "repetition": 1,
+      "status": {
+        "diagnostic_on": "optimal",
+        "frozen_v57": "optimal",
+        "production_baseline": "optimal",
+        "diagnostic_off": "optimal"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\3-diagnostic_on-kkt.bin": {
+          "sha256": "6d5cf2b88036dd539c694a2a0b9ad692487bb928871a7b8e36b72f9c566984ae",
+          "bytes": 8
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\3-diagnostic_on-kkt.json": {
+          "sha256": "46ff4d4360f3e11bcf28bbd4032845644fa69783e3ec4b8adf4a5a5913c82b84",
+          "bytes": 653
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v59-diagnostic\\captures\\3-diagnostic_on"
+    }
+  ],
+  "non_budget_pairs": 12,
+  "non_budget_equal": 12,
+  "budget_pairs": 0,
+  "invalid_pairs": 0,
+  "different_pairs": 0,
+  "capture_errors": 0,
+  "raw_sha256": "76dda277851cd5536b5fc13a33b82e3715593fcd99942c7be6c46d3c8c9425fd",
+  "scope": "诊断复制成本计入实际预算；不计算性能加速比或新的公开覆盖成绩。"
+}

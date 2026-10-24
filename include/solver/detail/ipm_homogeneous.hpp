@@ -21,6 +21,23 @@ IpmHomogeneousScalarDirection ipm_homogeneous_scalar_direction(
     long double gap_rhs, long double complementarity_rhs,
     const std::function<void()>& budget_check = {});
 
+struct IpmHomogeneousRepairInfo {
+  bool attempted = false;
+  bool succeeded = false;
+};
+
+using IpmHomogeneousConstantRepair = std::function<std::vector<double>()>;
+
+// 仅有限非正分母可触发一次回调；dot_u 非有限和其他异常不触发恢复。
+// 同一外层迭代的预测与校正共享 info；回调须按原 K0 的严格分块规则求常数右端。
+// 临时常数通过原标量消元及最后预算检查后才提交；失败保持原 v，异常原样传播。
+IpmHomogeneousScalarDirection ipm_homogeneous_scalar_direction_repair(
+    std::span<const double> costs, std::span<const double> rhs,
+    std::span<const double> u, std::vector<double>& v, double tau, double kappa,
+    long double gap_rhs, long double complementarity_rhs,
+    const IpmHomogeneousConstantRepair& repair, IpmHomogeneousRepairInfo& info,
+    const std::function<void()>& budget_check = {});
+
 // 将原始、对偶锥的公共边界再与 tau、kappa 的边界及 1 取交；校正步的安全比例由调用方应用。
 double ipm_homogeneous_step_limit(double cone_limit, double tau, double kappa,
     const IpmHomogeneousScalarDirection& direction,

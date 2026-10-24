@@ -1,0 +1,295 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-18T06:57:10.792697+00:00",
+  "scope": "完整466条冻结实验核验",
+  "plan_sha256": "d1a027a5eb7b045b9e138da205bfb884323984af1242b1b4d7e22cd09d338648",
+  "helper_sha256": "21d851bc6d3c7ccc3dc98f14010cb46e73d510a97a31725da7a43e3fb47c29ac",
+  "verifier_sha256": "323e5ece25007e2207d5028bd43cc65a1e7b4db86ca89746768e8b5afa6eebe3",
+  "identity_sha256": "2e9cfcded7e59b37ec1af19273b15db75e4d3adcc27026b94e41f2ab69591cda",
+  "solver_sha256": "7dd9ce7c9b67389329cbd09db1753cc4c3b068bbaf1a5802a4b63edeffcc5963",
+  "parent_solver_sha256": "231606c2778a463788acf84e089afa903f18d804080895aa9fddba2fff685270",
+  "source_files": 95,
+  "linked_libraries": 17,
+  "changed_source_files": [
+    "src/ipm.cpp",
+    "src/normal_cholesky.cpp",
+    "tests/test_normal_cholesky.cpp"
+  ],
+  "ctest_passed": 18,
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [],
+    "development_speed_gate": true,
+    "trajectories": {
+      "development": {
+        "pairs": 33,
+        "equal": 33,
+        "budget_limited": 0,
+        "invalid": 0,
+        "different": 0,
+        "passed": true
+      },
+      "probe": {
+        "pairs": 18,
+        "equal": 15,
+        "budget_limited": 3,
+        "invalid": 0,
+        "different": 0,
+        "passed": true
+      },
+      "passed": true
+    },
+    "eligible_for_netlib": true,
+    "plan_sha256": "d1a027a5eb7b045b9e138da205bfb884323984af1242b1b4d7e22cd09d338648"
+  },
+  "run_count": 466,
+  "stages": {
+    "development": {
+      "runs": 66,
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.32614578425493396,
+          "penalized_numerical_sgm10_seconds": 0.3051141032397757,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.32051379129040497,
+          "penalized_numerical_sgm10_seconds": 0.2988217879816104,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 11,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "artifacts": {
+        "-manifest.json": "1bb3d4db1dd4ccfdb67ba8b2b26f56d1a84809ae81583a0aada2a823b8cbac09",
+        "-summary.json": "3175699e9f632e1d1af76226716d5d73da504fbe57efd0a4bc9f955e166c77e0",
+        "-runs.jsonl.gz": "b09888fe6523ddbcbe9dd25e0df4c1211a18224dd6e94d7f2375be9ee7733add",
+        "-command.json": "c6b3cd32e94dc033a3fc8c96c95c7cbe6a98c322e6eec4e3c3fde3c2b152bce1",
+        "-process.json": "c1718db930be89081bd82848c0694458c5ad30d28abadc67161a48d44fe76256",
+        "-run.log": "cf8fc46ca1ba79830e385ac83209c85fb5f010e71db48afb1dbf4d99a4cb3b81"
+      }
+    },
+    "probe": {
+      "runs": 36,
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous": {
+          "run_count": 18,
+          "quality_pass_count": 12,
+          "all_repeats_quality_pass_model_count": 4,
+          "quality_failure_counts": {
+            "incomplete": 6
+          },
+          "status_counts": {
+            "time_limit": 3,
+            "optimal": 12,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 6.601336971004523,
+          "penalized_numerical_sgm10_seconds": 1.5002177565439447,
+          "numerical_budget_exceeded_count": 3,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous": {
+          "run_count": 18,
+          "quality_pass_count": 12,
+          "all_repeats_quality_pass_model_count": 4,
+          "quality_failure_counts": {
+            "incomplete": 6
+          },
+          "status_counts": {
+            "time_limit": 3,
+            "optimal": 12,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 6.599994191422076,
+          "penalized_numerical_sgm10_seconds": 1.499382958414604,
+          "numerical_budget_exceeded_count": 3,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 4,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "artifacts": {
+        "-manifest.json": "ef2c513b6595e82e58660807b4f7f0c371bf03942fad22d8612d5000db043e58",
+        "-summary.json": "c863ae351cb425c6faf105ce262602b701da903a374c67a02e0a1b665d7ab259",
+        "-runs.jsonl.gz": "f9567d712980e2ef26a3453d6a47d930790d6284a2a9bede517adb7deb327991",
+        "-command.json": "18d7ceab47d3260f28c6ae92e16e16facc602fae0b0a6a1cecf7aebe022775cd",
+        "-process.json": "aecb4f7208db42c3ab77fede04934e96916d0aa45402361ae53746e450ef1fcf",
+        "-run.log": "c46992a5a9416a35597acab8a8d864009b2638f0be40f5f8816a35013b14daf7"
+      }
+    },
+    "netlib": {
+      "runs": 182,
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous": {
+          "run_count": 91,
+          "quality_pass_count": 89,
+          "all_repeats_quality_pass_model_count": 89,
+          "quality_failure_counts": {
+            "incomplete": 2
+          },
+          "status_counts": {
+            "optimal": 89,
+            "time_limit": 1,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 0.4598890570736699,
+          "penalized_numerical_sgm10_seconds": 0.1933552797540412,
+          "numerical_budget_exceeded_count": 1,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous": {
+          "run_count": 91,
+          "quality_pass_count": 89,
+          "all_repeats_quality_pass_model_count": 89,
+          "quality_failure_counts": {
+            "incomplete": 2
+          },
+          "status_counts": {
+            "optimal": 89,
+            "time_limit": 1,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 0.45678807568694824,
+          "penalized_numerical_sgm10_seconds": 0.19045454555999036,
+          "numerical_budget_exceeded_count": 1,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 89,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "artifacts": {
+        "-manifest.json": "5dbf4ed9eaebc79fdfca0f928415e8462b98366c2862670299881f61c5ff8c4f",
+        "-summary.json": "df4932720a8e7ec796b6f26e764463161baf49322a9cedea4a10c3f5615ef8fc",
+        "-runs.jsonl.gz": "96f2539339e3b833e6632a8f5b2fbdb07da550c1499a6ca7d53c1bb9f0f30a2e",
+        "-command.json": "77424a14d2efff06495ba934fe2129062dbc92ad90e0e7679d45c72b83210fe5",
+        "-process.json": "aecb4f7208db42c3ab77fede04934e96916d0aa45402361ae53746e450ef1fcf",
+        "-run.log": "564fda52778f862f1b05c433c9d01555d19215956c20b0cc885f934945c06bd4"
+      }
+    },
+    "highs": {
+      "runs": 182,
+      "reference_variant": "highs:solver=choose:crossover=on:presolve=choose",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous",
+      "variants": {
+        "highs:solver=choose:crossover=on:presolve=choose": {
+          "run_count": 91,
+          "quality_pass_count": 91,
+          "all_repeats_quality_pass_model_count": 91,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 91
+          },
+          "penalized_wall_sgm10_seconds": 0.09732520755740103,
+          "penalized_numerical_sgm10_seconds": 0.08058365946445667,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous": {
+          "run_count": 91,
+          "quality_pass_count": 89,
+          "all_repeats_quality_pass_model_count": 89,
+          "quality_failure_counts": {
+            "incomplete": 2
+          },
+          "status_counts": {
+            "optimal": 89,
+            "time_limit": 1,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 0.4554585045971544,
+          "penalized_numerical_sgm10_seconds": 0.1892580055212073,
+          "numerical_budget_exceeded_count": 1,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 89,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "artifacts": {
+        "-manifest.json": "3b686fd94e434f07662341bbdc085d3494b06080c34cb77e6bb141360612e98a",
+        "-summary.json": "411d66a2231da14ef5f55d2d1ec6dfb44f39c62c98f8df3c35980a66732ef0c8",
+        "-runs.jsonl.gz": "3012b6cf3a2ba2cab9c6a9a4da444a8403fb186985fdcaedeb9bf16c97a62e28",
+        "-command.json": "c72f72fbf32db3cced617288a3eae7381eecd7746f4b15e4d6be0f22314ce40a",
+        "-process.json": "c1d16714ec6f7d85a38abb37df284af554b3ab317f3c7902bc639b79ae705f72",
+        "-run.log": "aa098c69388f562f73387a87c5f72bdbdb7ad8bd40b31cecd5e3731f401886dd"
+      }
+    }
+  },
+  "self_test": {
+    "passed": true,
+    "trajectory_cases": 10,
+    "pair_rejection_cases": 2,
+    "gate_cases": 8,
+    "shared_checks": {
+      "passed": true,
+      "negative_cases": 4,
+      "budget_cases": 4,
+      "process_contract_cases": 8,
+      "gate_cases": 6,
+      "shared_checks": {
+        "passed": true,
+        "negative_cases": 16,
+        "gate_cases": 5,
+        "trajectory_cases": 3,
+        "scope": "纯合成协议和门槛，未编译或求解"
+      },
+      "solver_runs": 0
+    },
+    "solver_runs": 0
+  },
+  "limits": [
+    "公开LP验证复算既存原模型检查报告、共同容差与预算，不重新求解或重建原始矩阵。",
+    "初始非预算完整报告仅排除timings/backend_version，其余字段及退出码逐对完全相等；预算报告仍计入失败与成本。",
+    "本轮沿用同一已修BLAS库，不重新进行旧库负对照或固定20次稳定性试验。",
+    "passed表示证据完整且门槛按冻结合同执行，并不表示相对HiGHS性能目标已达到。"
+  ],
+  "netlib_trajectory_diagnostic": {
+    "diagnostic_only": true,
+    "audit": {
+      "pairs": 91,
+      "equal": 90,
+      "budget_limited": 1,
+      "invalid": 0,
+      "different": 0,
+      "passed": true
+    },
+    "non_equal_pairs": [
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+        "repetition": 0,
+        "classification": "budget_limited",
+        "raw_run_indices": [
+          46,
+          47
+        ]
+      }
+    ]
+  }
+}

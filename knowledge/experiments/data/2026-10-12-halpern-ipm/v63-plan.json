@@ -1,0 +1,135 @@
+{
+  "created_at_utc": "2026-10-23T09:57:38.925429+00:00",
+  "kind": "diagnostic_only",
+  "round": 60,
+  "version": "v63",
+  "parent_version": 62,
+  "parent_identity_sha256": "287e15ce18f0b5613f5d26f845d1103591c553b7797f27d5b0cd1da19ec4974c",
+  "parent_solver_sha256": "a1816655d407735924aa47e5df6d84e731a2a9794574120f40b04d5b2e9c38ca",
+  "parent_source_sha256": "7e5b5f13b1481feeab8d6e2ef0db51d999a56799635f6abb39509ab47105e4ce",
+  "baseline_identity_file": "v62-restored-state.json",
+  "baseline_identity_sha256": "69085713b3eb80fe52644fc90d56215f32b812f701a5efca80fc45ce9200a426",
+  "evidence_file": "v62-verification.json",
+  "evidence_sha256": "a9b7d4b72676a175872f54d9b16e4a61a479597425f1535ec356015db227fe58",
+  "production_changes": false,
+  "models": [
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "backends": [
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "forplan",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "backends": [
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "greenbeb",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "backends": [
+        "normal_cholmod"
+      ]
+    }
+  ],
+  "variants": [
+    "frozen_v62",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "runs": 18,
+  "repeats": 2,
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "method": "homogeneous",
+  "linear_accuracy": "homogeneous_extended",
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "threads": 1,
+  "seed": 0,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "direction-retries": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off",
+    "objective-scaling": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_extended",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "cache_limit_bytes": 134217728,
+  "maximum_repair_events": 8,
+  "diagnostic_environment": "SOLVER_V63_DIAGNOSTICS",
+  "hypothesis": "第59轮的联合失败消息不能区分最后原K0残差失败或标量分母拒绝；保留每次宽常数恢复的真实阶段、已算残差与分母及最后未提交候选，在同原预算内定位实际失败并以精确算术核验最后候选的原系统缺陷。",
+  "capture_policy": "仅按实际宽blockwise常数恢复事件采集，模型名和预知外层步不参与触发。每事件保存恢复序号、外层步、IR或Krylov周期/列、已有K0残差/阈值、已算标量D及检查结果、实际搜索列数与退出原因；无损保存最后未提交线性候选和对应G/H/RHS。关闭采集不得扫描数组；不采Arnoldi全空间，不额外求解或生成KKT乘积。",
+  "evaluation": "18条串行轮转，仅排timings比较完整报告（保留版本与全部工作计数），非法状态或计数先于预算分类；12个非预算对子均相同且无采集错误/截断才解释诊断。预算分叉和失败完整保存，不视为兼容；本轮不重新定义性能目标。",
+  "limits": [
+    "本轮不修改生产算法、精度、窗口或默认配置，不生成新的公开LP性能成绩。",
+    "采集复制和标量跟踪发生在solve内，占用原5秒数值预算；State析构时缓冲文件输出发生在求解timings之后，只计入原35秒进程墙钟预算，不声称输出已含于solve_seconds。每次求解最多8个恢复事件、128MiB采集缓存、每事件256个步骤记录，达到限制明确报告而非静默丢失。",
+    "四新增计数在所有状态严格按非布尔整数验证，success≤attempt、rejections≤checks；冻结v62与诊断程序都必须完整提供字段。",
+    "只解释实际保存的当前点与最后未提交线性候选，不用终报最佳候选替代当前状态；不凭合取错误消息推断最终D符号。",
+    "精确残差针对保存的实际G/H/RHS与无损宽候选；如果额外分析精确s/z，须与生产double H分开且不得替换在线矩阵。",
+    "独立编译所有受v62共享结果头影响的四个翻译单元；不混用旧SolveResult结构对象。",
+    "分析不搜索新方向或放宽验收；后续算法分叉依据实际阶段证据决定，未捕获的事件不能推断。"
+  ],
+  "maximum_steps_per_event": 256,
+  "baseline_verification_file": "v63-baseline-check.json",
+  "baseline_verification_sha256": "1eda36ce0268c31091937f5f26887fb71c3cc9ab504c9bb1d1d1d72f8803f2fc",
+  "source_references": [
+    {
+      "url": "https://petsc.org/release/manualpages/KSP/KSPMonitorTrueResidual/",
+      "scope": "本轮成功阅读PETSc 3.26.0完整官方页；区分真实残差监控与求解递推，不把额外监控扫描当免费计算。"
+    },
+    {
+      "url": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/conjugate_residuals.cc",
+      "scope": "本轮实际读取锁定本地初始化、循环与每五步更新段；每五步重算P乘递推residual，不是从rhs-Cx重新计算完整真实残差。"
+    },
+    {
+      "url": "https://docs.gurobi.com/projects/optimizer/en/current/concepts/numericguide/numeric_parameters.html",
+      "scope": "本轮只读取搜索返回的官方页面摘要，直接展开返回HTTP429；仅参考公开数值策略，不声称已读全文或闭源实现。"
+    }
+  ]
+}

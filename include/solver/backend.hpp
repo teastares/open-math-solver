@@ -55,6 +55,8 @@ struct SolveResult {
   std::optional<std::int64_t> ipm_bounded_newton_returns;
   std::optional<std::int64_t> ipm_bounded_newton_inexact_returns;
   std::optional<std::int64_t> ipm_homogeneous_constant_solves;
+  std::optional<std::int64_t> ipm_homogeneous_constant_repairs;
+  std::optional<std::int64_t> ipm_homogeneous_constant_repair_successes;
   std::optional<std::int64_t> ipm_homogeneous_direction_solves;
   std::optional<std::int64_t> ipm_homogeneous_scaled_products;
   std::optional<std::int64_t> ipm_homogeneous_scaled_refinement_steps;

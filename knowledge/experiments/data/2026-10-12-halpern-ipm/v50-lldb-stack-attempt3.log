@@ -1,0 +1,108 @@
+(lldb) target create "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v48.exe"
+Current executable set to 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64).
+(lldb) settings set -- target.run-args  "solve" "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps" "--backend" "ipm" "--time-limit" "5.0" "--threads" "1" "--seed" "0" "--mip-gap" "0.0001" "--iteration-limit" "200" "--scaling-passes" "5" "--ipm-method" "homogeneous" "--ipm-singleton-elimination" "on" "--ipm-dynamic-regularization" "off" "--ipm-kkt-equilibration" "on" "--ipm-linear-accuracy" "strict" "--ipm-central-corrections" "0" "--ipm-direction-retries" "0" "--ipm-krylov-history-size" "0" "--ipm-linear-solver" "normal_cholmod" "--ipm-inexact-prefilter" "off" "--ipm-fixed-variable-elimination" "on" "--ipm-singleton-presolve" "off" "--ipm-presolve-fixed-elimination" "off"
+(lldb) process launch --stdout "D:/Documents/codes/solver/knowledge/experiments/data/2026-10-12-halpern-ipm/v50-lldb-stack-attempt3-target.stdout" --stderr "D:/Documents/codes/solver/knowledge/experiments/data/2026-10-12-halpern-ipm/v50-lldb-stack-attempt3-target.stderr"
+Process 30644 launched: 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64)
+Process 30644 stopped
+* thread #1, stop reason = Exception 0xc0000005 encountered at address 0x7ff7c38df71d: Access violation reading location 0xffffffffffffffff
+      frame #0: 0x00007ff7c38df71d solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE + 18685
+solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE:
+->  0x7ff7c38df71d <+18685>: retq   
+    0x7ff7c38df71e <+18686>: int3   
+    0x7ff7c38df71f <+18687>: int3   
+
+solver-ipm-v48.exe`dgemm_beta_COOPERLAKE:
+    0x7ff7c38df720 <+0>:     pushq  %r15
+(lldb) thread backtrace all
+* thread #1, stop reason = Exception 0xc0000005 encountered at address 0x7ff7c38df71d: Access violation reading location 0xffffffffffffffff
+  * frame #0: 0x00007ff7c38df71d solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE + 18685
+  thread #2
+      frame #0: 0x00007ffe47b86ee4 ntdll.dll`NtWaitForWorkViaWorkerFactory + 20
+      frame #1: 0x00007ffe47a9e02e ntdll.dll`RtlRaiseStatus + 7230
+      frame #2: 0x00007ffe4592e8d7 kernel32.dll`BaseThreadInitThunk + 23
+      frame #3: 0x00007ffe47a28d9c ntdll.dll`RtlUserThreadStart + 44
+(lldb) register read
+General Purpose Registers:
+     rax = 0x0000000000000000
+     rbx = 0xBF18A00A030FFAFB
+     rcx = 0x0000019C1BE90000
+     rdx = 0x0000000000000002
+     rdi = 0xBED50B8197E607E7
+     rsi = 0xBEA0FD2274A8A6F7
+     rbp = 0xBED9E60FF8AB11D6
+     rsp = 0x000000606575A378
+      r8 = 0x0000019C1C057A00
+      r9 = 0x000000606575C3C0
+     r10 = 0x0000000000000100
+     r11 = 0x0000000000000000
+     r12 = 0x3EC440A68FF1E4A6
+     r13 = 0x3ED3DBCE55507C71
+     r14 = 0x3EDE39719E1648E6
+     r15 = 0x3E7C98DD710A3ECA
+     rip = 0x00007FF7C38DF71D  solver-ipm-v48.exe`dgemm_kernel_COOPERLAKE + 18685
+  eflags = 0b0000000000000000000000000000000000000000000000010000001000000100
+     eax = 0x00000000
+     ebx = 0x030FFAFB
+     ecx = 0x1BE90000
+     edx = 0x00000002
+     edi = 0x97E607E7
+     esi = 0x74A8A6F7
+     ebp = 0xF8AB11D6
+     esp = 0x6575A378
+     r8d = 0x1C057A00
+     r9d = 0x6575C3C0
+    r10d = 0x00000100
+    r11d = 0x00000000
+    r12d = 0x8FF1E4A6
+    r13d = 0x55507C71
+    r14d = 0x9E1648E6
+    r15d = 0x710A3ECA
+      ax = 0x0000
+      bx = 0xFAFB
+      cx = 0x0000
+      dx = 0x0002
+      di = 0x07E7
+      si = 0xA6F7
+      bp = 0x11D6
+      sp = 0xA378
+     r8w = 0x7A00
+     r9w = 0xC3C0
+    r10w = 0x0100
+    r11w = 0x0000
+    r12w = 0xE4A6
+    r13w = 0x7C71
+    r14w = 0x48E6
+    r15w = 0x3ECA
+      ah = 0x00
+      bh = 0xFA
+      ch = 0x00
+      dh = 0x00
+      al = 0x00
+      bl = 0xFB
+      cl = 0x00
+      dl = 0x02
+     dil = 0xE7
+     sil = 0xF7
+     bpl = 0xD6
+     spl = 0x78
+     r8l = 0x00
+     r9l = 0xC0
+    r10l = 0x00
+    r11l = 0x00
+    r12l = 0xA6
+    r13l = 0x71
+    r14l = 0xE6
+    r15l = 0xCA
+
+(lldb) memory read -fx -s8 -c20 $rsp
+0x606575a378: 0xbefeb5f84f36294a 0x3ecd64a6b42d06d0
+0x606575a388: 0xbec52a310eeae290 0x3efc703fa49bb0fc
+0x606575a398: 0xbec8929a7c802425 0x3eba60f59dcdfdad
+0x606575a3a8: 0x3ed77f2c42475d81 0x3ed1c7cc7fdd8301
+0x606575a3b8: 0x3f17611fa5bd4d7e 0x3e6229bdfa27f058
+0x606575a3c8: 0xbe8127870dc18ced 0x3eb11f24eaf2b1fa
+0x606575a3d8: 0xbe88863071b32b13 0xbebcfc52be112d6a
+0x606575a3e8: 0xbebd578e697f7d5a 0xbefa6ea5ad451b07
+0x606575a3f8: 0x3f545e966c9d62e3 0x3eff3126ae9fb56e
+0x606575a408: 0x3eeed792d6be722e 0xbf22f5a9e4184b69
+(lldb) 

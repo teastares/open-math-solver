@@ -1,0 +1,187 @@
+{
+  "diagnostic_only": true,
+  "runs": 12,
+  "pairs": [
+    {
+      "case_index": 0,
+      "model": "dfl001",
+      "linear_solver": "normal_cholmod",
+      "left": "production_v52",
+      "right": "diagnostic_off",
+      "equal": false,
+      "budget_limited": true,
+      "valid_processes": true,
+      "category": "budget_limited"
+    },
+    {
+      "case_index": 0,
+      "model": "dfl001",
+      "linear_solver": "normal_cholmod",
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": false,
+      "budget_limited": true,
+      "valid_processes": true,
+      "category": "budget_limited"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "linear_solver": "normal_cholmod",
+      "left": "production_v52",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "linear_solver": "normal_cholmod",
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 2,
+      "model": "forplan",
+      "linear_solver": "normal_cholmod",
+      "left": "production_v52",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 2,
+      "model": "forplan",
+      "linear_solver": "normal_cholmod",
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 3,
+      "model": "afiro",
+      "linear_solver": "normal_cholmod",
+      "left": "production_v52",
+      "right": "diagnostic_off",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    },
+    {
+      "case_index": 3,
+      "model": "afiro",
+      "linear_solver": "normal_cholmod",
+      "left": "diagnostic_off",
+      "right": "diagnostic_on",
+      "equal": true,
+      "budget_limited": false,
+      "valid_processes": true,
+      "category": "equal"
+    }
+  ],
+  "cases": [
+    {
+      "case_index": 0,
+      "model": "dfl001",
+      "linear_solver": "normal_cholmod",
+      "status": {
+        "production_v52": "time_limit",
+        "diagnostic_off": "time_limit",
+        "diagnostic_on": "time_limit"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\0-diagnostic_on-hsd.bin": {
+          "sha256": "fa99b312083674b6da72ef2c76053d874204a936d0c55965c7b792918a1ea218",
+          "bytes": 8439146
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\0-diagnostic_on-hsd.json": {
+          "sha256": "4b9489d7915c4c96a302f8db7cc879ada9430049827b2ebd8032842e1b812aa9",
+          "bytes": 12286
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\0-diagnostic_on"
+    },
+    {
+      "case_index": 1,
+      "model": "greenbea",
+      "linear_solver": "normal_cholmod",
+      "status": {
+        "diagnostic_off": "numerical_error",
+        "diagnostic_on": "numerical_error",
+        "production_v52": "numerical_error"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\1-diagnostic_on-hsd.bin": {
+          "sha256": "ca975a8f5ca65861f1756c3fa44addd125585faef43f0f239cea605370fd7387",
+          "bytes": 4246120
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\1-diagnostic_on-hsd.json": {
+          "sha256": "05f0f970238d94cada061976a60606a1108e163830736a162aaaf57e02316347",
+          "bytes": 13424
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\1-diagnostic_on"
+    },
+    {
+      "case_index": 2,
+      "model": "forplan",
+      "linear_solver": "normal_cholmod",
+      "status": {
+        "diagnostic_on": "optimal",
+        "production_v52": "optimal",
+        "diagnostic_off": "optimal"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\2-diagnostic_on-hsd.bin": {
+          "sha256": "94c1d044c52a72a35849e26fed3b81d76b4c1fce65cf9dc22ab528037b9644ce",
+          "bytes": 394153
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\2-diagnostic_on-hsd.json": {
+          "sha256": "e9cc305ded0860c64138cb8863ed1cf7decec6619dc8dccba398901cb0bc4570",
+          "bytes": 10538
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\2-diagnostic_on"
+    },
+    {
+      "case_index": 3,
+      "model": "afiro",
+      "linear_solver": "normal_cholmod",
+      "status": {
+        "production_v52": "optimal",
+        "diagnostic_off": "optimal",
+        "diagnostic_on": "optimal"
+      },
+      "capture_files": {
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\3-diagnostic_on-hsd.bin": {
+          "sha256": "d7b696e3eaad1eb47af01353a008d038f6b17b0c3b96900159dba139d08df33e",
+          "bytes": 24715
+        },
+        "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\3-diagnostic_on-hsd.json": {
+          "sha256": "d272d0f070485a488cacced3842290d54c1a44a54e8dc17b6b3180043797833e",
+          "bytes": 10158
+        }
+      },
+      "capture_prefix": "D:\\Documents\\codes\\solver\\.tools\\v53-diagnostic\\captures\\3-diagnostic_on"
+    }
+  ],
+  "non_budget_pairs": 6,
+  "non_budget_equal": 6,
+  "budget_pairs": 2,
+  "invalid_pairs": 0,
+  "different_pairs": 0,
+  "raw_sha256": "61d24c5cb2d1c8cc083a1561f1f5f6486caa14eccb3c6b6a06d66f88be9e7d14",
+  "scope": "诊断复制成本计入实际预算；不计算性能加速比或新的公开覆盖成绩。"
+}

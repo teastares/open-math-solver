@@ -192,10 +192,14 @@ def main(argv=None):
                         help="待测 IPM 的 KKT 均衡化；省略时关闭")
     parser.add_argument("--reference-ipm-kkt-equilibration", choices=("on", "off"),
                         help="参考 IPM 的 KKT 均衡化；始终独立于待测配置，省略时关闭")
+    parser.add_argument("--ipm-objective-scaling", choices=("on", "off"),
+                        help="待测 IPM 的目标归一化，省略时开启，与行列缩放轮数独立")
+    parser.add_argument("--reference-ipm-objective-scaling", choices=("on", "off"),
+                        help="参考 IPM 的目标归一化；始终独立于待测配置，省略时开启")
     parser.add_argument("--ipm-linear-accuracy", choices=benchmark.IPM_LINEAR_ACCURACIES,
-                        help="待测 IPM 的线性系统精度规则，含 inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled；省略时 strict；homogeneous_scaled 仅用于 homogeneous，有限精化后保留最佳有限方向，仍须原模型终验")
+                        help="待测 IPM 的线性系统精度规则，含 inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled、homogeneous_repair；省略时 strict；homogeneous_scaled 仅用于 homogeneous，有限精化后保留最佳有限方向，仍须原模型终验；homogeneous_repair 仅用于 homogeneous，在有限非正标量分母时每轮至多按块严格重算一次常数方向")
     parser.add_argument("--reference-ipm-linear-accuracy", choices=benchmark.IPM_LINEAR_ACCURACIES,
-                        help="参考 IPM 的线性系统精度规则，含 inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled；始终独立于待测配置，省略时 strict；homogeneous_scaled 仅用于 homogeneous，有限精化后保留最佳有限方向，仍须原模型终验")
+                        help="参考 IPM 的线性系统精度规则，含 inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled、homogeneous_repair；始终独立于待测配置，省略时 strict；homogeneous_scaled 仅用于 homogeneous，有限精化后保留最佳有限方向，仍须原模型终验；homogeneous_repair 仅用于 homogeneous，在有限非正标量分母时每轮至多按块严格重算一次常数方向")
     parser.add_argument("--ipm-central-corrections", type=benchmark.nonnegative_integer, choices=(0, 1),
                         help="待测 IPM 每步中央修正次数；省略时 0")
     parser.add_argument("--reference-ipm-central-corrections", type=benchmark.nonnegative_integer, choices=(0, 1),
@@ -209,7 +213,7 @@ def main(argv=None):
     parser.add_argument("--reference-ipm-krylov-history-size", type=benchmark.nonnegative_integer, choices=range(9),
                         help="参考侧独立 Krylov 历史维数，0 到 8，默认 0；正值仅支持 strict、blockwise")
     parser.add_argument("--ipm-linear-solver", choices=benchmark.IPM_LINEAR_SOLVERS,
-                        help="待测 IPM 的稀疏分解实现，可选 qdldl、sparselu、normal、qdldl_extended、factorhighs、normal_augmented、normal_multifrontal、normal_extended、normal_refined、normal_cholmod；省略时 qdldl；normal_cholmod 保持原 Gram 和 AMD，使用 CHOLMOD 超节点分解")
+                        help="待测 IPM 的稀疏分解实现，可选 qdldl、sparselu、normal、qdldl_extended、factorhighs、normal_augmented、normal_multifrontal、normal_extended、normal_refined、normal_cholmod、normal_cholmod_aat；省略时 qdldl；normal_cholmod 保持原 Gram 和 AMD，使用 CHOLMOD 超节点分解；normal_cholmod_aat 保持相同 AMD 和结构预算，使用 CHOLMOD 矩形输入数值乘积")
     parser.add_argument("--reference-ipm-linear-solver", choices=benchmark.IPM_LINEAR_SOLVERS,
                         help="参考 IPM 的稀疏分解实现；始终独立于待测配置，省略时 qdldl")
     parser.add_argument("--ipm-inexact-prefilter", choices=("on", "off"),
@@ -270,6 +274,10 @@ def main(argv=None):
         parser.error("--ipm-kkt-equilibration 要求 --candidate-backend ipm")
     if args.reference_backend != "ipm" and args.reference_ipm_kkt_equilibration is not None:
         parser.error("--reference-ipm-kkt-equilibration 要求 --reference-backend ipm")
+    if args.candidate_backend != "ipm" and args.ipm_objective_scaling is not None:
+        parser.error("--ipm-objective-scaling 要求 --candidate-backend ipm")
+    if args.reference_backend != "ipm" and args.reference_ipm_objective_scaling is not None:
+        parser.error("--reference-ipm-objective-scaling 要求 --reference-backend ipm")
     if args.candidate_backend != "ipm" and args.ipm_linear_accuracy is not None:
         parser.error("--ipm-linear-accuracy 要求 --candidate-backend ipm")
     if args.reference_backend != "ipm" and args.reference_ipm_linear_accuracy is not None:
@@ -344,6 +352,7 @@ def main(argv=None):
                  "ipm_singleton_elimination": args.reference_ipm_singleton_elimination,
                  "ipm_dynamic_regularization": args.reference_ipm_dynamic_regularization,
                  "ipm_kkt_equilibration": args.reference_ipm_kkt_equilibration,
+                 "ipm_objective_scaling": args.reference_ipm_objective_scaling,
                  "ipm_linear_accuracy": args.reference_ipm_linear_accuracy,
                  "ipm_central_corrections": args.reference_ipm_central_corrections,
                  "ipm_direction_retries": args.reference_ipm_direction_retries,
@@ -362,6 +371,7 @@ def main(argv=None):
                  "ipm_singleton_elimination": args.ipm_singleton_elimination,
                  "ipm_dynamic_regularization": args.ipm_dynamic_regularization,
                  "ipm_kkt_equilibration": args.ipm_kkt_equilibration,
+                 "ipm_objective_scaling": args.ipm_objective_scaling,
                  "ipm_linear_accuracy": args.ipm_linear_accuracy,
                  "ipm_central_corrections": args.ipm_central_corrections,
                  "ipm_direction_retries": args.ipm_direction_retries,
@@ -413,6 +423,8 @@ def main(argv=None):
             label += ":krylov_history=" + str(configuration["ipm_krylov_history_size"])
         if configuration["backend"] == "ipm" and configuration["ipm_method"] == "homogeneous":
             label += ":method=homogeneous"
+        if configuration["backend"] == "ipm" and configuration["ipm_objective_scaling"] == "off":
+            label += ":objective_scaling=off"
         configurations[label] = configuration
     if len(configurations) != 2:
         parser.error("参考和待测的实际配置相同，无法形成独立对照标签")
@@ -466,6 +478,8 @@ def main(argv=None):
                 "reference_ipm_dynamic_regularization": args.reference_ipm_dynamic_regularization,
                 "ipm_kkt_equilibration": args.ipm_kkt_equilibration,
                 "reference_ipm_kkt_equilibration": args.reference_ipm_kkt_equilibration,
+                "ipm_objective_scaling": args.ipm_objective_scaling,
+                "reference_ipm_objective_scaling": args.reference_ipm_objective_scaling,
                 "ipm_linear_accuracy": args.ipm_linear_accuracy,
                 "reference_ipm_linear_accuracy": args.reference_ipm_linear_accuracy,
                 "ipm_central_corrections": args.ipm_central_corrections,
@@ -509,6 +523,7 @@ def main(argv=None):
                                              ipm_singleton_elimination=configuration["ipm_singleton_elimination"],
                                              ipm_dynamic_regularization=configuration["ipm_dynamic_regularization"],
                                              ipm_kkt_equilibration=configuration["ipm_kkt_equilibration"],
+                                             ipm_objective_scaling=configuration["ipm_objective_scaling"],
                                              ipm_linear_accuracy=configuration["ipm_linear_accuracy"],
                                              ipm_central_corrections=configuration["ipm_central_corrections"],
                                              ipm_direction_retries=configuration["ipm_direction_retries"],

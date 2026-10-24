@@ -1,0 +1,99 @@
+{
+  "created_at_utc": "2026-10-13T16:32:57.653642+00:00",
+  "kind": "diagnostic_only",
+  "round": 46,
+  "version": "v49",
+  "parent_identity_sha256": "988d97e2c29b6d3d6edb918e4bdcac0e05e51e380cf939023b71457b6e7e65bd",
+  "parent_solver_sha256": "38b90b7034120b57405cfcdff5e4569cca8622a4ed2aa7a7a7eb580217e7484c",
+  "production_changes": false,
+  "models": [
+    {
+      "name": "dfl001",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "backends": [
+        "normal_augmented",
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "forplan",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "backends": [
+        "normal_augmented",
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "backends": [
+        "normal_augmented",
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "afiro",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\afiro.mps",
+      "sha256": "04992b87e57e57c1c417c96b846833bfa12e055eeaa623f043c45fc773b5be41",
+      "backends": [
+        "normal_cholmod"
+      ]
+    }
+  ],
+  "variants": [
+    "production_v48",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "runs": 21,
+  "repeats": 1,
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "method": "homogeneous",
+  "linear_accuracy": "strict",
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "threads": 1,
+  "seed": 0,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "direction-retries": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "capture_contract": [
+    "冻结v48来源副本中仅替换normal_cholesky.cpp和ipm.cpp；唯一可逆锚点，复用同编译器参数和实际17库；生产源码不修改",
+    "关闭开关时不构造事件、不复制、不额外读时钟；开启时只记录阶段/标量事件及首次相关失败快照，不增加LP分解/求解/乘积；退出后写文件",
+    "正规分解记录输入/Gram累加/double转换/CHOLMOD阶段与正常失败或异常，防止把装配失败误归于POTRF；首份实际CHOLMOD数值失败保存upper CSC原始double位及status/minor/xsize/nsuper",
+    "齐次标量函数实际抛出数值异常时捕获G/c/b/s/z、常数v与方向u、tau/kappa和原标量参数；不修改捕获后的原异常",
+    "每类快照最多一份，每进程诊断缓存上限256MiB，事件上限2048；超限或诊断写入失败明确标记，不改变原LP异常",
+    "原程序/off/on比较除timings/backend_version外所有完整报告与退出码；预算受限分叉单列，不以诊断时间作性能证据"
+  ],
+  "offline_contract": [
+    "对同一保存的已舍入Gram独立运行CHOLMOD、Eigen double LLT、Eigen long double LLT；Natural且无额外排列、正则或主元floor",
+    "每个成功因子固定全1和交替正负1两个rhs，记录有限正对角、LD残差/后向误差；LD解另验cast double后的误差，不以成功factor等价LP达标",
+    "同矩阵CHOLMOD复现其status/minor，若不一致先报告复现不足；任一后端失败都保留",
+    "齐次快照用80位十进制有效数字，对原始double输入精确转换后重算dot、无正则KKT残差和能量恒等式，再以120位复核符号/主导项；不额外解LP或改变终验",
+    "离线数值过程串行，每个矩阵回放墙钟上限120秒，超时原样记录；额外分解/乘积/存储不是免费计算"
+  ],
+  "decision_contract": [
+    "Eigen在同Gram成功且残差合理才支持下一轮有界标量分解恢复；LD独有成功只支持精度敏感，不能声称double恢复有效",
+    "分母负值若80/120位均保留，则不能仅提高点积精度或夹取正值；用能量误差分解确定后续线性机制",
+    "本轮不宣称公开覆盖率/速度提升，不扩大性能集，不修改默认；目标仍为同协议整体打平HiGHS"
+  ],
+  "research_sources": [
+    "https://docs.scipy.org/doc/scipy-1.10.1/reference/optimize.linprog-interior-point.html",
+    "https://github.com/cvxopt/cvxopt/blob/1.3.2/src/python/misc.py",
+    "https://github.com/DrTimothyAldenDavis/SuiteSparse/blob/v7.14.1/CHOLMOD/Supernodal/cholmod_super_numeric.c",
+    "https://docs.mosek.com/11.1/cmdtools/solving-linear.html"
+  ]
+}

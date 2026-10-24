@@ -1,0 +1,127 @@
+{
+  "created_at_utc": "2026-10-23T08:14:58.504914+00:00",
+  "kind": "diagnostic_only",
+  "round": 56,
+  "version": "v59",
+  "parent_version": 57,
+  "parent_identity_sha256": "f62c38eefa4656d2c1c89bb9103f390114fbc3d8033209e636c14d8df629e571",
+  "parent_solver_sha256": "967b9e5421c5b50d83c8e961aba19a286a099f204b1061274cfe979ed8bd6cc4",
+  "baseline_identity_sha256": "3fc126d83a6ac488b697468da55e6358f6778441931ae73654204ce257a44ae1",
+  "evidence_sha256": "08a40f039d580b643f45e7a6ee9ab05e8f6b59e913e857aede43ab498bed03cf",
+  "production_changes": false,
+  "models": [
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "backends": [
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "greenbeb",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "backends": [
+        "normal_cholmod"
+      ]
+    }
+  ],
+  "variants": [
+    "frozen_v57",
+    "production_baseline",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "runs": 16,
+  "repeats": 2,
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "method": "homogeneous",
+  "linear_accuracy": "homogeneous_repair",
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "threads": 1,
+  "seed": 0,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "direction-retries": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off",
+    "objective-scaling": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_repair",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "cache_limit_bytes": 134217728,
+  "diagnostic_environment": "SOLVER_V59_DIAGNOSTICS",
+  "baseline_program": "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v59-baseline.exe",
+  "capture_contract": [
+    "从v57冻结95源码提取独立ipm.cpp，实际17库取v59-baseline；编译器/8第三方库/原95源码不变。只替换ipm对象，保留regularized对象，全部显式链接输入核身份",
+    "关闭时无额外扫描复制或读钟；开启仅复制已形成量，预算照常消耗。128MiB受控缓存包含暂存和最终记录，不是RSS上限；退出后落盘",
+    "只有正式constant=[-c;b] scope的首次Krylov终端耗尽触发冻结，不覆盖初始化/repair、不按模型名称触发。成功on也写明确no_target_failure；内存拒绝/截断/写出失败分别报告",
+    "保存G/H/regularized_h及ap/ai/ax/factor_values/equil/inverse/retained/singleton；同失败调用的首次direct actual factor_rhs/factor_solution/first_reduced_rhs/full_answer；末端rhs/answer/stored_residual及tolerance/实际正则与迭代计数",
+    "first_reduced_rhs为消元后已转double、尚未置换均衡的已有量，factor_solution必须为求解后尚未撤均衡的向量；factor_values为空时保存实际ax，禁止把理想值当实际输入",
+    "四variant按case轮转并串行；比较frozen_v57→baseline、baseline→off、off→on三对子，除timings完整报告与退出码相同，合法budget分叉单列；未知status/非法退出不被budget豁免。不以诊断时间宣布加速"
+  ],
+  "offline_contract": [
+    "全量Fraction精确复算已保存binary64，约定r=rhs-Kw；Rdual=Fraction(regularized_h)-Fraction(h)，不能用名义δd代替有效偏移",
+    "first_direct与terminal均逐坐标核r0=rδ_eff+R_eff*w；终端Krylov是对K0的组合方向，其rδ不是因子误差",
+    "首次direct精确拆singleton Schur矩阵和rhs形成/转换、对称均衡matrix和rhs转换、对actualfactor_matrix的适配器求解缺陷、撤均衡和singleton恢复舍入；各signedvector保留精确值，norm不相加冒充恒等式",
+    "terminal stored_residual与精确r0另比较，区分残差计算误差与真正原方程缺陷；离线不再求解新LP，额外计算成本单列",
+    "纯合成例同时覆盖singleton与无消元、均衡与无均衡、浮点对角加法有效偏移和各项扰动，逐坐标恒等式须成立；截断/重复字段/非有限/维数错配必须拒绝"
+  ],
+  "decision_contract": [
+    "本轮不新增生产恢复或放宽精度，不新增公开性能成绩；按失败方程的完整误差链决定后续方向",
+    "若first_direct主要是实际输入矩阵solve缺陷，进一步区分Gram/因子路径；若消元/恢复或正则项主导，修对应机制；不能把终端Krylov rδ大直接当分解失败",
+    "保留全部16记录与无触发控制，当前目标仍未达成；GPU只在两侧同硬件且新协议预先固定时比较，本轮仍CPU"
+  ],
+  "research_sources": [
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/hipo/ipm/Refine.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/lp_solver.cc",
+    "https://webhomes.maths.ed.ac.uk/~gondzio/reports/qphopdm.html",
+    "https://ergo-code.github.io/HiGHS/dev/solvers/"
+  ],
+  "local_reference": {
+    "file": ".deps/highs-source/highs/ipm/hipo/ipm/Refine.cpp",
+    "sha256": "29189bc884e8a2ef4f5f3daa44bfb34f6dd7d54c76363d6dd9414f6a59ed24bc",
+    "scope": "HiPO六块系统的实际正则和后向误差不能直接当作本项目未正则K0门槛"
+  }
+}

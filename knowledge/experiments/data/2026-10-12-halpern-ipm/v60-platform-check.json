@@ -1,0 +1,19 @@
+{
+  "command": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe",
+    "-std=c++20",
+    "-x",
+    "c++",
+    "-fsyntax-only",
+    "-"
+  ],
+  "source": "#include <limits>\nstatic_assert(std::numeric_limits<double>::radix == 2);\nstatic_assert(std::numeric_limits<double>::digits == 53);\nstatic_assert(std::numeric_limits<long double>::radix == 2);\nstatic_assert(std::numeric_limits<long double>::digits == 64);\nstatic_assert(std::numeric_limits<long double>::max_exponent == 16384);\nstatic_assert(std::numeric_limits<long double>::min_exponent == -16381);\nstatic_assert(std::numeric_limits<long double>::digits > std::numeric_limits<double>::digits);\n",
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "source_sha256": "50dd90da25a7f42fb0732a8dbcd0e3d3cc514dba4ff18c3deb8349532d9ee86c",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "elapsed_seconds": 0.19504799996502697,
+  "passed": true,
+  "solver_runs": 0
+}

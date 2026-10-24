@@ -1,0 +1,37 @@
+{
+  "created_at_utc": "2026-10-23T10:43:04.484179+00:00",
+  "affected_records": {
+    "v64-integration-attempt1.json": {
+      "sha256": "4dd5e49faa8250c20627d52d64244b24d443048aaf6b863821b23e920f7e3a77",
+      "field": "started_at_utc",
+      "recorded_value": "2026-10-23T10:32:59.611227+00:00",
+      "actual_semantics": "subprocess.run返回后生成外层记录的UTC时刻；不是启动时刻",
+      "elapsed_seconds": 0.48612100002355874
+    },
+    "v64-runner-self-check-attempt1.json": {
+      "sha256": "8518161246e823a334dd13b02e633d38ff93fd0a5571711d646859de8a1aba1a",
+      "field": "started_at_utc",
+      "recorded_value": "2026-10-23T10:32:59.803256+00:00",
+      "actual_semantics": "subprocess.run返回后生成外层记录的UTC时刻；不是启动时刻",
+      "elapsed_seconds": 0.19113729987293482
+    },
+    "v64-freeze-attempt1.json": {
+      "sha256": "c36c8f8ba94917d2f264e7725dad11e3d4d527671f3f8fbc5f91dcf9c232dacf",
+      "field": "started_at_utc",
+      "recorded_value": "2026-10-23T10:34:16.156799+00:00",
+      "actual_semantics": "subprocess.run返回后生成外层记录的UTC时刻；不是启动时刻",
+      "elapsed_seconds": 0.16970210010185838
+    },
+    "v64-freeze-attempt2.json": {
+      "sha256": "9442f930f634c8220407530b6b72ba07b8f8948cac6322134df951cf9b8b90b1",
+      "field": "started_at_utc",
+      "recorded_value": "2026-10-23T10:34:36.169256+00:00",
+      "actual_semantics": "subprocess.run返回后生成外层记录的UTC时刻；不是启动时刻",
+      "elapsed_seconds": 0.37732680002227426
+    }
+  },
+  "reason": "早期外层执行记录在subprocess.run返回之后创建字典，误将记录完成时间命名为started_at_utc。独立核验第一次据该误名字段断言冻结身份创建晚于外层完成，暴露了元数据语义错误。",
+  "correction": "保留原记录与字段，独立核验将该四项作为完成记录时刻；只核自检完成、首次拒绝完成、结果落盘、身份创建、第二次冻结完成的可证顺序，不恢复或猜测真实启动时刻。",
+  "unaffected": "实际构建及所有LP阶段在调用前记录started_at_utc；单次LP数值/墙钟与全部elapsed_seconds来自原计时，此澄清不改任何运行、精度、预算、质量或评分。",
+  "solver_runs": 0
+}

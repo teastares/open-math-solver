@@ -1,0 +1,362 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-18T08:14:10.309645+00:00",
+  "scope": "一次离线独立审核；不构建、不重跑LP",
+  "plan_sha256": "5b5f38473b95d3b5c7d3d2728aaa0f444501763c54c5e1b3a2d09637a2227729",
+  "helper_sha256": "547b7d9a9c4c37120f8dbb0fa0b8d0b8b768ff1613d8004869a863a89cd118c3",
+  "identity_sha256": "e90fe5e98ac97129c9c8df4c9c92db388c400c39bb5012e062709df2f5226496",
+  "solver_sha256": "a7c7e92a953524244788355a051711b60dabb3b6c81654aa28f65e9fa9023c42",
+  "parent_solver_sha256": "f28846612499fd274407e250dae8118a7dd049f5f78aa16e193028a293439b64",
+  "source_files": 95,
+  "linked_libraries": 17,
+  "unchanged_third_party_libraries": 8,
+  "ctest_passed": 18,
+  "changed_source_files": [
+    "src/ipm.cpp",
+    "src/normal_cholesky.cpp",
+    "tests/test_normal_cholesky.cpp"
+  ],
+  "changed_libraries": [
+    "build/release/libsolver_ipm.a",
+    "build/release/libsolver_normal_cholesky.a"
+  ],
+  "run_count": 466,
+  "performance_runs": 466,
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [],
+    "development_speed_gate": true,
+    "eligible_for_netlib": true,
+    "plan_sha256": "5b5f38473b95d3b5c7d3d2728aaa0f444501763c54c5e1b3a2d09637a2227729"
+  },
+  "stages": {
+    "development": {
+      "runs": 66,
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.32736624593913494,
+          "penalized_numerical_sgm10_seconds": 0.3058065183743725,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.3199538426794721,
+          "penalized_numerical_sgm10_seconds": 0.29789567974243797,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 11,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "failed_runs": [],
+      "artifacts": {
+        "-manifest.json": "e05cf63fb663f30e8b50ea7830ccf11131da73a0b70dd968d107f3ab08f5303f",
+        "-summary.json": "f335828490b89354fbae6937e61485e8a478732f23416e79a16969917467b6f6",
+        "-runs.jsonl.gz": "fd4869ced94fc71884fc325437606b41a3a93412b97b391e7de62bd55e727099",
+        "-command.json": "41ede72a47b8c22e314ee0c1e7ad6cfc3d98388536c21f52f852ddfd0e14b6f3",
+        "-process.json": "8312585872e0113243adbfb8d726908bccbce041bbb69c0f6eb66b5eae3c551d",
+        "-run.log": "ceda75278f35c043ff48ea6acee2a2290b4e12ff18ae076ee016835bbd0e620c"
+      }
+    },
+    "probe": {
+      "runs": 36,
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4844658735250498,
+          "penalized_numerical_sgm10_seconds": 1.209653514303349,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4809359327313154,
+          "penalized_numerical_sgm10_seconds": 1.2063863375037858,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 5,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "failed_runs": [
+        {
+          "run_index": 12,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 13,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 14,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 15,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 16,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 17,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        }
+      ],
+      "artifacts": {
+        "-manifest.json": "2ff6a3b5918360bd852a91378397b0a55a9117d5c19d315d6be7c3f5b48c1ef2",
+        "-summary.json": "b8874335552937c1987920fa2402bec97e8456dde55892f15c965dbfdb02a174",
+        "-runs.jsonl.gz": "810f67144942160bb633ef54aadce551b527af6c0bd41a3d3f6e481de83403c2",
+        "-command.json": "8c68254f12e4633bab366c22fa8efa5895baa1c27a2e416aa14b2070ea1667c5",
+        "-process.json": "11e0f8addece10af6551c15c0671f135ba101dfd9c749eb22406c5c1e992c7ce",
+        "-run.log": "d3aff231fe0b6d310e404287725ad7e5f17a5c3e9ea1551e89781c37d207c814"
+      }
+    },
+    "netlib": {
+      "runs": 182,
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 91,
+          "quality_pass_count": 90,
+          "all_repeats_quality_pass_model_count": 90,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 90,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 0.31499331666160674,
+          "penalized_numerical_sgm10_seconds": 0.1738241915892559,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 91,
+          "quality_pass_count": 90,
+          "all_repeats_quality_pass_model_count": 90,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 90,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 0.31154553578225197,
+          "penalized_numerical_sgm10_seconds": 0.17055815699083512,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 90,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "failed_runs": [
+        {
+          "run_index": 70,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 71,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        }
+      ],
+      "artifacts": {
+        "-manifest.json": "2f5cff948a5b32560cac62f9a6ba4d2d80977e88e3c6f3a38fc57b25884b6fac",
+        "-summary.json": "9a3d8bbfa5c515837dace76f6795e3bd48e2132922dd0a767569407ec8576ec3",
+        "-runs.jsonl.gz": "a495a0c5ce76a5244c127bc6e08f7d259edd98182a0f441278be6d46c7d692fa",
+        "-command.json": "0401a50fcfa0d803cd74fa7e73cbaebd8e2c448c383614e34f99278a9d27f436",
+        "-process.json": "11e0f8addece10af6551c15c0671f135ba101dfd9c749eb22406c5c1e992c7ce",
+        "-run.log": "ae77d0f3eb42e8161c487a8ed42005e7f1ecce707c6a14e2c1be761c3008bd61"
+      }
+    },
+    "highs": {
+      "runs": 182,
+      "reference_variant": "highs:solver=choose:crossover=on:presolve=choose",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off",
+      "variants": {
+        "highs:solver=choose:crossover=on:presolve=choose": {
+          "run_count": 91,
+          "quality_pass_count": 91,
+          "all_repeats_quality_pass_model_count": 91,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 91
+          },
+          "penalized_wall_sgm10_seconds": 0.09639280183124078,
+          "penalized_numerical_sgm10_seconds": 0.07970624068017622,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off": {
+          "run_count": 91,
+          "quality_pass_count": 90,
+          "all_repeats_quality_pass_model_count": 90,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 90,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 0.31039759954211543,
+          "penalized_numerical_sgm10_seconds": 0.16934144255760478,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 90,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "failed_runs": [
+        {
+          "run_index": 70,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        }
+      ],
+      "artifacts": {
+        "-manifest.json": "32f6fca415963f4bc5175ffba707b84220d9d3dc1e7a44b56436c1c03c725b98",
+        "-summary.json": "fb2b0d2ea99106440fbffc8141f582b5a7bd86b4be7966a78b7888795103594b",
+        "-runs.jsonl.gz": "e6bc8b956dbac33243e0d18c246b8101976839e8da2d8d7804f55dfbf6a94e46",
+        "-command.json": "f6789a32ad6d81085d379ca1013eb5bcb3b9a99e72ed8b23a40f1376fe1f52df",
+        "-process.json": "7a176b0180e54b656d8f08f7fdafa8c7b903e8570d61d7a88bd8214c5d72a43d",
+        "-run.log": "0a5709658af87019d6b83c3b470f80d03f372e57fadc9b6ea9b84da57dafa76e"
+      }
+    }
+  },
+  "reused_group_audit": {
+    "original_sha256": "1ce9388bddfa55977c4390849ce1213c5d822cb2c0a043c9133c430c70f3cde1",
+    "adapted_sha256": "07a936b573161ba3a800fe47f4490537725d515bda42b2e7597b3cdb78628e69",
+    "changes": [
+      {
+        "before": "identity = identities[54]",
+        "after": "identity = identities[56]",
+        "count": 1
+      },
+      {
+        "before": "stem = \"v54-\" + stage",
+        "after": "stem = \"v56-\" + stage",
+        "count": 1
+      },
+      {
+        "before": "candidate = str(ROOT / \".tools/solver-ipm-v54.exe\")",
+        "after": "candidate = str(ROOT / \".tools/solver-ipm-v56.exe\")",
+        "count": 1
+      },
+      {
+        "before": "reference_version = 52 if stage == \"compatibility\" else 54",
+        "after": "reference_version = 56 if stage == \"highs\" else 54",
+        "count": 1
+      },
+      {
+        "before": "version = reference_version if index == 0 else 54",
+        "after": "version = reference_version if index == 0 else 56",
+        "count": 1
+      },
+      {
+        "before": "version = reference_version if side == sides[0] else 54",
+        "after": "version = reference_version if side == sides[0] else 56",
+        "count": 1
+      },
+      {
+        "before": "if version == 54:",
+        "after": "if version in (54, 56):",
+        "count": 1
+      },
+      {
+        "before": "if backend == \"ipm\" and version == 54:",
+        "after": "if backend == \"ipm\" and version in (54, 56):",
+        "count": 1
+      },
+      {
+        "before": "    require(\":objective_scaling=\" not in sides[0] and\n            (\":objective_scaling=\" not in sides[1] if stage == \"compatibility\" else\n             sides[1].endswith(\":objective_scaling=off\") and sides[1].count(\":objective_scaling=\") == 1),\n            \"默认/on标签等价，只有off追加唯一末尾标识\")",
+        "after": "    require(all((\":objective_scaling=\" not in side if stage == \"highs\" and index == 0 else\n                side.endswith(\":objective_scaling=off\") and side.count(\":objective_scaling=\") == 1)\n                for index,side in enumerate(sides)), \"IPM两侧off标签完整\")\n    require(all((\":binary=\" not in side if stage == \"highs\" else\n                side.count(\":binary=\") == 1 and \":binary=\" + (\"reference\" if index == 0 else \"candidate\") in side)\n                for index,side in enumerate(sides)), \"不同程序双侧标签完整\")",
+        "count": 1
+      }
+    ]
+  },
+  "limits": [
+    "passed表示证据完整及冻结合同执行正确，不代表打平HiGHS。",
+    "原模型质量复核复用冻结验收报告与严格共同预算，没有重求LP。",
+    "本轮算式舍入顺序改变，不要求旧新报告或轨迹相等。",
+    "全部输入已观察；门槛失败时仅报告102条，不生成完整公开成绩。"
+  ]
+}

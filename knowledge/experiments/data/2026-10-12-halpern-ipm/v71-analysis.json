@@ -1,0 +1,1030 @@
+{
+  "schema": 1,
+  "version": "v71",
+  "diagnostic_only": true,
+  "candidate_modified": false,
+  "oracle_used": false,
+  "status": "analyzed",
+  "run_count": 18,
+  "capture_run_count": 6,
+  "candidate_capture_count": 2,
+  "unique_numerical_captures": 1,
+  "run_record": {
+    "path": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v71-runs.jsonl.gz",
+    "sha256": "72729586a07a968afeee4753e9c3583304aa6fe49c185bfa053ae52c262f6d3a"
+  },
+  "runs": [
+    {
+      "run_index": 0,
+      "case_index": 0,
+      "model_index": 0,
+      "repetition": 0,
+      "requested_variant": "frozen_v70_on",
+      "stage": "original_verification_rejected",
+      "original_model_trial_verification": {
+        "primal_valid": true,
+        "primal_feasible": false,
+        "dual_feasible": false,
+        "gap_satisfied": false,
+        "numerically_optimal": false,
+        "max_row_violation": 3975356.324695515,
+        "max_bound_violation": 8705704.905710522,
+        "max_dual_residual": 5711982.077966539,
+        "objective_gap": 14819881.287545145
+      },
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 1,
+      "case_index": 0,
+      "model_index": 0,
+      "repetition": 0,
+      "requested_variant": "diagnostic_capture_off",
+      "stage": "original_verification_rejected",
+      "original_model_trial_verification": {
+        "primal_valid": true,
+        "primal_feasible": false,
+        "dual_feasible": false,
+        "gap_satisfied": false,
+        "numerically_optimal": false,
+        "max_row_violation": 3975356.324695515,
+        "max_bound_violation": 8705704.905710522,
+        "max_dual_residual": 5711982.077966539,
+        "objective_gap": 14819881.287545145
+      },
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 2,
+      "case_index": 0,
+      "model_index": 0,
+      "repetition": 0,
+      "requested_variant": "diagnostic_capture_on",
+      "stage": "original_verification_rejected",
+      "original_model_trial_verification": {
+        "primal_valid": true,
+        "primal_feasible": false,
+        "dual_feasible": false,
+        "gap_satisfied": false,
+        "numerically_optimal": false,
+        "max_row_violation": 3975356.324695515,
+        "max_bound_violation": 8705704.905710522,
+        "max_dual_residual": 5711982.077966539,
+        "objective_gap": 14819881.287545145
+      },
+      "capture": {
+        "metadata_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\0-diagnostic_capture_on.json",
+        "binary_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\0-diagnostic_capture_on.bin",
+        "metadata_sha256": "c293d53af8d1b15502571c264fc5d9b19954ba76323296dcab99bd6b12a8e232",
+        "binary_sha256": "8ca2ef50c366b36cfec8433ea79cb80e9ce0a9870b7cef6cf78fa06d2439eae1",
+        "metadata_bytes": 1599,
+        "binary_bytes": 1120352,
+        "byte_order": "little",
+        "array_sha256": {
+          "g_starts": "f3941fa56dddbc9e367823769f2f487716349612abc93522b515350f08258424",
+          "g_rows": "b392c6772efe3205f945ff8876a2b61307376bbe0e07331848f5af576a238c1b",
+          "g_values": "fbcd86b1be4186a5ac9b021644ab0fc4e6d7cd208a93071209b45804d65c361f",
+          "costs": "7819f5bd7dfa0a2abe6a9737bd15c839cbe90e262e0d5f877fde0f8ae0948fec",
+          "rhs": "c468c304edd7874c65373d336b4de976d4b52c23ea717544d6caf6fb6036f087",
+          "slack": "6cacc56d15fc50121701126e510868351bfdd074eb7f108d322f1ea44b476ec4",
+          "dual": "f17b829d962d03afabfa5a218b5effe9d99cc54c85106053ae141494a76a9a7d",
+          "inequality": "3a0c3b671501aadd65a5c1d6a79ad8b9246838e46ff0ada0e057cdc73bed59ff",
+          "candidate_x": "764313fa90389c0d5f2410cab4c7534961820c25c8cadbc983c4dfa408522021",
+          "candidate_s": "22dc5fa8c0d5cb59ada03982a8014e535190d1cb45b68f9ab4b8caf29562d73d",
+          "candidate_z": "0d8d4d42b318d8fa5b7bd6d273aae0ef6caf4219e1ce0ffb2d1e16407e632789",
+          "selected_rows": "15290281b75bc4f719f5a079db521c4c673f87a93aab191be8bdc097512490be",
+          "pivot_columns": "df3dd636f2e38a9ce63c02fd6859eddae85af6d50309a91c2e980b614002c5f3"
+        },
+        "status": "captured"
+      },
+      "analysis_key": "a79c8d85f9e716e8f7045484750ab682ac916db89bce239ab46f546e5a71cfa0",
+      "original_model_assessment": {
+        "marker_type": "V70_BASIS",
+        "stage": "original_verification_rejected",
+        "recovery_status": "candidate",
+        "trial_verification": {
+          "primal_valid": true,
+          "primal_feasible": false,
+          "dual_feasible": false,
+          "gap_satisfied": false,
+          "numerically_optimal": false,
+          "max_row_violation": 3975356.324695515,
+          "max_bound_violation": 8705704.905710522,
+          "max_dual_residual": 5711982.077966539,
+          "objective_gap": 14819881.287545145
+        },
+        "note": "此项来自关联运行记录的原模型 assess；不参与 raw cone 恒等式，也不作为已知最优值。"
+      }
+    },
+    {
+      "run_index": 3,
+      "case_index": 1,
+      "model_index": 0,
+      "repetition": 1,
+      "requested_variant": "diagnostic_capture_off",
+      "stage": "original_verification_rejected",
+      "original_model_trial_verification": {
+        "primal_valid": true,
+        "primal_feasible": false,
+        "dual_feasible": false,
+        "gap_satisfied": false,
+        "numerically_optimal": false,
+        "max_row_violation": 3975356.324695515,
+        "max_bound_violation": 8705704.905710522,
+        "max_dual_residual": 5711982.077966539,
+        "objective_gap": 14819881.287545145
+      },
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 4,
+      "case_index": 1,
+      "model_index": 0,
+      "repetition": 1,
+      "requested_variant": "diagnostic_capture_on",
+      "stage": "original_verification_rejected",
+      "original_model_trial_verification": {
+        "primal_valid": true,
+        "primal_feasible": false,
+        "dual_feasible": false,
+        "gap_satisfied": false,
+        "numerically_optimal": false,
+        "max_row_violation": 3975356.324695515,
+        "max_bound_violation": 8705704.905710522,
+        "max_dual_residual": 5711982.077966539,
+        "objective_gap": 14819881.287545145
+      },
+      "capture": {
+        "metadata_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\1-diagnostic_capture_on.json",
+        "binary_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\1-diagnostic_capture_on.bin",
+        "metadata_sha256": "c293d53af8d1b15502571c264fc5d9b19954ba76323296dcab99bd6b12a8e232",
+        "binary_sha256": "8ca2ef50c366b36cfec8433ea79cb80e9ce0a9870b7cef6cf78fa06d2439eae1",
+        "metadata_bytes": 1599,
+        "binary_bytes": 1120352,
+        "byte_order": "little",
+        "array_sha256": {
+          "g_starts": "f3941fa56dddbc9e367823769f2f487716349612abc93522b515350f08258424",
+          "g_rows": "b392c6772efe3205f945ff8876a2b61307376bbe0e07331848f5af576a238c1b",
+          "g_values": "fbcd86b1be4186a5ac9b021644ab0fc4e6d7cd208a93071209b45804d65c361f",
+          "costs": "7819f5bd7dfa0a2abe6a9737bd15c839cbe90e262e0d5f877fde0f8ae0948fec",
+          "rhs": "c468c304edd7874c65373d336b4de976d4b52c23ea717544d6caf6fb6036f087",
+          "slack": "6cacc56d15fc50121701126e510868351bfdd074eb7f108d322f1ea44b476ec4",
+          "dual": "f17b829d962d03afabfa5a218b5effe9d99cc54c85106053ae141494a76a9a7d",
+          "inequality": "3a0c3b671501aadd65a5c1d6a79ad8b9246838e46ff0ada0e057cdc73bed59ff",
+          "candidate_x": "764313fa90389c0d5f2410cab4c7534961820c25c8cadbc983c4dfa408522021",
+          "candidate_s": "22dc5fa8c0d5cb59ada03982a8014e535190d1cb45b68f9ab4b8caf29562d73d",
+          "candidate_z": "0d8d4d42b318d8fa5b7bd6d273aae0ef6caf4219e1ce0ffb2d1e16407e632789",
+          "selected_rows": "15290281b75bc4f719f5a079db521c4c673f87a93aab191be8bdc097512490be",
+          "pivot_columns": "df3dd636f2e38a9ce63c02fd6859eddae85af6d50309a91c2e980b614002c5f3"
+        },
+        "status": "captured"
+      },
+      "analysis_key": "a79c8d85f9e716e8f7045484750ab682ac916db89bce239ab46f546e5a71cfa0",
+      "original_model_assessment": {
+        "marker_type": "V70_BASIS",
+        "stage": "original_verification_rejected",
+        "recovery_status": "candidate",
+        "trial_verification": {
+          "primal_valid": true,
+          "primal_feasible": false,
+          "dual_feasible": false,
+          "gap_satisfied": false,
+          "numerically_optimal": false,
+          "max_row_violation": 3975356.324695515,
+          "max_bound_violation": 8705704.905710522,
+          "max_dual_residual": 5711982.077966539,
+          "objective_gap": 14819881.287545145
+        },
+        "note": "此项来自关联运行记录的原模型 assess；不参与 raw cone 恒等式，也不作为已知最优值。"
+      }
+    },
+    {
+      "run_index": 5,
+      "case_index": 1,
+      "model_index": 0,
+      "repetition": 1,
+      "requested_variant": "frozen_v70_on",
+      "stage": "original_verification_rejected",
+      "original_model_trial_verification": {
+        "primal_valid": true,
+        "primal_feasible": false,
+        "dual_feasible": false,
+        "gap_satisfied": false,
+        "numerically_optimal": false,
+        "max_row_violation": 3975356.324695515,
+        "max_bound_violation": 8705704.905710522,
+        "max_dual_residual": 5711982.077966539,
+        "objective_gap": 14819881.287545145
+      },
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 6,
+      "case_index": 2,
+      "model_index": 1,
+      "repetition": 0,
+      "requested_variant": "diagnostic_capture_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": {
+        "metadata_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\2-diagnostic_capture_on.json",
+        "binary_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\2-diagnostic_capture_on.bin",
+        "metadata_sha256": "43618094945f908be1f5b5aa8729f6754470e92cd63e6156ea6befe1e73c9d2f",
+        "binary_sha256": "43a0edc72412ab09c692cad5c225c9168a4dd20e7e7b1bbe56b8b3da339695a9",
+        "metadata_bytes": 326,
+        "binary_bytes": 8,
+        "byte_order": "little",
+        "status": "no_candidate"
+      },
+      "analysis_key": null,
+      "original_model_assessment": {
+        "marker_type": "V70_BASIS",
+        "stage": "not_attempted",
+        "recovery_status": "not_started",
+        "trial_verification": null,
+        "note": "此项来自关联运行记录的原模型 assess；不参与 raw cone 恒等式，也不作为已知最优值。"
+      }
+    },
+    {
+      "run_index": 7,
+      "case_index": 2,
+      "model_index": 1,
+      "repetition": 0,
+      "requested_variant": "frozen_v70_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 8,
+      "case_index": 2,
+      "model_index": 1,
+      "repetition": 0,
+      "requested_variant": "diagnostic_capture_off",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 9,
+      "case_index": 3,
+      "model_index": 1,
+      "repetition": 1,
+      "requested_variant": "frozen_v70_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 10,
+      "case_index": 3,
+      "model_index": 1,
+      "repetition": 1,
+      "requested_variant": "diagnostic_capture_off",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 11,
+      "case_index": 3,
+      "model_index": 1,
+      "repetition": 1,
+      "requested_variant": "diagnostic_capture_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": {
+        "metadata_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\3-diagnostic_capture_on.json",
+        "binary_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\3-diagnostic_capture_on.bin",
+        "metadata_sha256": "43618094945f908be1f5b5aa8729f6754470e92cd63e6156ea6befe1e73c9d2f",
+        "binary_sha256": "43a0edc72412ab09c692cad5c225c9168a4dd20e7e7b1bbe56b8b3da339695a9",
+        "metadata_bytes": 326,
+        "binary_bytes": 8,
+        "byte_order": "little",
+        "status": "no_candidate"
+      },
+      "analysis_key": null,
+      "original_model_assessment": {
+        "marker_type": "V70_BASIS",
+        "stage": "not_attempted",
+        "recovery_status": "not_started",
+        "trial_verification": null,
+        "note": "此项来自关联运行记录的原模型 assess；不参与 raw cone 恒等式，也不作为已知最优值。"
+      }
+    },
+    {
+      "run_index": 12,
+      "case_index": 4,
+      "model_index": 2,
+      "repetition": 0,
+      "requested_variant": "diagnostic_capture_off",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 13,
+      "case_index": 4,
+      "model_index": 2,
+      "repetition": 0,
+      "requested_variant": "diagnostic_capture_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": {
+        "metadata_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\4-diagnostic_capture_on.json",
+        "binary_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\4-diagnostic_capture_on.bin",
+        "metadata_sha256": "43618094945f908be1f5b5aa8729f6754470e92cd63e6156ea6befe1e73c9d2f",
+        "binary_sha256": "43a0edc72412ab09c692cad5c225c9168a4dd20e7e7b1bbe56b8b3da339695a9",
+        "metadata_bytes": 326,
+        "binary_bytes": 8,
+        "byte_order": "little",
+        "status": "no_candidate"
+      },
+      "analysis_key": null,
+      "original_model_assessment": {
+        "marker_type": "V70_BASIS",
+        "stage": "not_attempted",
+        "recovery_status": "not_started",
+        "trial_verification": null,
+        "note": "此项来自关联运行记录的原模型 assess；不参与 raw cone 恒等式，也不作为已知最优值。"
+      }
+    },
+    {
+      "run_index": 14,
+      "case_index": 4,
+      "model_index": 2,
+      "repetition": 0,
+      "requested_variant": "frozen_v70_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 15,
+      "case_index": 5,
+      "model_index": 2,
+      "repetition": 1,
+      "requested_variant": "diagnostic_capture_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": {
+        "metadata_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\5-diagnostic_capture_on.json",
+        "binary_path": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures\\5-diagnostic_capture_on.bin",
+        "metadata_sha256": "43618094945f908be1f5b5aa8729f6754470e92cd63e6156ea6befe1e73c9d2f",
+        "binary_sha256": "43a0edc72412ab09c692cad5c225c9168a4dd20e7e7b1bbe56b8b3da339695a9",
+        "metadata_bytes": 326,
+        "binary_bytes": 8,
+        "byte_order": "little",
+        "status": "no_candidate"
+      },
+      "analysis_key": null,
+      "original_model_assessment": {
+        "marker_type": "V70_BASIS",
+        "stage": "not_attempted",
+        "recovery_status": "not_started",
+        "trial_verification": null,
+        "note": "此项来自关联运行记录的原模型 assess；不参与 raw cone 恒等式，也不作为已知最优值。"
+      }
+    },
+    {
+      "run_index": 16,
+      "case_index": 5,
+      "model_index": 2,
+      "repetition": 1,
+      "requested_variant": "frozen_v70_on",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    },
+    {
+      "run_index": 17,
+      "case_index": 5,
+      "model_index": 2,
+      "repetition": 1,
+      "requested_variant": "diagnostic_capture_off",
+      "stage": "not_attempted",
+      "original_model_trial_verification": null,
+      "capture": null,
+      "analysis_key": null
+    }
+  ],
+  "analyses": {
+    "a79c8d85f9e716e8f7045484750ab682ac916db89bce239ab46f546e5a71cfa0": {
+      "first_run_index": 2,
+      "run_indices": [
+        2,
+        4
+      ],
+      "analysis": {
+        "dimensions": {
+          "n": 5302,
+          "m": 7984,
+          "nnz": 36307
+        },
+        "basis_size": 5302,
+        "computation": {
+          "matrix_passes": 1,
+          "matrix_scalar_products": 65630,
+          "dense_basis_created": false,
+          "factorizations": 0,
+          "linear_solves": 0
+        },
+        "basis_primal": {
+          "residual": {
+            "count": 5302,
+            "nonzero_count": 1783,
+            "max_abs": {
+              "numerator": "11188085",
+              "denominator": "140737488355328",
+              "approx": 7.94961252381654e-08,
+              "approx_overflow": false
+            },
+            "max_abs_index": 6616,
+            "signed_at_max_abs": {
+              "numerator": "11188085",
+              "denominator": "140737488355328",
+              "approx": 7.94961252381654e-08,
+              "approx_overflow": false
+            }
+          },
+          "componentwise_backward_error": {
+            "zero_over_zero": "zero",
+            "positive_over_zero": "infinite",
+            "infinite_count": 0,
+            "first_infinite_index": null,
+            "max_finite": {
+              "numerator": "1",
+              "denominator": "1",
+              "approx": 1.0,
+              "approx_overflow": false
+            },
+            "max_finite_index": 74,
+            "maximum_is_infinite": false
+          }
+        },
+        "basis_dual": {
+          "residual": {
+            "count": 5302,
+            "nonzero_count": 4832,
+            "max_abs": {
+              "numerator": "80602982603104202845",
+              "denominator": "4951760157141521099596496896",
+              "approx": 1.6277642705868352e-08,
+              "approx_overflow": false
+            },
+            "max_abs_index": 302,
+            "signed_at_max_abs": {
+              "numerator": "-80602982603104202845",
+              "denominator": "4951760157141521099596496896",
+              "approx": -1.6277642705868352e-08,
+              "approx_overflow": false
+            }
+          },
+          "componentwise_backward_error": {
+            "zero_over_zero": "zero",
+            "positive_over_zero": "infinite",
+            "infinite_count": 0,
+            "first_infinite_index": null,
+            "max_finite": {
+              "numerator": "1",
+              "denominator": "1",
+              "approx": 1.0,
+              "approx_overflow": false
+            },
+            "max_finite_index": 1796,
+            "maximum_is_infinite": false
+          }
+        },
+        "row_groups": {
+          "selected_equalities": {
+            "row_count": 2196,
+            "row_residual": {
+              "count": 2196,
+              "nonzero_count": 1258,
+              "max_abs": {
+                "numerator": "535845770459680001422432779463504656498086310072505605",
+                "denominator": "25711008708143844408671393477458601640355247900524685364822016",
+                "approx": 2.0841102600924143e-08,
+                "approx_overflow": false
+              },
+              "max_abs_index": 1585,
+              "signed_at_max_abs": {
+                "numerator": "535845770459680001422432779463504656498086310072505605",
+                "denominator": "25711008708143844408671393477458601640355247900524685364822016",
+                "approx": 2.0841102600924143e-08,
+                "approx_overflow": false
+              }
+            },
+            "componentwise_backward_error": {
+              "zero_over_zero": "zero",
+              "positive_over_zero": "infinite",
+              "infinite_count": 0,
+              "first_infinite_index": null,
+              "max_finite": {
+                "numerator": "1",
+                "denominator": "1",
+                "approx": 1.0,
+                "approx_overflow": false
+              },
+              "max_finite_index": 74,
+              "maximum_is_infinite": false
+            }
+          },
+          "selected_inequalities": {
+            "row_count": 3106,
+            "row_residual": {
+              "count": 3106,
+              "nonzero_count": 525,
+              "max_abs": {
+                "numerator": "11188085",
+                "denominator": "140737488355328",
+                "approx": 7.94961252381654e-08,
+                "approx_overflow": false
+              },
+              "max_abs_index": 6616,
+              "signed_at_max_abs": {
+                "numerator": "11188085",
+                "denominator": "140737488355328",
+                "approx": 7.94961252381654e-08,
+                "approx_overflow": false
+              }
+            },
+            "componentwise_backward_error": {
+              "zero_over_zero": "zero",
+              "positive_over_zero": "infinite",
+              "infinite_count": 0,
+              "first_infinite_index": null,
+              "max_finite": {
+                "numerator": "1",
+                "denominator": "1",
+                "approx": 1.0,
+                "approx_overflow": false
+              },
+              "max_finite_index": 2408,
+              "maximum_is_infinite": false
+            },
+            "negative_exact_slack": {
+              "count": 259,
+              "nonzero_count": 259,
+              "max_abs": {
+                "numerator": "11188085",
+                "denominator": "140737488355328",
+                "approx": 7.94961252381654e-08,
+                "approx_overflow": false
+              },
+              "max_abs_index": 6616,
+              "signed_at_max_abs": {
+                "numerator": "11188085",
+                "denominator": "140737488355328",
+                "approx": 7.94961252381654e-08,
+                "approx_overflow": false
+              },
+              "negative_count": 259,
+              "sum_negative_magnitudes": {
+                "numerator": "1219041231885033296333573113562069860994591447062785363538154649479467",
+                "denominator": "14474011154664524427946373126085988481658748083205070504932198000989141204992",
+                "approx": 8.422276443335296e-08,
+                "approx_overflow": false
+              }
+            },
+            "negative_stored_slack": {
+              "count": 259,
+              "nonzero_count": 259,
+              "max_abs": {
+                "numerator": "11188085",
+                "denominator": "140737488355328",
+                "approx": 7.94961252381654e-08,
+                "approx_overflow": false
+              },
+              "max_abs_index": 6616,
+              "signed_at_max_abs": {
+                "numerator": "11188085",
+                "denominator": "140737488355328",
+                "approx": 7.94961252381654e-08,
+                "approx_overflow": false
+              },
+              "negative_count": 259,
+              "sum_negative_magnitudes": {
+                "numerator": "2165452227186815703046296018673186762618120601203638271",
+                "denominator": "25711008708143844408671393477458601640355247900524685364822016",
+                "approx": 8.422276433288743e-08,
+                "approx_overflow": false
+              }
+            }
+          },
+          "unselected_equalities": {
+            "row_count": 3,
+            "row_residual": {
+              "count": 3,
+              "nonzero_count": 0,
+              "max_abs": {
+                "numerator": "0",
+                "denominator": "1",
+                "approx": 0.0,
+                "approx_overflow": false
+              },
+              "max_abs_index": 1142,
+              "signed_at_max_abs": {
+                "numerator": "0",
+                "denominator": "1",
+                "approx": 0.0,
+                "approx_overflow": false
+              }
+            },
+            "componentwise_backward_error": {
+              "zero_over_zero": "zero",
+              "positive_over_zero": "infinite",
+              "infinite_count": 0,
+              "first_infinite_index": null,
+              "max_finite": {
+                "numerator": "0",
+                "denominator": "1",
+                "approx": 0.0,
+                "approx_overflow": false
+              },
+              "max_finite_index": 1142,
+              "maximum_is_infinite": false
+            }
+          },
+          "unselected_inequalities": {
+            "row_count": 2679,
+            "row_residual": {
+              "count": 2679,
+              "nonzero_count": 1880,
+              "max_abs": {
+                "numerator": "7190350287559367",
+                "denominator": "8388608",
+                "approx": 857156549.4012078,
+                "approx_overflow": false
+              },
+              "max_abs_index": 6711,
+              "signed_at_max_abs": {
+                "numerator": "-7190350287559367",
+                "denominator": "8388608",
+                "approx": -857156549.4012078,
+                "approx_overflow": false
+              }
+            },
+            "componentwise_backward_error": {
+              "zero_over_zero": "zero",
+              "positive_over_zero": "infinite",
+              "infinite_count": 0,
+              "first_infinite_index": null,
+              "max_finite": {
+                "numerator": "1",
+                "denominator": "1",
+                "approx": 1.0,
+                "approx_overflow": false
+              },
+              "max_finite_index": 1726,
+              "maximum_is_infinite": false
+            },
+            "negative_exact_slack": {
+              "count": 498,
+              "nonzero_count": 498,
+              "max_abs": {
+                "numerator": "2336919866165841",
+                "denominator": "268435456",
+                "approx": 8705704.905710522,
+                "approx_overflow": false
+              },
+              "max_abs_index": 6360,
+              "signed_at_max_abs": {
+                "numerator": "2336919866165841",
+                "denominator": "268435456",
+                "approx": 8705704.905710522,
+                "approx_overflow": false
+              },
+              "negative_count": 498,
+              "sum_negative_magnitudes": {
+                "numerator": "234837254144010835074232687435509769182346725215294768002986968399678990464406149873",
+                "denominator": "7237005577332262213973186563042994240829374041602535252466099000494570602496",
+                "approx": 32449505.756851662,
+                "approx_overflow": false
+              }
+            },
+            "negative_stored_slack": {
+              "count": 498,
+              "nonzero_count": 498,
+              "max_abs": {
+                "numerator": "2336919866165841",
+                "denominator": "268435456",
+                "approx": 8705704.905710522,
+                "approx_overflow": false
+              },
+              "max_abs_index": 6360,
+              "signed_at_max_abs": {
+                "numerator": "2336919866165841",
+                "denominator": "268435456",
+                "approx": 8705704.905710522,
+                "approx_overflow": false
+              },
+              "negative_count": 498,
+              "sum_negative_magnitudes": {
+                "numerator": "1482031431069289541531109214037824726388111642152846145",
+                "denominator": "45671926166590716193865151022383844364247891968",
+                "approx": 32449505.756851662,
+                "approx_overflow": false
+              }
+            }
+          }
+        },
+        "inequality_negative_dual": {
+          "count": 1116,
+          "nonzero_count": 1116,
+          "max_abs": {
+            "numerator": "6133194055051101",
+            "denominator": "1073741824",
+            "approx": 5711982.077966538,
+            "approx_overflow": false
+          },
+          "max_abs_index": 5229,
+          "signed_at_max_abs": {
+            "numerator": "6133194055051101",
+            "denominator": "1073741824",
+            "approx": 5711982.077966538,
+            "approx_overflow": false
+          },
+          "negative_count": 1116,
+          "sum_negative_magnitudes": {
+            "numerator": "3775151893251476539240432533106482575647422012331451",
+            "denominator": "44601490397061246283071436545296723011960832",
+            "approx": 84641832.80969952,
+            "approx_overflow": false
+          }
+        },
+        "equality_negative_dual": {
+          "negative_values_allowed": true,
+          "count": 1077,
+          "nonzero_count": 1077,
+          "max_abs": {
+            "numerator": "6093889125045953",
+            "denominator": "67108864",
+            "approx": 90806024.149745,
+            "approx_overflow": false
+          },
+          "max_abs_index": 235,
+          "signed_at_max_abs": {
+            "numerator": "6093889125045953",
+            "denominator": "67108864",
+            "approx": 90806024.149745,
+            "approx_overflow": false
+          },
+          "negative_count": 1077,
+          "sum_negative_magnitudes": {
+            "numerator": "267392749050565014370497526739119186910437005",
+            "denominator": "1329227995784915872903807060280344576",
+            "approx": 201163946.21425968,
+            "approx_overflow": false
+          }
+        },
+        "nonbasis_dual": {
+          "exactly_zero": true,
+          "count": 2682,
+          "nonzero_count": 0,
+          "max_abs": {
+            "numerator": "0",
+            "denominator": "1",
+            "approx": 0.0,
+            "approx_overflow": false
+          },
+          "max_abs_index": 266,
+          "signed_at_max_abs": {
+            "numerator": "0",
+            "denominator": "1",
+            "approx": 0.0,
+            "approx_overflow": false
+          }
+        },
+        "candidate_slack": {
+          "inequality_representation_error": {
+            "count": 5785,
+            "nonzero_count": 769,
+            "max_abs": {
+              "numerator": "1902558769539497",
+              "denominator": "37778931862957161709568",
+              "approx": 5.0360311308986104e-08,
+              "approx_overflow": false
+            },
+            "max_abs_index": 6706,
+            "signed_at_max_abs": {
+              "numerator": "-1902558769539497",
+              "denominator": "37778931862957161709568",
+              "approx": -5.0360311308986104e-08,
+              "approx_overflow": false
+            }
+          },
+          "inequality_representation_backward_error": {
+            "zero_over_zero": "zero",
+            "positive_over_zero": "infinite",
+            "infinite_count": 0,
+            "first_infinite_index": null,
+            "max_finite": {
+              "numerator": "279233538953623",
+              "denominator": "5070602400912917885220351775127",
+              "approx": 5.5069105576755425e-17,
+              "approx_overflow": false
+            },
+            "max_finite_index": 3464,
+            "maximum_is_infinite": false
+          },
+          "equality_stored_slack_exactly_zero": true,
+          "equality_stored_slack": {
+            "count": 2199,
+            "nonzero_count": 0,
+            "max_abs": {
+              "numerator": "0",
+              "denominator": "1",
+              "approx": 0.0,
+              "approx_overflow": false
+            },
+            "max_abs_index": 0,
+            "signed_at_max_abs": {
+              "numerator": "0",
+              "denominator": "1",
+              "approx": 0.0,
+              "approx_overflow": false
+            }
+          },
+          "note": "不等式 s 由宽精度累加后转回 double；精确表示误差不要求为零。等式 s 按实现恒置零，等式残差另计。"
+        },
+        "magnitudes": {
+          "x": {
+            "count": 5302,
+            "nonzero_count": 2072,
+            "max_abs": {
+              "numerator": "7190350287559367",
+              "denominator": "8388608",
+              "approx": 857156549.4012078,
+              "approx_overflow": false
+            },
+            "max_abs_index": 4085,
+            "signed_at_max_abs": {
+              "numerator": "7190350287559367",
+              "denominator": "8388608",
+              "approx": 857156549.4012078,
+              "approx_overflow": false
+            }
+          },
+          "z": {
+            "count": 7984,
+            "nonzero_count": 5096,
+            "max_abs": {
+              "numerator": "6094023929661789",
+              "denominator": "67108864",
+              "approx": 90808032.89505525,
+              "approx_overflow": false
+            },
+            "max_abs_index": 2699,
+            "signed_at_max_abs": {
+              "numerator": "6094023929661789",
+              "denominator": "67108864",
+              "approx": 90808032.89505525,
+              "approx_overflow": false
+            }
+          },
+          "z_B": {
+            "count": 5302,
+            "nonzero_count": 5096,
+            "max_abs": {
+              "numerator": "6094023929661789",
+              "denominator": "67108864",
+              "approx": 90808032.89505525,
+              "approx_overflow": false
+            },
+            "max_abs_index": 2699,
+            "signed_at_max_abs": {
+              "numerator": "6094023929661789",
+              "denominator": "67108864",
+              "approx": 90808032.89505525,
+              "approx_overflow": false
+            }
+          },
+          "b_B": {
+            "count": 5302,
+            "nonzero_count": 281,
+            "max_abs": {
+              "numerator": "11938",
+              "denominator": "1",
+              "approx": 11938.0,
+              "approx_overflow": false
+            },
+            "max_abs_index": 6573,
+            "signed_at_max_abs": {
+              "numerator": "11938",
+              "denominator": "1",
+              "approx": 11938.0,
+              "approx_overflow": false
+            }
+          },
+          "c": {
+            "count": 5302,
+            "nonzero_count": 616,
+            "max_abs": {
+              "numerator": "100",
+              "denominator": "1",
+              "approx": 100.0,
+              "approx_overflow": false
+            },
+            "max_abs_index": 366,
+            "signed_at_max_abs": {
+              "numerator": "-100",
+              "denominator": "1",
+              "approx": -100.0,
+              "approx_overflow": false
+            }
+          }
+        },
+        "objectives": {
+          "primal_cTx": {
+            "numerator": "-3679551860242445047734998524273559893356009194068739948819705088179",
+            "denominator": "50216813883093446110686315385661331328818843555712276103168",
+            "approx": -73273303.81430759,
+            "approx_overflow": false
+          },
+          "dual_minus_bBTzB": {
+            "numerator": "-1558350828378355557675428799713482480674014491",
+            "denominator": "21267647932558653966460912964485513216",
+            "approx": -73273303.81431957,
+            "approx_overflow": false
+          },
+          "raw_basis_gap_cTx_plus_bBTzB": {
+            "numerator": "601471766649695146519307526212334010658143250242746189",
+            "denominator": "50216813883093446110686315385661331328818843555712276103168",
+            "approx": 1.197749757780219e-05,
+            "approx_overflow": false
+          },
+          "raw_full_point_gap_cTx_plus_bTz": {
+            "numerator": "601471766649695146519307526212334010658143250242746189",
+            "denominator": "50216813883093446110686315385661331328818843555712276103168",
+            "approx": 1.197749757780219e-05,
+            "approx_overflow": false
+          },
+          "nonbasis_bNTzN": {
+            "numerator": "0",
+            "denominator": "1",
+            "approx": 0.0,
+            "approx_overflow": false
+          },
+          "xTrd": {
+            "numerator": "-36847990329698893088585065055256708322551841684346583414876428841764119291290861790732013844127",
+            "denominator": "546812681195752981093125556779405341338292357723303109106442651602488249799843980805878294255763456",
+            "approx": -6.738686134549925e-05,
+            "approx_overflow": false
+          },
+          "zBTrp": {
+            "numerator": "-43397437894232545639985970050705844087644715391506121205230747561663269036179562042325298362015",
+            "denominator": "546812681195752981093125556779405341338292357723303109106442651602488249799843980805878294255763456",
+            "approx": -7.936435892330145e-05,
+            "approx_overflow": false
+          },
+          "xTrd_minus_zBTrp": {
+            "numerator": "601471766649695146519307526212334010658143250242746189",
+            "denominator": "50216813883093446110686315385661331328818843555712276103168",
+            "approx": 1.197749757780219e-05,
+            "approx_overflow": false
+          },
+          "sum_abs_xj_rdj": {
+            "numerator": "116466246340992646940747802204244804134959783037569310467726213682900977263429356118700404459873",
+            "denominator": "546812681195752981093125556779405341338292357723303109106442651602488249799843980805878294255763456",
+            "approx": 0.000212991121724368,
+            "approx_overflow": false
+          },
+          "sum_abs_zBi_rpi": {
+            "numerator": "183069448993435522220533523675821342308489902007277503691342381967767702008729569195110811350687",
+            "denominator": "546812681195752981093125556779405341338292357723303109106442651602488249799843980805878294255763456",
+            "approx": 0.0003347937150855846,
+            "approx_overflow": false
+          },
+          "identity_exact": true,
+          "identity_error": {
+            "numerator": "0",
+            "denominator": "1",
+            "approx": 0.0,
+            "approx_overflow": false
+          }
+        },
+        "interpretation": [
+          "数值均针对捕获的原 binary64 数据，以精确有理数计算；不是精确解或最优解证书。",
+          "后向误差不等于前向误差或条件数；小后向误差仍可能被巨大 x 或 z 放大为目标差。",
+          "基方程准确与原始/对偶符号可行是不同检查；此报告不自动选择精修、换基或 phase-I。",
+          "原模型 assess gap 经缩放反变换和乘子构造，应单独列示，不能替代本报告 raw cone gap。"
+        ]
+      }
+    }
+  },
+  "note": "运行器另行核对 12 个完整轨迹对子；此离线分析不将重复捕获解释为全部中间状态一致。",
+  "plan_sha256": "dd03b4c7cdad5319b1e47fa0f8e67845f7002f85e7b6c33da3cf03b857b55c7b",
+  "created_utc": "2026-10-24T06:18:46.938818+00:00"
+}

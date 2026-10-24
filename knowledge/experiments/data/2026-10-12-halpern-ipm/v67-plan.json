@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-10-23T11:36:47.095061+00:00",
+  "kind": "diagnostic_only",
+  "round": 64,
+  "version": "v67",
+  "parent_version": 66,
+  "parent_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "parent_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "parent_source_sha256": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+  "baseline_identity_file": "v66-accepted-state.json",
+  "baseline_identity_sha256": "db238b695c6ff1d26eddf32bae34b5490fa060f21e3d307d1a49591a3eac3f22",
+  "baseline_verification_file": "v67-baseline-check.json",
+  "baseline_verification_sha256": "04bb78100356e427e5e1fa4b9fa202c75163ab82a9875546689332c133508e6a",
+  "evidence_file": "v66-full-assessment.json",
+  "evidence_sha256": "94d74ee83a908d0d0abafdd2038b869589c03892ecf973a5084471c09d3a70d1",
+  "production_changes": false,
+  "models": [
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "backends": [
+        "normal_cholmod_aat"
+      ]
+    },
+    {
+      "name": "forplan",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "backends": [
+        "normal_cholmod_aat"
+      ]
+    },
+    {
+      "name": "greenbeb",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "backends": [
+        "normal_cholmod_aat"
+      ]
+    }
+  ],
+  "variants": [
+    "frozen_v66",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "runs": 18,
+  "repeats": 2,
+  "linear_solver": "normal_cholmod_aat",
+  "linear_accuracy": "homogeneous_repair",
+  "method": "homogeneous",
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "threads": 1,
+  "seed": 0,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_repair",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod_aat",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "backend_version": "ipm-cpu-0.53.0",
+  "cache_limit_bytes": 134217728,
+  "metadata_limit_bytes": 65536,
+  "maximum_events": 1,
+  "maximum_columns": 32,
+  "diagnostic_environment": "SOLVER_V67_CAPTURE",
+  "capture_magic": "V67KRY01",
+  "hypothesis": "既有L2搜索最后周期内可能仍存在满足原K0无穷残差门槛的系数组合；先验证该可能性，而非再增加方向、预算或精度。",
+  "capture_policy": "只在普通齐次常数factor.solve作用域内、三次既定Krylov重启最终耗尽时提交首事件。保存最后周期base、实际预条件Z、最终coeff/candidate/已有residual、实际G/H/RHS及原global/可选block门槛；不按模型名或预知步数触发，不新增在线算子或求解。",
+  "evaluation": "固定18条串行轮转，12个frozen→off及off→on完整非预算对子只排timings，保留版本。非法退出、计数、状态先拒绝；预算分叉不视为兼容。只有全部相同且捕获完整无误才解释分析。",
+  "offline_analysis": {
+    "space": "x=base+Z*a；中心化使用精确base+Z*a0，不以已舍入candidate替换基点。",
+    "objective": "min t subject to |rhs-K0*(base+Z*a)|_i <= t*allowed_i；allowed_i为原global与实际可选block门槛交集。",
+    "oracle": "冻结v66的HiGHS后端，仅用于离线诊断LP；每个唯一数值捕获最多一次，总最多2次，重复捕获按完整数值身份复用。",
+    "oracle_time_limit_seconds": 60,
+    "oracle_wall_timeout_seconds": 90,
+    "maximum_oracle_runs": 2,
+    "coefficient_scaling": "以既有a0中心化并按K0Z列幅度选正二次幂尺度；所有原约束保留，不挑模型或最坏行。",
+    "verification": "先精确形成K0base/K0Z并记录转binary64模型误差。复现a0的实际逐项更新后，再独立精确核oracle映射系数、binary64系数的连续组合、生产double乘积→long double加法→double逐项更新的原方程残差。",
+    "negative_conclusion": "未得到独立可行见证只能说未找到；无可靠不可行证书不得宣布原空间无解。",
+    "cost_accounting": "保存原始oracle模型/命令/stdout/stderr/报告/退出/耗时，独立记录精确投影、写模、oracle和见证复核成本，不作自主公开LP成绩。"
+  },
+  "limits": [
+    "不修改生产v66、原窗口32×3、精度、接受规则、默认配置或既有500条成绩。",
+    "采集复制在solve中，占原5秒预算；如析构输出发生在timings之后，仅计35秒完整进程墙钟，不冒称包含于solve。",
+    "预算、中断、退化等其他退出不冒充最终耗尽；缓存或metadata超限显式记错，控制输入允许0事件。",
+    "原报告最佳点不等于失败工作点；按真实phase及计数解释，不用外层步数推断完整轨迹相同。",
+    "原K0为保存double G/H构成的确切矩阵，不以精确s/z或另一个正则矩阵替代。",
+    "已有L2系数、精确组合、binary64系数及生产舍入组合分别核验；离线找到方向不等于LP达标或端到端更快。",
+    "初期允许复用开源组件；此处HiGHS是诊断oracle，不进入自主LP迭代。",
+    "18条输入已观察，仅用于诊断兼容；生产来源与真实链接库保持现状，不新增全公开性能宣称。"
+  ],
+  "source_references": [
+    {
+      "url": "https://arxiv.org/html/2101.11416v1",
+      "scope": "已读Krylov-Simplex摘要、固定空间无穷范数LP及相关范数边界；只借鉴离线可行性检验，不声称实现作者完整算法。"
+    },
+    {
+      "url": "https://petsc.org/release/src/ksp/ksp/impls/gmres/fgmres/fgmres.c.html",
+      "scope": "已读实际PREVEC保存、三角系数求解、组合及重启后真实残差重算；当前release页面不是本项目锁定依赖。"
+    },
+    {
+      "url": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/kkt_solver_basis.cc",
+      "scope": "实际读取锁定本地基预条件变换及ConjugateResiduals调用，未移植IPX基策略。"
+    },
+    {
+      "url": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/conjugate_residuals.cc",
+      "scope": "实际读取本地两Solve入口、递推残差及无穷范数停止，区分停止范数与搜索目标。"
+    }
+  ],
+  "local_references": [
+    {
+      "file": ".deps/highs-source/highs/ipm/ipx/kkt_solver_basis.cc",
+      "sha256": "d19625e654e5d0f572af116c0e3f0dbe5e2a4f792bc2cc5e9b47244c3b5454bf"
+    },
+    {
+      "file": ".deps/highs-source/highs/ipm/ipx/conjugate_residuals.cc",
+      "sha256": "f8b852262edd775f4adcafd398e04b2f5f5596074d46f283d4075217c672803c"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "checked_utc": "2026-10-18T06:42:13.586188+00:00",
+  "url": "https://raw.githubusercontent.com/OpenMathLib/OpenBLAS/5137bb62b4ca24fa88873809b845ffc18e601256/param.h",
+  "sha256": "aefbdd1adb20d5b922051b7bc9af289c65772833c678b828a9de6224c1e4707c",
+  "cores": [
+    {
+      "core": "SKYLAKEX",
+      "conditions_and_q": [
+        {
+          "line": 1656,
+          "text": "#ifdef SKYLAKEX"
+        },
+        {
+          "line": 1667,
+          "text": "#if defined(XDOUBLE) || defined(DOUBLE)"
+        },
+        {
+          "line": 1670,
+          "text": "#else"
+        },
+        {
+          "line": 1673,
+          "text": "#endif"
+        },
+        {
+          "line": 1676,
+          "text": "#ifdef ARCH_X86"
+        },
+        {
+          "line": 1692,
+          "text": "#else"
+        },
+        {
+          "line": 1710,
+          "text": "#endif"
+        },
+        {
+          "line": 1712,
+          "text": "#ifdef ARCH_X86"
+        },
+        {
+          "line": 1727,
+          "text": "#define DGEMM_DEFAULT_Q 256"
+        },
+        {
+          "line": 1733,
+          "text": "#else"
+        },
+        {
+          "line": 1741,
+          "text": "#define DGEMM_DEFAULT_Q 384"
+        },
+        {
+          "line": 1772,
+          "text": "#endif"
+        },
+        {
+          "line": 1775,
+          "text": "#endif"
+        }
+      ]
+    },
+    {
+      "core": "COOPERLAKE",
+      "conditions_and_q": [
+        {
+          "line": 1910,
+          "text": "#ifdef COOPERLAKE"
+        },
+        {
+          "line": 1921,
+          "text": "#if defined(XDOUBLE) || defined(DOUBLE)"
+        },
+        {
+          "line": 1924,
+          "text": "#else"
+        },
+        {
+          "line": 1927,
+          "text": "#endif"
+        },
+        {
+          "line": 1941,
+          "text": "#ifdef ARCH_X86"
+        },
+        {
+          "line": 1957,
+          "text": "#else"
+        },
+        {
+          "line": 1975,
+          "text": "#endif"
+        },
+        {
+          "line": 1977,
+          "text": "#ifdef ARCH_X86"
+        },
+        {
+          "line": 1992,
+          "text": "#define DGEMM_DEFAULT_Q 256"
+        },
+        {
+          "line": 1998,
+          "text": "#else"
+        },
+        {
+          "line": 2000,
+          "text": "#if L3_SIZE > 0 && L3_SIZE % 33554432 == 0 && L2_SIZE == 1048576"
+        },
+        {
+          "line": 2008,
+          "text": "#define DGEMM_DEFAULT_Q 512"
+        },
+        {
+          "line": 2017,
+          "text": "#else"
+        },
+        {
+          "line": 2025,
+          "text": "#define DGEMM_DEFAULT_Q 384"
+        },
+        {
+          "line": 2034,
+          "text": "#endif"
+        },
+        {
+          "line": 2058,
+          "text": "#endif"
+        },
+        {
+          "line": 2059,
+          "text": "#endif"
+        }
+      ]
+    },
+    {
+      "core": "SAPPHIRERAPIDS",
+      "conditions_and_q": [
+        {
+          "line": 1777,
+          "text": "#ifdef SAPPHIRERAPIDS"
+        },
+        {
+          "line": 1788,
+          "text": "#if defined(XDOUBLE) || defined(DOUBLE)"
+        },
+        {
+          "line": 1791,
+          "text": "#else"
+        },
+        {
+          "line": 1794,
+          "text": "#endif"
+        },
+        {
+          "line": 1811,
+          "text": "#ifdef ARCH_X86"
+        },
+        {
+          "line": 1827,
+          "text": "#else"
+        },
+        {
+          "line": 1845,
+          "text": "#endif"
+        },
+        {
+          "line": 1847,
+          "text": "#ifdef ARCH_X86"
+        },
+        {
+          "line": 1862,
+          "text": "#define DGEMM_DEFAULT_Q 256"
+        },
+        {
+          "line": 1868,
+          "text": "#else"
+        },
+        {
+          "line": 1876,
+          "text": "#define DGEMM_DEFAULT_Q 384"
+        },
+        {
+          "line": 1907,
+          "text": "#endif"
+        },
+        {
+          "line": 1908,
+          "text": "#endif"
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "earlier_attempts": [
+    "v51-openblas-upstream-q-audit.json按下一个ifdef截段，q为空，不支持容量结论。",
+    "第二次改为嵌套解析，但错误断言每架构恰好两个Q，发现COOPERLAKE有256/512/384三分支后失败；未写入结果。"
+  ],
+  "raw_source": "v51-openblas-upstream-param.h"
+}

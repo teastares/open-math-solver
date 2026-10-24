@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "model_count": 6,
+  "repeats": 3,
+  "run_count": 36,
+  "quality_pass_count": 30,
+  "reference_variant": "frozen_v66",
+  "candidate_variant": "diagnostic_on",
+  "both_variants_all_repeats_pass_count": 5,
+  "both_backends_all_repeats_pass_count": 5,
+  "wall_winner_counts": {
+    "diagnostic_on": 2,
+    "frozen_v66": 3
+  },
+  "failure_wall_penalty_seconds": 35,
+  "failure_numerical_penalty_seconds": 5,
+  "variants": {
+    "frozen_v66": {
+      "run_count": 18,
+      "quality_pass_count": 15,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 3
+      },
+      "status_counts": {
+        "optimal": 15,
+        "numerical_error": 3
+      },
+      "penalized_wall_sgm10_seconds": 3.4707129381694077,
+      "penalized_numerical_sgm10_seconds": 1.196847353491735,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "diagnostic_on": {
+      "run_count": 18,
+      "quality_pass_count": 15,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 3
+      },
+      "status_counts": {
+        "optimal": 15,
+        "numerical_error": 3
+      },
+      "penalized_wall_sgm10_seconds": 3.4638941795252642,
+      "penalized_numerical_sgm10_seconds": 1.190254942278188,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": {
+    "frozen_v66": {
+      "run_count": 18,
+      "quality_pass_count": 15,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 3
+      },
+      "status_counts": {
+        "optimal": 15,
+        "numerical_error": 3
+      },
+      "penalized_wall_sgm10_seconds": 3.4707129381694077,
+      "penalized_numerical_sgm10_seconds": 1.196847353491735,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "diagnostic_on": {
+      "run_count": 18,
+      "quality_pass_count": 15,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 3
+      },
+      "status_counts": {
+        "optimal": 15,
+        "numerical_error": 3
+      },
+      "penalized_wall_sgm10_seconds": 3.4638941795252642,
+      "penalized_numerical_sgm10_seconds": 1.190254942278188,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 2.857075500069186,
+        "diagnostic_on": 2.852922100108117
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 2.809777,
+        "diagnostic_on": 2.8046119
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          2.8312818999402225,
+          2.987365100067109
+        ],
+        "diagnostic_on": [
+          2.833961500087753,
+          2.8770733000710607
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          2.7844579,
+          2.9382125
+        ],
+        "diagnostic_on": [
+          2.7842141,
+          2.8283108
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.001455840648755,
+      "numerical_speedup_reference_over_candidate": 1.0018416451844907,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+      "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.031893800012767315,
+        "diagnostic_on": 0.03260709997266531
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0173446,
+        "diagnostic_on": 0.01734
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.03139050002209842,
+          0.033316300017759204
+        ],
+        "diagnostic_on": [
+          0.032455400098115206,
+          0.03413809998892248
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0172181,
+          0.0175747
+        ],
+        "diagnostic_on": [
+          0.0171809,
+          0.0175013
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9781243974319717,
+      "numerical_speedup_reference_over_candidate": 1.0002652825836218,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "quality_pass_counts": {
+        "frozen_v66": 0,
+        "diagnostic_on": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+      "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.19325939984992146,
+        "diagnostic_on": 0.19136600010097027
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.1677149,
+        "diagnostic_on": 0.166281
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.19050289993174374,
+          0.20150190009735525
+        ],
+        "diagnostic_on": [
+          0.19027509982697666,
+          0.19343909993767738
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.16674249999999996,
+          0.1775256
+        ],
+        "diagnostic_on": [
+          0.1654292,
+          0.1667794
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0098941282565983,
+      "numerical_speedup_reference_over_candidate": 1.0086233544421792,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+      "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.036203499883413315,
+        "diagnostic_on": 0.0373883000575006
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0199597,
+        "diagnostic_on": 0.0199896
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.0358897999394685,
+          0.041226400062441826
+        ],
+        "diagnostic_on": [
+          0.03731819987297058,
+          0.03841739986091852
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0198731,
+          0.0231501
+        ],
+        "diagnostic_on": [
+          0.019883,
+          0.0203428
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9683109375856847,
+      "numerical_speedup_reference_over_candidate": 0.9985042221955417,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.031783799873664975,
+        "diagnostic_on": 0.03274650010280311
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0177176,
+        "diagnostic_on": 0.0176906
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.031736799981445074,
+          0.033024300122633576
+        ],
+        "diagnostic_on": [
+          0.03219539998099208,
+          0.03449340001679957
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0177131,
+          0.0177956
+        ],
+        "diagnostic_on": [
+          0.0174713,
+          0.0177263
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9706014314166134,
+      "numerical_speedup_reference_over_candidate": 1.0015262342713078,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "plan_sha256": "d0c4d461e92ab9045c7f51419f9f16393a6440ed1d7e3e8620e43cf440e17587",
+  "stage": "probe",
+  "raw_sha256": "ed2ef4721dbb13879ebb07c17b88309db55ec20c34daf67826355f480632c044",
+  "valid_process_count": 36,
+  "basis_marker_error_count": 0
+}

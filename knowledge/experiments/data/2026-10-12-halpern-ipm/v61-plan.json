@@ -1,0 +1,115 @@
+{
+  "created_at_utc": "2026-10-23T09:12:43.340433+00:00",
+  "kind": "diagnostic_only",
+  "round": 58,
+  "version": "v61",
+  "parent_version": 60,
+  "parent_identity_sha256": "6a01e3594630ca8fa0cfb34ef84f480d5a94867bdf95220954960173fe5549fc",
+  "parent_solver_sha256": "0dac5f4371846d7a698028e4960358da6edc7ab07390354e30d310315df8ed32",
+  "parent_source_sha256": "2a5ad0732a71790935110d64a1d53c3c9651fc3fc4a37d713a963cc064c492ec",
+  "baseline_identity_file": "v60-restored-state.json",
+  "baseline_identity_sha256": "a28f6e93f5d6d9ad4b26a8ecb200a37e74ee9b8e0a18228c109c1e291b2b6695",
+  "evidence_file": "v60-verification.json",
+  "evidence_sha256": "ff8203ac3afcd8c9440f72756f38b5fd4d9abc6566a93e1116b8d12907ee7bfb",
+  "production_changes": false,
+  "models": [
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "backends": [
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "forplan",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "backends": [
+        "normal_cholmod"
+      ]
+    },
+    {
+      "name": "greenbeb",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "backends": [
+        "normal_cholmod"
+      ]
+    }
+  ],
+  "variants": [
+    "frozen_v60",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "runs": 18,
+  "repeats": 2,
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "method": "homogeneous",
+  "linear_accuracy": "homogeneous_extended",
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "threads": 1,
+  "seed": 0,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "direction-retries": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off",
+    "objective-scaling": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_extended",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "cache_limit_bytes": 134217728,
+  "maximum_repair_events": 8,
+  "diagnostic_environment": "SOLVER_V61_DIAGNOSTICS",
+  "hypothesis": "原K0残差验收不能自动控制齐次标量中的方向缺陷投影；保存宽方向及实际点积，在相同状态以精确分数区分残差、投影和最后点积舍入。",
+  "capture_policy": "仅按实际有限非正分母恢复事件采集，模型名与迭代号不参与触发；保存修复前后和提交状态，关闭无数组扫描。",
+  "evaluation": "18条串行轮转，仅排timings比较完整报告，非法状态先于预算分类；12个非预算对子均相同且无采集错误才解释诊断。预算分叉保留但不视为兼容。",
+  "limits": [
+    "本轮不修改生产算法和精度，不生成新的公开性能成绩。",
+    "复制与诊断文件输出计入实际时间；最多8事件128MiB，不增加求解或KKT乘积。",
+    "分析原实际double H与另算精确s/z分开，不把后者替换成生产矩阵。",
+    "独立编译所有受v60共享结果头影响的翻译单元；不混用旧SolveResult结构对象。"
+  ]
+}

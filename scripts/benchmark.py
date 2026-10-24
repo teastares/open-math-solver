@@ -21,8 +21,8 @@ BACKENDS = ("highs", "pdlp", "ipm")
 PDLP_MODES = ("baseline", "adaptive", "subspace", "halpern", "halpern_reflected")
 HIGHS_SOLVERS = ("choose", "simplex", "ipm")
 IPM_METHODS = ("mehrotra", "homogeneous")
-IPM_LINEAR_ACCURACIES = ("strict", "backward", "inexact", "blockwise", "blockwise_weighted", "blockwise_forcing", "blockwise_forcing_weighted", "adaptive_regularization", "primal_dual_regularization", "curvature_regularization", "full_newton", "bounded_newton", "homogeneous_scaled")
-IPM_LINEAR_SOLVERS = ("qdldl", "sparselu", "normal", "qdldl_extended", "factorhighs", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod")
+IPM_LINEAR_ACCURACIES = ("strict", "backward", "inexact", "blockwise", "blockwise_weighted", "blockwise_forcing", "blockwise_forcing_weighted", "adaptive_regularization", "primal_dual_regularization", "curvature_regularization", "full_newton", "bounded_newton", "homogeneous_scaled", "homogeneous_repair")
+IPM_LINEAR_SOLVERS = ("qdldl", "sparselu", "normal", "qdldl_extended", "factorhighs", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod", "normal_cholmod_aat")
 
 
 def finite_positive(value):
@@ -126,30 +126,40 @@ def valid_homogeneous_scaled_work(report):
     return refinements <= directions and inexact_returns <= directions and products >= inexact_returns
 
 
+def valid_homogeneous_repair_work(report):
+    fields = ("ipm_homogeneous_constant_repairs", "ipm_homogeneous_constant_repair_successes",
+              "ipm_homogeneous_constant_solves")
+    if not all(type(report.get(field)) is int and 0 <= report[field] <= 9223372036854775807 for field in fields):
+        return False
+    repairs, successes, constants = (report[field] for field in fields)
+    return successes <= repairs <= constants
+
+
 def validate_ipm_method(parser, args, prefix=""):
     method = getattr(args, prefix + "ipm_method") or "mehrotra"
     accuracy = getattr(args, prefix + "ipm_linear_accuracy") or "strict"
-    if accuracy == "homogeneous_scaled" and method != "homogeneous":
+    if accuracy in ("homogeneous_scaled", "homogeneous_repair") and method != "homogeneous":
         flag_prefix = "--" + prefix.replace("_", "-")
-        parser.error(flag_prefix + "ipm-linear-accuracy homogeneous_scaled 要求 " + flag_prefix + "ipm-method homogeneous")
+        parser.error(flag_prefix + "ipm-linear-accuracy " + accuracy + " 要求 " + flag_prefix + "ipm-method homogeneous")
     if method != "homogeneous":
         return
     budgets = ("ipm_central_corrections", "ipm_direction_retries", "ipm_krylov_history_size")
-    if accuracy not in ("strict", "homogeneous_scaled") or any(getattr(args, prefix + field) for field in budgets) or (
+    if accuracy not in ("strict", "homogeneous_scaled", "homogeneous_repair") or any(getattr(args, prefix + field) for field in budgets) or (
         getattr(args, prefix + "ipm_inexact_prefilter") == "on"
     ):
         flag = "--" + prefix.replace("_", "-") + "ipm-method homogeneous"
-        parser.error(flag + " 仅支持 strict 或 homogeneous_scaled 精度、零中央修正/方向重试/历史预算及关闭非精确预筛选")
+        parser.error(flag + " 仅支持 strict、homogeneous_scaled 或 homogeneous_repair 精度、零中央修正/方向重试/历史预算及关闭非精确预筛选")
 
 
 def validate_ipm_linear_solver(parser, args, prefix=""):
-    if getattr(args, prefix + "ipm_linear_solver") != "normal_cholmod":
+    linear_solver = getattr(args, prefix + "ipm_linear_solver")
+    if linear_solver not in ("normal_cholmod", "normal_cholmod_aat"):
         return
     flag = "--" + prefix.replace("_", "-")
     if getattr(args, prefix + "ipm_singleton_elimination") != "on":
-        parser.error(flag + "ipm-linear-solver normal_cholmod 要求 " + flag + "ipm-singleton-elimination on")
+        parser.error(flag + "ipm-linear-solver " + linear_solver + " 要求 " + flag + "ipm-singleton-elimination on")
     if getattr(args, prefix + "ipm_dynamic_regularization") == "on":
-        parser.error(flag + "ipm-linear-solver normal_cholmod 不支持 " + flag + "ipm-dynamic-regularization on")
+        parser.error(flag + "ipm-linear-solver " + linear_solver + " 不支持 " + flag + "ipm-dynamic-regularization on")
 
 
 def valid_lp_optimality(report):
@@ -234,6 +244,7 @@ def run_one(args, model, seed, run_index):
                             ("ipm_singleton_elimination", "--ipm-singleton-elimination"),
                             ("ipm_dynamic_regularization", "--ipm-dynamic-regularization"),
                             ("ipm_kkt_equilibration", "--ipm-kkt-equilibration"),
+                            ("ipm_objective_scaling", "--ipm-objective-scaling"),
                             ("ipm_linear_accuracy", "--ipm-linear-accuracy"),
                             ("ipm_central_corrections", "--ipm-central-corrections"),
                             ("ipm_direction_retries", "--ipm-direction-retries"),
@@ -309,6 +320,7 @@ def run_one(args, model, seed, run_index):
                 for attribute, field in (("ipm_singleton_elimination", "eliminate_singletons"),
                                          ("ipm_dynamic_regularization", "dynamic_regularization"),
                                          ("ipm_kkt_equilibration", "equilibrate_kkt"),
+                                         ("ipm_objective_scaling", "objective_scaling"),
                                          ("ipm_inexact_prefilter", "inexact_prefilter"),
                                          ("ipm_fixed_variable_elimination", "eliminate_fixed_variables"),
                                          ("ipm_singleton_presolve", "presolve_singleton_rows"),
@@ -333,6 +345,9 @@ def run_one(args, model, seed, run_index):
                 if record["classification"] == "resolved" and getattr(args, "ipm_linear_accuracy", None) == "homogeneous_scaled":
                     if not valid_homogeneous_scaled_work(report):
                         record["classification"] = "ipm_homogeneous_scaled_work_mismatch"
+                if record["classification"] == "resolved" and getattr(args, "ipm_linear_accuracy", None) == "homogeneous_repair":
+                    if not valid_homogeneous_repair_work(report):
+                        record["classification"] = "ipm_homogeneous_repair_work_mismatch"
                 for attribute, field in (("ipm_central_corrections", "central_corrections"),
                                          ("ipm_direction_retries", "direction_retries"),
                                          ("ipm_krylov_history_size", "krylov_history_size")):
@@ -393,8 +408,10 @@ def main():
                         help="仅用于 IPM；是否启用动态主元正则化，默认关闭")
     parser.add_argument("--ipm-kkt-equilibration", choices=("on", "off"),
                         help="仅用于 IPM；是否均衡化 KKT 系统，默认关闭")
+    parser.add_argument("--ipm-objective-scaling", choices=("on", "off"),
+                        help="仅用于 IPM；是否独立归一化目标系数，默认开启，与行列缩放轮数独立")
     parser.add_argument("--ipm-linear-accuracy", choices=IPM_LINEAR_ACCURACIES,
-                        help="仅用于 IPM；线性系统精度规则，可选 strict、backward、inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled，默认 strict；homogeneous_scaled 仅用于 homogeneous，有限精化后保留最佳有限方向，仍须原模型终验")
+                        help="仅用于 IPM；线性系统精度规则，可选 strict、backward、inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled、homogeneous_repair，默认 strict；homogeneous_scaled 仅用于 homogeneous，有限精化后保留最佳有限方向，仍须原模型终验；homogeneous_repair 仅用于 homogeneous，在有限非正标量分母时每轮至多按块严格重算一次常数方向")
     parser.add_argument("--ipm-central-corrections", type=nonnegative_integer, choices=(0, 1),
                         help="仅用于 IPM；每步中央修正次数，默认 0")
     parser.add_argument("--ipm-direction-retries", type=nonnegative_integer, choices=range(9),
@@ -402,7 +419,7 @@ def main():
     parser.add_argument("--ipm-krylov-history-size", type=nonnegative_integer, choices=range(9),
                         help="仅用于 IPM；同一 KKT 的 Krylov 历史维数，0 到 8，默认 0；正值仅支持 strict、blockwise")
     parser.add_argument("--ipm-linear-solver", choices=IPM_LINEAR_SOLVERS,
-                        help="仅用于 IPM；稀疏线性系统分解，默认 qdldl；normal_cholmod 保持原 Gram 和 AMD，使用 CHOLMOD 超节点分解")
+                        help="仅用于 IPM；稀疏线性系统分解，默认 qdldl；normal_cholmod 保持原 Gram 和 AMD，使用 CHOLMOD 超节点分解；normal_cholmod_aat 保持相同 AMD 和结构预算，使用 CHOLMOD 矩形输入数值乘积")
     parser.add_argument("--ipm-inexact-prefilter", choices=("on", "off"),
                         help="仅用于 IPM；复用残差的非精确方向预筛选，默认关闭")
     parser.add_argument("--ipm-fixed-variable-elimination", choices=("on", "off"),
@@ -429,6 +446,8 @@ def main():
         parser.error("--ipm-dynamic-regularization 仅适用于 ipm 后端")
     if args.backend != "ipm" and args.ipm_kkt_equilibration is not None:
         parser.error("--ipm-kkt-equilibration 仅适用于 ipm 后端")
+    if args.backend != "ipm" and args.ipm_objective_scaling is not None:
+        parser.error("--ipm-objective-scaling 仅适用于 ipm 后端")
     if args.backend != "ipm" and args.ipm_linear_accuracy is not None:
         parser.error("--ipm-linear-accuracy 仅适用于 ipm 后端")
     if args.backend != "ipm" and args.ipm_central_corrections is not None:
@@ -492,6 +511,8 @@ def main():
                                   else args.ipm_dynamic_regularization == "on",
                                   "equilibrate_kkt": None if args.ipm_kkt_equilibration is None
                                   else args.ipm_kkt_equilibration == "on",
+                                  "objective_scaling": None if args.ipm_objective_scaling is None
+                                  else args.ipm_objective_scaling == "on",
                                   "linear_accuracy": args.ipm_linear_accuracy,
                                   "central_corrections": args.ipm_central_corrections,
                                   "direction_retries": args.ipm_direction_retries,

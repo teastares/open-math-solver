@@ -1,0 +1,622 @@
+{
+  "schema": 1,
+  "started_at_utc": "2026-10-23T11:49:56.047329+00:00",
+  "preflight_seconds": 0.072929099900648,
+  "plan_sha256": "0dafab3cc269cec22abe22bb2dbff014dd7a8d2d45255acd54ac3bfad0f42c8b",
+  "analyzer_sha256": "e79200011b53a3d982681365b5134a546223515837e0ece870de4cb860e14322",
+  "exact_helper_sha256": "d5a2203c6ec8799f8cb15723c29635fce06aa1495b4c1482d6f70614d4b9aace",
+  "oracle_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "captures": [
+    {
+      "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\0-diagnostic_on.json",
+      "metadata_sha256": "9d8dd82d5874a1962aed721369a6839716ef724b44adc70590eb8f238c7ac710",
+      "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\0-diagnostic_on.bin",
+      "binary_sha256": "309c713cc029c6eee3697cfabc990b06f9de42f6af9761e3a1480ad0c641bb86",
+      "status": "captured",
+      "analysis_index": 0,
+      "reused_identical_numerical_capture": false
+    },
+    {
+      "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\1-diagnostic_on.json",
+      "metadata_sha256": "9d8dd82d5874a1962aed721369a6839716ef724b44adc70590eb8f238c7ac710",
+      "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\1-diagnostic_on.bin",
+      "binary_sha256": "309c713cc029c6eee3697cfabc990b06f9de42f6af9761e3a1480ad0c641bb86",
+      "status": "captured",
+      "analysis_index": 0,
+      "reused_identical_numerical_capture": true
+    },
+    {
+      "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\2-diagnostic_on.json",
+      "metadata_sha256": "efe730938a403fafc94b47bf443992874dd986ca042e5342b5c8cc98ce26612d",
+      "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\2-diagnostic_on.bin",
+      "binary_sha256": "dcc56765610626a6ca622a182d40923cf1f1be8ffec0f1e6a542cef1b47ce248",
+      "status": "no_target_failure",
+      "analysis_index": null,
+      "reason": "no_target_failure",
+      "capture_error": ""
+    },
+    {
+      "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\3-diagnostic_on.json",
+      "metadata_sha256": "efe730938a403fafc94b47bf443992874dd986ca042e5342b5c8cc98ce26612d",
+      "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\3-diagnostic_on.bin",
+      "binary_sha256": "dcc56765610626a6ca622a182d40923cf1f1be8ffec0f1e6a542cef1b47ce248",
+      "status": "no_target_failure",
+      "analysis_index": null,
+      "reason": "no_target_failure",
+      "capture_error": ""
+    },
+    {
+      "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\4-diagnostic_on.json",
+      "metadata_sha256": "cdf7771aad0772b3f0678a0e7d55a953ce7ede1162c92bc252fb3d7ce56b21a5",
+      "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\4-diagnostic_on.bin",
+      "binary_sha256": "dcc56765610626a6ca622a182d40923cf1f1be8ffec0f1e6a542cef1b47ce248",
+      "status": "no_target_failure",
+      "analysis_index": null,
+      "reason": "no_target_failure",
+      "capture_error": ""
+    },
+    {
+      "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\5-diagnostic_on.json",
+      "metadata_sha256": "cdf7771aad0772b3f0678a0e7d55a953ce7ede1162c92bc252fb3d7ce56b21a5",
+      "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\5-diagnostic_on.bin",
+      "binary_sha256": "dcc56765610626a6ca622a182d40923cf1f1be8ffec0f1e6a542cef1b47ce248",
+      "status": "no_target_failure",
+      "analysis_index": null,
+      "reason": "no_target_failure",
+      "capture_error": ""
+    }
+  ],
+  "analyses": [
+    {
+      "numerical_sha256": "2a58048ef9a8589ac1ef38502cff0bc440494766cd025bb7bb227b3d0fa6a37d",
+      "event": {
+        "phase": "ordinary_constant",
+        "iteration": 80,
+        "restart_index": 2,
+        "column_index": 31,
+        "generated_columns": 32,
+        "coefficient_count": 32
+      },
+      "dimension": 13286,
+      "capture": {
+        "metadata": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\0-diagnostic_on.json",
+        "metadata_sha256": "9d8dd82d5874a1962aed721369a6839716ef724b44adc70590eb8f238c7ac710",
+        "binary": "D:\\Documents\\codes\\solver\\.tools\\v67-diagnostic\\captures\\0-diagnostic_on.bin",
+        "binary_sha256": "309c713cc029c6eee3697cfabc990b06f9de42f6af9761e3a1480ad0c641bb86",
+        "status": "captured"
+      },
+      "oracle_runs": 1,
+      "original_space": "base+Z*a；不是以已舍入last_candidate为新基点",
+      "production_replay": {
+        "bitwise_equal": true,
+        "mismatch_count": 0,
+        "first_mismatches": [],
+        "seconds": 7.800546000013128,
+        "arithmetic": "每项先round53(coeff*Z)，再roundLDBL_MANT_DIG(candidate+product)，再round53写回；j顺序不变"
+      },
+      "baseline": {
+        "coefficients": [
+          {
+            "numerator": "2013831416629971",
+            "denominator": "295147905179352825856",
+            "decimal80": "0.00000682312624040554862691991544476621811554650776088237762451171875",
+            "sign": 1
+          },
+          {
+            "numerator": "-4368646161521331",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "-1.3785016662272062899309609306495135225251831220805165401088743237778544425964355E-14",
+            "sign": -1
+          },
+          {
+            "numerator": "-1555906879141965",
+            "denominator": "158456325028528675187087900672",
+            "decimal80": "-9.8191528729562393743201507436765097664430924917500220772126340307295322418212891E-15",
+            "sign": -1
+          },
+          {
+            "numerator": "-170455427221805",
+            "denominator": "9903520314283042199192993792",
+            "decimal80": "-1.7211599695107505887493584243548564089755503747625198229798115789890289306640625E-14",
+            "sign": -1
+          },
+          {
+            "numerator": "5780642814011583",
+            "denominator": "158456325028528675187087900672",
+            "decimal80": "3.6480984984164114805021200175700417187441958882798687113790947478264570236206055E-14",
+            "sign": 1
+          },
+          {
+            "numerator": "-5691005929058041",
+            "denominator": "19807040628566084398385987584",
+            "decimal80": "-2.8732237368415177700973275503109773647151051201298344039969379082322120666503906E-13",
+            "sign": -1
+          },
+          {
+            "numerator": "305579025810035",
+            "denominator": "618970019642690137449562112",
+            "decimal80": "4.9368954248613711948166765842524613371045116849700207239948213100433349609375E-13",
+            "sign": 1
+          },
+          {
+            "numerator": "-4209414309196531",
+            "denominator": "1237940039285380274899124224",
+            "decimal80": "-3.400337799580728856291373598980887975155862346099411297473125159740447998046875E-12",
+            "sign": -1
+          },
+          {
+            "numerator": "3417835922318245",
+            "denominator": "9671406556917033397649408",
+            "decimal80": "3.5339595147861852638469695636115087966633296900909044779837131500244140625E-10",
+            "sign": 1
+          },
+          {
+            "numerator": "-2596289311508257",
+            "denominator": "77371252455336267181195264",
+            "decimal80": "-3.355625286028560171172165427626332169508405200986089766956865787506103515625E-11",
+            "sign": -1
+          },
+          {
+            "numerator": "7490541955901831",
+            "denominator": "39614081257132168796771975168",
+            "decimal80": "1.8908786265371797424010301327388580084547069215528125596392783336341381072998047E-13",
+            "sign": 1
+          },
+          {
+            "numerator": "-5716310920588177",
+            "denominator": "5070602400912917605986812821504",
+            "decimal80": "-1.1273435518349861593435395386183945212622278331596192835206693416694179177284241E-15",
+            "sign": -1
+          },
+          {
+            "numerator": "-1157184786495177",
+            "denominator": "2535301200456458802993406410752",
+            "decimal80": "-4.5642891909128430260673486223760576421958523769817350768107644398696720600128174E-16",
+            "sign": -1
+          },
+          {
+            "numerator": "-908013824966611",
+            "denominator": "158456325028528675187087900672",
+            "decimal80": "-5.7303728633308329843010799300263418079733578058831966473007923923432826995849609E-15",
+            "sign": -1
+          },
+          {
+            "numerator": "5289958192391485",
+            "denominator": "1237940039285380274899124224",
+            "decimal80": "4.273194197228804282416057613762244986495286713790164867532439529895782470703125E-12",
+            "sign": 1
+          },
+          {
+            "numerator": "-6213390209977497",
+            "denominator": "309485009821345068724781056",
+            "decimal80": "-2.00765465621881688108624726345655489047337116659264211193658411502838134765625E-11",
+            "sign": -1
+          },
+          {
+            "numerator": "5678131371883017",
+            "denominator": "79228162514264337593543950336",
+            "decimal80": "7.1668093663799398569843611507972132792392873368303440884119481779634952545166016E-14",
+            "sign": 1
+          },
+          {
+            "numerator": "-2906361977216291",
+            "denominator": "5070602400912917605986812821504",
+            "decimal80": "-5.7317883506169325169198214909674008341374385876870745093469849962275475263595581E-16",
+            "sign": -1
+          },
+          {
+            "numerator": "-1461539507498139",
+            "denominator": "162259276829213363391578010288128",
+            "decimal80": "-9.0074326476660445514728695238844824803466308901691433907998884933476801961660385E-18",
+            "sign": -1
+          },
+          {
+            "numerator": "-7776736033760887",
+            "denominator": "20282409603651670423947251286016",
+            "decimal80": "-3.8342268920359214646591712150214690123676010403107328183835988966166041791439056E-16",
+            "sign": -1
+          },
+          {
+            "numerator": "4722336899985181",
+            "denominator": "39614081257132168796771975168",
+            "decimal80": "1.1920854277378869037686257032558604613083942658224856359083787538111209869384766E-13",
+            "sign": 1
+          },
+          {
+            "numerator": "-4823331034935191",
+            "denominator": "4951760157141521099596496896",
+            "decimal80": "-9.7406394531829106911674951368385476000409661789802839848562143743038177490234375E-13",
+            "sign": -1
+          },
+          {
+            "numerator": "3522425053464731",
+            "denominator": "79228162514264337593543950336",
+            "decimal80": "4.4459254659989737643764795451658084366667982034737605090413126163184642791748047E-14",
+            "sign": 1
+          },
+          {
+            "numerator": "-5349032800771935",
+            "denominator": "40564819207303340847894502572032",
+            "decimal80": "-1.3186383928980727310019797963765835962349631533662569493614569182682316750288010E-16",
+            "sign": -1
+          },
+          {
+            "numerator": "458795205531085",
+            "denominator": "324518553658426726783156020576256",
+            "decimal80": "1.4137718794777807633616998874623424074504076335513994000514514937094645574688911E-18",
+            "sign": 1
+          },
+          {
+            "numerator": "-359616929350181",
+            "denominator": "324518553658426726783156020576256",
+            "decimal80": "-1.1081552203905641890082443057010004734291349080864755305420032982510747388005257E-18",
+            "sign": -1
+          },
+          {
+            "numerator": "3202031560491979",
+            "denominator": "5070602400912917605986812821504",
+            "decimal80": "6.3148937883898789383766545680091465999156884452564453269474142871331423521041870E-16",
+            "sign": 1
+          },
+          {
+            "numerator": "-1827896627258689",
+            "denominator": "316912650057057350374175801344",
+            "decimal80": "-5.7678247521188952293999892546004356048245601679136385087076632771641016006469727E-15",
+            "sign": -1
+          },
+          {
+            "numerator": "4579086903549231",
+            "denominator": "20282409603651670423947251286016",
+            "decimal80": "2.2576641498872039640029202067346725045525997004579321636441591181210242211818695E-16",
+            "sign": 1
+          },
+          {
+            "numerator": "-7685167179246645",
+            "denominator": "10384593717069655257060992658440192",
+            "decimal80": "-7.4005467990665506177856291605393107640891782231557676809130530415359316975809634E-19",
+            "sign": -1
+          },
+          {
+            "numerator": "8143942650666179",
+            "denominator": "2658455991569831745807614120560689152",
+            "decimal80": "3.0634107453692094265104796869979724934386456951314434233256921158439212149460218E-21",
+            "sign": 1
+          },
+          {
+            "numerator": "-5298772995028277",
+            "denominator": "1361129467683753853853498429727072845824",
+            "decimal80": "-3.8929235762158953406929939322286747962150306251201594591849371976462201860869072E-24",
+            "sign": -1
+          }
+        ],
+        "exact_continuous": {
+          "satisfies_original_tolerances": true,
+          "maximum_normalized_residual": {
+            "numerator": "1299826434411906646107017102997098260383447292752139687",
+            "denominator": "2245034269753843804880644087817767127070822991725881982976",
+            "decimal80": "0.00057897843784559501420138110799831416821468159296230064287804521907385240513831077",
+            "sign": 1
+          },
+          "worst_coordinate": 12013,
+          "signed_residual_at_worst": {
+            "numerator": "-9098785040883346522749119720979687822684131049264977809",
+            "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+            "decimal80": "-6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+            "sign": -1
+          },
+          "upper_infinity": {
+            "infinity": {
+              "numerator": "6741790287482077938003206889225396955600884803529865",
+              "denominator": "421249166674228746791672110734681729275580381602196445017243910144",
+              "decimal80": "1.6004281600622875087458878445675106446840909463461567503658633987308898600024161E-14",
+              "sign": 1
+            },
+            "argmax": 4851,
+            "signed_at_argmax": {
+              "numerator": "-6741790287482077938003206889225396955600884803529865",
+              "denominator": "421249166674228746791672110734681729275580381602196445017243910144",
+              "decimal80": "-1.6004281600622875087458878445675106446840909463461567503658633987308898600024161E-14",
+              "sign": -1
+            }
+          },
+          "lower_infinity": {
+            "infinity": {
+              "numerator": "9098785040883346522749119720979687822684131049264977809",
+              "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+              "decimal80": "6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+              "sign": 1
+            },
+            "argmax": 6711,
+            "signed_at_argmax": {
+              "numerator": "-9098785040883346522749119720979687822684131049264977809",
+              "denominator": "13164036458569648337239753460458804039861886925068638906788872192",
+              "decimal80": "-6.9118503807850925621332712075066985335827378999037223869925223182736744516645831E-10",
+              "sign": -1
+            }
+          }
+        },
+        "production_candidate_exact": {
+          "satisfies_original_tolerances": false,
+          "maximum_normalized_residual": {
+            "numerator": "7428558762266848",
+            "denominator": "2818782914808133",
+            "decimal80": "2.6353780999742188695321198411054365417683740973573598635699353119371282901703840",
+            "sign": 1
+          },
+          "worst_coordinate": 12008,
+          "signed_residual_at_worst": {
+            "numerator": "232142461320839",
+            "denominator": "73786976294838206464",
+            "decimal80": "0.000003146117011127322836937236782972604487440548837184906005859375",
+            "sign": 1
+          },
+          "upper_infinity": {
+            "infinity": {
+              "numerator": "7807409425186120339455",
+              "denominator": "162259276829213363391578010288128",
+              "decimal80": "4.8116875520182674508361788321502705675152803848248545979734980271302902110619470E-11",
+              "sign": 1
+            },
+            "argmax": 4877,
+            "signed_at_argmax": {
+              "numerator": "7807409425186120339455",
+              "denominator": "162259276829213363391578010288128",
+              "decimal80": "4.8116875520182674508361788321502705675152803848248545979734980271302902110619470E-11",
+              "sign": 1
+            }
+          },
+          "lower_infinity": {
+            "infinity": {
+              "numerator": "232142461320839",
+              "denominator": "73786976294838206464",
+              "decimal80": "0.000003146117011127322836937236782972604487440548837184906005859375",
+              "sign": 1
+            },
+            "argmax": 6706,
+            "signed_at_argmax": {
+              "numerator": "232142461320839",
+              "denominator": "73786976294838206464",
+              "decimal80": "0.000003146117011127322836937236782972604487440548837184906005859375",
+              "sign": 1
+            }
+          }
+        },
+        "production_stored_residual": {
+          "satisfies_original_tolerances": false,
+          "maximum_normalized_residual": {
+            "numerator": "7428300557254656",
+            "denominator": "2818782914808133",
+            "decimal80": "2.6352864983787800894147399780928989756477044092487690212530373470781294687504658",
+            "sign": 1
+          },
+          "worst_coordinate": 12008,
+          "signed_residual_at_worst": {
+            "numerator": "1689",
+            "denominator": "536870912",
+            "decimal80": "0.00000314600765705108642578125",
+            "sign": 1
+          },
+          "upper_infinity": {
+            "infinity": {
+              "numerator": "1693",
+              "denominator": "35184372088832",
+              "decimal80": "4.8117954065673984587192535400390625E-11",
+              "sign": 1
+            },
+            "argmax": 4877,
+            "signed_at_argmax": {
+              "numerator": "1693",
+              "denominator": "35184372088832",
+              "decimal80": "4.8117954065673984587192535400390625E-11",
+              "sign": 1
+            }
+          },
+          "lower_infinity": {
+            "infinity": {
+              "numerator": "1689",
+              "denominator": "536870912",
+              "decimal80": "0.00000314600765705108642578125",
+              "sign": 1
+            },
+            "argmax": 6706,
+            "signed_at_argmax": {
+              "numerator": "1689",
+              "denominator": "536870912",
+              "decimal80": "0.00000314600765705108642578125",
+              "sign": 1
+            }
+          }
+        },
+        "stored_residual_evaluation_error": {
+          "infinity": {
+            "numerator": "45630972258791999051629345210891494326317302358934315",
+            "denominator": "51422017416287688817342786954917203280710495801049370729644032",
+            "decimal80": "8.8738199221912669066637030516149062280114257432712406411726873119542475171133706E-10",
+            "sign": 1
+          },
+          "argmax": 7165,
+          "signed_at_argmax": {
+            "numerator": "-45630972258791999051629345210891494326317302358934315",
+            "denominator": "51422017416287688817342786954917203280710495801049370729644032",
+            "decimal80": "-8.8738199221912669066637030516149062280114257432712406411726873119542475171133706E-10",
+            "sign": -1
+          }
+        },
+        "exact_center_and_baseline_seconds": 1.4547866000793874
+      },
+      "diagnostic_model": {
+        "path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\minimax.mps",
+        "sha256": "6c322f9cb9935fdd7865f31a835d12daadd88f07877a86c328f96d54c1a9d55b",
+        "bytes": 28479422,
+        "rows": 26572,
+        "columns": 33,
+        "column_scale_exponents": [
+          -19,
+          -18,
+          -19,
+          -19,
+          -18,
+          -18,
+          -18,
+          -18,
+          -15,
+          -18,
+          -18,
+          -18,
+          -17,
+          -18,
+          -19,
+          -16,
+          -18,
+          -18,
+          -18,
+          -18,
+          -19,
+          -16,
+          -19,
+          -20,
+          -20,
+          -20,
+          -20,
+          -16,
+          -20,
+          -19,
+          -20,
+          -20
+        ],
+        "projection_seconds": 5.528350400039926,
+        "model_generation_seconds_including_projection": 13.464036600198597,
+        "model_write_and_conversion_seconds": 7.9356862001586705,
+        "rounding": {
+          "coefficient_max_absolute_rounding_error": {
+            "numerator": "2932211522866602982987083",
+            "denominator": "27261595564801085051922551983357521035264",
+            "decimal80": "1.0755832379277679821964670608393304567722294684912664079359130713932047147080359E-16",
+            "sign": 1
+          },
+          "rhs_max_absolute_rounding_error": {
+            "numerator": "86055585873553042170721006800453340539",
+            "denominator": "2417729213581062559102232094572979982999347837243257520128",
+            "decimal80": "3.5593558364664950615292139994255740154665365339586778229289111939819930573161894E-20",
+            "sign": 1
+          },
+          "coefficient_inexact_count": 849674,
+          "rhs_inexact_count": 26554,
+          "nonzero_at_or_below_highs_default_small_matrix_value": 469494,
+          "written_matrix_nonzeros": 876246,
+          "zero_projected_columns": 0
+        },
+        "constraint_convention": "+A_scaled*delta-t<=p_scaled；-A_scaled*delta-t<=-p_scaled；t>=0",
+        "small_matrix_value_boundary": "全部原行与非零转换值均写出；HiGHS内部可能处理极小项，oracle只供候选搜索，原方程另精确复核。"
+      },
+      "oracle": {
+        "started_at_utc": "2026-10-23T11:50:18.882673+00:00",
+        "command": [
+          "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v66.exe",
+          "solve",
+          "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\minimax.mps",
+          "--backend",
+          "highs",
+          "--highs-solver",
+          "simplex",
+          "--highs-presolve",
+          "choose",
+          "--threads",
+          "1",
+          "--seed",
+          "0",
+          "--time-limit",
+          "60",
+          "--output",
+          "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-report.json"
+        ],
+        "cwd": "D:\\Documents\\codes\\solver",
+        "oracle_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+        "wall_timeout_seconds": 90,
+        "numerical_time_limit_seconds": 60,
+        "scope": "离线低列数诊断 LP，不属于原公开 LP 的自主求解性能",
+        "returncode": 2,
+        "wall_timeout": false,
+        "wall_seconds": 0.32889369991607964,
+        "completed_at_utc": "2026-10-23T11:50:19.229444+00:00",
+        "stdout_sha256": "04b4a3a9b466e52298a61c93d56106af79462c8a5f773c7b73a1672e492979bd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-stdout.bin",
+        "stderr_path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-stderr.bin",
+        "report_path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-report.json",
+        "report_sha256": "3658557e8760ee4d47e5a7efe3babfdd8c05535644625100d7ed42cf87274740",
+        "status": "error",
+        "reported_timings": {
+          "read_seconds": 0.3174481,
+          "solve_seconds": 0,
+          "verification_seconds": 0,
+          "total_seconds": 0.3180384
+        },
+        "reported_numerical_seconds": 0,
+        "reported_numerical_budget_exceeded": false
+      },
+      "classification": "no_finite_oracle_candidate",
+      "conclusion": "未找到可独立复核的见证；不证明该空间无解"
+    }
+  ],
+  "oracle_runs": 1,
+  "oracle_calls": [
+    {
+      "started_at_utc": "2026-10-23T11:50:18.882673+00:00",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v66.exe",
+        "solve",
+        "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\minimax.mps",
+        "--backend",
+        "highs",
+        "--highs-solver",
+        "simplex",
+        "--highs-presolve",
+        "choose",
+        "--threads",
+        "1",
+        "--seed",
+        "0",
+        "--time-limit",
+        "60",
+        "--output",
+        "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-report.json"
+      ],
+      "cwd": "D:\\Documents\\codes\\solver",
+      "oracle_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+      "wall_timeout_seconds": 90,
+      "numerical_time_limit_seconds": 60,
+      "scope": "离线低列数诊断 LP，不属于原公开 LP 的自主求解性能",
+      "returncode": 2,
+      "wall_timeout": false,
+      "wall_seconds": 0.32889369991607964,
+      "completed_at_utc": "2026-10-23T11:50:19.229444+00:00",
+      "stdout_sha256": "04b4a3a9b466e52298a61c93d56106af79462c8a5f773c7b73a1672e492979bd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-stdout.bin",
+      "stderr_path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-stderr.bin",
+      "report_path": "D:\\Documents\\codes\\solver\\.tools\\v67-offline-oracles\\oracle-0\\oracle-report.json",
+      "report_sha256": "3658557e8760ee4d47e5a7efe3babfdd8c05535644625100d7ed42cf87274740",
+      "status": "error",
+      "reported_timings": {
+        "read_seconds": 0.3174481,
+        "solve_seconds": 0,
+        "verification_seconds": 0,
+        "total_seconds": 0.3180384
+      },
+      "reported_numerical_seconds": 0,
+      "reported_numerical_budget_exceeded": false
+    }
+  ],
+  "unique_numerical_captures": 1,
+  "original_lp_runs": 0,
+  "limits": [
+    "oracle只解捕获空间的诊断LP，不计入自主性能。",
+    "全部原约束保留，double写模及上游极小项处理可能改变近似oracle问题。",
+    "精确连续映射、double系数连续组合与生产逐次舍入点分别验原K0。",
+    "没有可靠不可行证书，只能报告是否找到见证；不证明该空间无解或已经LP达标。"
+  ],
+  "completed": true,
+  "completed_at_utc": "2026-10-23T11:50:19.253619+00:00",
+  "elapsed_wall_seconds": 23.206267199944705
+}

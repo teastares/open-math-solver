@@ -1,0 +1,70 @@
+{
+  "created_at_utc": "2026-10-18T06:34:04.088020+00:00",
+  "patch": {
+    "id": "dgemm-skylakex-stack-capacity-v1",
+    "path": "third_party/openblas/patch_dgemm_stack.cmake",
+    "sha256": "893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+    "source_file": "kernel/x86_64/dgemm_kernel_16x2_skylakex.S",
+    "source_sha256": "b64d4c34defbdd3e5cb62d259d35ee8fa488c01d90af13cb3c4c7367e5fc7e26",
+    "patched_sha256": "7ad33091ab73c53684d1b4302335ac80969ccc4e4371d4895ca5564424a84e9b"
+  },
+  "cases": [
+    {
+      "case": "original_source_applies",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\cmake-4.4.4-windows-x86_64\\bin\\cmake.exe",
+        "-DSOURCE_DIR=D:\\Documents\\codes\\solver\\.tools\\v51-patch-check-attempt2\\good",
+        "-DEXPECTED_PATCH_SHA256=893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+        "-P",
+        "D:\\Documents\\codes\\solver\\third_party\\openblas\\patch_dgemm_stack.cmake"
+      ],
+      "returncode": 0,
+      "stdout": "-- 已应用 OpenBLAS DGEMM 栈容量与逐页触碰修复\n",
+      "stderr": ""
+    },
+    {
+      "case": "second_application_is_noop",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\cmake-4.4.4-windows-x86_64\\bin\\cmake.exe",
+        "-DSOURCE_DIR=D:\\Documents\\codes\\solver\\.tools\\v51-patch-check-attempt2\\good",
+        "-DEXPECTED_PATCH_SHA256=893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+        "-P",
+        "D:\\Documents\\codes\\solver\\third_party\\openblas\\patch_dgemm_stack.cmake"
+      ],
+      "returncode": 0,
+      "stdout": "-- OpenBLAS DGEMM 栈容量补丁已应用，无需重复写入\n",
+      "stderr": ""
+    },
+    {
+      "case": "unknown_source_rejected",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\cmake-4.4.4-windows-x86_64\\bin\\cmake.exe",
+        "-DSOURCE_DIR=D:\\Documents\\codes\\solver\\.tools\\v51-patch-check-attempt2\\unknown",
+        "-DEXPECTED_PATCH_SHA256=893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+        "-P",
+        "D:\\Documents\\codes\\solver\\third_party\\openblas\\patch_dgemm_stack.cmake"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "CMake Error at third_party/openblas/patch_dgemm_stack.cmake:36 (message):\n  OpenBLAS DGEMM 原始源码校验失败，拒绝修改\n\n\n"
+    },
+    {
+      "case": "stale_command_hash_rejected",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\cmake-4.4.4-windows-x86_64\\bin\\cmake.exe",
+        "-DSOURCE_DIR=D:\\Documents\\codes\\solver\\.tools\\v51-patch-check-attempt2\\stale",
+        "-DEXPECTED_PATCH_SHA256=0000000000000000000000000000000000000000000000000000000000000000",
+        "-P",
+        "D:\\Documents\\codes\\solver\\third_party\\openblas\\patch_dgemm_stack.cmake"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "CMake Error at third_party/openblas/patch_dgemm_stack.cmake:24 (message):\n  OpenBLAS 构建命令的补丁校验值已过期，请重新配置\n\n\n"
+    }
+  ],
+  "passed": true,
+  "earlier_isolated_attempt": {
+    "directory": ".tools/v51-patch-check/good",
+    "failure": "Windows file(WRITE)写成CRLF，写后校验拒绝；改用明确LF输出。生产解包目录尚未改动。"
+  }
+}

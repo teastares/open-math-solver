@@ -1,0 +1,3117 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-18T08:41:30.644243+00:00",
+  "scope": "一次离线独立审核；不构建、不重跑LP",
+  "plan_sha256": "dc1959b18e9c5fdaf5a61b2a3487d8ce3588c7fb5236ff06a1e78e3929cf1e7b",
+  "helper_sha256": "547b7d9a9c4c37120f8dbb0fa0b8d0b8b768ff1613d8004869a863a89cd118c3",
+  "identity_sha256": "40ba9443067de0e2b5316d98e7e1c21e961f5054c4ceda312c600c2587626851",
+  "temporary_verifier_sha256": "b9611a9c6586408cea1597606290f5f4aa258f8c9809f0e69772907ebf02bdd8",
+  "solver_sha256": "5f51909f439fc05fe05d7aa626e60b0baf8abbe02e981c1eee2085546ee18cae",
+  "parent_solver_sha256": "967b9e5421c5b50d83c8e961aba19a286a099f204b1061274cfe979ed8bd6cc4",
+  "source_files": 95,
+  "linked_libraries": 17,
+  "unchanged_third_party_libraries": 8,
+  "ctest_passed": 18,
+  "changed_source_files": [
+    "include/solver/backend.hpp",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_ipm.cpp"
+  ],
+  "changed_libraries": [
+    "build/release/libsolver_highs.a",
+    "build/release/libsolver_ipm.a",
+    "build/release/libsolver_pdlp.a"
+  ],
+  "core_static_checks": {
+    "original_solve_body_equal": true,
+    "dedicated_exhaustion_throw_sites": 1,
+    "dedicated_exhaustion_catch_sites": 1,
+    "same_regularized_matrix_upgrade_checked": true,
+    "actual_backend_update_checked": true,
+    "solver_runs": 0
+  },
+  "run_count": 102,
+  "performance_runs": 102,
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [],
+    "development_speed_gate": false,
+    "eligible_for_netlib": false,
+    "plan_sha256": "dc1959b18e9c5fdaf5a61b2a3487d8ce3588c7fb5236ff06a1e78e3929cf1e7b"
+  },
+  "stages": {
+    "development": {
+      "runs": 66,
+      "numerical_fallback": {
+        "reports": 33,
+        "attempted_runs": 0,
+        "attempts": 0,
+        "successes": 0,
+        "actual_sparse_lu_runs": 0,
+        "details": []
+      },
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.2597847994245609,
+          "penalized_numerical_sgm10_seconds": 0.23867642192128974,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.2599674160975745,
+          "penalized_numerical_sgm10_seconds": 0.23863371183851867,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 11,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "failed_runs": [],
+      "artifacts": {
+        "-manifest.json": "e56281e7be154a722ea140e579e107f3780d68e26f95b486f4cd6401668b01d5",
+        "-summary.json": "d8292763158076cfc35ba58d8179b52635a1b1523dfa4af353a5ae506f702aed",
+        "-runs.jsonl.gz": "5f278670106e61d4a1ee3eb6e1ea9c13a8b7a47a358280fcbc863ced33048e53",
+        "-command.json": "7be55575bc74903a273dd0d9d672186f04006e42482df783e1ae501c869b9fb7",
+        "-process.json": "4a259c020de85b4899a6f1adcc6fd40c0bb3194efc51f66a35b4772c696d8bac",
+        "-run.log": "053e1028105eedfb1a845125e701275bef301c1e5a565cda00b0bdbf8d92e965"
+      }
+    },
+    "probe": {
+      "runs": 36,
+      "numerical_fallback": {
+        "reports": 18,
+        "attempted_runs": 3,
+        "attempts": 3,
+        "successes": 0,
+        "actual_sparse_lu_runs": 3,
+        "details": [
+          {
+            "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+            "run_index": 13,
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "ipm_numerical_fallback_attempts": 1,
+            "ipm_numerical_fallback_successes": 0,
+            "ipm_factor_backend": "sparselu",
+            "ipm_structural_fallbacks": 0,
+            "ipm_factorizations": 78
+          },
+          {
+            "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+            "run_index": 14,
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "ipm_numerical_fallback_attempts": 1,
+            "ipm_numerical_fallback_successes": 0,
+            "ipm_factor_backend": "sparselu",
+            "ipm_structural_fallbacks": 0,
+            "ipm_factorizations": 78
+          },
+          {
+            "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+            "run_index": 17,
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "ipm_numerical_fallback_attempts": 1,
+            "ipm_numerical_fallback_successes": 0,
+            "ipm_factor_backend": "sparselu",
+            "ipm_structural_fallbacks": 0,
+            "ipm_factorizations": 78
+          }
+        ]
+      },
+      "reference_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+      "candidate_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.447525806897511,
+          "penalized_numerical_sgm10_seconds": 1.1807516593129468,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.440321528644425,
+          "penalized_numerical_sgm10_seconds": 1.174861870458334,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "both_variants_all_repeats_pass_count": 5,
+      "missing_reports": [],
+      "invalid_process_reports": [],
+      "failed_runs": [
+        {
+          "run_index": 12,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 13,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 14,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 15,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 16,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        },
+        {
+          "run_index": 17,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "requested_variant": "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off",
+          "returncode": 4,
+          "classification": "incomplete",
+          "quality_failure": "incomplete"
+        }
+      ],
+      "artifacts": {
+        "-manifest.json": "ddcad33423cf8a75ac230b28ba3aed1672c0f2cca925fc7083840286c06a573c",
+        "-summary.json": "ca3095b83ea9cf6acb098170bd96411c6758e1e63221a7948a4d7724de4425eb",
+        "-runs.jsonl.gz": "d3b89bc86646ac36518677969fe4cdfb445eaabbc42c526dec6d394ca2a3ec9c",
+        "-command.json": "f40dd622efc918c36458cc8b262c341acc79c5d538c94fcdd9c8981d17635777",
+        "-process.json": "ac98170c26621a29c03fa4cab364ccea9e33cf9cf6f4ed5ac0ddf6908ed81901",
+        "-run.log": "81250c6756ced8f873e6605289b57c44a96774a918981ea7cd122ed822a8f257"
+      }
+    }
+  },
+  "self_check": {
+    "passed": true,
+    "fallback_cases": 26,
+    "status_cases": 5,
+    "solver_runs": 0
+  },
+  "initial_report_diagnostics": {
+    "development": {
+      "pairs": 33,
+      "untriggered_pairs": 33,
+      "untriggered_equal": 33,
+      "untriggered_different": 0,
+      "triggered_pairs": 0,
+      "invalid_pairs": 0,
+      "pair_records": [
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+          "repetition": 0,
+          "reference_run_index": 0,
+          "candidate_run_index": 1,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.01223489991389215,
+            "numerical_seconds": 0.0005723,
+            "timings": {
+              "read_seconds": 0.0002203,
+              "solve_seconds": 0.0005269,
+              "verification_seconds": 4.539999999999999e-05,
+              "total_seconds": 0.0009988
+            },
+            "ipm_iterations": 8,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 9,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.030958899995312095,
+            "numerical_seconds": 0.0006843,
+            "timings": {
+              "read_seconds": 0.0002506,
+              "solve_seconds": 0.0006288999999999999,
+              "verification_seconds": 5.5400000000000005e-05,
+              "total_seconds": 0.0011876
+            },
+            "ipm_iterations": 8,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 9,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+          "repetition": 1,
+          "reference_run_index": 3,
+          "candidate_run_index": 2,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.008270699996501207,
+            "numerical_seconds": 0.0005707,
+            "timings": {
+              "read_seconds": 0.0002638,
+              "solve_seconds": 0.0005264,
+              "verification_seconds": 4.430000000000001e-05,
+              "total_seconds": 0.001044
+            },
+            "ipm_iterations": 8,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 9,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.008529199985787272,
+            "numerical_seconds": 0.0005895,
+            "timings": {
+              "read_seconds": 0.0002234,
+              "solve_seconds": 0.0005436,
+              "verification_seconds": 4.59e-05,
+              "total_seconds": 0.0010398
+            },
+            "ipm_iterations": 8,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 9,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+          "repetition": 2,
+          "reference_run_index": 4,
+          "candidate_run_index": 5,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.008840099908411503,
+            "numerical_seconds": 0.0009154999999999999,
+            "timings": {
+              "read_seconds": 0.0002049,
+              "solve_seconds": 0.0008397999999999999,
+              "verification_seconds": 7.57e-05,
+              "total_seconds": 0.0013298
+            },
+            "ipm_iterations": 8,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 9,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.00822849990800023,
+            "numerical_seconds": 0.0005771,
+            "timings": {
+              "read_seconds": 0.0002803,
+              "solve_seconds": 0.0005319,
+              "verification_seconds": 4.52e-05,
+              "total_seconds": 0.001073
+            },
+            "ipm_iterations": 8,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 9,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+          "repetition": 0,
+          "reference_run_index": 7,
+          "candidate_run_index": 6,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.011272399919107556,
+            "numerical_seconds": 0.0018012,
+            "timings": {
+              "read_seconds": 0.0003564,
+              "solve_seconds": 0.0016581,
+              "verification_seconds": 0.0001431,
+              "total_seconds": 0.0023721
+            },
+            "ipm_iterations": 13,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 14,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.011675700079649687,
+            "numerical_seconds": 0.0018141999999999998,
+            "timings": {
+              "read_seconds": 0.0004321,
+              "solve_seconds": 0.0016795999999999998,
+              "verification_seconds": 0.00013460000000000002,
+              "total_seconds": 0.0024927
+            },
+            "ipm_iterations": 13,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 14,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+          "repetition": 1,
+          "reference_run_index": 8,
+          "candidate_run_index": 9,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.010058999992907047,
+            "numerical_seconds": 0.0017992,
+            "timings": {
+              "read_seconds": 0.0003579,
+              "solve_seconds": 0.0016553,
+              "verification_seconds": 0.00014389999999999997,
+              "total_seconds": 0.002408
+            },
+            "ipm_iterations": 13,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 14,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.009858299978077412,
+            "numerical_seconds": 0.0018178,
+            "timings": {
+              "read_seconds": 0.0003617,
+              "solve_seconds": 0.0016773,
+              "verification_seconds": 0.0001405,
+              "total_seconds": 0.0024019
+            },
+            "ipm_iterations": 13,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 14,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+          "repetition": 2,
+          "reference_run_index": 11,
+          "candidate_run_index": 10,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.010068500181660056,
+            "numerical_seconds": 0.0018124,
+            "timings": {
+              "read_seconds": 0.00036,
+              "solve_seconds": 0.0016673,
+              "verification_seconds": 0.00014510000000000003,
+              "total_seconds": 0.0023886
+            },
+            "ipm_iterations": 13,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 14,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.009672399843111634,
+            "numerical_seconds": 0.001799,
+            "timings": {
+              "read_seconds": 0.0003608,
+              "solve_seconds": 0.0016638,
+              "verification_seconds": 0.0001352,
+              "total_seconds": 0.0023778
+            },
+            "ipm_iterations": 13,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 14,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+          "repetition": 0,
+          "reference_run_index": 12,
+          "candidate_run_index": 13,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.02152469987049699,
+            "numerical_seconds": 0.0106438,
+            "timings": {
+              "read_seconds": 0.0011775,
+              "solve_seconds": 0.0096906,
+              "verification_seconds": 0.0009532,
+              "total_seconds": 0.0120532
+            },
+            "ipm_iterations": 22,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 23,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.021342100109905005,
+            "numerical_seconds": 0.010554,
+            "timings": {
+              "read_seconds": 0.0011871,
+              "solve_seconds": 0.009689999999999999,
+              "verification_seconds": 0.0008639999999999999,
+              "total_seconds": 0.0119935
+            },
+            "ipm_iterations": 22,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 23,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+          "repetition": 1,
+          "reference_run_index": 15,
+          "candidate_run_index": 14,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.02082779980264604,
+            "numerical_seconds": 0.0111884,
+            "timings": {
+              "read_seconds": 0.0012994,
+              "solve_seconds": 0.0102095,
+              "verification_seconds": 0.0009789000000000002,
+              "total_seconds": 0.0127491
+            },
+            "ipm_iterations": 22,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 23,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.020250200061127543,
+            "numerical_seconds": 0.0106191,
+            "timings": {
+              "read_seconds": 0.0012396,
+              "solve_seconds": 0.009746099999999999,
+              "verification_seconds": 0.0008730000000000002,
+              "total_seconds": 0.0121182
+            },
+            "ipm_iterations": 22,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 23,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+          "repetition": 2,
+          "reference_run_index": 16,
+          "candidate_run_index": 17,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.019869099836796522,
+            "numerical_seconds": 0.0107682,
+            "timings": {
+              "read_seconds": 0.001236,
+              "solve_seconds": 0.0097924,
+              "verification_seconds": 0.0009758,
+              "total_seconds": 0.0122508
+            },
+            "ipm_iterations": 22,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 23,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.019928900059312582,
+            "numerical_seconds": 0.010515,
+            "timings": {
+              "read_seconds": 0.0012994,
+              "solve_seconds": 0.0096526,
+              "verification_seconds": 0.0008624000000000001,
+              "total_seconds": 0.0120685
+            },
+            "ipm_iterations": 22,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 23,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+          "repetition": 0,
+          "reference_run_index": 19,
+          "candidate_run_index": 18,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.022458199877291918,
+            "numerical_seconds": 0.0116596,
+            "timings": {
+              "read_seconds": 0.0010911,
+              "solve_seconds": 0.0109758,
+              "verification_seconds": 0.0006837999999999999,
+              "total_seconds": 0.0129901
+            },
+            "ipm_iterations": 20,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 21,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.02205240004695952,
+            "numerical_seconds": 0.0116112,
+            "timings": {
+              "read_seconds": 0.0010887,
+              "solve_seconds": 0.0109488,
+              "verification_seconds": 0.0006624,
+              "total_seconds": 0.0129441
+            },
+            "ipm_iterations": 20,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 21,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+          "repetition": 1,
+          "reference_run_index": 20,
+          "candidate_run_index": 21,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.02054059994406998,
+            "numerical_seconds": 0.0116016,
+            "timings": {
+              "read_seconds": 0.0010816,
+              "solve_seconds": 0.0109299,
+              "verification_seconds": 0.0006717000000000001,
+              "total_seconds": 0.0129301
+            },
+            "ipm_iterations": 20,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 21,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.020323700038716197,
+            "numerical_seconds": 0.011529,
+            "timings": {
+              "read_seconds": 0.001088,
+              "solve_seconds": 0.010883499999999999,
+              "verification_seconds": 0.0006454999999999999,
+              "total_seconds": 0.0128829
+            },
+            "ipm_iterations": 20,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 21,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+          "repetition": 2,
+          "reference_run_index": 23,
+          "candidate_run_index": 22,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.02038850006647408,
+            "numerical_seconds": 0.0116222,
+            "timings": {
+              "read_seconds": 0.0011033,
+              "solve_seconds": 0.0109488,
+              "verification_seconds": 0.0006734000000000001,
+              "total_seconds": 0.0129625
+            },
+            "ipm_iterations": 20,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 21,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.020634799962863326,
+            "numerical_seconds": 0.0115871,
+            "timings": {
+              "read_seconds": 0.0010709,
+              "solve_seconds": 0.0109391,
+              "verification_seconds": 0.0006479999999999998,
+              "total_seconds": 0.0128948
+            },
+            "ipm_iterations": 20,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 21,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+          "repetition": 0,
+          "reference_run_index": 24,
+          "candidate_run_index": 25,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.02969880006276071,
+            "numerical_seconds": 0.0180935,
+            "timings": {
+              "read_seconds": 0.0016817,
+              "solve_seconds": 0.016883799999999997,
+              "verification_seconds": 0.0012097,
+              "total_seconds": 0.0200902
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 50,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.030169500038027763,
+            "numerical_seconds": 0.0181637,
+            "timings": {
+              "read_seconds": 0.0016883,
+              "solve_seconds": 0.017020300000000002,
+              "verification_seconds": 0.0011434000000000001,
+              "total_seconds": 0.0201371
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 50,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+          "repetition": 1,
+          "reference_run_index": 27,
+          "candidate_run_index": 26,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.028397100046277046,
+            "numerical_seconds": 0.0180861,
+            "timings": {
+              "read_seconds": 0.0016757,
+              "solve_seconds": 0.0168804,
+              "verification_seconds": 0.0012057000000000003,
+              "total_seconds": 0.0200264
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 50,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.027869499986991286,
+            "numerical_seconds": 0.0179609,
+            "timings": {
+              "read_seconds": 0.0016622,
+              "solve_seconds": 0.016841799999999997,
+              "verification_seconds": 0.0011191,
+              "total_seconds": 0.019885
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 50,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+          "repetition": 2,
+          "reference_run_index": 28,
+          "candidate_run_index": 29,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.028266600100323558,
+            "numerical_seconds": 0.0180654,
+            "timings": {
+              "read_seconds": 0.0016611,
+              "solve_seconds": 0.0168635,
+              "verification_seconds": 0.0012019000000000003,
+              "total_seconds": 0.0199706
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 50,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.028255999786779284,
+            "numerical_seconds": 0.0180233,
+            "timings": {
+              "read_seconds": 0.0017329,
+              "solve_seconds": 0.016902499999999997,
+              "verification_seconds": 0.0011208000000000001,
+              "total_seconds": 0.0200224
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 50,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "repetition": 0,
+          "reference_run_index": 31,
+          "candidate_run_index": 30,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.07518990011885762,
+            "numerical_seconds": 0.0588493,
+            "timings": {
+              "read_seconds": 0.0043707,
+              "solve_seconds": 0.0542525,
+              "verification_seconds": 0.0045968,
+              "total_seconds": 0.0635254
+            },
+            "ipm_iterations": 24,
+            "ipm_refinement_steps": 11,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 25,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.07450610003434122,
+            "numerical_seconds": 0.0582825,
+            "timings": {
+              "read_seconds": 0.0042335,
+              "solve_seconds": 0.0539588,
+              "verification_seconds": 0.0043237,
+              "total_seconds": 0.0628119
+            },
+            "ipm_iterations": 24,
+            "ipm_refinement_steps": 11,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 25,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "repetition": 1,
+          "reference_run_index": 32,
+          "candidate_run_index": 33,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.07304150005802512,
+            "numerical_seconds": 0.058551,
+            "timings": {
+              "read_seconds": 0.0042647,
+              "solve_seconds": 0.0539519,
+              "verification_seconds": 0.004599099999999999,
+              "total_seconds": 0.0631066
+            },
+            "ipm_iterations": 24,
+            "ipm_refinement_steps": 11,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 25,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.07312449999153614,
+            "numerical_seconds": 0.0587889,
+            "timings": {
+              "read_seconds": 0.0043029,
+              "solve_seconds": 0.054446299999999996,
+              "verification_seconds": 0.0043426,
+              "total_seconds": 0.0634235
+            },
+            "ipm_iterations": 24,
+            "ipm_refinement_steps": 11,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 25,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "repetition": 2,
+          "reference_run_index": 35,
+          "candidate_run_index": 34,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.07291759992949665,
+            "numerical_seconds": 0.0585578,
+            "timings": {
+              "read_seconds": 0.0043085,
+              "solve_seconds": 0.0539561,
+              "verification_seconds": 0.004601699999999999,
+              "total_seconds": 0.0631593
+            },
+            "ipm_iterations": 24,
+            "ipm_refinement_steps": 11,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 25,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.07273590005934238,
+            "numerical_seconds": 0.0585319,
+            "timings": {
+              "read_seconds": 0.0042424,
+              "solve_seconds": 0.0542029,
+              "verification_seconds": 0.004329000000000001,
+              "total_seconds": 0.0630722
+            },
+            "ipm_iterations": 24,
+            "ipm_refinement_steps": 11,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 25,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+          "repetition": 0,
+          "reference_run_index": 36,
+          "candidate_run_index": 37,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.35295380000025034,
+            "numerical_seconds": 0.3183949,
+            "timings": {
+              "read_seconds": 0.0127962,
+              "solve_seconds": 0.29467519999999997,
+              "verification_seconds": 0.023719699999999996,
+              "total_seconds": 0.3318066
+            },
+            "ipm_iterations": 40,
+            "ipm_refinement_steps": 9,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 41,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.3459228998981416,
+            "numerical_seconds": 0.3119356,
+            "timings": {
+              "read_seconds": 0.0125934,
+              "solve_seconds": 0.2912111,
+              "verification_seconds": 0.020724499999999996,
+              "total_seconds": 0.3251263
+            },
+            "ipm_iterations": 40,
+            "ipm_refinement_steps": 9,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 41,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+          "repetition": 1,
+          "reference_run_index": 39,
+          "candidate_run_index": 38,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.34594079991802573,
+            "numerical_seconds": 0.3139044,
+            "timings": {
+              "read_seconds": 0.0127267,
+              "solve_seconds": 0.2900501,
+              "verification_seconds": 0.023854299999999995,
+              "total_seconds": 0.327218
+            },
+            "ipm_iterations": 40,
+            "ipm_refinement_steps": 9,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 41,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.34170209988951683,
+            "numerical_seconds": 0.3100497,
+            "timings": {
+              "read_seconds": 0.0128131,
+              "solve_seconds": 0.28935,
+              "verification_seconds": 0.020699699999999994,
+              "total_seconds": 0.3234715
+            },
+            "ipm_iterations": 40,
+            "ipm_refinement_steps": 9,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 41,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+          "repetition": 2,
+          "reference_run_index": 40,
+          "candidate_run_index": 41,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.3468221998773515,
+            "numerical_seconds": 0.3151069,
+            "timings": {
+              "read_seconds": 0.0124972,
+              "solve_seconds": 0.2912652,
+              "verification_seconds": 0.023841700000000004,
+              "total_seconds": 0.32819
+            },
+            "ipm_iterations": 40,
+            "ipm_refinement_steps": 9,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 41,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.35078609990887344,
+            "numerical_seconds": 0.3191851,
+            "timings": {
+              "read_seconds": 0.0124341,
+              "solve_seconds": 0.297721,
+              "verification_seconds": 0.021464100000000003,
+              "total_seconds": 0.3322261
+            },
+            "ipm_iterations": 40,
+            "ipm_refinement_steps": 9,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 41,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+          "repetition": 0,
+          "reference_run_index": 43,
+          "candidate_run_index": 42,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.09688049997203052,
+            "numerical_seconds": 0.0827551,
+            "timings": {
+              "read_seconds": 0.0026028,
+              "solve_seconds": 0.07721259999999999,
+              "verification_seconds": 0.0055425000000000006,
+              "total_seconds": 0.0856604
+            },
+            "ipm_iterations": 45,
+            "ipm_refinement_steps": 93,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 46,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.09616169985383749,
+            "numerical_seconds": 0.08202690000000001,
+            "timings": {
+              "read_seconds": 0.0025977,
+              "solve_seconds": 0.0770239,
+              "verification_seconds": 0.0050030000000000005,
+              "total_seconds": 0.0849259
+            },
+            "ipm_iterations": 45,
+            "ipm_refinement_steps": 93,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 46,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+          "repetition": 1,
+          "reference_run_index": 44,
+          "candidate_run_index": 45,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.09523970005102456,
+            "numerical_seconds": 0.0824504,
+            "timings": {
+              "read_seconds": 0.0026213,
+              "solve_seconds": 0.0769232,
+              "verification_seconds": 0.005527200000000001,
+              "total_seconds": 0.0853755
+            },
+            "ipm_iterations": 45,
+            "ipm_refinement_steps": 93,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 46,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.09499050001613796,
+            "numerical_seconds": 0.0821987,
+            "timings": {
+              "read_seconds": 0.002612,
+              "solve_seconds": 0.0771603,
+              "verification_seconds": 0.0050383999999999984,
+              "total_seconds": 0.0851258
+            },
+            "ipm_iterations": 45,
+            "ipm_refinement_steps": 93,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 46,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+          "repetition": 2,
+          "reference_run_index": 47,
+          "candidate_run_index": 46,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.09608300006948411,
+            "numerical_seconds": 0.0830633,
+            "timings": {
+              "read_seconds": 0.0025776,
+              "solve_seconds": 0.07737830000000001,
+              "verification_seconds": 0.005685,
+              "total_seconds": 0.0859538
+            },
+            "ipm_iterations": 45,
+            "ipm_refinement_steps": 93,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 46,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.09472430008463562,
+            "numerical_seconds": 0.0821433,
+            "timings": {
+              "read_seconds": 0.0026064,
+              "solve_seconds": 0.0771628,
+              "verification_seconds": 0.0049805000000000006,
+              "total_seconds": 0.0850637
+            },
+            "ipm_iterations": 45,
+            "ipm_refinement_steps": 93,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 46,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "repetition": 0,
+          "reference_run_index": 48,
+          "candidate_run_index": 49,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 1.3933419999666512,
+            "numerical_seconds": 1.3512898,
+            "timings": {
+              "read_seconds": 0.0253826,
+              "solve_seconds": 1.2767505,
+              "verification_seconds": 0.07453930000000003,
+              "total_seconds": 1.3773774
+            },
+            "ipm_iterations": 79,
+            "ipm_refinement_steps": 27,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 80,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 1.4085609000176191,
+            "numerical_seconds": 1.3673253,
+            "timings": {
+              "read_seconds": 0.0246773,
+              "solve_seconds": 1.2961221,
+              "verification_seconds": 0.0712032,
+              "total_seconds": 1.3927124
+            },
+            "ipm_iterations": 79,
+            "ipm_refinement_steps": 27,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 80,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "repetition": 1,
+          "reference_run_index": 51,
+          "candidate_run_index": 50,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 1.3924668000545353,
+            "numerical_seconds": 1.3524288,
+            "timings": {
+              "read_seconds": 0.0248699,
+              "solve_seconds": 1.2781831,
+              "verification_seconds": 0.0742457,
+              "total_seconds": 1.3780026
+            },
+            "ipm_iterations": 79,
+            "ipm_refinement_steps": 27,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 80,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 1.3867444000206888,
+            "numerical_seconds": 1.3465949,
+            "timings": {
+              "read_seconds": 0.0250916,
+              "solve_seconds": 1.2754077,
+              "verification_seconds": 0.07118719999999999,
+              "total_seconds": 1.3724275
+            },
+            "ipm_iterations": 79,
+            "ipm_refinement_steps": 27,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 80,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "repetition": 2,
+          "reference_run_index": 52,
+          "candidate_run_index": 53,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 1.3786521998699754,
+            "numerical_seconds": 1.3381881,
+            "timings": {
+              "read_seconds": 0.0250017,
+              "solve_seconds": 1.2640134,
+              "verification_seconds": 0.07417469999999997,
+              "total_seconds": 1.3638867
+            },
+            "ipm_iterations": 79,
+            "ipm_refinement_steps": 27,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 80,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 1.3898236001841724,
+            "numerical_seconds": 1.3500222,
+            "timings": {
+              "read_seconds": 0.0246251,
+              "solve_seconds": 1.2785832,
+              "verification_seconds": 0.071439,
+              "total_seconds": 1.3753933
+            },
+            "ipm_iterations": 79,
+            "ipm_refinement_steps": 27,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 80,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "repetition": 0,
+          "reference_run_index": 55,
+          "candidate_run_index": 54,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.7520094998180866,
+            "numerical_seconds": 0.6790069,
+            "timings": {
+              "read_seconds": 0.0509629,
+              "solve_seconds": 0.6491772,
+              "verification_seconds": 0.029829699999999994,
+              "total_seconds": 0.731037
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.751444699941203,
+            "numerical_seconds": 0.6803761,
+            "timings": {
+              "read_seconds": 0.0485927,
+              "solve_seconds": 0.6521442000000001,
+              "verification_seconds": 0.0282319,
+              "total_seconds": 0.7299736
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "repetition": 1,
+          "reference_run_index": 56,
+          "candidate_run_index": 57,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.7446045998949558,
+            "numerical_seconds": 0.6730664,
+            "timings": {
+              "read_seconds": 0.0509474,
+              "solve_seconds": 0.6433019999999999,
+              "verification_seconds": 0.029764399999999996,
+              "total_seconds": 0.7250528
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.7413892999757081,
+            "numerical_seconds": 0.6721718,
+            "timings": {
+              "read_seconds": 0.0492503,
+              "solve_seconds": 0.6439756,
+              "verification_seconds": 0.0281962,
+              "total_seconds": 0.7224178
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "repetition": 2,
+          "reference_run_index": 59,
+          "candidate_run_index": 58,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.7480382998473942,
+            "numerical_seconds": 0.674863,
+            "timings": {
+              "read_seconds": 0.0504443,
+              "solve_seconds": 0.6449743,
+              "verification_seconds": 0.029888700000000004,
+              "total_seconds": 0.7263882
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.7383980001322925,
+            "numerical_seconds": 0.6682899,
+            "timings": {
+              "read_seconds": 0.0490373,
+              "solve_seconds": 0.6400411,
+              "verification_seconds": 0.028248800000000004,
+              "total_seconds": 0.7183212
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "repetition": 0,
+          "reference_run_index": 60,
+          "candidate_run_index": 61,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.20018400019034743,
+            "numerical_seconds": 0.183345,
+            "timings": {
+              "read_seconds": 0.0040781,
+              "solve_seconds": 0.1800207,
+              "verification_seconds": 0.0033243000000000005,
+              "total_seconds": 0.1877585
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19747400004416704,
+            "numerical_seconds": 0.1811561,
+            "timings": {
+              "read_seconds": 0.0040109,
+              "solve_seconds": 0.1780968,
+              "verification_seconds": 0.0030593,
+              "total_seconds": 0.1855176
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "repetition": 1,
+          "reference_run_index": 63,
+          "candidate_run_index": 62,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19955150014720857,
+            "numerical_seconds": 0.1849971,
+            "timings": {
+              "read_seconds": 0.0039834,
+              "solve_seconds": 0.1816813,
+              "verification_seconds": 0.0033158,
+              "total_seconds": 0.1893186
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19593179994262755,
+            "numerical_seconds": 0.1814539,
+            "timings": {
+              "read_seconds": 0.00393,
+              "solve_seconds": 0.1784253,
+              "verification_seconds": 0.0030286,
+              "total_seconds": 0.1857196
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "repetition": 2,
+          "reference_run_index": 64,
+          "candidate_run_index": 65,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19777809991501272,
+            "numerical_seconds": 0.1826559,
+            "timings": {
+              "read_seconds": 0.0041621,
+              "solve_seconds": 0.1793586,
+              "verification_seconds": 0.0032973000000000004,
+              "total_seconds": 0.1871709
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19735100003890693,
+            "numerical_seconds": 0.1828572,
+            "timings": {
+              "read_seconds": 0.0040738,
+              "solve_seconds": 0.1798073,
+              "verification_seconds": 0.0030498999999999995,
+              "total_seconds": 0.1872711
+            },
+            "ipm_iterations": 17,
+            "ipm_refinement_steps": 2,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 18,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        }
+      ],
+      "excluded_fields": [
+        "timings",
+        "backend_version",
+        "ipm_numerical_fallback_attempts",
+        "ipm_numerical_fallback_successes"
+      ],
+      "diff_key_scope": "比较所有剩余顶层字段；数组或对象任一内容不同即记该键，完整值仍在原始raw。"
+    },
+    "probe": {
+      "pairs": 18,
+      "untriggered_pairs": 15,
+      "untriggered_equal": 15,
+      "untriggered_different": 0,
+      "triggered_pairs": 3,
+      "invalid_pairs": 0,
+      "pair_records": [
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "repetition": 0,
+          "reference_run_index": 0,
+          "candidate_run_index": 1,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 2.7633831000421196,
+            "numerical_seconds": 2.718254,
+            "timings": {
+              "read_seconds": 0.0174296,
+              "solve_seconds": 2.6726707,
+              "verification_seconds": 0.0455833,
+              "total_seconds": 2.7365101
+            },
+            "ipm_iterations": 43,
+            "ipm_refinement_steps": 73,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 71,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 2.682620600098744,
+            "numerical_seconds": 2.638804,
+            "timings": {
+              "read_seconds": 0.0170309,
+              "solve_seconds": 2.5970824,
+              "verification_seconds": 0.04172160000000001,
+              "total_seconds": 2.6566386
+            },
+            "ipm_iterations": 43,
+            "ipm_refinement_steps": 73,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 71,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "repetition": 1,
+          "reference_run_index": 3,
+          "candidate_run_index": 2,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 2.797895699972287,
+            "numerical_seconds": 2.7540895,
+            "timings": {
+              "read_seconds": 0.0174554,
+              "solve_seconds": 2.7051653,
+              "verification_seconds": 0.0489242,
+              "total_seconds": 2.7723344
+            },
+            "ipm_iterations": 43,
+            "ipm_refinement_steps": 73,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 71,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 2.753747300012037,
+            "numerical_seconds": 2.7090485,
+            "timings": {
+              "read_seconds": 0.0172169,
+              "solve_seconds": 2.6657707000000004,
+              "verification_seconds": 0.04327780000000001,
+              "total_seconds": 2.7269978
+            },
+            "ipm_iterations": 43,
+            "ipm_refinement_steps": 73,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 71,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "repetition": 2,
+          "reference_run_index": 4,
+          "candidate_run_index": 5,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 2.710712199797854,
+            "numerical_seconds": 2.6675672,
+            "timings": {
+              "read_seconds": 0.0176445,
+              "solve_seconds": 2.6220389,
+              "verification_seconds": 0.04552830000000001,
+              "total_seconds": 2.6859997
+            },
+            "ipm_iterations": 43,
+            "ipm_refinement_steps": 73,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 71,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 2.730790799949318,
+            "numerical_seconds": 2.6876921,
+            "timings": {
+              "read_seconds": 0.0171852,
+              "solve_seconds": 2.6458073,
+              "verification_seconds": 0.0418848,
+              "total_seconds": 2.7056716
+            },
+            "ipm_iterations": 43,
+            "ipm_refinement_steps": 73,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 71,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "repetition": 0,
+          "reference_run_index": 7,
+          "candidate_run_index": 6,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.030879699857905507,
+            "numerical_seconds": 0.0188363,
+            "timings": {
+              "read_seconds": 0.0013023,
+              "solve_seconds": 0.0172938,
+              "verification_seconds": 0.0015425,
+              "total_seconds": 0.0203836
+            },
+            "ipm_iterations": 26,
+            "ipm_refinement_steps": 6,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 27,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03051909990608692,
+            "numerical_seconds": 0.0184237,
+            "timings": {
+              "read_seconds": 0.0017978,
+              "solve_seconds": 0.0170119,
+              "verification_seconds": 0.0014118,
+              "total_seconds": 0.0204765
+            },
+            "ipm_iterations": 26,
+            "ipm_refinement_steps": 6,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 27,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "repetition": 1,
+          "reference_run_index": 8,
+          "candidate_run_index": 9,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.028988800011575222,
+            "numerical_seconds": 0.0186747,
+            "timings": {
+              "read_seconds": 0.0013373,
+              "solve_seconds": 0.017102799999999998,
+              "verification_seconds": 0.0015718999999999996,
+              "total_seconds": 0.0202701
+            },
+            "ipm_iterations": 26,
+            "ipm_refinement_steps": 6,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 27,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.029514600057154894,
+            "numerical_seconds": 0.0190822,
+            "timings": {
+              "read_seconds": 0.0012974,
+              "solve_seconds": 0.0176563,
+              "verification_seconds": 0.0014259,
+              "total_seconds": 0.0206503
+            },
+            "ipm_iterations": 26,
+            "ipm_refinement_steps": 6,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 27,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "repetition": 2,
+          "reference_run_index": 11,
+          "candidate_run_index": 10,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.032184100011363626,
+            "numerical_seconds": 0.0203733,
+            "timings": {
+              "read_seconds": 0.0021595,
+              "solve_seconds": 0.018690000000000002,
+              "verification_seconds": 0.0016832999999999996,
+              "total_seconds": 0.0228582
+            },
+            "ipm_iterations": 26,
+            "ipm_refinement_steps": 6,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 27,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.030600100057199597,
+            "numerical_seconds": 0.0190698,
+            "timings": {
+              "read_seconds": 0.0013464,
+              "solve_seconds": 0.0176532,
+              "verification_seconds": 0.0014166000000000003,
+              "total_seconds": 0.0207014
+            },
+            "ipm_iterations": 26,
+            "ipm_refinement_steps": 6,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 27,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 0,
+          "reference_run_index": 12,
+          "candidate_run_index": 13,
+          "triggered": true,
+          "reports_equal": false,
+          "different_report_keys": [
+            "ipm_factor_backend",
+            "ipm_factor_nonzeros",
+            "ipm_factorizations",
+            "ipm_kkt_dimension",
+            "ipm_refinement_steps"
+          ],
+          "exit_codes": [
+            4,
+            4
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "wall_seconds": 0.9022483001463115,
+            "numerical_seconds": 0.8786041,
+            "timings": {
+              "read_seconds": 0.011217,
+              "solve_seconds": 0.8395735,
+              "verification_seconds": 0.039030600000000006,
+              "total_seconds": 0.8903846
+            },
+            "ipm_iterations": 75,
+            "ipm_refinement_steps": 304,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 77,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "wall_seconds": 1.45974349998869,
+            "numerical_seconds": 1.4367887,
+            "timings": {
+              "read_seconds": 0.0105526,
+              "solve_seconds": 1.4017362,
+              "verification_seconds": 0.03505250000000001,
+              "total_seconds": 1.4479168
+            },
+            "ipm_iterations": 75,
+            "ipm_refinement_steps": 402,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 78,
+            "ipm_factor_backend": "sparselu",
+            "ipm_numerical_fallback_attempts": 1,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 1,
+          "reference_run_index": 15,
+          "candidate_run_index": 14,
+          "triggered": true,
+          "reports_equal": false,
+          "different_report_keys": [
+            "ipm_factor_backend",
+            "ipm_factor_nonzeros",
+            "ipm_factorizations",
+            "ipm_kkt_dimension",
+            "ipm_refinement_steps"
+          ],
+          "exit_codes": [
+            4,
+            4
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "wall_seconds": 0.8966093000490218,
+            "numerical_seconds": 0.8747867,
+            "timings": {
+              "read_seconds": 0.0109166,
+              "solve_seconds": 0.8353833,
+              "verification_seconds": 0.039403400000000005,
+              "total_seconds": 0.8863288
+            },
+            "ipm_iterations": 75,
+            "ipm_refinement_steps": 304,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 77,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "wall_seconds": 1.493302300106734,
+            "numerical_seconds": 1.471195,
+            "timings": {
+              "read_seconds": 0.0109044,
+              "solve_seconds": 1.4357813,
+              "verification_seconds": 0.0354137,
+              "total_seconds": 1.4826871
+            },
+            "ipm_iterations": 75,
+            "ipm_refinement_steps": 402,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 78,
+            "ipm_factor_backend": "sparselu",
+            "ipm_numerical_fallback_attempts": 1,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 2,
+          "reference_run_index": 16,
+          "candidate_run_index": 17,
+          "triggered": true,
+          "reports_equal": false,
+          "different_report_keys": [
+            "ipm_factor_backend",
+            "ipm_factor_nonzeros",
+            "ipm_factorizations",
+            "ipm_kkt_dimension",
+            "ipm_refinement_steps"
+          ],
+          "exit_codes": [
+            4,
+            4
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "wall_seconds": 0.9039181999396533,
+            "numerical_seconds": 0.8805452,
+            "timings": {
+              "read_seconds": 0.0120607,
+              "solve_seconds": 0.8407493,
+              "verification_seconds": 0.03979590000000001,
+              "total_seconds": 0.8931924
+            },
+            "ipm_iterations": 75,
+            "ipm_refinement_steps": 304,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 77,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "numerical_error",
+            "quality_pass": false,
+            "quality_failure": "incomplete",
+            "wall_seconds": 1.4629824000876397,
+            "numerical_seconds": 1.4417036,
+            "timings": {
+              "read_seconds": 0.0104556,
+              "solve_seconds": 1.4065659000000001,
+              "verification_seconds": 0.03513770000000001,
+              "total_seconds": 1.4527391
+            },
+            "ipm_iterations": 75,
+            "ipm_refinement_steps": 402,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 78,
+            "ipm_factor_backend": "sparselu",
+            "ipm_numerical_fallback_attempts": 1,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "repetition": 0,
+          "reference_run_index": 19,
+          "candidate_run_index": 18,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.20603049988858402,
+            "numerical_seconds": 0.1843051,
+            "timings": {
+              "read_seconds": 0.0065224,
+              "solve_seconds": 0.1713122,
+              "verification_seconds": 0.012992900000000003,
+              "total_seconds": 0.191309
+            },
+            "ipm_iterations": 37,
+            "ipm_refinement_steps": 5,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 38,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19880699994973838,
+            "numerical_seconds": 0.1778427,
+            "timings": {
+              "read_seconds": 0.0065445,
+              "solve_seconds": 0.1667167,
+              "verification_seconds": 0.011125999999999999,
+              "total_seconds": 0.1848198
+            },
+            "ipm_iterations": 37,
+            "ipm_refinement_steps": 5,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 38,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "repetition": 1,
+          "reference_run_index": 20,
+          "candidate_run_index": 21,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19374899985268712,
+            "numerical_seconds": 0.1739657,
+            "timings": {
+              "read_seconds": 0.0061844,
+              "solve_seconds": 0.1619135,
+              "verification_seconds": 0.0120522,
+              "total_seconds": 0.1805778
+            },
+            "ipm_iterations": 37,
+            "ipm_refinement_steps": 5,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 38,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19218649994581938,
+            "numerical_seconds": 0.1724006,
+            "timings": {
+              "read_seconds": 0.006367,
+              "solve_seconds": 0.16177789999999997,
+              "verification_seconds": 0.0106227,
+              "total_seconds": 0.1791953
+            },
+            "ipm_iterations": 37,
+            "ipm_refinement_steps": 5,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 38,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "repetition": 2,
+          "reference_run_index": 23,
+          "candidate_run_index": 22,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19243580009788275,
+            "numerical_seconds": 0.1722235,
+            "timings": {
+              "read_seconds": 0.0063737,
+              "solve_seconds": 0.1599295,
+              "verification_seconds": 0.012293999999999998,
+              "total_seconds": 0.1790114
+            },
+            "ipm_iterations": 37,
+            "ipm_refinement_steps": 5,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 38,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.19067149981856346,
+            "numerical_seconds": 0.1705859,
+            "timings": {
+              "read_seconds": 0.0064156,
+              "solve_seconds": 0.160005,
+              "verification_seconds": 0.010580900000000002,
+              "total_seconds": 0.1774174
+            },
+            "ipm_iterations": 37,
+            "ipm_refinement_steps": 5,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 38,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "repetition": 0,
+          "reference_run_index": 24,
+          "candidate_run_index": 25,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.038005399983376265,
+            "numerical_seconds": 0.0240033,
+            "timings": {
+              "read_seconds": 0.0032545,
+              "solve_seconds": 0.021896000000000002,
+              "verification_seconds": 0.0021073,
+              "total_seconds": 0.027554
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03822390013374388,
+            "numerical_seconds": 0.0240181,
+            "timings": {
+              "read_seconds": 0.0031543,
+              "solve_seconds": 0.022053700000000002,
+              "verification_seconds": 0.0019644,
+              "total_seconds": 0.0274712
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "repetition": 1,
+          "reference_run_index": 27,
+          "candidate_run_index": 26,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.036969699896872044,
+            "numerical_seconds": 0.024117900000000005,
+            "timings": {
+              "read_seconds": 0.0032233,
+              "solve_seconds": 0.022005700000000003,
+              "verification_seconds": 0.0021122,
+              "total_seconds": 0.0276382
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03680539992637932,
+            "numerical_seconds": 0.0238136,
+            "timings": {
+              "read_seconds": 0.0031563,
+              "solve_seconds": 0.0218369,
+              "verification_seconds": 0.0019767,
+              "total_seconds": 0.0272628
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "repetition": 2,
+          "reference_run_index": 28,
+          "candidate_run_index": 29,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03613350004889071,
+            "numerical_seconds": 0.0239462,
+            "timings": {
+              "read_seconds": 0.0031839,
+              "solve_seconds": 0.0218447,
+              "verification_seconds": 0.0021015,
+              "total_seconds": 0.0274176
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.035714499885216355,
+            "numerical_seconds": 0.0237912,
+            "timings": {
+              "read_seconds": 0.0031362,
+              "solve_seconds": 0.0218335,
+              "verification_seconds": 0.0019576999999999997,
+              "total_seconds": 0.0272239
+            },
+            "ipm_iterations": 15,
+            "ipm_refinement_steps": 3,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 16,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 0,
+          "reference_run_index": 31,
+          "candidate_run_index": 30,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.034447999903932214,
+            "numerical_seconds": 0.0224443,
+            "timings": {
+              "read_seconds": 0.0019234,
+              "solve_seconds": 0.020277,
+              "verification_seconds": 0.0021673,
+              "total_seconds": 0.0246175
+            },
+            "ipm_iterations": 34,
+            "ipm_refinement_steps": 1,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 35,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03428920009173453,
+            "numerical_seconds": 0.0223994,
+            "timings": {
+              "read_seconds": 0.0019403,
+              "solve_seconds": 0.020416,
+              "verification_seconds": 0.0019834000000000006,
+              "total_seconds": 0.0245886
+            },
+            "ipm_iterations": 34,
+            "ipm_refinement_steps": 1,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 35,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 1,
+          "reference_run_index": 32,
+          "candidate_run_index": 33,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03397249989211559,
+            "numerical_seconds": 0.0233573,
+            "timings": {
+              "read_seconds": 0.0018904,
+              "solve_seconds": 0.0210771,
+              "verification_seconds": 0.0022802000000000005,
+              "total_seconds": 0.0254881
+            },
+            "ipm_iterations": 34,
+            "ipm_refinement_steps": 1,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 35,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03244249988347292,
+            "numerical_seconds": 0.0221896,
+            "timings": {
+              "read_seconds": 0.0019711,
+              "solve_seconds": 0.0202239,
+              "verification_seconds": 0.0019657,
+              "total_seconds": 0.0244073
+            },
+            "ipm_iterations": 34,
+            "ipm_refinement_steps": 1,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 35,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 2,
+          "reference_run_index": 35,
+          "candidate_run_index": 34,
+          "triggered": false,
+          "reports_equal": true,
+          "different_report_keys": [],
+          "exit_codes": [
+            0,
+            0
+          ],
+          "budget_limited": false,
+          "reference": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.03246959997341037,
+            "numerical_seconds": 0.0224084,
+            "timings": {
+              "read_seconds": 0.0020115,
+              "solve_seconds": 0.020188699999999997,
+              "verification_seconds": 0.0022197000000000002,
+              "total_seconds": 0.0246677
+            },
+            "ipm_iterations": 34,
+            "ipm_refinement_steps": 1,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 35,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": null,
+            "ipm_numerical_fallback_successes": null
+          },
+          "candidate": {
+            "status": "optimal",
+            "quality_pass": true,
+            "quality_failure": null,
+            "wall_seconds": 0.032065700041130185,
+            "numerical_seconds": 0.0221862,
+            "timings": {
+              "read_seconds": 0.0018865,
+              "solve_seconds": 0.0202426,
+              "verification_seconds": 0.0019436000000000002,
+              "total_seconds": 0.0243196
+            },
+            "ipm_iterations": 34,
+            "ipm_refinement_steps": 1,
+            "ipm_weighted_krylov_steps": 0,
+            "ipm_factorizations": 35,
+            "ipm_factor_backend": "normal_cholmod",
+            "ipm_numerical_fallback_attempts": 0,
+            "ipm_numerical_fallback_successes": 0
+          }
+        }
+      ],
+      "excluded_fields": [
+        "timings",
+        "backend_version",
+        "ipm_numerical_fallback_attempts",
+        "ipm_numerical_fallback_successes"
+      ],
+      "diff_key_scope": "比较所有剩余顶层字段；数组或对象任一内容不同即记该键，完整值仍在原始raw。"
+    }
+  },
+  "reused_group_audit": {
+    "original_sha256": "1ce9388bddfa55977c4390849ce1213c5d822cb2c0a043c9133c430c70f3cde1",
+    "adapted_sha256": "3797802166bab128417025a151cc3d1b511f70d9c7283b07ba626defde9bf5eb",
+    "changes": [
+      {
+        "before": "identity = identities[54]",
+        "after": "identity = identities[58]",
+        "count": 1
+      },
+      {
+        "before": "stem = \"v54-\" + stage",
+        "after": "stem = \"v58-\" + stage",
+        "count": 1
+      },
+      {
+        "before": "candidate = str(ROOT / \".tools/solver-ipm-v54.exe\")",
+        "after": "candidate = str(ROOT / \".tools/solver-ipm-v58.exe\")",
+        "count": 1
+      },
+      {
+        "before": "reference_version = 52 if stage == \"compatibility\" else 54",
+        "after": "reference_version = 58 if stage == \"highs\" else 57",
+        "count": 1
+      },
+      {
+        "before": "version = reference_version if index == 0 else 54",
+        "after": "version = reference_version if index == 0 else 58",
+        "count": 1
+      },
+      {
+        "before": "version = reference_version if side == sides[0] else 54",
+        "after": "version = reference_version if side == sides[0] else 58",
+        "count": 1
+      },
+      {
+        "before": "if version == 54:",
+        "after": "if version in (57, 58):",
+        "count": 1
+      },
+      {
+        "before": "if backend == \"ipm\" and version == 54:",
+        "after": "if backend == \"ipm\" and version in (57, 58):",
+        "count": 1
+      },
+      {
+        "before": "    require(\":objective_scaling=\" not in sides[0] and\n            (\":objective_scaling=\" not in sides[1] if stage == \"compatibility\" else\n             sides[1].endswith(\":objective_scaling=off\") and sides[1].count(\":objective_scaling=\") == 1),\n            \"默认/on标签等价，只有off追加唯一末尾标识\")",
+        "after": "    require(all((\":objective_scaling=\" not in side if stage == \"highs\" and index == 0 else\n                side.endswith(\":objective_scaling=off\") and side.count(\":objective_scaling=\") == 1)\n                for index,side in enumerate(sides)), \"IPM两侧off标签完整\")\n    require(all((\":binary=\" not in side if stage == \"highs\" else\n                side.count(\":binary=\") == 1 and \":binary=\" + (\"reference\" if index == 0 else \"candidate\") in side)\n                for index,side in enumerate(sides)), \"不同程序双侧标签完整\")",
+        "count": 1
+      }
+    ]
+  },
+  "limits": [
+    "passed表示证据完整及冻结合同执行正确，不代表打平HiGHS。",
+    "原模型质量复核复用冻结验收报告与严格共同预算，没有重求LP。",
+    "本轮允许严格Krylov耗尽后改变分解表示与算法轨迹，不设旧新报告逐字相等门槛；原KKT和LP质量及时间预算不变。",
+    "现有小型回归覆盖不触发、初始化和预算边界，尚无稳定小例真实升级成功断言；正式raw中的attempt/success按实际报告核对，success仅指失败RHS重解成功。",
+    "全部输入已观察；门槛失败时仅报告102条，不生成完整公开成绩。"
+  ]
+}

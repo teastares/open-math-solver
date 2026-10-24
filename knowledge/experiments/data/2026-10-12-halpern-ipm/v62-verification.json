@@ -1,0 +1,617 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-23T09:48:44.614826+00:00",
+  "plan_sha256": "72bfab365ee388a4db2357f111531558772cf5ac07e28e1b0e9fbd5c0cf96c9b",
+  "temporary_verifier_sha256": "6c2d4cddb24f7a76fb1a8d455d79627fcd29ced47b1df8aefd135cdd973e1149",
+  "identity_sha256": "287e15ce18f0b5613f5d26f845d1103591c553b7797f27d5b0cd1da19ec4974c",
+  "implementation_ancestor_identity_sha256": "6a01e3594630ca8fa0cfb34ef84f480d5a94867bdf95220954960173fe5549fc",
+  "pretest_clarification_sha256": "3f61f69590bf6171d9649d8d6c2f7968b31129f27e8f66d5fdbee5391915f120",
+  "build_history": {
+    "attempt_count": 2,
+    "attempt_sha256": {
+      "v62-build-attempt1.json": "a6652e70b49d9ea75cd9214fc04202fff32b2a8ae45349399220aaa717f16e6e",
+      "v62-build-attempt2.json": "a31bc77de9b7d2a5fb48597b97268bf9ed189aca09e9b8a6c0d1426447b7ee01"
+    },
+    "returncodes": [
+      1,
+      0
+    ],
+    "first_failed_snapshot_sha256": "c0d97dc22cebebd5c961c3def437be852f19c0060af805adbfccea56b02a35f6",
+    "first_failed_build_log_sha256": "e6b7722b9749b49aab89615d3b41626f106bb0df46a5e66072c96605ff35c851",
+    "first_failed_ctest_detail_sha256": "4b15aa6abc99da70323d9346fe0e0b38b595edbd323aec4b5b80af70ec326589",
+    "changed_sources_after_first_attempt": [
+      "tests/test_compare_lp.py"
+    ],
+    "final_sources_match_frozen": true
+  },
+  "posthoc_trajectory_file": "v62-v60-posthoc-trajectory.json",
+  "posthoc_trajectory_sha256": "ffc2af989e71d280e959b1221a06a39dc101e91a4c0df7ecfefa968d9dd4244d",
+  "posthoc_trajectory_pairs": 51,
+  "source_files": 95,
+  "changed_source_files": [
+    "include/solver/backend.hpp",
+    "include/solver/detail/ipm_homogeneous.hpp",
+    "include/solver/ipm_options.hpp",
+    "scripts/benchmark.py",
+    "scripts/compare_lp.py",
+    "src/ipm.cpp",
+    "src/main.cpp",
+    "tests/test_cli.py",
+    "tests/test_compare_lp.py",
+    "tests/test_ipm.cpp"
+  ],
+  "actual_linked_libraries": 17,
+  "changed_libraries": [
+    "build/release/libsolver_highs.a",
+    "build/release/libsolver_ipm.a",
+    "build/release/libsolver_pdlp.a"
+  ],
+  "unchanged_third_party_libraries": 8,
+  "ctest_passed": 18,
+  "run_count": 136,
+  "compatibility_runs": 34,
+  "performance_runs": 102,
+  "compatibility": {
+    "passed": true,
+    "runs": 34,
+    "pairs": [
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      }
+    ],
+    "non_budget_equal": 17,
+    "budget_pairs": 0,
+    "invalid_pairs": 0,
+    "different_pairs": 0,
+    "plan_sha256": "72bfab365ee388a4db2357f111531558772cf5ac07e28e1b0e9fbd5c0cf96c9b"
+  },
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [],
+    "development_speed_gate": false,
+    "eligible_for_netlib": false,
+    "plan_sha256": "72bfab365ee388a4db2357f111531558772cf5ac07e28e1b0e9fbd5c0cf96c9b"
+  },
+  "stages": {
+    "compatibility-development": {
+      "runs": 22,
+      "raw_sha256": "bb0c366dfce2d311433a6da0bd06b4ee4d3c4a2aab698217939698e284a8f236",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 11,
+          "quality_pass_count": 11,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 11
+          },
+          "penalized_wall_sgm10_seconds": 0.2631847424550063,
+          "penalized_numerical_sgm10_seconds": 0.24070556194403686,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 11,
+          "quality_pass_count": 11,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 11
+          },
+          "penalized_wall_sgm10_seconds": 0.2598050595677558,
+          "penalized_numerical_sgm10_seconds": 0.2357615337414973,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "extended_or_scalar_triggered_records": []
+    },
+    "compatibility-probe": {
+      "runs": 12,
+      "raw_sha256": "f314320428df476ab6bb6172a4268f944f043e43e22c92ae31fbc11bb0bce8de",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 6,
+          "quality_pass_count": 5,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 5,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 3.4386203842525735,
+          "penalized_numerical_sgm10_seconds": 1.1722567509504647,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 6,
+          "quality_pass_count": 5,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 5,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 3.424384272360972,
+          "penalized_numerical_sgm10_seconds": 1.1606380944727384,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "extended_or_scalar_triggered_records": []
+    },
+    "development": {
+      "runs": 66,
+      "raw_sha256": "4e41380b8e66f23f15c12230d34d8a8c701d7603e939989340e6e64dad9fd9d3",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.2573395347035907,
+          "penalized_numerical_sgm10_seconds": 0.2362229706548337,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_extended:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.270721931898155,
+          "penalized_numerical_sgm10_seconds": 0.24863662194121106,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "extended_or_scalar_triggered_records": [
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "repetition": 0,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0605228,
+          "wall_seconds": 0.07667570002377033,
+          "ipm_extended_krylov_attempts": 1,
+          "ipm_extended_krylov_successes": 1,
+          "ipm_homogeneous_scalar_checks": 0,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 24,
+          "ipm_factorizations": 25,
+          "ipm_refinement_steps": 11,
+          "ipm_homogeneous_constant_solves": 24,
+          "ipm_homogeneous_direction_solves": 48,
+          "ipm_homogeneous_constant_repairs": 0,
+          "ipm_homogeneous_constant_repair_successes": 0
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "repetition": 1,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0701731,
+          "wall_seconds": 0.08518649986945093,
+          "ipm_extended_krylov_attempts": 1,
+          "ipm_extended_krylov_successes": 1,
+          "ipm_homogeneous_scalar_checks": 0,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 24,
+          "ipm_factorizations": 25,
+          "ipm_refinement_steps": 11,
+          "ipm_homogeneous_constant_solves": 24,
+          "ipm_homogeneous_direction_solves": 48,
+          "ipm_homogeneous_constant_repairs": 0,
+          "ipm_homogeneous_constant_repair_successes": 0
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "repetition": 2,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0602978,
+          "wall_seconds": 0.07592369988560677,
+          "ipm_extended_krylov_attempts": 1,
+          "ipm_extended_krylov_successes": 1,
+          "ipm_homogeneous_scalar_checks": 0,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 24,
+          "ipm_factorizations": 25,
+          "ipm_refinement_steps": 11,
+          "ipm_homogeneous_constant_solves": 24,
+          "ipm_homogeneous_direction_solves": 48,
+          "ipm_homogeneous_constant_repairs": 0,
+          "ipm_homogeneous_constant_repair_successes": 0
+        }
+      ]
+    },
+    "probe": {
+      "runs": 36,
+      "raw_sha256": "e9b8300a9f9049ed87a751837cdf5825f7be5acf8bb487da528042eaf4f0c162",
+      "variants": {
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_repair:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=reference:method=homogeneous:objective_scaling=off": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.428321567403402,
+          "penalized_numerical_sgm10_seconds": 1.164627035174627,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "ipm:singletons=on:dynamic=off:equilibrate=on:linear=homogeneous_extended:corrections=0:solver=normal_cholmod:prefilter=off:fixed=on:binary=candidate:method=homogeneous:objective_scaling=off": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4381280299075367,
+          "penalized_numerical_sgm10_seconds": 1.1728499406373198,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "extended_or_scalar_triggered_records": [
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "repetition": 0,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.7373287,
+          "wall_seconds": 2.782631699927151,
+          "ipm_extended_krylov_attempts": 6,
+          "ipm_extended_krylov_successes": 6,
+          "ipm_homogeneous_scalar_checks": 0,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 43,
+          "ipm_factorizations": 70,
+          "ipm_refinement_steps": 87,
+          "ipm_homogeneous_constant_solves": 43,
+          "ipm_homogeneous_direction_solves": 86,
+          "ipm_homogeneous_constant_repairs": 0,
+          "ipm_homogeneous_constant_repair_successes": 0
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "repetition": 1,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.7050625,
+          "wall_seconds": 2.7487940997816622,
+          "ipm_extended_krylov_attempts": 6,
+          "ipm_extended_krylov_successes": 6,
+          "ipm_homogeneous_scalar_checks": 0,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 43,
+          "ipm_factorizations": 70,
+          "ipm_refinement_steps": 87,
+          "ipm_homogeneous_constant_solves": 43,
+          "ipm_homogeneous_direction_solves": 86,
+          "ipm_homogeneous_constant_repairs": 0,
+          "ipm_homogeneous_constant_repair_successes": 0
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "repetition": 2,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 2.5239716,
+          "wall_seconds": 2.5682202999014407,
+          "ipm_extended_krylov_attempts": 6,
+          "ipm_extended_krylov_successes": 6,
+          "ipm_homogeneous_scalar_checks": 0,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 43,
+          "ipm_factorizations": 70,
+          "ipm_refinement_steps": 87,
+          "ipm_homogeneous_constant_solves": 43,
+          "ipm_homogeneous_direction_solves": 86,
+          "ipm_homogeneous_constant_repairs": 0,
+          "ipm_homogeneous_constant_repair_successes": 0
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 0,
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 2.2829798,
+          "wall_seconds": 2.306340599898249,
+          "ipm_extended_krylov_attempts": 90,
+          "ipm_extended_krylov_successes": 89,
+          "ipm_homogeneous_scalar_checks": 4,
+          "ipm_homogeneous_scalar_rejections": 1,
+          "message": "KKT Krylov 改进未同时满足原方程精度和齐次正分母",
+          "ipm_iterations": 122,
+          "ipm_factorizations": 162,
+          "ipm_refinement_steps": 1043,
+          "ipm_homogeneous_constant_solves": 127,
+          "ipm_homogeneous_direction_solves": 245,
+          "ipm_homogeneous_constant_repairs": 4,
+          "ipm_homogeneous_constant_repair_successes": 3
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 1,
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 2.2930888,
+          "wall_seconds": 2.3157134000211954,
+          "ipm_extended_krylov_attempts": 90,
+          "ipm_extended_krylov_successes": 89,
+          "ipm_homogeneous_scalar_checks": 4,
+          "ipm_homogeneous_scalar_rejections": 1,
+          "message": "KKT Krylov 改进未同时满足原方程精度和齐次正分母",
+          "ipm_iterations": 122,
+          "ipm_factorizations": 162,
+          "ipm_refinement_steps": 1043,
+          "ipm_homogeneous_constant_solves": 127,
+          "ipm_homogeneous_direction_solves": 245,
+          "ipm_homogeneous_constant_repairs": 4,
+          "ipm_homogeneous_constant_repair_successes": 3
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 2,
+          "status": "numerical_error",
+          "quality_pass": false,
+          "numerical_seconds": 2.2967374,
+          "wall_seconds": 2.318943099817261,
+          "ipm_extended_krylov_attempts": 90,
+          "ipm_extended_krylov_successes": 89,
+          "ipm_homogeneous_scalar_checks": 4,
+          "ipm_homogeneous_scalar_rejections": 1,
+          "message": "KKT Krylov 改进未同时满足原方程精度和齐次正分母",
+          "ipm_iterations": 122,
+          "ipm_factorizations": 162,
+          "ipm_refinement_steps": 1043,
+          "ipm_homogeneous_constant_solves": 127,
+          "ipm_homogeneous_direction_solves": 245,
+          "ipm_homogeneous_constant_repairs": 4,
+          "ipm_homogeneous_constant_repair_successes": 3
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 0,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.022892,
+          "wall_seconds": 0.035267099970951676,
+          "ipm_extended_krylov_attempts": 0,
+          "ipm_extended_krylov_successes": 0,
+          "ipm_homogeneous_scalar_checks": 1,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 34,
+          "ipm_factorizations": 35,
+          "ipm_refinement_steps": 1,
+          "ipm_homogeneous_constant_solves": 35,
+          "ipm_homogeneous_direction_solves": 68,
+          "ipm_homogeneous_constant_repairs": 1,
+          "ipm_homogeneous_constant_repair_successes": 1
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 1,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.0227762,
+          "wall_seconds": 0.03275080001913011,
+          "ipm_extended_krylov_attempts": 0,
+          "ipm_extended_krylov_successes": 0,
+          "ipm_homogeneous_scalar_checks": 1,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 34,
+          "ipm_factorizations": 35,
+          "ipm_refinement_steps": 1,
+          "ipm_homogeneous_constant_solves": 35,
+          "ipm_homogeneous_direction_solves": 68,
+          "ipm_homogeneous_constant_repairs": 1,
+          "ipm_homogeneous_constant_repair_successes": 1
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 2,
+          "status": "optimal",
+          "quality_pass": true,
+          "numerical_seconds": 0.022987,
+          "wall_seconds": 0.03305830014869571,
+          "ipm_extended_krylov_attempts": 0,
+          "ipm_extended_krylov_successes": 0,
+          "ipm_homogeneous_scalar_checks": 1,
+          "ipm_homogeneous_scalar_rejections": 0,
+          "message": "",
+          "ipm_iterations": 34,
+          "ipm_factorizations": 35,
+          "ipm_refinement_steps": 1,
+          "ipm_homogeneous_constant_solves": 35,
+          "ipm_homogeneous_direction_solves": 68,
+          "ipm_homogeneous_constant_repairs": 1,
+          "ipm_homogeneous_constant_repair_successes": 1
+        }
+      ]
+    }
+  },
+  "self_check": {
+    "passed": true,
+    "count_cases": 40,
+    "all_status_count_cases": 32,
+    "trajectory_cases": 9,
+    "invalid_budget_counterexamples": 7,
+    "json_and_type_cases": 2,
+    "lp_runs": 0
+  },
+  "reused_quality_functions": {
+    "benchmark_sha256": "dd8f8558616c66ffce7b812772807ca6aad2daba1111d73ada6ce86dbf870ede",
+    "compare_lp_sha256": "8ff8e589cc5a174f6aca67a79b4c2d8e41206df6266d24585afab15af3fa9b49"
+  },
+  "limits": [
+    "独立检查身份、状态、计数、实际参数、报告轨迹、SGM和扩集合同；不构建或重跑LP。",
+    "原模型质量复核复用已冻结的LP质量纯函数及求解器验收报告，不是第二次数值求解或独立读取矩阵验模。",
+    "核验真实显式17库链接输入；未逐项核验链接器隐式运行库。",
+    "passed表示证据合同通过，不表示打平HiGHS。"
+  ],
+  "lp_runs_by_verifier": 0
+}

@@ -47,6 +47,8 @@ class CliTests(unittest.TestCase):
         specification = importlib.util.spec_from_file_location("solver_benchmark", BENCHMARK)
         cls.benchmark = importlib.util.module_from_spec(specification)
         specification.loader.exec_module(cls.benchmark)
+        # 先完成平台探测，避免其子进程被后续求解器超时模拟误拦。
+        cls.benchmark.platform.platform()
 
     @classmethod
     def tearDownClass(cls):
@@ -127,6 +129,7 @@ class CliTests(unittest.TestCase):
                  (self.maximum_offset, "sparselu", "off", 12),
                  (self.minimum, "normal_augmented", "on", 8 / 3),
                  (self.minimum, "normal_cholmod", "on", 8 / 3))
+        cases += ((self.minimum, "normal_cholmod_aat", "on", 8 / 3),)
         for model, linear, singletons, objective in cases:
             with self.subTest(model=model.name, linear=linear):
                 process, result = self.cli("solve", model, "--backend", "ipm", "--ipm-method", "homogeneous",
@@ -135,8 +138,8 @@ class CliTests(unittest.TestCase):
                 self.assertEqual(process.returncode, 0, result)
                 self.assertEqual(result["options"]["ipm"]["method"], "homogeneous")
                 self.assertEqual(result["options"]["ipm"]["linear_solver"], linear)
-                if linear == "normal_cholmod":
-                    self.assertEqual(result["ipm_factor_backend"], "normal_cholmod")
+                if linear in ("normal_cholmod", "normal_cholmod_aat"):
+                    self.assertEqual(result["ipm_factor_backend"], linear)
                     self.assertEqual(result["ipm_structural_fallbacks"], 0)
                 self.assertEqual(result["status"], "optimal")
                 self.assertTrue(result["verification"]["feasible"])
@@ -161,7 +164,8 @@ class CliTests(unittest.TestCase):
         for model, linear, objective in ((self.minimum, "qdldl", 8 / 3),
                                          (self.maximum_offset, "sparselu", 12),
                                          (self.minimum, "normal_augmented", 8 / 3),
-                                         (self.minimum, "normal_cholmod", 8 / 3)):
+                                         (self.minimum, "normal_cholmod", 8 / 3),
+                                         (self.minimum, "normal_cholmod_aat", 8 / 3)):
             with self.subTest(model=model.name, linear=linear):
                 process, result = self.cli("solve", model, "--backend", "ipm", "--ipm-method", "homogeneous",
                                            "--ipm-linear-accuracy", "homogeneous_scaled", "--ipm-linear-solver", linear,
@@ -170,8 +174,8 @@ class CliTests(unittest.TestCase):
                 self.assertEqual(result["options"]["ipm"]["method"], "homogeneous")
                 self.assertEqual(result["options"]["ipm"]["linear_accuracy"], "homogeneous_scaled")
                 self.assertEqual(result["options"]["ipm"]["linear_solver"], linear)
-                if linear == "normal_cholmod":
-                    self.assertEqual(result["ipm_factor_backend"], "normal_cholmod")
+                if linear in ("normal_cholmod", "normal_cholmod_aat"):
+                    self.assertEqual(result["ipm_factor_backend"], linear)
                     self.assertEqual(result["ipm_structural_fallbacks"], 0)
                 self.assertEqual(result["status"], "optimal")
                 self.assertTrue(result["verification"]["feasible"])
@@ -202,6 +206,50 @@ class CliTests(unittest.TestCase):
                                            "--ipm-linear-accuracy", "homogeneous_scaled", *arguments)
                 self.assertEqual(process.returncode, 2, result)
 
+    def test_ipm_homogeneous_repair_preserves_original_quality_and_reports_counts(self):
+        fields = ("ipm_homogeneous_constant_repairs", "ipm_homogeneous_constant_repair_successes")
+        for model, linear, objective in ((self.minimum, "qdldl", 8 / 3),
+                                         (self.maximum_offset, "sparselu", 12),
+                                         (self.minimum, "normal_cholmod", 8 / 3),
+                                         (self.minimum, "normal_cholmod_aat", 8 / 3)):
+            with self.subTest(model=model.name, linear=linear):
+                process, result = self.cli("solve", model, "--backend", "ipm", "--ipm-method", "homogeneous",
+                                           "--ipm-linear-accuracy", "homogeneous_repair", "--ipm-linear-solver", linear,
+                                           "--ipm-singleton-elimination", "on", "--ipm-kkt-equilibration", "on")
+                self.assertEqual(process.returncode, 0, result)
+                self.assertEqual(result["options"]["ipm"]["linear_accuracy"], "homogeneous_repair")
+                self.assertEqual(result["options"]["ipm"]["linear_solver"], linear)
+                if linear in ("normal_cholmod", "normal_cholmod_aat"):
+                    self.assertEqual(result["ipm_factor_backend"], linear)
+                    self.assertEqual(result["ipm_structural_fallbacks"], 0)
+                self.assertEqual(result["status"], "optimal")
+                self.assertTrue(result["verification"]["feasible"])
+                self.assertTrue(result["verification"]["objective_consistent"])
+                self.assertTrue(result["lp_optimality"]["numerically_optimal"])
+                self.assertAlmostEqual(result["objective"], objective, places=5)
+                for field in fields:
+                    self.assertIs(type(result[field]), int)
+                    self.assertGreaterEqual(result[field], 0)
+                self.assertLessEqual(result[fields[1]], result[fields[0]])
+                self.assertLessEqual(result[fields[0]], result["ipm_homogeneous_constant_solves"])
+                self.assertEqual(result["ipm_homogeneous_scaled_products"], 0)
+        process, result = self.cli("solve", self.minimum, "--backend", "ipm", "--ipm-method", "homogeneous",
+                                   "--ipm-linear-accuracy", "homogeneous_repair", "--time-limit", "0")
+        self.assertEqual(process.returncode, 4, result)
+        for field in fields:
+            self.assertEqual(result[field], 0)
+
+    def test_ipm_homogeneous_repair_rejects_unsupported_combinations(self):
+        cases = [(), ("--ipm-method", "mehrotra")]
+        cases += [("--ipm-method", "homogeneous", flag, value) for flag, value in (
+            ("--ipm-central-corrections", "1"), ("--ipm-direction-retries", "1"),
+            ("--ipm-krylov-history-size", "1"), ("--ipm-inexact-prefilter", "on"))]
+        for arguments in cases:
+            with self.subTest(arguments=arguments):
+                process, result = self.cli("solve", self.minimum, "--backend", "ipm",
+                                           "--ipm-linear-accuracy", "homogeneous_repair", *arguments)
+                self.assertEqual(process.returncode, 2, result)
+
     def test_ipm_method_default_and_unused_statistics_are_explicit(self):
         default_process, default = self.cli("solve", self.minimum, "--backend", "ipm")
         process, explicit = self.cli("solve", self.minimum, "--backend", "ipm", "--ipm-method", "mehrotra")
@@ -212,6 +260,7 @@ class CliTests(unittest.TestCase):
         explicit.pop("timings")
         self.assertEqual(default, explicit)
         counts = ("ipm_homogeneous_constant_solves", "ipm_homogeneous_direction_solves",
+                  "ipm_homogeneous_constant_repairs", "ipm_homogeneous_constant_repair_successes",
                   "ipm_homogeneous_scaled_products", "ipm_homogeneous_scaled_refinement_steps",
                   "ipm_homogeneous_scaled_inexact_returns")
         scalars = ("ipm_homogeneous_tau", "ipm_homogeneous_kappa")
@@ -239,7 +288,7 @@ class CliTests(unittest.TestCase):
                  for backend in ("highs", "pdlp") for method in ("mehrotra", "homogeneous")]
         cases += [("--backend", "ipm", "--ipm-method", "unknown")]
         cases += [("--backend", "ipm", "--ipm-method", "homogeneous", "--ipm-linear-accuracy", accuracy)
-                  for accuracy in self.benchmark.IPM_LINEAR_ACCURACIES if accuracy not in ("strict", "homogeneous_scaled")]
+                  for accuracy in self.benchmark.IPM_LINEAR_ACCURACIES if accuracy not in ("strict", "homogeneous_scaled", "homogeneous_repair")]
         cases += [("--backend", "ipm", "--ipm-method", "homogeneous", flag, value)
                   for flag, value in (("--ipm-central-corrections", "1"), ("--ipm-direction-retries", "1"),
                                       ("--ipm-krylov-history-size", "1"), ("--ipm-inexact-prefilter", "on"))]
@@ -287,6 +336,24 @@ class CliTests(unittest.TestCase):
                           ("--ipm-kkt-equilibration", "off", "--backend", "pdlp"),
                           ("--backend", "ipm", "--ipm-kkt-equilibration", "invalid")]:
             process, result = self.cli("solve", self.minimum, *arguments)
+            self.assertEqual(process.returncode, 2, result)
+
+    def test_ipm_objective_scaling_is_independent_and_reported(self):
+        model = self.root / "objective scaling.lp"
+        model.write_text("Minimize\n obj: 17 x\nSubject To\n r: 2 x >= 6\nBounds\n x free\nEnd\n", encoding="utf-8")
+        for value in (None, "on", "off"):
+            flags = [] if value is None else ["--ipm-objective-scaling", value]
+            process, result = self.cli("solve", model, "--backend", "ipm", "--scaling-passes", "0", *flags)
+            self.assertEqual(process.returncode, 0, result)
+            self.assertIs(result["options"]["ipm"]["objective_scaling"], value != "off")
+            self.assertEqual(result["options"]["ipm"]["scaling_passes"], 0)
+            self.assertTrue(result["lp_optimality"]["numerically_optimal"])
+            self.assertAlmostEqual(result["objective"], 51.0, places=5)
+            self.assertAlmostEqual(result["row_dual"][0], 8.5, places=5)
+        for flags in (("--backend", "highs", "--ipm-objective-scaling", "off"),
+                      ("--ipm-objective-scaling", "on", "--backend", "pdlp"),
+                      ("--backend", "ipm", "--ipm-objective-scaling", "invalid")):
+            process, result = self.cli("solve", model, *flags)
             self.assertEqual(process.returncode, 2, result)
 
     def test_ipm_linear_accuracy_keeps_original_optimality_checks(self):
@@ -634,7 +701,7 @@ class CliTests(unittest.TestCase):
         self.assertTrue(result["lp_optimality"]["numerically_optimal"])
 
     def test_ipm_linear_solver_selection_is_explicit(self):
-        for value in ["qdldl", "sparselu", "normal", "qdldl_extended", "factorhighs", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod"]:
+        for value in ["qdldl", "sparselu", "normal", "qdldl_extended", "factorhighs", "normal_augmented", "normal_multifrontal", "normal_extended", "normal_refined", "normal_cholmod", "normal_cholmod_aat"]:
             process, result = self.cli("solve", self.minimum, "--ipm-linear-solver", value,
                                        "--backend", "ipm", "--ipm-singleton-elimination", "on")
             if value in ("qdldl_extended", "normal_extended", "normal_refined") and process.returncode == 2:
@@ -669,6 +736,13 @@ class CliTests(unittest.TestCase):
                            "--ipm-singleton-elimination", "on", "--ipm-dynamic-regularization", "on"),
                           ("--backend", "highs", "--ipm-linear-solver", "normal_cholmod"),
                           ("--backend", "pdlp", "--ipm-linear-solver", "normal_cholmod"),
+                          ("--backend", "ipm", "--ipm-linear-solver", "normal_cholmod_aat"),
+                          ("--backend", "ipm", "--ipm-linear-solver", "normal_cholmod_aat",
+                           "--ipm-singleton-elimination", "off"),
+                          ("--backend", "ipm", "--ipm-linear-solver", "normal_cholmod_aat",
+                           "--ipm-singleton-elimination", "on", "--ipm-dynamic-regularization", "on"),
+                          ("--backend", "highs", "--ipm-linear-solver", "normal_cholmod_aat"),
+                          ("--backend", "pdlp", "--ipm-linear-solver", "normal_cholmod_aat"),
                           ("--backend", "ipm", "--ipm-linear-solver", "normal_refined",
                            "--ipm-singleton-elimination", "on", "--ipm-dynamic-regularization", "on"),
                           ("--backend", "ipm", "--ipm-linear-solver", "normal_extended",
@@ -688,15 +762,16 @@ class CliTests(unittest.TestCase):
             self.assertEqual(process.returncode, 2, result)
 
     def test_ipm_cholmod_zero_time_keeps_requested_backend_without_factor_work(self):
-        process, result = self.cli("solve", self.minimum, "--backend", "ipm", "--ipm-method", "homogeneous",
-                                   "--ipm-linear-solver", "normal_cholmod", "--ipm-singleton-elimination", "on",
-                                   "--time-limit", "0")
-        self.assertEqual(process.returncode, 4, result)
-        self.assertEqual(result["status"], "time_limit")
-        self.assertEqual(result["options"]["ipm"]["linear_solver"], "normal_cholmod")
-        self.assertIsNone(result["ipm_factor_backend"])
-        self.assertEqual(result["ipm_factorizations"], 0)
-        self.assertEqual(result["ipm_structural_fallbacks"], 0)
+        for linear in ("normal_cholmod", "normal_cholmod_aat"):
+            process, result = self.cli("solve", self.minimum, "--backend", "ipm", "--ipm-method", "homogeneous",
+                                       "--ipm-linear-solver", linear, "--ipm-singleton-elimination", "on",
+                                       "--time-limit", "0")
+            self.assertEqual(process.returncode, 4, result)
+            self.assertEqual(result["status"], "time_limit")
+            self.assertEqual(result["options"]["ipm"]["linear_solver"], linear)
+            self.assertIsNone(result["ipm_factor_backend"])
+            self.assertEqual(result["ipm_factorizations"], 0)
+            self.assertEqual(result["ipm_structural_fallbacks"], 0)
 
     def test_maximum_retains_original_sense(self):
         process, report = self.cli("solve", self.maximum)
@@ -995,6 +1070,7 @@ class CliTests(unittest.TestCase):
                                                                             "eliminate_singletons": None,
                                                                             "dynamic_regularization": None,
                                                                             "equilibrate_kkt": None,
+                                                                            "objective_scaling": None,
                                                                             "linear_accuracy": None,
                                                                             "central_corrections": None,
                                                                             "direction_retries": None,

@@ -1,0 +1,159 @@
+{
+  "method": "homogeneous",
+  "primary_linear_solver": "normal_cholmod",
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "threads": 1,
+  "seed": 0,
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "schema": 1,
+  "round": 52,
+  "version": "v55",
+  "created_at_utc": "2026-10-18T07:51:16.032993+00:00",
+  "diagnostic_only": true,
+  "parent_version": 54,
+  "parent_identity_sha256": "43289afc82b6c73892b5fa91ae5363dcd4e0a27baad56c127350c9bff42c0c73",
+  "parent_solver_sha256": "f28846612499fd274407e250dae8118a7dd049f5f78aa16e193028a293439b64",
+  "parent_source_sha256": "d27f536594dddaab898f2e4c5be84ed07e03e9a5f001c4605e864996f56846ec",
+  "evidence_sha256": "b9ca1f753ec4d9fb07b0865a7acea5169f1da6504e486d19877ec56478c2b14f",
+  "production_precheck_sha256": "6ccc8a9510b74f99831d92824339f3f8379c9966767000a4c4a4c12f598f4086",
+  "helper_sha256": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5",
+  "linear_accuracy": "homogeneous_repair",
+  "objective_scaling": "off",
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+      "hash_error": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "hash_error": null
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2d.mps",
+      "sha256": "1c16c328c0358ab175596bdd6b9a2c5d1cb4bb53b099d5d1f2a208a889c7bafc",
+      "hash_error": null
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+      "hash_error": null
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+      "hash_error": null
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "hash_error": null
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "hash_error": null
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\afiro.mps",
+      "sha256": "04992b87e57e57c1c417c96b846833bfa12e055eeaa623f043c45fc773b5be41",
+      "hash_error": null
+    }
+  ],
+  "modes": [
+    "production",
+    "off",
+    "on1",
+    "on2",
+    "on3"
+  ],
+  "runs": 40,
+  "order": "每模型将production/off/on1/on2/on3按model_index模5左旋，串行执行",
+  "profile_environment": "SOLVER_V47_PROFILE",
+  "profile_enabled_value": "1",
+  "profile_prefix": "V47_PROFILE ",
+  "profile_stages": [
+    "total",
+    "canonicalize",
+    "kkt_setup",
+    "normal_setup",
+    "ordering",
+    "symbolic_analysis",
+    "factor",
+    "normal_factor",
+    "gram_assembly",
+    "numeric_factor",
+    "factor_check",
+    "solve",
+    "krylov",
+    "direct",
+    "solve_factored",
+    "normal_solve",
+    "triangular_solve",
+    "kkt_product",
+    "assess_homogeneous",
+    "assess",
+    "verify_original",
+    "homogeneous_direction",
+    "initialize",
+    "run_homogeneous",
+    "fallback_factor_adapter",
+    "fallback_solve_adapter",
+    "cone_multiply",
+    "cone_transpose",
+    "cholmod_symbolic",
+    "cholmod_numeric",
+    "cholmod_backsolve",
+    "cholmod_values_copy"
+  ],
+  "transformed_units": {
+    "ipm": "src/ipm.cpp",
+    "normal": "src/normal_cholesky.cpp"
+  },
+  "source_references": [
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/ipx_info.h",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/hipo/factorhighs/Timing.h",
+    "https://docs.gurobi.com/projects/optimizer/en/current/concepts/logging/barrier.html"
+  ],
+  "hypothesis": "当前CHOLMOD、下三角缓存、BLAS修补与目标归一化off改变了旧v47成本结构；区分Gram装配、实际分解/回代、稀疏乘积、方向精化及原坐标验证，选择下一实际优化，不把调用次数当耗时",
+  "contracts": {
+    "production": "95来源17库及生产exe保持v54身份，不改变默认、数值政策或终验",
+    "profiler": "锁定复用v47计时核心与双翻译单元假时钟；仅追加6个tag及当前唯一插桩，不改收集语义；off不读诊断时钟、不输出诊断",
+    "scope": "total覆盖solve_ipm作用域和局部析构；不含输入/JSON、诊断输出与Report初始化；构造初始化列表归父作用域；每scope含子作用域与exclusive分别记录",
+    "accounting": "每条on整数纳秒非负、started=completed+unwound、clock_reads=2*sum(started)、sum(exclusive)=total inclusive、stack空；completed只表示正常离开，包含返回false",
+    "compatibility": "8 production/off和24 off/on对子；仅剔timings完整报告和退出码相等；先拒缺报告/异常/错误状态退出配对，再单列5秒数值或35秒墙钟合法预算分叉",
+    "repeats": "每例3个on仅用于阶段中位数；每条原始账本守恒，多个阶段分别取中位数后不承诺再次守恒",
+    "interpretation": "不据本轮诊断新增公开覆盖/性能成绩，不宣称单次开关开销有统计显著性；失败完整保留",
+    "inputs": "8例全部已观察；前5按上一轮成本差选择，再加剩余失败、已恢复困难例与小控制，不按模型身份路由算法",
+    "build": "真实Ninja两TU编译参数；仅替ipm/normal两库，保留原regularized对象与其他链接顺序；显式输入前后校验，编译依赖生成后与末尾复核，隐式运行库不逐项核验"
+  },
+  "new_code_and_plan_files": [
+    "v55-plan.json",
+    "v55-instrumentation.py",
+    "v55-build.py",
+    "v55-run.py",
+    "v55-verify.py"
+  ]
+}

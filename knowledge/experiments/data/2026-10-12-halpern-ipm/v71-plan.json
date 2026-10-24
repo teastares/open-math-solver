@@ -1,0 +1,143 @@
+{
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "threads": 1,
+  "seed": 0,
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "method": "homogeneous",
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_repair",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod_aat",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "candidate_limits": {
+    "max_input_nonzeros": 8000000,
+    "max_factor_nonzeros": 32000000,
+    "max_dimension": 1000000,
+    "max_selection_work": 1000000000
+  },
+  "parent_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "parent_source_sha256": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+  "parent_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "baseline_identity_file": "v66-accepted-state.json",
+  "baseline_identity_sha256": "db238b695c6ff1d26eddf32bae34b5490fa060f21e3d307d1a49591a3eac3f22",
+  "eigen_include_directory": "build/release/_deps/eigen-src",
+  "schema": 1,
+  "round": 68,
+  "version": "v71",
+  "kind": "diagnostic_only",
+  "production_changes": false,
+  "created_at_utc": "2026-10-24T06:11:09.038006+00:00",
+  "parent_version": 66,
+  "reference_version": 70,
+  "baseline_verification_file": "v71-baseline-check.json",
+  "baseline_verification_sha256": "3747c0acacc09a8acad5ec14693e789376b4e30778148acf7a6d4f5cf0a2ad68",
+  "evidence_file": "v70-closeout.json",
+  "evidence_sha256": "c911fba7bacc13e910f655f2b70b95714c8566ac3f6dc9f14f8a87125fe4516d",
+  "parent_run_identity_file": "v70-run-identity.json",
+  "parent_run_identity_sha256": "cd82c22e3883e05343dd26e2bce1351ef87d2bbb3625edb84c2169ee7373dd72",
+  "parent_plan_file": "v70-plan.json",
+  "parent_plan_sha256": "4bd9de12cefc81c146fc2d9a8579d0e1510c2ba6ebcc0733087e924f32e30cee",
+  "reference_build_manifest_file": ".tools/v70-basis/build-manifest.json",
+  "reference_build_manifest_sha256": "406c15f9ce4231408130f2273fd3ab44dd0221837d821b4caeb05fca3150a628",
+  "reference_solver_file": ".tools/v70-basis/solver-diagnostic.exe",
+  "reference_solver_sha256": "1f4c923c7c54f91635b8193ce07bfb2f674ee99113f78ec330d9775dcd2b31e1",
+  "work_directory": ".tools/v71-diagnostic",
+  "models": [
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d"
+    },
+    {
+      "name": "forplan",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7"
+    },
+    {
+      "name": "greenbeb",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865"
+    }
+  ],
+  "repeats": 2,
+  "runs": 18,
+  "maximum_solver_runs": 18,
+  "variants": [
+    "frozen_v70_on",
+    "diagnostic_capture_off",
+    "diagnostic_capture_on"
+  ],
+  "recovery_environment": "SOLVER_V70_BASIS_RECOVERY",
+  "recovery_marker": "V70_BASIS",
+  "capture_env": "SOLVER_V71_CAPTURE",
+  "capture_magic": "V71BAS01",
+  "cache_limit_bytes": 134217728,
+  "metadata_limit_bytes": 65536,
+  "maximum_events": 1,
+  "compatibility_excluded_report_fields": [
+    "timings"
+  ],
+  "hypothesis": "捕获实际送往原模型assess前的原行基与候选，区分基方程误差及目标差放大、基外约束/乘子符号违反，避免从原模型聚合残差直接选择修法。",
+  "diagnostic_policy": [
+    "所有状态均开启冻结v70恢复；三模型各两次三状态轮转，12个完整对子分别核冻结参考到诊断关闭、关闭到开启。",
+    "只捕获recover返回candidate_available后、move和assess之前的第一个实际候选；保存原G、c、b、旧s/z、行类型及候选x/s/z、选中原行/主元坐标。",
+    "仅复制已有数组，不新增在线求解、矩阵乘或改变候选；复制计原数值预算，序列化仅计完整进程墙钟；先验128MiB，元数据64KiB。",
+    "开启但无候选也保存明确no_candidate和空二进制头；采集错误、未终态、预算分叉不得充作兼容。",
+    "分析使用实际binary64精确有理数，O(nnz)核基方程、逐分量backward error、基内外等式/不等式、仅不等式乘子符号；不做稠密/精确LU、不优化系数、不调用oracle。",
+    "核raw cone gap=c^Tx+b_B^Tz_B与x^Tr_d-z_B^Tr_p精确恒等式，原模型gap单列来自真实V70终验账本。",
+    "不等式candidate_s与b-Gx的差解释为存储/求值误差；等式s按实现应为零，原等式残差另报；非基z精确零独立核。",
+    "每份数值捕获保留身份，内容相同可以去重分析；不得从重复捕获推断所有中间状态相同。"
+  ],
+  "source_references": [
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/guess_basis.cc",
+    "https://github.com/coin-or/Clp/blob/9310c186d546e21d482be3455166ee6fb4cd6302/Clp/src/ClpSolve.cpp#L3456",
+    "https://webhomes.maths.ed.ac.uk/~gondzio/reports/ipmBasis.pdf"
+  ],
+  "frozen_helpers": {
+    "v70-basis-recovery.hpp": "c597d0e988d0ddcf0094e1664d9167a439d5be55d872579280a176a112702d4f",
+    "v70-basis-instrumentation.py": "145cbff7d7e54c90a9a137e4a0fb5dde3b157a8abab7b2982b060f0280ceefae",
+    "v70-run.py": "cdc10668c1b75c1c021bdb0f029813971e25b6ba56c3b1fce306be3518d5b016"
+  }
+}

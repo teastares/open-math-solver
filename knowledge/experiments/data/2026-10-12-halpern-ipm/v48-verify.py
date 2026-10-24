@@ -10,6 +10,7 @@ import math
 from pathlib import Path
 import re
 import runpy
+import statistics
 import sys
 import types
 from urllib.parse import unquote
@@ -416,6 +417,75 @@ def derived(groups, final):
     return {"gate": gate, "details": verified, "expanded_netlib": tag("netlib") in groups, "direct_highs": "highs" in groups}
 
 
+def cost_audit(groups, plan):
+    def paired(group, allowed=None):
+        manifest, _, rows = group
+        sides = (manifest["reference_variant"], manifest["candidate_variant"])
+        repeated = collections.defaultdict(lambda: {side: [] for side in sides})
+        for row in rows:
+            if allowed is None or Path(row["input"]).stem in allowed:
+                repeated[row["input"]][row["requested_variant"]].append(row)
+        successful = {name: by_side for name, by_side in repeated.items()
+                      if all(len(by_side[side]) == manifest["repeats"] and all(row["quality_pass"] for row in by_side[side]) for side in sides)}
+        if not successful:
+            return {"models": 0, "reference": sides[0], "candidate": sides[1]}
+        aggregate, details = {}, []
+        for side in sides:
+            selected = [row for by_side in successful.values() for row in by_side[side]]
+            values = {"numerical": [row["numerical_seconds"] for row in selected], "wall": [row["elapsed_wall_seconds"] for row in selected]}
+            aggregate[side] = {"runs": len(selected), **{measure + "_sum_seconds": sum(times) for measure, times in values.items()},
+                **{measure + "_sgm10_seconds": math.expm1(sum(math.log1p(value / 10.) for value in times) / len(times)) * 10.
+                   for measure, times in values.items()}}
+        for name, by_side in successful.items():
+            entry = {"model": Path(name).stem, "model_dimensions": by_side[sides[0]][0]["report"]["model"], "sides": {}}
+            for side in sides:
+                selected = by_side[side]
+                entry["sides"][side] = {"numerical_median_seconds": statistics.median(row["numerical_seconds"] for row in selected),
+                    "wall_median_seconds": statistics.median(row["elapsed_wall_seconds"] for row in selected),
+                    "iterations": [row["report"]["ipm_iterations"] for row in selected],
+                    "factor_nonzeros": [row["report"]["ipm_factor_nonzeros"] for row in selected],
+                    "factor_dimension": [row["report"]["ipm_kkt_dimension"] for row in selected]}
+            entry["numerical_median_seconds_saved"] = entry["sides"][sides[0]]["numerical_median_seconds"] - entry["sides"][sides[1]]["numerical_median_seconds"]
+            details.append(entry)
+        return {"models": len(successful), "reference": sides[0], "candidate": sides[1], "sides": aggregate,
+                "candidate_faster_numerical_models": sum(item["numerical_median_seconds_saved"] > 0 for item in details),
+                "candidate_faster_wall_models": sum(item["sides"][sides[0]]["wall_median_seconds"] > item["sides"][sides[1]]["wall_median_seconds"] for item in details),
+                "details_by_numerical_saving": sorted(details, key=lambda item: item["numerical_median_seconds_saved"], reverse=True)}
+    development = plan["sets"]["development"]["models"]
+    audit = {"development_original_eight": paired(groups[tag("development")], {Path(model["input"]).stem for model in development[:8]}),
+             "development_added_three": paired(groups[tag("development")], {Path(model["input"]).stem for model in development[8:]}),
+             "failure_records": [],
+             "limitations": "仅共同全部重复达标模型用于成功耗时比较，不把早退当加速；分组来自测前11开发清单，不增加事后规模阈值。耗时包括完整数值流程，外层步数可变化，不能全归因于单次分解。CHOLMOD计数为含占位xsize，旧计数为有效存储，不用于直接计算填充倍率。"}
+    for name in (tag("netlib"), "highs"):
+        if name in groups:
+            audit[name + "_common_success"] = paired(groups[name])
+    for name, (manifest, _, rows) in groups.items():
+        for row in rows:
+            model = Path(row["input"]).stem
+            if model not in ("forplan", "dfl001", "greenbea"):
+                continue
+            report = row["report"] or {}
+            stage = None
+            iterations = report.get("ipm_iterations")
+            if (report.get("message") == "正则化正规方程 Cholesky 分解重试未成功" and iterations == 0 and
+                report.get("ipm_homogeneous_constant_solves") == report.get("ipm_homogeneous_direction_solves") == 0 and
+                report.get("ipm_homogeneous_tau") == report.get("ipm_homogeneous_kappa") == 1):
+                stage = "初始化已完成；首次齐次迭代的正规方程分解重试耗尽，尚未启动常数方向"
+            if (report.get("message") == "齐次标量消元的分母不是有限正数" and type(iterations) is int and
+                report.get("ipm_homogeneous_constant_solves") == iterations + 1 and
+                report.get("ipm_homogeneous_direction_solves") == 2 * iterations + 1):
+                stage = "下一轮仿射标量消元失败；按源码调用顺序，该轮常数方向与u方向已通过原严格KKT验收"
+            audit["failure_records"].append({"group": name, "model": model,
+                "candidate": row["requested_variant"] == manifest["candidate_variant"], "status": row["status"],
+                "quality_pass": row["quality_pass"], "quality_failure": row["quality_failure"], "message": report.get("message"),
+                "numerical_seconds": row["numerical_seconds"], "wall_seconds": row["elapsed_wall_seconds"],
+                "has_solution": report.get("has_solution"), "lp_optimality": report.get("lp_optimality"),
+                "source_based_stage_inference": stage,
+                "work": {key: value for key, value in report.items() if key.startswith("ipm_")}})
+    audit["failure_stage_limits"] = "阶段由冻结源码调用顺序、消息和工作计数共同推断。归档未记录CHOLMOD status/minor或每次factor=false的具体分支，不能把分解路径失败进一步统称为POTRF失败；严格KKT验收也不证明后续标量Schur补稳定。"
+    return audit
+
+
 def self_check():
     report = {"backend": "ipm", "options": {"ipm": {"linear_solver": "normal_cholmod"}},
         "ipm_iterations": 1, "ipm_homogeneous_constant_solves": 1, "ipm_homogeneous_direction_solves": 2,
@@ -507,13 +577,14 @@ def main():
             reports.append(report)
             groups[report["tag"]] = raw
         result.update(groups=reports, raw_records=sum(group["raw_records"] for group in reports),
-                      derived=derived(groups, not args.preflight))
+                      derived=derived(groups, not args.preflight), cost_audit=cost_audit(groups, plan))
         candidates = [row["report"] for manifest, _, rows in groups.values() for row in rows
                       if row["requested_variant"] == manifest["candidate_variant"] and row["report"] is not None]
         actual = [report for report in candidates if report["ipm_factor_backend"] == "normal_cholmod" and report["ipm_factorizations"] > 0]
         require(actual, "真实候选必须实际进入CHOLMOD，不能全部使用结构回退")
         result["candidate_backend_usage"] = {"reports": len(candidates), "actual_cholmod_reports": len(actual),
             "factor_attempts_in_cholmod_reports": sum(report["ipm_factorizations"] for report in actual),
+            "structural_fallback_reports": sum(report["ipm_factor_backend"] == "factorhighs" and report["ipm_structural_fallbacks"] > 0 for report in candidates),
             "largest_reported_xsize": max(report["ipm_factor_nonzeros"] for report in actual)}
         if not args.preflight:
             result.update(documents(output))

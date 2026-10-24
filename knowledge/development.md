@@ -6,7 +6,7 @@
 
 当前有三个 CPU 求解路径：默认 `highs` 支持 LP/MILP；实验性 `pdlp` 使用自主 PDHG 内核，实验性 `ipm` 使用自主稀疏内点法求解连续 LP。自主部分还包括稀疏模型表示、候选解与对偶数值复核、后端接口、命令行和基准运行器。当前没有自研 simplex、分支割、GPU、跨机器通信或芯片实现。
 
-`pdlp` 支持 `baseline`、`adaptive`、`subspace`、`halpern` 与 `halpern_reflected`，默认仍为 `adaptive`。当前自主内点法源码标识为 `ipm-cpu-0.41.0`，以 [ipm_version()](../src/ipm.cpp) 为准；它不是主程序的项目版本号。具体算法取舍见[自主原始对偶设计](decisions/2026-10-12-自主CPU原始对偶原型.md)；`ipm` 的数值方案、信息复用及未实现能力见[自主内点法设计](decisions/2026-10-12-自主稀疏内点法.md)。历次实际构建与测量见[实验索引](experiments/readme.md)，源码版本不代表已经通过新一轮验证。
+`pdlp` 支持 `baseline`、`adaptive`、`subspace`、`halpern` 与 `halpern_reflected`，默认仍为 `adaptive`。当前自主内点法已验证并保留的版本为 `ipm-cpu-0.53.0`；工作区候选源码标识以 [ipm_version()](../src/ipm.cpp) 为准，它不是主程序的项目版本号。具体算法取舍见[自主原始对偶设计](decisions/2026-10-12-自主CPU原始对偶原型.md)；`ipm` 的数值方案、信息复用及未实现能力见[自主内点法设计](decisions/2026-10-12-自主稀疏内点法.md)。历次实际构建与测量见[实验索引](experiments/readme.md)，源码版本不代表已经通过新一轮验证。
 
 | 入口或模块 | 权威实现 |
 | --- | --- |
@@ -37,6 +37,8 @@
 
 OpenBLAS 必须先于主项目配置完成安装，因为 SuiteSparse 在配置阶段检查 BLAS/LAPACK 符号。当前依赖项目构建单线程静态库，提供 CBLAS、Fortran ABI 的 BLAS 和由 C 源码编译的实数/复数 LAPACK，不需要 Fortran 编译器；原来的仅 CBLAS、无 LAPACK 产物不满足这个要求。直接调用主项目 CMake 时，也应先完成该依赖项目的构建；非默认安装位置通过 `SOLVER_OPENBLAS_ROOT` 指定，主项目在静态库不存在时明确拒绝配置。配置与编译阶段的详细参数以两处 CMake 定义及构建脚本为准。
 
+依赖构建会按[依赖锁](../dependencies.lock.json)自动应用[OpenBLAS本地补丁](../third_party/openblas/patch_dgemm_stack.cmake)，校验原源码、脚本和修补结果；未知源码拒绝，已修内容幂等跳过。该补丁修正共享乘法内核的缓冲容量与Windows逐页触碰，安装时附带[本地说明](../third_party/openblas/NOTICE.txt)。外部自行提供的库不因此自动获得这项修复；复现当前实验应使用锁定构建及公共BLAS回归，具体证据见第48轮实验正文。
+
 生成 `build/release/solver.exe`。环境与历次结果记录在[实验索引](experiments/readme.md)。其他操作系统和编译器尚未实际验证。构建缓存、便携工具和日常实验输出由 [.gitignore](../.gitignore)排除，交付产物应另行保留。
 
 ## 单个模型求解
@@ -53,6 +55,8 @@ OpenBLAS 必须先于主项目配置完成安装，因为 SuiteSparse 在配置�
 
 参数默认值以[求解选项](../include/solver/backend.hpp)及 `--help` 为准。`--iteration-limit`、`--scaling-passes` 用于 `pdlp` 或 `ipm`，按最终后端归属，与参数顺序无关。`--pdlp-mode`、`--pdlp-history-size` 只用于 `pdlp`；历史容量为 0 时关闭子空间搜索，其他模式不使用历史容量。`--highs-solver`、`--highs-crossover`、`--highs-presolve` 只用于 `highs`，MILP 拒绝非默认配置。自主路径目前只支持 `--threads 1`，随机种子不改变其确定性迭代；`--mip-gap` 不控制连续 LP 的停止条件。
 
+`--ipm-objective-scaling on|off` 仅用于 `ipm`，默认 `on`。它独立控制行列缩放结束后的目标标量归一化：开启时沿用最大绝对成本与1的较大值，关闭时保留当前成本、目标恢复系数为1；行列均衡、原模型和终验不变。报告 `options.ipm.objective_scaling` 为实际布尔值。基准工具支持同名候选选项及独立的 `--reference-ipm-objective-scaling`；仅关闭侧标签追加 `:objective_scaling=off`，默认与显式开启等价，显式请求与实际布尔回报不符计失败。此开关不是依据输入身份的自动策略，测量与是否推广由[第五十一轮实验](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)维护。
+
 ```powershell
 ./build/release/solver.exe solve tests/fixtures/lp_min.lp --backend ipm --time-limit 5
 ./build/release/solver.exe solve tests/fixtures/lp_min.lp --backend pdlp --pdlp-mode halpern_reflected
@@ -65,7 +69,7 @@ JSON 的 `options.pdlp`、`options.ipm`、`options.highs` 分别记录对应后�
 
 `--ipm-singleton-elimination on|off` 显式选择单非零不等式的线性代数消元，同后端消融可指定 `--reference-ipm-singleton-elimination`。`--ipm-dynamic-regularization on|off` 控制已知符号的局部主元正则，参考侧用 `--reference-ipm-dynamic-regularization` 独立设置。`--ipm-kkt-equilibration on|off` 对每步实际 KKT 作一次对称均衡，参考侧用 `--reference-ipm-kkt-equilibration`。三项默认均关闭。报告的 `ipm_kkt_dimension` 是实际分解维数，`ipm_eliminated_singletons` 为被消去行数，`ipm_regularized_pivots` 对自有 QDLDL 动态正则包括失败尝试中已修正的主元数；factorhighs 只报告第三方成功分解返回的非零对角扰动数，不声称覆盖其失败分解内部的未返回记录。实验结果及未启用默认的原因见[迭代记录](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
 
-`--ipm-linear-solver qdldl|sparselu|normal|qdldl_extended|factorhighs|normal_augmented|normal_multifrontal|normal_extended|normal_refined|normal_cholmod` 显式替换分解器或选择结构预算回退模式，参考侧用 `--reference-ipm-linear-solver`；默认 QDLDL。SparseLU 保留同一 AMD 排序与正则 KKT，增加数值行选主元，复用模式分析和多 RHS 因子；不将 LU 主元符号解释为惯性，拒绝与局部动态正则同时启用。normal 通过正规方程 Cholesky 解同一正则 KKT，当前要求开启单行消元、关闭局部动态正则；原方程恢复与严格残差验收保留。
+`--ipm-linear-solver qdldl|sparselu|normal|qdldl_extended|factorhighs|normal_augmented|normal_multifrontal|normal_extended|normal_refined|normal_cholmod|normal_cholmod_aat` 显式替换分解器或选择结构预算回退模式，参考侧用 `--reference-ipm-linear-solver`；默认 QDLDL。SparseLU 保留同一 AMD 排序与正则 KKT，增加数值行选主元，复用模式分析和多 RHS 因子；不将 LU 主元符号解释为惯性，拒绝与局部动态正则同时启用。normal 通过正规方程 Cholesky 解同一正则 KKT，当前要求开启单行消元、关闭局部动态正则；原方程恢复与严格残差验收保留。
 
 normal_augmented 先尝试建立 normal 符号结构，仅在适配器的显式结构预算异常时切换一次到 factorhighs；同样要求开启单行消元、关闭局部动态正则。所有已发生的转换、排序和分析计入同一预算，不重置计时；输入异常、分配失败、时间中断及后续数值分解失败不触发该切换。显式 normal 仍在超限时报告失败。normal_multifrontal 保留同样的 Gram 装配、AMD 和完整方向恢复，但用已有 FactorHiGHS 分块 LDL 分解正定 Schur 矩阵，并在相同正规方程结构预算异常时回退增广形式；分块内核自身的额外容量异常直接报告，不转换为正规方程预算异常。该分块 Schur 路径每次分解按已形成矩阵的正对角做对称均衡，缩放 RHS、求解后恢复 Schur 坐标；每次重新生成尺度，额外扫描和恢复计时，有限值或非零下溢检查失败会拒绝数值分解/方向。标量 normal 路径保持原样。`ipm_structural_fallbacks` 记录已启动的结构切换次数，IPM 未切换时为零；`ipm_factor_backend` 记录实际建立符号结构的内核，尚未建成时为 null。维数和因子计数按该实际内核解释，不能由请求的模式名称推断。
 
@@ -74,6 +78,8 @@ normal_extended 在相同正规方程结构与 AMD 排列下，把已有 long do
 normal_refined 保留 double 标量 Schur 分解，利用已有 long double Gram 累加结果和约化右端计算真实 Schur 残差，最多复用因子做两次附加三角求解。Schur 候选和原始方向恢复保留 long double；仅当真实残差无穷范数严格下降才保留校正。候选不可可靠表示或不再下降时保留已有候选，预算异常继续传出；完整 KKT 与原模型仍用原规则验收。它同样要求平台有额外有效位、开启单行消元，且只在显式结构预算异常时回退 factorhighs。校正无法修复一个尚未成功分解的 double 矩阵，也不保证真实 KKT 精度改善。
 
 normal_cholmod 显式选择 CHOLMOD 超节点 Cholesky：保持 normal_augmented 的显式 Gram、long double 装配后转 double、既有 AMD 排列、约化 RHS 与完整方向恢复，只替换数值分解和回代内核。适配器对已排列的矩阵使用 NATURAL、关闭 postorder、强制 supernodal，并复用符号结构和回代工作区；不加入 normal_multifrontal 的额外 Schur 对角均衡或新的主元扰动。该模式要求单行消元开启、局部动态正则关闭，候选与参考独立配置；仅显式结构预算异常回退 factorhighs，数值失败、内存失败和时间预算异常不触发此回退。实际内核字段为 normal_cholmod 或 factorhighs，外层方法、线性精度规则和原模型终验仍按各自选项执行。它没有新增默认选择规则，也不意味着已经测得性能收益。
+
+normal_cholmod_aat 是第63轮保留的显式矩形输入路径，配置条件与结构回退语义同normal_cholmod，实际内核标签为normal_cholmod_aat或factorhighs。其数学表示、数值与存储边界由[适配器](../src/normal_cholesky.cpp)和[第63轮实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)维护；该选择不改变默认qdldl，也不改变原KKT、HSD或原模型验收。参考侧可独立使用同名选项值。
 
 ```powershell
 ./build/release/solver.exe solve tests/fixtures/lp_min.lp --backend ipm --ipm-linear-solver normal_cholmod --ipm-singleton-elimination on
@@ -87,17 +93,35 @@ factorhighs 只复用锁定 HiGHS 中的多波前 LDL 内核，使用相同的 A
 
 `ipm_factor_nonzeros` 对 QDLDL 记录含单位对角的 L 结构数，对 SparseLU 记录最后一次成功分解的 L/U 结构数之和，包含两组对角及超节点内保留零项；normal、normal_extended 和 normal_refined 记录 Cholesky L 含对角的结构数，`ipm_kkt_dimension` 此时为实际正规方程维数，纯变量界消元后可为零。factorhighs 记录最后成功分解的符号 L 结构数，包含对角和超节点合并引入的保留零项。normal_multifrontal 记录 Schur 矩阵的实际分块 L 存储和维数，小主元正则计入 `ipm_regularized_pivots`，不将正则后的线性解自动视为原 KKT 解。
 
-normal_cholmod 的 `ipm_factor_nonzeros` 使用 CHOLMOD 的 `xsize`，即超节点因子数值数组的存储项数，含合并保留的零项和未使用的块内上三角占位，不等于数学非零数；`ipm_kkt_dimension` 为其 Schur 维数。符号分析得到 `xsize` 后、首次分配数值因子前检查既定项数预算，超限属于显式结构预算回退。统计在建立符号结构时即可取得，不证明数值分解成功；转为 factorhighs 后按其实际口径解释。所有后端的计数都不能直接当作内存字节或进程峰值比较。
+normal_cholmod 与 normal_cholmod_aat 的 `ipm_factor_nonzeros` 使用 CHOLMOD 的 `xsize`，即超节点因子数值数组的存储项数，含合并保留的零项和未使用的块内上三角占位，不等于数学非零数；`ipm_kkt_dimension` 为其 Schur 维数。符号分析得到 `xsize` 后、首次分配数值因子前检查既定项数预算，超限属于显式结构预算回退。统计在建立符号结构时即可取得，不证明数值分解成功；转为 factorhighs 后按其实际口径解释。所有后端的计数都不能直接当作内存字节或进程峰值比较。
+
+normal_cholmod的适配路径保留原上三角符号分析，并缓存固定下三角结构及数值源槽映射；每次分解复制当前数值，省去上游重复转置的结构重建。缓存空间不计入因子xsize，因此不能用该字段声称总内存没有变化。实现与预算边界由[适配器](../src/normal_cholesky.cpp)定义，新增存储与实际得失由第49轮实验正文维护；该缓存说明不适用于normal_cholmod_aat矩形输入。
+
+normal各显式Gram路径共用的装配在long double指数范围足够时，每个right系数先计算一次`b/diagonal`，再按原left次序累加`a*scaled_b`；平台范围不足则保留原表达式。范围条件及有限性、非零下溢、累加和转换检查由[适配器](../src/normal_cholesky.cpp)定义，未缓存跨分解的数值，也不新增CLI。舍入次序可能改变外层轨迹，完整KKT与原模型验收保持；第53轮的实际对照、保留依据和性能限制由[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)维护，其显式目标归一化off配置不改变全局默认on。normal_cholmod_aat不执行这段我方数值Gram累加。
+
+在另一个更严格的编译期格式与指数范围条件下，Gram装配利用已检查的有限输入、正对角和贡献数量上限，省略被这些条件蕴含的单项有限、非零下溢及部分和有限检查。此改动不再改变浮点表达式或累加顺序；格式或预算条件不满足时保留原逐项检查，输入、时间预算、最终转换和因子完整检查继续执行。实际有符号相消部分和允许为零或次正规，只需有限；范围证明和第54轮完整验证由实验正文维护，不扩展为其他循环可无条件省略数值检查。
+
+第55轮曾在冻结v58候选中尝试严格Krylov耗尽后一次切换同一正则增广矩阵的SparseLU。候选未获得新增覆盖，未通过预先固定的扩集门槛，已撤回本轮五份源文件，当轮恢复为v57。该候选的两个数值回退计数字段只存在于归档程序及报告中，不是当前CLI接口；研究、负结果和恢复验证见[第55轮实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第56轮v59仅在独立副本采集失败常数KKT的实际中间量，未增加生产选项或改变已选择版本。构建、四组程序对照、精确误差分解及适用边界统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)；诊断环境变量只属于该归档程序，不是当前CLI接口。
+
+第57轮v60的宽方向实验未推广。候选的homogeneous_extended选项及两项扩展Krylov计数只存在于冻结程序和源码包，当前内核已恢复此前选择；仅保留CLI测试的平台探测隔离修复。候选结果、恢复后回归和当前来源边界见[第57轮实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第58轮v61继续在冻结v60副本采集常数方向恢复事件，生产接口与数值内核未改。[构建](experiments/data/2026-10-12-halpern-ipm/v61-build.py)、[运行](experiments/data/2026-10-12-halpern-ipm/v61-run.py)及[离线分析](experiments/data/2026-10-12-halpern-ipm/v61-analyze-hsd.py)的使用边界和实际结论见[第58轮正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。该诊断的环境开关不属于当前CLI能力。
 
 normal 的 Gram 形成工作与 S/L 结构容量由[适配器](../src/normal_cholesky.cpp)中的显式预算限制，超限报告失败，不自动更换后端；上述带结构回退的模式另按各自约定处理。factorhighs 的[适配器](../src/multifrontal_ldl.cpp)另限制输入/预测填充及超节点工作区估计。这些是实验容量边界，不是进程内存硬上限。第三方库调用前后检查预算，不保证库内部硬中断。
 
 `--ipm-method mehrotra|homogeneous` 选择自主内点方法，默认 mehrotra，继续原预测校正循环。homogeneous 是独立的连续 LP 齐次嵌入实验：增加正 τ、κ，把工作模型目标间隙并入联立 Newton 方程；每次分解求一次常数右端，预测和校正分别求方向右端并共享该常数解。接口与标量消元见[齐次接口](../include/solver/detail/ipm_homogeneous.hpp)，具体方程、来源和实测得失见[第四十一轮](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
 
-homogeneous 支持 strict 或下述 homogeneous_scaled，要求零方向重试/历史/中央校正和关闭非精确预筛选；原分解器前置条件、固定变量处理和缩放选项仍适用。共同步长包含不等式 s/z 及 τ/κ，等式对偶保持自由；先把规范坐标除 τ，再恢复原固定常量及行对偶，最终验算不放宽。更新在完整有限性、正性及预算检查后一次提交，不用标量下限掩盖退化，不由 τ/κ 比例宣称不可行或无界。尚未实现完整证书、构基或 crossover。
+homogeneous 支持 strict 或下述 homogeneous_scaled、homogeneous_repair，要求零方向重试/历史/中央校正和关闭非精确预筛选；原分解器前置条件、固定变量处理和缩放选项仍适用。共同步长包含不等式 s/z 及 τ/κ，等式对偶保持自由；先把规范坐标除 τ，再恢复原固定常量及行对偶，最终验算不放宽。更新在完整有限性、正性及预算检查后一次提交，不用标量下限掩盖退化，不由 τ/κ 比例宣称不可行或无界。尚未实现完整证书、构基或 crossover。
 
 `ipm_homogeneous_constant_solves` 和 `ipm_homogeneous_direction_solves` 在实际启动相应 KKT 求解前计数，失败的已启动工作保留；初始化辅助求解不计入这两项，但分解/精化仍进入原有统计。strict 完整外层迭代各为1和2次，其内部精化可能额外回代；homogeneous_scaled 则按每次直接回代计数，方向计数包含完整IR校正。因此它们不能跨精度模式当作相同的总浮点工作。`ipm_homogeneous_tau/kappa` 记录最近完整提交的内部点，可能与报告中保留的较早可行解不同。齐次初始化前两标量为 null，普通 IPM 方法计数为整数零且标量 null，非 IPM 四项均 null。比较工具的 `--reference-ipm-method` 独立设置参考方法；显式方法必须与实际报告一致。
 
-`--ipm-linear-accuracy strict|backward|inexact|blockwise|blockwise_weighted|blockwise_forcing|blockwise_forcing_weighted|adaptive_regularization|primal_dual_regularization|curvature_regularization|full_newton|bounded_newton|homogeneous_scaled` 控制内部线性方向验收；默认 strict，backward 额外允许分量后向误差达到单位舍入量的方向。inexact 在旧严格条件未过时，按实际恢复后原始/对偶方向误差与各自外层残差的比例验收；初始化仍严格，不引入互补量或右端大小的绝对地板。`ipm_backward_error_acceptances`、`ipm_inexact_acceptances` 分别只统计旧严格条件未过而对应替代条件通过的次数。所有模式均保留相同的原模型终验。
+`--ipm-linear-accuracy strict|backward|inexact|blockwise|blockwise_weighted|blockwise_forcing|blockwise_forcing_weighted|adaptive_regularization|primal_dual_regularization|curvature_regularization|full_newton|bounded_newton|homogeneous_scaled|homogeneous_repair` 控制内部线性方向验收；默认 strict，backward 额外允许分量后向误差达到单位舍入量的方向。inexact 在旧严格条件未过时，按实际恢复后原始/对偶方向误差与各自外层残差的比例验收；初始化仍严格，不引入互补量或右端大小的绝对地板。`ipm_backward_error_acceptances`、`ipm_inexact_acceptances` 分别只统计旧严格条件未过而对应替代条件通过的次数。所有模式均保留相同的原模型终验。
+
+homogeneous_repair 仅用于 homogeneous，初始化与正常方向沿用strict。仅当标量消元的分母有限且非正、方向点积有限时，才用同一KKT因子对常数右端[-c;b]追加一次blockwise求解；它同时要求原全局门槛和两块门槛，内部沿用有界IR/Krylov预算，不是只做一次三角回代。候选常数还必须通过原标量消元和预算检查才提交，同轮预测/校正共享修正结果及一次尝试额度。不重新分解，不更换正则层级，不夹取分母；其他数值错误、预算和内存异常正常传播。
+
+`ipm_homogeneous_constant_repairs`在实际启动该额外常数求解前累加，同时计入`ipm_homogeneous_constant_solves`；内部IR/Krylov工作进入原有统计。`ipm_homogeneous_constant_repair_successes`在修正常数经标量检查提交后累加，表示局部恢复成功，不等于当前方向或最终LP达标。计数满足successes≤repairs≤constant_solves；其他IPM模式两字段为整数零，非IPM为null。候选与参考精度独立配置，新模式的成功报告要求两字段合法，旧strict/scaled归档无需补字段。研究、触发依据与实测结果见[第四十七轮](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
 
 homogeneous_scaled 仅用于 homogeneous，是独立的缩放齐次方向政策。以 `d=sqrt(kappa/tau)`、`W=sqrt(s/z)`、`lambda=sqrt(s*z)` 构造缩放，每次分解直接求一次常数右端 `[-c/d;b/d]`，用 `1+||W*v_z||²` 作近似标量消元；它不是把原失效分母取绝对值或加下限。完整五块乘积从实际交付的物理 double 方向及原 G/s/z/τ/κ 重新形成，间隙、锥互补、标量互补分别除 d、lambda、sqrt(tau*kappa)，包含近似常数解与恢复舍入的缺陷。
 
@@ -239,8 +263,36 @@ HiGHS 使用进程级线程调度器，其后端求解在同一进程内串行�
 
 ## 回归入口与下一步
 
+[第59轮齐次分母验收候选](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)已归档并撤回，实验入口为[v62-run](experiments/data/2026-10-12-halpern-ipm/v62-run.py)与[v62-freeze](experiments/data/2026-10-12-halpern-ipm/v62-freeze.py)。候选源码及模式以该轮冻结包为准；当前CLI没有新增scalar账本或homogeneous_extended模式。恢复后的来源与本轮起始状态逐字节相同，保留平台探测测试隔离修复；回归、具体身份和下一步取舍统一由实验正文维护。
+
 构建脚本默认运行 CTest：[模型与验证](../tests/test_verification.cpp)、[原始/对偶检查](../tests/test_lp_optimality.cpp)、[自主内核](../tests/test_pdlp.cpp)、[等价变换与退化边界](../tests/test_pdlp_adversarial.cpp)、[HiGHS 集成](../tests/test_backend.cpp)、[CLI 与基准运行器](../tests/test_cli.py)、[构造最优点对照](../tests/test_pdlp_comparison.py)、[比较协议](../tests/test_compare_lp.py)。实际执行次数和覆盖范围以[实验索引](experiments/readme.md)中的记录为准。
 
 当前先根据本机 CPU 的固定公开集结果改善收敛与算子效率，再评估 GPU 算子和集群通信。迭代中的稀疏乘与转置乘已集中到算子边界；将来使用 GPU 还需要设备驻留向量、投影和归约实现，不能只替换一次矩阵乘就声称完成移植。资源型号、互联和访问入口尚待获取，未在本机测试中推断集群能力。
 
 方向级估计、图像残差与 LD/转回 double 候选的诊断证据见[第三十九轮](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。该轮只运行冻结副本，未改变生产能力、默认值或公开成绩；同加权 L2 的观测不能替代现有三块无穷范数验收。
+
+[第五十轮HSD诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)继续采用冻结副本，构建、采集、离线分析和核验入口分别为[v53-build](experiments/data/2026-10-12-halpern-ipm/v53-build.py)、[v53-run](experiments/data/2026-10-12-halpern-ipm/v53-run.py)、[v53-offline](experiments/data/2026-10-12-halpern-ipm/v53-offline.py)、[v53-verify](experiments/data/2026-10-12-halpern-ipm/v53-verify.py)。诊断环境开关只存在于独立程序，生产不支持该采集能力；运行器拒绝覆盖冻结结果。当前点、保留候选、额外成本和未覆盖的assess预算中断边界由该轮正文统一说明，不改变生产选项或验收精度。
+
+[第五十二轮阶段计时](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)使用冻结v54副本，入口为[v55-build](experiments/data/2026-10-12-halpern-ipm/v55-build.py)、[v55-run](experiments/data/2026-10-12-halpern-ipm/v55-run.py)和[v55-verify](experiments/data/2026-10-12-halpern-ipm/v55-verify.py)，插桩规则由[v55-instrumentation](experiments/data/2026-10-12-halpern-ipm/v55-instrumentation.py)维护。独立程序复用v47计时器，故仍以`SOLVER_V47_PROFILE=1`开启，标准错误仍以`V47_PROFILE `输出；这不是新增生产CLI。运行器先清理继承的`SOLVER_V`诊断环境，再显式设置本模式，拒绝覆盖冻结结果。记录包含/独占时间及正常/异常退出次数；CHOLMOD库入口与装配、拷贝、检查和恢复分别记账，嵌套包含时间不能直接相加。重复的阶段中位数不要求加总守恒，账本与数值轨迹的实际验证及下一候选由该轮正文统一维护。
+
+[第60轮宽常数恢复阶段诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)使用冻结v62独立副本，入口为[v63-build](experiments/data/2026-10-12-halpern-ipm/v63-build.py)、[v63-run](experiments/data/2026-10-12-halpern-ipm/v63-run.py)与[v63-analyze-hsd](experiments/data/2026-10-12-halpern-ipm/v63-analyze-hsd.py)。仅该诊断程序支持`SOLVER_V63_DIAGNOSTICS`；正式运行使用第二次冻结构建，拒绝覆盖已有证据。采集、预算中断及最后未提交候选的语义、实际验证和下一步取舍统一由本轮实验正文维护，当前生产接口、默认值与精度保持原状。
+
+[第61轮宽候选乘积精度试验](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)的固定运行与冻结入口为[v64-run](experiments/data/2026-10-12-halpern-ipm/v64-run.py)、[v64-freeze](experiments/data/2026-10-12-halpern-ipm/v64-freeze.py)。候选沿用显式homogeneous_extended模式，完整源码以本轮冻结包为准；本轮起始95份来源另按原字节备份，不从文本记录重建混合行尾。构建、门槛、独立核验、恢复状态及后续取舍统一由该轮正文维护，不把解析测试通过当作默认生产能力已经升级。
+
+[第62轮宽常数恢复加权试验](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)的运行与冻结入口为[v65-run](experiments/data/2026-10-12-halpern-ipm/v65-run.py)、[v65-freeze](experiments/data/2026-10-12-halpern-ipm/v65-freeze.py)。本轮沿用已有模式和工作计数字段；起始身份采用上一轮实际恢复状态，候选范围、加权账本、构建及取舍统一见实验正文，不从累计恢复次数推断一定执行过加权步骤。
+
+[第63轮CHOLMOD矩形输入试验](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)的运行与冻结入口为[v66-run](experiments/data/2026-10-12-halpern-ipm/v66-run.py)、[v66-freeze](experiments/data/2026-10-12-halpern-ipm/v66-freeze.py)，实际选中来源见[接纳状态](experiments/data/2026-10-12-halpern-ipm/v66-accepted-state.json)。保留路径通过显式normal_cholmod_aat选择，沿用原单行消元要求与动态正则限制；已有normal_cholmod和默认值保持。实现范围、固定500条结果、独立核验及接纳依据统一由实验正文维护，不把扩集门槛通过等同于打平HiGHS或自动修改默认配置。
+
+[第64轮固定空间诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)的入口为[v67-build](experiments/data/2026-10-12-halpern-ipm/v67-build.py)、[v67-run](experiments/data/2026-10-12-halpern-ipm/v67-run.py)和[v67-analyze](experiments/data/2026-10-12-halpern-ipm/v67-analyze.py)。仅独立诊断程序支持SOLVER_V67_CAPTURE，生产无新增接口。工具拒绝覆盖已有证据；离线HiGHS调用不属于自主性能。本轮实际读取失败、固定原系数组装检查、独立核验及未实现事项统一由实验正文维护，生产保留状态和默认选择不变。
+
+[第65轮基解恢复试验](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)的入口为[v68-build](experiments/data/2026-10-12-halpern-ipm/v68-build.py)与[v68-run](experiments/data/2026-10-12-halpern-ipm/v68-run.py)，独立程序以SOLVER_V68_BASIS_RECOVERY=1开启，生产无该接口。一次恢复仍须现有原模型验收；Eigen内部调用仅能前后检查预算，实际超限保留为失败。固定500条结果、侧账本、证据复核和不集成决定统一由实验正文维护；当前生产保持v66，不能把扩集门槛通过解释为生产接纳。
+
+[第66轮左看消元选基](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v69-build](experiments/data/2026-10-12-halpern-ipm/v69-build.py)与[v69-run](experiments/data/2026-10-12-halpern-ipm/v69-run.py)，独立程序以SOLVER_V69_BASIS_RECOVERY=1开启。选择循环有单独工作额度，侧账本区分已选主元与原模型验收；该额度不替代总时间限制。源码依据、22项自测、500条对照和未集成取舍统一由实验正文维护，生产接口不变。
+
+[第67轮选择额度试验](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v70-build](experiments/data/2026-10-12-halpern-ipm/v70-build.py)与[v70-run](experiments/data/2026-10-12-halpern-ipm/v70-run.py)，独立程序以SOLVER_V70_BASIS_RECOVERY=1开启。本轮只提高内部工作额度，原共同时间保持；实际恢复与终验拒绝、未扩完整集及下一诊断由实验正文维护。生产继续保留v66。
+
+[第68轮基候选精确诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v71-build](experiments/data/2026-10-12-halpern-ipm/v71-build.py)、[v71-run](experiments/data/2026-10-12-halpern-ipm/v71-run.py)与[v71-analyze](experiments/data/2026-10-12-halpern-ipm/v71-analyze.py)。仅独立诊断程序支持SOLVER_V71_CAPTURE，并沿用原V70恢复开关；采集有容量与时间限制，分析采用捕获binary64的精确有理数。实际18条、采集开关兼容、基内外残差、原模型gap区别及结项的额外侧账本检查由本轮正文维护；未改变生产能力或正式成绩。
+
+[第69轮同因子基精修](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v72-build](experiments/data/2026-10-12-halpern-ipm/v72-build.py)与[v72-run](experiments/data/2026-10-12-halpern-ipm/v72-run.py)，独立程序以SOLVER_V72_BASIS_RECOVERY开启。新增两侧最多一次残差修正和独立账本，平台有效位数明确记录；原模型终验仍决定提交。实际29组自测、136条对照、未扩集和不集成决定由本轮实验维护，生产继续保持v66。
+
+[第70轮有限两阶段换基](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v73-build](experiments/data/2026-10-12-halpern-ipm/v73-build.py)与[v73-run](experiments/data/2026-10-12-halpern-ipm/v73-run.py)，仅独立程序支持SOLVER_V73_BASIS_RECOVERY。初始构基和两阶段修复分别记账，最终仍须原模型终验。42组内核测试、500条对照、入口残差守卫失败及下一分辨实验统一由该轮正文维护，生产接口与保留状态不变。

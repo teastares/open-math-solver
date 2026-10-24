@@ -1,0 +1,75 @@
+{
+  "created_at_utc": "2026-10-18T07:49:41.970319+00:00",
+  "passed": true,
+  "identity_sha256": "43289afc82b6c73892b5fa91ae5363dcd4e0a27baad56c127350c9bff42c0c73",
+  "source_count": 95,
+  "source_mismatches": [],
+  "library_count": 17,
+  "library_mismatches": [],
+  "executables": {
+    ".tools/solver-ipm-v54.exe": "f28846612499fd274407e250dae8118a7dd049f5f78aa16e193028a293439b64",
+    "build/release/solver.exe": "f28846612499fd274407e250dae8118a7dd049f5f78aa16e193028a293439b64"
+  },
+  "source_zip_sha256": "d27f536594dddaab898f2e4c5be84ed07e03e9a5f001c4605e864996f56846ec",
+  "source_zip_members_match": true,
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "archive_tool_sha256": "e738388e0705179f88f4c3df22656b4cf7901e87bf378d5f7fda56be66c49db5",
+  "ninja_sha256": "e52a7ad9538d9618c67a0bd777964e2eec8a30f68b810a2f6adce1f2daf847b8",
+  "ninja_commands_sha256": "9fa8e2be047cfb82033821a6651c88a8105012c7b71ad440cd91c32f051f1e77",
+  "original_compile_commands": {
+    "ipm": [
+      "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe  -ID:/Documents/codes/solver/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-src/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-build/include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/AMD/Include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/SuiteSparse_config -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -MD -MT CMakeFiles/solver_ipm.dir/src/ipm.cpp.obj -MF CMakeFiles\\solver_ipm.dir\\src\\ipm.cpp.obj.d -o CMakeFiles/solver_ipm.dir/src/ipm.cpp.obj -c D:/Documents/codes/solver/src/ipm.cpp"
+    ],
+    "normal_cholesky": [
+      "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe -DEIGEN_DONT_PARALLELIZE -DEIGEN_MPL2_ONLY -ID:/Documents/codes/solver/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-src/include -ID:/Documents/codes/solver/build/release/_deps/qdldl-build/include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/AMD/Include -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/SuiteSparse_config -ID:/Documents/codes/solver/build/release/_deps/suitesparse-src/CHOLMOD/Include -isystem D:/Documents/codes/solver/build/release/_deps/eigen-src -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic -MD -MT CMakeFiles/solver_normal_cholesky.dir/src/normal_cholesky.cpp.obj -MF CMakeFiles\\solver_normal_cholesky.dir\\src\\normal_cholesky.cpp.obj.d -o CMakeFiles/solver_normal_cholesky.dir/src/normal_cholesky.cpp.obj -c D:/Documents/codes/solver/src/normal_cholesky.cpp"
+    ]
+  },
+  "link_command_matches_identity": true,
+  "libraries_to_replace": {
+    "libsolver_ipm.a": {
+      "members": [
+        "ipm.cpp.obj",
+        "regularized_ldl.cpp.obj"
+      ],
+      "matches_expected": true,
+      "sha256": "6858da3b1a8262e4306f28e3b27de2246ed541a7bcc16b74b847cc2a4ba869f3"
+    },
+    "libsolver_normal_cholesky.a": {
+      "members": [
+        "normal_cholesky.cpp.obj"
+      ],
+      "matches_expected": true,
+      "sha256": "ddd3e9bf246c91b03b0eb4758c710875c65ed1fc0f36d7764efd8112d3bafa44"
+    }
+  },
+  "object_identity": {
+    "ipm.cpp.obj": {
+      "path": "D:\\Documents\\codes\\solver\\build\\release\\CMakeFiles\\solver_ipm.dir\\src\\ipm.cpp.obj",
+      "sha256": "f4fb39e24e8b5a8d7c45cbd45e339a586500bd978d388bcd7f65bc4be62945df",
+      "archive_member_sha256": "f4fb39e24e8b5a8d7c45cbd45e339a586500bd978d388bcd7f65bc4be62945df",
+      "archive_bytes_match": true
+    },
+    "regularized_ldl.cpp.obj": {
+      "path": "D:\\Documents\\codes\\solver\\build\\release\\CMakeFiles\\solver_ipm.dir\\src\\regularized_ldl.cpp.obj",
+      "sha256": "680bfaba1726d6f0201bcff9a49fd58a5e3ad254a4887e4bfe611e3fe4e9b9d3",
+      "archive_member_sha256": "680bfaba1726d6f0201bcff9a49fd58a5e3ad254a4887e4bfe611e3fe4e9b9d3",
+      "archive_bytes_match": true
+    },
+    "normal_cholesky.cpp.obj": {
+      "path": "D:\\Documents\\codes\\solver\\build\\release\\CMakeFiles\\solver_normal_cholesky.dir\\src\\normal_cholesky.cpp.obj",
+      "sha256": "4d2ecb3af81a104a305261dfc0c1eb1eb3c0527b5f58196db96f0785552f3e42",
+      "archive_member_sha256": "4d2ecb3af81a104a305261dfc0c1eb1eb3c0527b5f58196db96f0785552f3e42",
+      "archive_bytes_match": true
+    }
+  },
+  "proposed_replacements": {
+    "libsolver_ipm.a": [
+      "ipm-diagnostic.obj",
+      "D:\\Documents\\codes\\solver\\build\\release\\CMakeFiles\\solver_ipm.dir\\src\\regularized_ldl.cpp.obj"
+    ],
+    "libsolver_normal_cholesky.a": [
+      "normal_cholesky-diagnostic.obj"
+    ]
+  },
+  "scope": "只读身份及归档成员审计；ninja -t commands 和 llvm-ar t/p 仅读取已有构建，不执行编译、链接或LP。独立诊断应保留其他显式链接输入与次序，并核编译依赖及前后身份。"
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe",
+    "-std=c++20",
+    "-x",
+    "c++",
+    "-fsyntax-only",
+    "-"
+  ],
+  "source": "#include <limits>\nconstexpr long long contribution_budget=8000000;\nconstexpr bool bounded_gram_arithmetic =\n    std::numeric_limits<double>::is_iec559 && std::numeric_limits<double>::radix == 2 &&\n    std::numeric_limits<double>::digits == 53 && std::numeric_limits<double>::max_exponent == 1024 &&\n    std::numeric_limits<double>::min_exponent == -1021 && std::numeric_limits<double>::has_denorm == std::denorm_present &&\n    std::numeric_limits<long double>::is_iec559 && std::numeric_limits<long double>::radix == 2 &&\n    std::numeric_limits<long double>::digits >= 53 &&\n    std::numeric_limits<long double>::max_exponent >= 4096 && std::numeric_limits<long double>::min_exponent <= -4096 &&\n    contribution_budget <= 8'000'000;\nstatic_assert(bounded_gram_arithmetic);\n",
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "source_sha256": "28a3e222c6f0e8612edf29986fcca8d054af0551aca361b3b7a5ea44970834d8",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "elapsed_seconds": 0.040399299934506416,
+  "passed": true,
+  "solver_runs": 0
+}

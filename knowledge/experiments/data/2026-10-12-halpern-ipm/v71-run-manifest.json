@@ -1,0 +1,58 @@
+{
+  "started_at_utc": "2026-10-24T06:17:54.420975+00:00",
+  "plan_sha256": "dd03b4c7cdad5319b1e47fa0f8e67845f7002f85e7b6c33da3cf03b857b55c7b",
+  "reference": "D:\\Documents\\codes\\solver\\.tools\\v70-basis\\solver-diagnostic.exe",
+  "reference_sha256": "1f4c923c7c54f91635b8193ce07bfb2f674ee99113f78ec330d9775dcd2b31e1",
+  "candidate": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\solver-diagnostic.exe",
+  "candidate_sha256": "6a63c98c6dbde90fb7733916cf170799a66ab768b828de1f5891be5639735099",
+  "build_manifest": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\build-manifest.json",
+  "build_manifest_sha256": "7401630d8594924b2d32e794f4b27734073bb41cf174afbefe569e64a826be38",
+  "protected": {
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v70-run.py": "cdc10668c1b75c1c021bdb0f029813971e25b6ba56c3b1fce306be3518d5b016",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v71-run.py": "2ee33a7dc1c6b2ac85e00776edb239d447b32944f1ef27d791bc2eede7c70269",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v70-run-identity.json": "cd82c22e3883e05343dd26e2bce1351ef87d2bbb3625edb84c2169ee7373dd72",
+    "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\build-manifest.json": "7401630d8594924b2d32e794f4b27734073bb41cf174afbefe569e64a826be38",
+    "D:\\Documents\\codes\\solver\\.tools\\v70-basis\\build-manifest.json": "406c15f9ce4231408130f2273fd3ab44dd0221837d821b4caeb05fca3150a628",
+    "D:\\Documents\\codes\\solver\\.tools\\v70-basis\\solver-diagnostic.exe": "1f4c923c7c54f91635b8193ce07bfb2f674ee99113f78ec330d9775dcd2b31e1",
+    "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\solver-diagnostic.exe": "6a63c98c6dbde90fb7733916cf170799a66ab768b828de1f5891be5639735099",
+    "D:\\Documents\\codes\\solver\\scripts\\benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+    "D:\\Documents\\codes\\solver\\scripts\\compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v47-profile-build.py": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v70-basis-instrumentation.py": "145cbff7d7e54c90a9a137e4a0fb5dde3b157a8abab7b2982b060f0280ceefae",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v70-basis-recovery.hpp": "c597d0e988d0ddcf0094e1664d9167a439d5be55d872579280a176a112702d4f",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v71-basis-capture-self-test.cpp": "f4be07c14321a51c813813f32314ad747c1b973b64d2ec9fd836ec1bc9466372",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v71-basis-capture.hpp": "1f6f04b1bee575a50cfba781e077ce2ae014b1a54ccdb741ef9dc5573f8e4f47",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v71-basis-instrumentation.py": "1d3523ad76ee79d779b17fca111592868f62768d7c70af97ad949a4095815f32",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v71-build.py": "9fa40989410a83a618dbd0f65c096ccd17b3b5a8b43ed38184713ce0fc1ae6e9"
+  },
+  "models": [
+    {
+      "name": "greenbea",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d"
+    },
+    {
+      "name": "forplan",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7"
+    },
+    {
+      "name": "greenbeb",
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865"
+    }
+  ],
+  "variants": [
+    "frozen_v70_on",
+    "diagnostic_capture_off",
+    "diagnostic_capture_on"
+  ],
+  "repeats": 2,
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "threads": 1,
+  "seed": 0,
+  "capture_root": "D:\\Documents\\codes\\solver\\.tools\\v71-diagnostic\\captures",
+  "environment_rule": "每次先清除所有SOLVER_V前缀与OPENBLAS_CORETYPE；三状态均设置V70恢复=1，仅采集on另设置V71前缀路径；单线程，调用后恢复原环境。",
+  "order_rule": "每模型两重复，三状态按case_index模3向左轮转，全部串行。"
+}

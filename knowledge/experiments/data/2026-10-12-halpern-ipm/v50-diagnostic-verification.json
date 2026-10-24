@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-18T06:29:53.017254+00:00",
+  "scope": "只读来源、原始分类及调试记录核验；未运行 LP、构建或调试器",
+  "reproduction_runs": 20,
+  "by_version": {
+    "48": {
+      "reports": 7,
+      "access_violations": 3,
+      "other_process_failures": 0
+    },
+    "50": {
+      "reports": 9,
+      "access_violations": 1,
+      "other_process_failures": 0
+    }
+  },
+  "debugger_runs": 4,
+  "debugger_access_violations": 2,
+  "debugger_records": [
+    {
+      "base": "v50-lldb-attempt1",
+      "access_violation_caught": false
+    },
+    {
+      "base": "v50-lldb-attempt2",
+      "access_violation_caught": true
+    },
+    {
+      "base": "v50-lldb-stack-attempt2",
+      "access_violation_caught": false
+    },
+    {
+      "base": "v50-lldb-stack-attempt3",
+      "access_violation_caught": true
+    }
+  ],
+  "initial_and_final_shared_evidence_equal": true,
+  "artifacts": {
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-crash-repro-manifest.json": "14fb44b5e6b50432d426c2ab656b2fb4cf1e18f808543fd0bdb8b8350f887470",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-crash-repro-attempt1.py": "c7023b19df71ab5bf739c2c463cc5bbe56c5c270745482af90b5aa8c1cba2cba",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-probe-runs.jsonl.gz": "5693a7b6a8aa1ca200d71c5e93624a762f566e53d7ffa8dfa7390682dffc8614",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\ipm-v48-identity.json": "988d97e2c29b6d3d6edb918e4bdcac0e05e51e380cf939023b71457b6e7e65bd",
+    "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v48.exe": "38b90b7034120b57405cfcdff5e4569cca8622a4ed2aa7a7a7eb580217e7484c",
+    "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\ipm-v50-identity.json": "f37d8020a57c93130c213eb46b3c88f233e0a280bc4d47a33d8ff8cdf055f521",
+    "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v50.exe": "b74cb341afad4d983255d8d4b6ec062547a19a3bc98d7085218f1763af5aeae8",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-crash-repro-runs.jsonl.gz": "15612f1bbef30912d713dec78d123ec2367285f142f05e80eea65d3c99eff4cd",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-crash-repro-reviewed.json": "598516c0ea5c419b0bac8a9efb03812cb9a417f7d7a9356da89ec46e18847643",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-crash-repro-summary.json": "6e4c134bcbf11961e75c49f0fd02220b44781e3a85eee9e2348a30b008367951",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-crash-repro.py": "be933467e79893e5c6e77fbc6c71a16da302d81d5a2246bbb9ca312867b41805",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-manifest.json": "be01825f773dc3d3de5b74b23a82ffc235e1c4ccdd378481d6bf95ef423cfe24",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-result.json": "0e6403805e080fbca5b2ac404742e17f5a6ebe803b0806c92e49afa96f8ab974",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb.py": "b9f8e73d63e0c02424bf0fd435b98f68043610434e671a815ff38f908ea5803a",
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\lldb.exe": "689d77c75849e5173c99971fa6e8782844e7d2c236fa1a6d9d50a8f1520e5bab",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-attempt2.log": "3fb0320b475e115a8fd0fcd98964731abc203c6866297ab44cf57404fe2d7ec7",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-attempt2-target.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-attempt2-target.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-attempt2-command.json": "efd266914a7ce51966122afa01b5c37d7137d12cebed363482c8e4464ac47a3e",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-manifest.json": "52121b73f4a8598117283a722390cd5636f2dec6405c524794460fa74c3b221a",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-result.json": "fee986950db5bc81c2208bcc6c76cf09794e0e9134152fb438dab42adbc52b8a",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack.py": "c7d33529394731b7ab4f67ac7593a1e6244b746897361a03528f3c7e30923385",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt2.log": "9c680b456a890af1c9f61db4bc7d7f719be845ee14df7fb5899dc2d14b47a19b",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt2-target.stdout": "3edc7a130f6c520f49cfaa59b53adc3a4f8f5a32c7621b393bc5d7ef914c9e43",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt2-target.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt2-command.json": "f21dec191fe778d784e33d61d0c5d6e88d87dc589d729e70718ffe5b216de660",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt3.log": "4aa460b95707538a16bebf0f895ab370a66baf481d97fad5ecd6962300c91d2c",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt3-target.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt3-target.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-stack-attempt3-command.json": "141bf4f487ee5fe976252e600ff108f2853a5ba0a556b7db21ae150a26394d10",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-attempt1-command.json": "c638a599c2c4168cd7f3574d7e5864ec11ce49ca92f799e3e5830a9ca7012162",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-lldb-attempt1.log": "22f50e532eaf3a1ae933f59906c29cc2c81a0d20a5eeca3e6b88530b509b3f7f",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-verification-initial.json": "c9262d2d4eabac2ae88ca523cbc9ce4ffd5e1c49aa42e578826361069e0c68dd",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-verification.json": "51fca2a510f68de28210dd13ffcde79459a6dbfe6ce06c214f1cb6acf018ef3d",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v50-diagnostic-verify.py": "cc4e28b8193096391172aef1a83a5566cfb7b96b31cdde1a62de8fd30954dcc5"
+  },
+  "limits": [
+    "首次手动调试没有运行时来源清单；这里只核命令、日志和当前冻结工具身份，不能补造当时的前后校验。",
+    "本核验确认崩溃早于新恢复策略，且两次调试停在 COOPERLAKE 的 ret 指令；未捕获入口 K 和写越界现场，不能据此单独证明缓冲容量为最终根因。",
+    "每个版本十次复现不构成稳定率估计；诊断数据不进入性能评分，原有失败保持原样。"
+  ]
+}

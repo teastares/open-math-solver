@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "diagnostic_only": true,
+  "verifier_sha256": "fa4bc92c70de8355a0f5f921c00ead9427b98b8c4a68d4b002ed4e6bdb188efa",
+  "plan_sha256": "f3b1871230ae2062b2a4ccd1bea4bcc4ab4d158caf05f5fc28a2bd7dab9becc7",
+  "clarification_sha256": "71f12b6e76f1d12e4e8554f5e6310927145e5933c1f8e6b8a1fc8ffe4b59b054",
+  "build_manifest_sha256": "ff6c33712d6d8557fd646861505b52bfe88cabf8077c162ee06af0822a7440a8",
+  "raw_sha256": "d7638f0a573c838a472a9cf0c8e53fd70322e296318d77e995d193e30ef5c8cd",
+  "self_test": {
+    "passed": true,
+    "scope": "仅合成 JSON、命令、二进制数组和 Fraction 代数；未运行 LP",
+    "negative_cases": 12
+  },
+  "build": {
+    "sources": 92,
+    "libraries": 17,
+    "reversible_anchors": {
+      "ipm": 9,
+      "normal": 8
+    },
+    "explicit_compile_inputs": 1088,
+    "implicit_link_inputs_verified": false
+  },
+  "runs": 21,
+  "pairs": 14,
+  "non_budget_pairs": 12,
+  "non_budget_equal": 12,
+  "budget_pairs": 2,
+  "offline": {
+    "normal_metadata": 7,
+    "normal_captured": 2,
+    "replays": [
+      {
+        "case_index": 1,
+        "cholmod_status_minor_reproduced": true,
+        "backends": [
+          {
+            "name": "cholmod_supernodal",
+            "factor_success": false,
+            "rhs_finite": []
+          },
+          {
+            "name": "eigen_double",
+            "factor_success": true,
+            "rhs_finite": [
+              true,
+              true
+            ]
+          },
+          {
+            "name": "eigen_long_double",
+            "factor_success": true,
+            "rhs_finite": [
+              true,
+              true
+            ]
+          }
+        ],
+        "residual_vectors_independently_recomputed": false,
+        "residual_limit": "回放不保存完整解向量；这里核对计数、有限性和后向误差公式，未独立重做逐项残差。"
+      },
+      {
+        "case_index": 5,
+        "cholmod_status_minor_reproduced": true,
+        "backends": [
+          {
+            "name": "cholmod_supernodal",
+            "factor_success": false,
+            "rhs_finite": []
+          },
+          {
+            "name": "eigen_double",
+            "factor_success": true,
+            "rhs_finite": [
+              true,
+              true
+            ]
+          },
+          {
+            "name": "eigen_long_double",
+            "factor_success": false,
+            "rhs_finite": []
+          }
+        ],
+        "residual_vectors_independently_recomputed": false,
+        "residual_limit": "回放不保存完整解向量；这里核对计数、有限性和后向误差公式，未独立重做逐项残差。"
+      }
+    ],
+    "hsd_metadata": 8,
+    "hsd": [
+      {
+        "captured": true,
+        "classification": "positive_exact_denominator_other_scalar_failure",
+        "exact_denominator_sign": 1,
+        "decimal_signs_match_exact": true,
+        "exact_metrics_checked": 17
+      },
+      {
+        "captured": false,
+        "status": "no_scalar_failure"
+      },
+      {
+        "captured": false,
+        "status": "no_scalar_failure"
+      },
+      {
+        "captured": false,
+        "status": "no_scalar_failure"
+      },
+      {
+        "captured": true,
+        "classification": "saved_direction_has_nonpositive_exact_denominator",
+        "exact_denominator_sign": -1,
+        "decimal_signs_match_exact": true,
+        "exact_metrics_checked": 17
+      },
+      {
+        "captured": true,
+        "classification": "saved_direction_has_nonpositive_exact_denominator",
+        "exact_denominator_sign": -1,
+        "decimal_signs_match_exact": true,
+        "exact_metrics_checked": 17
+      },
+      {
+        "captured": true,
+        "classification": "saved_direction_has_nonpositive_exact_denominator",
+        "exact_denominator_sign": -1,
+        "decimal_signs_match_exact": true,
+        "exact_metrics_checked": 17
+      },
+      {
+        "captured": false,
+        "status": "no_scalar_failure"
+      }
+    ]
+  },
+  "archive": {
+    "archive": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v49-diagnostic-artifacts.zip",
+    "zip_sha256": "ab9f9f8c4e2cc8e5018333710566a06c0e177db16ff59578fa56bbac97a40d16",
+    "members": 66
+  },
+  "limits": [
+    "诊断证据核验，不是性能扩集、LP 达标或加速结论。",
+    "仅核验显式构建输入及记录的编译依赖；不声称逐项核验隐式运行库。",
+    "轨迹仅剔除顶层 timings/backend_version；预算受限分叉单列。",
+    "齐次精确恒等式针对保存方向与实际 H，不推断理想精确方向。"
+  ]
+}

@@ -1,0 +1,58 @@
+(lldb) target create "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v48.exe"
+Current executable set to 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64).
+(lldb) settings set -- target.run-args  "solve" "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps" "--backend" "ipm" "--time-limit" "5.0" "--threads" "1" "--seed" "0" "--mip-gap" "0.0001" "--iteration-limit" "200" "--scaling-passes" "5" "--ipm-method" "homogeneous" "--ipm-singleton-elimination" "on" "--ipm-dynamic-regularization" "off" "--ipm-kkt-equilibration" "on" "--ipm-linear-accuracy" "strict" "--ipm-central-corrections" "0" "--ipm-direction-retries" "0" "--ipm-krylov-history-size" "0" "--ipm-linear-solver" "normal_cholmod" "--ipm-inexact-prefilter" "off" "--ipm-fixed-variable-elimination" "on" "--ipm-singleton-presolve" "off" "--ipm-presolve-fixed-elimination" "off"
+(lldb) run
+{"schema_version":1,"solver_version":"0.5.0","backend":"ipm","backend_version":"
+[24;80H"ipm-cpu-0.41.0","input":"D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps
+[24;80Hs","options":{"backend":"ipm","time_limit":5,"threads":1,"seed":0,"mip_relative_g
+[24;80Hgap":0.0001,"pdlp":null,"ipm":{"method":"homogeneous","max_iterations":200,"scali
+[24;80Hing_passes":5,"eliminate_singletons":true,"dynamic_regularization":false,"equilib
+[24;80Hbrate_kkt":true,"linear_accuracy":"strict","central_corrections":0,"direction_ret
+[24;80Htries":0,"krylov_history_size":0,"linear_solver":"normal_cholmod","eliminate_fixe
+[24;80Hed_variables":true,"presolve_singleton_rows":false,"eliminate_presolved_fixed_var
+[24;80Hriables":false,"inexact_prefilter":false},"highs":null,"tolerances":{"feasibility
+[24;80Hy_absolute":9.9999999999999995e-08,"feasibility_relative":1.0000000000000001e-09,
+[24;80H,"integrality":9.9999999999999995e-07,"objective_absolute":9.9999999999999995e-08
+[24;80H8,"objective_relative":1.0000000000000001e-09}},"status":"numerical_error","backe
+[24;80Hend_status":"numerical_error","verification_level":"residuals_checked","message":
+[24;80H:"姝ｅ垯鍖栨瑙勬柟绋?Cholesky 鍒嗚В閲嶈瘯鏈垚鍔?,"model":{"name":"dfl001","colu
+[24;80Humns":12230,"rows":6071,"nonzeros":35632,"sense":"minimize","objective_offset":0,
+[24;80H,"is_mip":false},"has_solution":false,"solution":null,"objective":null,"best_boun
+[24;80Hnd":null,"absolute_gap":null,"relative_gap":null,"nodes":null,"simplex_iterations
+[24;80Hs":null,"pdlp_iterations":null,"pdlp_acceleration_attempts":null,"pdlp_accelerati
+[24;80Hion_accepted":null,"pdlp_operator_passes":null,"ipm_iterations":0,"ipm_factorizat
+[24;80Htions":9,"ipm_refinement_steps":28,"ipm_weighted_krylov_steps":0,"ipm_krylov_recy
+[24;80Hycle_projections":0,"ipm_krylov_recycle_acceptances":0,"ipm_krylov_recycle_vector
+[24;80Hrs":0,"ipm_krylov_recycle_peak_dimension":0,"ipm_regularization_searches":0,"ipm_
+[24;80H_regularization_reductions":0,"ipm_unshifted_factorizations":0,"ipm_full_newton_p
+[24;80Hpreconditioner_solves":0,"ipm_full_newton_products":0,"ipm_bounded_newton_returns
+[24;80Hs":0,"ipm_bounded_newton_inexact_returns":0,"ipm_homogeneous_constant_solves":0,"
+[24;80H"ipm_homogeneous_direction_solves":0,"ipm_homogeneous_tau":1,"ipm_homogeneous_kap
+[24;80Hppa":1,"ipm_homogeneous_scaled_products":0,"ipm_homogeneous_scaled_refinement_ste
+[24;80Heps":0,"ipm_homogeneous_scaled_inexact_returns":0,"ipm_direction_retries":0,"ipm_
+[24;80H_direction_retry_successes":0,"ipm_primal_regularization":1.8189894035458565e-05,
+[24;80H,"ipm_dual_regularization":1.8189894035458565e-05,"ipm_schur_residual_products":0
+[24;80H0,"ipm_schur_refinement_steps":0,"ipm_schur_refinement_acceptances":0,"ipm_kkt_di
+[24;80Himension":6071,"ipm_factor_nonzeros":3200112,"ipm_factor_backend":"normal_cholmod
+[24;80Hd","ipm_structural_fallbacks":0,"ipm_eliminated_singletons":12243,"ipm_regularize
+[24;80Hed_pivots":0,"ipm_backward_error_acceptances":0,"ipm_inexact_acceptances":0,"ipm_
+[24;80H_inexact_prefilter_rejections":0,"ipm_eliminated_fixed_variables":0,"ipm_presolve
+[24;80Hed_singleton_rows":0,"ipm_presolved_fixed_columns":0,"ipm_central_correction_atte
+[24;80Hempts":0,"ipm_central_correction_acceptances":0,"lp_optimality":{"valid_input":tr
+[24;80Hrue,"dual_feasible":false,"gap_satisfied":false,"numerically_optimal":false,"max_
+[24;80H_dual_residual":6595744.5112750987,"dual_objective_estimate":4562182575.3373623,"
+[24;80H"corrected_dual_bound":null,"objective_gap":165449765.72003299,"relative_objectiv
+[24;80Hve_gap":0.03499632665661731,"errors":["鍊欓€夎В杩濆弽鍙橀噺鐣?,"鍊欓€夎В杩濆弽琛 
+[24;80H 岀害鏉?,"鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?","鎸囧悜鏃犵┓鍙橀噺 
+[24;80H 鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹 
+[24;80H 瑰樊锛?","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?1","鎸囧悜鏃犵┓鍙橀 
+[24;80H 噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?3","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭
+[24;79H嚭瀹瑰樊锛?4","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?5","鎸囧悜鏃犵┓鍙
+[24;79H鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?6","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭
+[24;79H呭嚭瀹瑰樊锛?7","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?2","鎸囧悜鏃犵┓
+[24;80H┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?6","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒
+[24;79H瓒呭嚭瀹瑰樊锛?7","鎸囧悜鏃犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?0","鎸囧悜鏃 
+[24;80H 犵┓鍙橀噺鐣岀殑瀵瑰伓娈嬪樊瓒呭嚭瀹瑰樊锛?2","鎸囧悜鏃犵┓鍙橀噺Process 6944 launched: 'D:\Documents\codes\solver\.tools\solver-ipm-v48.exe' (x86_64)
+Process 6944 exited with status = 4 (0x00000004)
+(lldb) thread backtrace all
+error: Command requires a process which is currently stopped.

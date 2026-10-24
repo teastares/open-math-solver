@@ -28,7 +28,7 @@
 namespace {
 
 constexpr std::string_view version = SOLVER_VERSION;
-constexpr std::string_view usage = "solver solve <模型.mps|模型.lp> [--backend highs|pdlp|ipm] [--time-limit 秒] [--threads 数量] [--seed 种子] [--mip-gap 比例] [--iteration-limit 迭代次数] [--scaling-passes 缩放轮数] [--pdlp-mode baseline|adaptive|subspace|halpern|halpern_reflected] [--pdlp-history-size 历史数量] [--highs-solver choose|simplex|ipm] [--highs-crossover on|off] [--highs-presolve choose|on|off] [--ipm-method mehrotra|homogeneous] [--ipm-singleton-elimination on|off] [--ipm-dynamic-regularization on|off] [--ipm-kkt-equilibration on|off] [--ipm-linear-accuracy strict|backward|inexact|blockwise|blockwise_weighted|blockwise_forcing|blockwise_forcing_weighted|adaptive_regularization|primal_dual_regularization|curvature_regularization|full_newton|bounded_newton|homogeneous_scaled] [--ipm-central-corrections 0|1] [--ipm-direction-retries 0..8] [--ipm-krylov-history-size 0..8] [--ipm-linear-solver qdldl|sparselu|normal|qdldl_extended|factorhighs|normal_augmented|normal_multifrontal|normal_extended|normal_refined|normal_cholmod] [--ipm-inexact-prefilter on|off] [--ipm-fixed-variable-elimination on|off] [--ipm-singleton-presolve on|off] [--ipm-presolve-fixed-elimination on|off] [--output 报告.json]；homogeneous_scaled 仅用于 homogeneous，以有限精化保留最佳有限方向，未达内层精度仍须通过原模型终验";
+constexpr std::string_view usage = "solver solve <模型.mps|模型.lp> [--backend highs|pdlp|ipm] [--time-limit 秒] [--threads 数量] [--seed 种子] [--mip-gap 比例] [--iteration-limit 迭代次数] [--scaling-passes 缩放轮数] [--pdlp-mode baseline|adaptive|subspace|halpern|halpern_reflected] [--pdlp-history-size 历史数量] [--highs-solver choose|simplex|ipm] [--highs-crossover on|off] [--highs-presolve choose|on|off] [--ipm-method mehrotra|homogeneous] [--ipm-singleton-elimination on|off] [--ipm-dynamic-regularization on|off] [--ipm-kkt-equilibration on|off] [--ipm-objective-scaling on|off] [--ipm-linear-accuracy strict|backward|inexact|blockwise|blockwise_weighted|blockwise_forcing|blockwise_forcing_weighted|adaptive_regularization|primal_dual_regularization|curvature_regularization|full_newton|bounded_newton|homogeneous_scaled|homogeneous_repair] [--ipm-central-corrections 0|1] [--ipm-direction-retries 0..8] [--ipm-krylov-history-size 0..8] [--ipm-linear-solver qdldl|sparselu|normal|qdldl_extended|factorhighs|normal_augmented|normal_multifrontal|normal_extended|normal_refined|normal_cholmod|normal_cholmod_aat] [--ipm-inexact-prefilter on|off] [--ipm-fixed-variable-elimination on|off] [--ipm-singleton-presolve on|off] [--ipm-presolve-fixed-elimination on|off] [--output 报告.json]；homogeneous_scaled 仅用于 homogeneous，以有限精化保留最佳有限方向，未达内层精度仍须通过原模型终验；homogeneous_repair 仅用于 homogeneous，在有限非正标量分母时每轮至多按块严格重算一次常数方向";
 
 // 部分第三方解析诊断直接写入 stdout，在命令行边界将它们转发至 stderr。
 class DiagnosticRedirect {
@@ -177,6 +177,7 @@ std::string ipm_options(const solver::IpmOptions& options) {
   return "{\"method\":" + quote(options.method) +
          ",\"max_iterations\":" + std::to_string(options.max_iterations) +
          ",\"scaling_passes\":" + std::to_string(options.scaling_passes) +
+         ",\"objective_scaling\":" + boolean(options.objective_scaling) +
          ",\"eliminate_singletons\":" + boolean(options.eliminate_singletons) +
          ",\"dynamic_regularization\":" + boolean(options.dynamic_regularization) +
          ",\"equilibrate_kkt\":" + boolean(options.equilibrate_kkt) +
@@ -249,6 +250,7 @@ Arguments parse(const std::vector<std::string>& args) {
         option != "--pdlp-history-size" && option != "--highs-solver" && option != "--highs-crossover" &&
         option != "--highs-presolve" && option != "--ipm-singleton-elimination" &&
         option != "--ipm-dynamic-regularization" && option != "--ipm-kkt-equilibration" &&
+        option != "--ipm-objective-scaling" &&
         option != "--ipm-method" && option != "--ipm-linear-accuracy" && option != "--ipm-central-corrections" &&
         option != "--ipm-direction-retries" && option != "--ipm-krylov-history-size" &&
         option != "--ipm-linear-solver" && option != "--ipm-inexact-prefilter" &&
@@ -312,9 +314,13 @@ Arguments parse(const std::vector<std::string>& args) {
       if (value != "on" && value != "off")
         throw std::invalid_argument("--ipm-kkt-equilibration 仅支持 on 或 off");
       parsed.options.ipm.equilibrate_kkt = value == "on";
+    } else if (option == "--ipm-objective-scaling") {
+      if (value != "on" && value != "off")
+        throw std::invalid_argument("--ipm-objective-scaling 仅支持 on 或 off");
+      parsed.options.ipm.objective_scaling = value == "on";
     } else if (option == "--ipm-linear-accuracy") {
-      if (value != "strict" && value != "backward" && value != "inexact" && value != "blockwise" && value != "blockwise_weighted" && value != "blockwise_forcing" && value != "blockwise_forcing_weighted" && value != "adaptive_regularization" && value != "primal_dual_regularization" && value != "curvature_regularization" && value != "full_newton" && value != "bounded_newton" && value != "homogeneous_scaled")
-        throw std::invalid_argument("--ipm-linear-accuracy 仅支持 strict、backward、inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton 或 homogeneous_scaled");
+      if (value != "strict" && value != "backward" && value != "inexact" && value != "blockwise" && value != "blockwise_weighted" && value != "blockwise_forcing" && value != "blockwise_forcing_weighted" && value != "adaptive_regularization" && value != "primal_dual_regularization" && value != "curvature_regularization" && value != "full_newton" && value != "bounded_newton" && value != "homogeneous_scaled" && value != "homogeneous_repair")
+        throw std::invalid_argument("--ipm-linear-accuracy 仅支持 strict、backward、inexact、blockwise、blockwise_weighted、blockwise_forcing、blockwise_forcing_weighted、adaptive_regularization、primal_dual_regularization、curvature_regularization、full_newton、bounded_newton、homogeneous_scaled 或 homogeneous_repair");
       parsed.options.ipm.linear_accuracy = value;
     } else if (option == "--ipm-direction-retries") {
       parsed.options.ipm.direction_retries = parse_integer(value, option, 0);
@@ -329,8 +335,8 @@ Arguments parse(const std::vector<std::string>& args) {
       if (parsed.options.ipm.central_corrections > 1)
         throw std::invalid_argument("--ipm-central-corrections 当前仅支持 0 或 1");
     } else if (option == "--ipm-linear-solver") {
-      if (value != "qdldl" && value != "sparselu" && value != "normal" && value != "qdldl_extended" && value != "factorhighs" && value != "normal_augmented" && value != "normal_multifrontal" && value != "normal_extended" && value != "normal_refined" && value != "normal_cholmod")
-        throw std::invalid_argument("--ipm-linear-solver 仅支持 qdldl、sparselu、normal、qdldl_extended、factorhighs、normal_augmented、normal_multifrontal、normal_extended、normal_refined 或 normal_cholmod");
+      if (value != "qdldl" && value != "sparselu" && value != "normal" && value != "qdldl_extended" && value != "factorhighs" && value != "normal_augmented" && value != "normal_multifrontal" && value != "normal_extended" && value != "normal_refined" && value != "normal_cholmod" && value != "normal_cholmod_aat")
+        throw std::invalid_argument("--ipm-linear-solver 仅支持 qdldl、sparselu、normal、qdldl_extended、factorhighs、normal_augmented、normal_multifrontal、normal_extended、normal_refined、normal_cholmod 或 normal_cholmod_aat");
       parsed.options.ipm.linear_solver = value;
     } else if (option == "--ipm-fixed-variable-elimination") {
       if (value != "on" && value != "off")
@@ -364,6 +370,9 @@ Arguments parse(const std::vector<std::string>& args) {
   if (parsed.options.backend != "ipm" &&
       std::find(seen.begin(), seen.end(), "--ipm-kkt-equilibration") != seen.end())
     throw std::invalid_argument("--ipm-kkt-equilibration 仅适用于 ipm 后端");
+  if (parsed.options.backend != "ipm" &&
+      std::find(seen.begin(), seen.end(), "--ipm-objective-scaling") != seen.end())
+    throw std::invalid_argument("--ipm-objective-scaling 仅适用于 ipm 后端");
   if (parsed.options.backend != "ipm" &&
       std::find(seen.begin(), seen.end(), "--ipm-linear-accuracy") != seen.end())
     throw std::invalid_argument("--ipm-linear-accuracy 仅适用于 ipm 后端");
@@ -472,6 +481,8 @@ std::string report(const Arguments& args, const solver::SolveResult& result) {
       << ",\"ipm_bounded_newton_returns\":" << integer(result.ipm_bounded_newton_returns)
       << ",\"ipm_bounded_newton_inexact_returns\":" << integer(result.ipm_bounded_newton_inexact_returns)
       << ",\"ipm_homogeneous_constant_solves\":" << integer(result.ipm_homogeneous_constant_solves)
+      << ",\"ipm_homogeneous_constant_repairs\":" << integer(result.ipm_homogeneous_constant_repairs)
+      << ",\"ipm_homogeneous_constant_repair_successes\":" << integer(result.ipm_homogeneous_constant_repair_successes)
       << ",\"ipm_homogeneous_direction_solves\":" << integer(result.ipm_homogeneous_direction_solves)
       << ",\"ipm_homogeneous_tau\":" << number(result.ipm_homogeneous_tau)
       << ",\"ipm_homogeneous_kappa\":" << number(result.ipm_homogeneous_kappa)

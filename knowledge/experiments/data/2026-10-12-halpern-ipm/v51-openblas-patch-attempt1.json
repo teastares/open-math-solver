@@ -1,0 +1,14 @@
+{
+  "recorded_at_utc": "2026-10-18T06:36:31.227071+00:00",
+  "script_archive": "v51-openblas-patch-attempt1.cmake",
+  "script_sha256": "0f5a87feaca03fba604533848bf96804d6fbce8953a3df03d43872bd673f7e53",
+  "archive_method": "从最终脚本逆转唯一的LF输出修正，所得字节SHA与首次执行前记录一致。",
+  "observed_failure": "CMake Error at third_party/openblas/patch_dgemm_stack.cmake:107 (message): OpenBLAS 补丁写入校验失败",
+  "failure_record_source": "本会话首次工具返回的stderr转录；不是当时单独捕获的原始日志。",
+  "isolated_result": ".tools\\v51-patch-check\\good\\kernel\\x86_64\\dgemm_kernel_16x2_skylakex.S",
+  "isolated_result_sha256": "2b0f46d097941e2c76d0f59cb1da90035d241c2fa9885e2283c749a10a4dd03c",
+  "result_crlf_count": 5127,
+  "expected_lf_sha256": "7ad33091ab73c53684d1b4302335ac80969ccc4e4371d4895ca5564424a84e9b",
+  "result": "未通过，未触碰生产解包源码。随后使用明确LF的file(CONFIGURE)重试通过。",
+  "preprocess_check_attempt1": "首次输出断言因预处理器将分号与数字标签之间空格移除而失败；clang预处理本身退出0。改为忽略空白的匹配后，三架构×两入口6项全部通过。"
+}

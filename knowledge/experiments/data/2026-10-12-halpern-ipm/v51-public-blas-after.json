@@ -1,0 +1,35 @@
+{
+  "diagnostic_only": true,
+  "plan_sha256": "1ceb01fda1ac152d6d2753dfa7f38bc16d8a939b6d2602f4e567a9d1cbf25219",
+  "script_sha256": "b78dcf03c8c2c00047408d7933f148401a010aa0ef2993d4590d0564ac30a526",
+  "source_sha256": "979a7f622223303b66e6b658e09748c6ded5f300c24b9b23a82c57df243322b9",
+  "library_sha256": "8684f3ef1937fe87f9817b9f8e5700b7d48a72d94e94f4e5e8d97070d3082d0c",
+  "compiler_sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+  "build_command": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\clang++.exe",
+    "-std=c++20",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-static",
+    "-ID:\\Documents\\codes\\solver\\build\\openblas\\install\\include\\openblas",
+    "D:\\Documents\\codes\\solver\\tests\\test_openblas.cpp",
+    "D:\\Documents\\codes\\solver\\build\\openblas\\install\\lib\\libopenblas.a",
+    "-o",
+    "D:\\Documents\\codes\\solver\\.tools\\v51-public-blas-after.exe"
+  ],
+  "build": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "executable_sha256": "b424f83e0a4aa11947d7d508d397efd14e35815eeb3efba81440f6697ba51c02",
+  "run": {
+    "returncode": 0,
+    "stdout": "BLAS 配置：OpenBLAS 0.3.33 NO_LAPACKE DYNAMIC_ARCH NO_AFFINITY USE_LOCKING Cooperlake SINGLE_THREADED；CPU 内核：Cooperlake\n公共 BLAS 数值与存储边界检查通过：19 组，2596093 项比较\n",
+    "stderr": ""
+  },
+  "source_sha256_after": "979a7f622223303b66e6b658e09748c6ded5f300c24b9b23a82c57df243322b9",
+  "library_sha256_after": "8684f3ef1937fe87f9817b9f8e5700b7d48a72d94e94f4e5e8d97070d3082d0c"
+}

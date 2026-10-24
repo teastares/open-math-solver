@@ -1,0 +1,81 @@
+{
+  "created_at_utc": "2026-10-18T07:48:00.366420+00:00",
+  "passed": true,
+  "parent_check_sha256": "3f223858963a6cbd0ec541aaae02ba05568e8e2f815e93a6ac09d3d61993d1f2",
+  "document": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\2026-10-12-Halpern与稀疏内点法迭代.md",
+  "document_sha256": "06b9ed1bad580482a33fbd069f3ddf2540752ff9148a39585f1bfe287ad52de0",
+  "checks": [
+    {
+      "check": "HiGHS共同90例SGM",
+      "passed": true,
+      "evidence": {
+        "count": 90,
+        "reference": 0.07882003032983441,
+        "candidate": 0.12534989454261394,
+        "ratio": 1.5903304530341873
+      }
+    },
+    {
+      "check": "共同90例累计成本差",
+      "passed": true,
+      "evidence": {
+        "numerical": 4.1203917,
+        "solve": 3.5799941,
+        "verification": 0.5403976
+      }
+    },
+    {
+      "check": "墙钟减程序total累计差",
+      "passed": true,
+      "evidence": {
+        "outside_total_delta": 0.10593199823172408
+      }
+    },
+    {
+      "check": "净数值差前五例和占比",
+      "passed": true,
+      "evidence": {
+        "models": [
+          "maros-r7",
+          "greenbeb",
+          "fit2d",
+          "pilot87",
+          "fit1p"
+        ],
+        "percent": 44.43947404320808
+      }
+    },
+    {
+      "check": "特定实例工作量",
+      "passed": true,
+      "evidence": {
+        "fit2d_kkt": 25,
+        "fit2d_columns": 10500,
+        "greenbeb_refinements": 231,
+        "maros-r7_iterations": 15,
+        "maros-r7_factor_nonzeros": 1522374
+      }
+    },
+    {
+      "check": "on/off共同89例改善",
+      "passed": true,
+      "evidence": {
+        "count": 89,
+        "reference": 0.10100220960654673,
+        "candidate": 0.09927886967805903,
+        "improvement_percent": 1.706239829010625
+      }
+    },
+    {
+      "check": "文档仍等主检查快照",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "check": "95生产来源仍冻结",
+      "passed": true,
+      "evidence": []
+    }
+  ],
+  "scope": "补充核对末尾新增的共同成功子集成本诊断；所读文档实际已包含于主文档检查的哈希快照，不覆盖主检查。全部直接从既有raw计算，不运行LP或构建。"
+}

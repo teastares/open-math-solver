@@ -166,6 +166,12 @@ endif()
 
 if(SOLVER_BUILD_TESTS)
   enable_testing()
+  add_executable(test_openblas tests/test_openblas.cpp)
+  target_link_libraries(test_openblas PRIVATE solver_openblas)
+  solver_target_defaults(test_openblas)
+  add_test(NAME openblas COMMAND test_openblas)
+  set_tests_properties(openblas PROPERTIES TIMEOUT 120)
+
   add_executable(test_verification tests/test_verification.cpp)
   target_link_libraries(test_verification PRIVATE solver_core)
   solver_target_defaults(test_verification)
@@ -260,3 +266,5 @@ install(FILES "${eigen_SOURCE_DIR}/COPYING.README" DESTINATION share/solver RENA
 install(FILES "${eigen_SOURCE_DIR}/COPYING.BSD" DESTINATION share/solver RENAME Eigen-BSD-LICENSE.txt)
 install(FILES "${eigen_SOURCE_DIR}/COPYING.APACHE" DESTINATION share/solver RENAME Eigen-APACHE-LICENSE.txt)
 install(FILES "${eigen_SOURCE_DIR}/COPYING.MINPACK" DESTINATION share/solver RENAME Eigen-MINPACK-LICENSE.txt)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/third_party/openblas/NOTICE.txt"
+  DESTINATION share/solver RENAME OpenBLAS-NOTICE.txt)

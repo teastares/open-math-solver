@@ -21,7 +21,7 @@ struct NormalRefinementStatistics {
   std::int64_t refinement_acceptances = 0;
 };
 
-enum class NormalCholeskyKernel { eigen, cholmod_supernodal };
+enum class NormalCholeskyKernel { eigen, cholmod_supernodal, cholmod_supernodal_aat };
 
 // 对排列后的 [B G^T; G -D] 建立正规方程；坐标标签为原始 +1、对偶 -1。
 class NormalCholesky {

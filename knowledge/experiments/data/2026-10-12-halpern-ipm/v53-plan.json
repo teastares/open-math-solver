@@ -1,0 +1,68 @@
+{
+  "created_at_utc": "2026-10-18T07:09:51+00:00",
+  "kind": "diagnostic_only",
+  "round": 50,
+  "version": "v53",
+  "parent_identity_sha256": "2e9cfcded7e59b37ec1af19273b15db75e4d3adcc27026b94e41f2ab69591cda",
+  "parent_solver_sha256": "7dd9ce7c9b67389329cbd09db1753cc4c3b068bbaf1a5802a4b63edeffcc5963",
+  "production_changes": false,
+  "models": [
+    {"name": "dfl001", "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps", "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730", "backends": ["normal_cholmod"]},
+    {"name": "greenbea", "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps", "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d", "backends": ["normal_cholmod"]},
+    {"name": "forplan", "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps", "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7", "backends": ["normal_cholmod"]},
+    {"name": "afiro", "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\afiro.mps", "sha256": "04992b87e57e57c1c417c96b846833bfa12e055eeaa623f043c45fc773b5be41", "backends": ["normal_cholmod"]}
+  ],
+  "variants": ["production_v52", "diagnostic_off", "diagnostic_on"],
+  "runs": 12,
+  "repeats": 1,
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "method": "homogeneous",
+  "linear_accuracy": "homogeneous_repair",
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "threads": 1,
+  "seed": 0,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "direction-retries": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "capture_contract": [
+    "仅从v52冻结源码转换ipm.cpp；唯一可逆锚点，复用实际编译参数和17库，替换ipm对象并保留同一regularized对象；不修改生产源码、默认、精度、算法",
+    "开关SOLVER_V53_DIAGNOSTICS关闭时无额外数组扫描、复制或读时钟；开启时只复制已存在数值与已有验算结果，额外乘积全部离线；复制照常消耗求解预算，退出时写出",
+    "一次静态快照保存工作G/c/b/缩放映射及原模型A/c/界；保存首个完整校正步和最后两个完整校正步，iteration重叠去重，固定ring，不累计全轨迹",
+    "每步保存旧新x/z/tau、theta/alpha、rd、完整u/v/rhs/diag、实际恢复的方向与dtau；v必须是标量恢复之后实际提交的常数方向",
+    "保存实际assess的extracted.z、原x/y、已有checks和replace；明确当前迭代与最终保留候选来源；presolved恢复记录为空须断言，不能隐式忽略",
+    "所有受控快照缓存总上限128MiB，包含暂存和静态数据；不是进程RSS上限。诊断内存拒绝、截断、写出失败显式记录且不改变原LP异常；末次未完成尝试只记录阶段和标量状态",
+    "double保存原始位，实际long double标量以足够精度hexfloat保存；区分未触发、预算中断、内存拒绝、写出失败，不能把缺快照当诊断成立",
+    "原程序/off/on轮转且串行，除timings外完整报告及退出码比较；预算分叉单列，崩溃和无效退出不能被另一侧超时豁免；本轮不计性能胜负"
+  ],
+  "offline_contract": [
+    "在保存的已舍入矩阵上重算K0u-rhs及K0v-[-c;b]上下块、全局门槛和完整HSD对偶方向缺陷Ed=G^T dz+c dtau+theta rd",
+    "分解u误差、dtau乘v误差、上块rhs舍入、方向恢复舍入、rd计算舍入、共同步长更新、除tau；下块只测残差，不另采h/s/rp作舍入归因",
+    "检查rdplus/tauplus=[(1-alpha theta)rd+alpha Ed]/tauplus及明确舍入余项；离线高精度计算，以80/120位稳定性和每个保存步G列{0,n//2,n-1}去重的精确有理数交叉核验",
+    "单列规范化与多轮缩放数据差异、列界锥乘子、实际extracted.z和原y恢复舍入；原reduced_cost=sense*c-A^T y，不把撤缩放工作rd等同原reduced_cost",
+    "原max_dual_residual只统计指向无穷变量界的reduced_cost违规；分别报告当前验算与终报保留候选，不将有限单边变量误标为自由变量",
+    "离线分析串行且不求解新LP；额外乘积/精度/存储有成本，单独记录，不称免费计算"
+  ],
+  "decision_contract": [
+    "只有完整恢复方向误差能解释原模型对偶平台时，下一轮才考虑方向精度与外层残差匹配；不得凭全局KKT通过或单个标量改善声称有效",
+    "若主要是撤缩放/数据差异或终报候选错配，优先处理对应机制；失败尝试未捕获方向时不推断其数值归因",
+    "本轮不新增公开性能成绩，目标仍是同协议覆盖和端到端整体打平HiGHS"
+  ],
+  "research_sources": [
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/ipm.cc",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/kkt_solver_basis.cc",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/hipo/ipm/Refine.cpp",
+    "https://github.com/oxfordcontrol/Clarabel.rs/blob/v0.11.1/src/solver/core/kktsolvers/direct/quasidef/directldlkktsolver.rs",
+    "https://docs.gurobi.com/projects/optimizer/en/current/concepts/parameters/guidelines.html"
+  ]
+}
