@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "round": 98,
+  "candidate_version": 101,
+  "created_at_utc": "2026-10-31T15:24:15.731561+00:00",
+  "previous_goal_turn": "progress",
+  "purpose": "仅将已有两遍MGS的AXPY改为有条件硬件FMA，直接维护C++，不生成数学源码",
+  "algorithm_parent_version": 100,
+  "algorithm_parent_evidence_file": "v100-closeout.json",
+  "algorithm_parent_evidence_sha256": "a4d817d61f11ca1d68178f17f836fb89fb6d9914b4a80d7520b71338aab13b61",
+  "source_parent_identity_file": ".tools/experimental-source-migration/identity.json",
+  "source_parent_identity_sha256": "f4f496c5cff59efec9a6c4f506fa82a03bfdd98adfdf2f7f8a7c30868a477857",
+  "migration_evidence_file": "experimental-source-migration-closeout.json",
+  "migration_evidence_sha256": "2fb66f68231b56d569a922e88bcadfb9c0894546f4794e9dcf5c83610b7c66e6",
+  "protocol_file": "v100-plan.json",
+  "protocol_sha256": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+  "production_changes": false,
+  "new_algorithm_round": true,
+  "math_change": {
+    "scope": "两遍MGS中的value[i] -= projection*basis[row][i]",
+    "retained": [
+      "LD点积",
+      "两遍MGS",
+      "upper/Givens/三角系数double",
+      "完整物理方向与真验LD",
+      "五块strict/forcing/搜索T",
+      "3周期32窗与原P/A/true工作额度",
+      "原LP验收/owner/预算"
+    ],
+    "api": "solve末尾hardware_axpy=false，实际自主HSD调用追加true；旧直接组件默认保父路径",
+    "implementation": "AVX4×double fnmadd及1–3尾部scalar fnmadd，无AVX2要求；不改全局浮点编译选项",
+    "dispatch": {
+      "cpu": "同时AVX(含OS支持)和FMA；CPU能力可缓存",
+      "environment": "每4096段的原budget正常返回后读取MXCSR与x87CW",
+      "mxcsr_mask": "0xffc0",
+      "mxcsr_expected": "0x1f80",
+      "x87_mask": "0x0f3f",
+      "x87_expected": "0x033f",
+      "fallback": "不满足支持状态则父LD乘减，不设置环境，不承诺非默认模式数值语义"
+    },
+    "boundaries": "长度0无check；每4096坐标仅原一次check、无新增末check；finite坏pack按lane保首坏前内存前缀，AVX目标不抛异常，返回后原matherror"
+  },
+  "risk": "FMA单舍入与父x87中间舍入不同，取消例0对2^-104，不承诺轨迹相同或收敛必更快；整体由固定协议验证",
+  "required_ipm_cases": {
+    "fma_production_binding": "transaction",
+    "fma_real_hsd_mapping": "mapping",
+    "fma_hsd_budget_prefix": "budget"
+  },
+  "required_standalone_cases": [
+    "fma_hardware_probe_and_default_control",
+    "fma_environment_predicate",
+    "fma_exact_cancellation_and_tails",
+    "fma_overflow_underflow_and_finite_prefix",
+    "fma_budget_chunk_boundaries",
+    "fma_control_reads_and_callback_recheck",
+    "fma_default_and_invalid_dimensions",
+    "fma_coupled_true_direction_and_budget"
+  ],
+  "component_cases": {
+    "ipm": 88,
+    "coupled": 51
+  },
+  "parent_component_cases": {
+    "ipm": 85,
+    "coupled": 43
+  },
+  "floating_point_test_scope": "非默认控制态只做整数寄存器设置/读取/恢复和purepredicate；恢复前不调用AXPY/LD。原Clang默认FENV_ACCESS off，不新增strict flags/pragma。",
+  "verification": {
+    "stage_order": [
+      "compatibility-development",
+      "compatibility-probe",
+      "development",
+      "probe",
+      "netlib",
+      "highs"
+    ],
+    "initial_solver_runs": 136,
+    "conditional_full_runs": 364,
+    "maximum_solver_runs": 500,
+    "time_limit": 5,
+    "wall_timeout": 35,
+    "threads": 1,
+    "seed": 0,
+    "max_iterations": 200,
+    "scaling_passes": 5,
+    "abs_tolerance": 1e-07,
+    "relative_tolerance": 1e-09,
+    "compatibility": "17非预算对子完整public只排timings全等",
+    "gate": "开发/探针无覆盖丢失，且开发惩罚数值SGM10降低且墙钟不升，或探针新增通过",
+    "failure": "所有失败保原件并按5/35秒惩罚，不择优补跑，不按模型名选择策略"
+  },
+  "research": [
+    {
+      "source": "BLIS Zen AXPY源码",
+      "url": "https://raw.githubusercontent.com/flame/blis/master/kernels/zen/1/bli_axpyv_zen_int.c",
+      "observation": "连续double路径使用4组AVX FMA；本轮独立实现带finite和预算的fnmadd，尾部也单舍入"
+    },
+    {
+      "source": "LLVM x86 CPU feature runtime",
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/main/compiler-rt/lib/builtins/cpu_model/x86.c",
+      "observation": "FMA单CPUID位，AVX另外检查OSXSAVE/XGETBV；必须同时查二者"
+    },
+    {
+      "source": "Clang浮点模式官方手册",
+      "url": "https://clang.llvm.org/docs/UsersManual.html#controlling-floating-point-behavior",
+      "observation": "默认FENV_ACCESS off和最近舍入假设，不能以非默认态算术测试冒称全solver支持动态FP环境"
+    }
+  ],
+  "runtime_schema": "仍V100_PRESOLVE/V100_COUPLED/V100_ENERGY与原schema3，无新增LP字段",
+  "no_model_specific_routing": true
+}

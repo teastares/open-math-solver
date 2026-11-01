@@ -1,0 +1,48 @@
+{
+  "version": 120,
+  "status": "完成178组件与固定500后的一手源码研究，以下尚未实现",
+  "evidence": {
+    "highs_warm_attempts": 32,
+    "repairs": 14,
+    "initial_bounds_only_rejections": 14,
+    "initial_bounds_only_all_basic_stationarity_pass": true,
+    "initial_bounds_only_max_equation_ratio": 0.34427556,
+    "initial_bounds_only_max_basic_dual_ratio": 0.00847203,
+    "initial_bounds_only_min_bound_ratio": 5.892889,
+    "late_singular_update_failures": 2,
+    "late_successful_update_but_invalid_rebuild": 2,
+    "warm_sum_seconds": 0.0853786,
+    "candidate_numerical_sum_seconds": 9.4913185,
+    "warm_fraction_of_sum": 0.00899544146579845,
+    "wall_ratio_to_highs": 1.2578027631362199
+  },
+  "classification": {
+    "bounds_only": "初始E<=1/D<=1且B>1，14例；尚无全非基约化成本符号证据，不能叫dual feasible。",
+    "singular_update": "bnl2第6次、etamacro第8次update返回-6；旧基仍有效但本轮整次弃清理，不假称修复。",
+    "unstable_rebuild": "cycle三pivot/maros一pivot后update返回0，随后B与基本站立条件失败，E通过；属于后更新数值失败。"
+  },
+  "algorithm_candidate": {
+    "direction": "带完整对偶前置检查的自主有界dual PhaseII独立原型",
+    "free_information": "rebuild已经算出全部r=c-Aᵀpi；只需按lower/upper/free/内部superbasic逐项检查并记账，无新A乘，但仍有扫描成本。",
+    "eligibility": "E和基本站立条件通过、只基本界失败；所有非基约化成本界符号满足同一最终dual容差才进入，fixed不限。",
+    "operations": "越界离基选择、普通solve_dense(T)行定价、dual ratio、同BASICLU更新，保原目标和原Model终验。",
+    "limits": "若r_N不通过先拒绝，不混入dual PhaseI/cost shift；后续再评估原始PhaseI。当前证据不足承诺修复率或速度。"
+  },
+  "performance_candidate": {
+    "direction": "先独立测C++诊断输出成本，再考虑保持字节/字段不变的批量写入",
+    "evidence": "当前四个marker serializer大量fprintf/fputs/fputc；Microsoft UCRT文档说明stderr默认无缓冲。候选与HiGHS的日志量不同，但本协议不能删标记或字段。",
+    "inference": "减少小写入可能降低e2e费用，尚未实测调用成本；总和成本占比不能当SGM上界，也不能把全部差距归因暖基或I/O。",
+    "boundary": "不在已经使用的全局流上无条件setvbuf；若试内存缓冲，关闭零工作、完整字段/顺序/数值和原预算/错误处理必须保留。"
+  },
+  "sources": [
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkkDual.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkk.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkkPrimal.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/basiclu/basiclu_update.h",
+    "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setbuf?view=msvc-170"
+  ],
+  "decision": "保留15来源作为默认关闭正确性/研究基础，不作为更快默认；下一轮先验证主导费用和dual前置条件，再单独冻结算法假设。",
+  "new_public_lp_runs": 0,
+  "source_generation": false,
+  "goal_achieved": false
+}

@@ -1,0 +1,3650 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T15:15:24.785057+00:00",
+  "purpose": "将当前有效实验实现迁移为可直接维护的C++源；不改变算法，不作为新增性能候选轮",
+  "plan_sha256": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+  "new_algorithm_round": false,
+  "production_unchanged": true,
+  "source_generation": false,
+  "source_count": 8,
+  "include_rebinding_count": 8,
+  "component_cases": {
+    "ipm": 85,
+    "coupled": 43
+  },
+  "public_lp_runs_revalidated": 216,
+  "additional_public_lp_runs": 0,
+  "highs_runs": 0,
+  "performance_gate_applied": false,
+  "original_build_identity_sha256": "f4f496c5cff59efec9a6c4f506fa82a03bfdd98adfdf2f7f8a7c30868a477857",
+  "build_audit": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "source_files": 8,
+    "include_rebindings_only": 8,
+    "compiled_units": 3,
+    "experimental_dependency_counts": {
+      "ipm": 5,
+      "ipm_self": 6,
+      "coupled_self": 4
+    },
+    "source_generation": false,
+    "canonical_excluded_from_historical_identity": true,
+    "link_order_and_explicit_libraries_preserved": true,
+    "production_sources": 95,
+    "production_libraries": 17,
+    "component_cases": {
+      "ipm": 85,
+      "coupled": 43
+    },
+    "component_details_equal_to_parent": true,
+    "build_manifest_sha256": "bafc8f3dc07ede811a6c7d11e82a0fd79b78e47fbdf37a05d862a1fda9c6621e",
+    "identity_sha256": "f4f496c5cff59efec9a6c4f506fa82a03bfdd98adfdf2f7f8a7c30868a477857",
+    "executable_sha256": "d359201cac0cd18030066ba4f2963f8bf2804aee026e78df370d7c5ec66766c8"
+  },
+  "math_self_checks": {
+    "ipm": {
+      "passed": true,
+      "public_lp_runs": 0,
+      "details": {
+        "passed": true,
+        "public_lp_runs": 0,
+        "explicit_highs_lp_solve_calls": 0,
+        "scope": "仅组件自测；component_ipm_calls计harness进入真实solve_ipm或v100_core的API次数(含零预算入口)，不含内部调用拦截；synthetic_core_calls另计，不是公开LP成绩",
+        "cases": 85,
+        "wrapper_cases": 3,
+        "mapping_cases": 18,
+        "transaction_cases": 35,
+        "budget_cases": 22,
+        "exception_cases": 7,
+        "component_ipm_calls": 42,
+        "synthetic_core_calls": 12,
+        "details": [
+          {
+            "id": "off_wrapper_is_original_core",
+            "group": "wrapper"
+          },
+          {
+            "id": "minimum_column_lower_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_column_upper_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_column_upper_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_original_row_lower",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_original_row_upper",
+            "group": "mapping"
+          },
+          {
+            "id": "ranged_row_lower",
+            "group": "mapping"
+          },
+          {
+            "id": "ranged_row_upper",
+            "group": "mapping"
+          },
+          {
+            "id": "fixed_column_equality_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_real_reduced_child",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_real_reduced_child",
+            "group": "mapping"
+          },
+          {
+            "id": "not_reduced_is_original_core",
+            "group": "wrapper"
+          },
+          {
+            "id": "mip_is_original_core_rejection",
+            "group": "wrapper"
+          },
+          {
+            "id": "time_zero_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "iteration_zero_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "adopt_child_clears_all_coordinate_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "commit_valid_original_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "reject_bad_original_primal_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "nonoptimal_child_passes_original_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "false_optimal_child_dual_rejected",
+            "group": "transaction"
+          },
+          {
+            "id": "false_optimal_child_primal_rejected",
+            "group": "transaction"
+          },
+          {
+            "id": "missing_candidate_drops_child_bait",
+            "group": "transaction"
+          },
+          {
+            "id": "bad_child_dimension_drops_bait",
+            "group": "transaction"
+          },
+          {
+            "id": "native_infeasible_is_not_original_certificate",
+            "group": "transaction"
+          },
+          {
+            "id": "entry_deadline_stops_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "child_deadline_keeps_legacy_only",
+            "group": "budget"
+          },
+          {
+            "id": "post_verify_deadline_cannot_commit",
+            "group": "budget"
+          },
+          {
+            "id": "after_assessment_exception_keeps_cost_only",
+            "group": "exception"
+          },
+          {
+            "id": "child_standard_exception_partial_cost",
+            "group": "exception"
+          },
+          {
+            "id": "child_nonstandard_exception_partial_cost",
+            "group": "exception"
+          },
+          {
+            "id": "projection_skips_already_accepted_raw",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_unchanged_avoids_second_assessment",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_removes_tiny_wrong_lower_dual_sign",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_removes_tiny_wrong_upper_dual_sign",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_original_lower_bound",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_original_upper_bound",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_both_sides_transactionally",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_rejects_broken_row_keeps_raw_incumbent",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_rejects_broken_gap_keeps_raw_incumbent",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_nonfinite_second_vector_never_selects_partial_point",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_copy_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_primal_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_after_dual_api_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_scan_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_post_assessment_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_final_commit_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_exception_cannot_fallback_after_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_clock_exception_raw_fallback",
+            "group": "exception"
+          },
+          {
+            "id": "projection_allocation_exception_raw_fallback",
+            "group": "exception"
+          },
+          {
+            "id": "oracle_old_incumbent_cannot_trigger_current",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_reject_then_accept_same_core",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_tls_scope_restores_previous",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_owner_commits_without_tail_recovery",
+            "group": "transaction"
+          },
+          {
+            "id": "native_postsolve_replays_A_B_A_without_lp",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_budget_preserves_event_work",
+            "group": "budget"
+          },
+          {
+            "id": "oracle_error_preserves_event_work",
+            "group": "exception"
+          },
+          {
+            "id": "oracle_real_core_budget_bridge",
+            "group": "budget"
+          },
+          {
+            "id": "oracle_real_core_error_bridge",
+            "group": "exception"
+          },
+          {
+            "id": "coupled_mixed_physical_equations",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_imperfect_constant_strict",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_equality_scalar_blocks",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_real_core_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "coupled_disabled_and_scope",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_budget_and_count_partial",
+            "group": "budget"
+          },
+          {
+            "id": "energy_nominal_full_kkt_identity",
+            "group": "transaction"
+          },
+          {
+            "id": "energy_stored_diagonal_singleton",
+            "group": "mapping"
+          },
+          {
+            "id": "energy_scope_off_budget",
+            "group": "budget"
+          },
+          {
+            "id": "wide_direction_physical_dense",
+            "group": "transaction"
+          },
+          {
+            "id": "wide_direction_consumers",
+            "group": "mapping"
+          },
+          {
+            "id": "wide_direction_scope_budget",
+            "group": "budget"
+          },
+          {
+            "id": "restart_real_hsd_contract",
+            "group": "transaction"
+          },
+          {
+            "id": "restart_disabled_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "restart_budget_prefix",
+            "group": "budget"
+          },
+          {
+            "id": "initial_forcing_real_hsd",
+            "group": "transaction"
+          },
+          {
+            "id": "initial_forcing_strict_fallback",
+            "group": "mapping"
+          },
+          {
+            "id": "initial_forcing_delivery_budget",
+            "group": "budget"
+          },
+          {
+            "id": "candidate_forcing_real_hsd",
+            "group": "transaction"
+          },
+          {
+            "id": "candidate_forcing_default_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "candidate_forcing_delivery_budget",
+            "group": "budget"
+          },
+          {
+            "id": "forcing_weights_real_hsd",
+            "group": "transaction"
+          },
+          {
+            "id": "forcing_weights_default_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "forcing_weights_budget",
+            "group": "budget"
+          },
+          {
+            "id": "warm_regularization_seed_scope",
+            "group": "mapping"
+          },
+          {
+            "id": "warm_regularization_real_factor",
+            "group": "transaction"
+          },
+          {
+            "id": "warm_regularization_hsd_budget",
+            "group": "budget"
+          }
+        ]
+      }
+    },
+    "coupled": {
+      "passed": true,
+      "public_lp_runs": 0,
+      "details": {
+        "passed": true,
+        "public_lp_runs": 0,
+        "cases": 43,
+        "default_limits": {
+          "max_window": 32,
+          "max_cycles": 3
+        },
+        "details": [
+          "exact_initial_physical",
+          "fgmres_variable_preconditioner",
+          "block_tolerances_are_independent",
+          "happy_breakdown_requires_true_residual",
+          "fixed_window_and_cycle_exhaustion",
+          "invalid_dimension_and_callback_values",
+          "budget_boundaries_keep_partial",
+          "pure_tau_kappa_has_search_space",
+          "energy_nominal_schur_identity",
+          "energy_stored_diagonal_contract",
+          "energy_budget_partial_boundaries",
+          "wide_exact_initial_physical",
+          "wide_fgmres_variable_preconditioner",
+          "wide_block_tolerances_are_independent",
+          "wide_happy_breakdown_requires_true_residual",
+          "wide_fixed_window_and_cycle_exhaustion",
+          "wide_invalid_dimension_and_callback_values",
+          "wide_budget_boundaries_keep_partial",
+          "wide_pure_tau_kappa_has_search_space",
+          "wide_direction_late_narrow_bridge",
+          "wide_double_column_wide_true_product",
+          "wide_promotion_budget_prefix",
+          "residual_gap_improvement_restarts",
+          "residual_gap_without_improvement_keeps_basis",
+          "residual_gap_restart_budget_and_caps",
+          "initial_forcing_strict_precedence",
+          "initial_forcing_linear_boundaries",
+          "initial_forcing_complementarity_stays_strict",
+          "initial_forcing_empty_zero_extreme_rhs",
+          "initial_forcing_rejection_strict_fallback",
+          "initial_forcing_only_initial_point",
+          "initial_forcing_budget_partial_snapshot",
+          "initial_forcing_invalid_norms_callbacks",
+          "candidate_forcing_strict_precedence",
+          "candidate_forcing_same_bounds",
+          "candidate_forcing_actual_nonbest_direction",
+          "candidate_forcing_default_and_invalid_policy",
+          "candidate_forcing_rejection_snapshot_and_caps",
+          "candidate_forcing_budget_partial_snapshot",
+          "forcing_weights_early_candidate",
+          "forcing_weights_consistent_physical_system",
+          "forcing_weights_default_and_invalid_policy",
+          "forcing_weights_budget_and_true_gate"
+        ]
+      }
+    }
+  },
+  "tool_path_validation_update": {
+    "original_build_snapshot_sha256": "811541986a9d05183106416fe63979b5c4fc2ecc4045b13ce288b38dbc09bf91",
+    "current_tool_sha256": "9637f056393607d60527f2255649ee693f2c4c296d4c987836b2d65a7edf6d5c",
+    "literal_path_validation_changes": 3,
+    "tool_check_cases": 32,
+    "rebuild_performed": false,
+    "interpretation": "三处修正只拒绝非法canonical路径；原8份C++、命令和构建快照未变，历史身份继续指旧工具。"
+  },
+  "attempts": {
+    "experimental-source-migration-build-attempt1.json": {
+      "sha256": "630fd4aec7e5b0d0c831a1bfdbec0e2f3f68f379c09f3d7c8e9ee7be7af20a9b",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\python-3.14.8\\python.exe",
+        "D:\\Documents\\codes\\solver\\scripts\\build_experimental.py",
+        "--output",
+        ".tools/experimental-source-migration",
+        "--plan",
+        "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-plan.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 18.264104300062172
+    },
+    "experimental-source-migration-build-self-check-attempt1.json": {
+      "sha256": "7625e8f212ab8204c806f9a5f0f1e0c40ac46ec30a04c180a5ac647040125a8b",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\python-3.14.8\\python.exe",
+        "D:\\Documents\\codes\\solver\\scripts\\build_experimental.py",
+        "--self-check",
+        "--plan",
+        "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-plan.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.19036999996751547
+    },
+    "experimental-source-migration-compatibility-development-attempt1.json": {
+      "sha256": "101d7f1734461889058e8fe97b1fbfe8a59d5218467d84663d9f906f526fe1da",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\python-3.14.8\\python.exe",
+        "D:\\Documents\\codes\\solver\\scripts\\benchmark_experimental.py",
+        "--work",
+        ".tools/experimental-source-migration",
+        "--output",
+        "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration",
+        "--stage",
+        "compatibility-development"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 7.042693899944425
+    },
+    "experimental-source-migration-compatibility-probe-attempt1.json": {
+      "sha256": "6f1033b0fa5bf8c874e0f9279d245afd8175d288f58d3fffa567f78094ffec78",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\python-3.14.8\\python.exe",
+        "D:\\Documents\\codes\\solver\\scripts\\benchmark_experimental.py",
+        "--work",
+        ".tools/experimental-source-migration",
+        "--output",
+        "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration",
+        "--stage",
+        "compatibility-probe"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 9.503911999985576
+    },
+    "experimental-source-migration-migration-attempt1.json": {
+      "sha256": "c22b21bdbaa608361d126f88b768d7ee4bb24b4f2418f3cd560a42aa042ab8cc",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\python-3.14.8\\python.exe",
+        "D:\\Documents\\codes\\solver\\scripts\\benchmark_experimental.py",
+        "--work",
+        ".tools/experimental-source-migration",
+        "--output",
+        "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration",
+        "--stage",
+        "migration"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 35.263902400038205
+    },
+    "experimental-source-migration-tool-check-attempt1.json": {
+      "sha256": "0ed96daa5efd19d6f70ed7df63e08eaebfc0c750357d282e09615a12837cf1f3",
+      "command": [
+        "D:\\Documents\\codes\\solver\\.tools\\python-3.14.8\\python.exe",
+        "D:\\Documents\\codes\\solver\\.tools\\experimental-migration-tool-check.py"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.3931651000166312
+    }
+  },
+  "stage_summaries": {
+    "compatibility-development": {
+      "schema": 1,
+      "passed": true,
+      "stage": "compatibility-development",
+      "public_lp_runs": 22,
+      "plan_sha256": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "raw_sha256": "b99e9aff8539a6e3410068710fbb679d7c573f674ab999b6efac67e6c39fe4af",
+      "pairs": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 6,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 7,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 8,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 9,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 10,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        }
+      ],
+      "public_equal_pairs": 11,
+      "unexpected_private_difference_pairs": 0,
+      "dynamic_budget_difference_pairs": 0,
+      "valid_process_count": 22,
+      "variants": {
+        "frozen_v66": {
+          "runs": 11,
+          "quality_pass_count": 11
+        },
+        "diagnostic_off": {
+          "runs": 11,
+          "quality_pass_count": 11
+        }
+      },
+      "performance_gate_applied": false,
+      "highs_runs": 0,
+      "new_algorithm_round": false
+    },
+    "compatibility-probe": {
+      "schema": 1,
+      "passed": true,
+      "stage": "compatibility-probe",
+      "public_lp_runs": 12,
+      "plan_sha256": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "raw_sha256": "9fdf02d5fddf173214c44383bf098f253554ba713739f71a2eb61d83c2da71cb",
+      "pairs": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": false,
+          "candidate_quality_pass": false,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": false,
+          "private_equal_excluding_clocks": null,
+          "public_differences": [],
+          "private_strict_differences": [],
+          "dynamic_budget_differences": [],
+          "unexpected_private_differences": []
+        }
+      ],
+      "public_equal_pairs": 6,
+      "unexpected_private_difference_pairs": 0,
+      "dynamic_budget_difference_pairs": 0,
+      "valid_process_count": 12,
+      "variants": {
+        "frozen_v66": {
+          "runs": 6,
+          "quality_pass_count": 5
+        },
+        "diagnostic_off": {
+          "runs": 6,
+          "quality_pass_count": 5
+        }
+      },
+      "performance_gate_applied": false,
+      "highs_runs": 0,
+      "new_algorithm_round": false
+    },
+    "migration": {
+      "schema": 1,
+      "passed": true,
+      "stage": "migration",
+      "public_lp_runs": 182,
+      "plan_sha256": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "raw_sha256": "77e0e939f18c46e0b8801e9c406626f084f27d752ed62fb9ca7782c3c71219c6",
+      "pairs": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\25fv47.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997446,
+              "right": 4.9997363
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997446,
+              "right": 4.9997363
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\80bau3b.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993981,
+              "right": 4.9993971
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993981,
+              "right": 4.9993971
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\adlittle.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999117,
+              "right": 4.9999125
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999117,
+              "right": 4.9999125
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\afiro.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999044,
+              "right": 4.9999245
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999044,
+              "right": 4.9999245
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998769,
+              "right": 4.9998747
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998769,
+              "right": 4.9998747
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998542,
+              "right": 4.9998614
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998542,
+              "right": 4.9998614
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 6,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg3.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998551,
+              "right": 4.9998494
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998551,
+              "right": 4.9998494
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 7,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bandm.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999867,
+              "right": 4.9998699
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999867,
+              "right": 4.9998699
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 8,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\beaconfd.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998755,
+              "right": 4.9998757
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998755,
+              "right": 4.9998757
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 9,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\blend.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999074,
+              "right": 4.9999068
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999074,
+              "right": 4.9999068
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 10,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998108,
+              "right": 4.9998152
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998108,
+              "right": 4.9998152
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 11,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996324,
+              "right": 4.9996309
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996324,
+              "right": 4.9996309
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 12,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\boeing1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998697,
+              "right": 4.9998571
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998697,
+              "right": 4.9998571
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 13,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\boeing2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999024,
+              "right": 4.9999014
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999024,
+              "right": 4.9999014
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 14,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bore3d.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998928,
+              "right": 4.9998867
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998928,
+              "right": 4.9998867
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 15,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\brandy.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998919,
+              "right": 4.9998687
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998919,
+              "right": 4.9998687
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 16,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\capri.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998851,
+              "right": 4.9998835
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998851,
+              "right": 4.9998835
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 17,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\cycle.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9995867,
+              "right": 4.9995945
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9995867,
+              "right": 4.9995945
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 18,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\czprob.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997033,
+              "right": 4.9996975
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997033,
+              "right": 4.9996975
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 19,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\d2q06c.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9994083,
+              "right": 4.9993912
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9994083,
+              "right": 4.9993912
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 20,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\d6cube.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993453,
+              "right": 4.9993511
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993453,
+              "right": 4.9993511
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 21,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\degen2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998387,
+              "right": 4.9998418
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998387,
+              "right": 4.9998418
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 22,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\degen3.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9995843,
+              "right": 4.9995816
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9995843,
+              "right": 4.9995816
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 23,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9990974,
+              "right": 4.9991086
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9990974,
+              "right": 4.9991086
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 24,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\e226.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999868,
+              "right": 4.9998793
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999868,
+              "right": 4.9998793
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 25,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\etamacro.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998659,
+              "right": 4.9998624
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998659,
+              "right": 4.9998624
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 26,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fffff800.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998142,
+              "right": 4.9998131
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998142,
+              "right": 4.9998131
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 27,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998643,
+              "right": 4.9998672
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998643,
+              "right": 4.9998672
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 28,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1d.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997369,
+              "right": 4.9997362
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997369,
+              "right": 4.9997362
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 29,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996822,
+              "right": 4.9996682
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996822,
+              "right": 4.9996682
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 30,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2d.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9984476,
+              "right": 4.998355
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9984476,
+              "right": 4.998355
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 31,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2p.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9983124,
+              "right": 4.9982743
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9983124,
+              "right": 4.9982743
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 32,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998468,
+              "right": 4.9998426
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998468,
+              "right": 4.9998426
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 33,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ganges.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997696,
+              "right": 4.9995482
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997696,
+              "right": 4.9995482
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 34,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\gfrd-pnc.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998536,
+              "right": 4.9998563
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998536,
+              "right": 4.9998563
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 35,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993956,
+              "right": 4.9994173
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993956,
+              "right": 4.9994173
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 36,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9994233,
+              "right": 4.9994098
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9994233,
+              "right": 4.9994098
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 37,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow15.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999837,
+              "right": 4.9998322
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999837,
+              "right": 4.9998322
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 38,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997845,
+              "right": 4.9997908
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997845,
+              "right": 4.9997908
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 39,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow7.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998776,
+              "right": 4.9998778
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998776,
+              "right": 4.9998778
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 40,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\israel.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998843,
+              "right": 4.9998839
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998843,
+              "right": 4.9998839
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 41,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\kb2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999122,
+              "right": 4.9999071
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999122,
+              "right": 4.9999071
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 42,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\lotfi.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998948,
+              "right": 4.9998964
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998948,
+              "right": 4.9998964
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 43,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9982114,
+              "right": 4.9982073
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9982114,
+              "right": 4.9982073
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 44,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997523,
+              "right": 4.9997583
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997523,
+              "right": 4.9997583
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 45,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\modszk1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998324,
+              "right": 4.9998339
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998324,
+              "right": 4.9998339
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 46,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\nesm.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996884,
+              "right": 4.9996961
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996884,
+              "right": 4.9996961
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 47,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\perold.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997813,
+              "right": 4.9997912
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997813,
+              "right": 4.9997912
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 48,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993283,
+              "right": 4.9993334
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9993283,
+              "right": 4.9993334
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 49,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot4.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998164,
+              "right": 4.99982
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998164,
+              "right": 4.99982
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 50,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9990267,
+              "right": 4.9989942
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9990267,
+              "right": 4.9989942
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 51,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilotnov.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996898,
+              "right": 4.9996858
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996898,
+              "right": 4.9996858
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 52,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\recipe.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998947,
+              "right": 4.9999023
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998947,
+              "right": 4.9999023
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 53,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc105.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999915,
+              "right": 4.9999132
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999915,
+              "right": 4.9999132
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 54,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc205.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999028,
+              "right": 4.9999046
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999028,
+              "right": 4.9999046
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 55,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc50a.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999094,
+              "right": 4.9999143
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999094,
+              "right": 4.9999143
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 56,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc50b.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999914,
+              "right": 4.9999135
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999914,
+              "right": 4.9999135
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 57,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scagr25.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998877,
+              "right": 4.9998862
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998877,
+              "right": 4.9998862
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 58,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scagr7.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999019,
+              "right": 4.9999082
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999019,
+              "right": 4.9999082
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 59,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998695,
+              "right": 4.9998667
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998695,
+              "right": 4.9998667
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 60,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998216,
+              "right": 4.9998218
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998216,
+              "right": 4.9998218
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 61,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm3.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997687,
+              "right": 4.9997601
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997687,
+              "right": 4.9997601
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 62,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scorpion.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998814,
+              "right": 4.9998859
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998814,
+              "right": 4.9998859
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 63,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scrs8.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998447,
+              "right": 4.9998455
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998447,
+              "right": 4.9998455
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 64,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998694,
+              "right": 4.999875
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998694,
+              "right": 4.999875
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 65,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd6.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999833,
+              "right": 4.9998236
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999833,
+              "right": 4.9998236
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 66,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd8.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997354,
+              "right": 4.9997417
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997354,
+              "right": 4.9997417
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 67,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998872,
+              "right": 4.9998776
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998872,
+              "right": 4.9998776
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 68,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997715,
+              "right": 4.9997763
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997715,
+              "right": 4.9997763
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 69,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap3.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997219,
+              "right": 4.999728
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997219,
+              "right": 4.999728
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 70,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\seba.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997985,
+              "right": 4.9998087
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997985,
+              "right": 4.9998087
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 71,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\share1b.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998994,
+              "right": 4.9998706
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998994,
+              "right": 4.9998706
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 72,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\share2b.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999069,
+              "right": 4.9999084
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999069,
+              "right": 4.9999084
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 73,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\shell.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998211,
+              "right": 4.9998183
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998211,
+              "right": 4.9998183
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 74,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship04l.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997843,
+              "right": 4.9997861
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997843,
+              "right": 4.9997861
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 75,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship04s.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998201,
+              "right": 4.9998256
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998201,
+              "right": 4.9998256
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 76,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship08l.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996609,
+              "right": 4.9996646
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9996609,
+              "right": 4.9996646
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 77,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship08s.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997633,
+              "right": 4.9997606
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997633,
+              "right": 4.9997606
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 78,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12l.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9995833,
+              "right": 4.999576
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9995833,
+              "right": 4.999576
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 79,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12s.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997359,
+              "right": 4.9997326
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997359,
+              "right": 4.9997326
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 80,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sierra.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997592,
+              "right": 4.9997642
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997592,
+              "right": 4.9997642
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 81,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stair.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998457,
+              "right": 4.9998444
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998457,
+              "right": 4.9998444
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 82,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standata.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999845,
+              "right": 4.9998512
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999845,
+              "right": 4.9998512
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 83,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standgub.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999847,
+              "right": 4.9998419
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.999847,
+              "right": 4.9998419
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 84,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standmps.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998403,
+              "right": 4.999844
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998403,
+              "right": 4.999844
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 85,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stocfor1.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999064,
+              "right": 4.9999038
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9999064,
+              "right": 4.9999038
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 86,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stocfor2.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997316,
+              "right": 4.9997386
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9997316,
+              "right": 4.9997386
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 87,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\tuff.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998466,
+              "right": 4.9998404
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998466,
+              "right": 4.9998404
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 88,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\vtpbase.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998959,
+              "right": 4.9998927
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9998959,
+              "right": 4.9998927
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 89,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\wood1p.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9991842,
+              "right": 4.9991693
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9991842,
+              "right": 4.9991693
+            }
+          ],
+          "unexpected_private_differences": []
+        },
+        {
+          "model_index": 90,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\woodw.mps",
+          "passed": true,
+          "valid_processes": true,
+          "public_equal_excluding_timings": true,
+          "process_equal": true,
+          "quality_equal": true,
+          "reference_quality_pass": true,
+          "candidate_quality_pass": true,
+          "private_comparison_applicable": true,
+          "private_equal_excluding_clocks": false,
+          "public_differences": [],
+          "private_strict_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9992589,
+              "right": 4.9992826
+            }
+          ],
+          "dynamic_budget_differences": [
+            {
+              "path": "presolve_marker/native/time_limit",
+              "left": 4.9992589,
+              "right": 4.9992826
+            }
+          ],
+          "unexpected_private_differences": []
+        }
+      ],
+      "public_equal_pairs": 91,
+      "unexpected_private_difference_pairs": 0,
+      "dynamic_budget_difference_pairs": 91,
+      "valid_process_count": 182,
+      "variants": {
+        "v100_on": {
+          "runs": 91,
+          "quality_pass_count": 91
+        },
+        "experimental_on": {
+          "runs": 91,
+          "quality_pass_count": 91
+        }
+      },
+      "performance_gate_applied": false,
+      "highs_runs": 0,
+      "new_algorithm_round": false
+    }
+  },
+  "archive": {
+    "path": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\experimental-source-migration-evidence.zip",
+    "sha256": "73fd47cd383d450acfcbc6e05fb4d368cca617f0d0c9a32b67b9dcdfca9ff67e",
+    "members": 73,
+    "bytes": 12206109,
+    "member_sha256": {
+      ".tools/experimental-migration-tool-check.py": "4649061c48357babb43eff8fe2fbc3dba4221d55e7015a8b668ff7d6b038202b",
+      ".tools/experimental-source-migration/build-before.json": "187d0ca9a9589fba3425e10adc355d3450f0ceefdaa6b4edb1da661f73c57bde",
+      ".tools/experimental-source-migration/build-manifest.json": "bafc8f3dc07ede811a6c7d11e82a0fd79b78e47fbdf37a05d862a1fda9c6621e",
+      ".tools/experimental-source-migration/coupled-link.json": "508d9d65b292948320e8b6772702de707713f38a40bdf12bbaff498616e82424",
+      ".tools/experimental-source-migration/coupled-self-check.json": "9943de711f1213d6da50ba131efbed7b98a365775b8a0d8c4d2f247b82c5d324",
+      ".tools/experimental-source-migration/coupled-self-run.json": "7727965f38ad5f52e06e3cd23b7be219cb601fee085a854d3ea6c67d70d09718",
+      ".tools/experimental-source-migration/coupled_self-compile.json": "96116a82f817acf3987171a2845ff82e55b441508ce0c6318fa1fc19f7c36040",
+      ".tools/experimental-source-migration/coupled_self.obj.d": "84ff9df17166bae00fbba81a66b0908810ab7d7811c9e387b5d21a8e86997572",
+      ".tools/experimental-source-migration/identity.json": "f4f496c5cff59efec9a6c4f506fa82a03bfdd98adfdf2f7f8a7c30868a477857",
+      ".tools/experimental-source-migration/ipm-compile.json": "14d59483d9c8f05efc5ec10ace6c9935153d960320a63b39989bcfe96097f0bb",
+      ".tools/experimental-source-migration/ipm-link.json": "b19271b485c217d675b5f3c787a9d5369bb39693ae57d0172961ec6ce624943c",
+      ".tools/experimental-source-migration/ipm-self-check.json": "510e97852726ddd1c0f52d8beda47f27f07aae47ce2717afb39ab264967e2b3a",
+      ".tools/experimental-source-migration/ipm-self-run.json": "726fc2ad3448d72e6284cd9b5497c1d52a30b1d5facf483df14859fc3dd000fd",
+      ".tools/experimental-source-migration/ipm.obj.d": "aa63798bf08e2c11ce815ad96e6c485a2577865b4748e4cff6f95d60fe673e98",
+      ".tools/experimental-source-migration/ipm_self-compile.json": "bd8a7fc63b9920e296b97c9bed848b7345502066dbdebd6d616ea9ab76709762",
+      ".tools/experimental-source-migration/ipm_self.obj.d": "0ca975ebec6229647d62af4e34d0eee8c028892ab7f6363a1d9e209fca8c3ce2",
+      ".tools/experimental-source-migration/provenance/build_experimental.py": "811541986a9d05183106416fe63979b5c4fc2ecc4045b13ce288b38dbc09bf91",
+      ".tools/experimental-source-migration/provenance/command-template.json": "c227a1d45337788325db93ac6be02a811d6cb8d1f7550696378bb6cc72717d16",
+      ".tools/experimental-source-migration/provenance/plan.json": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      ".tools/experimental-source-migration/provenance/production-identity.json": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+      ".tools/experimental-source-migration/solver-link.json": "b3f97203ca3ff1bec474f09070b5566240ee823600d99b93d97d365d7241cf74",
+      ".tools/experimental-source-migration/source/include/solver/experimental/coupled.hpp": "990ec58bfbeba814f5c218d8ad5d4772037e5e31b4ca5ffea5c63e832e5a65ed",
+      ".tools/experimental-source-migration/source/include/solver/experimental/energy.hpp": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      ".tools/experimental-source-migration/source/include/solver/experimental/legacy_coupled.hpp": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      ".tools/experimental-source-migration/source/src/experimental/coupled_state.hpp": "5d759e20ff23ff56d31df0ca2146700af967d102bbc8794550f66551d2ad952a",
+      ".tools/experimental-source-migration/source/src/experimental/ipm.cpp": "a151d820579cbfa6be0d99c945c220653961710a69da39c3598e74e043756456",
+      ".tools/experimental-source-migration/source/src/experimental/presolve_state.hpp": "ff79c2ec03bc296c73fb85e2cd04125c9f53c9dac9ddd1e810791adfcaff746e",
+      ".tools/experimental-source-migration/source/tests/experimental/coupled_self_test.cpp": "68cbebc0767ab05bb259ab09afaac45a8f8b74b3c87db6c37e62583052df65f6",
+      ".tools/experimental-source-migration/source/tests/experimental/ipm_self_test.cpp": "6e4c725e047976c64020ef7bf6fe009d420ca658a7948e0b7868d6d907e6fd2b",
+      ".tools/experimental-source-migration-closeout.py": "bdb18f32fcdb70a28ad9a62ae0a98fabd95c60685a8961a19eaadd9a96af6b6e",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/manifest.json": "dc28db055e6933c59d387fea5ece4e41d321d975ee7bdd4dd7d2ab97085997fb",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/provenance/benchmark_experimental.py": "ae237d47c464ab61b2600e8121fa79da62312897293b00d7b037ac70884cece9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/provenance/build_experimental.py": "9637f056393607d60527f2255649ee693f2c4c296d4c987836b2d65a7edf6d5c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/provenance/plan.json": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/runs.jsonl.gz": "b99e9aff8539a6e3410068710fbb679d7c573f674ab999b6efac67e6c39fe4af",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-development/summary.json": "a762489a03e079ae4eeb34ca883e252512add0f51aa49aa4264c2d4b01448118",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/manifest.json": "c46176ad4697507e059a29e9279e80465c3469a44ef715ca28720cb0e8e9a0d9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/provenance/benchmark_experimental.py": "ae237d47c464ab61b2600e8121fa79da62312897293b00d7b037ac70884cece9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/provenance/build_experimental.py": "9637f056393607d60527f2255649ee693f2c4c296d4c987836b2d65a7edf6d5c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/provenance/plan.json": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/runs.jsonl.gz": "9fdf02d5fddf173214c44383bf098f253554ba713739f71a2eb61d83c2da71cb",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/compatibility-probe/summary.json": "6f41aa87aed93a7979692b07d425eb62499d96fa85af8ad9b1dbaaef70a7c59b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/manifest.json": "0b2ec2b1aaf5058a0ff0379f6c5fc120d63e855d8cb09b06168139c3b87b82b1",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/provenance/benchmark_experimental.py": "ae237d47c464ab61b2600e8121fa79da62312897293b00d7b037ac70884cece9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/provenance/build_experimental.py": "9637f056393607d60527f2255649ee693f2c4c296d4c987836b2d65a7edf6d5c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/provenance/plan.json": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/runs.jsonl.gz": "77e0e939f18c46e0b8801e9c406626f084f27d752ed62fb9ca7782c3c71219c6",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration/migration/summary.json": "980152ebeca0ba98c000e38efb8ead508b979b5d3b54e7953e63d6d13ca4cb07",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-build-attempt1.json": "630fd4aec7e5b0d0c831a1bfdbec0e2f3f68f379c09f3d7c8e9ee7be7af20a9b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-build-audit.json": "90e6474c7546edaa1eb16b2bd353f9fdb4aa7fdd86f70bb0cdcb4ce5cc65d808",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-build-self-check-attempt1.json": "7625e8f212ab8204c806f9a5f0f1e0c40ac46ec30a04c180a5ac647040125a8b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-compatibility-development-attempt1.json": "101d7f1734461889058e8fe97b1fbfe8a59d5218467d84663d9f906f526fe1da",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-compatibility-probe-attempt1.json": "6f1033b0fa5bf8c874e0f9279d245afd8175d288f58d3fffa567f78094ffec78",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-migration-attempt1.json": "c22b21bdbaa608361d126f88b768d7ee4bb24b4f2418f3cd560a42aa042ab8cc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-plan.json": "439db892e7a51fad7bf4c56fd824134164dee4d6ed7f75ff5ca147c69873de24",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-tool-check-attempt1.json": "0ed96daa5efd19d6f70ed7df63e08eaebfc0c750357d282e09615a12837cf1f3",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/experimental-source-migration-tool-check.json": "999d4d87e578c3d9ed240bcf311ba1eb9699b509bb3ebd758b9964fa0d21f471",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v100-plan.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v100-run-identity.json": "2dabe60886f521f845907c12c96b0ce6c0770862916cdf8eafe071faf84d95b2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v100-run.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-run.py": "6080b97380f79d64b3aafd79a265554c29910fbbd767477ed0ee5b0cacfc2d04",
+      "scripts/benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+      "scripts/benchmark_experimental.py": "ae237d47c464ab61b2600e8121fa79da62312897293b00d7b037ac70884cece9",
+      "scripts/build_experimental.py": "9637f056393607d60527f2255649ee693f2c4c296d4c987836b2d65a7edf6d5c",
+      "scripts/compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3",
+      "scripts/record_experiment.py": "8362bca9e380df3457e10b6a8529d3967e0f924cf22fe11b42fa6b4f5ccab650"
+    }
+  },
+  "historical_identity_uses_immutable_snapshot": true,
+  "candidate_integrated_in_production": false,
+  "interpretation": "直接维护C++与冻结v100完成机械迁移等价验证；严格private差异未删除，只有预先声明的native剩余预算字段单列。无新增算法收益或HiGHS性能结论。",
+  "driver_sha256": "bdb18f32fcdb70a28ad9a62ae0a98fabd95c60685a8961a19eaadd9a96af6b6e"
+}

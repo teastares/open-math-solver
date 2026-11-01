@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-10-31T20:16:20.595984+00:00",
+  "status": "待独立复核与原型，不是已实现或已证收益",
+  "candidate": "受保护AVX2/FMA Dot2搜索点积",
+  "context": "v107范数与v108工作区没有明确整体收益，旧coupled自耗仍混合投影/更新/范数，不能填成当前dot计时。",
+  "minimal_algorithm": "4lane分别TwoProduct(FMA)与TwoSum，保H/C补偿项；横向Sum2合并所有H/C，末以LD(H)+LD(C)再原narrow；不能普通Double hadd或先Double(H+C)。",
+  "candidate_guard": "binary64/RN默认控制、AVX/AVX2/FMA及OS支持，当前LDdigits<=64，n<=2^20；非零乘积的两个输入abs均在[2^-450,2^450]，零乘有限可单独核；任何失败整dot旧LD回退，成本仍在预算内。",
+  "proof_to_verify": "该范围产品最低有效位>=2^-1004、中间绝对和约<2^920；需严核FMA/TwoSum无上下溢、lane合并/标量尾部与最后LD舍入的完整误差界。Dot2为补偿算法，不是每步归一106bitDD，不保证每个输入实际误差优于LD或正确舍入。",
+  "performance_to_measure": "先做固定合成数据的独立C++正确性和微基准，含短长向量、相消/极端/guard fallback/实际资格，冻结后再决定是否集成和跑LP；不能用普通Double reduction换速度或预报整体收益。",
+  "sources": [
+    {
+      "url": "https://ogilab.w.waseda.jp/ogita/math/doc/2005_OgRuOi.pdf",
+      "location": "Algorithms3.5/5.3, Proposition5.5",
+      "observation": "FMA误差自由乘积与Dot2误差界的一手来源，下一轮需独立复核全部适用条件。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/riakymch/exblas/master/src/gpu/blas1/ExDOT.FPE.cl",
+      "observation": "浮点展开/超累加器不是仅两项补偿，不能移植其精确或重现保证。"
+    }
+  ],
+  "new_cpp_implementation": false,
+  "new_public_lp_runs": 0
+}

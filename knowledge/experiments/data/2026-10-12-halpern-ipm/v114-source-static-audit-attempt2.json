@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "version": 114,
+  "source_generation": false,
+  "new_public_lp_runs": 0,
+  "source_count": 14,
+  "full_parent_byte_inverse": [
+    {
+      "role": "normal",
+      "canonical": "src/experimental/normal_cholesky.cpp",
+      "canonical_sha256": "f75793f9fe0f37fc9ed203d9c36a7795fe55bc934c7726b5c2f253803cf226b8",
+      "parent": ".tools/v112-profile/source/src/experimental/normal_cholesky.cpp",
+      "parent_sha256": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+      "full_parent_bytes_equal": true,
+      "restored_bytes": 48182
+    },
+    {
+      "role": "ipm_self",
+      "canonical": "tests/experimental/ipm_self_test.cpp",
+      "canonical_sha256": "2b398f940bdd6baf14c47b41cfa6b80eebc7d7cc58be657d75570955212cbb83",
+      "parent": ".tools/v112-profile/source/tests/experimental/ipm_self_test.cpp",
+      "parent_sha256": "ca7360cbfb2e7b651e38c28f3e726599bcf34a4e36341fde4e16cd8422380ba7",
+      "full_parent_bytes_equal": true,
+      "restored_bytes": 236280
+    }
+  ],
+  "unchanged_parent_sources": {
+    "src/experimental/ipm.cpp": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+    "src/experimental/presolve_state.hpp": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+    "src/experimental/coupled_state.hpp": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+    "include/solver/experimental/coupled.hpp": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+    "include/solver/experimental/energy.hpp": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+    "include/solver/experimental/legacy_coupled.hpp": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+    "tests/experimental/coupled_self_test.cpp": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+    "include/solver/experimental/fma_axpy.hpp": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+    "src/experimental/diagnostic_state.hpp": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+    "include/solver/experimental/profile.hpp": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc"
+  },
+  "metis_header": {
+    "canonical": "include/solver/experimental/metis_order.hpp",
+    "source": ".tools/v113-metis-prototype/build/source/own/metis_order.hpp",
+    "sha256": "fd5d6d603e83d2146567d0b57f5e5db13e5d91101b4f53054888d84486e6e937",
+    "byte_identical": true
+  },
+  "new_cpp_helper": {
+    "file": "include/solver/experimental/normal_order.hpp",
+    "sha256": "88f742bc4cd118de052af59206bc4e3183601e4e8f1835888dbbc8670e70370f"
+  },
+  "lifecycle_note": "关闭排序块全文字节保持，permutation在else结束处提前释放，成本计入，不称逐指令相同",
+  "revision": 2,
+  "revision_reason": "仅一行组件测试改用const引用以去除新增复制警告，数值核心与固定160图家族保持"
+}

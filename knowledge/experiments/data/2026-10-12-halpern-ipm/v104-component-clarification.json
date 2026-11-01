@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-10-31T17:58:30.628683+00:00",
+  "previous_plan_file": "v104-plan-attempt2.json",
+  "previous_plan_sha256": "b8134c11103881a016e713aadb541a86b1d59ff2b953d462ada2bdc3136076f9",
+  "failed_self_run_sha256": "1a1998a97b4159bbfbf592cc44b71d5a89cddbf013457a02eb0216494818ccd9",
+  "failure": "单行倒数诊断：backend=qdldl，level=0，坐标=0，actual=-1.2324263742258907，dense转double=-1.2324455205803519，差值转double=1.9146354461291532e-05，实际r=1.8189894035458565e-12，实际R=[2.000000000001819,1.8189894035458565e-12,3.000000000001819,4.000000000001819]，RHS=[1,2,3,-4,-5,6]\r\n组件自测失败（已完成96组，真实入口44，合成入口12）：良态混合系统的真实direct应符合独立完整dense名义解\r\n",
+  "actual_backend": "qdldl",
+  "new_cache_active": false,
+  "cause_boundary": "该真实QDLDL对象capablefalse，父表达式不使用新倒数；误给未经原系统IR的raw P施加1e-11 dense前向保证。未测条件数或主元增长，不能把具体病态机制当已证事实。",
+  "test_correction": "原tiny equality案例保留，同options两个实际QDLDL对象Scope on/off的完整raw向量逐元素相等；另外只将该控制H第二行设2后重新factor，仍用原独立6x6及1e-11。其它数学/夹具/容差不改。",
+  "math_cpp_unchanged": true,
+  "public_lp_runs": 0
+}

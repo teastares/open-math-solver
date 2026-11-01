@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "version": 112,
+  "algorithm_parent_version": 106,
+  "diagnostic_only": true,
+  "numerical_algorithm_changes": false,
+  "source_generation": false,
+  "public_lp_runs": 0,
+  "design_sha256": "60f482a6cd342c8c5e68144860080df0e5837d9f263cccf1b2b5c8f2b73b899e",
+  "modified_parent_sources": [
+    {
+      "source": "src/experimental/ipm.cpp",
+      "source_sha256": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+      "parent_sha256": "96a86708f7f065349d97cfd297e9c6eb19d579ddfd1ea3ac1f427fb1ed074f41",
+      "scope_report_insertions": 17,
+      "call_wrappers": 2,
+      "complete_parent_bytes_restored": true
+    },
+    {
+      "source": "src/experimental/presolve_state.hpp",
+      "source_sha256": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      "parent_sha256": "c5cdb300aa7e1c58b91399db4a6377e61a918ad83cba2a73e5a49c456c13c051",
+      "scope_report_insertions": 1,
+      "call_wrappers": 0,
+      "complete_parent_bytes_restored": true
+    },
+    {
+      "source": "src/experimental/normal_cholesky.cpp",
+      "source_sha256": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+      "parent_sha256": "9b7798f0bd395593d4ff5e7ae0b8565dea9808a3b2852bb8eaebd1eadc27ca7b",
+      "scope_report_insertions": 9,
+      "call_wrappers": 6,
+      "complete_parent_bytes_restored": true
+    },
+    {
+      "source": "include/solver/experimental/coupled.hpp",
+      "source_sha256": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      "parent_sha256": "6106ffa4bbf43f63978299c9bbff8189545cdc05c7b63992553eb02c6c7f105a",
+      "scope_report_insertions": 4,
+      "call_wrappers": 0,
+      "complete_parent_bytes_restored": true
+    },
+    {
+      "source": "tests/experimental/coupled_self_test.cpp",
+      "source_sha256": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      "parent_sha256": "b9a138abb73b6bc1fcac6a433db651a51ebb8f753efa1c0f1429ff6b2db6c829",
+      "new_test_groups": 6,
+      "complete_parent_bytes_restored": true
+    }
+  ],
+  "unchanged_parent_sources": [
+    "src/experimental/coupled_state.hpp",
+    "include/solver/experimental/energy.hpp",
+    "include/solver/experimental/legacy_coupled.hpp",
+    "tests/experimental/ipm_self_test.cpp",
+    "include/solver/experimental/fma_axpy.hpp",
+    "src/experimental/diagnostic_state.hpp"
+  ],
+  "new_sources": [
+    {
+      "source": "include/solver/experimental/profile.hpp",
+      "sha256": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      "type": "直接维护的C++计时及报告头"
+    }
+  ],
+  "canonical_source_count": 12,
+  "math_and_budget_order_restored_by_inverse": true,
+  "inverse_source_emitted": false,
+  "component_cases": {
+    "ipm": 106,
+    "coupled": 57
+  },
+  "profile_schema": "8顶层字段，35阶段各5字段；显式关闭无clock、嵌套恢复、线程隔离",
+  "goal_achieved": false
+}

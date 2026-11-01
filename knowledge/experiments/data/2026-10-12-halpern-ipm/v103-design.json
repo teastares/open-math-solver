@@ -1,0 +1,41 @@
+{
+  "version": 103,
+  "round": 100,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T17:17:49.658105+00:00",
+  "algorithm_parent_version": 102,
+  "source_parent_identity": ".tools/v102-normal-inverse-attempt2/identity.json",
+  "source_parent_identity_sha256": "f0bed5f3aaa86b96d43db18f1642139062d3136b1dd20121b1b49a4b5d5582d7",
+  "source_parent_build": ".tools/v102-normal-inverse-attempt2/build-manifest.json",
+  "source_parent_build_sha256": "cd0261ff5f3f04067623c48c2f6b804e1db39581bbf7c4fda804870b246676f0",
+  "hypothesis": "原正块消去的Gram贡献超过既有8M上限时，利用已有二部结构检查另一侧；只有活动AAT且另一侧在原预算内才以(-M)u=-b求同一u，避免平方展开造成的通用分解回退。",
+  "eligibility": "旧侧超8M && existing coupled_state::enabled() && rectangular && 反侧<=8M；双方可行保原，双方超限保原结构异常。",
+  "structural_counts": {
+    "original": "m + sum_col d*(d+1)/2",
+    "opposite": "n + sum_row e*(e+1)/2",
+    "input_and_symbolic_budgets": "既有16M输入/矩阵/符号因子/CHOLMOD存储及原8M贡献上限均保持"
+  },
+  "orientation": "构造时固定，交换内部primal/dual坐标与diagonal并转置columns；整体系数和RHS取负，输出不额外取负。原signs、输入值、调用方RHS不在成功提交前改写。",
+  "factor_validity": "仍拒绝原D非正、原R非正、非有限；因子/倒数缓存入口失效、末成功发布，倒数对应变换后的正块；选定侧数值失败不添加另一侧重试。",
+  "precision": "可能放大原等式小R，改变条件数、恢复相消和轨迹；全部原strict/forcing/真实算子/原LP验收保持。",
+  "cost": "仅旧侧超限才新增反侧O(nnz)计数与转置、每factor值翻转和solve少量rhs符号操作；新增成本计入原5秒，不称为免费。",
+  "schema": "不新增公共或marker字段，不改V100环境名；factor_dimension报告实际保留块维数。",
+  "implementation": "只直接编辑normal_cholesky.cpp与对应C++组件；Python只管理计划构建评测审计。",
+  "protocol": "原固定34兼容+102初始性能，gate false止136，true再364至500，CPU1/seed0/5秒数值35秒wall/LP绝1e-7相1e-9保持。",
+  "research": [
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/model.cc",
+      "observation": "IPX在LP层按num_constr>2*num_var自动对偶化，另一filippo检测目前返回false；不同于本轮KKT内部消去侧选择。"
+    },
+    {
+      "url": "https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#parameter.PreDual",
+      "observation": "官方支持预处理原/对偶模型选择，2会在两线程形成两模型；本轮不采用额外双模型评估或两线程。"
+    },
+    {
+      "url": "https://arxiv.org/abs/2404.10930",
+      "observation": "2024原始预印本研究稠密列的预条件处理；本轮不实现该论文的预条件器或继承其条件数定理。"
+    }
+  ],
+  "no_model_specific_routing": true,
+  "known_gap_evidence": "父v102 fit2p实际factorhighs/结构回退1/报告16525；当前具体触发预算尚未核实，不把旧结构审计冒充当前。"
+}

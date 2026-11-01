@@ -1,0 +1,45 @@
+{
+  "version": 106,
+  "round": 103,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T18:50:06.791331+00:00",
+  "algorithm_parent_version": 105,
+  "source_parent_identity_file": ".tools/v105-budget-batch/identity.json",
+  "source_parent_identity_sha256": "7487402f2cdde51a0c01dc560cae4d4717c1fac5c546ee2526d4dd420942437c",
+  "source_parent_build_file": ".tools/v105-budget-batch/build-manifest.json",
+  "source_parent_build_sha256": "3a0565e1c4a1660879622ada3351471014a702ef4321d2e5177ea7a206f6d1b7",
+  "hypothesis": "只调整C++ v94_hsd_product中列头与Gentry的预算检查组织；减少短列的std::function/时钟调用，保全部算式和顺序。",
+  "scope": "仅src/experimental/ipm.cpp中的v94_hsd_product模板；Double和LD共用，Normal105及其余9源不改，旧off product不改。",
+  "activation": "在原入口check前快照非空check && coupled_state::enabled()；本次调用中callback改变TLS不重新选择。",
+  "work_units": "共享remaining256，每列头和每实际Gentry各tick；先递减，到0在该项算术前check，正常返才reset；跨列不重置。活动路径替换原列check和全局k&4095检查，关闭路径完整保原。",
+  "bound": "首批前255完整计数项，后相邻batch间最多256完整计数项；计数项不等于浮点乘加次数。固定行/互补块每4096及首末check全保；分配与外库不承诺硬中断。",
+  "checks": "标准完整CSC的off=2+ceil(m/4096)+ceil(I/4096)+n+ceil(E/4096)；on=2+ceil(m/4096)+ceil(I/4096)+floor((n+E)/256)。",
+  "preserved": "所有浮点表达式、遍历顺序、缩放、五块真残差、适配器和kernel所有外层check与public/private账本原位置完全保留；不添加CSC验证或数值启发式。",
+  "interruption": "原product可被局部写入；中断不要求product事务回滚。模板内中断时private started/public加1且completed0；adapter入口中断可started领先public；callback完成后kernel失败时products_completed不代表truecheck完成。全部真验及末check完成后才允许发布E5/候选与Point。",
+  "cost": "每列及entry新增整数递减与分支，长列check可能增多，是否有利由共同固定协议决定，不把跨轮时间当同期隔离因果。",
+  "protocol": "原CPU1 seed0 200步scaling5、solve+verification5秒/wall35、LP绝1e-7相1e-9、shift10失败罚5/35，34兼容+102初始，gate false止136，true再364至500。",
+  "research": [
+    {
+      "url": "https://raw.githubusercontent.com/google/or-tools/v9.14/ortools/pdlp/solvers.proto",
+      "observation": "v9.14公开termination_check_frequency默认64，描述额外解统计检查；是检查成本应显式组织的素材，不是本轮预算计数256的出处。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/or-tools/v9.14/ortools/pdlp/primal_dual_hybrid_gradient.cc",
+      "observation": "MajorIterationAndTerminationCheck先CheckSimpleTerminationCriteria，再按频率或强制条件计算额外解统计。区分便宜停止条件与昂贵统计，本轮并未替换真残差检查或照搬PDHG。"
+    },
+    {
+      "url": "https://arxiv.org/abs/2106.04756",
+      "observation": "PDLP原论文的稀疏matvec及通用预处理/步长/重启作为长期扩展参考；本轮不引入PDHG或改变精度。"
+    }
+  ],
+  "component_plan": {
+    "parent_ipm": 100,
+    "parent_standalone": 51,
+    "new_groups": 6,
+    "total_ipm": 106,
+    "total": 157,
+    "scope": "真实Double/LD模板on/off有效值位和signedzero；独立五块；256/4096实际回调计数与跨列共享；全部callback截止原异常和partial；入口Scope持久变化；kernel实际ledger、快照/Point未发布、无callback及形状拒绝。LD不memcmp含padding的对象表示。"
+  },
+  "no_model_specific_routing": true,
+  "source_generation": false
+}

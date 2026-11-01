@@ -1,0 +1,54 @@
+{
+  "version": 118,
+  "status": "完整500之后的一手源码与只读符号研究，尚未实现warm算法",
+  "direction": "独立C++原型：IPX导出列基，在Prepared [A,+I]上付费重建BASICLU基点，再验证自主bounded primal simplex PhaseII",
+  "evidence": {
+    "exported_basiclu_object_symbols": 6,
+    "symbol_observation_sha256": "bf7eb60b3c6c4f71bccc1b760737d48d6dcbd95a300da8efe1e10d8fc73176cb",
+    "remaining_original_model_primal_feasible": 15,
+    "remaining_failure_classes": {
+      "primal": 5,
+      "primal+dual": 4,
+      "primal+gap": 1,
+      "dual+gap": 7,
+      "gap": 2,
+      "primal+dual+gap": 7,
+      "dual": 6
+    },
+    "highs_remaining_rejections": 32,
+    "symbol_observation_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v118-basiclu-symbol-observation.json",
+    "highs_projection_repairs": 5,
+    "raw_native_quality_equal117": 59,
+    "hsd_updates_saved_observed": 7,
+    "candidate_analysis_sha256": "c72b983daf222229479ce0543277a49024b335ea46c9667d8149c144df897f9c",
+    "current_hsd_gate_quality_equal117": 59
+  },
+  "reason": "域投影修好5点但只省7次HSD更新，未形成整体速度收益；剩余点需要超出符号域的基可行性/最优性修复。",
+  "native_basis": {
+    "caveat": "导出会按状态贴界却不重算方程；先重建xB=B^-1(b-A_NxN)和pi=B^-TcB，再独立验残差/界。原Model primal通过只是候选观察，不证明重建列基可行。",
+    "bounds": "逻辑slack：<为[0,+inf]、>为[-inf,0]、=固定0；range q为结构-ei；fixed slack可以在基，不先删。",
+    "retrieve": "同一次GetBasicSolution补slack/cbasis/vbasis；只接受native crossover1/2及Get rc0，不以GetBasis rc0证明热启动可用。",
+    "mapping": "vbasis0选Prepared结构列（含range辅助q）；cbasis0选逻辑+I列n+i，总basic数恰好m；upper-only内部翻号已由导出恢复，不再翻号。"
+  },
+  "implementation": {
+    "scope": "先独立合成C++原型，秩亏/非原始可行基回HSD，不重复历史冷选基/PhaseI组合，不称现有LU免费复用。",
+    "library": "已冻libhighs.a的BASICLU对象API六符号真实nm确认；只有静态可用性，未做新链接/数值测试。",
+    "index": "当前lu_int/ipx::Int为32位，显式检查/复制我方int64，不能reinterpret。",
+    "verification": "现adapter最多2次全验；warm最终验收须另冻新计数、身份/账本，不偷偷突破上限。",
+    "stability": "singular_matrix会用单位列补秩，不能当原基成功；先保存FTRAN方向再做T solve_for_update，后者清lhs；update用原aq[p]，成功后坏稳定性不能假回滚。",
+    "pricing": "r=c-A^Tpi；下界负r向上，上界正r向下，自由非基双向，fixed不进入；入基另一界优先时bound flip。",
+    "budget": "分解、求解、完整定价/残差重算和更新均计原剩余期限；对象库内部不可硬抢占。",
+    "ratio": "FTRAN aq=B^-1a_j，xB-=sigma*theta*aq；检查全部基本界和入基另一界。自有定价/步进，不调用Highs完整solve。"
+  },
+  "source_refs": [
+    "build/release/_deps/highs-src/highs/ipm/basiclu/basiclu.h",
+    "build/release/_deps/highs-src/highs/ipm/ipx/model.cc",
+    "build/release/_deps/highs-src/highs/ipm/ipx/lp_solver.cc",
+    "build/release/_deps/highs-src/highs/simplex/HEkkPrimal.cpp"
+  ],
+  "alternative_safe_pruning": "x不变则raw primal已失败的点不可能仅改y通过；可作为严格必要条件剪枝单独证明/记账，不能假说投影会修复primal。",
+  "new_public_lp_runs": 0,
+  "new_builds": 0,
+  "source_generation": false,
+  "goal_achieved": false
+}

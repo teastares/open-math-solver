@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "version": 121,
+  "scope": "仅只读补正父120非时间等价检查，不改原始记录/求解器/评分",
+  "compared": 233,
+  "public_equal": 233,
+  "private_equal": 233,
+  "by_stage": {
+    "development": {
+      "private_equal": 33,
+      "public_equal": 33,
+      "compared": 33
+    },
+    "probe": {
+      "private_equal": 18,
+      "public_equal": 18,
+      "compared": 18
+    },
+    "netlib": {
+      "private_equal": 91,
+      "public_equal": 91,
+      "compared": 91
+    },
+    "highs": {
+      "private_equal": 91,
+      "public_equal": 91,
+      "compared": 91
+    }
+  },
+  "differences": [],
+  "correction": "candidate-analysis首次私有clock分类漏掉verification_seconds_total（其命名不是_seconds后缀），155个所谓非时间差实际为该时钟。本检查显式排除此已定义累计验算时钟后233全等，原分析/原件不覆盖。",
+  "private_clock_exclusions": "(^time_|_seconds$|^seconds$|^timings$|^native_time_limit$|^verification_seconds_total$)",
+  "additional_public_lp_runs": 0,
+  "source_generation": false
+}

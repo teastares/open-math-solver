@@ -1,0 +1,45 @@
+{
+  "version": 121,
+  "round": 118,
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setbuf?view=msvc-170",
+      "observed": "Microsoft说明stderr默认无缓冲。"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setvbuf?view=msvc-170",
+      "observed": "setvbuf要求该流此前未做I/O，且缓冲区必须有效；本候选仅设置新的FILE。"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/fdopen-wfdopen?view=msvc-170",
+      "observed": "FILE成功后拥有FD，text/binary修饰符显式控制翻译；源码不重新打开路径。"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/lock-file?view=msvc-170",
+      "observed": "锁FILE而不是底层文件，仅保护同一FILE的stdio顺序。"
+    },
+    {
+      "url": "https://www.coin-or.org/CoinUtils/Doxygen/classCoinMessageHandler.html",
+      "observed": "COIN公共消息接口使用messageBuffer并由finish/print输出，作为按消息组织输出的工程参考；未移植实现。"
+    },
+    {
+      "url": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkkDual.cpp",
+      "observed": "继续核对dual算法前置条件及BTRAN/比值流程，另记录未实现素材。"
+    }
+  ],
+  "web_limitations": [
+    "CoinUtils raw cpp URL本次cache miss，仅使用官方Doxygen接口说明，不声称已审其当前print实现。"
+  ],
+  "actual_evidence": {
+    "prototype": "v121-prototype-analysis.json",
+    "three_modes": 18,
+    "bytes_equal": true,
+    "single_block_bytes": 13526,
+    "median_default_seconds_per_four_markers": 0.0083541453125,
+    "median_duplicate_seconds_per_four_markers": 0.0000946484375
+  },
+  "inference": "诊断输出存在可观实现成本，故先更改I/O组织再验证完整协议；微测比例不是LP提速承诺。",
+  "constraints": "不删字段、不移出计时、不修改数值算法、不在已用全局流setvbuf；Windows实际测试，POSIX仅源码分支未实测。",
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

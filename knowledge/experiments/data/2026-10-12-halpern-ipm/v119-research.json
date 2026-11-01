@@ -1,0 +1,37 @@
+{
+  "version": 119,
+  "read_date": "2026-11-01",
+  "selected_direction": "从既有列基恢复可行基点，独立实现有界原始单纯形PhaseII。",
+  "sources": [
+    {
+      "source": "build/release/_deps/highs-src/highs/simplex/HEkkPrimal.cpp",
+      "upstream": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkkPrimal.cpp",
+      "observed": "chooseRow采用两遍Harris型比值检验，considerBoundSwap单独处理进入变量到界。",
+      "adopted": "本轮只实现一般换基/翻界语义，基线用精确单遍比值；不声称移植完整HiGHS数值策略。"
+    },
+    {
+      "source": "build/release/_deps/highs-src/highs/ipm/basiclu/basiclu_update.h",
+      "upstream": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/basiclu/basiclu_update.h",
+      "observed": "更新前需要N与T两次solve_for_update；xtbl为FTRAN方向pivot或对应内积；singular_update未提交新分解。成功后不能伪装回滚。",
+      "adopted": "自主选择列、行、步长；BASICLU只提供数值原语；失败放弃整个清理。"
+    },
+    {
+      "source": "build/release/_deps/highs-src/highs/ipm/ipx/lp_solver.cc",
+      "upstream": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/lp_solver.cc",
+      "observed": "GetBasicSolution与GetBasis给定状态不等于重新求解后的基点可行，内部上界列翻号已在导出恢复。",
+      "adopted": "重新解B(xB)=b-ANxN，再验原始可行；两组真实桥接与自主pivot改进测试分开。"
+    },
+    {
+      "source": "https://github.com/scipopt/soplex/blob/master/CHANGELOG",
+      "observed": "此前实际检索的修复记录涉及自由变量进入方向与约化成本、不可行点下无界误判。动态master仅作为研究线索，未复制为冻结源码。",
+      "adopted": "自由/内部非基按约化成本双向选择；初基不可行先拒绝；无blocking只返回未证无界。"
+    }
+  ],
+  "web_observation": {
+    "ipx_header_opened": true,
+    "soplex_changelog_opened": true,
+    "basiclu_raw_url_fetch": "cache miss，使用本地冻结版本原头实际阅读"
+  },
+  "inference": "基于118剩余拒绝质量分型与上述实现，本轮先补通用优化步骤，而非继续添加域投影规则；尚需真实LP集成及成本验证。",
+  "new_public_lp_runs": 0
+}

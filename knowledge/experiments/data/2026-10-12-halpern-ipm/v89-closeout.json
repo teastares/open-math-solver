@@ -1,0 +1,1727 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-26T00:13:00.424634+00:00",
+  "plan_sha256": "98ff5dfcbbc0ea7f24cd3e6894e7c2e2a95be5c223da98a9980779412c7d54a8",
+  "production_unchanged": true,
+  "production_version": 66,
+  "candidate_adopted": false,
+  "diagnostic_only": true,
+  "diagnostic_compatibility_passed": false,
+  "public_report_non_timing_equal_pairs": 12,
+  "total_public_lp_runs_revalidated": 18,
+  "additional_public_lp_runs_by_this_driver": 0,
+  "run_identity_sha256": "3a6a2f3a0f4c1cf57013bd3d267cc1bb6cc1e8e34bf7a7ec686f0be1ce820f38",
+  "build_manifest_sha256": "bd4926987dbc180c7afdaacfac30ec9c2adb790152524381084a78dbab5f7761",
+  "candidate_sha256": "d49bf1e0a1e5fcac38e204a6b1acb27971e24d1b001da3830a50d00bca6e219b",
+  "reference_version": 88,
+  "reference_executable_sha256": "785e5ddd20ed928069a937076847f43fe6e03003827b32305cd5d227f3775d88",
+  "source_files_verified": 95,
+  "libraries_verified": 17,
+  "protocol_self_check": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "trace_valid_fixtures": 5,
+    "trace_mutations": 16,
+    "scheduled_runs": 18,
+    "comparison_pairs": 12,
+    "environment_isolated": true,
+    "non_timing_policy_checked": true
+  },
+  "protocol_self_check_attempts": {
+    "v89-runner-self-check-attempt1.json": {
+      "sha256": "f138de151f9b8abf2eff220daca30d0fdc21d0017d52bc272781f3d9411fd40b",
+      "returncode": 0,
+      "source_sha256": "f3a76ea0e9427dd75cbcd3df883fdd7960d86a9369d485112f2a21d3e336ecff",
+      "stderr": ""
+    }
+  },
+  "build_input_snapshots_verified": {
+    "v89-build-attempt1.json": {
+      "sha256": "271803d4c9b31efc01b20bcec4d31921baae07cff83b6a2deee5e5b319f37f24",
+      "source_sha256": "26bc72d28386cd1092a1e99dcf0e4603c28caccb28523514dbec3be8dd8a6f3b",
+      "input_sources": {
+        "v89-plan.json": "98ff5dfcbbc0ea7f24cd3e6894e7c2e2a95be5c223da98a9980779412c7d54a8",
+        "v89-baseline-check.json": "7bbd7651bfd39420689deea097ed45f3d511ea242342a7c2ddd0c61cb34a1a51",
+        "v89-ipm-instrumentation.py": "092cddb029751a4f6e9cdaa975128915b91b5f6b4a4bdcef4765040d482f10d0",
+        "v89-ipm-self-test.cpp": "5dc832189ca86c984fd6f8f32031918e71eab65c2649243f9f9deccdce7af12a",
+        "v89-build.py": "26bc72d28386cd1092a1e99dcf0e4603c28caccb28523514dbec3be8dd8a6f3b",
+        "v89-run.py": "f3a76ea0e9427dd75cbcd3df883fdd7960d86a9369d485112f2a21d3e336ecff",
+        "v89-runner-self-check.json": "bababb1a263abf952e09f145bb33560cbd07b71729fb7dd900f5fbd45d2b4b0e",
+        "v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+        "v47-profile-build.py": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5"
+      }
+    }
+  },
+  "build_attempt_history": {
+    "attempts": [
+      {
+        "file": "v89-build-attempt1.json",
+        "sha256": "271803d4c9b31efc01b20bcec4d31921baae07cff83b6a2deee5e5b319f37f24",
+        "returncode": 0,
+        "work": "D:\\Documents\\codes\\solver\\.tools\\v89-presolve"
+      }
+    ],
+    "failed_build_attempts": 0,
+    "successful_build_attempt": "v89-build-attempt1.json"
+  },
+  "math_self_checks": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "details": {
+      "passed": true,
+      "public_lp_runs": 0,
+      "explicit_highs_lp_solve_calls": 0,
+      "scope": "仅组件自测；component_ipm_calls计harness进入真实solve_ipm或v89_core的API次数(含零预算入口)，不含内部调用拦截；synthetic_core_calls另计，不是公开LP成绩",
+      "cases": 63,
+      "wrapper_cases": 3,
+      "mapping_cases": 10,
+      "transaction_cases": 27,
+      "budget_cases": 14,
+      "exception_cases": 9,
+      "component_ipm_calls": 28,
+      "synthetic_core_calls": 12,
+      "details": [
+        {
+          "id": "off_wrapper_is_original_core",
+          "group": "wrapper"
+        },
+        {
+          "id": "minimum_column_lower_offset",
+          "group": "mapping"
+        },
+        {
+          "id": "minimum_column_upper_offset",
+          "group": "mapping"
+        },
+        {
+          "id": "maximum_column_upper_offset",
+          "group": "mapping"
+        },
+        {
+          "id": "minimum_original_row_lower",
+          "group": "mapping"
+        },
+        {
+          "id": "maximum_original_row_upper",
+          "group": "mapping"
+        },
+        {
+          "id": "ranged_row_lower",
+          "group": "mapping"
+        },
+        {
+          "id": "ranged_row_upper",
+          "group": "mapping"
+        },
+        {
+          "id": "fixed_column_equality_offset",
+          "group": "mapping"
+        },
+        {
+          "id": "minimum_real_reduced_child",
+          "group": "mapping"
+        },
+        {
+          "id": "maximum_real_reduced_child",
+          "group": "mapping"
+        },
+        {
+          "id": "not_reduced_is_original_core",
+          "group": "wrapper"
+        },
+        {
+          "id": "mip_is_original_core_rejection",
+          "group": "wrapper"
+        },
+        {
+          "id": "time_zero_before_native",
+          "group": "budget"
+        },
+        {
+          "id": "iteration_zero_before_native",
+          "group": "budget"
+        },
+        {
+          "id": "adopt_child_clears_all_coordinate_quality",
+          "group": "transaction"
+        },
+        {
+          "id": "commit_valid_original_quality",
+          "group": "transaction"
+        },
+        {
+          "id": "reject_bad_original_primal_quality",
+          "group": "transaction"
+        },
+        {
+          "id": "nonoptimal_child_passes_original_quality",
+          "group": "transaction"
+        },
+        {
+          "id": "false_optimal_child_dual_rejected",
+          "group": "transaction"
+        },
+        {
+          "id": "false_optimal_child_primal_rejected",
+          "group": "transaction"
+        },
+        {
+          "id": "missing_candidate_drops_child_bait",
+          "group": "transaction"
+        },
+        {
+          "id": "bad_child_dimension_drops_bait",
+          "group": "transaction"
+        },
+        {
+          "id": "native_infeasible_is_not_original_certificate",
+          "group": "transaction"
+        },
+        {
+          "id": "entry_deadline_stops_before_native",
+          "group": "budget"
+        },
+        {
+          "id": "child_deadline_keeps_legacy_only",
+          "group": "budget"
+        },
+        {
+          "id": "post_verify_deadline_cannot_commit",
+          "group": "budget"
+        },
+        {
+          "id": "after_assessment_exception_keeps_cost_only",
+          "group": "exception"
+        },
+        {
+          "id": "child_standard_exception_partial_cost",
+          "group": "exception"
+        },
+        {
+          "id": "child_nonstandard_exception_partial_cost",
+          "group": "exception"
+        },
+        {
+          "id": "projection_skips_already_accepted_raw",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_unchanged_avoids_second_assessment",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_removes_tiny_wrong_lower_dual_sign",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_removes_tiny_wrong_upper_dual_sign",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_repairs_original_lower_bound",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_repairs_original_upper_bound",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_repairs_both_sides_transactionally",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_rejects_broken_row_keeps_raw_incumbent",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_rejects_broken_gap_keeps_raw_incumbent",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_nonfinite_second_vector_never_selects_partial_point",
+          "group": "transaction"
+        },
+        {
+          "id": "projection_copy_loop_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_primal_loop_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_after_dual_api_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_scan_loop_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_post_assessment_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_final_commit_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_exception_cannot_fallback_after_deadline",
+          "group": "budget"
+        },
+        {
+          "id": "projection_clock_exception_raw_fallback",
+          "group": "exception"
+        },
+        {
+          "id": "projection_allocation_exception_raw_fallback",
+          "group": "exception"
+        },
+        {
+          "id": "oracle_old_incumbent_cannot_trigger_current",
+          "group": "transaction"
+        },
+        {
+          "id": "oracle_reject_then_accept_same_core",
+          "group": "transaction"
+        },
+        {
+          "id": "oracle_tls_scope_restores_previous",
+          "group": "transaction"
+        },
+        {
+          "id": "oracle_owner_commits_without_tail_recovery",
+          "group": "transaction"
+        },
+        {
+          "id": "native_postsolve_replays_A_B_A_without_lp",
+          "group": "transaction"
+        },
+        {
+          "id": "oracle_budget_preserves_event_work",
+          "group": "budget"
+        },
+        {
+          "id": "oracle_error_preserves_event_work",
+          "group": "exception"
+        },
+        {
+          "id": "oracle_real_core_budget_bridge",
+          "group": "budget"
+        },
+        {
+          "id": "oracle_real_core_error_bridge",
+          "group": "exception"
+        },
+        {
+          "id": "trace_nonoptimal_current_overrides_old_incumbent",
+          "group": "transaction"
+        },
+        {
+          "id": "trace_incomplete_attempt_keeps_last_complete",
+          "group": "exception"
+        },
+        {
+          "id": "trace_tls_scope_restores_previous",
+          "group": "transaction"
+        },
+        {
+          "id": "trace_disabled_has_no_work",
+          "group": "transaction"
+        },
+        {
+          "id": "trace_records_before_oracle_failure",
+          "group": "exception"
+        }
+      ]
+    }
+  },
+  "source_checks": {
+    "candidate_units": 1,
+    "compiled_including_math_harnesses": 2,
+    "dependencies": 962,
+    "candidate_explicit_link_inputs": 19,
+    "test_explicit_link_inputs": 18,
+    "original_normal_library_retained": true,
+    "upstream_highs_include_arguments": [
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-src/extern",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-src",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-src/highs",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-build",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-build/extern"
+    ],
+    "core_body_preserved_except_assess_hook": true,
+    "assess_hook_reversible": true,
+    "current_local_saved_before_move": true,
+    "solve_entry_body_preserved": true,
+    "initialization_zero_count_fields": 37,
+    "transformations_reversible": 7,
+    "trace_delta": {
+      "passed": true,
+      "parent_sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+      "removed_blocks": [
+        "trace_structs",
+        "trace_context",
+        "trace_writer"
+      ],
+      "parent_header_restored": true,
+      "parent_wrapper_restored": true,
+      "parent_oracle_hooks_preserved": true,
+      "bounded_projection_preserved": true,
+      "parent_file": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v88-ipm-instrumentation.py",
+      "parent_python_imported_or_executed": false,
+      "additional_lp_iterations_or_products": false,
+      "fixed_size_quality_snapshot_only": true
+    },
+    "trace_reversible": true,
+    "trace_snapshot_uses_existing_checks": true,
+    "trace_disabled_no_work": true,
+    "shared_start_without_second_epoch": true,
+    "regularized_matches_original_archive_member": true,
+    "final_static_attempt": {
+      "file": "v89-build-self-check-attempt1.json",
+      "sha256": "fc1e4911702cc5ccebde42d56eb876a579e6a215381fa804651cb18d208c2eb5",
+      "source_sha256": "26bc72d28386cd1092a1e99dcf0e4603c28caccb28523514dbec3be8dd8a6f3b",
+      "trace_proofs_included": true,
+      "passed_before_actual_builds": true
+    },
+    "math_coverage_extension": {
+      "file": "ipm-self-extension-check.json",
+      "sha256": "06b7b5f3a11422ea294244e3a66bfae0510a5d076c7f88927181aa74ff3868b1",
+      "preserved_predecessor_cases": 58,
+      "new_cases": 5
+    },
+    "new_math_cases": [
+      {
+        "id": "trace_nonoptimal_current_overrides_old_incumbent",
+        "group": "transaction"
+      },
+      {
+        "id": "trace_incomplete_attempt_keeps_last_complete",
+        "group": "exception"
+      },
+      {
+        "id": "trace_tls_scope_restores_previous",
+        "group": "transaction"
+      },
+      {
+        "id": "trace_disabled_has_no_work",
+        "group": "transaction"
+      },
+      {
+        "id": "trace_records_before_oracle_failure",
+        "group": "exception"
+      }
+    ],
+    "component_calls": {
+      "component_ipm_calls": {
+        "predecessor": 27,
+        "current": 28,
+        "change": 1
+      },
+      "synthetic_core_calls": {
+        "predecessor": 12,
+        "current": 12,
+        "change": 0
+      }
+    },
+    "public_lp_runs": 0
+  },
+  "diagnostic_summary": {
+    "schema": 1,
+    "diagnostic_only": true,
+    "plan_sha256": "98ff5dfcbbc0ea7f24cd3e6894e7c2e2a95be5c223da98a9980779412c7d54a8",
+    "runs": 18,
+    "pairs": 12,
+    "raw_sha256": "8e52ff6232d9a8848e6824dab5ee7339d75096a53cd19d33a8c4a3cbebe60200",
+    "valid_process_count": 18,
+    "marker_errors": 0,
+    "trace_errors": 0,
+    "compatibility_passed": false,
+    "categories": {
+      "non_budget_equal": 0,
+      "budget_pairs": 0,
+      "invalid_pairs": 0,
+      "different_pairs": 12
+    },
+    "variants": {
+      "frozen_v88": {
+        "runs": 6,
+        "statuses": {
+          "numerical_error": 2,
+          "optimal": 4
+        }
+      },
+      "diagnostic_off": {
+        "runs": 6,
+        "statuses": {
+          "numerical_error": 2,
+          "optimal": 4
+        }
+      },
+      "diagnostic_on": {
+        "runs": 6,
+        "statuses": {
+          "numerical_error": 2,
+          "optimal": 4
+        }
+      }
+    },
+    "trace_observations": [
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "status": "numerical_error",
+        "route": "reduced",
+        "assess_trace": {
+          "enabled": true,
+          "started": 80,
+          "completed": 80,
+          "last_attempt": {
+            "sequence": 79,
+            "iteration": 78
+          },
+          "last_complete": {
+            "sequence": 79,
+            "iteration": 78,
+            "quality": {
+              "primal_valid": true,
+              "primal_feasible": false,
+              "objective_consistent": true,
+              "dual_feasible": false,
+              "gap_satisfied": false,
+              "numerically_optimal": false,
+              "objective": -72462445.24491037,
+              "max_row_violation": 3.85716736596084e-06,
+              "max_bound_violation": 0,
+              "max_dual_residual": 0.00018365789466720864,
+              "objective_gap": 1.070344242369174,
+              "relative_objective_gap": 1.47930027379402e-08
+            }
+          }
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "status": "numerical_error",
+        "route": "reduced",
+        "assess_trace": {
+          "enabled": true,
+          "started": 80,
+          "completed": 80,
+          "last_attempt": {
+            "sequence": 79,
+            "iteration": 78
+          },
+          "last_complete": {
+            "sequence": 79,
+            "iteration": 78,
+            "quality": {
+              "primal_valid": true,
+              "primal_feasible": false,
+              "objective_consistent": true,
+              "dual_feasible": false,
+              "gap_satisfied": false,
+              "numerically_optimal": false,
+              "objective": -72462445.24491037,
+              "max_row_violation": 3.85716736596084e-06,
+              "max_bound_violation": 0,
+              "max_dual_residual": 0.00018365789466720864,
+              "objective_gap": 1.070344242369174,
+              "relative_objective_gap": 1.47930027379402e-08
+            }
+          }
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "status": "optimal",
+        "route": "reduced",
+        "assess_trace": {
+          "enabled": true,
+          "started": 40,
+          "completed": 40,
+          "last_attempt": {
+            "sequence": 39,
+            "iteration": 38
+          },
+          "last_complete": {
+            "sequence": 39,
+            "iteration": 38,
+            "quality": {
+              "primal_valid": true,
+              "primal_feasible": true,
+              "objective_consistent": true,
+              "dual_feasible": true,
+              "gap_satisfied": true,
+              "numerically_optimal": true,
+              "objective": -664.2189612722739,
+              "max_row_violation": 1.3517542640784086e-10,
+              "max_bound_violation": 1.0868945774058878e-12,
+              "max_dual_residual": 7.528889621119528e-15,
+              "objective_gap": 3.6866398822610336e-11,
+              "relative_objective_gap": 3.365520837387164e-14
+            }
+          }
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "status": "optimal",
+        "route": "reduced",
+        "assess_trace": {
+          "enabled": true,
+          "started": 40,
+          "completed": 40,
+          "last_attempt": {
+            "sequence": 39,
+            "iteration": 38
+          },
+          "last_complete": {
+            "sequence": 39,
+            "iteration": 38,
+            "quality": {
+              "primal_valid": true,
+              "primal_feasible": true,
+              "objective_consistent": true,
+              "dual_feasible": true,
+              "gap_satisfied": true,
+              "numerically_optimal": true,
+              "objective": -664.2189612722739,
+              "max_row_violation": 1.3517542640784086e-10,
+              "max_bound_violation": 1.0868945774058878e-12,
+              "max_dual_residual": 7.528889621119528e-15,
+              "objective_gap": 3.6866398822610336e-11,
+              "relative_objective_gap": 3.365520837387164e-14
+            }
+          }
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "status": "optimal",
+        "route": "reduced",
+        "assess_trace": {
+          "enabled": true,
+          "started": 53,
+          "completed": 53,
+          "last_attempt": {
+            "sequence": 52,
+            "iteration": 51
+          },
+          "last_complete": {
+            "sequence": 52,
+            "iteration": 51,
+            "quality": {
+              "primal_valid": true,
+              "primal_feasible": true,
+              "objective_consistent": true,
+              "dual_feasible": true,
+              "gap_satisfied": true,
+              "numerically_optimal": true,
+              "objective": -4302260.261174562,
+              "max_row_violation": 5.910786287071507e-09,
+              "max_bound_violation": 1.1358647356018992e-09,
+              "max_dual_residual": 5.204220197146947e-10,
+              "objective_gap": 8.340775821125135e-07,
+              "relative_objective_gap": 2.0115864693059187e-13
+            }
+          }
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "status": "optimal",
+        "route": "reduced",
+        "assess_trace": {
+          "enabled": true,
+          "started": 53,
+          "completed": 53,
+          "last_attempt": {
+            "sequence": 52,
+            "iteration": 51
+          },
+          "last_complete": {
+            "sequence": 52,
+            "iteration": 51,
+            "quality": {
+              "primal_valid": true,
+              "primal_feasible": true,
+              "objective_consistent": true,
+              "dual_feasible": true,
+              "gap_satisfied": true,
+              "numerically_optimal": true,
+              "objective": -4302260.261174562,
+              "max_row_violation": 5.910786287071507e-09,
+              "max_bound_violation": 1.1358647356018992e-09,
+              "max_dual_residual": 5.204220197146947e-10,
+              "objective_gap": 8.340775821125135e-07,
+              "relative_objective_gap": 2.0115864693059187e-13
+            }
+          }
+        }
+      }
+    ],
+    "scope": "只诊断18次调用；Reduced质量属于约化core.model，Original属于原模型；last_complete不是末次已发布点或保存的incumbent；不生成性能胜利或覆盖提升结论。"
+  },
+  "independent_diagnostics": {
+    "public_lp_runs_revalidated": 18,
+    "additional_public_lp_runs": 0,
+    "variants": {
+      "frozen_v88": 6,
+      "diagnostic_off": 6,
+      "diagnostic_on": 6
+    },
+    "groups": 6,
+    "paired_comparisons": 12,
+    "comparison_categories": {
+      "non_timing_difference": 12
+    },
+    "all_comparisons_non_budget_equal": false,
+    "all_public_non_timing_reports_and_exits_equal": true,
+    "old_marker_difference_paths": {
+      "/native/time_limit": 12
+    },
+    "public_report_difference_paths": {},
+    "only_non_timing_old_marker_difference_is_native_time_limit": true,
+    "strict_compatibility_policy_unchanged": true,
+    "comparison_facts": [
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994165,
+            "candidate": 4.9993953
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9993953,
+            "candidate": 4.9991058
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994277,
+            "candidate": 4.9994292
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994292,
+            "candidate": 4.9991401
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998537,
+            "candidate": 4.9998461
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998461,
+            "candidate": 4.9998402
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998489,
+            "candidate": 4.9998496
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998496,
+            "candidate": 4.9998392
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994045,
+            "candidate": 4.999362
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.999362,
+            "candidate": 4.9993229
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994217,
+            "candidate": 4.9993469
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9993469,
+            "candidate": 4.9993832
+          }
+        ]
+      }
+    ],
+    "divergence_or_budget_facts": [
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994165,
+            "candidate": 4.9993953
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9993953,
+            "candidate": 4.9991058
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994277,
+            "candidate": 4.9994292
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994292,
+            "candidate": 4.9991401
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998537,
+            "candidate": 4.9998461
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998461,
+            "candidate": 4.9998402
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998489,
+            "candidate": 4.9998496
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9998496,
+            "candidate": 4.9998392
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994045,
+            "candidate": 4.999362
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.999362,
+            "candidate": 4.9993229
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "left_variant": "frozen_v88",
+        "right_variant": "diagnostic_off",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9994217,
+            "candidate": 4.9993469
+          }
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "left_variant": "diagnostic_off",
+        "right_variant": "diagnostic_on",
+        "category": "non_timing_difference",
+        "non_timing_report_equal": true,
+        "non_timing_old_marker_equal": false,
+        "non_timing_public_report_field_differences": [],
+        "exit_field_differences": [],
+        "non_timing_old_marker_field_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference_exists": true,
+            "candidate_exists": true,
+            "reference": 4.9993469,
+            "candidate": 4.9993832
+          }
+        ]
+      }
+    ],
+    "trace_observations": [
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "case_index": 0,
+        "model_index": 0,
+        "variant": "diagnostic_on",
+        "order": 2,
+        "route": "reduced",
+        "coordinate": "reduced_core_model",
+        "core_status": "numerical_error",
+        "public_status": "numerical_error",
+        "started": 80,
+        "completed": 80,
+        "last_attempt": {
+          "sequence": 79,
+          "iteration": 78
+        },
+        "last_complete": {
+          "sequence": 79,
+          "iteration": 78,
+          "quality": {
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462445.24491037,
+            "max_row_violation": 3.85716736596084e-06,
+            "max_bound_violation": 0,
+            "max_dual_residual": 0.00018365789466720864,
+            "objective_gap": 1.070344242369174,
+            "relative_objective_gap": 1.47930027379402e-08
+          }
+        },
+        "final_public_ipm_iterations": 78,
+        "last_complete_is_last_attempt": true,
+        "failed_last_complete_conditions": [
+          "primal_feasible",
+          "dual_feasible",
+          "gap_satisfied",
+          "numerically_optimal"
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "case_index": 1,
+        "model_index": 0,
+        "variant": "diagnostic_on",
+        "order": 1,
+        "route": "reduced",
+        "coordinate": "reduced_core_model",
+        "core_status": "numerical_error",
+        "public_status": "numerical_error",
+        "started": 80,
+        "completed": 80,
+        "last_attempt": {
+          "sequence": 79,
+          "iteration": 78
+        },
+        "last_complete": {
+          "sequence": 79,
+          "iteration": 78,
+          "quality": {
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462445.24491037,
+            "max_row_violation": 3.85716736596084e-06,
+            "max_bound_violation": 0,
+            "max_dual_residual": 0.00018365789466720864,
+            "objective_gap": 1.070344242369174,
+            "relative_objective_gap": 1.47930027379402e-08
+          }
+        },
+        "final_public_ipm_iterations": 78,
+        "last_complete_is_last_attempt": true,
+        "failed_last_complete_conditions": [
+          "primal_feasible",
+          "dual_feasible",
+          "gap_satisfied",
+          "numerically_optimal"
+        ]
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "case_index": 2,
+        "model_index": 1,
+        "variant": "diagnostic_on",
+        "order": 0,
+        "route": "reduced",
+        "coordinate": "reduced_core_model",
+        "core_status": "optimal",
+        "public_status": "optimal",
+        "started": 40,
+        "completed": 40,
+        "last_attempt": {
+          "sequence": 39,
+          "iteration": 38
+        },
+        "last_complete": {
+          "sequence": 39,
+          "iteration": 38,
+          "quality": {
+            "primal_valid": true,
+            "primal_feasible": true,
+            "objective_consistent": true,
+            "dual_feasible": true,
+            "gap_satisfied": true,
+            "numerically_optimal": true,
+            "objective": -664.2189612722739,
+            "max_row_violation": 1.3517542640784086e-10,
+            "max_bound_violation": 1.0868945774058878e-12,
+            "max_dual_residual": 7.528889621119528e-15,
+            "objective_gap": 3.6866398822610336e-11,
+            "relative_objective_gap": 3.365520837387164e-14
+          }
+        },
+        "final_public_ipm_iterations": 38,
+        "last_complete_is_last_attempt": true,
+        "failed_last_complete_conditions": []
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "case_index": 3,
+        "model_index": 1,
+        "variant": "diagnostic_on",
+        "order": 2,
+        "route": "reduced",
+        "coordinate": "reduced_core_model",
+        "core_status": "optimal",
+        "public_status": "optimal",
+        "started": 40,
+        "completed": 40,
+        "last_attempt": {
+          "sequence": 39,
+          "iteration": 38
+        },
+        "last_complete": {
+          "sequence": 39,
+          "iteration": 38,
+          "quality": {
+            "primal_valid": true,
+            "primal_feasible": true,
+            "objective_consistent": true,
+            "dual_feasible": true,
+            "gap_satisfied": true,
+            "numerically_optimal": true,
+            "objective": -664.2189612722739,
+            "max_row_violation": 1.3517542640784086e-10,
+            "max_bound_violation": 1.0868945774058878e-12,
+            "max_dual_residual": 7.528889621119528e-15,
+            "objective_gap": 3.6866398822610336e-11,
+            "relative_objective_gap": 3.365520837387164e-14
+          }
+        },
+        "final_public_ipm_iterations": 38,
+        "last_complete_is_last_attempt": true,
+        "failed_last_complete_conditions": []
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "case_index": 4,
+        "model_index": 2,
+        "variant": "diagnostic_on",
+        "order": 1,
+        "route": "reduced",
+        "coordinate": "reduced_core_model",
+        "core_status": "optimal",
+        "public_status": "optimal",
+        "started": 53,
+        "completed": 53,
+        "last_attempt": {
+          "sequence": 52,
+          "iteration": 51
+        },
+        "last_complete": {
+          "sequence": 52,
+          "iteration": 51,
+          "quality": {
+            "primal_valid": true,
+            "primal_feasible": true,
+            "objective_consistent": true,
+            "dual_feasible": true,
+            "gap_satisfied": true,
+            "numerically_optimal": true,
+            "objective": -4302260.261174562,
+            "max_row_violation": 5.910786287071507e-09,
+            "max_bound_violation": 1.1358647356018992e-09,
+            "max_dual_residual": 5.204220197146947e-10,
+            "objective_gap": 8.340775821125135e-07,
+            "relative_objective_gap": 2.0115864693059187e-13
+          }
+        },
+        "final_public_ipm_iterations": 51,
+        "last_complete_is_last_attempt": true,
+        "failed_last_complete_conditions": []
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "case_index": 5,
+        "model_index": 2,
+        "variant": "diagnostic_on",
+        "order": 0,
+        "route": "reduced",
+        "coordinate": "reduced_core_model",
+        "core_status": "optimal",
+        "public_status": "optimal",
+        "started": 53,
+        "completed": 53,
+        "last_attempt": {
+          "sequence": 52,
+          "iteration": 51
+        },
+        "last_complete": {
+          "sequence": 52,
+          "iteration": 51,
+          "quality": {
+            "primal_valid": true,
+            "primal_feasible": true,
+            "objective_consistent": true,
+            "dual_feasible": true,
+            "gap_satisfied": true,
+            "numerically_optimal": true,
+            "objective": -4302260.261174562,
+            "max_row_violation": 5.910786287071507e-09,
+            "max_bound_violation": 1.1358647356018992e-09,
+            "max_dual_residual": 5.204220197146947e-10,
+            "objective_gap": 8.340775821125135e-07,
+            "relative_objective_gap": 2.0115864693059187e-13
+          }
+        },
+        "final_public_ipm_iterations": 51,
+        "last_complete_is_last_attempt": true,
+        "failed_last_complete_conditions": []
+      }
+    ],
+    "trace_started_sum": 346,
+    "trace_completed_sum": 346,
+    "source_reuse": {
+      "file": ".tools/v88-oracle-audit.py",
+      "sha256": "641f8efe85a5954737e9161f676d6d2f49a0442c504d1182d990f184f1e7d3da",
+      "scope": "旧21字段/每事件oracle/owner公共质量和四ULP+fsum计时复用；本模块独立核5字段采集、原文与两类非时间对子。"
+    },
+    "interpretation": "保留正式比较的全部预算字段，逐字段差异只解释负结果，不后验删除native.time_limit或翻转兼容结论。只报告最后完整verify的已有标量及真正进入assess的attempt；序号不是完成数，没有point generation或完整点快照，不保证对应末当前点或incumbent。Reduced为约化模型质量，不等同原模型最优证明。本轮无新的性能成绩或覆盖率结论。"
+  },
+  "compatibility_difference_attribution": {
+    "formal_compatibility_passed": false,
+    "formal_different_pairs": 12,
+    "public_reports_non_timing_equal_pairs": 12,
+    "sole_old_diagnostic_difference": "/native/time_limit",
+    "facts": [
+      {
+        "case_index": 0,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "reference": "frozen_v88",
+        "candidate": "diagnostic_off",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9994165,
+            "candidate": 4.9993953
+          }
+        ]
+      },
+      {
+        "case_index": 0,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9993953,
+            "candidate": 4.9991058
+          }
+        ]
+      },
+      {
+        "case_index": 1,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "reference": "frozen_v88",
+        "candidate": "diagnostic_off",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9994277,
+            "candidate": 4.9994292
+          }
+        ]
+      },
+      {
+        "case_index": 1,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9994292,
+            "candidate": 4.9991401
+          }
+        ]
+      },
+      {
+        "case_index": 2,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "reference": "frozen_v88",
+        "candidate": "diagnostic_off",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9998537,
+            "candidate": 4.9998461
+          }
+        ]
+      },
+      {
+        "case_index": 2,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9998461,
+            "candidate": 4.9998402
+          }
+        ]
+      },
+      {
+        "case_index": 3,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "reference": "frozen_v88",
+        "candidate": "diagnostic_off",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9998489,
+            "candidate": 4.9998496
+          }
+        ]
+      },
+      {
+        "case_index": 3,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9998496,
+            "candidate": 4.9998392
+          }
+        ]
+      },
+      {
+        "case_index": 4,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "reference": "frozen_v88",
+        "candidate": "diagnostic_off",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9994045,
+            "candidate": 4.999362
+          }
+        ]
+      },
+      {
+        "case_index": 4,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.999362,
+            "candidate": 4.9993229
+          }
+        ]
+      },
+      {
+        "case_index": 5,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "reference": "frozen_v88",
+        "candidate": "diagnostic_off",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9994217,
+            "candidate": 4.9993469
+          }
+        ]
+      },
+      {
+        "case_index": 5,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "reference": "diagnostic_off",
+        "candidate": "diagnostic_on",
+        "public_report_non_timing_equal": true,
+        "old_diagnostic_differences": [
+          {
+            "path": "/native/time_limit",
+            "reference": 4.9993469,
+            "candidate": 4.9993832
+          }
+        ]
+      }
+    ],
+    "additional_public_lp_runs": 0,
+    "interpretation": "正式冻结比较仍保native.time_limit，因此12对different和outer退出1均不改。此零LP补充只定位真实剩余预算值差异，不后验删除字段、改兼容定义、翻成功或形成性能结论。"
+  },
+  "diagnostic_dispatch": {
+    "file": "v89-diagnostic-attempt1.json",
+    "sha256": "15dc75f67048bdf1df75d715857c112c28dc97a18c240ea00b7353382652ea9d",
+    "returncode": 1,
+    "completed_solver_runs": 18,
+    "attempts": 1,
+    "failed_after_complete_run_on_compatibility_assertion": true,
+    "stdout_records": 19,
+    "original_stderr_preserved": true
+  },
+  "native_source_audit_predecessor": {
+    "file": "v88-closeout.json",
+    "sha256": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b",
+    "same_six_locked_highs_sources": true
+  },
+  "independent_audit_sources": {
+    ".tools/v89-build-audit.py": "ee9dac8c3a1ef24fc7c70b8011960997f75dcaa484f0ea450b2f00d602cc4109",
+    ".tools/v89-trace-audit.py": "afb3573ed0da2bbfaff51d5bc72b93c22b5b9d9487c161fe968c0d90d652b4b1",
+    ".tools/v88-oracle-audit.py": "641f8efe85a5954737e9161f676d6d2f49a0442c504d1182d990f184f1e7d3da"
+  },
+  "archive": {
+    "file": "v89-diagnostic-evidence.zip",
+    "sha256": "740bdfd18d4ff4df94acd61cb642ce168a5106ff71f244df8116603dd71def2a",
+    "bytes": 1989773,
+    "members": {
+      ".tools/v88-oracle-audit.py": "641f8efe85a5954737e9161f676d6d2f49a0442c504d1182d990f184f1e7d3da",
+      ".tools/v88-presolve/build-manifest.json": "8d4cd95a993943b609701a862dff189ce0d15bebb49b29c0b32bde38d53c3bc4",
+      ".tools/v89-attempt-inline.py": "12bc1e917b6a97680f023975c2e8cc0589753bc5384ea00c2a04ead34fc2aca6",
+      ".tools/v89-build-audit.py": "ee9dac8c3a1ef24fc7c70b8011960997f75dcaa484f0ea450b2f00d602cc4109",
+      ".tools/v89-closeout-inline.py": "50f8e21bc830eaa67da84977a1f8aaa0d3e37dcbfda90e7ccdbf26be465784d8",
+      ".tools/v89-document-check-inline.py": "be8fff8d5964066213e4f715a740bd5e8493eb1a19af49f5a06cd202cd64dfe5",
+      ".tools/v89-plan-inline.py": "4817ac06c78410d766d8f747f1a968361b41bee7800195c3d2618a5f992e7db9",
+      ".tools/v89-prepare-drivers-inline.py": "5ddd14d8c55ff1ef92c197a65f220fbbe2433ff090ce7d07fe977dc800e9c1aa",
+      ".tools/v89-presolve/build-manifest.json": "bd4926987dbc180c7afdaacfac30ec9c2adb790152524381084a78dbab5f7761",
+      ".tools/v89-presolve/ipm-compile.json": "ced31b4f677404ba39801a2a6b067873c6c3cb6eb9e2c9761b9ef51a11fb2d46",
+      ".tools/v89-presolve/ipm-presolve.cpp": "168490cde18299cb771a8b14ef97bf21ef871fb7a3959e821ebc20fc788ab483",
+      ".tools/v89-presolve/ipm-presolve.obj.d": "835d4d7232647f5dab3e2eb6515535783972d6efc67f97b7a6051ca109e02dd3",
+      ".tools/v89-presolve/ipm-self-build.json": "4f1ce960f8b8b06783359a289253299586e2840cdef1402acfefc8369ae1ef3e",
+      ".tools/v89-presolve/ipm-self-check.json": "d427cc2f1e62899c7d8d8c2bec5125d982f8a32efd5cc8cb9dbd62d92e4a0639",
+      ".tools/v89-presolve/ipm-self-extension-check.json": "06b7b5f3a11422ea294244e3a66bfae0510a5d076c7f88927181aa74ff3868b1",
+      ".tools/v89-presolve/ipm-self-link.json": "69e422d260a69752979d1009d9545d6693d8f4e131d24581c7e37f0f3c4c2545",
+      ".tools/v89-presolve/ipm-self-run.json": "f4c02cef771aa2129a3b76d2299a8c50033eea0c742e6361c8df9703bd9aaae5",
+      ".tools/v89-presolve/ipm-self.obj.d": "8a1da14d605708a57199b846c311f83b03f48229b7ded22cd926407a77cafa09",
+      ".tools/v89-presolve/link.json": "5c502ea8af8eb49193a1d5fe996a8e0283fa2e3a1a66f66bf0cbf298116e6e71",
+      ".tools/v89-presolve/ninja-commands.txt": "fd52ec7d60493f23aa436f6f609d241725d7fd19fb2545085c169d18698b3ade",
+      ".tools/v89-presolve/static-check.json": "0bdf82880c46a31e3381e95dd039aa8f427a025c359fe5283b1b4d727452fb44",
+      ".tools/v89-presolve/transforms.json": "33c44a3f8672c23cc7a13ed55e48578445a240cc18df85460dfd4bacbe58be6e",
+      ".tools/v89-presolve/v89-presolve-state.hpp": "2373350941effd8143d3fd6c162c8383a807531a0326fb29d417e65389d3e943",
+      ".tools/v89-trace-audit.py": "afb3573ed0da2bbfaff51d5bc72b93c22b5b9d9487c161fe968c0d90d652b4b1",
+      ".tools/v89-write-documents-inline.py": "77ed88f6371a345bdc726c9996480733e9d9dba0e40a9ebdf580b33bd7048db7",
+      "build/release/_deps/highs-src/highs/Highs.h": "0d42bac7e810d76d64ba742503bc20f254087266a9cadc564d01834c4e6f981c",
+      "build/release/_deps/highs-src/highs/lp_data/HConst.h": "cb478020958392d70f485018aa725cadf683e480f52fdbef2fad693faa876b2c",
+      "build/release/_deps/highs-src/highs/lp_data/Highs.cpp": "1c3fb263a08ccd3f22094a33a6d4f945139f8939e83789096da64a4e568d928c",
+      "build/release/_deps/highs-src/highs/lp_data/HighsOptions.h": "ed35e76f39dfcc401fd523cb2b5961a0f04ec31f10fee8882b1745d40de1a260",
+      "build/release/_deps/highs-src/highs/presolve/HighsPostsolveStack.h": "4e3c1ef5c2d264c7efd20dbf5045535adbb07206b8a69f20adeb65f99a153bc8",
+      "build/release/_deps/highs-src/highs/presolve/HPresolve.cpp": "2e1439b6bc883dbb4c983724c310945a66ec47ec348c217ec4ed92b15a0e5d79",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-identity.json": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-source.zip": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v47-profile-build.py": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-plan.json": "5f134f630f8f969097c2b9c2b85912a89b4f20ef224043303367d43754d1dd06",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-closeout.json": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-ipm-instrumentation.py": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-plan.json": "8a47239e7f9cf412b2f64eb604eda9ab25c8143a11e4075335b1011ccde3964f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-run-identity.json": "5f2e34e39dc8dbd7e9290ac8de4596ebccdddf179710c007f5a29a662b09bdbc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-run.py": "6080b97380f79d64b3aafd79a265554c29910fbbd767477ed0ee5b0cacfc2d04",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-baseline-check.json": "7bbd7651bfd39420689deea097ed45f3d511ea242342a7c2ddd0c61cb34a1a51",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-build-attempt1.json": "271803d4c9b31efc01b20bcec4d31921baae07cff83b6a2deee5e5b319f37f24",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-build-self-check-attempt1.json": "fc1e4911702cc5ccebde42d56eb876a579e6a215381fa804651cb18d208c2eb5",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-build.py": "26bc72d28386cd1092a1e99dcf0e4603c28caccb28523514dbec3be8dd8a6f3b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-compatibility.json": "efa2cba75ba1b8ec4d99cc972dab7580fb852e6ed3daea94fa2a1c1f1d5ebe81",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-diagnostic-attempt1.json": "15dc75f67048bdf1df75d715857c112c28dc97a18c240ea00b7353382652ea9d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-diagnostic-manifest.json": "fb9e50dbcca7499e4a11e0e0bf8a6ccbe8a181d27dbddf9785cbf2d53d62ff2d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-diagnostic-runs.jsonl.gz": "8e52ff6232d9a8848e6824dab5ee7339d75096a53cd19d33a8c4a3cbebe60200",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-diagnostic-summary.json": "df3dec7038b685c1aad2e82982f68adc6a7bcb1c42dc705d93afe2c32f6b7aea",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-ipm-instrumentation.py": "092cddb029751a4f6e9cdaa975128915b91b5f6b4a4bdcef4765040d482f10d0",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-ipm-self-test.cpp": "5dc832189ca86c984fd6f8f32031918e71eab65c2649243f9f9deccdce7af12a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-plan.json": "98ff5dfcbbc0ea7f24cd3e6894e7c2e2a95be5c223da98a9980779412c7d54a8",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-run-identity.json": "3a6a2f3a0f4c1cf57013bd3d267cc1bb6cc1e8e34bf7a7ec686f0be1ce820f38",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-run.py": "f3a76ea0e9427dd75cbcd3df883fdd7960d86a9369d485112f2a21d3e336ecff",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-runner-self-check-attempt1.json": "f138de151f9b8abf2eff220daca30d0fdc21d0017d52bc272781f3d9411fd40b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v89-runner-self-check.json": "bababb1a263abf952e09f145bb33560cbd07b71729fb7dd900f5fbd45d2b4b0e",
+      "scripts/benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+      "scripts/compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3"
+    },
+    "original_bytes_readback_verified": true,
+    "excluded_executables_objects_libraries": true,
+    "all_work_directories_included": [
+      "D:\\Documents\\codes\\solver\\.tools\\v89-presolve"
+    ],
+    "late_artifacts_not_included": [
+      "本次closeout结果JSON",
+      "本次outer attempt",
+      "后续文档执行与检查原件"
+    ]
+  },
+  "next_action": "保留正式12对诊断不相同及剩余预算差异归因，依据实际最后完整assess已有质量选择下一独立实验；HiGHS目标仍未达，生产不接纳候选。",
+  "verification_scope": "复算18份原始stdout/stderr、完整公共非timing报告与旧oracle非timing的12对子；独立trace五字段/22字段嵌套、原质量owner提交、inclusive child/fourULP+fsum；7锚/父58加5数学组件/95+17/六map/2.d/九来源。没有新增求解、重构末点或原模型最优证明。",
+  "limitations": [
+    "最后完整verify并不保证为末次已发布点、保存incumbent或故障方程；序号不是点generation。",
+    "Reduced质量属于约化core.model，不能当原模型质量或最优证明；Empty没有core观测。",
+    "正式兼容检查没有排native.time_limit，12对仅该剩余预算不同而返回失败；公共报告12对一致不等于正式兼容通过。",
+    "诊断不生成公开性能胜利、完整公开集覆盖或目标完成结论；生产仍为v66。",
+    "原exe/obj/库仅核身份而不装入来源证据包；本次结果JSON与outer attempt在封包后单列。"
+  ]
+}

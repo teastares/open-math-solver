@@ -1,0 +1,23 @@
+{
+  "phase": "只读源码逆剥辅助检查",
+  "failures": [
+    {
+      "where": "functions JavaScript编排解析",
+      "error": "SyntaxError: Unexpected identifier 'n'",
+      "shell_started": false,
+      "cause": "外层JS模板字符串与PowerShell换行转义反引号冲突，改为char10构造"
+    },
+    {
+      "where": "PowerShell文字逆绑定",
+      "error": "文字增量缺失：同一外部排列坐标",
+      "shell_started": true,
+      "cause": "先替换较短前缀改掉较长目标，改为先处理长目标"
+    }
+  ],
+  "cpp_or_build_failure": false,
+  "cpp_changed_for_fix": false,
+  "public_lp_runs": 0,
+  "candidate_builds_repeated": 0,
+  "source_emitted": false,
+  "resolved_by": "v113-source-static-audit.json完整父SHA逆复原已通过"
+}

@@ -1,0 +1,86 @@
+{
+  "version": 112,
+  "round": 109,
+  "task_date": "2026-11-01",
+  "diagnostic_only": true,
+  "algorithm_parent_version": 106,
+  "production_changes": false,
+  "numerical_algorithm_changes": false,
+  "hypothesis": "连续局部点积/分解选择收益未形成整体收益，先测当前保留C++的实际成本，避免使用旧v99热点继续猜测",
+  "sources": "直接维护C++ profile.hpp，向ipm/normal/presolve/coupled入口插入可关闭计时；测试加入既有独立coupled组件，原前序保留",
+  "environment": "SOLVER_V112_PROFILE",
+  "marker": "V112_PROFILE",
+  "stages": [
+    "total",
+    "canonicalize",
+    "kkt_setup",
+    "normal_setup",
+    "symbolic_analysis",
+    "factor",
+    "normal_factor",
+    "rectangular_assembly",
+    "explicit_gram_assembly",
+    "cholmod_numeric",
+    "factor_check",
+    "hsd_constant_direct",
+    "hsd_direction_direct",
+    "direct",
+    "normal_solve",
+    "cholmod_solve",
+    "preconditioner",
+    "hsd_column_product",
+    "hsd_true_product",
+    "coupled",
+    "point_update",
+    "assess_homogeneous",
+    "verify_local",
+    "initialize",
+    "run_homogeneous",
+    "corrector_rhs",
+    "homogeneous_step",
+    "cone_multiply",
+    "cone_transpose_multiply",
+    "cholmod_factor_adapter",
+    "solve_factored",
+    "presolve_control",
+    "dot",
+    "norm",
+    "axpy"
+  ],
+  "scope_contract": "每线程Report自持统计、恢复上一上下文；Scope按栈扣立即子调用得自身时间，正常/异常分别计数；关闭不读clock、不分配，不改变预算或数学；嵌套关闭隔离，嵌套开启统计独立",
+  "output_contract": "独立stderr JSON标记，不扩三条原marker或公共report；总Scope先析构再Report；开启恰一条，关闭恰零条，严格验证schema/35阶段/非负整数/次数/2次时钟/自身和守恒/空栈",
+  "measurement_boundary": "总Scope在原solve_ipm起始时间和原诊断对象建立后进入，在原诊断对象析构输出前结束；不含CLI读入、外部verify和profile输出。自身时间包括自身插桩开销及未单列函数，不能作未插桩精确占比或Amdahl收益承诺",
+  "numerical_protocol": "沿用固定v100数值/质量参数：CPU1 seed0 200步scaling5，数值5秒/墙钟35秒，LP绝1e-7相1e-9，原终验和全部失败保留",
+  "schedule": {
+    "compatibility-development": 22,
+    "compatibility-probe": 12,
+    "profile": 182
+  },
+  "maximum_diagnostic_solver_runs": 216,
+  "compatibility": "父106活动 vs 新profile关闭，完整原development11/probe6各一次；公共只排timings，private时钟原冻结排除，native.time_limit差异完整记录；非预算公共变化必须停止诊断扩集，不择优补跑",
+  "profile": "完整Netlib91按原固定schedule，同一新exe profileoff/profileon各一次；两侧V100算法均开启；保所有质量、失败和非等价实例，因插桩触预算不能删失败",
+  "not_a_performance_round": "不运行新HiGHS对照，不声称新目标成绩；本轮goal未达成，旧父106有效差距继续由其证据维护",
+  "build_contract": "复用稳定B.build；其new_algorithm_round=true仅允许源码体插入而非include-only机械迁移，明确numerical_algorithm_changes=false和diagnostic_only=true；独立driver不调用稳定500性能门槛冒充216",
+  "validation": "先fake clock嵌套/递归/异常/关闭/恢复及实际clock健全测试，原IPM106和独立51前序完整；源码在内存剔scope/include/call包装核父原字节，实际四TU依赖/原库顺序核验；再216固定诊断",
+  "next_action": "按全部91自身时间、逐模型结构及off/on轨迹和开销选择下一轮通用C++优化，不按模型身份路由，不跳过数值刷新",
+  "research": [
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/util/HighsTimer.h",
+      "observation": "HiGHS区分presolve/solve/postsolve并为计算组件记录时钟与调用次数；本轮借鉴阶段分离，不复制其不可重叠计时语义"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/hipo/ipm/FactorHiGHSSolver.cpp",
+      "observation": "HiPO分别累计analyse/factor/solve时间，装配在factor计时之前；本项目独立记录normal adapter与numeric，避免把库调用和外部装配混为一谈"
+    },
+    {
+      "url": "https://clang.llvm.org/docs/UsersManual.html#profiling-with-instrumentation",
+      "observation": "插桩产生运行开销；本轮不启PGO/编译flag，只作可关闭阶段计时"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/visualstudio/profiling/understanding-performance-collection-methods-perf-profiler?view=visualstudio",
+      "observation": "频繁短函数的插桩可扭曲耗时比例；保off/on完整数据，不把插桩结果当生产精确成本"
+    }
+  ],
+  "source_generation": false,
+  "goal_achieved": false
+}

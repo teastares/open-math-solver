@@ -1,0 +1,43 @@
+{
+  "version": 114,
+  "round": 111,
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "status": "实现前冻结，尚无本轮编译或公开LP结果",
+  "hypothesis": "统一ND未胜出；在构造期比较AMD与ND的真实符号填充，检验一次候选搜索的全部成本能否由重复数值分解节省抵消。符号填充较少不保证墙钟更短，必须实测。",
+  "core_files": [
+    "src/experimental/normal_cholesky.cpp",
+    "include/solver/experimental/normal_order.hpp",
+    "include/solver/experimental/metis_order.hpp",
+    "tests/experimental/ipm_self_test.cpp"
+  ],
+  "scope": "原12来源中只改Normal和IPM测试；新增真实内部选择器头及逐字复用已测METIS头，共14来源。Python只复用稳定构建及评测，不生成或补丁数值C++。",
+  "activation": "Impl体首、首budget callback之前快照rectangular && coupled_state::enabled()；关闭或非AAT完整保留父112排序块。",
+  "selector": "内部normal_order生产helper返回ordered_matrix、inverse及lower_nonzeros，Normal直接move消费；测试可核同一真实结果，无public getter、测试observer或LP字段。原Gram全对角、无重复upper CSC；AMD和ND在同一原Gram独立排序。共用evaluate负责物理重排和QDLDL_etree计数，不做第三次分析。",
+  "choice": "QDLDL返回严格下三角项数；ND仅在countND<countAMD时胜出，平局AMD。若retained+countAMD==原Gram.nonZeros，AMD达到精确零填充下界，跳过ND图构造、native和第二次分析。下界来自消元图只增加填充边，是本项目数学推导，不是模型经验规则。不得使用含超节点占位的xsize代替真实符号计数。",
+  "limits": "保原8M Gram工作、16M原图和所选因子容量；候选AMD超过16M时不得预先拒绝，ND可能合法，选定后才核count<=cap-retained。库错误、预算、分配异常不静默降级为另一候选成功。后续矩形映射、CHOLMOD NATURAL、数值分解和求解保持父实现。",
+  "cost": "两候选重排、图、工作数组、native、检查和释放全部计原共享预算及时间；保首末与遍历callback，不宣称native内部可抢占或OOM可安全恢复。不改C++ FP、ISA、精度或迭代预算。",
+  "dependency": "复用.tools/v113-metis-prototype/build的已测库、53来源及14组原型证据，不重编24C；仍为idx32、13选项、seed0、仅24C的-fwrapv。私有extern/config前置。IPM测试因直接使用真实Eigen内部选择器，仅增加锁定Normal模板已有的-isystem Eigen头目录。",
+  "components": {
+    "parent_ipm": 106,
+    "parent_coupled": 57,
+    "new_ipm": 6,
+    "total": 169,
+    "required_cases": {
+      "normal_minlnz_dense_oracle": "transaction",
+      "normal_minlnz_strict_and_tie": "transaction",
+      "normal_minlnz_zero_fill_prune": "mapping",
+      "normal_minlnz_scope_controls": "mapping",
+      "normal_minlnz_constructor_budget": "budget",
+      "normal_minlnz_factor_solve_transaction": "budget"
+    },
+    "independence": "小图独立布尔邻接逐点消元计算符号填充，不调用QDLDL；核真实helper的候选总计数及所选inverse，再通过真实Normal完整原系统、多rhs、重分解、Scope入口绑定、全部实际callback前缀和事务验证集成。固定合成图可由独立计数确认胜负，禁止公开LP输赢定制策略。",
+    "fixed_synthetic_family": "仅用于组件夹具：n取8/12/16/24/32，seed取1..32。uint64 state从seed开始，对每个i<j依次state=state*6364136223846793005+1442695040888963407（无符号模2^64）；若((state>>32)%100)<10+10*(seed%4)添边，再补cycle并去重。独立布尔消元分类ND严格胜、AMD严格胜、有填充平局，各类都必须实际覆盖；固定家族不足时如实记录组件失败再修订，不额外试跑公开LP或增加正式求解中的实例规则。"
+  },
+  "expected_own_dependencies": {"ipm": 8, "ipm_self": 11, "coupled_self": 6, "normal": 9},
+  "protocol": "沿用v100原六阶段22/12/66/36/182/182，原gate决定136或500；共同精度、CPU1、seed0、200步、scaling5、数值5秒/墙钟35秒、惩罚与shift10均不改。先169组件和完整source/build审计；首次唯一运行，不择优补跑。",
+  "source_audit": "新增include、入口快照和活动分支逆剥后恢复Normal父112完整字节；旧off块逐字保留。新增测试include、代码块和六ID逆剥后恢复完整父测试。十份未改父来源和原型头逐字核验。",
+  "source_generation": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

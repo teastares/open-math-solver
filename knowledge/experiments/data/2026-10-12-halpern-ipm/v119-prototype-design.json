@@ -1,0 +1,132 @@
+{
+  "version": 119,
+  "round": 116,
+  "task_date": "2026-11-01",
+  "purpose": "直接维护C++自主有界原始单纯形暖基原型；尚不接入公开LP，不宣称替代完整优化器。",
+  "source_parent": 118,
+  "canonical_changes": [],
+  "own_cpp": [
+    ".tools/v119-warm-simplex-prototype/source/warm_cleanup.hpp",
+    ".tools/v119-warm-simplex-prototype/source/self_test.cpp"
+  ],
+  "driver": ".tools/v119-build.ps1",
+  "build_directory": ".tools/v119-warm-simplex-build",
+  "algorithm": {
+    "phase": "仅Phase II，从已给基重建原始可行点；缺少可行基则失败，未实现Phase I。",
+    "bounds": "结构变量沿Prepared界；逻辑列+I按行类型界；固定列保留。vbasis -3使用有限structural_seed，允许有界内部变量和自由变量双向进入。",
+    "basis": "BASICLU数值分解/求解/更新，自主定价、步长、换基/翻界、可行性维护和原坐标验收。",
+    "pricing": "全约化成本Dantzig，abs+rel*max(abs(c),abs(aTpi))；精确并列按全局列序。",
+    "ratio": "精确最小非负比值；基本变量并列按全局列序；进入变量自身界严格更早才翻界。容差内负余量视0步，不裁剪整个基本点。",
+    "updates": "N solve_for_update保存方向，再T单位行，再update(raw_direction[p])。成功m次更新显式refactor。任何失败整次拒绝，无假回滚或故障自动repair。",
+    "checks": "每步重解基点和B转置对偶，有限性/方程/界检查；仅原Model完整LP验收及最后期限都通过才发布x/y。可用原rowdual投影，raw/final分别记录。",
+    "limits": "默认64次pivot+boundflip，零步也计数；允许用户增大至65及更高；max_steps0仍可重建和验证已最优基。绝对deadline优先。",
+    "rejection": "初基不可行、奇异、非法输入、数值失败、未证无界或预算不足不发布候选。",
+    "dependencies": "不调用Highs::run、IPX::Solve或HEkkSolve；两组桥接测试调用IPX CrossoverFromStartingPoint/GetBasicSolution/GetBasis。无新增库。"
+  },
+  "resources": {
+    "cpu_threads": 1,
+    "new_public_lp_runs": 0,
+    "compile_timeout_seconds": 300,
+    "self_test_timeout_seconds": 35,
+    "hard_preemption": false,
+    "budget": "实际库入口出口及循环周期检查；库内部不能硬抢占。回调重载与默认入口共享同一内核，保留中断前缀。"
+  },
+  "build": {
+    "translation_units": 1,
+    "executables": 1,
+    "parent_snapshots": 14,
+    "own_sources": 2,
+    "expected_experimental_dependencies": 3,
+    "link": "沿用118实际link.ipm，仅替自测对象与输出；原Normal/regularized对象、17库顺序及BLAS两次保持。Normal对象SHA取父identity.protected。",
+    "source_generation": false,
+    "records": "计划、命令、输入前后SHA、stdout/stderr/rc/时间/timeout与.d实际依赖；失败原件不覆盖。"
+  },
+  "tests": [
+    {
+      "id": "phase2_single_pivot",
+      "group": "transaction"
+    },
+    {
+      "id": "phase2_multiple_pivots",
+      "group": "transaction"
+    },
+    {
+      "id": "phase2_bound_flip",
+      "group": "transaction"
+    },
+    {
+      "id": "phase2_upper_entry",
+      "group": "mapping"
+    },
+    {
+      "id": "phase2_free_bidirectional",
+      "group": "mapping"
+    },
+    {
+      "id": "phase2_fixed_and_slack",
+      "group": "mapping"
+    },
+    {
+      "id": "phase2_ranged_auxiliary",
+      "group": "mapping"
+    },
+    {
+      "id": "phase2_upper_only_native",
+      "group": "mapping"
+    },
+    {
+      "id": "phase2_native_basis_bridge",
+      "group": "transaction"
+    },
+    {
+      "id": "phase2_degenerate_tie",
+      "group": "transaction"
+    },
+    {
+      "id": "phase2_missing_basis",
+      "group": "exception"
+    },
+    {
+      "id": "phase2_singular_basis",
+      "group": "exception"
+    },
+    {
+      "id": "phase2_infeasible_start",
+      "group": "exception"
+    },
+    {
+      "id": "phase2_invalid_shape_indices",
+      "group": "exception"
+    },
+    {
+      "id": "phase2_budget_and_step_cap",
+      "group": "budget"
+    },
+    {
+      "id": "phase2_reuse_isolation",
+      "group": "transaction"
+    }
+  ],
+  "mandatory_evidence": [
+    "真实一次/多次自主pivot与数值update",
+    "真实boundflip与upper entry",
+    "free正反方向、非零free seed及有界superbasic",
+    "65块cap64失败/cap65成功",
+    "真实native基桥与原坐标验收，桥接不冒称改进",
+    "所有失败清空候选，真实deadline/callback中断前缀",
+    "父canonical14、生产源/库前后不变"
+  ],
+  "sources": [
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/simplex/HEkkPrimal.cpp",
+    "https://github.com/ERGO-Code/HiGHS/tree/v1.15.1/highs/ipm/basiclu",
+    "https://github.com/ERGO-Code/HiGHS/tree/v1.15.1/highs/ipm/ipx",
+    "https://github.com/scipopt/soplex/blob/master/CHANGELOG"
+  ],
+  "limitations": [
+    "本原型精确单遍ratio并非HiGHS Harris完整实现；没有anti-cycling收敛保证。",
+    "原始LP点可行不代表指定基重建点可行；不可行先拒绝。",
+    "多步预算证明特定合成问题更多计算有用，不等于普适scaling law。",
+    "不改变公开500协议；此轮原型组件结果不能计为HiGHS速度达标。"
+  ],
+  "goal_achieved": false
+}

@@ -1,0 +1,102 @@
+{
+  "version": 120,
+  "round": 117,
+  "date": "2026-11-01",
+  "hypothesis": "在原raw/域投影仍拒绝时，用同一次原生导出的列基与完整结构seed，执行119已验自主PhaseII；增加的分解/定价/验算成本是否换来更早完成，由原公开协议判断。",
+  "baseline": {
+    "canonical_parent": 118,
+    "prototype_parent": 119,
+    "pure_hsd": 106
+  },
+  "scope": {
+    "canonical_sources": 15,
+    "cpp_changes": [
+      "include/solver/experimental/ipx_crossover.hpp",
+      "include/solver/experimental/warm_cleanup.hpp",
+      "src/experimental/crossover_state.hpp",
+      "src/experimental/ipm.cpp",
+      "tests/experimental/ipm_self_test.cpp"
+    ],
+    "new_python_tools": [
+      ".tools/v120-benchmark.py"
+    ],
+    "builder_unchanged": true,
+    "production_changes": false,
+    "new_native_optimization_calls": 0
+  },
+  "native_export": {
+    "api": "仍一次GetBasicSolution，显式打开时同次补cbasis/vbasis，move完整native_x含q作为structural_seed；不调用GetBasis或Solve。",
+    "payload": "cross::Result.optional<BasisExport>{Prepared prepared;vector<Int> variable_status,row_status;vector<double> structural_seed}",
+    "stats": "独立cross::BasisExportStats basis_stats{bool enabled,statuses_requested,statuses_received,published;uint64 columns,rows}，不改变cross::Stats旧字段及最多2验。",
+    "lifetime": "pending在原两验后仅rejected且未过期限才发布；accepted/异常/time_limit清除。state拥有payload到暖基结束并清理后再原budget。"
+  },
+  "warm": {
+    "source": "119内核逐字promotion，保持namespace solver_v119_warm_cleanup和算法/默认64步。",
+    "entry": "state try_warm_cleanup(Model&,cross::Result&,Event&,absolute_deadline,SolveOptions&,Budget&&)通用生产helper，测试通过实际helper而非替换native结果。",
+    "trigger": "仅cross rejected+完整payload，原1e-4 HSD gate和最多一次native尝试不变。",
+    "algorithm": "给定基重建可行才PhaseII；不新增PhaseI/学习策略/按实例路由；完整原坐标验收后可交既有原模型oracle。",
+    "budget": "与HSD相同绝对deadline；把原budget回调异常暂存exception_ptr并在内核记time_limit后，先收partial/清payload，再原样重抛。库内部不可硬抢占。",
+    "failure": "自身不可行/奇异/数值/步数不足保原cross rejected及HSD Point；超时记time_limit；无失败候选泄漏。"
+  },
+  "schema": {
+    "version": 3,
+    "environment": "SOLVER_V117_CROSSOVER",
+    "marker": "V117_CROSSOVER ",
+    "on_backend_version": "ipm-ipx-crossover-cpu-0.3.0",
+    "off_backend_version": "ipm-cpu-0.53.0",
+    "event_existing": "status与after_quality为最终候选；unprojected_quality仍原生首验。",
+    "event_additions": [
+      "crossover_status",
+      "crossover_quality",
+      "basis_export",
+      "warm",
+      "scope_seconds",
+      "verification_seconds_total"
+    ],
+    "warm_fields": [
+      "started",
+      "completed",
+      "max_steps",
+      "status",
+      "raw_quality",
+      "after_quality",
+      "stats"
+    ],
+    "warm_stats": "原119 Stats完整字段，库calls started/completed/rc/seconds，Checks初末、steps/pivots/flips、stage、两验及projection。",
+    "times": "event.scope_seconds含cross调用、warm调用、桥接与payload释放；cross.total与warm.total保各自语义；verification_seconds_total为两个checker秒数和，core RAII只取该累计值delta，不重复加。",
+    "compatibility": "关闭路径无warm时钟/扫描/导出及第四marker；原公开报告除timings须与冻结66全等。"
+  },
+  "tests": {
+    "inherit_ipm": 116,
+    "add_ipm": 5,
+    "total_ipm": 121,
+    "coupled": 57,
+    "new_cases": {
+      "crossover_basis_export": "mapping",
+      "crossover_warm_accept": "transaction",
+      "crossover_warm_reject": "transaction",
+      "crossover_warm_budget": "budget",
+      "crossover_warm_hsd_bridge": "transaction"
+    },
+    "requirements": [
+      "真实native same-get导出；accepted只统计不交payload",
+      "synthetic非optimal可行基经生产helper真实pivot与原验",
+      "初基不可行/奇异/0步失败保留原native质量与HSD点",
+      "所有实际外budget截止保真实前缀并原样重抛、清payload/半候选",
+      "真实HSD/schema3/既有oracle事务；旧116组仍全通过"
+    ]
+  },
+  "evaluation": {
+    "reuse_plan": "v100原冻结协议，六阶段22/12/66/36/182/182，gate最多500",
+    "shared_precision_and_resources": true,
+    "penalty_and_coverage_unchanged": true,
+    "no_extra_or_cherry_picked_runs": true,
+    "success": "最终HiGHS段逐例覆盖不低、惩罚wall SGM10不高、所有过程合法；组件成功不足以判整体完成。"
+  },
+  "research_sources": [
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/lp_data/HighsSolve.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/lp_solver.cc",
+    "https://github.com/scipopt/soplex/blob/master/CHANGELOG"
+  ],
+  "goal_achieved": false
+}

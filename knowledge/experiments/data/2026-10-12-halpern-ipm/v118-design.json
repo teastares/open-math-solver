@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "version": 118,
+  "round": 115,
+  "status": "首实现前冻结，单假设域投影，不调触发门",
+  "source_parent_version": 117,
+  "pure_numerical_parent_version": 106,
+  "hypothesis": "交叉raw返回点的错误行对偶域符号可由既有数学投影纠正，再通过原完整精度；只按原模型约束，不按模型身份或错误字符串路由。",
+  "research": {
+    "parent": "knowledge/experiments/data/2026-10-12-halpern-ipm/v117-next-research.json",
+    "interpretation": "原生可容忍小违反不等于我方完整最优验收；合法域投影只修域，可能恶化stationarity/gap。原117五个soft符号例是待检验动机，不保证全部修好。",
+    "own_projector": "src/lp_optimality.cpp::project_lp_row_dual_domain",
+    "ipx": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/lp_solver.cc",
+    "own_original_oracle": "src/experimental/presolve_state.hpp::bounded_projection",
+    "gurobi": "https://docs.gurobi.com/projects/optimizer/en/current/concepts/numericguide/tolerances_scaling.html"
+  },
+  "core_changes": {
+    "components": "tests/experimental/ipm_self_test.cpp",
+    "adapter": "include/solver/experimental/ipx_crossover.hpp",
+    "state": "src/experimental/crossover_state.hpp",
+    "version": "src/experimental/ipm.cpp"
+  },
+  "identity": {
+    "note": "沿用功能开关/标记前缀，以schema2及明确新版本识别；旧117验证器/原件不修改。",
+    "off_backend_version": "ipm-cpu-0.53.0",
+    "on_backend_version": "ipm-ipx-crossover-cpu-0.2.0",
+    "marker": "V117_CROSSOVER ",
+    "environment": "SOLVER_V117_CROSSOVER",
+    "schema": 2
+  },
+  "algorithm": {
+    "switch": "run末新增bool enable_row_dual_projection=false，直接旧组件调用保默认旧语义；v118状态层明确true。",
+    "unchanged": "raw已通过不扫描；域无改变不调用projector/第二verify；不截断x，不改tol，不新增native调用。",
+    "gate": "严格保117：真实HSD更新>=1、当前非optimal、dual_feasible及三量<=1e-4，最多一次native。",
+    "invariants": "HSD Point/tau/kappa不变；现one-attempt/oracle先于选择的核心逻辑保持，仅明确版本和state传true。",
+    "adoption": "第二次全原验/原oracle/最后期限仍必须全部通过；失败或时间不足不发布x/y。",
+    "projection": "raw第一次完整verify未过且显式enable_row_dual_projection=true才扫描；x只读，y使用拥有的试点副本；只有实际合法域变化才调用既有公开projector并再完整verify。"
+  },
+  "api": {
+    "quality": "Result.raw_verification仅在第二verify前move第一报告并显式reset verification；state.unprojected_quality取raw优先，否则verification；after_quality取最后完整质量，若第二中断可回退raw，靠verify计数明确不是第二验完成。",
+    "partial": "项目/扫描/二验started和completed分别真实记录，预算抛出保已有Stats而不交候选；公开projector和verify内部只检查入口/出口，不声称硬抢占。",
+    "first_verifier": "新增生产verify_candidate_once(model,x,y,result,tols,opts,Budget&&)，计started/completed<=2，复用原verification_seconds并沿原生产预算异常。",
+    "projection_helper": "新增生产project_rejected_row_dual(model,const x,const raw_y,result,tols,opts,Budget&&)返回optional拥有的projected_y，仅调用者最终验收决定发布；接已有真实raw quality，不捏造native。"
+  },
+  "new_stats": {
+    "verification_started_completed": "0..2，包含原第一次与可选第二次真实完整verify",
+    "timings": "verification_seconds累积两验；projection.seconds只扫描/复制/投影/比较，不与验算重复；全部仍在原solve+verify总时间。",
+    "projection": "enabled,scan_started,scan_completed,scan_items,eligible_rows,project_started,project_completed,project_rc(null|bool),changed_rows,max_abs_change,seconds"
+  },
+  "components": {
+    "expected_ipm": 116,
+    "scope": "用真实checker/helper解析例与原预算回调前缀，不依赖native偶然生成tiny非法y。包含真实HSD贯通，不冒称覆盖native产生符号误差分支。",
+    "coupled_unchanged": 57,
+    "new_cases": {
+      "crossover_dual_projection_unchanged": "mapping",
+      "crossover_dual_projection_accept": "transaction",
+      "crossover_dual_projection_reject": "transaction",
+      "crossover_dual_projection_budget": "budget"
+    },
+    "parent_ipm": 112,
+    "total": 173
+  },
+  "evaluation": "继承原500输入/顺序/CPU/时限/精度/罚分/17兼容/原gate；新薄包装仅schema2/版本/计数语义，不改B/C/v100/v66或117工具。先136，gate允许才500，不因本轮输赢调参。",
+  "build": "14 canonical源、原4TU/3link与17冻结库，不生成CPP，无新构建包装。",
+  "source_generation": false,
+  "new_dependency_builds": 0,
+  "goal_achieved": false
+}

@@ -1,0 +1,456 @@
+{
+  "passed": true,
+  "version": 115,
+  "round": 112,
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "plan_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-plan.json",
+  "plan_sha256": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+  "source_generation": false,
+  "production_unchanged": true,
+  "evaluation_valid": true,
+  "public_lp_runs_observed": 500,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "stage_order": [
+    "compatibility-development",
+    "compatibility-probe",
+    "development",
+    "probe",
+    "netlib",
+    "highs"
+  ],
+  "stages": {
+    "compatibility-development": {
+      "runs": 22,
+      "valid_processes": 22,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/manifest.json",
+      "manifest_sha256": "4b6cdb7bd464cc6b7a983b13d3640b679be66ba978f25243d143d68fa099037e",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/summary.json",
+      "summary_sha256": "e8d845cdd0ad15e4ea2e15bd795b84957ec18ea57a8b755946e935820c62bb23",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/runs.jsonl.gz",
+      "raw_sha256": "8d4be86b9db020ea467dae197120bf064c2f5d74335c623fd6daa881effe44de",
+      "actual_call_sha256": "eda4e48fb4d115b152d9d2c84464da0174a4dab3fceea2b1be8023568fa123e2",
+      "read_only_revalidation_sha256": "0ff9fd9ac89a7128d988c3489060888d5a9a47d6c743969e5591ac5945137588",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 11,
+          "wall_sgm10_seconds": 0.2361062750339991,
+          "numerical_sgm10_seconds": 0.21271285479151586
+        },
+        "diagnostic_off": {
+          "quality": 11,
+          "wall_sgm10_seconds": 0.23445845848583893,
+          "numerical_sgm10_seconds": 0.20923233875815764
+        }
+      }
+    },
+    "compatibility-probe": {
+      "runs": 12,
+      "valid_processes": 12,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/manifest.json",
+      "manifest_sha256": "959ddfbc2b28f0a165bbac02721fd56fe48700739e1c02063d11f6d8208768a4",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/summary.json",
+      "summary_sha256": "fdaaa41c29f0a8a95668999e84d67fe3810975e5132a4bd3d0bc0f67224e4fc7",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/runs.jsonl.gz",
+      "raw_sha256": "1e45f36cba75d5353c449c582779cf3a24d329fb0474ab005ffd7fa7f7b98619",
+      "actual_call_sha256": "d0cf6aed4076a1add1ba9cb899903de4e10d68820e9542582d99eb16f1ee2172",
+      "read_only_revalidation_sha256": "f61bbd3d98d3fa17b72a37375e84c4dc4b16e48cb0a3eb3341890b9a6cfa149a",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 5,
+          "wall_sgm10_seconds": 3.482146640277599,
+          "numerical_sgm10_seconds": 1.2081742440044505
+        },
+        "diagnostic_off": {
+          "quality": 5,
+          "wall_sgm10_seconds": 3.446732410632235,
+          "numerical_sgm10_seconds": 1.1779986232705264
+        }
+      }
+    },
+    "development": {
+      "runs": 66,
+      "valid_processes": 66,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/manifest.json",
+      "manifest_sha256": "e068f5fbdd80a6cd6c2b0b9834cbfa64034d3e4be603ac5bed1f35735bcdaf4f",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/summary.json",
+      "summary_sha256": "2f013add23b69990cba1f45a3e2806760a951bd05d5e237e6f7d0170d71ed9e1",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/runs.jsonl.gz",
+      "raw_sha256": "542c12d6f29e667418d9f856cdd4c1877f099a64b4373096a0bf17db1e57924a",
+      "actual_call_sha256": "8a624a04343e13cfa1d14af3323fbbfc752caffac5699ea3faa41c4445912507",
+      "read_only_revalidation_sha256": "08e08bf92c66c2eab65880e72ffd98f1d1017db7b2eb6274a85b514a78dee0ff",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 33,
+          "wall_sgm10_seconds": 0.2297471121920329,
+          "numerical_sgm10_seconds": 0.20799052139423851
+        },
+        "diagnostic_on": {
+          "quality": 33,
+          "wall_sgm10_seconds": 0.2115916582157258,
+          "numerical_sgm10_seconds": 0.1865820765003698
+        }
+      }
+    },
+    "probe": {
+      "runs": 36,
+      "valid_processes": 36,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/manifest.json",
+      "manifest_sha256": "feeaeab1f2e7f35494fa7bf6c28b4bdf96d8750bb7a0005b3b78b88d1622e853",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/summary.json",
+      "summary_sha256": "5303846a2dbbc78eb3472e991252facd67040cbc4544928490ff4f296f32c765",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/runs.jsonl.gz",
+      "raw_sha256": "8180cc7e2c61341ecdc530ae5c23c611d25c42d6d9587edcddb8dbfa5660d728",
+      "actual_call_sha256": "399f73dbb03db552cfeccfd011afd04832521e16b25cbb977c4b25b70fa29805",
+      "read_only_revalidation_sha256": "e50fd57ecea27258a14c6e0d1b86b54871e34ceeab401eb8058530843adbca1a",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 15,
+          "wall_sgm10_seconds": 3.436970974713065,
+          "numerical_sgm10_seconds": 1.1713345992690853
+        },
+        "diagnostic_on": {
+          "quality": 18,
+          "wall_sgm10_seconds": 0.5343584870852699,
+          "numerical_sgm10_seconds": 0.5103238953930631
+        }
+      }
+    },
+    "netlib": {
+      "runs": 182,
+      "valid_processes": 182,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/manifest.json",
+      "manifest_sha256": "aae67fe993a070d2fed09fb38ee5c81bf6584e238f01e8758ce07545bd1d478f",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/summary.json",
+      "summary_sha256": "85c8e6efa5f3a486f46879e61ecb214a07644049ebfdcf9d2956ba19876d4a1b",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/runs.jsonl.gz",
+      "raw_sha256": "4f155245b2901fc7fae0effaee3a63f949c525d6fd5420a11a2c2cf46947e313",
+      "actual_call_sha256": "9f1d73190f88063977872d5fd37d81ebfe3a43fb1e01df941ee721eae934258d",
+      "read_only_revalidation_sha256": "da94fc2a79632d8bd885b4e74c1a17ba9ee3b8731d7c2da56cdde46d6240b49e",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 90,
+          "wall_sgm10_seconds": 0.2890461526455222,
+          "numerical_sgm10_seconds": 0.14828305868774755
+        },
+        "diagnostic_on": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.11689616982095044,
+          "numerical_sgm10_seconds": 0.09626479119318235
+        }
+      }
+    },
+    "highs": {
+      "runs": 182,
+      "valid_processes": 182,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/manifest.json",
+      "manifest_sha256": "deee0e325a7f4249a500370481d34d607cb70ac21acbe16a0c8a25ea2121896d",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/summary.json",
+      "summary_sha256": "4578af97ce5063af0b89c3c7f79f32fbaba96c6788aedb59650618e35ce55af6",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/runs.jsonl.gz",
+      "raw_sha256": "634e1a33f29b5ff9f64416ba801d273791cdd00236b0e4f1a89076e2af42314f",
+      "actual_call_sha256": "4c58bb702230de6270d373d3d64e1bfa7463fe93dec08d7b7975f0c613b6bdba",
+      "read_only_revalidation_sha256": "a1e2382b80bff3357c2c7966a2e098ea0de813d5eedd9d8bc06524d0d3c49ebb",
+      "metrics": {
+        "highs": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.0950516626101452,
+          "numerical_sgm10_seconds": 0.07817082391375091
+        },
+        "diagnostic_on": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.11634781764714669,
+          "numerical_sgm10_seconds": 0.09557683497919654
+        }
+      }
+    }
+  },
+  "compatibility": {
+    "passed": true,
+    "plan_sha256": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+    "runs": 34,
+    "pairs": [
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      }
+    ],
+    "non_budget_equal": 17,
+    "budget_pairs": 0,
+    "invalid_pairs": 0,
+    "different_pairs": 0
+  },
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [
+      "greenbea"
+    ],
+    "development_speed_gate": true,
+    "eligible_for_netlib": true,
+    "plan_sha256": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+    "valid_processes": true
+  },
+  "goal": {
+    "models": 91,
+    "no_per_model_coverage_loss": true,
+    "candidate_coverage": 91,
+    "highs_coverage": 91,
+    "candidate_wall_sgm10_seconds": 0.11634781764714669,
+    "highs_wall_sgm10_seconds": 0.0950516626101452,
+    "candidate_numerical_sgm10_seconds": 0.09557683497919654,
+    "highs_numerical_sgm10_seconds": 0.07817082391375091,
+    "candidate_to_highs_wall_ratio": 1.2240482118061182,
+    "achieved": false
+  },
+  "attempts": {
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-build-self-check-attempt1.json": {
+      "sha256": "eeefd88e26a50d0cdaf0378f36612dbe7366050ac708d76ae2dfdc1a742b21e1",
+      "returncode": 0,
+      "elapsed_seconds": 0.19250610005110502,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-build-attempt1.json": {
+      "sha256": "6c7980fbcf5fcfd947ab848ce5c9c9173273a942b408538a7b3630c484ae7045",
+      "returncode": 0,
+      "elapsed_seconds": 27.094576599891298,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-runner-self-check-attempt1.json": {
+      "sha256": "22b0e17a625e958a370c6ca4b9a12eec5aa9e0e1b201bf06cf6647dd0ba5d475",
+      "returncode": 0,
+      "elapsed_seconds": 0.14852400007657707,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-development-attempt1.json": {
+      "sha256": "eda4e48fb4d115b152d9d2c84464da0174a4dab3fceea2b1be8023568fa123e2",
+      "returncode": 0,
+      "elapsed_seconds": 8.105122899985872,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-probe-attempt1.json": {
+      "sha256": "d0cf6aed4076a1add1ba9cb899903de4e10d68820e9542582d99eb16f1ee2172",
+      "returncode": 0,
+      "elapsed_seconds": 10.337816299987026,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-attempt1.json": {
+      "sha256": "27f98c1f9155889e3209822a1e28a2a35709cd3c05dfc2c4be6a31378cee5f52",
+      "returncode": 0,
+      "elapsed_seconds": 2.0788191999308765,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-development-attempt1.json": {
+      "sha256": "8a624a04343e13cfa1d14af3323fbbfc752caffac5699ea3faa41c4445912507",
+      "returncode": 0,
+      "elapsed_seconds": 22.846899600001052,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-probe-attempt1.json": {
+      "sha256": "399f73dbb03db552cfeccfd011afd04832521e16b25cbb977c4b25b70fa29805",
+      "returncode": 0,
+      "elapsed_seconds": 28.33346530003473,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-gate-attempt1.json": {
+      "sha256": "0352c9f3dff7b3ed290397f078492e58caf78973451705903e7c5acb69ced144",
+      "returncode": 0,
+      "elapsed_seconds": 3.7596141999820247,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-netlib-attempt1.json": {
+      "sha256": "9f1d73190f88063977872d5fd37d81ebfe3a43fb1e01df941ee721eae934258d",
+      "returncode": 0,
+      "elapsed_seconds": 42.30753240000922,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-highs-attempt1.json": {
+      "sha256": "4c58bb702230de6270d373d3d64e1bfa7463fe93dec08d7b7975f0c613b6bdba",
+      "returncode": 0,
+      "elapsed_seconds": 43.20640240004286,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-compatibility-development-attempt1.json": {
+      "sha256": "0ff9fd9ac89a7128d988c3489060888d5a9a47d6c743969e5591ac5945137588",
+      "returncode": 0,
+      "elapsed_seconds": 1.1397415000246838,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-compatibility-probe-attempt1.json": {
+      "sha256": "f61bbd3d98d3fa17b72a37375e84c4dc4b16e48cb0a3eb3341890b9a6cfa149a",
+      "returncode": 0,
+      "elapsed_seconds": 0.9205845999531448,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-development-attempt1.json": {
+      "sha256": "08e08bf92c66c2eab65880e72ffd98f1d1017db7b2eb6274a85b514a78dee0ff",
+      "returncode": 0,
+      "elapsed_seconds": 2.329306700034067,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-probe-attempt1.json": {
+      "sha256": "e50fd57ecea27258a14c6e0d1b86b54871e34ceeab401eb8058530843adbca1a",
+      "returncode": 0,
+      "elapsed_seconds": 1.6459675999358296,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-netlib-attempt1.json": {
+      "sha256": "da94fc2a79632d8bd885b4e74c1a17ba9ee3b8731d7c2da56cdde46d6240b49e",
+      "returncode": 0,
+      "elapsed_seconds": 4.757387600024231,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-highs-attempt1.json": {
+      "sha256": "a1e2382b80bff3357c2c7966a2e098ea0de813d5eedd9d8bc06524d0d3c49ebb",
+      "returncode": 0,
+      "elapsed_seconds": 4.567984899971634,
+      "changed_inputs": []
+    }
+  },
+  "actual_python_script_calls": 17,
+  "source_static_audit_sha256": "57f792d87a2a10732f7f63ddb9805af1998718d6d340606b7633a8ed3405f70b",
+  "source_build_audit_sha256": "3283485f33b10f66d663ff5c33d841ab17e1796512995949206e935608db42d9",
+  "baseline_check_sha256": "e2c9b2c1193e593aeea9f8ab81f8f1084a65759fd1605b43823546b37581ab5f",
+  "new_dependency_builds": 0,
+  "read_only_audit_helper_error": "初次R/H函数简写被PowerShell内置别名覆盖，尚未进入阶段读取或落盘；改完整名称重核，未编译或新增LP",
+  "goal_achieved": false
+}

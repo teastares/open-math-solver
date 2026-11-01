@@ -1,0 +1,250 @@
+{
+  "method": "homogeneous",
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "threads": 1,
+  "seed": 0,
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_repair",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "candidate_accuracy": "homogeneous_repair",
+  "reference_accuracy": "homogeneous_repair",
+  "compatibility_accuracy": "homogeneous_repair",
+  "candidate_linear_solver": "normal_cholmod_aat",
+  "reference_linear_solver": "normal_cholmod_aat",
+  "compatibility_linear_solver": "normal_cholmod_aat",
+  "primary_linear_solver": "normal_cholmod_aat",
+  "candidate_objective_scaling": "off",
+  "reference_objective_scaling": "off",
+  "candidate_backend_version": "ipm-cpu-0.53.0",
+  "reference_backend_version": "ipm-cpu-0.53.0",
+  "live_highs_sources": {
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\Highs.h": "0d42bac7e810d76d64ba742503bc20f254087266a9cadc564d01834c4e6f981c",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\lp_data\\Highs.cpp": "1c3fb263a08ccd3f22094a33a6d4f945139f8939e83789096da64a4e568d928c",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\lp_data\\HighsOptions.h": "ed35e76f39dfcc401fd523cb2b5961a0f04ec31f10fee8882b1745d40de1a260",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\lp_data\\HConst.h": "cb478020958392d70f485018aa725cadf683e480f52fdbef2fad693faa876b2c",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\presolve\\HPresolve.cpp": "2e1439b6bc883dbb4c983724c310945a66ec47ec348c217ec4ed92b15a0e5d79",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\presolve\\HighsPostsolveStack.h": "4e3c1ef5c2d264c7efd20dbf5045535adbb07206b8a69f20adeb65f99a153bc8"
+  },
+  "native_options": {
+    "threads": 1,
+    "random_seed": 0,
+    "presolve": "choose",
+    "lp_presolve_requires_basis_postsolve": true,
+    "allow_unbounded_or_infeasible": false,
+    "primal_feasibility_tolerance": 1e-07,
+    "dual_feasibility_tolerance": 1e-07,
+    "ipm_optimality_tolerance": 1e-08
+  },
+  "max_projection_trials_per_point": 1,
+  "max_mapped_original_assessments_per_point": 2,
+  "max_original_oracle_calls": 204,
+  "max_original_oracle_assessments": 408,
+  "schema": 1,
+  "round": 88,
+  "version": "v91",
+  "candidate_version": 91,
+  "parent_version": 66,
+  "reference_version": 88,
+  "created_at_utc": "2026-10-26T00:56:34.041407+00:00",
+  "diagnostic_only": true,
+  "kind": "presolved_same_cone_warm_pdhg_interaction_diagnostic",
+  "production_changes": false,
+  "hypothesis": "旧v84在未预处理Cone上的暖PDHG负结果不直接否定v88约化Cone；保持旧暖内核和原预算，检验由数值失败处当前已提交点启动的恢复能否通过同一原模型oracle。",
+  "parent_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "parent_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "parent_source_sha256": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+  "baseline_verification_file": "v91-baseline-check.json",
+  "baseline_verification_sha256": "ff80e1cbe5f20ee2ea685380a9602679455646c609b14034a3eee6cf3fde6097",
+  "evidence_file": "v90-closeout.json",
+  "evidence_sha256": "9449b74599ac7b930cd6cdd082f77e74ca786683d1c2fd1aee01f13a7f2d68df",
+  "math_evidence_file": "v88-closeout.json",
+  "math_evidence_sha256": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b",
+  "warm_evidence_file": "v84-closeout.json",
+  "warm_evidence_sha256": "3627f27712e22ba66bd798ac445dd1e2aa687208736852a6e9fad9aac8dc411b",
+  "reference_manifest": "D:\\Documents\\codes\\solver\\.tools\\v88-presolve\\build-manifest.json",
+  "reference_manifest_sha256": "8d4cd95a993943b609701a862dff189ce0d15bebb49b29c0b32bde38d53c3bc4",
+  "reference_executable": "D:\\Documents\\codes\\solver\\.tools\\v88-presolve\\solver-presolve.exe",
+  "reference_executable_sha256": "785e5ddd20ed928069a937076847f43fe6e03003827b32305cd5d227f3775d88",
+  "reference_runner_file": "v88-run.py",
+  "reference_runner_sha256": "6080b97380f79d64b3aafd79a265554c29910fbbd767477ed0ee5b0cacfc2d04",
+  "parent_instrumentation_file": "v88-ipm-instrumentation.py",
+  "parent_instrumentation_sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+  "warm_kernel_file": "v84-warm-pdhg.hpp",
+  "warm_kernel_sha256": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30",
+  "warm_source_test_file": "v84-warm-self-test.cpp",
+  "warm_source_test_sha256": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+  "diagnostic_environment": "SOLVER_V91_PRESOLVE",
+  "warm_environment": "SOLVER_V91_WARM_PDHG",
+  "diagnostic_marker": "V91_PRESOLVE",
+  "warm_marker": "V91_WARM",
+  "reference_environment": "SOLVER_V88_PRESOLVE",
+  "reference_marker": "V88_PRESOLVE",
+  "work_directory": ".tools/v91-presolve",
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "hash_error": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "hash_error": null
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "hash_error": null
+    }
+  ],
+  "repeats": 2,
+  "variants": [
+    "frozen_v88",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "stage_order": [
+    "diagnostic"
+  ],
+  "maximum_solver_runs": 18,
+  "warm_limits": {
+    "max_iterations": 20000,
+    "max_work_units": 500000000,
+    "check_interval": 64,
+    "budget_check_work_interval": 256,
+    "step_safety": 0.9
+  },
+  "max_warm_attempts": 1,
+  "maximum_warm_assessments": 314,
+  "no_model_specific_routing": true,
+  "new_report_fields": [],
+  "compatibility_excluded_report_fields": [
+    "timings"
+  ],
+  "unchanged_public_performance_plan": "v88-plan.json",
+  "unchanged_public_performance_plan_sha256": "8a47239e7f9cf412b2f64eb604eda9ab25c8143a11e4075335b1011ccde3964f",
+  "changed_source_files": [
+    "独立生成IPM与预处理/暖控制头，组合v88原q和v84同Cone暖核；生产不变"
+  ],
+  "new_code_and_plan_files": [
+    "v91-plan.json",
+    "v91-baseline-check.json",
+    "v91-ipm-instrumentation.py",
+    "v91-ipm-self-test.cpp",
+    "v91-warm-self-test.cpp",
+    "v91-build.py",
+    "v91-run.py"
+  ],
+  "warm_policy": [
+    "以最终v88为算法父，不带v89 trace/v90中心反馈；父原q oracle/无基恢复/投影/原验保持，仅主HSD循环NumericalFailure触发一次暖恢复。初始化异常不接，预算不触发，off裸rethrow。",
+    "全部三路开启父预处理；diagnostic_off只关暖恢复。NotReduced同规则但没有oracle；Reduced沿当前core Cone，Empty不启动HSD或暖核。",
+    "seed使用失败处最后已提交的同Cone point.x/z除正有限tau，既非恢复后原模型x/y也不声称等于最后完整assess点。seed独立验收；不新增checkpoint或按模型身份选择。",
+    "逐字复用v84暖核；自由primal、不等式z非负、等式z自由，T/Sigma=0.9/max(1,绝对列/行和)，一次更新两SpMV。核/步/工作/周期/预算边界不调参。",
+    "最多20000步、5亿自有工作、每256工作检查原epoch；seed+每64提交步+未验末点最多314回调，不增加原5秒/35秒。",
+    "保父204个oracle槽和408次原验上界；每次暖验收前若active oracle已无剩余槽，干净有界停止且保原KKT错误，不另建error事件，不追加终验。",
+    "trial.ipm_iterations复制触发失败处最后已提交HSD标签，PDHG步数只在暖侧账本。当前trial重置旧质量，assess仍经过父当前点hook，只有原oracle和最终预算通过才可原模型成功。",
+    "child只累计trial.verification_seconds，包括异常已记部分；父oracle原验另在父stats.timings.verification计一次。复制/映射等其余成本归solve，禁止把整个嵌套assess耗时再加一遍。",
+    "成功解/质量移动无抛，owner预算失败清接纳；普通暖失败保原错误/legacy工作及原可见解，所有已付检查/SpMV/验收留侧账本。必须测试oracle接受后的异常与最后预算，不留错误接纳。",
+    "沿旧暖11字段/quality13/kernel15另行输出V91_WARM，父21字段仍由V91_PRESOLVE输出。正式schema以静态检查/组件/runner精确字段共同核对。"
+  ],
+  "comparison_policy": [
+    "固定三模型两重复，三路串行轮转共18，只有frozen_v88到diagnostic_off六对完整公共报告只排timings兼容。",
+    "旧diag native.time_limit由每次准备elapsed决定，不跨运行要求同值；每条分别核正有限剩余额度/原调用/质量/工作/事件/选择/预算合同，禁止为通过后验修改比较。",
+    "on是算法组合变化，失败与未触发控制均保留；控制例未触发时仍核完整公共报告及IPM工作，不把数值更早失败称收敛收益。",
+    "这是机制诊断，不产生完整公开集或HiGHS新速度结论，不在18条后自动扩集。本轮即使两次原验通过，也须下一冻结完整500协议证明覆盖和端到端目标。"
+  ],
+  "source_references": [
+    "https://raw.githubusercontent.com/google/or-tools/v9.14/ortools/pdlp/primal_dual_hybrid_gradient.cc",
+    "https://www.cvxgrp.org/scs/algorithm/warm_start.html",
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/crossover.cc"
+  ],
+  "source_interpretation": [
+    "OR-Tools v9.14将工作模型和原验分层，但其GLOP预处理开启时会清initial_solution；不能声称它已经实现本轮组合。我们从已在约化模型运行的HSD状态出发，不穿越未知预处理逆映射。",
+    "SCS说明暖x/y/s必须属于其标准模型坐标；这里只借鉴坐标和终验边界，不复用SCS算法或据其说明保证加速。",
+    "IPX成熟crossover依赖basis与互补/界条件，现有v80冷行基不等同；此路线暂留结构性后续工作，不冒称本轮已实现单纯形。"
+  ],
+  "local_references": [
+    {
+      "file": "src/ipm.cpp",
+      "sha256": "be24effdff79d1dd258138343b699ee6f1a8d8281883d189306967308aa9234f"
+    },
+    {
+      "file": "src/pdlp.cpp",
+      "sha256": "d06640efd607b945e23ecf37f200b61eec9ac8dd76c2ddf775417bc32b0322fe"
+    },
+    {
+      "file": "src/lp_optimality.cpp",
+      "sha256": "a9a43c200f8463e8bc7c64091f733bfba3ff15166e8cfb08dc58b0555acc8751"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-ipm-instrumentation.py",
+      "sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-ipm-instrumentation.py",
+      "sha256": "c56771432b61073b3876b043785a1f151db0ee6f217b31bc4994543729d16449"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-warm-pdhg.hpp",
+      "sha256": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v90-closeout.json",
+      "sha256": "9449b74599ac7b930cd6cdd082f77e74ca786683d1c2fd1aee01f13a7f2d68df"
+    }
+  ],
+  "risk_contract": [
+    "诊断18条不缩小长期完整公开LP目标，原500协议保留且没有被替换。",
+    "仍用共同CPU1/seed0/原模型精度/5秒数值35秒进程；不隐藏失败或增加独立暖预算。",
+    "旧暖负结果、v89正式诊断负判和v90中心反馈负结果均保留；未经新证据不重试已否定同K0微调。",
+    "生产仍v66；初期预处理/恢复复用HiGHS，LP迭代仍自主，不称全自主预处理或已得硬件scaling law。"
+  ]
+}

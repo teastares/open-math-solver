@@ -1,0 +1,556 @@
+{
+  "schema_version": 1,
+  "model_count": 11,
+  "repeats": 3,
+  "run_count": 66,
+  "quality_pass_count": 66,
+  "reference_variant": "frozen_v66",
+  "candidate_variant": "diagnostic_on",
+  "both_variants_all_repeats_pass_count": 11,
+  "both_backends_all_repeats_pass_count": 11,
+  "wall_winner_counts": {
+    "frozen_v66": 5,
+    "diagnostic_on": 6
+  },
+  "failure_wall_penalty_seconds": 35,
+  "failure_numerical_penalty_seconds": 5,
+  "variants": {
+    "frozen_v66": {
+      "run_count": 33,
+      "quality_pass_count": 33,
+      "all_repeats_quality_pass_model_count": 11,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 33
+      },
+      "penalized_wall_sgm10_seconds": 0.24332456434069533,
+      "penalized_numerical_sgm10_seconds": 0.22127456168213488,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "diagnostic_on": {
+      "run_count": 33,
+      "quality_pass_count": 33,
+      "all_repeats_quality_pass_model_count": 11,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 33
+      },
+      "penalized_wall_sgm10_seconds": 0.23782825531647428,
+      "penalized_numerical_sgm10_seconds": 0.21321981870773984,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": {
+    "frozen_v66": {
+      "run_count": 33,
+      "quality_pass_count": 33,
+      "all_repeats_quality_pass_model_count": 11,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 33
+      },
+      "penalized_wall_sgm10_seconds": 0.24332456434069533,
+      "penalized_numerical_sgm10_seconds": 0.22127456168213488,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "diagnostic_on": {
+      "run_count": 33,
+      "quality_pass_count": 33,
+      "all_repeats_quality_pass_model_count": 11,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 33
+      },
+      "penalized_wall_sgm10_seconds": 0.23782825531647428,
+      "penalized_numerical_sgm10_seconds": 0.21321981870773984,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+      "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.009318100012023933,
+        "diagnostic_on": 0.012659100000746548
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0007164,
+        "diagnostic_on": 0.0006337
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.007975200001965277,
+          0.011366499995347112
+        ],
+        "diagnostic_on": [
+          0.012017000000923872,
+          0.01419819999136962
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0006717,
+          0.0007585
+        ],
+        "diagnostic_on": [
+          0.0006074,
+          0.00076
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7360791850506287,
+      "numerical_speedup_reference_over_candidate": 1.1305033927726054,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+      "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.012095800004317425,
+        "diagnostic_on": 0.015150500010349788
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0020717,
+        "diagnostic_on": 0.0018693
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.010079900006530806,
+          0.012234499998157844
+        ],
+        "diagnostic_on": [
+          0.01319359999615699,
+          0.015738700007204898
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0017296,
+          0.0024608
+        ],
+        "diagnostic_on": [
+          0.0017865,
+          0.002586
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7983762909510841,
+      "numerical_speedup_reference_over_candidate": 1.1082758251751994,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+      "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.01869799999985844,
+        "diagnostic_on": 0.021473899992997758
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0093462,
+        "diagnostic_on": 0.009138
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.01853839999239426,
+          0.0259896000061417
+        ],
+        "diagnostic_on": [
+          0.021263500006170943,
+          0.02302110000164248
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0091709,
+          0.0140905
+        ],
+        "diagnostic_on": [
+          0.0090383,
+          0.0091505
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.8707314463583937,
+      "numerical_speedup_reference_over_candidate": 1.0227839789888378,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+      "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.019086300002527423,
+        "diagnostic_on": 0.02462080000259448
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0097891,
+        "diagnostic_on": 0.0106709
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.01761429999896791,
+          0.020701999994344078
+        ],
+        "diagnostic_on": [
+          0.023318099993048236,
+          0.025013899998157285
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0085577,
+          0.0103432
+        ],
+        "diagnostic_on": [
+          0.0096726,
+          0.0125189
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.7752103912348972,
+      "numerical_speedup_reference_over_candidate": 0.9173640461441865,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+      "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.035814999995636754,
+        "diagnostic_on": 0.035388899996178225
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0240105,
+        "diagnostic_on": 0.019991
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.03566450001380872,
+          0.036167300000670366
+        ],
+        "diagnostic_on": [
+          0.0315586000069743,
+          0.0361953999963589
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0215782,
+          0.0244656
+        ],
+        "diagnostic_on": [
+          0.017009,
+          0.0211046
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0120404985604115,
+      "numerical_speedup_reference_over_candidate": 1.2010654794657598,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+      "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.07259990001330152,
+        "diagnostic_on": 0.0777168999920832
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0577546,
+        "diagnostic_on": 0.0590365
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.07236400000692811,
+          0.0745143999956781
+        ],
+        "diagnostic_on": [
+          0.07466490000660997,
+          0.08016559999668971
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0577295,
+          0.05795829999999999
+        ],
+        "diagnostic_on": [
+          0.0575821,
+          0.0604552
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9341584651561895,
+      "numerical_speedup_reference_over_candidate": 0.9782863143987195,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+      "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.38351369999872986,
+        "diagnostic_on": 0.3483683999947971
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.351834,
+        "diagnostic_on": 0.3125647
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.3446628999954555,
+          0.4178788999997778
+        ],
+        "diagnostic_on": [
+          0.3474452999944333,
+          0.37884309999935795
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.3120421,
+          0.377281
+        ],
+        "diagnostic_on": [
+          0.3119147,
+          0.3334127
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.100885441975959,
+      "numerical_speedup_reference_over_candidate": 1.1256357483746566,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+      "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.1325421999936225,
+        "diagnostic_on": 0.11325140000553802
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.1180381,
+        "diagnostic_on": 0.0979683
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.11017319999518804,
+          0.1328454999893438
+        ],
+        "diagnostic_on": [
+          0.11272930000268389,
+          0.12622570000530686
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0972588,
+          0.1190081
+        ],
+        "diagnostic_on": [
+          0.0974632,
+          0.1086002
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.1703360840319956,
+      "numerical_speedup_reference_over_candidate": 1.2048601435362256,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 8,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 1.2926809999917168,
+        "diagnostic_on": 1.269214199986891
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 1.2531879,
+        "diagnostic_on": 1.225759
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          1.2707873999897856,
+          1.2956549000082305
+        ],
+        "diagnostic_on": [
+          1.2628025999874808,
+          1.2773319999978412
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          1.2283354,
+          1.2553897
+        ],
+        "diagnostic_on": [
+          1.2202847,
+          1.2339563
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.01848923531195,
+      "numerical_speedup_reference_over_candidate": 1.0223770741230533,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 9,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.6529310000041733,
+        "diagnostic_on": 0.6215223000035621
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.5703162,
+        "diagnostic_on": 0.5501636
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.6435282000020379,
+          0.6549336000025505
+        ],
+        "diagnostic_on": [
+          0.6064365999918664,
+          0.6542768000072101
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.5682343,
+          0.5841811
+        ],
+        "diagnostic_on": [
+          0.5307207,
+          0.5808689
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.0505351135436831,
+      "numerical_speedup_reference_over_candidate": 1.0366301950910604,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    },
+    {
+      "model_index": 10,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+      "quality_pass_counts": {
+        "frozen_v66": 3,
+        "diagnostic_on": 3
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.13136890000896528,
+        "diagnostic_on": 0.1272263999999268
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.1143205,
+        "diagnostic_on": 0.109139
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.1287092999991728,
+          0.1479204000061145
+        ],
+        "diagnostic_on": [
+          0.12518039999122266,
+          0.1327737999963574
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.1129163,
+          0.1320113
+        ],
+        "diagnostic_on": [
+          0.1057831,
+          0.1122328
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.032560066220854,
+      "numerical_speedup_reference_over_candidate": 1.0474761542619961,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_on"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "plan_sha256": "3969f94aab8787076ac4a842d29ecad3105c3aeb4aa580e7b4ba4ac77d6f834b",
+  "stage": "development",
+  "raw_sha256": "637a7952f922e4bcd42f0089fe684de88715a96c6aa175fdead12e9519f0ba55",
+  "valid_process_count": 66,
+  "basis_marker_error_count": 0
+}

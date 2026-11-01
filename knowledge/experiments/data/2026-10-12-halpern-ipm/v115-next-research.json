@@ -1,0 +1,43 @@
+{
+  "version": 115,
+  "status": "研究合同，尚未创建或运行新原型；现有纯IPM协议不变",
+  "direction": "独立验证从我方IPM中间点进入成熟crossover组件的路线",
+  "reason": "两轮局部C++优化未形成足够整体收益；本轮91个HiGHS公共报告均有正单纯形迭代计数、IPM计数为0。这个观察不反推全部内部路径，但提示下一步应研究算法阶段衔接，而非继续仅优化小段循环。",
+  "prior_evidence": {
+    "v115_analysis": "v115-candidate-analysis.json",
+    "blas_binding": "v115-blas-binding-observation.json",
+    "past_basis_attempts": "v68至v80已试自有冷选基、LU精修、phaseI及有限逆更新，未在原预算内得到合格候选；不能重复建议同一组合。尚未实际试独立IPX CrossoverFromStartingPoint。",
+    "blas_caveat": "当前候选rd worker静态直接调用四个BLAS/LAPACK接口，这些接口含gotoblas分派；不支持将它们猜成HiGHS纯C++fallback，也未证明动态选择了全部最快微内核。旧Cooperlake错误及修补不重复发现。"
+  },
+  "locked_api": {
+    "source_root": "build/release/_deps/highs-src",
+    "lp_solver_header_sha256": "3872fe9650b482b289bf62c03a96797afe17eafb89145f819e36513c6fa18478",
+    "lp_solver_source_sha256": "87a2b2ca94eaa84f1f6c22ccfd9eedd29b7b53dd4d16f1e04c56dcd9126e9ac0",
+    "iterate_source_sha256": "063f85c29ffeacf0dc888c3086f4b86c708bb902ff88500c9e4624b18535281c",
+    "old_clone_equal": true,
+    "api": "ipx::LpSolver::LoadModel / SetParameters / SetCallback / CrossoverFromStartingPoint / GetInfo / GetBasicSolution",
+    "entry_boundary": "CrossoverFromStartingPoint直接做起点映射、选基和RunCrossover，不调用Highs::run或IPX Solve/IPM；返回0仅表示入口接受，必须另查status_crossover和完整原模型终验。每次入口清旧basis，不声称复用上次crossover因子。",
+    "license": "锁定源为MIT；保留HiGHS、IPX和BASICLU归属，不称自研crossover。用户允许初期复用开源组件，最终自主的边界仍须诚实维护。"
+  },
+  "first_step": "只做直接维护的独立C++组件及合成例验证，不先接正式LP流程；明确synthetic_crossover_calls及其确实执行的基/优化工作，公开LP调用数为0仅在确实没有公开实例时成立。使用原冻结库，无完整HiGHS/IPX Solve代理。",
+  "required_component_proofs": [
+    "接口实际可链接、索引类型和模型维数合法，负0/无穷界/NaN拒绝语义明确",
+    "起点必须互补；一般HSD中间点不能原样传入。研究DropToComplementarity，记录贴界或置零引入的完整原始和对偶残差",
+    "最小化、最大化、offset、固定/自由变量、单边行及双边行的映射和回代，经我方独立原模型验证",
+    "双边行可加有界活动变量q并写Ax-q=0，其约化成本与行乘子符号正确；无基postsolve仍由原对象完成，不把外部basis交回原预处理对象",
+    "显式remaining总时限、单线程scheduler、callback及全部构造/Load/Drop/crash/crossover/回代/原验成本；LU和crash不能声称硬可抢占",
+    "拒绝把API rc0或默认time_total=0当成功和耗时；外部实测总时、status及updates_start/updates_crossover独立记录，更新数不冒充push数"
+  ],
+  "possible_integration_hypothesis": "组件通过后才另冻结实验：在已有局部完整检查中，首次原始和对偶可行但目标间隙尚未通过时一次尝试，使用的都是已付费信息；失败丢弃试点并继续原HSD与剩余预算。不按公开模型名或已知最优值触发，不追加新5秒。当前回调只在局部最优时consult_current，必须先设计中间点hook，否则只会增加末端成本。该假设尚未证明有效。",
+  "protocol_conflict": "当前presolve_state.hpp::observe及v88至v100验证器拒绝正crossover计数或有效basis。混合集成前必须显式冻结新的算法身份、external_crossover侧账本与协议语义；保留原预处理对象及纯IPM关闭轨迹，不能将外部优化藏在旧无LP迭代声明内。共同输入、精度、CPU资源、5秒/35秒、失败惩罚和条件500调度保持，不追溯修改本轮成绩。",
+  "primary_sources": [
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/lp_solver.h",
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/lp_solver.cc",
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/iterate.cc"
+  ],
+  "new_code_changes": 0,
+  "new_builds": 0,
+  "additional_public_lp_runs": 0,
+  "source_generation": false,
+  "goal_achieved": false
+}

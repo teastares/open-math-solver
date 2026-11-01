@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T20:13:17.839992+00:00",
+  "version": 108,
+  "comparison_valid": false,
+  "goal_achieved": false,
+  "reason": "highs_solver_identity_mismatch",
+  "observed_public_lp_runs": 500,
+  "additional_public_lp_runs": 0,
+  "stage_counts": {
+    "compatibility-development": 22,
+    "compatibility-probe": 12,
+    "development": 66,
+    "probe": 36,
+    "netlib": 182,
+    "highs": 182
+  },
+  "identity_mismatches": [
+    {
+      "stage": "highs",
+      "run_index": 159,
+      "model_index": 79,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12s.mps",
+      "variant": "highs",
+      "solver_sha256_before": "8750769bc280de96c48be7c05ecd7f776b5691d8d23e915a106d5d75dd1064fd",
+      "solver_sha256_after": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+      "frozen_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+      "quality_failure": "solver_changed_or_unavailable",
+      "returncode": 0,
+      "status": "optimal"
+    }
+  ],
+  "current_binary_observations": [
+    {
+      "file": ".tools/solver-ipm-v66.exe",
+      "sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+      "three_reads_equal": true,
+      "size": 31426048,
+      "mtime_ns": 1792754340833734700,
+      "metadata_unchanged_during_diagnostic": true
+    },
+    {
+      "file": "build/release/solver.exe",
+      "sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+      "three_reads_equal": true,
+      "size": 31426048,
+      "mtime_ns": 1792754340833734700,
+      "metadata_unchanged_during_diagnostic": true
+    },
+    {
+      "file": ".tools/v108-direct-workspace/solver-experimental.exe",
+      "sha256": "8eee0a40ed5adc9ce06fb3ceeea87bcff2ffad54654d2d8fa511218da4986b60",
+      "three_reads_equal": true,
+      "size": 31592448,
+      "mtime_ns": 1793476761844374400,
+      "metadata_unchanged_during_diagnostic": true
+    }
+  ],
+  "independent_native_get_file_hash": {
+    "file": "v108-independent-hash.json",
+    "sha256": "551c47f182561a70a83c48c19cfc059871c1a0efc359b17b6b8acbc209e350bd",
+    "values": [
+      {
+        "Algorithm": "SHA256",
+        "Hash": "E8AE61FF3572B3603BF11509D58363D97D6886D373239994FF4235FA39A06787",
+        "Path": "D:\\Documents\\codes\\solver\\.tools\\solver-ipm-v66.exe"
+      },
+      {
+        "Algorithm": "SHA256",
+        "Hash": "E8AE61FF3572B3603BF11509D58363D97D6886D373239994FF4235FA39A06787",
+        "Path": "D:\\Documents\\codes\\solver\\build\\release\\solver.exe"
+      }
+    ]
+  },
+  "auxiliary_child_probe": {
+    "file": "v108-identity-diagnostic-child.json",
+    "sha256": "3e398aa329f73a29fa590216afae59dbd6d160d1f8ab36d1327668e8ba91cf70",
+    "interpretation": "首次辅助诊断选系统旧powershell，没有Get-FileHash导致断言停止；另存真实失败退出，改由当前工具host原生Get-FileHash核，不涉及LP或原始记录。"
+  },
+  "highs_attempt_sha256": "65c077cef8a76fd153045185c0385d577dbe6ac6af34d2a912b1929f4b24b4b3",
+  "highs_raw_sha256": "2c52590e580f420d69ef1d37c0cb952f73d46907f8744e5a9bbc0b33c1d8db7b",
+  "highs_summary_sha256": "e16645f2d17362c940a9bc34f009711cfdefba321519edb24a29c2bbdee95595",
+  "driver_before_correction": {
+    "file": ".tools/v108-closeout-before-identity-failure.py",
+    "sha256": "e266f4121c5bc467892bf1f2bc62bddcef634c0ec557cb87b956af3859ca92fc"
+  },
+  "interpretation": "原始before与after不同，当前三次hash与原生独立Get-FileHash回到冻结值、metadata稳定，仅证明当前身份，不能补证当时身份。原因未确定，不修改原记录、不按异常参考惩罚宣称胜出、不单例补跑。500原件保留，本轮同期比较无效，目标继续。"
+}

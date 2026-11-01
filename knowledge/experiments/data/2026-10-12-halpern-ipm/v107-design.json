@@ -1,0 +1,75 @@
+{
+  "version": 107,
+  "round": 104,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T19:16:08.489149+00:00",
+  "algorithm_parent_version": 106,
+  "source_parent_identity_file": ".tools/v106-product-budget/identity.json",
+  "source_parent_identity_sha256": "42cad2f3978879e5a6b4455e8bc5f52fa9a2cb03ca8f344c4560a3b8deca3f71",
+  "source_parent_build_file": ".tools/v106-product-budget/build-manifest.json",
+  "source_parent_build_sha256": "db2e5d93f751015627c7774326d990dd84586f89bad14615df05049077d59d9b",
+  "hypothesis": "只将活动Krylov norm的两扫缩放改为受保护LD宽指数单遍平方和，省逐项LD除法与一遍加载；不预测总体收益。",
+  "scope": "只coupled.hpp新增norm可选路径和solve末尾默认false参数、两个norm传参，以及ipm唯一活动adapter请求true；其余8份含IPM测试和Normal逐字父106。",
+  "interface": "norm(values,work,check,bool wide_norm=false)；solve最后新增bool wide_norm=false；旧默认保持父实现。ipm v100_solve_coupled只在既有活动adapter的末尾追加true，不改变CLI或marker。",
+  "format_guard": "Double/LD均IEC559且radix2；LDdigits>DoubleDigits且>=size_t digits；LDminexp<=2*(DoubleMinExp-DoubleDigits)；LDmaxexp>2*DoubleMaxExp+size_tDigits+2。整型边界表达式用足够宽有符号类型避免常量溢出。",
+  "range_proof": "binary64最小非零平方2^-2148、最大平方<2^2048，n<size_t上界。要求LDdigits>=size_tdigits使正数顺序求和的舍入增长有界，最大指数再加2位保守余量；所有中间平方与和处于LD正常范围，不据sizeof(LD)猜格式。仍存在有限精度舍入且不承诺正确舍入。",
+  "environment_guard": "复用已有fma_axpy read_control_state/environment_supported，只读默认渐进下溢、最近舍入、64位x87有效精度和屏蔽异常；不要求AVX/FMA硬件。未知平台或不支持格式/环境回退原缩放norm，不修改FP控制字和sticky旗标。",
+  "fast_path": "入口符合资格后，单遍按原索引递增：coordinate_budget；每个4096坐标边界callback正常返回后再查环境，不合即以wide_norm=false重新运行原norm；有限检查；LD(value)*LD(value)顺序累加。原末budget返回后再次查环境，不合仍重跑原norm；合资格才sqrt(LDsum)并原narrow。无partial结果发布、无新alloc和公开计数。",
+  "budget_contract": "省第二扫描也省其coordinate检查，这是结构伴随变化，不称原budget轨迹保持。首扫仍每4096及末check；环境回退的实际重扫成本与所有callback计入原共享5秒，不重置epoch，异常原样传播。",
+  "preserved": "旧norm正文保留；dot、MGS两遍、FMA、算子/预条件器、五块真验、forcing边界、Point交付、上限32x3及所有public/private计数位置保持。",
+  "numerical_effect": "平方和与缩放范数在实数下相同，但舍入次序可改变搜索和工作计数；不要求候选报告与父逐位相同，不降低LP精度或删除失败。",
+  "protocol": "沿固定CPU1 seed0 200步scaling5、solve+verification5秒/wall35、LP绝1e-7相1e-9、失败罚5/35及shift10；34兼容+102初始，原gate false止136，true再364至500。",
+  "research": [
+    {
+      "url": "https://docs.oracle.com/cd/E37069_01/pdf/E39019.pdf",
+      "location": "PDF第164页，D.1第2类程序",
+      "observation": "官方指南明确以extended double宽指数直接累加Double平方可避免中间上下溢；本轮另以数值格式和size_t范围作保守证明，不将其历史速度断言移为本机实测。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Reference-LAPACK/lapack/v3.12.1/BLAS/SRC/dnrm2.f90",
+      "observation": "参考DNRM2在同精度内部采用三累加器安全缩放，说明不能在普通Double中盲用平方和；本轮保旧缩放fallback。"
+    },
+    {
+      "url": "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p1673r8.html",
+      "location": "11.6",
+      "observation": "原提案区分避免不必要中间上下溢和完全正确舍入，不要求精确任意长度求和；本轮仍不降低LD累加有效精度和最终质量。"
+    },
+    {
+      "file": "build/release/_deps/highs-src/highs/ipm/ipx/utils.cc",
+      "sha256": "3b8582c3394cf4037ac91da7c7407a3cc513827b36a87b736d48e495636b2fd5",
+      "location": "Twonorm第24至28行",
+      "observation": "锁定HiGHS/IPX原码直接Double平方和后sqrt；只作通用实现成本对照，不能将其Double中间范围安全性推广到任意输入。"
+    }
+  ],
+  "component_plan": {
+    "parent_ipm": 106,
+    "parent_standalone": 51,
+    "new_standalone_groups": [
+      "wide_norm_regular_values",
+      "wide_norm_extreme_range",
+      "wide_norm_environment_guard",
+      "wide_norm_budget_prefix",
+      "wide_norm_fgmres_true_residual",
+      "wide_norm_nonfinite_and_narrow"
+    ],
+    "ipm": 106,
+    "coupled": 57,
+    "total": 163,
+    "fp_test_limit": "非默认RC/PC/FTZ下不运行norm算术；只实际读改恢复控制字、默认/sticky回调；不支持环境的recheck到false重扫连接由源码审计核，不虚称运行非默认精度保证。"
+  },
+  "alternatives": [
+    {
+      "name": "Krylov scratch工作区",
+      "decision": "本轮不叠加",
+      "reason": "每列两次分配可复用，但分配耗时未单列；先消逐项LD除法，K0均不受益。"
+    },
+    {
+      "name": "CHOLMOD矩形转置pattern缓存",
+      "decision": "后续单项备选",
+      "reason": "factorize每次转置C，可缓存F结构与槽；有额外常驻内存和底层失败契约，不与norm混测。"
+    }
+  ],
+  "historical_scope": "复用更宽内部格式计算范数是已有通用方法，不称新算法；不把旧coupled自耗或970次调用当作本轮可省耗时。",
+  "no_model_specific_routing": true,
+  "source_generation": false
+}

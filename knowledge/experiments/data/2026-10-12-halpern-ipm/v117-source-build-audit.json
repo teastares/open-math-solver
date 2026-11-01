@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "version": 117,
+  "attempt": 2,
+  "source_count": 14,
+  "compiled_units": 4,
+  "linked_executables": 3,
+  "component_cases": {
+    "ipm": 112,
+    "coupled": 57
+  },
+  "required_new_cases": {
+    "crossover_hsd_actual_handoff": "transaction",
+    "crossover_gate_gap_and_domain": "exception",
+    "crossover_remaining_deadline": "budget",
+    "crossover_single_attempt_scope": "transaction",
+    "crossover_original_postsolve": "transaction",
+    "crossover_gate_current_snapshot": "mapping"
+  },
+  "dependencies": {
+    "ipm": {
+      "own": 10,
+      "total": 1155
+    },
+    "ipm_self": {
+      "own": 11,
+      "total": 1160
+    },
+    "coupled_self": {
+      "own": 6,
+      "total": 6
+    },
+    "normal": {
+      "own": 7,
+      "total": 1158
+    }
+  },
+  "protected_inputs": 1563,
+  "candidate_sha256": "0ebc8f9d368d82c6cf87300058cafa758cb2d3da7f116c182755cd51408a6777",
+  "plan_sha256": "12702b4a7ba2699a2cd59004860dcba79c1e2bf9796eb4a7e1a9d6855495f0c8",
+  "static_audit_sha256": "4f181ac235257e0ebcb6e810eafcfab995728d7443ea1ca0c313d3158c038291",
+  "first_failure": "测试把optional<bool>是否有值误当值本身；首次110组及原件保留，唯一修一行后重测全过。",
+  "source_generation": false,
+  "production_changes": false,
+  "public_lp_runs": 0,
+  "goal_achieved": false
+}

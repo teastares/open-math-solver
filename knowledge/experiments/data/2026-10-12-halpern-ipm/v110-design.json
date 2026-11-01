@@ -1,0 +1,22 @@
+{
+  "version": 110,
+  "round": 107,
+  "algorithm_parent_version": 106,
+  "prototype_design_file": "v110-prototype-design.json",
+  "prototype_evidence_file": "v110-prototype-analysis.json",
+  "decision": "独立14组通过；66case1320原始行完整，三组长向量均有局部收益，继续原LP协议",
+  "change": "新增ld4_dot.hpp逐字等原型；coupled dot和solve末独立bool independent_dot=false；明确开启且长度>=128才evaluate，并保原narrow；MGS点积转传，IPM活动adapter末唯一请求true",
+  "threshold": 128,
+  "threshold_basis": "固定合成micro在64附近收益偏小，128及以上三组均明显减少耗时；取通用长度128，不读模型身份或LP胜负",
+  "unchanged": "范数、AXPY、32乘3上限、forcing、五块真验、原模型复核、schema3及共同精度/资源保持",
+  "numeric_scope": "保原LD产品精度，四链树改变舍入；标准界较紧仍不逐例更准，显式保原父0而新值1和LD有限但末Double溢出反例；末finite/narrow不绕过",
+  "fallback": "不合格式或环境用完整父；最终非有限也整次重扫；追加成本均在原共享预算。有限Double全指数无逐项range guard，无AVX/FMA资格",
+  "canonical_source_count": 12,
+  "dependency_counts": {"ipm": 8, "ipm_self": 9, "coupled_self": 6, "normal": 7},
+  "component_cases": {"ipm": 106, "coupled": 57},
+  "new_coupled_groups": 6,
+  "public_lp_protocol": "完全继承原v100数值协议，22/12/66/36后按原gate决定182/182；不删失败，不择优补跑",
+  "production_changes": false,
+  "public_lp_runs_at_design": 0,
+  "goal_achieved": false
+}

@@ -1,0 +1,40 @@
+{
+  "version": 111,
+  "round": 108,
+  "algorithm_parent_version": 106,
+  "baseline_file": "v111-baseline-check.json",
+  "hypothesis": "使用已完成符号分析的fl/lnz选择CHOLMOD数值分解实现，减少强制supernodal可能增加的密集占位和工作；无当前占比或收益预言",
+  "research": [
+    {"url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_analyze.c", "basis": "AUTO按fl/lnz和原默认阈值40选simplicial/supernodal；构造只选一次，NATURAL排序保持"},
+    {"url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_factorize.c", "basis": "simplicial直接依final_ll生成LL；首次pattern且final_pack时临时grow2=0，使ColCount预测容量可用于测前预算"},
+    {"url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Include/cholmod.h", "basis": "区分ColCount、逻辑项、nzmax/xsize及总内存统计；预算不是总字节硬上限"}
+  ],
+  "implementation": {
+    "changed_files": ["src/experimental/normal_cholesky.cpp", "tests/experimental/ipm_self_test.cpp"],
+    "constructor_binding": "Resources入口首个用户callback之前只读一次enabled；active设AUTO、final_ll=1、final_pack=1，off原强SUPER和原common字段保持；后续factor/solve的Scope不重选",
+    "selection": "库原supernodal_switch=40不调，NATURAL/nmethods1/postorder0/外AMD不改，不按模型身份选择，不新增数值失败后换核重试",
+    "symbolic_budget": "super保原xsize预算；simple校验ColCount每列1..n-col并安全求和，容量max(1,sum)不超原16,777,216。非空无额外数值哨兵；本对象同pattern repeatedfactor复用容量",
+    "numeric_validation": "保原type/is_ll/statusOK/minor==n要求；super原检查主体/预算位置保留；simple新增p/nz/i/x与nzmax边界、列首对角正、active行索引合法和全部active值finite，核真实容量不超同cap",
+    "storage_reporting": "实验cpp按is_super?xsize:nzmax报告数值存储槽，包含容量而非数学nnz；不改冻结public头/ABI/报告schema，默认生产旧super语义保持",
+    "input_and_solve": "保持原对称lower缓存和矩形AAT方向、原solve2及末提交；simple可能额外库内转置成本照计，本轮不混方向优化",
+    "source_generation": false
+  },
+  "component_plan": {
+    "counts": {"ipm": 112, "coupled": 51},
+    "new_groups": {"cholmod_auto_simplicial":"transaction","cholmod_auto_supernodal":"transaction","cholmod_auto_scope_capacity":"mapping","cholmod_auto_refactor_rejection":"exception","cholmod_auto_constructor_factor_budget":"budget","cholmod_auto_solve_budget":"budget"},
+    "coverage": "真实NormalCholesky public API、独立锁库analyze/factor的类型与LL/ColCount容量、n1m2及m192两型、完整原KKT残差、构造Scope绑定、多rhs/重分解/数值秩亏与非法对角拒绝、全部小例实际预算前缀及RHS事务",
+    "limits": "不注入CHOLMOD内部callback/OOM，不用巨型填充假称实际触发16M新预算，不include normal.cpp造成重复定义；无testhook或新public marker"
+  },
+  "build_contract": {
+    "revision": 2,
+    "source_count": 11,
+    "translation_units": 4,
+    "canonical_dependency_counts": {"ipm":7,"ipm_self":8,"coupled_self":5,"normal":6},
+    "test_include": "新纯构建wrapper复用稳定B，仅为IPMself追加原normal模板已有的锁定CHOLMOD/Include，供测试直接使用真实cholmod.h；无新TU/库/ISA/FPflag，稳定构建与评测文件不改"
+  },
+  "protocol": "原共同精度/资源、schema3与17完整off兼容保持；22/12/66/36及原gate136或500，不删失败不择优补跑；HiGHS同硬件CPU1 choose/presolvechoose/crossoveron",
+  "unchanged": "Gram装配/倒数缓存/预算256、MGS点积/范数/AXPY、五块真验、forcing、搜索上限和最终原模型复核不变，不叠107至110候选",
+  "production_changes": false,
+  "public_lp_runs_at_design": 0,
+  "goal_achieved": false
+}

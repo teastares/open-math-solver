@@ -1,0 +1,425 @@
+{
+  "passed": true,
+  "version": 112,
+  "diagnostic_only": true,
+  "closeout_sha256": "bd4a892ab6ddc7cc9cb0ebeaf6c9ce4069c9eda2720ec63d5a1e9ec25ab28d0e",
+  "raw_sha256": "47a9b6d2fd359d02b910256c39cd8efa099356bcd2dc1ea48abf5ee58077f162",
+  "diagnostic_runs_revalidated": 216,
+  "additional_public_lp_runs": 0,
+  "profile_on_quality_pass_count": 91,
+  "profile_off_quality_pass_count": 91,
+  "all_91_public_reports_equal_excluding_timings": true,
+  "private_strict_equal_pairs": 1,
+  "dynamic_budget_only_difference_pairs": 90,
+  "unexpected_private_difference_pairs": 0,
+  "budget_limited_pairs": 0,
+  "profile_clock_reads_sum": 208428.0,
+  "total_profiled_ns": 9274560000,
+  "stage_ranking": [
+    {
+      "stage": "cholmod_numeric",
+      "inclusive_ns": 2363852700,
+      "exclusive_ns": 2363852700,
+      "weighted_exclusive_percent": 25.487491589897527,
+      "median_per_model_exclusive_percent": 8.89558817278485,
+      "started": 2046,
+      "completed": 2046,
+      "unwound": 0
+    },
+    {
+      "stage": "run_homogeneous",
+      "inclusive_ns": 8705429200,
+      "exclusive_ns": 696895200,
+      "weighted_exclusive_percent": 7.514051340440949,
+      "median_per_model_exclusive_percent": 10.887362090863185,
+      "started": 91,
+      "completed": 91,
+      "unwound": 0
+    },
+    {
+      "stage": "coupled",
+      "inclusive_ns": 3143472600,
+      "exclusive_ns": 688118500,
+      "weighted_exclusive_percent": 7.419419357899458,
+      "median_per_model_exclusive_percent": 7.291087750830683,
+      "started": 3846,
+      "completed": 3846,
+      "unwound": 0
+    },
+    {
+      "stage": "normal_solve",
+      "inclusive_ns": 969153800,
+      "exclusive_ns": 617146800,
+      "weighted_exclusive_percent": 6.654189524893903,
+      "median_per_model_exclusive_percent": 5.753871278348645,
+      "started": 6670,
+      "completed": 6670,
+      "unwound": 0
+    },
+    {
+      "stage": "factor",
+      "inclusive_ns": 3348722400,
+      "exclusive_ns": 592330000,
+      "weighted_exclusive_percent": 6.386610254286996,
+      "median_per_model_exclusive_percent": 5.244815834568804,
+      "started": 2014,
+      "completed": 2014,
+      "unwound": 0
+    },
+    {
+      "stage": "presolve_control",
+      "inclusive_ns": 9272267200,
+      "exclusive_ns": 476749700,
+      "weighted_exclusive_percent": 5.140402347928096,
+      "median_per_model_exclusive_percent": 10.796443197681727,
+      "started": 91,
+      "completed": 91,
+      "unwound": 0
+    },
+    {
+      "stage": "hsd_true_product",
+      "inclusive_ns": 449727200,
+      "exclusive_ns": 449727200,
+      "weighted_exclusive_percent": 4.849040817030673,
+      "median_per_model_exclusive_percent": 6.004174957263854,
+      "started": 4058,
+      "completed": 4058,
+      "unwound": 0
+    },
+    {
+      "stage": "dot",
+      "inclusive_ns": 441726500,
+      "exclusive_ns": 441726500,
+      "weighted_exclusive_percent": 4.762775808232412,
+      "median_per_model_exclusive_percent": 0.0,
+      "started": 13850,
+      "completed": 13850,
+      "unwound": 0
+    },
+    {
+      "stage": "verify_local",
+      "inclusive_ns": 410810100,
+      "exclusive_ns": 410810100,
+      "weighted_exclusive_percent": 4.429429536279888,
+      "median_per_model_exclusive_percent": 6.1018909540845145,
+      "started": 2105,
+      "completed": 2105,
+      "unwound": 0
+    },
+    {
+      "stage": "direct",
+      "inclusive_ns": 1389728200,
+      "exclusive_ns": 378151800,
+      "weighted_exclusive_percent": 4.077301780354,
+      "median_per_model_exclusive_percent": 4.27960616639862,
+      "started": 6738,
+      "completed": 6738,
+      "unwound": 0
+    },
+    {
+      "stage": "cholmod_solve",
+      "inclusive_ns": 352007000,
+      "exclusive_ns": 352007000,
+      "weighted_exclusive_percent": 3.7954037711762068,
+      "median_per_model_exclusive_percent": 2.9555872139921826,
+      "started": 6670,
+      "completed": 6670,
+      "unwound": 0
+    },
+    {
+      "stage": "rectangular_assembly",
+      "inclusive_ns": 274661400,
+      "exclusive_ns": 274661400,
+      "weighted_exclusive_percent": 2.9614493841217264,
+      "median_per_model_exclusive_percent": 4.2352054819093405,
+      "started": 2046,
+      "completed": 2046,
+      "unwound": 0
+    },
+    {
+      "stage": "preconditioner",
+      "inclusive_ns": 1256238900,
+      "exclusive_ns": 225203400,
+      "weighted_exclusive_percent": 2.428184194182797,
+      "median_per_model_exclusive_percent": 2.4095519366425013,
+      "started": 4604,
+      "completed": 4604,
+      "unwound": 0
+    },
+    {
+      "stage": "normal_setup",
+      "inclusive_ns": 236457100,
+      "exclusive_ns": 179733200,
+      "weighted_exclusive_percent": 1.9379161922506296,
+      "median_per_model_exclusive_percent": 2.8214191167824416,
+      "started": 91,
+      "completed": 90,
+      "unwound": 1
+    },
+    {
+      "stage": "hsd_column_product",
+      "inclusive_ns": 179541500,
+      "exclusive_ns": 179541500,
+      "weighted_exclusive_percent": 1.9358492478349376,
+      "median_per_model_exclusive_percent": 0.0,
+      "started": 758,
+      "completed": 758,
+      "unwound": 0
+    },
+    {
+      "stage": "kkt_setup",
+      "inclusive_ns": 413791900,
+      "exclusive_ns": 177334800,
+      "weighted_exclusive_percent": 1.9120562053617638,
+      "median_per_model_exclusive_percent": 3.3474138575914663,
+      "started": 91,
+      "completed": 91,
+      "unwound": 0
+    },
+    {
+      "stage": "assess_homogeneous",
+      "inclusive_ns": 522878300,
+      "exclusive_ns": 112068200,
+      "weighted_exclusive_percent": 1.2083398026429286,
+      "median_per_model_exclusive_percent": 2.498938567830131,
+      "started": 2105,
+      "completed": 2105,
+      "unwound": 0
+    },
+    {
+      "stage": "factor_check",
+      "inclusive_ns": 103546000,
+      "exclusive_ns": 103546000,
+      "weighted_exclusive_percent": 1.1164518855881034,
+      "median_per_model_exclusive_percent": 1.2749637205445374,
+      "started": 1991,
+      "completed": 1991,
+      "unwound": 0
+    },
+    {
+      "stage": "canonicalize",
+      "inclusive_ns": 90088300,
+      "exclusive_ns": 90088300,
+      "weighted_exclusive_percent": 0.9713485060207708,
+      "median_per_model_exclusive_percent": 2.0604701254083113,
+      "started": 91,
+      "completed": 91,
+      "unwound": 0
+    },
+    {
+      "stage": "homogeneous_step",
+      "inclusive_ns": 87283700,
+      "exclusive_ns": 87283700,
+      "weighted_exclusive_percent": 0.9411087965359004,
+      "median_per_model_exclusive_percent": 1.456132050675498,
+      "started": 3846,
+      "completed": 3846,
+      "unwound": 0
+    },
+    {
+      "stage": "norm",
+      "inclusive_ns": 77187000,
+      "exclusive_ns": 77187000,
+      "weighted_exclusive_percent": 0.8322443328847945,
+      "median_per_model_exclusive_percent": 0.0,
+      "started": 970,
+      "completed": 970,
+      "unwound": 0
+    },
+    {
+      "stage": "point_update",
+      "inclusive_ns": 61492300,
+      "exclusive_ns": 61492300,
+      "weighted_exclusive_percent": 0.6630212107097264,
+      "median_per_model_exclusive_percent": 0.9430598205970635,
+      "started": 1923,
+      "completed": 1923,
+      "unwound": 0
+    },
+    {
+      "stage": "symbolic_analysis",
+      "inclusive_ns": 56723900,
+      "exclusive_ns": 56723900,
+      "weighted_exclusive_percent": 0.6116074509195045,
+      "median_per_model_exclusive_percent": 1.2601880877742946,
+      "started": 270,
+      "completed": 270,
+      "unwound": 0
+    },
+    {
+      "stage": "axpy",
+      "inclusive_ns": 50933000,
+      "exclusive_ns": 50933000,
+      "weighted_exclusive_percent": 0.5491689093606597,
+      "median_per_model_exclusive_percent": 0.0,
+      "started": 13850,
+      "completed": 13850,
+      "unwound": 0
+    },
+    {
+      "stage": "solve_factored",
+      "inclusive_ns": 1011576400,
+      "exclusive_ns": 42422600,
+      "weighted_exclusive_percent": 0.4574082220612083,
+      "median_per_model_exclusive_percent": 0.039987380129573785,
+      "started": 6738,
+      "completed": 6738,
+      "unwound": 0
+    },
+    {
+      "stage": "corrector_rhs",
+      "inclusive_ns": 20418800,
+      "exclusive_ns": 20418800,
+      "weighted_exclusive_percent": 0.22015923127350515,
+      "median_per_model_exclusive_percent": 0.3633924876689133,
+      "started": 1923,
+      "completed": 1923,
+      "unwound": 0
+    },
+    {
+      "stage": "cone_multiply",
+      "inclusive_ns": 19803600,
+      "exclusive_ns": 19803600,
+      "weighted_exclusive_percent": 0.2135260325018114,
+      "median_per_model_exclusive_percent": 0.21806645516780765,
+      "started": 2014,
+      "completed": 2014,
+      "unwound": 0
+    },
+    {
+      "stage": "cone_transpose_multiply",
+      "inclusive_ns": 16910200,
+      "exclusive_ns": 16910200,
+      "weighted_exclusive_percent": 0.18232886519683952,
+      "median_per_model_exclusive_percent": 0.17360591457391722,
+      "started": 1923,
+      "completed": 1923,
+      "unwound": 0
+    },
+    {
+      "stage": "initialize",
+      "inclusive_ns": 153950100,
+      "exclusive_ns": 14272400,
+      "weighted_exclusive_percent": 0.15388762377945692,
+      "median_per_model_exclusive_percent": 0.3476962152957796,
+      "started": 91,
+      "completed": 91,
+      "unwound": 0
+    },
+    {
+      "stage": "normal_factor",
+      "inclusive_ns": 2756392400,
+      "exclusive_ns": 13781200,
+      "weighted_exclusive_percent": 0.14859141565745437,
+      "median_per_model_exclusive_percent": 0.24631708587939938,
+      "started": 2046,
+      "completed": 2046,
+      "unwound": 0
+    },
+    {
+      "stage": "total",
+      "inclusive_ns": 9274560000,
+      "exclusive_ns": 2292800,
+      "weighted_exclusive_percent": 0.02472138840009661,
+      "median_per_model_exclusive_percent": 0.07968007129667043,
+      "started": 91,
+      "completed": 91,
+      "unwound": 0
+    },
+    {
+      "stage": "hsd_direction_direct",
+      "inclusive_ns": 1031035500,
+      "exclusive_ns": 555700,
+      "weighted_exclusive_percent": 0.005991658903495152,
+      "median_per_model_exclusive_percent": 0.018383522707185837,
+      "started": 4604,
+      "completed": 4604,
+      "unwound": 0
+    },
+    {
+      "stage": "cholmod_factor_adapter",
+      "inclusive_ns": 2467949800,
+      "exclusive_ns": 551100,
+      "weighted_exclusive_percent": 0.005942060863264672,
+      "median_per_model_exclusive_percent": 0.019350313233195464,
+      "started": 2046,
+      "completed": 2046,
+      "unwound": 0
+    },
+    {
+      "stage": "hsd_constant_direct",
+      "inclusive_ns": 332188000,
+      "exclusive_ns": 239400,
+      "weighted_exclusive_percent": 0.0025812545285167168,
+      "median_per_model_exclusive_percent": 0.010678309979473916,
+      "started": 1923,
+      "completed": 1923,
+      "unwound": 0
+    },
+    {
+      "stage": "explicit_gram_assembly",
+      "inclusive_ns": 0,
+      "exclusive_ns": 0,
+      "weighted_exclusive_percent": 0.0,
+      "median_per_model_exclusive_percent": 0.0,
+      "started": 0,
+      "completed": 0,
+      "unwound": 0
+    }
+  ],
+  "numeric_top_models_for_attribution_only": [
+    {
+      "model": "dfl001",
+      "factor_ns": 1121557300,
+      "total_ns": 2891385100
+    },
+    {
+      "model": "pilot87",
+      "factor_ns": 488012400,
+      "total_ns": 1179232500
+    },
+    {
+      "model": "pilot",
+      "factor_ns": 108887100,
+      "total_ns": 329537600
+    },
+    {
+      "model": "maros-r7",
+      "factor_ns": 96188200,
+      "total_ns": 299811300
+    },
+    {
+      "model": "fit1p",
+      "factor_ns": 52447600,
+      "total_ns": 111846700
+    },
+    {
+      "model": "d2q06c",
+      "factor_ns": 52296400,
+      "total_ns": 231077600
+    },
+    {
+      "model": "greenbea",
+      "factor_ns": 42458200,
+      "total_ns": 336548200
+    },
+    {
+      "model": "greenbeb",
+      "factor_ns": 39376100,
+      "total_ns": 228717700
+    }
+  ],
+  "top_two_numeric_share_percent": 68.09094746047417,
+  "observed_aggregate": {
+    "not_isolated_causal_overhead": true,
+    "profile_off_numerical_seconds_sum": 9.2490858,
+    "profile_on_numerical_seconds_sum": 9.275142399999991,
+    "profile_off_process_wall_seconds_sum": 11.10844819934573,
+    "profile_on_process_wall_seconds_sum": 11.397821499966085
+  },
+  "interpretation": "自身份额仅指本次插桩范围；数值factorize含库内AAT，点积约4.8%不足以支持继续只做点积；优先研究数值分解/结构排序及normal回代。模型名仅用于归因展示，不进入路由。native.time_limit实际不同，只有1个严格same_path对子，不把全部off/on差值当同路径精确开销",
+  "decision": "retain_optional_cpp_diagnostics_not_performance_candidate",
+  "next_action": "先隔离核实/构建METIS及CHOLMOD partition依赖，再基于结构符号统计设计通用排序候选；保全部成本、共同精度和原500性能协议",
+  "goal_evaluated": false,
+  "goal_achieved": false
+}

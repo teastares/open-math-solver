@@ -1,0 +1,32 @@
+{
+  "version": 120,
+  "round": 117,
+  "date": "2026-11-01",
+  "premise": "119已真实验证自主PhaseII，当前需要把局部组件收益放入完整LP共同预算评估。",
+  "source_observations": [
+    {
+      "local": "build/release/_deps/highs-src/highs/lp_data/HighsSolve.cpp",
+      "upstream": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/lp_data/HighsSolve.cpp",
+      "observed": "HiGHS有求解方法分派与后续simplex路径；不能把standalone IPX crossover等同整个HiGHS流程。",
+      "application": "沿已选混合路线补自主清理，但仍保留明确外部IPX归属，公开对照继续HiGHS choose。"
+    },
+    {
+      "local": "build/release/_deps/highs-src/highs/ipm/ipx/lp_solver.cc",
+      "upstream": "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/ipm/ipx/lp_solver.cc",
+      "observed": "基状态与基本解能同Get取得，进入完整Solve会执行独立IPM；本轮不调用Solve、不重新交叉。",
+      "application": "同一Get补两个basis数组，完整structural_seed含q，支付分配/释放和重分解成本。"
+    },
+    {
+      "upstream": "https://raw.githubusercontent.com/scipopt/soplex/master/CHANGELOG",
+      "observed": "当前公开记录含稀疏向量缓存、按稀疏度转密集求解、正确容差下单独判次优和迭代退化检查等，说明实现效率和终止正确性需分别验证。",
+      "application": "本轮不混入这些策略；先验证新清理真实修复率/费用，保原Model验收，避免把仅组件通过当成端到端性能。"
+    }
+  ],
+  "inference": "先验证自主清理能否修复118的拒绝返回，再依据全套对照决定PhaseI/定价缓存/数值比值策略，不按模型身份选择。",
+  "no_full_optimization_api": true,
+  "hardware": "本机CPU1，GPU未加入，本轮不新增依赖",
+  "source_parent": 118,
+  "prototype_parent": 119,
+  "pure_hsd": 106,
+  "goal_achieved": false
+}

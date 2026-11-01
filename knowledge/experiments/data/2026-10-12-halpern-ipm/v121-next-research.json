@@ -1,0 +1,26 @@
+{
+  "version": 121,
+  "status": "完整500之后的选择，以下算法尚未实现",
+  "evidence": {
+    "micro_byte_equal_runs": 18,
+    "highs_numerical": 0.07561206933826006,
+    "final_wall_ratio": 1.2230375165085317,
+    "candidate_wall": 0.11258222061884282,
+    "candidate_numerical": 0.09639150617635518,
+    "parent_non_time_equivalent": 233,
+    "highs_wall": 0.09205132230140993
+  },
+  "decision": "保留已实测的缓冲实现；数值结果全等且最终仍慢22.30%，后续主线转回更早完成LP的数学步骤。",
+  "next_algorithm": "把带完整r_N资格检查的bounded dual PhaseII先做独立原型，再接同一暖基数值状态；仅初始E/D通过、B失败且全非基dual通过时启动。",
+  "reuse": "120的14个初始bounds-only失败已经付过BASICLU分解/重建与所有r=c-Aᵀpi计算；集成时应在同一状态复用这些量和LU，不在primal返回后再新分解一次。新增扫描和BTRAN/ratio/更新照常计费。",
+  "scope": "不把basic_dual当完整dual；无BFRT/PhaseI/cost shift，保持64步共享预算、原Model终验，更新失败继续弃整次。详细推导及9类解析例见dual-research-notes。",
+  "eligibility_or_early_handoff": "近点1e-4门仍是后续可独立测试的启发式；本轮不改变。先验证dual状态复用和成本，不能因I/O提速便宣称较早交叉必然有利。",
+  "sources": [
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v121-dual-research-notes.json",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v120-candidate-analysis.json",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v121-prototype-analysis.json"
+  ],
+  "limitations": "微测同字节对照可解释I/O组织差异；跨轮LP时钟含环境变化，不能以两轮秒数相减宣称全部因果收益。不同SGM不可相减当作阶段成本。",
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

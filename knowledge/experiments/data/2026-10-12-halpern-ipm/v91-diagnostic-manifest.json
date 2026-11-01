@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "diagnostic_only": true,
+  "started_at_utc": "2026-10-26T12:40:32.162478+00:00",
+  "plan_sha256": "55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd",
+  "identity_sha256": "8639173a24fb681bd3798d7c2dbabb1ab36824a25bf0dfeb56ce8f0ce4059df4",
+  "work": "D:\\Documents\\codes\\solver\\.tools\\v91-presolve",
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "hash_error": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "hash_error": null
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "hash_error": null
+    }
+  ],
+  "repeats": 2,
+  "variants": [
+    "frozen_v88",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "max_iterations": 200,
+  "threads": 1,
+  "seed": 0,
+  "environment_rule": "每次大小写无关清除全部SOLVER_V变量及OPENBLAS_CORETYPE，三线程变量置1；三路pipeline始终on，仅diagnostic_on启用warm；结束恢复原环境。",
+  "schedule": "固定三模型各两重复，case_index模3轮转三variant，串行共18，不重跑失败。"
+}

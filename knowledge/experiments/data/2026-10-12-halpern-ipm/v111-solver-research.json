@@ -1,0 +1,12 @@
+{
+  "status": "本轮补充一手求解器源码研究，不改变已冻结AUTO实现",
+  "locked_highs_version": "1.15.1",
+  "observations": [
+    {"url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/hipo/ipm/FactorHiGHSSolver.cpp", "local": "build/release/_deps/highs-src/highs/ipm/hipo/ipm/FactorHiGHSSolver.cpp", "location": "chooseOrdering", "finding": "HiPO可试AMD/METIS并比较符号flops/平均超节点大小；不是CHOLMOD的simplicial/supernodal二选一", "use": "支持今后按通用结构成本进行有界选择的研究，不依据模型身份；额外排序/分析成本必须计时"},
+    {"local": "build/release/_deps/highs-src/highs/ipm/hipo/factorhighs/Analyse.cpp", "location": "run及relativeIndCols/Clique映射", "finding": "符号分析缓存数值装配映射，后续分解复用；CHOLMOD已有相近机制，不能将已存在复用重复算成我方新增收益", "use": "未来先核当前实际分配/装配成本与现有缓存边界"},
+    {"url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/kkt_solver_basis.cc", "location": "KKTSolverBasis::_Factorize", "finding": "Basis不新鲜才重做LU，随后仍按当前colscale准备预条件结构", "use": "不能据此跳过本项目D/R已变化时的AAT数值分解；区分可复用符号模式与必须刷新的数值"}
+  ],
+  "interpretation_limit": "基准HiGHS仍为choose，未据这些源码断定每个参考模型实际走HiPO或IPX；未实现新ordering搜索/装配缓存/跳过分解",
+  "new_cpp_implementation": false,
+  "new_public_lp_runs": 0
+}

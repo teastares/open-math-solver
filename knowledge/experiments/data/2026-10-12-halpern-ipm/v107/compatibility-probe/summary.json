@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "model_count": 6,
+  "repeats": 1,
+  "run_count": 12,
+  "quality_pass_count": 10,
+  "reference_variant": "frozen_v66",
+  "candidate_variant": "diagnostic_off",
+  "both_variants_all_repeats_pass_count": 5,
+  "both_backends_all_repeats_pass_count": 5,
+  "wall_winner_counts": {
+    "diagnostic_off": 1,
+    "frozen_v66": 4
+  },
+  "failure_wall_penalty_seconds": 35,
+  "failure_numerical_penalty_seconds": 5,
+  "variants": {
+    "frozen_v66": {
+      "run_count": 6,
+      "quality_pass_count": 5,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 1
+      },
+      "status_counts": {
+        "optimal": 5,
+        "numerical_error": 1
+      },
+      "penalized_wall_sgm10_seconds": 3.445261089306073,
+      "penalized_numerical_sgm10_seconds": 1.1774559442941512,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "diagnostic_off": {
+      "run_count": 6,
+      "quality_pass_count": 5,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 1
+      },
+      "status_counts": {
+        "optimal": 5,
+        "numerical_error": 1
+      },
+      "penalized_wall_sgm10_seconds": 3.4411985395797746,
+      "penalized_numerical_sgm10_seconds": 1.1730191947045097,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "backends": {
+    "frozen_v66": {
+      "run_count": 6,
+      "quality_pass_count": 5,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 1
+      },
+      "status_counts": {
+        "optimal": 5,
+        "numerical_error": 1
+      },
+      "penalized_wall_sgm10_seconds": 3.445261089306073,
+      "penalized_numerical_sgm10_seconds": 1.1774559442941512,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "diagnostic_off": {
+      "run_count": 6,
+      "quality_pass_count": 5,
+      "all_repeats_quality_pass_model_count": 5,
+      "quality_failure_counts": {
+        "incomplete": 1
+      },
+      "status_counts": {
+        "optimal": 5,
+        "numerical_error": 1
+      },
+      "penalized_wall_sgm10_seconds": 3.4411985395797746,
+      "penalized_numerical_sgm10_seconds": 1.1730191947045097,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    }
+  },
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+      "quality_pass_counts": {
+        "frozen_v66": 1,
+        "diagnostic_off": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 2.7602476999163628,
+        "diagnostic_off": 2.725891900015995
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 2.7131862,
+        "diagnostic_off": 2.6785161
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          2.7602476999163628,
+          2.7602476999163628
+        ],
+        "diagnostic_off": [
+          2.725891900015995,
+          2.725891900015995
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          2.7131862,
+          2.7131862
+        ],
+        "diagnostic_off": [
+          2.6785161,
+          2.6785161
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 1.012603507828086,
+      "numerical_speedup_reference_over_candidate": 1.0129437713665415,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "diagnostic_off"
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+      "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+      "quality_pass_counts": {
+        "frozen_v66": 1,
+        "diagnostic_off": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.030098299961537123,
+        "diagnostic_off": 0.030930800014175475
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0177473,
+        "diagnostic_off": 0.0179099
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.030098299961537123,
+          0.030098299961537123
+        ],
+        "diagnostic_off": [
+          0.030930800014175475,
+          0.030930800014175475
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0177473,
+          0.0177473
+        ],
+        "diagnostic_off": [
+          0.0179099,
+          0.0179099
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9730850785541654,
+      "numerical_speedup_reference_over_candidate": 0.9909212223407167,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "quality_pass_counts": {
+        "frozen_v66": 0,
+        "diagnostic_off": 0
+      },
+      "all_repeats_quality_pass": false,
+      "median_wall_seconds": null,
+      "median_numerical_seconds": null,
+      "wall_range_seconds": null,
+      "numerical_range_seconds": null,
+      "wall_speedup_reference_over_candidate": null,
+      "numerical_speedup_reference_over_candidate": null,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": null
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+      "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+      "quality_pass_counts": {
+        "frozen_v66": 1,
+        "diagnostic_off": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.19120319990906864,
+        "diagnostic_off": 0.1957721000071615
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.1687841,
+        "diagnostic_off": 0.1720965
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.19120319990906864,
+          0.19120319990906864
+        ],
+        "diagnostic_off": [
+          0.1957721000071615,
+          0.1957721000071615
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.1687841,
+          0.1687841
+        ],
+        "diagnostic_off": [
+          0.1720965,
+          0.1720965
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9766621490093547,
+      "numerical_speedup_reference_over_candidate": 0.9807526591185758,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+      "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+      "quality_pass_counts": {
+        "frozen_v66": 1,
+        "diagnostic_off": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.034502999973483384,
+        "diagnostic_off": 0.03615669999271631
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.0203953,
+        "diagnostic_off": 0.0204631
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.034502999973483384,
+          0.034502999973483384
+        ],
+        "diagnostic_off": [
+          0.03615669999271631,
+          0.03615669999271631
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.0203953,
+          0.0203953
+        ],
+        "diagnostic_off": [
+          0.0204631,
+          0.0204631
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.954262971466808,
+      "numerical_speedup_reference_over_candidate": 0.9966867190210672,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "quality_pass_counts": {
+        "frozen_v66": 1,
+        "diagnostic_off": 1
+      },
+      "all_repeats_quality_pass": true,
+      "median_wall_seconds": {
+        "frozen_v66": 0.030378099996596575,
+        "diagnostic_off": 0.032252300065010786
+      },
+      "median_numerical_seconds": {
+        "frozen_v66": 0.018165,
+        "diagnostic_off": 0.0181654
+      },
+      "wall_range_seconds": {
+        "frozen_v66": [
+          0.030378099996596575,
+          0.030378099996596575
+        ],
+        "diagnostic_off": [
+          0.032252300065010786,
+          0.032252300065010786
+        ]
+      },
+      "numerical_range_seconds": {
+        "frozen_v66": [
+          0.018165,
+          0.018165
+        ],
+        "diagnostic_off": [
+          0.0181654,
+          0.0181654
+        ]
+      },
+      "wall_speedup_reference_over_candidate": 0.9418894136344882,
+      "numerical_speedup_reference_over_candidate": 0.9999779801160448,
+      "wall_speedup_highs_over_pdlp": null,
+      "numerical_speedup_highs_over_pdlp": null,
+      "wall_winner": "frozen_v66"
+    }
+  ],
+  "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+  "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+  "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+  "schema": 1,
+  "stage": "compatibility-probe",
+  "new_algorithm_round": true,
+  "plan_sha256": "970d86ce87cd4b40684df8a0c2c35655778401a9e03dc39c1952c522ef200e64",
+  "raw_sha256": "f1cbab5ec5a49d318859dda538138af46ca8b6e3e87315497b9bbc8978601c56",
+  "valid_process_count": 12,
+  "presolve_marker_error_count": 0,
+  "coupled_marker_error_count": 0,
+  "energy_marker_error_count": 0
+}

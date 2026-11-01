@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "version": 110,
+  "decision": "not_adopted_restore_v106",
+  "reason": "三组长向量局部收益明确，但Netlib/开发/同期HiGHS的端到端跨轮时间变化混合且接近父，未形成足够明确的整体收益；不增加活动数值分支，下一轮扩大到分解实现选择",
+  "evaluation_valid": true,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "closeout_sha256": "5890edf8e9421b2b4a3e813d2f37e7a16c789b7b601dc2c5eb4643841f6258c1",
+  "candidate_executable_sha256": "7530ea0d697b78c92eb2f070e655c8a9b1c72bbff2d207031e1f7bb8924a45d1",
+  "goal": {
+    "achieved": false,
+    "evaluated": true,
+    "status": "progress",
+    "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+    "models": 91,
+    "no_per_model_coverage_loss": true,
+    "candidate_coverage": 91,
+    "highs_coverage": 91,
+    "candidate_wall_sgm10_seconds": 0.115567814851589,
+    "highs_wall_sgm10_seconds": 0.09479012719676196,
+    "candidate_numerical_sgm10_seconds": 0.0947077640838348,
+    "highs_numerical_sgm10_seconds": 0.07826338757997224,
+    "candidate_to_highs_wall_ratio": 1.2191967483248278
+  },
+  "micro_scope": "LD4长向量约三倍局部吞吐，包含4链及预算循环组织；不外推LP",
+  "cross_round_comparison": {
+    "causal_isolation": false,
+    "parent_version": 106,
+    "parent_netlib": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.11714823630157839,
+      "penalized_numerical_sgm10_seconds": 0.09638884413976592,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "candidate_netlib": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.1157611624844246,
+      "penalized_numerical_sgm10_seconds": 0.09507803269326655,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "parent_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期完整91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.1166788956459437,
+      "highs_wall_sgm10_seconds": 0.09600763014726628,
+      "candidate_numerical_sgm10_seconds": 0.09592325793640119,
+      "highs_numerical_sgm10_seconds": 0.07959727682708528,
+      "candidate_to_highs_wall_ratio": 1.2153085694019292
+    },
+    "previous_trial_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.11452461198228489,
+      "highs_wall_sgm10_seconds": 0.09487771605651814,
+      "candidate_numerical_sgm10_seconds": 0.09393119566924817,
+      "highs_numerical_sgm10_seconds": 0.07837396435549566,
+      "candidate_to_highs_wall_ratio": 1.2070759788743566
+    },
+    "candidate_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.115567814851589,
+      "highs_wall_sgm10_seconds": 0.09479012719676196,
+      "candidate_numerical_sgm10_seconds": 0.0947077640838348,
+      "highs_numerical_sgm10_seconds": 0.07826338757997224,
+      "candidate_to_highs_wall_ratio": 1.2191967483248278
+    }
+  },
+  "archive": {
+    "members": 145,
+    "bytes": 49915602,
+    "sha256": "0a8df549b275e1d977eff94fb80050fd31a57d657285ed3db5872da2365e2151"
+  },
+  "source_generation": false,
+  "goal_achieved": false
+}

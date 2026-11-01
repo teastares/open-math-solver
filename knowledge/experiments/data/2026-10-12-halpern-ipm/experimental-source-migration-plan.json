@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-10-31T14:53:04.867955+00:00",
+  "purpose": "将当前有效实验实现迁移为可直接维护的C++源；不改变算法，不作为新增性能候选轮",
+  "production_changes": false,
+  "new_algorithm_round": false,
+  "algorithm_parent_version": 100,
+  "protocol_file": "v100-plan.json",
+  "protocol_sha256": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+  "parent_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "baseline_sources": 95,
+  "baseline_libraries": 17,
+  "production_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "algorithm_parent_executable": ".tools/v100-presolve/solver-presolve.exe",
+  "algorithm_parent_executable_sha256": "3ad138442d32ba15f8ed625bd351a7e81e86521d7873f50fd7c2db0032c1fe1d",
+  "sources": [
+    {
+      "source": ".tools/v100-presolve/ipm-presolve.cpp",
+      "source_sha256": "950443ca0dc100a1bc99396a15752493070d062dcffc4b7e5327c72643742e29",
+      "canonical": "src/experimental/ipm.cpp",
+      "canonical_sha256": "a151d820579cbfa6be0d99c945c220653961710a69da39c3598e74e043756456",
+      "include_rebindings": [
+        [
+          "v100-presolve-state.hpp",
+          "presolve_state.hpp"
+        ],
+        [
+          "v100-coupled-state.hpp",
+          "coupled_state.hpp"
+        ]
+      ],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": ".tools/v100-presolve/v100-presolve-state.hpp",
+      "source_sha256": "ff79c2ec03bc296c73fb85e2cd04125c9f53c9dac9ddd1e810791adfcaff746e",
+      "canonical": "src/experimental/presolve_state.hpp",
+      "canonical_sha256": "ff79c2ec03bc296c73fb85e2cd04125c9f53c9dac9ddd1e810791adfcaff746e",
+      "include_rebindings": [],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": ".tools/v100-presolve/v100-coupled-state.hpp",
+      "source_sha256": "c05ed9bbd479c95bf7a329385bc8aac3e9212bb5a8093c04c3a3ac88ba615aaa",
+      "canonical": "src/experimental/coupled_state.hpp",
+      "canonical_sha256": "5d759e20ff23ff56d31df0ca2146700af967d102bbc8794550f66551d2ad952a",
+      "include_rebindings": [
+        [
+          "v100-coupled.hpp",
+          "solver/experimental/coupled.hpp"
+        ],
+        [
+          "v93-energy.hpp",
+          "solver/experimental/energy.hpp"
+        ]
+      ],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v100-coupled.hpp",
+      "source_sha256": "990ec58bfbeba814f5c218d8ad5d4772037e5e31b4ca5ffea5c63e832e5a65ed",
+      "canonical": "include/solver/experimental/coupled.hpp",
+      "canonical_sha256": "990ec58bfbeba814f5c218d8ad5d4772037e5e31b4ca5ffea5c63e832e5a65ed",
+      "include_rebindings": [],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v93-energy.hpp",
+      "source_sha256": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      "canonical": "include/solver/experimental/energy.hpp",
+      "canonical_sha256": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      "include_rebindings": [],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v92-coupled.hpp",
+      "source_sha256": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      "canonical": "include/solver/experimental/legacy_coupled.hpp",
+      "canonical_sha256": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      "include_rebindings": [],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v100-ipm-self-test.cpp",
+      "source_sha256": "9e66172bbbc4c25f4e37111906c183d116c84789219eab1301bf38f9b2fa3bdf",
+      "canonical": "tests/experimental/ipm_self_test.cpp",
+      "canonical_sha256": "6e4c725e047976c64020ef7bf6fe009d420ca658a7948e0b7868d6d907e6fd2b",
+      "include_rebindings": [
+        [
+          "ipm-presolve.cpp",
+          "ipm.cpp"
+        ]
+      ],
+      "otherwise_byte_identical": true
+    },
+    {
+      "source": "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v100-coupled-self-test.cpp",
+      "source_sha256": "c5f416da1f665baacfb7bf7aedd508fe7becbde7b1a7f9f30225a389ca309b8a",
+      "canonical": "tests/experimental/coupled_self_test.cpp",
+      "canonical_sha256": "68cbebc0767ab05bb259ab09afaac45a8f8b74b3c87db6c37e62583052df65f6",
+      "include_rebindings": [
+        [
+          "v92-coupled.hpp",
+          "solver/experimental/legacy_coupled.hpp"
+        ],
+        [
+          "v93-energy.hpp",
+          "solver/experimental/energy.hpp"
+        ],
+        [
+          "v100-coupled.hpp",
+          "solver/experimental/coupled.hpp"
+        ]
+      ],
+      "otherwise_byte_identical": true
+    }
+  ],
+  "source_count": 8,
+  "include_rebinding_count": 8,
+  "invariants": [
+    "所有非include字节保持",
+    "不生成数学C++，只逐字快照后编译",
+    "保持原浮点编译选项及链接顺序",
+    "真实.d须证明快照CPP及头，无旧生成头或活动canonical依赖",
+    "旧128组组件详情保持",
+    "后续canonical可变，历史身份指向不可变快照"
+  ],
+  "verification": {
+    "component_cases": {
+      "ipm": 85,
+      "coupled": 43
+    },
+    "stages": [
+      {
+        "stage": "compatibility-development",
+        "pairs": 11,
+        "runs": 22,
+        "candidate": "off",
+        "reference": "frozen_v66"
+      },
+      {
+        "stage": "compatibility-probe",
+        "pairs": 6,
+        "runs": 12,
+        "candidate": "off",
+        "reference": "frozen_v66"
+      },
+      {
+        "stage": "migration",
+        "pairs": 91,
+        "runs": 182,
+        "candidate": "on",
+        "reference": "v100_on"
+      }
+    ],
+    "maximum_solver_runs": 216,
+    "time_limit": 5,
+    "wall_timeout": 35,
+    "threads": 1,
+    "seed": 0,
+    "max_iterations": 200,
+    "scaling_passes": 5,
+    "public_report_excluded_fields": [
+      "timings"
+    ],
+    "private_excluded_paths": [
+      "presolve_marker/timings",
+      "presolve_marker/oracle/total_seconds",
+      "presolve_marker/oracle/events/*/timings"
+    ],
+    "dynamic_private_differences_record_only": [
+      "presolve_marker/native/time_limit"
+    ],
+    "rule": "完整公开非timings报告必须全等；严格private差异原样记录，只有测前指定动态剩余预算差异可单列为预期差异；保持质量、配置、算子和工作账本验证，不据迁移时延宣称新算法收益"
+  }
+}

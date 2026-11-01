@@ -1,0 +1,875 @@
+#include "solver/detail/normal_cholesky.hpp"
+
+#include <algorithm>
+#include <array>
+#include <bit>
+#include <cmath>
+#include <cstdint>
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <new>
+#include <span>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+namespace {
+
+using Index = std::int64_t;
+using solver::detail::NormalCholesky;
+using solver::detail::NormalCholeskyKernel;
+
+// 完整复用原测试的数学门槛；只收集成功回代快照，不把预算回调次数写入对照。
+struct NormalSnapshot {
+  const char* group;
+  std::vector<double> solution;
+  Index factor_dimension, factor_nonzeros, regularized_pivots;
+  solver::detail::NormalRefinementStatistics refinement;
+};
+
+const char* snapshot_group = "standard";
+std::vector<NormalSnapshot> snapshots;
+bool long_column_interrupted = false;
+std::vector<const char*> pair_details;
+
+void require(bool condition, const std::string& message) {
+  if (!condition) throw std::runtime_error(message);
+}
+
+std::vector<double> multiply(const std::vector<Index>& starts, const std::vector<Index>& rows,
+                             const std::vector<double>& values, const std::vector<double>& x) {
+  std::vector<long double> product(x.size(), 0);
+  for (std::size_t column = 0; column < x.size(); ++column) {
+    for (Index entry = starts[column]; entry < starts[column + 1]; ++entry) {
+      const auto source = static_cast<std::size_t>(entry);
+      const auto row = static_cast<std::size_t>(rows[source]);
+      product[row] += static_cast<long double>(values[source]) * x[column];
+      if (row != column) product[column] += static_cast<long double>(values[source]) * x[row];
+    }
+  }
+  return {product.begin(), product.end()};
+}
+
+void check_solution(NormalCholesky& factor, const std::vector<Index>& starts, const std::vector<Index>& rows,
+                    const std::vector<double>& values, const std::vector<double>& expected, bool refactor = true,
+                    std::span<const double> coordinate_scale = {}) {
+  require(coordinate_scale.empty() || coordinate_scale.size() == expected.size(), "回归坐标尺度维数必须匹配");
+  const auto original = multiply(starts, rows, values, expected);
+  auto actual = original;
+  if (refactor) require(factor.factor(values), "正对角 B、D 的测试系统应成功分解");
+  require(factor.solve(actual), "已分解系统应成功回代");
+  const auto residual = multiply(starts, rows, values, actual);
+  for (std::size_t i = 0; i < actual.size(); ++i) {
+    // 等价对称变换的前向误差在原坐标衡量，避免零坐标被单位变化放大。
+    // 下方完整 KKT 残差仍在本次实际输入坐标中使用原门槛。
+    const double scale = coordinate_scale.empty() ? 1 : coordinate_scale[i];
+    const double error = std::abs((actual[i] - expected[i]) * scale);
+    const double tolerance = 1e-11 * std::max(1.0, std::abs(expected[i] * scale));
+    require(error <= tolerance, "正规方程回代必须恢复已知解；坐标=" + std::to_string(i) +
+        "；误差/门槛=" + std::to_string(error / tolerance));
+    require(std::abs(residual[i] - original[i]) <= 1e-11 * std::max(1.0, std::abs(original[i])), "完整不定系统残差不合格");
+  }
+  snapshots.push_back({snapshot_group, actual, factor.factor_dimension(), factor.factor_nonzeros(),
+      factor.regularized_pivots(), factor.refinement_statistics()});
+}
+
+void reject_pattern(std::size_t dimension, const std::vector<Index>& starts, const std::vector<Index>& rows,
+                    const std::vector<std::int8_t>& signs) {
+  bool rejected = false;
+  try { NormalCholesky invalid(dimension, starts, rows, signs); }
+  catch (const std::invalid_argument&) { rejected = true; }
+  require(rejected, "无效结构必须在访问内存前拒绝");
+}
+
+void check_multifrontal_normal(bool extended = false, int refinement_budget = 0,
+    NormalCholeskyKernel kernel = NormalCholeskyKernel::eigen) {
+  snapshot_group = kernel == NormalCholeskyKernel::cholmod_supernodal_aat ? "aat" :
+      kernel == NormalCholeskyKernel::cholmod_supernodal ? "cholmod" :
+      extended ? "extended" : refinement_budget > 0 ? "refined" : "multifrontal";
+  // 正规方程有稠密非对角块，实际覆盖分块 BLAS 运算和完整 KKT 方向恢复。
+  constexpr Index primal_count = 24, dual_count = 96, size = primal_count + dual_count;
+  std::vector<Index> starts{0}, rows;
+  std::vector<double> values, expected(static_cast<std::size_t>(size));
+  std::vector<std::int8_t> signs(static_cast<std::size_t>(size), -1);
+  for (Index col = 0; col < size; ++col) {
+    if (col >= primal_count) {
+      for (Index row = 0; row < primal_count; ++row) {
+        rows.push_back(row);
+        values.push_back(static_cast<double>((row * 13 + col * 7) % 17 - 8) / 32);
+      }
+    } else {
+      signs[static_cast<std::size_t>(col)] = 1;
+    }
+    rows.push_back(col);
+    values.push_back(col < primal_count ? 2.0 + col / 24.0 : -4.0 - col / 96.0);
+    starts.push_back(static_cast<Index>(rows.size()));
+    expected[static_cast<std::size_t>(col)] = static_cast<double>(col % 11 - 5) / 4;
+  }
+  const bool multifrontal = !extended && refinement_budget == 0 && kernel == NormalCholeskyKernel::eigen;
+  NormalCholesky block(static_cast<std::size_t>(size), starts, rows, signs, {}, multifrontal, extended, refinement_budget, kernel);
+  check_solution(block, starts, rows, values, expected);
+  require(block.factor_dimension() == dual_count && block.factor_nonzeros() >= dual_count &&
+              block.regularized_pivots() == 0, "良态正定块应不加主元正则并报告实际分块存储");
+  for (double& value : expected) value *= -3;
+  check_solution(block, starts, rows, values, expected, false);
+  auto invalid = values;
+  invalid[0] = std::numeric_limits<double>::quiet_NaN();
+  auto rhs = multiply(starts, rows, values, expected);
+  const auto original = rhs;
+  require(!block.factor(invalid) && !block.solve(rhs) && rhs == original && block.factor_nonzeros() == 0 &&
+              block.regularized_pivots() == 0, "失败分解必须作废旧因子并清空当前统计");
+  values[0] *= 2;
+  check_solution(block, starts, rows, values, expected);
+  // 对同一个良态问题作跨十二数量级的对称坐标变换，验收仍使用未缩放 KKT。
+  auto scaled_values = values, scaled_expected = expected;
+  std::vector<double> coordinate_scale(static_cast<std::size_t>(size), 1);
+  for (Index i = primal_count; i < size; ++i) {
+    coordinate_scale[static_cast<std::size_t>(i)] = std::pow(10.0, static_cast<double>(i % 13 - 6));
+    scaled_expected[static_cast<std::size_t>(i)] /= coordinate_scale[static_cast<std::size_t>(i)];
+  }
+  for (Index col = 0; col < size; ++col) {
+    for (Index entry = starts[static_cast<std::size_t>(col)]; entry < starts[static_cast<std::size_t>(col + 1)]; ++entry) {
+      const auto k = static_cast<std::size_t>(entry);
+      scaled_values[k] *= coordinate_scale[static_cast<std::size_t>(rows[k])] * coordinate_scale[static_cast<std::size_t>(col)];
+    }
+  }
+  check_solution(block, starts, rows, scaled_values, scaled_expected, true, coordinate_scale);
+  require(block.regularized_pivots() == 0, "良态问题的对称尺度变换不应引入小主元正则");
+  // 再次使用原矩阵，确认每次分解重新生成尺度，不会累乘上一轮缩放。
+  check_solution(block, starts, rows, values, expected);
+  bool interrupted = false;
+  try { block.solve(rhs, [] { throw std::runtime_error("分块预算结束"); }); }
+  catch (const std::runtime_error&) { interrupted = true; }
+  require(interrupted && rhs == original, "分块回代中断不能部分写回");
+  NormalCholesky empty(0, std::vector<Index>{0}, {}, {}, {}, multifrontal, extended, refinement_budget, kernel);
+  rhs.clear();
+  require(empty.factor({}) && empty.solve(rhs) && empty.regularized_pivots() == 0,
+          "分块选项的空系统应安全处理");
+  NormalCholesky primal(2, std::vector<Index>{0, 1, 2}, std::vector<Index>{0, 1},
+      std::vector<std::int8_t>{1, 1}, {}, multifrontal, extended, refinement_budget, kernel);
+  check_solution(primal, {0, 1, 2}, {0, 1}, {2, 4}, {3, -2});
+  require(primal.factor_dimension() == 0 && primal.factor_nonzeros() == 0,
+          "纯原始系统不能创建无必要的分块因子");
+  NormalCholesky rounded(3, std::vector<Index>{0, 1, 3, 5}, std::vector<Index>{0, 0, 1, 0, 2},
+      std::vector<std::int8_t>{1, -1, -1}, {}, multifrontal, extended, refinement_budget, kernel);
+  const bool rounded_success = rounded.factor(std::vector<double>{1, 1, -1e-300, 1, -1e-300});
+  if (!multifrontal) {
+    require(!rounded_success && rounded.regularized_pivots() == 0,
+            "固定精度不能恢复已经丢失的极小对角，不得隐藏添加主元正则");
+  } else {
+    require(rounded_success && rounded.regularized_pivots() > 0,
+            "分块内核的退化主元正则必须显式计数，外层另验原 KKT");
+  }
+}
+
+void check_cholmod_normal(NormalCholeskyKernel kernel = NormalCholeskyKernel::cholmod_supernodal) {
+  check_multifrontal_normal(false, 0, kernel);
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  const std::vector<double> values{3, 2, -5, 4, -7};
+  NormalCholesky factor(3, starts, rows, signs, {}, false, false, 0, kernel);
+  NormalCholesky reference(3, starts, rows, signs);
+  check_solution(factor, starts, rows, values, {1, 2, -3});
+  check_solution(reference, starts, rows, values, {1, 2, -3});
+  require(factor.factor_nonzeros() == 4 && reference.factor_nonzeros() == 3,
+          "二阶稠密超节点应报告含上三角占位的四项 xsize，而非三项数学因子");
+  auto rhs = multiply(starts, rows, values, {1, 2, -3});
+  const auto original = rhs;
+  const std::vector<double> changed_values{5, -3, -11, 0, -13};
+  int factor_checks = 0;
+  require(factor.factor(changed_values, [&] { ++factor_checks; }), "CHOLMOD 预算计数基准应分解成功");
+  // 扫过本小系统的全部回调边界，实际覆盖库调用后的预算中断与因子失效。
+  for (int stop = 1; stop <= factor_checks; ++stop) {
+    int calls = 0;
+    bool interrupted = false;
+    try { factor.factor(changed_values, [&] { if (++calls == stop) throw std::runtime_error("CHOLMOD 分解中断"); }); }
+    catch (const std::runtime_error& error) { interrupted = std::string(error.what()) == "CHOLMOD 分解中断"; }
+    require(interrupted && !factor.solve(rhs) && rhs == original,
+            "分解任一边界中断必须作废因子且不写回右端");
+    // 中断前后的数值不同，恢复必须覆盖缓存，不能沿用已复制的另一组数值。
+    check_solution(factor, starts, rows, values, {1, 2, -3});
+  }
+  int solve_checks = 0;
+  require(factor.solve(rhs, [&] { ++solve_checks; }), "CHOLMOD 预算计数基准应回代成功");
+  for (int stop = 1; stop <= solve_checks; ++stop) {
+    rhs = original;
+    int calls = 0;
+    bool interrupted = false;
+    try { factor.solve(rhs, [&] { if (++calls == stop) throw std::runtime_error("CHOLMOD 回代中断"); }); }
+    catch (const std::runtime_error& error) { interrupted = std::string(error.what()) == "CHOLMOD 回代中断"; }
+    require(interrupted && rhs == original, "回代任一预算边界中断不能部分提交右端");
+  }
+  rhs = {std::numeric_limits<double>::infinity(), 2, 3};
+  require(!factor.solve(rhs) && std::isinf(rhs[0]) && rhs[1] == 2 && rhs[2] == 3,
+          "非有限右端不能进入 CHOLMOD 或被写回");
+  const double tiny = std::numeric_limits<double>::epsilon() / 4;
+  require(!factor.factor(std::vector<double>{1, 1, -tiny, 1, -tiny}),
+          "真实舍入成秩一的 Gram 必须拒绝，不能把非正定的返回真当成成功");
+  rhs = original;
+  require(!factor.solve(rhs) && rhs == original && factor.regularized_pivots() == 0,
+          "非正定失败不能复用前一因子或偷偷正则主元");
+  check_solution(factor, starts, rows, values, {-1, 3, 2});
+  require(factor.refinement_statistics().refinement_steps == 0,
+          "CHOLMOD 回代不能隐藏添加 Schur 校正");
+  for (int mode = 0; mode < 3; ++mode) {
+    bool rejected = false;
+    try {
+      NormalCholesky invalid(3, starts, rows, signs, {}, mode == 0, mode == 1, mode == 2 ? 1 : 0, kernel);
+    } catch (const std::invalid_argument&) { rejected = true; }
+    require(rejected, "CHOLMOD 不能与其他内核或 Schur 校正叠加");
+  }
+  int constructor_checks = 0;
+  {
+    NormalCholesky counted(3, starts, rows, signs, [&] { ++constructor_checks; }, false, false, 0, kernel);
+  }
+  for (int stop = 1; stop <= constructor_checks; ++stop) {
+    int calls = 0;
+    bool interrupted = false;
+    try {
+      NormalCholesky interrupted_factor(3, starts, rows, signs,
+          [&] { if (++calls == stop) throw std::bad_alloc(); }, false, false, 0, kernel);
+    } catch (const solver::detail::NormalCholeskyBudgetExceeded&) {
+      require(false, "分配异常不能转换为结构预算回退");
+    } catch (const std::bad_alloc&) { interrupted = true; }
+    require(interrupted, "构造任一回调边界的分配异常必须原样传播");
+  }
+}
+
+void check_extended_normal() {
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  if constexpr (std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) {
+    bool rejected = false;
+    try { NormalCholesky unsupported(3, starts, rows, signs, {}, false, true); }
+    catch (const std::invalid_argument&) { rejected = true; }
+    require(rejected, "没有额外有效位的平台必须显式拒绝扩展模式");
+    return;
+  }
+  check_multifrontal_normal(true);
+  bool rejected = false;
+  try { NormalCholesky invalid(3, starts, rows, signs, {}, true, true); }
+  catch (const std::invalid_argument&) { rejected = true; }
+  require(rejected, "互斥内核选项必须在使用前拒绝");
+  const double tiny = std::numeric_limits<double>::epsilon() / 4;
+  const std::vector<double> values{1, 1, -tiny, 1, -tiny};
+  NormalCholesky rounded(3, starts, rows, signs);
+  require(!rounded.factor(values), "double Schur 应因舍入丢失此构造的对角差");
+  NormalCholesky extended(3, starts, rows, signs, {}, false, true);
+  check_solution(extended, starts, rows, values, {0, 1, -1});
+  check_solution(extended, starts, rows, values, {0, -2, 2}, false);
+  require(extended.regularized_pivots() == 0, "保留对角差不能依赖隐藏的主元扰动");
+  std::vector<double> rhs{1, 2, 3};
+  bool interrupted = false;
+  try { extended.factor(values, [] { throw std::runtime_error("扩展分解预算结束"); }); }
+  catch (const std::runtime_error&) { interrupted = true; }
+  require(interrupted && !extended.solve(rhs) && rhs == std::vector<double>({1, 2, 3}),
+          "扩展分解中断必须作废旧因子并保持右端原样");
+}
+
+void check_refined_normal() {
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  if constexpr (std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) {
+    bool rejected = false;
+    try { NormalCholesky unsupported(3, starts, rows, signs, {}, false, false, 2); }
+    catch (const std::invalid_argument&) { rejected = true; }
+    require(rejected, "Schur 扩展残差要求平台实际提供更多有效位");
+    return;
+  }
+  check_multifrontal_normal(false, 2);
+  for (int budget : {-1, 3}) {
+    bool rejected = false;
+    try { NormalCholesky invalid(3, starts, rows, signs, {}, false, false, budget); }
+    catch (const std::invalid_argument&) { rejected = true; }
+    require(rejected, "Schur 校正预算必须显式限制");
+  }
+  for (bool block : {false, true}) {
+    bool rejected = false;
+    try { NormalCholesky invalid(3, starts, rows, signs, {}, block, !block, 2); }
+    catch (const std::invalid_argument&) { rejected = true; }
+    require(rejected, "本轮 Schur 校正只能使用 double 标量因子");
+  }
+  const std::vector<double> values{3, 2, -5, 4, -7};
+  NormalCholesky refined(3, starts, rows, signs, {}, false, false, 2);
+  int solves = 0;
+  for (const auto& expected : std::vector<std::vector<double>>{{0, 1, -1}, {1, 2, 3}, {-0.25, 0.3, 1.7}}) {
+    check_solution(refined, starts, rows, values, expected, solves == 0);
+    ++solves;
+    const auto stats = refined.refinement_statistics();
+    require(stats.refinement_steps <= 2 * solves && stats.refinement_acceptances <= stats.refinement_steps &&
+                stats.residual_products == solves + stats.refinement_steps,
+            "每次 Schur 求解的矩阵乘积及有限候选回代必须完整累计");
+  }
+  const auto before = refined.refinement_statistics();
+  require(before.refinement_acceptances > 0, "解析方向族必须实际覆盖残差下降校正");
+  std::vector<double> rhs{1, 2, 3};
+  bool interrupted = false;
+  try {
+    refined.solve(rhs, [&] {
+      if (refined.refinement_statistics().residual_products > before.residual_products) {
+        throw std::runtime_error("Schur 矩阵乘积预算结束");
+      }
+    });
+  } catch (const std::runtime_error&) { interrupted = true; }
+  const auto stopped = refined.refinement_statistics();
+  require(interrupted && rhs == std::vector<double>({1, 2, 3}) &&
+              stopped.residual_products == before.residual_products + 1 &&
+              stopped.refinement_steps == before.refinement_steps,
+          "乘积内部中断须原样传播、不部分写回，且已启动工作不丢失");
+  require(!refined.factor(std::vector<double>{3, 2, 0, 4, -7}) && !refined.solve(rhs) &&
+              refined.refinement_statistics().residual_products == stopped.residual_products,
+          "失败分解作废旧因子，但不能清除累计校正成本");
+  check_solution(refined, starts, rows, values, {1, 2, 3});
+  const double tiny = std::numeric_limits<double>::epsilon() / 4;
+  require(!refined.factor(std::vector<double>{1, 1, -tiny, 1, -tiny}),
+          "校正不应偷偷替换 double 因子，也不能修复未成功分解的矩阵");
+}
+
+void check_extreme_gram_ranges() {
+  // 两例使用 binary64 的精确二次幂；窄指数平台不承诺这些中间量可表示。
+  if constexpr (std::numeric_limits<double>::radix != 2 ||
+                std::numeric_limits<double>::digits != 53 ||
+                std::numeric_limits<double>::max_exponent != 1024 ||
+                std::numeric_limits<double>::min_exponent != -1021 ||
+                std::numeric_limits<long double>::max_exponent < 4096 ||
+                std::numeric_limits<long double>::min_exponent > -4096) return;
+  const auto power = [](int exponent) { return std::ldexp(1.0, exponent); };
+  const std::vector<Index> two_starts{0, 1, 3}, two_rows{0, 0, 1};
+  const std::vector<std::int8_t> two_signs{1, -1};
+  const std::vector<double> overflow_values{power(-1074), power(-37), -power(1000)};
+  const std::vector<double> overflow_scale{power(-537), power(500)};
+  const std::vector<Index> three_starts{0, 1, 3, 5}, three_rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> three_signs{1, -1, -1};
+  const std::vector<double> underflow_values{power(500), power(500), -power(500), power(-700), -power(-1074)};
+  const std::vector<double> underflow_scale{power(500), power(500), power(-700)};
+  for (const auto kernel : {NormalCholeskyKernel::eigen, NormalCholeskyKernel::cholmod_supernodal,
+                           NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    snapshot_group = kernel == NormalCholeskyKernel::eigen ? "extreme_eigen" :
+        kernel == NormalCholeskyKernel::cholmod_supernodal ? "extreme_cholmod" : "extreme_aat";
+    // 这是 [[1,1],[1,-1]] 的对称尺度变换。商超过 double 范围，Gram 为有限的 2^1001。
+    // 已知原坐标解为 (1,2)，完整 RHS 的两项均非零，避免对大数相消的零右端施加绝对误差要求。
+    NormalCholesky overflow(2, two_starts, two_rows, two_signs, {}, false, false, 0, kernel);
+    check_solution(overflow, two_starts, two_rows, overflow_values,
+        {power(537), power(-499)}, true, overflow_scale);
+    // 较小系数除以 B 会落到 double 以下，但它与另一系数的交叉 Gram 项仍为 2^-700。
+    // 从完整 KKT 的已知解生成 RHS=(2,-1,-2^-374)，分别归一化三个解坐标以检出丢项。
+    NormalCholesky underflow(3, three_starts, three_rows, three_signs, {}, false, false, 0, kernel);
+    check_solution(underflow, three_starts, three_rows, underflow_values,
+        {0, power(-500), power(700)}, true, underflow_scale);
+  }
+}
+
+void check_rectangular_normal() {
+  constexpr auto kernel = NormalCholeskyKernel::cholmod_supernodal_aat;
+  // 复用完整 KKT、逐行不同对角、重复分解及全部预算边界，实际调用矩形生产分支。
+  check_cholmod_normal(kernel);
+  const std::vector<Index> starts{0, 1, 3}, rows{0, 0, 1};
+  NormalCholesky reversed(2, starts, rows, std::vector<std::int8_t>{-1, 1}, {}, false, false, 0, kernel);
+  check_solution(reversed, starts, rows, {-3, 4, 2}, {-1, 2});
+  check_solution(reversed, starts, rows, {-6, 0, 8}, {2, 3});
+  check_solution(reversed, starts, rows, {-5, -2, 3}, {-4, 1});
+  NormalCholesky diagonal(3, std::vector<Index>{0, 1, 2, 3}, std::vector<Index>{0, 1, 2},
+      std::vector<std::int8_t>{-1, -1, -1}, {}, false, false, 0, kernel);
+  check_solution(diagonal, {0, 1, 2, 3}, {0, 1, 2}, {-1, -4, -9}, {2, -3, 4});
+  require(diagonal.factor_dimension() == 3 && diagonal.regularized_pivots() == 0,
+          "无原始列时矩形输入的逐行平方根仍须恢复独立的对偶对角");
+  NormalCholesky forward(2, starts, rows, std::vector<std::int8_t>{1, -1}, {}, false, false, 0, kernel);
+  check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+  for (const auto& invalid : std::vector<std::vector<double>>{{0, 4, -3}, {-2, 4, -3}, {2, 4, 0},
+       {2, 4, 3}, {2, std::numeric_limits<double>::infinity(), -3},
+       {2, std::numeric_limits<double>::quiet_NaN(), -3}, {2}, {1e-300, 1e300, -1}}) {
+    require(!forward.factor(invalid), "矩形输入必须拒绝非法对角、非有限数、长度错误及不可表示的缩放值");
+    std::vector<double> rhs{1, 2};
+    require(!forward.solve(rhs) && rhs == std::vector<double>({1, 2}) && forward.factor_nonzeros() == 0,
+            "矩形分解失败不能复用之前的因子或部分写回");
+    check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+  }
+  if constexpr (std::numeric_limits<double>::radix == 2 && std::numeric_limits<double>::digits == 53 &&
+                std::numeric_limits<double>::min_exponent == -1021 &&
+                std::numeric_limits<double>::has_denorm == std::denorm_present) {
+    // 非零 G/sqrt(D) 超出 binary64 下界时拒绝；不能让上游收到被静默删除的系数。
+    const std::vector<double> underflow{std::ldexp(1.0, 1000), std::ldexp(1.0, -1074), -1};
+    require(!forward.factor(underflow), "非零矩形缩放项下溢必须拒绝");
+    std::vector<double> rhs{1, 2};
+    require(!forward.solve(rhs) && rhs == std::vector<double>({1, 2}), "缩放下溢后旧因子必须失效");
+    check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+  }
+}
+
+void check_long_column_budget() {
+  // 唯一原始坐标连接六百个对偶坐标，内部确实生成一条超过预算批量的长列。
+  // Gram 贡献仍在原结构预算内，方程、分解和原精度验收均使用公开接口。
+  constexpr Index dual_count = 600, dimension = dual_count + 1;
+  std::vector<Index> starts{0}, rows;
+  std::vector<double> values, expected(static_cast<std::size_t>(dimension));
+  std::vector<std::int8_t> signs(static_cast<std::size_t>(dimension), -1);
+  signs[0] = 1;
+  for (Index col = 0; col < dimension; ++col) {
+    if (col != 0) {
+      rows.push_back(0);
+      values.push_back(0.125 + static_cast<double>(col % 5) / 64);
+    }
+    rows.push_back(col);
+    values.push_back(col == 0 ? 4 : -8 - static_cast<double>(col % 11) / 16);
+    starts.push_back(static_cast<Index>(rows.size()));
+    expected[static_cast<std::size_t>(col)] = static_cast<double>(col % 13 - 6) / 8;
+  }
+  snapshot_group = "long_column";
+  NormalCholesky factor(static_cast<std::size_t>(dimension), starts, rows, signs);
+  check_solution(factor, starts, rows, values, expected);
+  const auto original = multiply(starts, rows, values, expected);
+  auto rhs = original;
+  struct LongColumnBudget : std::runtime_error { using std::runtime_error::runtime_error; };
+  Index calls = 0;
+  bool interrupted = false;
+  try {
+    factor.solve(rhs, [&] {
+      if (++calls == 2) throw LongColumnBudget("长列内部预算结束");
+    });
+  } catch (const LongColumnBudget& error) {
+    interrupted = std::string(error.what()) == "长列内部预算结束";
+  }
+  // 单右端路径保留原列头预算检查；双右端长列的逐项中断另在下方穷举。
+  // 不以回调数量代替正确性：中断必须保持完整 RHS，随后仍可恢复同一原方程。
+  require(interrupted && rhs == original, "长列回代预算异常必须保持原类型并且不部分提交右端");
+  check_solution(factor, starts, rows, values, expected, false);
+  long_column_interrupted = true;
+}
+
+using RhsPair = std::array<std::vector<double>, 2>;
+
+bool same_pair(const RhsPair& left, const RhsPair& right) {
+  for (std::size_t column = 0; column < 2; ++column) {
+    if (left[column].size() != right[column].size()) return false;
+    for (std::size_t row = 0; row < left[column].size(); ++row) {
+      if (std::bit_cast<std::uint64_t>(left[column][row]) !=
+          std::bit_cast<std::uint64_t>(right[column][row])) return false;
+    }
+  }
+  return true;
+}
+
+bool same_refinement(const solver::detail::NormalRefinementStatistics& left,
+                     const solver::detail::NormalRefinementStatistics& right) {
+  return left.residual_products == right.residual_products && left.refinement_steps == right.refinement_steps &&
+      left.refinement_acceptances == right.refinement_acceptances;
+}
+
+RhsPair check_pair_solution(NormalCholesky& factor, const std::vector<Index>& starts,
+    const std::vector<Index>& rows, const std::vector<double>& values, const RhsPair& expected,
+    bool refactor = true, const RhsPair& coordinate_scale = {}) {
+  RhsPair original{multiply(starts, rows, values, expected[0]), multiply(starts, rows, values, expected[1])};
+  RhsPair single = original, paired = original;
+  if (refactor) require(factor.factor(values), "原生双右端测试系统必须成功分解");
+  require(factor.supports_native_pair(), "实际 CHOLMOD 因子必须报告双右端能力");
+  require(factor.solve(single[0]) && factor.solve(single[1]) && factor.solve_pair(paired),
+          "两次单回代和原生双回代均应成功");
+  // 两个独立的原方程验收，不要求不同 nrhs 的库实现逐位相同。
+  for (std::size_t column = 0; column < 2; ++column) {
+    require(coordinate_scale[column].empty() || coordinate_scale[column].size() == expected[column].size(),
+            "双右端坐标尺度必须逐列匹配");
+    for (const auto* actual : {&single[column], &paired[column]}) {
+      const auto residual = multiply(starts, rows, values, *actual);
+      for (std::size_t row = 0; row < actual->size(); ++row) {
+        const double scale = coordinate_scale[column].empty() ? 1 : coordinate_scale[column][row];
+        const double error = std::abs(((*actual)[row] - expected[column][row]) * scale);
+        const double tolerance = 1e-11 * std::max(1.0, std::abs(expected[column][row] * scale));
+        require(error <= tolerance, "双右端及其单右端对照必须分别恢复已知解");
+        require(std::abs(residual[row] - original[column][row]) <=
+            1e-11 * std::max(1.0, std::abs(original[column][row])), "双右端完整原 KKT 残差不合格");
+      }
+    }
+    snapshots.push_back({snapshot_group, paired[column], factor.factor_dimension(), factor.factor_nonzeros(),
+        factor.regularized_pivots(), factor.refinement_statistics()});
+  }
+  return paired;
+}
+
+void check_pair_native_and_reuse() {
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  const std::vector<double> values{3, 2, -5, 4, -7};
+  const std::vector<Index> mixed_starts{0, 1, 3, 5, 8, 11};
+  const std::vector<Index> mixed_rows{0, 0, 1, 1, 2, 0, 2, 3, 1, 3, 4};
+  const std::vector<double> mixed_values{-3, 1, 2, 3, -4, 2, -1, 5, -2, 4, -2};
+  for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    snapshot_group = kernel == NormalCholeskyKernel::cholmod_supernodal ? "pair_cholmod" : "pair_aat";
+    NormalCholesky factor(3, starts, rows, signs, {}, false, false, 0, kernel);
+    auto owned = check_pair_solution(factor, starts, rows, values, RhsPair{{{0, 1, -1}, {1, 2, 3}}});
+    const auto saved = owned;
+    // 两列结果必须脱离库 X/Y/E；中间单回代和后续双回代都会复用同一缓存。
+    check_solution(factor, starts, rows, values, {-4, 3, 2}, false);
+    check_pair_solution(factor, starts, rows, values, RhsPair{{{-2, 0.5, 4}, {3, -1, 2}}}, false);
+    require(same_pair(owned, saved), "后续单、双回代不能覆盖先前已经返回的独立双解");
+    check_pair_solution(factor, starts, rows, {5, -3, -11, 0, -13}, RhsPair{{{1, -2, 3}, {-1, 4, 0.5}}});
+    require(same_pair(owned, saved), "重新分解和缓存复用不能使先前双解悬空");
+    NormalCholesky mixed(5, mixed_starts, mixed_rows, std::vector<std::int8_t>{-1, 1, -1, 1, -1},
+        {}, false, false, 0, kernel);
+    check_pair_solution(mixed, mixed_starts, mixed_rows, mixed_values,
+        RhsPair{{{-1, 2, 3, -2, 0.5}, {2, 0, -1, 3, 4}}});
+  }
+  pair_details.push_back("原生双右端完整KKT");
+  pair_details.push_back("双单双与重新分解缓存复用");
+}
+
+void check_pair_unsupported() {
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  const auto reject = [&](NormalCholesky& factor, RhsPair rhs) {
+    const auto original = rhs;
+    const auto before = factor.refinement_statistics();
+    bool called = false;
+    require(!factor.supports_native_pair() && !factor.solve_pair(rhs, [&] {
+      called = true;
+      throw std::runtime_error("未支持路径不应启动预算回调");
+    }) && !called && same_pair(rhs, original) && same_refinement(before, factor.refinement_statistics()),
+        "未支持内核必须保持两列、统计和回调均不变");
+  };
+  for (int mode = 0; mode < 4; ++mode) {
+    if (mode >= 2 && std::numeric_limits<long double>::digits <= std::numeric_limits<double>::digits) continue;
+    NormalCholesky factor(3, starts, rows, signs, {}, mode == 1, mode == 2, mode == 3 ? 2 : 0);
+    require(factor.factor(std::vector<double>{3, 2, -5, 4, -7}), "未支持双右端的内核仍须能完成原单右端分解");
+    reject(factor, RhsPair{{{1, 2, 3}, {-1, 0, 4}}});
+  }
+  for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    NormalCholesky primal(2, std::vector<Index>{0, 1, 2}, std::vector<Index>{0, 1},
+        std::vector<std::int8_t>{1, 1}, {}, false, false, 0, kernel);
+    require(primal.factor(std::vector<double>{2, 4}), "纯原始系统仍可成功分解");
+    reject(primal, RhsPair{{{2, 8}, {-2, 4}}});
+    NormalCholesky empty(0, std::vector<Index>{0}, {}, {}, {}, false, false, 0, kernel);
+    require(empty.factor({}), "空系统单右端分解仍应成功");
+    reject(empty, {});
+  }
+  pair_details.push_back("未支持内核零工作");
+}
+
+void check_pair_scales() {
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  const std::array<double, 3> diagonal{std::ldexp(1.0, -20), std::ldexp(1.0, 20), std::ldexp(1.0, -10)};
+  const std::array<double, 2> amplitude{std::ldexp(1.0, 200), std::ldexp(1.0, -200)};
+  auto values = std::vector<double>{3, 2, -5, 4, -7};
+  RhsPair expected{{{1, -2, 3}, {-2, 1, 4}}}, scales;
+  for (std::size_t col = 0; col < 3; ++col) {
+    for (Index entry = starts[col]; entry < starts[col + 1]; ++entry) {
+      values[static_cast<std::size_t>(entry)] *= diagonal[col] * diagonal[static_cast<std::size_t>(rows[static_cast<std::size_t>(entry)])];
+    }
+    for (std::size_t rhs = 0; rhs < 2; ++rhs) {
+      expected[rhs][col] *= amplitude[rhs] / diagonal[col];
+      scales[rhs].push_back(diagonal[col] / amplitude[rhs]);
+    }
+  }
+  for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    snapshot_group = "pair_scales";
+    NormalCholesky factor(3, starts, rows, signs, {}, false, false, 0, kernel);
+    check_pair_solution(factor, starts, rows, values, expected, true, scales);
+  }
+  pair_details.push_back("双右端悬殊尺度");
+}
+
+void check_pair_failures() {
+  const std::vector<Index> starts{0, 1, 3}, rows{0, 0, 1};
+  const std::vector<std::int8_t> signs{1, -1};
+  for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    NormalCholesky factor(2, starts, rows, signs, {}, false, false, 0, kernel);
+    require(factor.factor(std::vector<double>{2, 4, -3}), "非法右端组的分解应成功");
+    for (const auto& second : std::vector<std::vector<double>>{{1},
+         {std::numeric_limits<double>::quiet_NaN(), 2}, {1, std::numeric_limits<double>::infinity()}}) {
+      RhsPair rhs{{{1, 2}, second}};
+      const auto original = rhs;
+      const auto before = factor.refinement_statistics();
+      require(!factor.solve_pair(rhs) && same_pair(rhs, original) &&
+          same_refinement(before, factor.refinement_statistics()), "第二右端非法时第一列也不得提交");
+    }
+    require(!factor.factor(std::vector<double>{0, 4, -3}), "失败分解必须作废双右端所依赖的旧因子");
+    RhsPair invalid{{{1, 2}, {3, 4}}};
+    const auto invalid_original = invalid;
+    require(!factor.solve_pair(invalid) && same_pair(invalid, invalid_original), "失败分解后不能使用旧双右端因子");
+    require(factor.factor(std::vector<double>{1e-300, 0, -1}), "表示失败组应有合法有限因子");
+    RhsPair overflow{{{1e-300, 1}, {1e300, 2}}};
+    const auto overflow_original = overflow;
+    require(!factor.solve_pair(overflow) && same_pair(overflow, overflow_original), "第二解溢出时双右端均不得提交");
+    if constexpr (std::numeric_limits<long double>::min_exponent <= -4096) {
+      require(factor.factor(std::vector<double>{std::ldexp(1.0, 1000), 0, -1}), "下溢组应有合法有限因子");
+      RhsPair underflow{{{std::ldexp(1.0, 1000), 1}, {std::ldexp(1.0, -1074), 2}}};
+      const auto underflow_original = underflow;
+      require(!factor.solve_pair(underflow) && same_pair(underflow, underflow_original), "第二解非零下溢不得归零或提交第一解");
+    }
+    snapshot_group = "pair_after_failure";
+    check_pair_solution(factor, starts, rows, {2, 4, -3}, RhsPair{{{2, -1}, {-3, 4}}});
+  }
+  pair_details.push_back("第二右端非法输入双事务");
+  pair_details.push_back("第二右端表示失败双事务");
+}
+
+void check_pair_budget_boundaries() {
+  struct PairBudget : std::runtime_error { using std::runtime_error::runtime_error; };
+  const auto boundaries = [&](NormalCholesky& factor, const RhsPair& original) {
+    auto actual = original;
+    Index total = 0;
+    require(factor.solve_pair(actual, [&] { ++total; }) && total > 0, "双右端回调边界基准应完整成功");
+    for (Index stop = 1; stop <= total; ++stop) {
+      actual = original;
+      const auto before = factor.refinement_statistics();
+      Index calls = 0;
+      bool interrupted = false;
+      try {
+        factor.solve_pair(actual, [&] { if (++calls == stop) throw PairBudget("双右端独立预算结束"); });
+      } catch (const PairBudget& error) {
+        interrupted = std::string(error.what()) == "双右端独立预算结束";
+      }
+      require(interrupted && same_pair(actual, original) && same_refinement(before, factor.refinement_statistics()),
+              "每一预算边界须原型透传并保持双 RHS 未提交");
+    }
+  };
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<double> values{3, 2, -5, 4, -7};
+  for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+    NormalCholesky factor(3, starts, rows, std::vector<std::int8_t>{1, -1, -1}, {}, false, false, 0, kernel);
+    require(factor.factor(values), "双右端预算测试因子应有效");
+    boundaries(factor, RhsPair{{multiply(starts, rows, values, {0, 1, -1}), multiply(starts, rows, values, {1, 2, 3})}});
+  }
+  constexpr Index dual_count = 600, dimension = dual_count + 1;
+  std::vector<Index> long_starts{0}, long_rows;
+  std::vector<double> long_values;
+  RhsPair expected{std::vector<double>(static_cast<std::size_t>(dimension)), std::vector<double>(static_cast<std::size_t>(dimension))};
+  std::vector<std::int8_t> signs(static_cast<std::size_t>(dimension), -1);
+  signs[0] = 1;
+  for (Index col = 0; col < dimension; ++col) {
+    if (col != 0) { long_rows.push_back(0); long_values.push_back(0.125 + static_cast<double>(col % 5) / 64); }
+    long_rows.push_back(col);
+    long_values.push_back(col == 0 ? 4 : -8 - static_cast<double>(col % 11) / 16);
+    long_starts.push_back(static_cast<Index>(long_rows.size()));
+    expected[0][static_cast<std::size_t>(col)] = static_cast<double>(col % 13 - 6) / 8;
+    expected[1][static_cast<std::size_t>(col)] = static_cast<double>(col % 7 - 3) / 4;
+  }
+  snapshot_group = "pair_long_column";
+  NormalCholesky factor(static_cast<std::size_t>(dimension), long_starts, long_rows, signs, {}, false, false, 0,
+      NormalCholeskyKernel::cholmod_supernodal_aat);
+  check_pair_solution(factor, long_starts, long_rows, long_values, expected);
+  boundaries(factor, RhsPair{{multiply(long_starts, long_rows, long_values, expected[0]),
+      multiply(long_starts, long_rows, long_values, expected[1])}});
+  check_pair_solution(factor, long_starts, long_rows, long_values, expected, false);
+  pair_details.push_back("全部预算边界与长列中断");
+}
+
+void write_snapshots() {
+  std::cout << std::setprecision(17) << "{\"passed\":true,\"cases\":" << snapshots.size()
+      << ",\"long_column_interrupted\":" << (long_column_interrupted ? "true" : "false")
+      << ",\"pair_cases\":" << pair_details.size() << ",\"pair_details\":[";
+  bool first_detail = true;
+  for (const auto* detail : pair_details) {
+    if (!first_detail) std::cout << ',';
+    first_detail = false;
+    std::cout << '"' << detail << '"';
+  }
+  std::cout << "],\"snapshots\":[";
+  bool first_snapshot = true;
+  for (const auto& snapshot : snapshots) {
+    if (!first_snapshot) std::cout << ',';
+    first_snapshot = false;
+    std::cout << "{\"group\":\"" << snapshot.group << "\",\"solution\":[";
+    bool first_value = true;
+    for (double value : snapshot.solution) {
+      if (!first_value) std::cout << ',';
+      first_value = false;
+      std::cout << value;
+    }
+    std::cout << "],\"factor_dimension\":" << snapshot.factor_dimension
+        << ",\"factor_nonzeros\":" << snapshot.factor_nonzeros
+        << ",\"regularized_pivots\":" << snapshot.regularized_pivots
+        << ",\"residual_products\":" << snapshot.refinement.residual_products
+        << ",\"refinement_steps\":" << snapshot.refinement.refinement_steps
+        << ",\"refinement_acceptances\":" << snapshot.refinement.refinement_acceptances << '}';
+  }
+  std::cout << "]}\n";
+}
+
+}  // 匿名命名空间
+
+int main() {
+  try {
+    check_multifrontal_normal();
+    check_extended_normal();
+    check_refined_normal();
+    check_cholmod_normal();
+    check_rectangular_normal();
+    check_extreme_gram_ranges();
+    snapshot_group = "single_row_elimination";
+    const std::vector<Index> starts{0, 1, 3}, rows{0, 0, 1};
+    NormalCholesky reversed(2, starts, rows, std::vector<std::int8_t>{-1, 1});
+    std::vector<double> rhs{11, 0};
+    require(!reversed.solve(rhs) && rhs == std::vector<double>({11, 0}), "未分解不能修改右端项");
+    check_solution(reversed, starts, rows, {-3, 4, 2}, {-1, 2});
+    require(reversed.factor_dimension() == 1 && reversed.factor_nonzeros() == 1, "统计只含正规方程 L 及其对角");
+    check_solution(reversed, starts, rows, {-3, 4, 2}, {3, -2}, false);
+    check_solution(reversed, starts, rows, {-6, 0, 8}, {2, 3});
+    check_solution(reversed, starts, rows, {-5, -2, 3}, {-4, 1});
+    NormalCholesky forward(2, starts, rows, std::vector<std::int8_t>{1, -1});
+    check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+    // 对称均衡后的坐标仍使用同一块符号，而不是按位置猜原始/对偶身份。
+    check_solution(forward, starts, rows, {200, 4, -0.03}, {0.2, -10});
+
+    snapshot_group = "standard";
+    const std::vector<Index> mixed_starts{0, 1, 3, 5, 8, 11};
+    const std::vector<Index> mixed_rows{0, 0, 1, 1, 2, 0, 2, 3, 1, 3, 4};
+    const std::vector<double> mixed_values{-3, 1, 2, 3, -4, 2, -1, 5, -2, 4, -2};
+    NormalCholesky mixed(5, mixed_starts, mixed_rows, std::vector<std::int8_t>{-1, 1, -1, 1, -1});
+    check_solution(mixed, mixed_starts, mixed_rows, mixed_values, {-1, 2, 3, -2, 0.5});
+    check_solution(mixed, mixed_starts, mixed_rows, mixed_values, {2, 0, -1, 3, 4}, false);
+    require(mixed.factor_dimension() == 3 && mixed.factor_nonzeros() == 6, "共享列产生的 Gram 项应合并且计入 L");
+
+    // 正规方程为中心在首位的星形图，AMD 会移动中心；验证内部排列的回代恢复。
+    std::vector<Index> star_starts{0}, star_rows;
+    std::vector<double> star_values;
+    for (Index col = 0; col < 9; ++col) {
+      if (col == 4) {
+        for (Index row = 0; row < 4; ++row) { star_rows.push_back(row); star_values.push_back(1); }
+      } else if (col > 4) {
+        star_rows.push_back(col - 5); star_values.push_back(2);
+      }
+      star_rows.push_back(col);
+      star_values.push_back(col < 4 ? static_cast<double>(col + 2) : -static_cast<double>(col - 2));
+      star_starts.push_back(static_cast<Index>(star_rows.size()));
+    }
+    NormalCholesky star(9, star_starts, star_rows, std::vector<std::int8_t>{1, 1, 1, 1, -1, -1, -1, -1, -1});
+    check_solution(star, star_starts, star_rows, star_values, {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
+    require(star.factor_dimension() == 5 && star.factor_nonzeros() == 9, "星形结构排序后应保持无额外填充");
+    for (const auto kernel : {NormalCholeskyKernel::cholmod_supernodal, NormalCholeskyKernel::cholmod_supernodal_aat}) {
+      NormalCholesky star_cholmod(9, star_starts, star_rows,
+          std::vector<std::int8_t>{1, 1, 1, 1, -1, -1, -1, -1, -1}, {}, false, false, 0,
+          kernel);
+      check_solution(star_cholmod, star_starts, star_rows, star_values, {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
+      check_solution(star_cholmod, star_starts, star_rows, star_values, {-2, 1, 4, -1, 2, 3, -2, 1, 0}, false);
+      require(star_cholmod.factor_dimension() == 5 && star_cholmod.regularized_pivots() == 0,
+              "同 AMD 的 CHOLMOD 必须恢复原坐标且不新增主元正则");
+      // 稀疏星形经 AMD 后每列长度不同，逐次改变值可发现转置槽错位或旧数值残留。
+      const auto star_storage = star_cholmod.factor_nonzeros();
+      auto changed_star = star_values;
+      for (Index col = 0; col < 9; ++col) {
+        for (Index entry = star_starts[static_cast<std::size_t>(col)];
+             entry < star_starts[static_cast<std::size_t>(col + 1)]; ++entry) {
+          const auto source = static_cast<std::size_t>(entry);
+          if (star_rows[source] == col) {
+            changed_star[source] *= 2 + static_cast<double>(col) / 8;
+          } else {
+            // 保留结构中的零项，再恢复非零，验证缓存的是结构而不是数值支持集。
+            changed_star[source] = col == 6 ? 0 : -static_cast<double>(entry + 1) / 8;
+          }
+        }
+      }
+      check_solution(star_cholmod, star_starts, star_rows, changed_star,
+          {-2, 1, 4, -1, 2, 3, -2, 1, 0});
+      check_solution(star_cholmod, star_starts, star_rows, changed_star,
+          {0.5, -1, 2, 3, -2, 1, 0, 2, -4}, false);
+      check_solution(star_cholmod, star_starts, star_rows, star_values,
+          {1, 2, -3, 4, -1, 2, 1, -3, 0.5});
+      require(star_cholmod.factor_nonzeros() == star_storage,
+              "同一结构改变数值和显式零项不能重新改变超节点符号存储");
+    }
+
+    for (const auto& invalid : std::vector<std::vector<double>>{{0, 4, -3}, {-2, 4, -3}, {2, 4, 0},
+         {2, 4, 3}, {2, std::numeric_limits<double>::infinity(), -3}, {2}}) {
+      require(!forward.factor(invalid), "非法对角、非有限数及长度错误必须拒绝");
+      rhs = {1, 2};
+      require(!forward.solve(rhs) && rhs == std::vector<double>({1, 2}) && forward.factor_nonzeros() == 0,
+              "失败分解后不得使用旧因子");
+      check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+    }
+    rhs = {std::numeric_limits<double>::quiet_NaN(), 2};
+    require(!forward.solve(rhs) && std::isnan(rhs[0]) && rhs[1] == 2, "非有限右端不得写回");
+    rhs = {1};
+    require(!forward.solve(rhs) && rhs == std::vector<double>({1}), "回代维数错误不得写回");
+    require(!forward.factor(std::vector<double>{1e-300, 1e300, -1}), "Gram 项不可表示时必须拒绝");
+
+    NormalCholesky rounded_singular(3, std::vector<Index>{0, 1, 3, 5}, std::vector<Index>{0, 0, 1, 0, 2},
+        std::vector<std::int8_t>{1, -1, -1});
+    require(!rounded_singular.factor(std::vector<double>{1, 1, -1e-300, 1, -1e-300}),
+            "形成正规方程时舍入丢失正定性必须报告失败");
+
+    NormalCholesky primal(2, std::vector<Index>{0, 1, 2}, std::vector<Index>{0, 1}, std::vector<std::int8_t>{1, 1});
+    check_solution(primal, {0, 1, 2}, {0, 1}, {2, 4}, {3, -2});
+    require(primal.factor_dimension() == 0 && primal.factor_nonzeros() == 0, "纯原始对角系统不构造零维 Eigen 因子");
+    require(primal.factor(std::vector<double>{1e-300, 1e300}), "有限正对角可直接分解");
+    rhs = {1e300, 1};
+    require(!primal.solve(rhs) && rhs == std::vector<double>({1e300, 1}), "回代溢出不能写回");
+    rhs = {0, 1e-300};
+    require(!primal.solve(rhs) && rhs == std::vector<double>({0, 1e-300}), "非零回代结果下溢不能静默归零");
+
+    NormalCholesky empty(0, std::vector<Index>{0}, std::vector<Index>{}, std::vector<std::int8_t>{});
+    rhs.clear();
+    require(empty.factor(std::vector<double>{}) && empty.solve(rhs) && empty.factor_nonzeros() == 0,
+            "空系统必须有明确的成功语义");
+    // 稀疏大维对角系统不应被假定稠密的维数上限误拒。
+    const Index sparse_size = 10'000;
+    std::vector<Index> diagonal_starts(static_cast<std::size_t>(sparse_size + 1)), diagonal_rows(static_cast<std::size_t>(sparse_size));
+    for (Index i = 0; i < sparse_size; ++i) { diagonal_starts[static_cast<std::size_t>(i)] = i; diagonal_rows[static_cast<std::size_t>(i)] = i; }
+    diagonal_starts.back() = sparse_size;
+    NormalCholesky dual(static_cast<std::size_t>(sparse_size), diagonal_starts, diagonal_rows, std::vector<std::int8_t>(static_cast<std::size_t>(sparse_size), -1));
+    require(dual.factor(std::vector<double>(static_cast<std::size_t>(sparse_size), -4)), "纯对偶大维对角系统应分解");
+    rhs.assign(static_cast<std::size_t>(sparse_size), 8);
+    require(dual.solve(rhs) && std::all_of(rhs.begin(), rhs.end(), [](double x) { return x == -2; }) && dual.factor_nonzeros() == sparse_size,
+            "纯对偶回代符号与稀疏存储计数必须正确");
+
+    bool interrupted = false;
+    try { forward.factor(std::vector<double>{2, 4, -3}, [] { throw std::runtime_error("预算结束"); }); }
+    catch (const std::runtime_error&) { interrupted = true; }
+    rhs = {1, 2};
+    require(interrupted && !forward.solve(rhs), "预算异常须传播并作废旧因子");
+    check_solution(forward, starts, rows, {2, 4, -3}, {2, -1});
+    interrupted = false;
+    try { forward.solve(rhs, [] { throw std::runtime_error("预算结束"); }); }
+    catch (const std::runtime_error&) { interrupted = true; }
+    require(interrupted && rhs == std::vector<double>({1, 2}), "回代预算异常不能部分写回");
+
+    reject_pattern(0, {}, {}, {});
+    reject_pattern(1, {0, 1}, {0}, {});
+    reject_pattern(1, {0, 1}, {0}, {0});
+    reject_pattern(1, {0, 0}, {}, {1});
+    reject_pattern(1, {0, 1}, {-1}, {1});
+    reject_pattern(2, {0, 1, 3}, {0, 0, 1}, {1, 1});
+    reject_pattern(2, {0, 1, 3}, {0, 1, 0}, {1, -1});
+    reject_pattern(2, {0, 2, 1}, {0}, {1, -1});
+
+    const Index dense_degree = 4'000;
+    std::vector<Index> dense_starts{0, 1}, dense_rows{0};
+    for (Index row = 1; row <= dense_degree; ++row) {
+      dense_rows.push_back(0); dense_rows.push_back(row);
+      dense_starts.push_back(static_cast<Index>(dense_rows.size()));
+    }
+    std::vector<std::int8_t> dense_signs(static_cast<std::size_t>(dense_degree + 1), -1);
+    dense_signs[0] = 1;
+    bool limited = false;
+    try { NormalCholesky dense(static_cast<std::size_t>(dense_degree + 1), dense_starts, dense_rows, dense_signs); }
+    catch (const solver::detail::NormalCholeskyBudgetExceeded&) { limited = true; }
+    require(limited, "单列诱发的 Gram 贡献超预算应在实际展开前明确拒绝");
+    limited = false;
+    try {
+      NormalCholesky dense(static_cast<std::size_t>(dense_degree + 1), dense_starts, dense_rows, dense_signs,
+          {}, false, false, 0, NormalCholeskyKernel::cholmod_supernodal_aat);
+    } catch (const solver::detail::NormalCholeskyBudgetExceeded&) { limited = true; }
+    require(limited, "矩形数值路径不能扩大原有的 Gram 贡献结构预算");
+    bool budget_propagated = false;
+    try {
+      NormalCholesky stopped(static_cast<std::size_t>(dense_degree + 1), dense_starts, dense_rows, dense_signs,
+          [] { throw std::runtime_error("独立预算中断"); });
+    } catch (const solver::detail::NormalCholeskyBudgetExceeded&) {
+      require(false, "预算回调异常不得转换为结构预算异常");
+    } catch (const std::runtime_error& error) {
+      budget_propagated = std::string(error.what()) == "独立预算中断";
+    }
+    require(budget_propagated, "时间预算回调必须保持原始异常");
+    check_long_column_budget();
+    check_pair_native_and_reuse();
+    check_pair_unsupported();
+    check_pair_scales();
+    check_pair_failures();
+    check_pair_budget_boundaries();
+    write_snapshots();
+    return 0;
+  } catch (const std::exception& error) {
+    std::cerr << "正规方程 Cholesky 隔离检查失败：" << error.what() << '\n';
+    return 1;
+  }
+}

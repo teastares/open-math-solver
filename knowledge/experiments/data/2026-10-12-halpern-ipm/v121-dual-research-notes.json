@@ -1,0 +1,31 @@
+{
+  "version": 121,
+  "status": "并行只读研究，尚未实现dual优化，不属于本轮I/O候选数学",
+  "sources": [
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkk.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkkDual.cpp",
+    "https://github.com/ERGO-Code/HiGHS/blob/v1.15.1/highs/simplex/HEkkDualRow.cpp"
+  ],
+  "preconditions": "从同一给定基重建xB=B^-1(b-NxN)、pi=B^-T cB；等式和基本站立条件过。逐全部非基（含q/slack）按实际值检查：lower r>=-tol、upper r<=tol、free/内部 |r|<=tol，fixed不限；-3恰在界按实际界。r已算出，无额外A乘，扫描仍计费。",
+  "dual_step": "选超容差基本界违反p，目标beta，delta=sign(beta-xBp)，Delta=abs(beta-xBp)。普通BTRAN w=B^-T e_p，t_j=a_j^T w。允许非基方向s=+1(xj<uj)或-1(xj>lj)，只候选alpha=-delta*s*tj>0；取最小非负theta_dual=(s*rj)/alpha，tie最低global列。",
+  "derivation": "pi(theta)=pi-delta*theta*w，signed reduced s*rj(theta)=s*rj-theta*alpha。新列在最小比值归零；离基量贴beta，xB重建，原始移动theta_primal=Delta/alpha，dual_step与primal_step必须分别记账。",
+  "boundaries": [
+    "首版不实现BFRT；新进入基本量允许跨另一界，后续dual迭代修复。仅翻非基界、保持B/pi会改变所需r符号，不能套用primal own-bound flip。",
+    "tol内负signedr可在ratio中视0但不改r或c；每步完整dual检查失败就拒绝，不能当精确dual证书。",
+    "N solve_for_update incoming→按ilhs保存aq→T update e_p→update(raw aq[p])，不用s*aq[p]。行定价前额外普通BTRAN计费。",
+    "无候选只报未修复；数值坏或更新失败弃整次，共享期限和原Model最终验收保持；不混入PhaseI/cost shift/故障自动重分解。"
+  ],
+  "analytic_tests": [
+    "min x，x-z=1，Bz/xN0，一pivot到(1,0)。",
+    "min x，x+z=2，z[0,1]，Bz，一pivot到(1,1)。",
+    "min -x，x+z=1，x[0,2]，xN2上界负向进入到(1,0)。",
+    "min x+2y，x+y>=2，x[0,1]，行slack初基；先x2允许越界，再得(1,1)，2pivot/0flip。",
+    "零成本free正反方向和非零seed；dual_step0但primal_step非0。",
+    "有限-3内点零r可入；恰lower按lower，非零r内点资格拒绝。",
+    "固定/冗余等式slack保留，完整r_N错符号资格拒绝。",
+    "ratio exact tie最低global列、out tie；两独立块cap0/1/2。",
+    "无入列不发不可行证书，成功轨迹全部实际budget截止及奇异输入。"
+  ],
+  "decision": "等待I/O完整评测后再单独冻结自主dual原型，不以14个初始界失败直接承诺dual可行或提速。",
+  "new_public_lp_runs": 0
+}

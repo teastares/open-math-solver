@@ -1,0 +1,66 @@
+{
+  "version": 116,
+  "round": 113,
+  "status": "实现前冻结：独立C++组件，不接正式LP流程",
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "objective": "证明我方HSD中间点可以经过明确付费的模型/互补映射，交给独立IPX crossover，并在同一绝对deadline内通过原模型独立验收；不预称端到端收益。",
+  "source_files": [
+    ".tools/v116-crossover-prototype/source/ipx_crossover.hpp",
+    ".tools/v116-crossover-prototype/source/self_test.cpp"
+  ],
+  "boundary": "只复用IPX的CrossoverFromStartingPoint及其BASICLU，不调用Highs::run、Highs::crossover、IPX Solve、LoadIPMStartingPoint后Solve或其它完整优化代理；复用来源明确，不称自研crossover。旧纯IPM核心、markers和固定500协议不变，公开LP调用数0。",
+  "adapter_api": {
+    "namespace": "solver::experimental::ipx_crossover",
+    "prepare": "Prepared prepare(const Model&,span<const double> primal,span<const double> normalized_row_dual,Clock::time_point absolute_deadline)",
+    "run": "Result run(const Model&,span<const double> primal,span<const double> normalized_row_dual,Clock::time_point absolute_deadline,const Tolerances&={},const LpOptimalityOptions&={})",
+    "prepared": "拥有规范CSC、最小化目标/offset/界、row_type/rhs、drop后的x/slack/y/z、原行/辅助变量映射及raw/dropped完整残差；均为生产实际需要数据，不加测试observer。",
+    "result": "状态和说明、只在最终接受时发布的原坐标x/y、独立LpVerification、真实阶段计数和外部耗时、可用native返回/status/iter/updates字段。失败不返回半候选或预处理对象的基。",
+    "input_point": "已经除tau并恢复到传入Model坐标；row_dual遵守本项目最小化约定，仅要求有限与维数合法，不把它预先宣称为可行或最优。"
+  },
+  "mapping": {
+    "sense": "maximize翻目标与offset，归一化row_dual不翻号；返回后按原Model验算。",
+    "rows": "等式和单边行直接映射，单边隐式正slack满足Ax+s=b、z_slack=-y；双边行加有界q并写Ax-q=0，其列为-1，z_q=+y。自由行删除并记映射，返回对应row_dual为0。此前研究口头负号错误已纠正，必须以独立min x且1<=x<=2例验证。",
+    "matrix": "原Model允许无序/重复CSC，IPX不接受重复，故按列规范化并合并；记录duplicates_merged及聚合舍入，LD求和不是精确算术，不声明模型数学逐位相同。拒非有限、无法窄化或非零下溢的映射，最终原Model验算为接受边界。",
+    "indices": "IPX Int取锁定HConfig实际32位，所有Model int64索引必须检查后复制，不重解释指针；库/头ABI锁定。",
+    "empty": "合法但映射后m=0或n=0返回unsupported_empty，不进入有空work风险的native，不造dummy优化问题。m>0且nnz0可支持，Ai/Ax/rhs/type等零长度存储向LoadModel提供合法非空dummy指针。整数变量不作为连续LP优化，明确不支持而非伪造MILP结果。"
+  },
+  "drop": "从同一原始输入快照先计算row activity和原列净r=sense*c-A转置*y，再按IPX Drop的正负dual分拆与bound-distance比较贴界或置零。单边在隐式slack上drop并以-y恢复，双边q上drop并以+y恢复；所有坐标决策不使用已经修改后的y重新构造原列r。之后重算完整映射行/站立式/界/互补残差，注明自由行/聚合映射影响，不把互补性当可行性改善。",
+  "native_parameters": "dualize=0,scale=0,display=0,highs_logging=false,logfile=null,crash_basis=1,run_crossover=1,ipm_maxiter=0；显式有限剩余time_limit；可行性参数不放宽原终验。ipm_maxiter0只是防误调用旁证，不能代替禁Solve。",
+  "thread_and_callback": "initialize_scheduler(1)后核实际num_threads==1，已有多线程则返回unsupported_threads，不shutdown共享scheduler。HighsCallback(nullptr)活到native析构之后，启用IPM interrupt检查同一steady absolute_deadline并设置user_interrupt。不得异常穿越native回调；raw回调测试只用合法user_interrupt。",
+  "budget": "此前我方HSD、映射/聚合/drop、线程初始化、对象构造、LoadModel、crash/crossover、取回/回代、原验及清理均付费。IPX Timer从对象构造开始且Crossover不Reset；构造后立即取绝对deadline剩余量设native上限，外层继续检查。同一LP不新授5秒。native LU/crash及std sort不可硬抢占，源内阶段前后检查和35秒子进程观察上限不能冒称内部可中断。",
+  "acceptance": "rc0仅表示输入接受，crash失败可能ClearSolution后状态归0仍rc0。还须完整native可用状态、GetBasicSolution成功、有限原坐标候选、我方verify_lp_solution按原Tolerances与LpOptimalityOptions通过，清理后最终未超时，才发布x/y。已有最优起点也不短路跳过本组件实测native调用。native time_total默认0等未汇总字段不作实测；外部chrono各阶段单列，native子时间不重复相加。",
+  "tests": {
+    "main_cases": {
+      "crossover_min_ranged_sign": "mapping",
+      "crossover_max_offset_sign": "mapping",
+      "crossover_equalities_free_columns": "mapping",
+      "crossover_one_sided_rows": "mapping",
+      "crossover_free_rows_fixed_columns": "mapping",
+      "crossover_sparse_empty_support": "mapping",
+      "crossover_invalid_model_shapes": "exception",
+      "crossover_invalid_warm_point": "exception",
+      "crossover_drop_residual_contract": "transaction",
+      "crossover_native_rc_status": "transaction",
+      "crossover_remaining_budget": "budget",
+      "crossover_callback_transaction": "budget",
+      "crossover_hsd_initialized_point": "transaction",
+      "crossover_hsd_one_update": "transaction"
+    },
+    "isolated_case": "独立--thread-conflict进程一组，预建2线程共享scheduler，adapter必须拒绝且native调用0；不污染main14组的单线程上下文。",
+    "real_hsd": "self TU包含逐字父112 ipm.cpp，不修改核心。min x0、x0+x1=1、0<=x<=1合成模型；scaling_iterations=0、scale_objective=false、eliminate_fixed_variables=false、presolve_singleton_rows=false、eliminate_presolved_fixed_variables=false，保留KKT eliminate_singletons=true及normal_cholmod_aat。分别实际initialize→assess得到0更新点，以及实际run_homogeneous_ipm(max_iterations=1)取得同次非最优可行点与row_dual；必须证实际更新数和非最优，不伪造。deadline在我方HSD之前建立。",
+    "independence": "原Model独立验证所有成功候选，range辅助变量符号及Drop使原始或对偶残差变坏用解析小例和独立LD算子核；rc/status、真实原生callback中断和后续新对象恢复另测，不冒称覆盖adapter内部全部异常路径。"
+  },
+  "build": "2TU/1exe：快照父112的12源与冻结95公头，新own两文件单独快照。self TU包含父ipm.cpp，另按父112实际命令重编Normal；不再链接ipm.obj或生产66 normal.a。继承原Clang23/CPP20/O3/NDEBUG/FP/ISA及17库身份/实际顺序/两次BLAS，normal对象只换地址。预期self own依赖10、normal7，实际核.d拒live canonical与旧候选偷入。一个小PS驱动或ROOT直接PS留命令、原件、SHA，不创建Python源码生成/评测/结项脚本。",
+  "evidence": "组件输出除passed/cases/details，明确source_hsd初始化/更新调用、native Load/crossover started/completed、Highs run0/IPX Solve0及每次native状态/iter/updates、独立质量和阶段耗时。禁用调用计数0须有own调用路径审计和Info.status_ipm/iter旁证，不能只写常数，也不能因exe含未调用Solve符号误判。",
+  "scope_note": "14+1组件并非公开LP性能成绩。集成前另冻结混合算法身份和外部优化侧账本，原预处理对象仍不得有LP迭代或有效基；不追溯修改旧500。",
+  "source_generation": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false,
+  "design_revision": 1,
+  "replaces_design": {
+    "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v116-prototype-design.json",
+    "sha256": "d0aeba76f97605766c051ea8016c72992b1ae036a3368738fb4ca37c0c8d08b5"
+  },
+  "revision_reason": "首编译前澄清原Model预处理与KKT singleton消元的区别；保留Normal既有数学流程和14+1范围，原设计不覆盖。"
+}

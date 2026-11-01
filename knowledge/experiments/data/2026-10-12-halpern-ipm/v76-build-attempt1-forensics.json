@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-25T17:18:21.054930+00:00",
+  "solver_runs": 0,
+  "failed_build_directory": "D:\\Documents\\codes\\solver\\.tools\\v76-basis",
+  "failed_attempt_returncode": 1,
+  "failed_attempt_seconds": 323.23258969999733,
+  "test_run": {
+    "command": [
+      "D:\\Documents\\codes\\solver\\.tools\\v76-basis\\repair-self-test.exe"
+    ],
+    "cwd": "D:\\Documents\\codes\\solver",
+    "returncode": null,
+    "stdout": "",
+    "stderr": "",
+    "wall_timeout": true
+  },
+  "observed_process": {
+    "pid": 12456,
+    "cpu_seconds": 0,
+    "thread_state": "Wait",
+    "wait_reason": "LpcReply"
+  },
+  "confirmed_source_defect": "Work按const引用存储构造参数中的std::function，直接测试传临时回调后成员悬空；这是未定义行为。进程等待与300秒超时是实际观测，未独立证明OS等待的全部原因。",
+  "planned_fix": "Work按值拥有回调，构造复制一次，保持数值规则和回调次数；使用新输出目录重建，保留首次失败目录。",
+  "next_build_directory": "D:\\Documents\\codes\\solver\\.tools\\v76-basis-attempt2",
+  "archive_file": "v76-build-attempt1-sources.zip",
+  "archive_sha256": "2fd3ec1b0019b159e7df500737f29c612e10d5485f7f70fdf263c5ffe5b45702",
+  "archive_members": {
+    ".tools/v76-basis/basis-self-build.json": "2848f3d0320478062301e6ab1079b339989eb1ee0cdf4c848f5d78896fe81b53",
+    ".tools/v76-basis/basis-self-check.json": "a0709556780283c2c123b2514487b27f77a990bb883156c66f8abdfb7f4bdeee",
+    ".tools/v76-basis/basis-self-run.json": "c3c4dae7c46485aeebaa365e92ceb5b01bdb9d27d2edd14a9e23177fb06e598c",
+    ".tools/v76-basis/highs-compile.json": "33bfe63eb213d6115869ded44be71bf01c18b0c56e3d1ef0fa9abe6e98393a28",
+    ".tools/v76-basis/ipm-basis.cpp": "d4c9a2ad709ba2ff192ede9631c88216f35e7ead22714a561f01ccb2bfe2ff58",
+    ".tools/v76-basis/ipm-compile.json": "18794afda34f0c51c8c4bbbf7e64dadbbf5e9cdc2eede3dd7dbafc4dd7c6c572",
+    ".tools/v76-basis/link.json": "3f89d3e4c739c211802a3d0c99ba1854b47b853bd4187993acf4b846a2849bf3",
+    ".tools/v76-basis/main-compile.json": "c79e7907840a2949b33540da536596c40158c5cd93e41fb48455c4a30bf2f379",
+    ".tools/v76-basis/pdlp-compile.json": "a4dd5b9bb06548401f085c3ae89cdaf8ddefffd701375dfa80cba5dde27e3df3",
+    ".tools/v76-basis/repair-self-build.json": "551cffbca3cea9d76591121d840d70f2921b77bacadf5b09df6d0047faa05fd6",
+    ".tools/v76-basis/repair-self-run.json": "9095339f899fd8773b28f4be852397de0841fa88705beb20234bb0a61bc8c3d8",
+    ".tools/v76-basis/static-check.json": "62d4402b4256b9c320578c24e0090f1bdc51450ce850d4496c6cb977610a675f",
+    ".tools/v76-basis/transforms.json": "b793c64684ba3e01d3d6eccebb3e7473f0f63a5db63c1c6d35d6ad9e5991e2aa",
+    ".tools/v76-freeze-failed-build-inline.py": "2352f763c1594c99cafb9fa9585e9ad72866faa2a6989f5cee10f69cf1a20700",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-baseline-check.json": "c8a8e5a6ff6998497d4f74f3cae4a72b54190eac18ed794156fa17447398fea4",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-instrumentation.py": "ab1a7a3de3892bed77423f8a72dd434067d77e0062343e6f22ff6fc642c46765",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-recovery.hpp": "1f74191b37711e968f46734cfca55afd253e61957f0c22cff243b5071999a37f",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-repair.hpp": "d3e288db76f34c737768dd27e48d4f11c49cc8f20aa18909427ab6a2d0a54f10",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-self-test.cpp": "a1546b9d9d86e79e519838c41e0e9763b47fccdca2ed242f77b3561bec9a703a",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build-attempt1.json": "f2b3543fa71cdd5342684758d031addd8b16f26ef94ec36c7a1cced7243d2e3d",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build.py": "27bc4e177b4fbebc43eb56b11624df0b1d5edd93ca02edbcdd17b181c90e27d9",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-plan.json": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-repair-self-test.cpp": "8025e0020856e67f276bf08e88049d7ea27a84687936db97bec5918307a96d5c",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-run.py": "24460eda4ef7e156614e6d9c892da9edc44810652f7b933e272dcccdd5dda72c"
+  },
+  "original_bytes_readback_verified": true,
+  "driver_source": "\"\"\"修复前封存v76首次失败构建的来源和原执行记录，不运行数值任务。\"\"\"\nimport datetime\nimport hashlib\nimport json\nfrom pathlib import Path\nimport zipfile\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / 'knowledge/experiments/data/2026-10-12-halpern-ipm'\nWORK = ROOT / '.tools/v76-basis'\narchive_path = DATA / 'v76-build-attempt1-sources.zip'\nrecord_path = DATA / 'v76-build-attempt1-forensics.json'\nassert not archive_path.exists() and not record_path.exists()\nattempt = json.loads((DATA / 'v76-build-attempt1.json').read_text(encoding='utf-8'))\ntest_run = json.loads((WORK / 'repair-self-run.json').read_text(encoding='utf-8'))\nassert attempt['returncode'] != 0 and test_run['wall_timeout'] and test_run['returncode'] is None\nsources = [DATA / name for name in ('v76-plan.json', 'v76-baseline-check.json', 'v76-basis-repair.hpp',\n    'v76-repair-self-test.cpp', 'v76-basis-recovery.hpp', 'v76-basis-self-test.cpp',\n    'v76-basis-instrumentation.py', 'v76-build.py', 'v76-run.py', 'v76-build-attempt1.json')]\nsources += list(WORK.glob('*.json')) + [WORK / 'ipm-basis.cpp', Path(__file__)]\nmembers = {}\nwith zipfile.ZipFile(archive_path, 'x', compression=zipfile.ZIP_DEFLATED) as archive:\n    for path in sorted(set(sources)):\n        raw = path.read_bytes(); name = path.relative_to(ROOT).as_posix()\n        members[name] = hashlib.sha256(raw).hexdigest()\n        archive.writestr(name, raw)\nwith zipfile.ZipFile(archive_path) as archive:\n    assert len(archive.namelist()) == len(members)\n    assert {name: hashlib.sha256(archive.read(name)).hexdigest() for name in archive.namelist()} == members\nresult = {'passed': True, 'created_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    'solver_runs': 0, 'failed_build_directory': str(WORK), 'failed_attempt_returncode': attempt['returncode'],\n    'failed_attempt_seconds': attempt['elapsed_seconds'], 'test_run': test_run,\n    'observed_process': {'pid': 12456, 'cpu_seconds': 0, 'thread_state': 'Wait', 'wait_reason': 'LpcReply'},\n    'confirmed_source_defect': 'Work按const引用存储构造参数中的std::function，直接测试传临时回调后成员悬空；这是未定义行为。进程等待与300秒超时是实际观测，未独立证明OS等待的全部原因。',\n    'planned_fix': 'Work按值拥有回调，构造复制一次，保持数值规则和回调次数；使用新输出目录重建，保留首次失败目录。',\n    'next_build_directory': str(ROOT / '.tools/v76-basis-attempt2'),\n    'archive_file': archive_path.name, 'archive_sha256': hashlib.sha256(archive_path.read_bytes()).hexdigest(),\n    'archive_members': members, 'original_bytes_readback_verified': True,\n    'driver_source': Path(__file__).read_text(encoding='utf-8')}\nwith record_path.open('x', encoding='utf-8') as stream:\n    json.dump(result, stream, ensure_ascii=False, indent=2, allow_nan=False); stream.write('\\n')\nprint(json.dumps({'passed': True, 'members': len(members), 'archive_bytes': archive_path.stat().st_size,\n    'failed_attempt_seconds': result['failed_attempt_seconds'], 'solver_runs': 0}))\n"
+}

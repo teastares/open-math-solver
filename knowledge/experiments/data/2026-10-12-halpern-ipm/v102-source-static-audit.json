@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T16:28:16.548799+00:00",
+  "public_lp_runs": 0,
+  "plan_sha256": "1762092c529273262b56a03b6d453e86e0e5c44436070197b07a8bcb549af975",
+  "normal_literal_changes": [
+    {
+      "label": "activity_header",
+      "before": "#include \"solver/detail/multifrontal_ldl.hpp\"\n",
+      "after": "#include \"solver/detail/multifrontal_ldl.hpp\"\n#include \"coupled_state.hpp\"\n"
+    },
+    {
+      "label": "private_ld_cache",
+      "before": "  std::vector<double> input_values;\n",
+      "after": "  std::vector<double> input_values;\n  std::vector<long double> inverse_primal_diagonal;\n  bool inverse_primal_ready = false;\n"
+    },
+    {
+      "label": "invalidate_at_factor_entry",
+      "before": "  state.valid = false;\n",
+      "after": "  state.valid = false;\n  state.inverse_primal_ready = false;\n"
+    },
+    {
+      "label": "factor_scope_and_capacity",
+      "before": "  state.input_values.assign(values.begin(), values.end());\n",
+      "after": "  state.input_values.assign(values.begin(), values.end());\n  // 仅在宽binary64/LD分支缓存正对角倒数；原求和、有限性和最终表示检查均保留。\n  // 缓存绑定本次factor的活动域；旧值在完整数值分解和末次预算检查前始终不可读。\n  const bool cache_inverse_primal = bounded_gram_arithmetic && state.rectangular &&\n      !state.dual_coordinates.empty() && solver_v100_coupled_state::enabled();\n  if (cache_inverse_primal) state.inverse_primal_diagonal.resize(state.columns.size());\n"
+    },
+    {
+      "label": "fill_in_existing_column_loop",
+      "before": "        const long double divisor = std::sqrt(static_cast<long double>(\n",
+      "after": "        if (cache_inverse_primal) state.inverse_primal_diagonal[col] = 1.0L /\n            static_cast<long double>(values[static_cast<std::size_t>(state.primal_diagonal[col])]);\n        const long double divisor = std::sqrt(static_cast<long double>(\n"
+    },
+    {
+      "label": "commit_after_last_budget",
+      "before": "    state.valid = true;\n",
+      "after": "    state.inverse_primal_ready = cache_inverse_primal;\n    state.valid = true;\n"
+    },
+    {
+      "label": "reduced_rhs_cached_multiply",
+      "before": "    const long double value = static_cast<long double>(rhs[static_cast<std::size_t>(state.primal_coordinates[col])]) /\n        state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];",
+      "after": "    const long double value = state.inverse_primal_ready ?\n        static_cast<long double>(rhs[static_cast<std::size_t>(state.primal_coordinates[col])]) * state.inverse_primal_diagonal[col] :\n        static_cast<long double>(rhs[static_cast<std::size_t>(state.primal_coordinates[col])]) /\n            state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];"
+    },
+    {
+      "label": "double_recovery_cached_multiply",
+      "before": "\n    value /= state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];\n",
+      "after": "\n    if (state.inverse_primal_ready) value *= state.inverse_primal_diagonal[col];\n    else value /= state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];\n"
+    }
+  ],
+  "other_algorithm_sources_unchanged": 8,
+  "preserved_parent_test_functions": [
+    "require",
+    "same_non_timing",
+    "row",
+    "cleared_quality",
+    "legacy_bait",
+    "check_off_wrapper",
+    "mapping",
+    "check_not_reduced",
+    "check_zero_budget",
+    "check_quality_transaction",
+    "check_commit",
+    "check_mip_bypass",
+    "synthetic_child",
+    "check_presolve_status",
+    "check_entry_deadline",
+    "check_late_boundary",
+    "check_child_exception",
+    "prepare_projection",
+    "check_projection",
+    "check_projection_budget",
+    "check_projection_exception",
+    "check_old_incumbent_hook",
+    "check_reject_then_accept_hook",
+    "check_oracle_tls",
+    "check_owner_without_tail",
+    "check_native_replay",
+    "check_oracle_failure",
+    "check_real_core_oracle_failure",
+    "coupled_strict_log",
+    "coupled_explicit_return_log",
+    "check_coupled_mixed_equations",
+    "check_coupled_imperfect_constant",
+    "check_coupled_empty_blocks",
+    "check_coupled_real_mapping",
+    "check_coupled_scope_isolation",
+    "check_coupled_budget_partial",
+    "energy_near",
+    "check_energy_nominal_identity",
+    "check_energy_stored_singleton",
+    "check_energy_scope_budget",
+    "check_wide_physical_dense",
+    "check_wide_consumers",
+    "every_wide_boundary",
+    "check_wide_scope_budget",
+    "check_restart_real_hsd_contract",
+    "check_restart_disabled_mapping",
+    "check_restart_budget_prefix",
+    "check_initial_forcing_real_hsd",
+    "check_initial_forcing_strict_fallback",
+    "check_initial_forcing_delivery_budget",
+    "check_candidate_forcing_real_hsd",
+    "check_candidate_forcing_default_mapping",
+    "check_candidate_forcing_delivery_budget",
+    "check_forcing_weights_real_hsd",
+    "check_forcing_weights_default_mapping",
+    "check_forcing_weights_budget",
+    "check_warm_regularization_seed_scope",
+    "check_warm_regularization_real_factor",
+    "check_warm_regularization_hsd_budget",
+    "check_fma_production_binding",
+    "check_fma_real_hsd_mapping",
+    "check_fma_hsd_budget_prefix"
+  ],
+  "normal_public_header_unchanged": true,
+  "factor_bound_activation": true,
+  "reset_before_first_budget": true,
+  "publish_after_final_budget": true,
+  "original_matrix_assembly_and_callbacks_preserved": true,
+  "extended_recovery_preserved": true,
+  "lp_schema_changes": false
+}

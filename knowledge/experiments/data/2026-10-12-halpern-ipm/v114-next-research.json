@@ -1,0 +1,43 @@
+{
+  "version": 114,
+  "status": "下一轮研究假设，尚未实现或编译",
+  "direction": "CHOLMOD矩形转置结构缓存",
+  "evidence": {
+    "current_source_parent": 112,
+    "current_numerical_parent": 106,
+    "normal_source": "src/experimental/normal_cholesky.cpp",
+    "normal_source_sha256": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+    "previous_profile": "v112-analysis.json",
+    "profile_caveat": "先前cholmod_numeric占25.49%，包含AAT和真正分解算术，不能把该占比全部视为可省成本；不是本轮同期profile。",
+    "current_limitation": "对称输入已有固定转置缓存，矩形输入每次仍调用cholmod_l_factorize。"
+  },
+  "primary_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_factorize.c",
+      "observation": "锁定实现对本项目自然排列的矩形输入构造F=C转置，调用super_numeric后释放临时F。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Supernodal/cholmod_super_numeric.c",
+      "observation": "公开super_numeric接受已排列A及F，可复用符号或已有数值supernodal因子；非正定可能返回真，仍须检查status和minor。"
+    }
+  ],
+  "project_inference": "当前NATURAL、恒等内部排列、实Double、beta0和final_asis1条件下，可检验构造期缓存F的p/i/source映射，后续每次只复制本次已舍入值，再调用同一公开numeric内核。此方案是基于锁定源码的项目推断，尚未证明相同算术路径或端到端收益。",
+  "proposed_cpp_scope": "只改Normal的矩形因子适配及其真实C++组件；先固定入口激活语义，保持off/对称路径、求解和原完整验收。不同时混合RHS工作区、倒数、预算频率或排序优化。复用原17库，不再增加METIS或新依赖。",
+  "required_proofs": [
+    "缓存转置模式和顺序与库原实现一致，显式零和每次更新的已舍入double位不丢失",
+    "真实矩形完整系统、多RHS、D/R/G变化、重复factor与失败后恢复",
+    "supernodal接口的工作区、status、minor、finite_factor及末预算验收保持，失败不能solve",
+    "入口Scope、全部实际构造/factor/solve预算前缀和异常事务；不宣称native内部可抢占",
+    "同原共同精度和资源协议计入缓存构造、刷新、内存及释放，不能用局部微基准代替公开LP"
+  ],
+  "costs_and_risks": [
+    "只省重复计数、前缀、索引写入和临时分配释放；F的数值复制、AAT及真正分解仍支付",
+    "缓存估计约24q+8(m+1)字节，其中q为C非零存储项、m为C行数；这只是数组容量推导，不是RSS或完整峰值，构造期与Gram共存也须计入",
+    "直接低层API并不免除库的状态和内存错误语义，必须逐项核对旧wrapper做过的事情",
+    "结构复用符合通用方法与已知信息复用；额外存储、构造和刷新均不是免费计算"
+  ],
+  "new_code_changes": 0,
+  "new_public_lp_runs": 0,
+  "source_generation": false,
+  "goal_achieved": false
+}

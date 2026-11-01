@@ -1,0 +1,28 @@
+{
+  "version": 113,
+  "status": "下一轮待测前冻结，未实现或执行",
+  "source_parent_version": 112,
+  "numerical_algorithm_parent": 106,
+  "prototype_library_reuse": ".tools/v113-metis-prototype/build/libhighs_metis_prototype.a",
+  "basis": "uniform ND严格500通过但整体近父且仍慢HiGHS22.03%；同91输入/KKT维数的报告因子容量60降21升10同，90迭代次数同1增加；较小存储不充分保证更快",
+  "candidate": "AMD/ND构造期符号lnz比较，严格较小才选ND，tie保AMD；不以模型名/已知最优值/已测时间做路由，不新增手调权重",
+  "mechanism": "对同一原始upper Gram构造AMD/ND两排列，各用同一“物理重排+QDLDL_etree”私有helper返回ordered_matrix/inverse/lower_nonzeros；选择后move/swap复用原矩形映射/NATURAL/solve，不第三次etree。关闭/非AAT保父112完整路径",
+  "counts": "QDLDL返回ΣLnz且Lnz仅严格下三角，完整lnz=n+count，两候选维数同可直接比count；这不同于supernode的xsize或墙钟，最小lnz不保证最快",
+  "optional_exact_pruning": "本构造的原upper Gram含所有显式对角，任意symbolic L的非零至少为原nnz；若AMD已达n+countAMD==原upper.nnz，ND不能严格更小，tieAMD政策下可证明直接保AMD，省ND全成本。此下界推导须在下一测前设计明确冻结及验证，不当经验阈值",
+  "budget": "所有AMD/ND/图复制/第二symbolic/内存及析构成本计入原每问题预算；AMD超factor符号容量不能先抛以免拒绝可容纳ND，选中后按同16M核；两者都超才结构预算。etree错误/预算/分配/METIS错误不得变成免费AMD回退；保selected实际CHOLMOD xsize检查，失败不暗试另一候选",
+  "validation": "复用已测24C fwrapv/idx32库，新增候选选择/相等tie/零fill下界/实际预算前缀与完整原KKT测试，再原固定条件500；不从当前插桩统计预称会打平",
+  "primary_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/osqp/qdldl/v0.1.9/include/qdldl.h",
+      "observation": "etree不malloc，使用3个n长workspace，仅结构，逐列严格下三角计数"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_analyze.c",
+      "observation": "只在lnz严格更小时更新best，前候选赢平局；不是flops或wall最小保证"
+    }
+  ],
+  "current_restoration_file": "v113-canonical-restoration.json",
+  "new_cpp_implementation": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

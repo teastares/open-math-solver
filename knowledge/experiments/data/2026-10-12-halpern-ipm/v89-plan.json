@@ -1,0 +1,213 @@
+{
+  "method": "homogeneous",
+  "time_limit": 5,
+  "wall_timeout": 35,
+  "threads": 1,
+  "seed": 0,
+  "max_iterations": 200,
+  "scaling_passes": 5,
+  "shared_ipm": {
+    "singleton-elimination": "on",
+    "dynamic-regularization": "off",
+    "kkt-equilibration": "on",
+    "fixed-variable-elimination": "on",
+    "singleton-presolve": "off",
+    "presolve-fixed-elimination": "off",
+    "krylov-history-size": "0",
+    "central-corrections": "0",
+    "inexact-prefilter": "off"
+  },
+  "expected_report_options": {
+    "backend": "ipm",
+    "time_limit": 5,
+    "threads": 1,
+    "seed": 0,
+    "mip_relative_gap": 0.0001,
+    "pdlp": null,
+    "ipm": {
+      "method": "homogeneous",
+      "max_iterations": 200,
+      "scaling_passes": 5,
+      "objective_scaling": false,
+      "eliminate_singletons": true,
+      "dynamic_regularization": false,
+      "equilibrate_kkt": true,
+      "linear_accuracy": "homogeneous_repair",
+      "central_corrections": 0,
+      "direction_retries": 0,
+      "krylov_history_size": 0,
+      "linear_solver": "normal_cholmod",
+      "eliminate_fixed_variables": true,
+      "presolve_singleton_rows": false,
+      "eliminate_presolved_fixed_variables": false,
+      "inexact_prefilter": false
+    },
+    "highs": null,
+    "tolerances": {
+      "feasibility_absolute": 1e-07,
+      "feasibility_relative": 1e-09,
+      "integrality": 1e-06,
+      "objective_absolute": 1e-07,
+      "objective_relative": 1e-09
+    }
+  },
+  "candidate_accuracy": "homogeneous_repair",
+  "reference_accuracy": "homogeneous_repair",
+  "compatibility_accuracy": "homogeneous_repair",
+  "candidate_linear_solver": "normal_cholmod_aat",
+  "reference_linear_solver": "normal_cholmod_aat",
+  "compatibility_linear_solver": "normal_cholmod_aat",
+  "primary_linear_solver": "normal_cholmod_aat",
+  "candidate_objective_scaling": "off",
+  "reference_objective_scaling": "off",
+  "candidate_backend_version": "ipm-cpu-0.53.0",
+  "reference_backend_version": "ipm-cpu-0.53.0",
+  "live_highs_sources": {
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\Highs.h": "0d42bac7e810d76d64ba742503bc20f254087266a9cadc564d01834c4e6f981c",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\lp_data\\Highs.cpp": "1c3fb263a08ccd3f22094a33a6d4f945139f8939e83789096da64a4e568d928c",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\lp_data\\HighsOptions.h": "ed35e76f39dfcc401fd523cb2b5961a0f04ec31f10fee8882b1745d40de1a260",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\lp_data\\HConst.h": "cb478020958392d70f485018aa725cadf683e480f52fdbef2fad693faa876b2c",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\presolve\\HPresolve.cpp": "2e1439b6bc883dbb4c983724c310945a66ec47ec348c217ec4ed92b15a0e5d79",
+    "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\highs\\presolve\\HighsPostsolveStack.h": "4e3c1ef5c2d264c7efd20dbf5045535adbb07206b8a69f20adeb65f99a153bc8"
+  },
+  "native_options": {
+    "threads": 1,
+    "random_seed": 0,
+    "presolve": "choose",
+    "lp_presolve_requires_basis_postsolve": true,
+    "allow_unbounded_or_infeasible": false,
+    "primal_feasibility_tolerance": 1e-07,
+    "dual_feasibility_tolerance": 1e-07,
+    "ipm_optimality_tolerance": 1e-08
+  },
+  "max_projection_trials_per_point": 1,
+  "max_mapped_original_assessments_per_point": 2,
+  "max_original_oracle_calls": 204,
+  "max_original_oracle_assessments": 408,
+  "schema": 1,
+  "round": 86,
+  "version": "v89",
+  "candidate_version": 89,
+  "parent_version": 66,
+  "reference_version": 88,
+  "created_at_utc": "2026-10-25T23:59:02.540756+00:00",
+  "diagnostic_only": true,
+  "kind": "last_completed_current_assess_quality_diagnostic",
+  "production_changes": false,
+  "hypothesis": "复用本次assess已算的质量，区分最后完整当前评估与保存的旧incumbent，定位约化KKT失败时最后完整点究竟未过哪种条件；不改变求解决策。",
+  "parent_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "parent_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "parent_source_sha256": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+  "baseline_verification_file": "v89-baseline-check.json",
+  "baseline_verification_sha256": "7bbd7651bfd39420689deea097ed45f3d511ea242342a7c2ddd0c61cb34a1a51",
+  "evidence_file": "v88-closeout.json",
+  "evidence_sha256": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b",
+  "reference_manifest": "D:\\Documents\\codes\\solver\\.tools\\v88-presolve\\build-manifest.json",
+  "reference_manifest_sha256": "8d4cd95a993943b609701a862dff189ce0d15bebb49b29c0b32bde38d53c3bc4",
+  "reference_executable": "D:\\Documents\\codes\\solver\\.tools\\v88-presolve\\solver-presolve.exe",
+  "reference_executable_sha256": "785e5ddd20ed928069a937076847f43fe6e03003827b32305cd5d227f3775d88",
+  "reference_runner_file": "v88-run.py",
+  "reference_runner_sha256": "6080b97380f79d64b3aafd79a265554c29910fbbd767477ed0ee5b0cacfc2d04",
+  "parent_instrumentation_file": "v88-ipm-instrumentation.py",
+  "parent_instrumentation_sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+  "diagnostic_environment": "SOLVER_V89_PRESOLVE",
+  "trace_environment": "SOLVER_V89_ASSESS_TRACE",
+  "diagnostic_marker": "V89_PRESOLVE",
+  "reference_environment": "SOLVER_V88_PRESOLVE",
+  "reference_marker": "V88_PRESOLVE",
+  "work_directory": ".tools/v89-presolve",
+  "models": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+      "hash_error": null
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+      "hash_error": null
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "sha256": "21f92f6a32f71ec72c8f693d6685e4a91ecb2debec732ec61302bc866f370865",
+      "hash_error": null
+    }
+  ],
+  "repeats": 2,
+  "variants": [
+    "frozen_v88",
+    "diagnostic_off",
+    "diagnostic_on"
+  ],
+  "stage_order": [
+    "diagnostic"
+  ],
+  "maximum_solver_runs": 18,
+  "no_model_specific_routing": true,
+  "new_report_fields": [],
+  "compatibility_excluded_report_fields": [
+    "timings"
+  ],
+  "maximum_trace_assessments": 204,
+  "changed_source_files": [
+    "独立生成ipm-presolve.cpp与v89-presolve-state.hpp，仅增加assess入口/质量完成的标量采集；生产不变"
+  ],
+  "new_code_and_plan_files": [
+    "v89-plan.json",
+    "v89-baseline-check.json",
+    "v89-ipm-instrumentation.py",
+    "v89-ipm-self-test.cpp",
+    "v89-build.py",
+    "v89-run.py"
+  ],
+  "capture_policy": [
+    "主pipeline对三路均开启预处理/原q停止；新环境变量只控制最后assess质量采集，诊断off不是关闭原预处理。",
+    "顶层原21个账本保留，增加assess_trace五字段：enabled/started/completed/last_attempt/last_complete；attempt有sequence/iteration，complete另有原12质量。",
+    "入口登记真正进入assess的调用；完整verify返回且原verification_seconds累加后、旧incumbent move与oracle咨询前复制已算标量。无分配/noexcept、不复制x/y、不增加verify/SpMV/恢复/新读钟。",
+    "last_complete指最后已完成该次verify的点，不是最优incumbent，不保证对应末次已发布HSD点；不追踪完整点generation、没有checkpoint、没有原坐标恢复或原最优证明。",
+    "Reduced诊断质量属于约化core.model，NotReduced或原core路线属于原模型；Empty未运行core无assess。本轮用相同规则，不按模型名或已知目标选择算法。",
+    "verify中途异常只更新last_attempt，不覆盖last_complete；质量完成后oracle再失败仍保完成的质量。started/completed独立计数，不能把序号误作累计完成数。",
+    "采集关闭使用nullptr TLS隔离并恢复先前指针，零预算/非法输入沿父行为。复制/记录/输出仍进入原5秒/35秒，不称免费计算。"
+  ],
+  "comparison_policy": [
+    "每模型每重复三路串行轮转，共18；两次比较frozen→off及off→on共12对子。",
+    "完整公共报告只排timings；旧oracle账本只规范版本、去全部timings子对象和oracle.total_seconds，保工作/预算/恢复/质量/选择与所有其余值。新assess_trace单独严核。",
+    "非法退出/格式/计数先拒；预算分叉单列，不能当作兼容。全部原件保留，不重跑成功阶段，不生成公开性能胜利或完整集新覆盖结论。"
+  ],
+  "source_references": [
+    "https://raw.githubusercontent.com/oxfordcontrol/Clarabel.rs/v0.11.1/src/solver/implementations/default/info.rs",
+    "https://raw.githubusercontent.com/oxfordcontrol/Clarabel.rs/v0.11.1/src/solver/core/solver.rs",
+    "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/iterate.cc"
+  ],
+  "local_references": [
+    {
+      "file": "src/ipm.cpp",
+      "sha256": "be24effdff79d1dd258138343b699ee6f1a8d8281883d189306967308aa9234f"
+    },
+    {
+      "file": "include/solver/lp_optimality.hpp",
+      "sha256": "c67cf886832a7948851ff8b7acdabfb4ff3f7756b9b89d299e49cbf1c2c55212"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-ipm-instrumentation.py",
+      "sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-closeout.json",
+      "sha256": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b"
+    },
+    {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-closeout.json",
+      "sha256": "3627f27712e22ba66bd798ac445dd1e2aa687208736852a6e9fad9aac8dc411b"
+    }
+  ],
+  "risk_contract": [
+    "这是诊断而非修复，不能以18条报告兼容替代HiGHS公开LP目标。",
+    "原5秒/35秒/200步/共同精度不变；不放宽质量、加预算、隐藏失败或按实例选择流程。",
+    "最后完整assess质量不是末点或原模型质量；额外点存储/恢复需下一轮另定证据，不能从摘要重建向量。",
+    "生产保持v66，父v88为独立实验程序，不能把编译祖先v66与本轮reference v88混为一谈。"
+  ]
+}

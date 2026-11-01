@@ -1,0 +1,688 @@
+{
+  "passed": true,
+  "version": 119,
+  "round": 116,
+  "scope": "独立C++暖基PhaseII组件，不是公开LP速度结果",
+  "plan_sha256": "afca3656ed3ce73c22d2a2e071adea3356da2aab844caba3096ed8e209bd9a85",
+  "identity_sha256": "7884f8ae77910afeaa3c9ce1d283138cac6b0071ecbe36c9048ece88ffec7a93",
+  "build_manifest_sha256": "5d9b409699999bc9fa2f66a7268489737a99a19503193aeb5bb449fa36f005f6",
+  "compiled_units": 1,
+  "executables": 1,
+  "cases": 16,
+  "groups": {
+    "transaction": 6,
+    "mapping": 5,
+    "exception": 4,
+    "budget": 1
+  },
+  "summary": {
+    "kernel_calls": 97,
+    "recorded_runs": 97,
+    "native_crossover_calls": 2,
+    "actual_pivots": 192,
+    "actual_bound_flips": 3,
+    "basiclu_updates_completed": 194,
+    "basiclu_factors_completed": 77,
+    "budget_cutoffs": 53
+  },
+  "status_counts": {
+    "accepted": 24,
+    "no_finite_step": 1,
+    "invalid_input": 12,
+    "singular_basis": 1,
+    "primal_infeasible": 2,
+    "unsupported_empty": 1,
+    "time_limit": 54,
+    "step_limit": 2
+  },
+  "budget_stages": [
+    "btran",
+    "cleanup",
+    "factor",
+    "ftran",
+    "initialize",
+    "pricing",
+    "projection",
+    "ratio",
+    "rebuild",
+    "solve_n",
+    "solve_t",
+    "update",
+    "validation",
+    "verification"
+  ],
+  "cap64": {
+    "case_id": "phase2_budget_and_step_cap",
+    "label": "固定64步上限",
+    "status": "step_limit",
+    "message": "暖基原型已用完pivot和翻界步数预算",
+    "has_raw_quality": false,
+    "final_quality_optimal": false,
+    "stats": {
+      "stage": "pricing",
+      "init": {
+        "started": 1,
+        "completed": 1,
+        "rc": 0,
+        "seconds": 4.9E-06
+      },
+      "factor": {
+        "started": 1,
+        "completed": 1,
+        "rc": 0,
+        "seconds": 6E-06
+      },
+      "solve_n": {
+        "started": 65,
+        "completed": 65,
+        "rc": 0,
+        "seconds": 2.0400000000000025E-05
+      },
+      "solve_t": {
+        "started": 65,
+        "completed": 65,
+        "rc": 0,
+        "seconds": 1.3199999999999989E-05
+      },
+      "ftran": {
+        "started": 64,
+        "completed": 64,
+        "rc": 0,
+        "seconds": 9.399999999999996E-06
+      },
+      "btran": {
+        "started": 64,
+        "completed": 64,
+        "rc": 0,
+        "seconds": 8.199999999999994E-06
+      },
+      "update": {
+        "started": 64,
+        "completed": 64,
+        "rc": 0,
+        "seconds": 9.9E-06
+      },
+      "steps_started": 64,
+      "steps_completed": 64,
+      "pivots": 64,
+      "bound_flips": 0,
+      "zero_steps": 0,
+      "refactors": 0,
+      "rebuild_started": 65,
+      "rebuild_completed": 65,
+      "pricing_passes": 65,
+      "work_items": 85148,
+      "last_entering": 2,
+      "last_leaving": 3,
+      "last_theta": 1,
+      "last_pivot": 1,
+      "initial_checks": {
+        "valid": true,
+        "primal_feasible": true,
+        "basis_dual_feasible": true,
+        "equation_residual": 0,
+        "bound_violation": 0,
+        "basic_dual_residual": 0,
+        "equation_ratio": 0,
+        "bound_ratio": 0,
+        "basic_dual_ratio": 0
+      },
+      "last_checks": {
+        "valid": true,
+        "primal_feasible": true,
+        "basis_dual_feasible": true,
+        "equation_residual": 0,
+        "bound_violation": 0,
+        "basic_dual_residual": 0,
+        "equation_ratio": 0,
+        "bound_ratio": 0,
+        "basic_dual_ratio": 0
+      },
+      "verification_started": 0,
+      "verification_completed": 0,
+      "pricing_seconds": 2.4699999999999994E-05,
+      "rebuild_seconds": 0.0005024000000000004,
+      "verification_seconds": 0,
+      "total_seconds": 0.0006088,
+      "projection": {
+        "enabled": false,
+        "scan_started": 0,
+        "scan_completed": 0,
+        "scan_items": 0,
+        "eligible_rows": 0,
+        "project_started": 0,
+        "project_completed": 0,
+        "project_rc": null,
+        "changed_rows": 0,
+        "max_abs_change": 0,
+        "seconds": 0
+      }
+    }
+  },
+  "cap65": {
+    "case_id": "phase2_budget_and_step_cap",
+    "label": "显式65步允许完成",
+    "status": "accepted",
+    "message": "自主暖基候选通过原模型完整验收",
+    "has_raw_quality": false,
+    "final_quality_optimal": true,
+    "stats": {
+      "stage": "finished",
+      "init": {
+        "started": 1,
+        "completed": 1,
+        "rc": 0,
+        "seconds": 4E-07
+      },
+      "factor": {
+        "started": 1,
+        "completed": 1,
+        "rc": 0,
+        "seconds": 3.7E-06
+      },
+      "solve_n": {
+        "started": 66,
+        "completed": 66,
+        "rc": 0,
+        "seconds": 1.6500000000000005E-05
+      },
+      "solve_t": {
+        "started": 66,
+        "completed": 66,
+        "rc": 0,
+        "seconds": 1.389999999999999E-05
+      },
+      "ftran": {
+        "started": 65,
+        "completed": 65,
+        "rc": 0,
+        "seconds": 1.0399999999999997E-05
+      },
+      "btran": {
+        "started": 65,
+        "completed": 65,
+        "rc": 0,
+        "seconds": 8.499999999999995E-06
+      },
+      "update": {
+        "started": 65,
+        "completed": 65,
+        "rc": 0,
+        "seconds": 9.699999999999997E-06
+      },
+      "steps_started": 65,
+      "steps_completed": 65,
+      "pivots": 65,
+      "bound_flips": 0,
+      "zero_steps": 0,
+      "refactors": 0,
+      "rebuild_started": 66,
+      "rebuild_completed": 66,
+      "pricing_passes": 66,
+      "work_items": 86645,
+      "last_entering": 0,
+      "last_leaving": 1,
+      "last_theta": 1,
+      "last_pivot": 1,
+      "initial_checks": {
+        "valid": true,
+        "primal_feasible": true,
+        "basis_dual_feasible": true,
+        "equation_residual": 0,
+        "bound_violation": 0,
+        "basic_dual_residual": 0,
+        "equation_ratio": 0,
+        "bound_ratio": 0,
+        "basic_dual_ratio": 0
+      },
+      "last_checks": {
+        "valid": true,
+        "primal_feasible": true,
+        "basis_dual_feasible": true,
+        "equation_residual": 0,
+        "bound_violation": 0,
+        "basic_dual_residual": 0,
+        "equation_ratio": 0,
+        "bound_ratio": 0,
+        "basic_dual_ratio": 0
+      },
+      "verification_started": 1,
+      "verification_completed": 1,
+      "pricing_seconds": 2.559999999999999E-05,
+      "rebuild_seconds": 0.0005068000000000004,
+      "verification_seconds": 7.8E-06,
+      "total_seconds": 0.0006133,
+      "projection": {
+        "enabled": true,
+        "scan_started": 0,
+        "scan_completed": 0,
+        "scan_items": 0,
+        "eligible_rows": 0,
+        "project_started": 0,
+        "project_completed": 0,
+        "project_rc": null,
+        "changed_rows": 0,
+        "max_abs_change": 0,
+        "seconds": 0
+      }
+    }
+  },
+  "numerical_refactor": {
+    "case_id": "phase2_multiple_pivots",
+    "label": "一行两次换基之间真实再分解",
+    "status": "accepted",
+    "message": "自主暖基候选通过原模型完整验收",
+    "has_raw_quality": false,
+    "final_quality_optimal": true,
+    "stats": {
+      "stage": "finished",
+      "init": {
+        "started": 1,
+        "completed": 1,
+        "rc": 0,
+        "seconds": 4E-07
+      },
+      "factor": {
+        "started": 2,
+        "completed": 2,
+        "rc": 0,
+        "seconds": 1.2E-06
+      },
+      "solve_n": {
+        "started": 4,
+        "completed": 4,
+        "rc": 0,
+        "seconds": 7E-07
+      },
+      "solve_t": {
+        "started": 4,
+        "completed": 4,
+        "rc": 0,
+        "seconds": 5E-07
+      },
+      "ftran": {
+        "started": 2,
+        "completed": 2,
+        "rc": 0,
+        "seconds": 3E-07
+      },
+      "btran": {
+        "started": 2,
+        "completed": 2,
+        "rc": 0,
+        "seconds": 2E-07
+      },
+      "update": {
+        "started": 2,
+        "completed": 2,
+        "rc": 0,
+        "seconds": 3E-07
+      },
+      "steps_started": 2,
+      "steps_completed": 2,
+      "pivots": 2,
+      "bound_flips": 0,
+      "zero_steps": 0,
+      "refactors": 1,
+      "rebuild_started": 4,
+      "rebuild_completed": 4,
+      "pricing_passes": 4,
+      "work_items": 119,
+      "last_entering": 1,
+      "last_leaving": 0,
+      "last_theta": 1,
+      "last_pivot": 0.01,
+      "initial_checks": {
+        "valid": true,
+        "primal_feasible": true,
+        "basis_dual_feasible": true,
+        "equation_residual": 0,
+        "bound_violation": 0,
+        "basic_dual_residual": 0,
+        "equation_ratio": 0,
+        "bound_ratio": 0,
+        "basic_dual_ratio": 0
+      },
+      "last_checks": {
+        "valid": true,
+        "primal_feasible": true,
+        "basis_dual_feasible": true,
+        "equation_residual": 0,
+        "bound_violation": 0,
+        "basic_dual_residual": 0,
+        "equation_ratio": 0,
+        "bound_ratio": 0,
+        "basic_dual_ratio": 0
+      },
+      "verification_started": 1,
+      "verification_completed": 1,
+      "pricing_seconds": 4E-07,
+      "rebuild_seconds": 2.8E-06,
+      "verification_seconds": 5E-07,
+      "total_seconds": 8.5E-06,
+      "projection": {
+        "enabled": true,
+        "scan_started": 0,
+        "scan_completed": 0,
+        "scan_items": 0,
+        "eligible_rows": 0,
+        "project_started": 0,
+        "project_completed": 0,
+        "project_rc": null,
+        "changed_rows": 0,
+        "max_abs_change": 0,
+        "seconds": 0
+      }
+    }
+  },
+  "native_bridges": [
+    {
+      "label": "仅上界原生恢复",
+      "load_rc": 0,
+      "crossover_rc": 0,
+      "get_rc": 0,
+      "basis_rc": 0,
+      "status_ipm": 0,
+      "status_crossover": 1,
+      "iter": 0,
+      "kktiter1": 0,
+      "kktiter2": 0,
+      "updates_ipm": 0,
+      "updates_start": 0,
+      "updates_crossover": 0,
+      "seconds": 0.0001657,
+      "variable_status": [
+        0,
+        -2
+      ],
+      "row_status": [
+        -1
+      ]
+    },
+    {
+      "label": "两自由列原生基恢复",
+      "load_rc": 0,
+      "crossover_rc": 0,
+      "get_rc": 0,
+      "basis_rc": 0,
+      "status_ipm": 0,
+      "status_crossover": 1,
+      "iter": 0,
+      "kktiter1": 0,
+      "kktiter2": 0,
+      "updates_ipm": 0,
+      "updates_start": 0,
+      "updates_crossover": 0,
+      "seconds": 5.75E-05,
+      "variable_status": [
+        0,
+        0
+      ],
+      "row_status": [
+        -1,
+        -1
+      ]
+    }
+  ],
+  "original_model_infeasible_basis": [
+    {
+      "case_id": "phase2_infeasible_start",
+      "label": "原LP可行而暖基重建x1负一",
+      "status": "primal_infeasible",
+      "message": "给定或更新基重建后原始不可行，未执行Phase I",
+      "has_raw_quality": false,
+      "final_quality_optimal": false,
+      "stats": {
+        "stage": "rebuild",
+        "init": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 4E-07
+        },
+        "factor": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 7E-07
+        },
+        "solve_n": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 1E-07
+        },
+        "solve_t": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 1E-07
+        },
+        "ftran": {
+          "started": 0,
+          "completed": 0,
+          "rc": null,
+          "seconds": 0
+        },
+        "btran": {
+          "started": 0,
+          "completed": 0,
+          "rc": null,
+          "seconds": 0
+        },
+        "update": {
+          "started": 0,
+          "completed": 0,
+          "rc": null,
+          "seconds": 0
+        },
+        "steps_started": 0,
+        "steps_completed": 0,
+        "pivots": 0,
+        "bound_flips": 0,
+        "zero_steps": 0,
+        "refactors": 0,
+        "rebuild_started": 1,
+        "rebuild_completed": 1,
+        "pricing_passes": 0,
+        "work_items": 25,
+        "last_entering": null,
+        "last_leaving": null,
+        "last_theta": null,
+        "last_pivot": null,
+        "initial_checks": {
+          "valid": true,
+          "primal_feasible": false,
+          "basis_dual_feasible": true,
+          "equation_residual": 0,
+          "bound_violation": 1,
+          "basic_dual_residual": 0,
+          "equation_ratio": 0,
+          "bound_ratio": 9900990.099009901,
+          "basic_dual_ratio": 0
+        },
+        "last_checks": {
+          "valid": true,
+          "primal_feasible": false,
+          "basis_dual_feasible": true,
+          "equation_residual": 0,
+          "bound_violation": 1,
+          "basic_dual_residual": 0,
+          "equation_ratio": 0,
+          "bound_ratio": 9900990.099009901,
+          "basic_dual_ratio": 0
+        },
+        "verification_started": 0,
+        "verification_completed": 0,
+        "pricing_seconds": 0,
+        "rebuild_seconds": 6.4E-06,
+        "verification_seconds": 0,
+        "total_seconds": 1.03E-05,
+        "projection": {
+          "enabled": false,
+          "scan_started": 0,
+          "scan_completed": 0,
+          "scan_items": 0,
+          "eligible_rows": 0,
+          "project_started": 0,
+          "project_completed": 0,
+          "project_rc": null,
+          "changed_rows": 0,
+          "max_abs_change": 0,
+          "seconds": 0
+        }
+      }
+    },
+    {
+      "case_id": "phase2_infeasible_start",
+      "label": "固定基本变量重建值高于上界",
+      "status": "primal_infeasible",
+      "message": "给定或更新基重建后原始不可行，未执行Phase I",
+      "has_raw_quality": false,
+      "final_quality_optimal": false,
+      "stats": {
+        "stage": "rebuild",
+        "init": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 4E-07
+        },
+        "factor": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 5E-07
+        },
+        "solve_n": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 1E-07
+        },
+        "solve_t": {
+          "started": 1,
+          "completed": 1,
+          "rc": 0,
+          "seconds": 2E-07
+        },
+        "ftran": {
+          "started": 0,
+          "completed": 0,
+          "rc": null,
+          "seconds": 0
+        },
+        "btran": {
+          "started": 0,
+          "completed": 0,
+          "rc": null,
+          "seconds": 0
+        },
+        "update": {
+          "started": 0,
+          "completed": 0,
+          "rc": null,
+          "seconds": 0
+        },
+        "steps_started": 0,
+        "steps_completed": 0,
+        "pivots": 0,
+        "bound_flips": 0,
+        "zero_steps": 0,
+        "refactors": 0,
+        "rebuild_started": 1,
+        "rebuild_completed": 1,
+        "pricing_passes": 0,
+        "work_items": 25,
+        "last_entering": null,
+        "last_leaving": null,
+        "last_theta": null,
+        "last_pivot": null,
+        "initial_checks": {
+          "valid": true,
+          "primal_feasible": false,
+          "basis_dual_feasible": true,
+          "equation_residual": 0,
+          "bound_violation": 1,
+          "basic_dual_residual": 0,
+          "equation_ratio": 0,
+          "bound_ratio": 9708737.86407767,
+          "basic_dual_ratio": 0
+        },
+        "last_checks": {
+          "valid": true,
+          "primal_feasible": false,
+          "basis_dual_feasible": true,
+          "equation_residual": 0,
+          "bound_violation": 1,
+          "basic_dual_residual": 0,
+          "equation_ratio": 0,
+          "bound_ratio": 9708737.86407767,
+          "basic_dual_ratio": 0
+        },
+        "verification_started": 0,
+        "verification_completed": 0,
+        "pricing_seconds": 0,
+        "rebuild_seconds": 3.2E-06,
+        "verification_seconds": 0,
+        "total_seconds": 6.5E-06,
+        "projection": {
+          "enabled": false,
+          "scan_started": 0,
+          "scan_completed": 0,
+          "scan_items": 0,
+          "eligible_rows": 0,
+          "project_started": 0,
+          "project_completed": 0,
+          "project_rc": null,
+          "changed_rows": 0,
+          "max_abs_change": 0,
+          "seconds": 0
+        }
+      }
+    }
+  ],
+  "actual_inputs": 5787,
+  "changed_inputs": [],
+  "actual_dependencies": 1058,
+  "experimental_dependency_subset": 3,
+  "source_snapshots": 16,
+  "canonical_sources_unchanged": 14,
+  "parent_protected_unchanged": 1563,
+  "original_link_length": 37,
+  "only_link_replacement_positions": [
+    4,
+    6
+  ],
+  "retained_link_inputs": 17,
+  "source_boundary_audit": "两份own源码未调用Highs::run、IPX::Solve或HEkkSolve；仅两组测试明确调用native crossover。静态源码审计不是全库runtime hook。",
+  "compiler_warning": "冻结IPX model.h的const返回值qualifier警告1条，无own源编译错误；不修改外部源码",
+  "actual_calls": [
+    {
+      "rc": 0,
+      "name": "compile",
+      "seconds": 3.2719526,
+      "raw": ".tools/v119-warm-simplex-build/self_test_compile-raw.json"
+    },
+    {
+      "rc": 0,
+      "name": "link",
+      "seconds": 0.2001699,
+      "raw": ".tools/v119-warm-simplex-build/link-raw.json"
+    },
+    {
+      "rc": 0,
+      "name": "test",
+      "seconds": 0.0550337,
+      "raw": ".tools/v119-warm-simplex-build/main-run.json"
+    }
+  ],
+  "important_accounting": "194个update完成与192个已提交pivot不同，两个预算中断发生在真实update返回后、逻辑提交前；整次清候选，保留真实前缀。统计含53次中断实验，不能当单次求解成本。",
+  "losses": "未做PhaseI、抗循环及Harris两遍比值；全扫描/每步重解成本未在真实LP评估；初基不可行只拒绝，不能修复118全部剩余点。",
+  "next": "保持此内核为独立算法组件；下一轮在同一native GetBasic调用导出完整基/结构seed，按原shared deadline和新增身份/验收账本集成，再走原500 gate。",
+  "production_changes": false,
+  "source_generation": false,
+  "new_python_tools": 0,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

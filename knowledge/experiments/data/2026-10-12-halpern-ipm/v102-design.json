@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "round": 99,
+  "candidate_version": 102,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T16:20:03.774316+00:00",
+  "previous_goal_turn": "progress",
+  "new_algorithm_round": true,
+  "production_changes": false,
+  "hypothesis": "在成功AAT因子内缓存LD primal逆对角，同因子多RHS用乘法替代重复对角除法；直接维护C++",
+  "algorithm_parent_version": 101,
+  "algorithm_parent_evidence_file": "v101-closeout.json",
+  "algorithm_parent_evidence_sha256": "93ed0559fc4a9f76a85e2a039561cda443656d6718b6c809eaefbf707a254809",
+  "source_parent_identity_file": ".tools/v101-fma/identity.json",
+  "source_parent_identity_sha256": "716cd0953f354d4ffa3ea1c7e6b4dea520fbe6848fd203251cfb91e33e5afcbc",
+  "gap_analysis_file": "v101-gap-analysis.json",
+  "gap_analysis_sha256": "ba8bd72a368c43c5632611a64db8ce7d5d92c23be696b57238cc1bc7036a1eab",
+  "protocol_file": "v100-plan.json",
+  "protocol_sha256": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+  "normal_compile_template": {
+    "file": ".tools/v99-profile/build-manifest.json",
+    "sha256": "9952b77653065cfe5ac9a181f8f11dc7b6af7c8b6ce39c7fc44d7b21765d4077",
+    "command_key": [
+      "commands",
+      "original_compile",
+      "normal"
+    ]
+  },
+  "implementation": {
+    "source": "src/experimental/normal_cholesky.cpp",
+    "abi": "原NormalCholesky PImpl公共声明不改",
+    "state": "vector<long double> inverse_primal_diagonal 与bool inverse_primal_ready；只清逻辑发布态，保容量且发布前覆盖所有列",
+    "activation": "factor时 existing coupled_state::enabled() && rectangular && dual非空 && bounded_gram_arithmetic；不按模型名或solve时TLS重新选择",
+    "prepare": "原AAT每列原预算正常返回后，对已验证原double正D计算一次LD 1/D；不混入1/sqrt(D)或改矩阵缩放",
+    "commit": "factor入口valid=false并ready=false；原numeric成功和末原budget正常返回后才发布ready及valid；失败/异常/预算不能读旧缓存",
+    "solve": "仅RHS约化和普通double恢复两处除法在published ready时改为LD乘法；其它分支、稀疏累加顺序、有限/可表示检查、回调和整RHS提交保持",
+    "fallback": "off、非矩形、空dual、窄范围平台保原除法；不改变extended/refined恢复、原D存储或原矩阵",
+    "cost": "每活动factor每primal列额外一次LD除法与一个LD槽；同factor R个RHS两处由2R次除法改成2R乘法，缓存/分配/未成功factor成本全部计时"
+  },
+  "precision": {
+    "inverse_range": "binary64有限正D的倒数约2^[-1024,1074]，以已有宽指数范围保护；完整恢复乘积仍保有限/可表示验收",
+    "rounding": "乘roundLD(1/D)不同于直接LD除法，可能改变相消和double舍入边界；最终原LP精度/strict/forcing验收不放宽"
+  },
+  "required_normal_ipm_cases": {
+    "normal_inverse_multi_rhs": "transaction",
+    "normal_inverse_refactor": "mapping",
+    "normal_inverse_factor_failure": "transaction",
+    "normal_inverse_budget_prefix": "budget",
+    "normal_inverse_scope_and_fallback": "mapping",
+    "normal_inverse_extreme_recovery": "transaction"
+  },
+  "component_cases": {
+    "ipm": 94,
+    "coupled": 51
+  },
+  "parent_component_cases": {
+    "ipm": 88,
+    "coupled": 51
+  },
+  "expected_math_and_build": {
+    "source_count": 10,
+    "compiled_units": 4,
+    "dependency_files": 4,
+    "executables": 3
+  },
+  "isolation": "只在solver/ipmself原normal archive位置用normal.obj替换，原regularized/IPM对象单次及其余库原序保，coupledself不加normal；生产95/17不写",
+  "verification": {
+    "stage_order": [
+      "compatibility-development",
+      "compatibility-probe",
+      "development",
+      "probe",
+      "netlib",
+      "highs"
+    ],
+    "maximum_solver_runs": 500,
+    "conditional_stop_runs": 136,
+    "time_limit": 5,
+    "wall_timeout": 35,
+    "threads": 1,
+    "seed": 0,
+    "max_iterations": 200,
+    "scaling_passes": 5,
+    "compatibility_excluded_report_fields": [
+      "timings"
+    ],
+    "gate": {
+      "compatibility": "17非预算对子完整公共report相等，只排timings，冻结v66/AAT对候选关闭",
+      "coverage": "开发及探针逐例通过次数不下降",
+      "performance": "开发惩罚数值SGM10降低且墙钟不升，或探针新增通过",
+      "full": "139组件及34兼容、102初始性能完成；原gate true才扩182netlib及182同期HiGHS，false止136",
+      "implementation": "v66-run.py冻结base.gate_decision，数值公式及shift10、5/35失败罚分保持"
+    }
+  },
+  "evidence_interpretation": "v99旧normal_solve独占约11.1%、rectangular_assembly约2.5%，是方向证据而非新版本时间占比或收益保证；K0仍可有多次normal回代",
+  "considered_not_implemented": [
+    "AAT列内1/sqrt(D)复用",
+    "normal工作区复用",
+    "预算批量",
+    "dense AAT新路由",
+    "MGS范数倒数变换"
+  ],
+  "research": [
+    {
+      "source": "HiGHS/IPX1.15.1 KKTSolverDiag",
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/kkt_solver_diag.cc",
+      "observation": "factor形成W=1/g，RHS和恢复乘用W；不同系统/精度/退化规则，未照搬其数值保证"
+    },
+    {
+      "source": "QDLDL0.1.8",
+      "url": "https://raw.githubusercontent.com/osqp/qdldl/v0.1.8/src/qdldl.c",
+      "observation": "factor保存Dinv、solve复用，但属于LDL因子对角而不是当前原primal D，只作算术组织素材"
+    }
+  ],
+  "historical_scope": "v56只做显式Gram b/D商外提；v66引入AAT；未将旧优化重复当新成果",
+  "no_model_specific_routing": true,
+  "runtime_schema": "V100原三marker/原schema3不扩，保v101 FMA路径"
+}

@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T17:35:35.957245+00:00",
+  "after_primary_closeout": true,
+  "public_lp_runs": 0,
+  "compilations": 0,
+  "component_runs": 0,
+  "reason": "结构切换没有改善整体目标，fit2p新增106次Krylov且无覆盖增益；不采用v103为下一轮父，精确恢复已验证父v102。",
+  "closeout_sha256": "27a93ddf50798f69a5b39130bed73f882973047f4c9c42493b43d523284de018",
+  "restored_files": {
+    "tests/experimental/ipm_self_test.cpp": {
+      "trial_sha256": "559ec8aa7eeff5c5c0a9bafce839d3ac7a3e2c66e48949897d90fbeafc4b0f47",
+      "restored_sha256": "822a7df20e16baf9ac743c739d98bd91fa425bce33aba5359eb70bb93aa13058",
+      "parent_snapshot": ".tools/v102-normal-inverse-attempt2/source/tests/experimental/ipm_self_test.cpp"
+    },
+    "src/experimental/normal_cholesky.cpp": {
+      "trial_sha256": "d5fc61db255c63733f4f4ff37e3d91bbf9d9f6bd3cae1fcc79de59423d18cbbc",
+      "restored_sha256": "89ce61812ff366c221c4318b15e56056f82579dff60f53aebfa34b4976ca87b6",
+      "parent_snapshot": ".tools/v102-normal-inverse-attempt2/source/src/experimental/normal_cholesky.cpp"
+    }
+  },
+  "all_canonical_sources_equal_parent_v102": 11,
+  "v103_frozen_snapshots_unchanged": 11,
+  "verified_parent_component_evidence": ".tools/v102-normal-inverse-attempt2/build-manifest.json",
+  "restored_component_cases": {
+    "ipm": 94,
+    "coupled": 51
+  }
+}

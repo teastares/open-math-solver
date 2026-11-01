@@ -1,0 +1,13 @@
+{
+  "command": [
+    "powershell",
+    "-NoProfile",
+    "-Command",
+    "Get-FileHash -LiteralPath '.tools/solver-ipm-v66.exe' -Algorithm SHA256 | ConvertTo-Json -Compress"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Get-FileHash : The term 'Get-FileHash' is not recognized as the name of a cmdlet, function, script file, or operable pr\nogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\nAt line:1 char:1\n+ Get-FileHash -LiteralPath '.tools/solver-ipm-v66.exe' -Algorithm SHA2 ...\n+ ~~~~~~~~~~~~\n    + CategoryInfo          : ObjectNotFound: (Get-FileHash:String) [], CommandNotFoundException\n    + FullyQualifiedErrorId : CommandNotFoundException\n \n",
+  "public_lp_runs": 0,
+  "interpretation": "独立旧PowerShell子进程探针；不改LP结果，仅保原方法退出及错误，主工具原生Get-FileHash另核。"
+}

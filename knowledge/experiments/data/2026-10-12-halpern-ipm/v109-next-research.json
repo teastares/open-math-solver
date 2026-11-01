@@ -1,0 +1,14 @@
+{
+  "status": "下一轮待复核与独立原型，未实现、未测收益",
+  "algorithm_parent_version": 106,
+  "previous_evidence": "v109原型14组、66case1320raw、完整C++163组及500LP严格复核；长safe Dot2局部约3倍，整体跨轮接近父，未采用且已恢复106",
+  "candidate": "四个独立具名LD累加器",
+  "hypothesis": "每个产品仍在原LD精度计算，分四条依赖链后作固定(s0+s1)+(s2+s3)，省Dot2的EFT和逐项范围guard，可能更适合当前x87实现",
+  "proof_to_recheck": "m=ceil(n/4)，若每lane用LD产品与累加，末二层归约，则标准界可按γ_{m+2}(uLD)A估计；n>=4较父γ_n界更紧。它仍不逐输入支配LD，也不保证正确舍入。全部Double乘积格点/size_t长度的绝对和在当前宽指数LD范围内，须形式化核上下溢余量及默认环境",
+  "implementation_to_try": "4个具名LD局部和显式四项展开，避免动态数组索引导致逐项LD读写；4096批次原预算，尾global_i%4；未知格式或环境保原LD。先独立C++微基准与精确oracle，不按LP模型身份路由",
+  "assembly_to_check": "实际x87寄存器栈、FXCH与spill，不能仅凭四条依赖链推断加速",
+  "inference_limit": "v109结果不证明Dot2无效，也不证明LD4一定更快；先测primitive再按原协议集成，保所有回退与失败成本",
+  "new_cpp_implementation": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

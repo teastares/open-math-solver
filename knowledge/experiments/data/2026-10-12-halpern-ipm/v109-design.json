@@ -1,0 +1,21 @@
+{
+  "version": 109,
+  "round": 106,
+  "algorithm_parent_version": 106,
+  "prototype_design_file": "v109-prototype-design.json",
+  "prototype_evidence_file": "v109-prototype-analysis.json",
+  "decision": "14组通过、固定66cell全部1320原件完整；安全长向量有局部收益，继续原LP协议",
+  "change": "直接维护C++。新compensated_dot.hpp与独立原型逐字相同；coupled dot新增默认false独立参数，显式开启且长度>=128才evaluate，末仍用原narrow；solve只新增末参数并传给MGS点积；IPM活动adapter唯一请求true",
+  "unchanged": "范数、AXPY、搜索window/cycles、严格五块真验、forcing界、原模型验证、账本schema3及全部资源/精度合同保持",
+  "threshold": 128,
+  "threshold_basis": "固定合成micro的127/128及以上均有收益，64及以下更慢；取128为通用长度边界，不读取模型名或公开测试胜负",
+  "numerical_scope": "重排舍入可变，Dot2只给较紧标准误差界，不逐例支配LD；有已保反例。任一输入不安全整次重算原LD，额外成本在原预算；最终finite/narrow和真实验收保持",
+  "canonical_source_count": 12,
+  "dependency_counts": {"ipm": 8, "ipm_self": 9, "coupled_self": 6, "normal": 7},
+  "component_cases": {"ipm": 106, "coupled": 57},
+  "new_coupled_groups": 6,
+  "public_lp_protocol": "完全继承v100与v106数值合同，22/12/66/36后按原gate决定182/182；失败不删，不择优补跑",
+  "production_changes": false,
+  "public_lp_runs_at_design": 0,
+  "goal_achieved": false
+}

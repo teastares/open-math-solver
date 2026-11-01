@@ -1,0 +1,1692 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-26T12:51:17.092440+00:00",
+  "plan_sha256": "55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd",
+  "production_unchanged": true,
+  "production_version": 66,
+  "candidate_adopted": false,
+  "diagnostic_only": true,
+  "diagnostic_compatibility_passed": true,
+  "public_report_non_timing_equal_pairs": 6,
+  "total_public_lp_runs_revalidated": 18,
+  "additional_public_lp_runs_by_this_driver": 0,
+  "run_identity_sha256": "8639173a24fb681bd3798d7c2dbabb1ab36824a25bf0dfeb56ce8f0ce4059df4",
+  "build_manifest_sha256": "acf2efb3a464cda5113ae7720757fe536c128fcdbc34ec6e3db4e90a7bca3f29",
+  "candidate_sha256": "3ffab40b1c57cc9a0450af71ce1f07cef1a9e7d3a84f5380f747f57b9d55f831",
+  "reference_version": 88,
+  "reference_executable_sha256": "785e5ddd20ed928069a937076847f43fe6e03003827b32305cd5d227f3775d88",
+  "source_files_verified": 95,
+  "libraries_verified": 17,
+  "protocol_self_check": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "inherited_warm_cases": {
+      "valid_and_parse_cases": 20,
+      "mutation_cases": 133,
+      "sidecar_cases": 26,
+      "full_report_and_budget_cases": 7
+    },
+    "warm_valid_cases": 10,
+    "warm_mutation_cases": 18,
+    "scheduled_runs": 18,
+    "off_comparison_pairs": 6,
+    "environment_isolated": true,
+    "dynamic_native_time_not_compared": true,
+    "warm_math_evidence_cases": 5
+  },
+  "protocol_self_check_attempts": {
+    "v91-runner-self-check-attempt1.json": {
+      "sha256": "70bb2056cba6c0a6d7f27b64e46b343af413eb9174a301cb361e0bf5d7b64874",
+      "returncode": 0,
+      "source_sha256": "71a3121a9bd69a68f4ce6f0ef63c06f9f78cd544ee0ffe8532c59f54246e4bb6",
+      "stderr": ""
+    }
+  },
+  "build_input_snapshots_verified": {
+    "v91-build-attempt1.json": {
+      "sha256": "d1aedc7b2ac5f4e9027366987b2eb11b9211b079bc8fc826f39ccbd1c14038a4",
+      "source_sha256": "25deee0a631c4fd257d883414aeacf8d390915df5ed385f6f19fde3cbb39b53e",
+      "input_sources": {
+        "v91-plan.json": "55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd",
+        "v91-baseline-check.json": "ff80e1cbe5f20ee2ea685380a9602679455646c609b14034a3eee6cf3fde6097",
+        "v91-pretest-clarification.json": "b0cf18b7591c124ce5229c5a4671b0028b059ff6a5617218df736b97d9892906",
+        "v91-ipm-instrumentation.py": "22dbb71518b55316c8a916c731524f27562173abace2738c938f21643129fd93",
+        "v91-ipm-self-test.cpp": "6138820520eba8838df069158ad17034f76b84fddca4ce3fc313daeaa42fbec2",
+        "v91-warm-self-test.cpp": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+        "v84-warm-pdhg.hpp": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30",
+        "v84-warm-self-test.cpp": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+        "v91-build.py": "25deee0a631c4fd257d883414aeacf8d390915df5ed385f6f19fde3cbb39b53e",
+        "v91-run.py": "71a3121a9bd69a68f4ce6f0ef63c06f9f78cd544ee0ffe8532c59f54246e4bb6",
+        "v91-runner-self-check.json": "94dfdd55d2f8f40f8adbdcd810e56fda5a25961ff4ae0ab0ab44a82aa7f4d8a8",
+        "v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+        "v47-profile-build.py": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5"
+      }
+    }
+  },
+  "build_attempt_history": {
+    "attempts": [
+      {
+        "file": "v91-build-attempt1.json",
+        "sha256": "d1aedc7b2ac5f4e9027366987b2eb11b9211b079bc8fc826f39ccbd1c14038a4",
+        "returncode": 0,
+        "work": "D:\\Documents\\codes\\solver\\.tools\\v91-presolve"
+      }
+    ],
+    "failed_build_attempts": 0,
+    "successful_build_attempt": "v91-build-attempt1.json"
+  },
+  "math_self_checks": {
+    "ipm": {
+      "passed": true,
+      "public_lp_runs": 0,
+      "details": {
+        "passed": true,
+        "public_lp_runs": 0,
+        "explicit_highs_lp_solve_calls": 0,
+        "scope": "仅组件自测；component_ipm_calls计harness进入真实solve_ipm或v91_core的API次数(含零预算入口)，不含内部调用拦截；synthetic_core_calls另计，不是公开LP成绩",
+        "cases": 63,
+        "wrapper_cases": 3,
+        "mapping_cases": 10,
+        "transaction_cases": 27,
+        "budget_cases": 15,
+        "exception_cases": 8,
+        "component_ipm_calls": 29,
+        "synthetic_core_calls": 14,
+        "details": [
+          {
+            "id": "off_wrapper_is_original_core",
+            "group": "wrapper"
+          },
+          {
+            "id": "minimum_column_lower_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_column_upper_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_column_upper_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_original_row_lower",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_original_row_upper",
+            "group": "mapping"
+          },
+          {
+            "id": "ranged_row_lower",
+            "group": "mapping"
+          },
+          {
+            "id": "ranged_row_upper",
+            "group": "mapping"
+          },
+          {
+            "id": "fixed_column_equality_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_real_reduced_child",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_real_reduced_child",
+            "group": "mapping"
+          },
+          {
+            "id": "not_reduced_is_original_core",
+            "group": "wrapper"
+          },
+          {
+            "id": "mip_is_original_core_rejection",
+            "group": "wrapper"
+          },
+          {
+            "id": "time_zero_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "iteration_zero_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "adopt_child_clears_all_coordinate_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "commit_valid_original_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "reject_bad_original_primal_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "nonoptimal_child_passes_original_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "false_optimal_child_dual_rejected",
+            "group": "transaction"
+          },
+          {
+            "id": "false_optimal_child_primal_rejected",
+            "group": "transaction"
+          },
+          {
+            "id": "missing_candidate_drops_child_bait",
+            "group": "transaction"
+          },
+          {
+            "id": "bad_child_dimension_drops_bait",
+            "group": "transaction"
+          },
+          {
+            "id": "native_infeasible_is_not_original_certificate",
+            "group": "transaction"
+          },
+          {
+            "id": "entry_deadline_stops_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "child_deadline_keeps_legacy_only",
+            "group": "budget"
+          },
+          {
+            "id": "post_verify_deadline_cannot_commit",
+            "group": "budget"
+          },
+          {
+            "id": "after_assessment_exception_keeps_cost_only",
+            "group": "exception"
+          },
+          {
+            "id": "child_standard_exception_partial_cost",
+            "group": "exception"
+          },
+          {
+            "id": "child_nonstandard_exception_partial_cost",
+            "group": "exception"
+          },
+          {
+            "id": "projection_skips_already_accepted_raw",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_unchanged_avoids_second_assessment",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_removes_tiny_wrong_lower_dual_sign",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_removes_tiny_wrong_upper_dual_sign",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_original_lower_bound",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_original_upper_bound",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_both_sides_transactionally",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_rejects_broken_row_keeps_raw_incumbent",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_rejects_broken_gap_keeps_raw_incumbent",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_nonfinite_second_vector_never_selects_partial_point",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_copy_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_primal_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_after_dual_api_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_scan_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_post_assessment_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_final_commit_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_exception_cannot_fallback_after_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_clock_exception_raw_fallback",
+            "group": "exception"
+          },
+          {
+            "id": "projection_allocation_exception_raw_fallback",
+            "group": "exception"
+          },
+          {
+            "id": "oracle_old_incumbent_cannot_trigger_current",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_reject_then_accept_same_core",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_tls_scope_restores_previous",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_owner_commits_without_tail_recovery",
+            "group": "transaction"
+          },
+          {
+            "id": "native_postsolve_replays_A_B_A_without_lp",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_budget_preserves_event_work",
+            "group": "budget"
+          },
+          {
+            "id": "oracle_error_preserves_event_work",
+            "group": "exception"
+          },
+          {
+            "id": "oracle_real_core_budget_bridge",
+            "group": "budget"
+          },
+          {
+            "id": "oracle_real_core_error_bridge",
+            "group": "exception"
+          },
+          {
+            "id": "warm_reduced_original_oracle",
+            "group": "transaction"
+          },
+          {
+            "id": "warm_oracle_capacity_stop",
+            "group": "budget"
+          },
+          {
+            "id": "warm_accept_abort_is_fail_closed",
+            "group": "exception"
+          },
+          {
+            "id": "warm_local_verification_counted_once",
+            "group": "transaction"
+          },
+          {
+            "id": "warm_not_reduced_and_disabled_scope",
+            "group": "transaction"
+          }
+        ]
+      }
+    },
+    "warm": {
+      "passed": true,
+      "public_lp_runs": 0,
+      "details": {
+        "passed": true,
+        "public_lp_runs": 0,
+        "cases": 7,
+        "default_limits": {
+          "max_iterations": 20000,
+          "max_work_units": 500000000,
+          "check_interval": 64,
+          "budget_check_work_interval": 256,
+          "step_safety": 0.9
+        },
+        "details": [
+          "不等式等式混合完整LP验收",
+          "非单位tau种子与非对称一步解析",
+          "零维零矩阵与坏输入拒绝",
+          "非零下溢试点溢出及悬殊尺度",
+          "迭代周期和精确工作额度边界",
+          "验收真值后预算与异常事务",
+          "长列每真实预算边界原异常及双提交"
+        ]
+      }
+    }
+  },
+  "source_checks": {
+    "candidate_units": 1,
+    "compiled_including_math_harnesses": 3,
+    "dependencies": 965,
+    "candidate_explicit_link_inputs": 19,
+    "test_explicit_link_inputs": 19,
+    "original_normal_library_retained": true,
+    "upstream_highs_include_arguments": [
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-src/extern",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-src",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-src/highs",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-build",
+      "-ID:/Documents/codes/solver/build/release/_deps/highs-build/extern"
+    ],
+    "core_body_preserved_except_candidate_hooks": true,
+    "assess_hook_reversible": true,
+    "current_local_saved_before_move": true,
+    "solve_entry_body_preserved": true,
+    "initialization_zero_count_fields": 37,
+    "transformations_reversible": 9,
+    "warm_delta": {
+      "passed": true,
+      "parent_sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+      "parent_header_restored": true,
+      "parent_wrapper_preserved": true,
+      "parent_oracle_hooks_preserved": true,
+      "readonly_capacity_method_only": true,
+      "parent_file": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v88-ipm-instrumentation.py",
+      "parent_python_imported_or_executed": false,
+      "warm_kernel_reused_without_namespace_change": true,
+      "original_oracle_called_once_per_locally_accepted_point": true
+    },
+    "warm_initialization_excluded": true,
+    "warm_core_loop_preserved": true,
+    "warm_kernel_reused_unchanged": true,
+    "warm_verification_not_double_counted": true,
+    "warm_accept_abort_fail_closed": true,
+    "shared_start_without_second_epoch": true,
+    "regularized_matches_original_archive_member": true,
+    "final_static_attempt": {
+      "file": "v91-build-self-check-attempt1.json",
+      "sha256": "6b48f0506117d944e9ed270cb9b6d7c38b807c52eaac3ad9fc0b94bf26886354",
+      "source_sha256": "25deee0a631c4fd257d883414aeacf8d390915df5ed385f6f19fde3cbb39b53e",
+      "warm_proofs_included": true,
+      "passed_before_actual_builds": true
+    },
+    "math_coverage_extension": {
+      "file": "ipm-self-extension-check.json",
+      "sha256": "0f874785b6a8c91d1b08eead182668daddd82d46c045167e8adbb90561c13db3",
+      "preserved_predecessor_cases": 58,
+      "new_cases": 5
+    },
+    "new_math_cases": [
+      {
+        "id": "warm_reduced_original_oracle",
+        "group": "transaction"
+      },
+      {
+        "id": "warm_oracle_capacity_stop",
+        "group": "budget"
+      },
+      {
+        "id": "warm_accept_abort_is_fail_closed",
+        "group": "exception"
+      },
+      {
+        "id": "warm_local_verification_counted_once",
+        "group": "transaction"
+      },
+      {
+        "id": "warm_not_reduced_and_disabled_scope",
+        "group": "transaction"
+      }
+    ],
+    "component_calls": {
+      "component_ipm_calls": {
+        "predecessor": 27,
+        "current": 29,
+        "change": 2
+      },
+      "synthetic_core_calls": {
+        "predecessor": 12,
+        "current": 14,
+        "change": 2
+      }
+    },
+    "math_raw_files": {
+      "ipm": "ipm-self-run.json",
+      "warm": "warm-self-run.json"
+    },
+    "warm_kernel_sha256": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30",
+    "warm_source_test_sha256": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+    "public_lp_runs": 0
+  },
+  "diagnostic_summary": {
+    "schema": 1,
+    "diagnostic_only": true,
+    "plan_sha256": "55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd",
+    "runs": 18,
+    "pairs": 6,
+    "raw_sha256": "0ac968200aefe453b91c62cfb918cda043291ce4890431e3daa5c2a7cbcc6889",
+    "valid_process_count": 18,
+    "marker_errors": 0,
+    "warm_marker_errors": 0,
+    "compatibility_passed": true,
+    "categories": {
+      "non_budget_equal": 6,
+      "budget_pairs": 0,
+      "invalid_pairs": 0,
+      "different_pairs": 0
+    },
+    "variants": {
+      "frozen_v88": {
+        "runs": 6,
+        "statuses": {
+          "numerical_error": 2,
+          "optimal": 4
+        }
+      },
+      "diagnostic_off": {
+        "runs": 6,
+        "statuses": {
+          "numerical_error": 2,
+          "optimal": 4
+        }
+      },
+      "diagnostic_on": {
+        "runs": 6,
+        "statuses": {
+          "numerical_error": 2,
+          "optimal": 4
+        }
+      }
+    },
+    "warm_observations": [
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "status": "numerical_error",
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "route": "reduced",
+        "warm_marker": {
+          "schema": 1,
+          "enabled": true,
+          "attempted": true,
+          "accepted": false,
+          "status": "work_limit",
+          "tau": 1.1222712659543898e-11,
+          "kappa": 4.537788581908479e-14,
+          "kernel_status": "work_limit",
+          "kernel_stats": {
+            "phase": "multiply",
+            "seed_available": true,
+            "setup_started": 1,
+            "setup_completed": 1,
+            "steps_started": 6479,
+            "steps_completed": 6478,
+            "transpose_started": 6479,
+            "transpose_completed": 6479,
+            "multiply_started": 6479,
+            "multiply_completed": 6478,
+            "budget_checks": 1992225,
+            "assessments_started": 103,
+            "assessments_completed": 103,
+            "work_units": 500000000,
+            "last_assessed_step": 6478
+          },
+          "seed_quality": {
+            "completed_steps": 0,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462445.24491037,
+            "max_row_violation": 3.85716736596084e-06,
+            "max_bound_violation": 0,
+            "max_dual_residual": 0.00018365789466720864,
+            "objective_gap": 1.070344242369174,
+            "relative_objective_gap": 1.47930027379402e-08
+          },
+          "last_quality": {
+            "completed_steps": 6478,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462480.1459242,
+            "max_row_violation": 0.03278135453028009,
+            "max_bound_violation": 0.0002030994485019554,
+            "max_dual_residual": 0.0030935442993720655,
+            "objective_gap": 169.00895112095168,
+            "relative_objective_gap": 2.335836053234602e-06
+          }
+        },
+        "original_quality": null
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "status": "numerical_error",
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "route": "reduced",
+        "warm_marker": {
+          "schema": 1,
+          "enabled": true,
+          "attempted": true,
+          "accepted": false,
+          "status": "work_limit",
+          "tau": 1.1222712659543898e-11,
+          "kappa": 4.537788581908479e-14,
+          "kernel_status": "work_limit",
+          "kernel_stats": {
+            "phase": "multiply",
+            "seed_available": true,
+            "setup_started": 1,
+            "setup_completed": 1,
+            "steps_started": 6479,
+            "steps_completed": 6478,
+            "transpose_started": 6479,
+            "transpose_completed": 6479,
+            "multiply_started": 6479,
+            "multiply_completed": 6478,
+            "budget_checks": 1992225,
+            "assessments_started": 103,
+            "assessments_completed": 103,
+            "work_units": 500000000,
+            "last_assessed_step": 6478
+          },
+          "seed_quality": {
+            "completed_steps": 0,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462445.24491037,
+            "max_row_violation": 3.85716736596084e-06,
+            "max_bound_violation": 0,
+            "max_dual_residual": 0.00018365789466720864,
+            "objective_gap": 1.070344242369174,
+            "relative_objective_gap": 1.47930027379402e-08
+          },
+          "last_quality": {
+            "completed_steps": 6478,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462480.1459242,
+            "max_row_violation": 0.03278135453028009,
+            "max_bound_violation": 0.0002030994485019554,
+            "max_dual_residual": 0.0030935442993720655,
+            "objective_gap": 169.00895112095168,
+            "relative_objective_gap": 2.335836053234602e-06
+          }
+        },
+        "original_quality": null
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "status": "optimal",
+        "quality_pass": true,
+        "quality_failure": null,
+        "route": "reduced",
+        "warm_marker": {
+          "schema": 1,
+          "enabled": true,
+          "attempted": false,
+          "accepted": false,
+          "status": "not_triggered",
+          "tau": null,
+          "kappa": null,
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "seed_quality": null,
+          "last_quality": null
+        },
+        "original_quality": {
+          "primal_valid": true,
+          "primal_feasible": true,
+          "objective_consistent": true,
+          "dual_feasible": true,
+          "gap_satisfied": true,
+          "numerically_optimal": true,
+          "objective": -664.2189612722736,
+          "max_row_violation": 1.3673047351619654e-10,
+          "max_bound_violation": 1.0868945774058878e-12,
+          "max_dual_residual": 7.513749754220304e-15,
+          "objective_gap": 3.700661999062049e-11,
+          "relative_objective_gap": 5.571448896871952e-14
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "status": "optimal",
+        "quality_pass": true,
+        "quality_failure": null,
+        "route": "reduced",
+        "warm_marker": {
+          "schema": 1,
+          "enabled": true,
+          "attempted": false,
+          "accepted": false,
+          "status": "not_triggered",
+          "tau": null,
+          "kappa": null,
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "seed_quality": null,
+          "last_quality": null
+        },
+        "original_quality": {
+          "primal_valid": true,
+          "primal_feasible": true,
+          "objective_consistent": true,
+          "dual_feasible": true,
+          "gap_satisfied": true,
+          "numerically_optimal": true,
+          "objective": -664.2189612722736,
+          "max_row_violation": 1.3673047351619654e-10,
+          "max_bound_violation": 1.0868945774058878e-12,
+          "max_dual_residual": 7.513749754220304e-15,
+          "objective_gap": 3.700661999062049e-11,
+          "relative_objective_gap": 5.571448896871952e-14
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "status": "optimal",
+        "quality_pass": true,
+        "quality_failure": null,
+        "route": "reduced",
+        "warm_marker": {
+          "schema": 1,
+          "enabled": true,
+          "attempted": false,
+          "accepted": false,
+          "status": "not_triggered",
+          "tau": null,
+          "kappa": null,
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "seed_quality": null,
+          "last_quality": null
+        },
+        "original_quality": {
+          "primal_valid": true,
+          "primal_feasible": true,
+          "objective_consistent": true,
+          "dual_feasible": true,
+          "gap_satisfied": true,
+          "numerically_optimal": true,
+          "objective": -4302260.261174562,
+          "max_row_violation": 5.910800640607228e-09,
+          "max_bound_violation": 3.646874968853e-08,
+          "max_dual_residual": 3.2890390188549545e-08,
+          "objective_gap": 1.493935997132212e-07,
+          "relative_objective_gap": 3.4724444976378523e-14
+        }
+      },
+      {
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "status": "optimal",
+        "quality_pass": true,
+        "quality_failure": null,
+        "route": "reduced",
+        "warm_marker": {
+          "schema": 1,
+          "enabled": true,
+          "attempted": false,
+          "accepted": false,
+          "status": "not_triggered",
+          "tau": null,
+          "kappa": null,
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "seed_quality": null,
+          "last_quality": null
+        },
+        "original_quality": {
+          "primal_valid": true,
+          "primal_feasible": true,
+          "objective_consistent": true,
+          "dual_feasible": true,
+          "gap_satisfied": true,
+          "numerically_optimal": true,
+          "objective": -4302260.261174562,
+          "max_row_violation": 5.910800640607228e-09,
+          "max_bound_violation": 3.646874968853e-08,
+          "max_dual_residual": 3.2890390188549545e-08,
+          "objective_gap": 1.493935997132212e-07,
+          "relative_objective_gap": 3.4724444976378523e-14
+        }
+      }
+    ],
+    "untriggered_controls": [
+      {
+        "case_index": 2,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 0,
+        "off_status": "optimal",
+        "on_status": "optimal",
+        "off_quality_pass": true,
+        "on_quality_pass": true,
+        "legacy_work_changes": {},
+        "equal": true,
+        "report_equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "case_index": 3,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "repetition": 1,
+        "off_status": "optimal",
+        "on_status": "optimal",
+        "off_quality_pass": true,
+        "on_quality_pass": true,
+        "legacy_work_changes": {},
+        "equal": true,
+        "report_equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "case_index": 4,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 0,
+        "off_status": "optimal",
+        "on_status": "optimal",
+        "off_quality_pass": true,
+        "on_quality_pass": true,
+        "legacy_work_changes": {},
+        "equal": true,
+        "report_equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "case_index": 5,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+        "repetition": 1,
+        "off_status": "optimal",
+        "on_status": "optimal",
+        "off_quality_pass": true,
+        "on_quality_pass": true,
+        "legacy_work_changes": {},
+        "equal": true,
+        "report_equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      }
+    ],
+    "algorithm_observations": [
+      {
+        "case_index": 0,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "off_status": "numerical_error",
+        "on_status": "numerical_error",
+        "off_quality_pass": false,
+        "on_quality_pass": false,
+        "legacy_work_changes": {}
+      },
+      {
+        "case_index": 1,
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "off_status": "numerical_error",
+        "on_status": "numerical_error",
+        "off_quality_pass": false,
+        "on_quality_pass": false,
+        "legacy_work_changes": {}
+      }
+    ],
+    "scope": "仅18条机制诊断；六frozen→off对子只排公共timings。on为算法变化，保全部质量/工作/失败。暖质量属于core.model，Reduced为约化模型；原质量另在父oracle记录。不生成公开性能或覆盖结论，不自动扩集。"
+  },
+  "independent_diagnostics": {
+    "runs": 18,
+    "variant_counts": {
+      "frozen_v88": 6,
+      "diagnostic_off": 6,
+      "diagnostic_on": 6
+    },
+    "compatibility": {
+      "pairs": 6,
+      "all_public_report_and_exit_equal": true,
+      "details": [
+        {
+          "case_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 0,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 1,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 0,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 1,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "repetition": 0,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "repetition": 1,
+          "public_report_and_exit_equal": true
+        }
+      ],
+      "native_remaining_time_not_compared": true,
+      "excluded_report_fields": [
+        "timings"
+      ]
+    },
+    "untriggered_controls": {
+      "pairs": 4,
+      "all_public_report_and_exit_equal": true,
+      "details": [
+        {
+          "case_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 0,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 1,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "repetition": 0,
+          "public_report_and_exit_equal": true
+        },
+        {
+          "case_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "repetition": 1,
+          "public_report_and_exit_equal": true
+        }
+      ]
+    },
+    "warm": {
+      "valid_on_marker_runs": 6,
+      "attempted_runs": 2,
+      "locally_accepted_runs": 0,
+      "status_counts": {
+        "work_limit": 2,
+        "not_triggered": 4
+      },
+      "kernel_status_counts": {
+        "work_limit": 2,
+        "not_started": 4
+      },
+      "counter_sums": {
+        "setup_started": 2,
+        "setup_completed": 2,
+        "steps_started": 12958,
+        "steps_completed": 12956,
+        "transpose_started": 12958,
+        "transpose_completed": 12958,
+        "multiply_started": 12958,
+        "multiply_completed": 12956,
+        "budget_checks": 3984450,
+        "assessments_started": 206,
+        "assessments_completed": 206,
+        "work_units": 1000000000
+      },
+      "parent_accepted_runs": 4,
+      "oracle_events": 4,
+      "oracle_decision_counts": {
+        "accept": 4
+      },
+      "observations": [
+        {
+          "variant": "diagnostic_on",
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 0,
+          "case_index": 0,
+          "run_index": 2,
+          "status": "numerical_error",
+          "classification": "incomplete",
+          "returncode": 4,
+          "error": null,
+          "quality_pass": false,
+          "quality_failure": "incomplete",
+          "numerical_seconds": 3.1754035,
+          "elapsed_wall_seconds": 3.198029899998801,
+          "presolve_marker_error": null,
+          "warm_marker_error": null,
+          "warm_attempted": true,
+          "warm_accepted": false,
+          "warm_status": "work_limit",
+          "kernel_status": "work_limit",
+          "kernel_stats": {
+            "phase": "multiply",
+            "seed_available": true,
+            "setup_started": 1,
+            "setup_completed": 1,
+            "steps_started": 6479,
+            "steps_completed": 6478,
+            "transpose_started": 6479,
+            "transpose_completed": 6479,
+            "multiply_started": 6479,
+            "multiply_completed": 6478,
+            "budget_checks": 1992225,
+            "assessments_started": 103,
+            "assessments_completed": 103,
+            "work_units": 500000000,
+            "last_assessed_step": 6478
+          },
+          "tau": 1.1222712659543898e-11,
+          "kappa": 4.537788581908479e-14,
+          "seed_quality": {
+            "completed_steps": 0,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462445.24491037,
+            "max_row_violation": 3.85716736596084e-06,
+            "max_bound_violation": 0,
+            "max_dual_residual": 0.00018365789466720864,
+            "objective_gap": 1.070344242369174,
+            "relative_objective_gap": 1.47930027379402e-08
+          },
+          "last_quality": {
+            "completed_steps": 6478,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462480.1459242,
+            "max_row_violation": 0.03278135453028009,
+            "max_bound_violation": 0.0002030994485019554,
+            "max_dual_residual": 0.0030935442993720655,
+            "objective_gap": 169.00895112095168,
+            "relative_objective_gap": 2.335836053234602e-06
+          },
+          "route": "reduced",
+          "parent_accepted": false,
+          "selected_event": null,
+          "public_ipm_iterations": 78
+        },
+        {
+          "variant": "diagnostic_on",
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 1,
+          "case_index": 1,
+          "run_index": 4,
+          "status": "numerical_error",
+          "classification": "incomplete",
+          "returncode": 4,
+          "error": null,
+          "quality_pass": false,
+          "quality_failure": "incomplete",
+          "numerical_seconds": 2.9661239,
+          "elapsed_wall_seconds": 2.987634099990828,
+          "presolve_marker_error": null,
+          "warm_marker_error": null,
+          "warm_attempted": true,
+          "warm_accepted": false,
+          "warm_status": "work_limit",
+          "kernel_status": "work_limit",
+          "kernel_stats": {
+            "phase": "multiply",
+            "seed_available": true,
+            "setup_started": 1,
+            "setup_completed": 1,
+            "steps_started": 6479,
+            "steps_completed": 6478,
+            "transpose_started": 6479,
+            "transpose_completed": 6479,
+            "multiply_started": 6479,
+            "multiply_completed": 6478,
+            "budget_checks": 1992225,
+            "assessments_started": 103,
+            "assessments_completed": 103,
+            "work_units": 500000000,
+            "last_assessed_step": 6478
+          },
+          "tau": 1.1222712659543898e-11,
+          "kappa": 4.537788581908479e-14,
+          "seed_quality": {
+            "completed_steps": 0,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462445.24491037,
+            "max_row_violation": 3.85716736596084e-06,
+            "max_bound_violation": 0,
+            "max_dual_residual": 0.00018365789466720864,
+            "objective_gap": 1.070344242369174,
+            "relative_objective_gap": 1.47930027379402e-08
+          },
+          "last_quality": {
+            "completed_steps": 6478,
+            "primal_valid": true,
+            "primal_feasible": false,
+            "objective_consistent": true,
+            "dual_feasible": false,
+            "gap_satisfied": false,
+            "numerically_optimal": false,
+            "objective": -72462480.1459242,
+            "max_row_violation": 0.03278135453028009,
+            "max_bound_violation": 0.0002030994485019554,
+            "max_dual_residual": 0.0030935442993720655,
+            "objective_gap": 169.00895112095168,
+            "relative_objective_gap": 2.335836053234602e-06
+          },
+          "route": "reduced",
+          "parent_accepted": false,
+          "selected_event": null,
+          "public_ipm_iterations": 78
+        },
+        {
+          "variant": "diagnostic_on",
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 0,
+          "case_index": 2,
+          "run_index": 6,
+          "status": "optimal",
+          "classification": "resolved",
+          "returncode": 0,
+          "error": null,
+          "quality_pass": true,
+          "quality_failure": null,
+          "numerical_seconds": 0.0170502,
+          "elapsed_wall_seconds": 0.03234629999496974,
+          "presolve_marker_error": null,
+          "warm_marker_error": null,
+          "warm_attempted": false,
+          "warm_accepted": false,
+          "warm_status": "not_triggered",
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "tau": null,
+          "kappa": null,
+          "seed_quality": null,
+          "last_quality": null,
+          "route": "reduced",
+          "parent_accepted": true,
+          "selected_event": 0,
+          "public_ipm_iterations": 38
+        },
+        {
+          "variant": "diagnostic_on",
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "repetition": 1,
+          "case_index": 3,
+          "run_index": 11,
+          "status": "optimal",
+          "classification": "resolved",
+          "returncode": 0,
+          "error": null,
+          "quality_pass": true,
+          "quality_failure": null,
+          "numerical_seconds": 0.0169305,
+          "elapsed_wall_seconds": 0.029748300003120676,
+          "presolve_marker_error": null,
+          "warm_marker_error": null,
+          "warm_attempted": false,
+          "warm_accepted": false,
+          "warm_status": "not_triggered",
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "tau": null,
+          "kappa": null,
+          "seed_quality": null,
+          "last_quality": null,
+          "route": "reduced",
+          "parent_accepted": true,
+          "selected_event": 0,
+          "public_ipm_iterations": 38
+        },
+        {
+          "variant": "diagnostic_on",
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "repetition": 0,
+          "case_index": 4,
+          "run_index": 13,
+          "status": "optimal",
+          "classification": "resolved",
+          "returncode": 0,
+          "error": null,
+          "quality_pass": true,
+          "quality_failure": null,
+          "numerical_seconds": 0.2608205,
+          "elapsed_wall_seconds": 0.28939039999386296,
+          "presolve_marker_error": null,
+          "warm_marker_error": null,
+          "warm_attempted": false,
+          "warm_accepted": false,
+          "warm_status": "not_triggered",
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "tau": null,
+          "kappa": null,
+          "seed_quality": null,
+          "last_quality": null,
+          "route": "reduced",
+          "parent_accepted": true,
+          "selected_event": 0,
+          "public_ipm_iterations": 51
+        },
+        {
+          "variant": "diagnostic_on",
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+          "repetition": 1,
+          "case_index": 5,
+          "run_index": 15,
+          "status": "optimal",
+          "classification": "resolved",
+          "returncode": 0,
+          "error": null,
+          "quality_pass": true,
+          "quality_failure": null,
+          "numerical_seconds": 0.2521811,
+          "elapsed_wall_seconds": 0.2808060999959707,
+          "presolve_marker_error": null,
+          "warm_marker_error": null,
+          "warm_attempted": false,
+          "warm_accepted": false,
+          "warm_status": "not_triggered",
+          "kernel_status": "not_started",
+          "kernel_stats": {
+            "phase": "not_started",
+            "seed_available": false,
+            "setup_started": 0,
+            "setup_completed": 0,
+            "steps_started": 0,
+            "steps_completed": 0,
+            "transpose_started": 0,
+            "transpose_completed": 0,
+            "multiply_started": 0,
+            "multiply_completed": 0,
+            "budget_checks": 0,
+            "assessments_started": 0,
+            "assessments_completed": 0,
+            "work_units": 0,
+            "last_assessed_step": null
+          },
+          "tau": null,
+          "kappa": null,
+          "seed_quality": null,
+          "last_quality": null,
+          "route": "reduced",
+          "parent_accepted": true,
+          "selected_event": 0,
+          "public_ipm_iterations": 51
+        }
+      ]
+    },
+    "quality_failure_facts": [
+      {
+        "variant": "frozen_v88",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "case_index": 0,
+        "run_index": 0,
+        "status": "numerical_error",
+        "classification": "incomplete",
+        "returncode": 4,
+        "error": null,
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "numerical_seconds": 0.5236905,
+        "elapsed_wall_seconds": 0.5466871999960858,
+        "presolve_marker_error": null,
+        "warm_marker_error": null
+      },
+      {
+        "variant": "diagnostic_off",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "case_index": 0,
+        "run_index": 1,
+        "status": "numerical_error",
+        "classification": "incomplete",
+        "returncode": 4,
+        "error": null,
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "numerical_seconds": 0.558371,
+        "elapsed_wall_seconds": 0.596550499991281,
+        "presolve_marker_error": null,
+        "warm_marker_error": null
+      },
+      {
+        "variant": "diagnostic_on",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 0,
+        "case_index": 0,
+        "run_index": 2,
+        "status": "numerical_error",
+        "classification": "incomplete",
+        "returncode": 4,
+        "error": null,
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "numerical_seconds": 3.1754035,
+        "elapsed_wall_seconds": 3.198029899998801,
+        "presolve_marker_error": null,
+        "warm_marker_error": null
+      },
+      {
+        "variant": "diagnostic_off",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "case_index": 1,
+        "run_index": 3,
+        "status": "numerical_error",
+        "classification": "incomplete",
+        "returncode": 4,
+        "error": null,
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "numerical_seconds": 0.524306,
+        "elapsed_wall_seconds": 0.5455022999958601,
+        "presolve_marker_error": null,
+        "warm_marker_error": null
+      },
+      {
+        "variant": "diagnostic_on",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "case_index": 1,
+        "run_index": 4,
+        "status": "numerical_error",
+        "classification": "incomplete",
+        "returncode": 4,
+        "error": null,
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "numerical_seconds": 2.9661239,
+        "elapsed_wall_seconds": 2.987634099990828,
+        "presolve_marker_error": null,
+        "warm_marker_error": null
+      },
+      {
+        "variant": "frozen_v88",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "repetition": 1,
+        "case_index": 1,
+        "run_index": 5,
+        "status": "numerical_error",
+        "classification": "incomplete",
+        "returncode": 4,
+        "error": null,
+        "quality_pass": false,
+        "quality_failure": "incomplete",
+        "numerical_seconds": 0.5241876,
+        "elapsed_wall_seconds": 0.5449377999757417,
+        "presolve_marker_error": null,
+        "warm_marker_error": null
+      }
+    ],
+    "marker_error_facts": [],
+    "reused_readonly_auditor": {
+      "file": ".tools/v88-oracle-audit.py",
+      "sha256": "641f8efe85a5954737e9161f676d6d2f49a0442c504d1182d990f184f1e7d3da"
+    },
+    "interpretation": "仅18条机制诊断，数量从原件重算。暖质量属于core.model，Reduced为约化坐标；种子单独验收，不声称是最后完整assess点。内核、暖owner、原oracle和最终公共接纳分别记录；接受后失败保event事实并安全拒绝。公共验收时间为child本地verify加父oracle原验，旧审计以四ULP/补偿求和核账；运行时摘要无法单独还原每个本地callback耗时。兼容只比较frozen到warmoff公共非计时报告及退出；不把真实native剩余预算差异判为算法变化。暖on改变算法，不强求轨迹相等或宣称公开性能成绩。"
+  },
+  "warm_source_evidence": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "anchors": [
+      "private_header",
+      "shared_start_core",
+      "assess_current_before_move",
+      "assess_current_stop",
+      "private_warm_header",
+      "warm_assessment_controller",
+      "main_loop_warm_recovery",
+      "public_wrapper",
+      "warm_report"
+    ],
+    "independent_ast_reconstruction": true,
+    "generated_source_exact": true,
+    "frozen_core_restored": true,
+    "parent_header_restored": true,
+    "parent_wrapper_and_oracle_hooks_preserved": true,
+    "local_assess_isolated": true,
+    "local_verification_added_once": true,
+    "accepted_candidate_abort_fail_closed": true,
+    "frozen_warm_kernel_sha256": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30",
+    "parent_instrumentation_sha256": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+    "pretest_clarification_sha256": "b0cf18b7591c124ce5229c5a4671b0028b059ff6a5617218df736b97d9892906",
+    "limitation": "源码证明覆盖计时归属与控制顺序；运行时仅能以真实账本和公共四ULP重加核一致，不能从摘要独立重测每次callback耗时。"
+  },
+  "predecessor_counter_audit": {
+    "file": "v91-predecessor-counter-audit.json",
+    "sha256": "aa628ef13caf9e62ab0fe20c55fadbb25eaf35583ef925071072a0d1999a83ec",
+    "driver": ".tools\\v91-predecessor-counter-audit.py",
+    "driver_sha256": "cbfe1cc7caec1eba0803d86b720fd2cfa2cba76345ef5d9556b4d06253f89ae6",
+    "attempt_file": "v91-predecessor-counter-attempt1.json",
+    "attempt_sha256": "0d04a0f9984b032b75be1f05fb74651cc2ee7f16333cede6221af33cf3a53dc9",
+    "raw_sha256": {
+      "v88-probe-runs.jsonl.gz": "d3a25fd24960523c5c187bd68f7b4aac1e2fa5af098d68cdc445d69751852e0b",
+      "v88-netlib-runs.jsonl.gz": "221797af96551f642b584f92b8f6b6c6a693032796ccf5608d63578e772501da",
+      "v88-highs-runs.jsonl.gz": "416e8745dd5c9480d19bc58878a742a37390424dbfeeb07ce3183a7af21a6e4c",
+      "v90-probe-runs.jsonl.gz": "a367ecd3bfff8a75e312b0811f834789e22f52e58785368424cfa9a7f1095c21",
+      "v90-netlib-runs.jsonl.gz": "a7f3ddbd706fe7d3b5a1dad19140163a2b39c52dc0b984b1cc598d8f1bb4d15a",
+      "v90-highs-runs.jsonl.gz": "42a631485d2ac1110519d9b652352e64736f43243841ad5dd7b3469897ca2db3"
+    },
+    "revalidated_existing_reports": 10,
+    "public_lp_runs": 0,
+    "scope": "独立历史报告/源码路径复核单列，不将其10份既有报告计入本轮18次，也不据计数反推未存方程。"
+  },
+  "diagnostic_dispatch": {
+    "file": "v91-diagnostic-attempt1.json",
+    "sha256": "270d3694e07d4fedcb991636f16f9173ff570501c5552032bc4de9fc74b42dec",
+    "returncode": 0,
+    "completed_solver_runs": 18,
+    "attempts": 1,
+    "stdout_records": 19
+  },
+  "native_source_audit_predecessor": {
+    "file": "v88-closeout.json",
+    "sha256": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b",
+    "same_six_locked_highs_sources": true,
+    "chain": [
+      {
+        "file": "v87-closeout.json",
+        "sha256": "db049ee142811d656a5eb66a5d956322553eb1d3411dcf2672afd01fd72389ac"
+      },
+      {
+        "file": "v86-closeout.json",
+        "sha256": "8ec1575ed30b608eb4fe11cb6782d57677c518391b1100f612a018612afdeb22"
+      },
+      {
+        "file": "v85-closeout.json",
+        "sha256": "bbb225ace441229cbf08a9190b3c2130e5b0c817a7e579aec03cc921ebd2c50d"
+      }
+    ],
+    "scope": "沿v88复用固定版无基postsolve分支审计，显式API计数不冒充二进制拦截。"
+  },
+  "independent_audit_sources": {
+    ".tools/v91-build-audit.py": "19a40f288b66e10338a4602fd553bc61ef021af0b598d08540fed85acfa0bfe7",
+    ".tools/v91-warm-audit.py": "7f388ff9facb9fbd5487aaf4111ae2b7956d571c7628135e8791f045201b6f8e",
+    ".tools/v88-oracle-audit.py": "641f8efe85a5954737e9161f676d6d2f49a0442c504d1182d990f184f1e7d3da"
+  },
+  "archive": {
+    "file": "v91-diagnostic-evidence.zip",
+    "sha256": "467014b785d5fe039a3700c977764881129baed9b359ff8d69c7436bd75f4757",
+    "bytes": 37572003,
+    "members": {
+      ".tools/v88-oracle-audit.py": "641f8efe85a5954737e9161f676d6d2f49a0442c504d1182d990f184f1e7d3da",
+      ".tools/v88-presolve/build-manifest.json": "8d4cd95a993943b609701a862dff189ce0d15bebb49b29c0b32bde38d53c3bc4",
+      ".tools/v91-attempt-inline.py": "084c6b90dd8570604dc56cd096c289785743bf4a879c2246248146e1e8bb356e",
+      ".tools/v91-build-audit.py": "19a40f288b66e10338a4602fd553bc61ef021af0b598d08540fed85acfa0bfe7",
+      ".tools/v91-closeout-inline.py": "cc11ce2b7fb48417fd7fe88797285508eefcd9ff4538866b758eaaddd796a6c9",
+      ".tools/v91-document-check-inline.py": "9f31a652e98afb9e9084565e98d31ab6ae263721984eec31c38686acba03a9ca",
+      ".tools/v91-plan-inline.py": "18f3e1198658a201340b587734fda497e4299b989fb4f8e4486d0bcd5dd5918c",
+      ".tools/v91-predecessor-counter-audit.py": "cbfe1cc7caec1eba0803d86b720fd2cfa2cba76345ef5d9556b4d06253f89ae6",
+      ".tools/v91-prepare-drivers-inline.py": "1acf0f2481cb3eea6aafa341745afa0338e23969ee019b8efb260fa1ec834bc6",
+      ".tools/v91-presolve/build-manifest.json": "acf2efb3a464cda5113ae7720757fe536c128fcdbc34ec6e3db4e90a7bca3f29",
+      ".tools/v91-presolve/ipm-compile.json": "9d5a22c7f45b024aa43342aa5438b08a203430faa401619f8d1ee8719aec214a",
+      ".tools/v91-presolve/ipm-presolve.cpp": "b9c93b842b0537243d5d6138a720eae45a67d1d6e129e03e98e7335f0557c19b",
+      ".tools/v91-presolve/ipm-presolve.obj.d": "c5a3cf4e8f5052ddc94cb1e43c4bef663aa7989b523ccc740cba72e2b303a492",
+      ".tools/v91-presolve/ipm-self-build.json": "f368f79454b5aaecc6a523b9c4bc6e66948bed0ebf9bbccda9a77b604f4ed1cb",
+      ".tools/v91-presolve/ipm-self-check.json": "d2a6be94022e5e7a38ecf4d78360787fccc7cb6ce97f3ee48111bd30ddcca360",
+      ".tools/v91-presolve/ipm-self-extension-check.json": "0f874785b6a8c91d1b08eead182668daddd82d46c045167e8adbb90561c13db3",
+      ".tools/v91-presolve/ipm-self-link.json": "81e3f77be561bf8e4ac6ec73d4f560e600351b1af3b7d586114c7c64e103e39d",
+      ".tools/v91-presolve/ipm-self-run.json": "e339154ac5b22d74b0a37b4e7aa867a2857d9b4af1072acde484f874552eccd7",
+      ".tools/v91-presolve/ipm-self.obj.d": "2581c89c368c107010602b6affbcd587d5ce55183e1f5e27f85e951bc958bb1d",
+      ".tools/v91-presolve/link.json": "3d157718916bf3f1f16dbbfc936d13b52f952fbf26eaebf5a87590c7e4396066",
+      ".tools/v91-presolve/ninja-commands.txt": "fd52ec7d60493f23aa436f6f609d241725d7fd19fb2545085c169d18698b3ade",
+      ".tools/v91-presolve/static-check.json": "1aebb629f741d3b0f90efc9fc87fdd5595fb350518eaf0b6a6d090abc3483cc6",
+      ".tools/v91-presolve/transforms.json": "0bdca8e5739fd00378b73fcb67d7caf60b54d4f54c080477b4266e5a350fb663",
+      ".tools/v91-presolve/v84-warm-pdhg.hpp": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30",
+      ".tools/v91-presolve/v91-presolve-state.hpp": "61e39ee25f02fb53df440e96521ec733c5a9d6213705a8c1e548b1f6ae1a38cb",
+      ".tools/v91-presolve/v91-warm-state.hpp": "d44848e9c1dd0d60030e09b8d3eb2e0558fe5b8d147643835bd3fe3284ed5003",
+      ".tools/v91-presolve/warm-self-build.json": "7c45ede8f83e79cb8a330ae57631e5c2f500e42d34473e29a5efaea1ea8bd895",
+      ".tools/v91-presolve/warm-self-check.json": "b58e87faa09680f6577edfc101ab8cd8ea63ddb98137d5c6bd36c91d35fa79e5",
+      ".tools/v91-presolve/warm-self-link.json": "dbc1226fcb03f086b5b1b360311b72c4370c4f18512cadba45ff34370b6e5e84",
+      ".tools/v91-presolve/warm-self-run.json": "ca388c9664140f217e5485e7abb9326b390f9042dff6ae62f42966150a56cb10",
+      ".tools/v91-presolve/warm-self.cpp": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+      ".tools/v91-presolve/warm-self.obj.d": "9d5e6aff4e88c930c8496b24705391aa5ee565a228b6d20c603f57aca6a0ad3a",
+      ".tools/v91-pretest-clarification-inline.py": "62f0c19cbd39c2b24ad148d6b7d0d64dc74c08e3e68aac127a32ea6cc3b6f03a",
+      ".tools/v91-warm-audit-attempt1.py": "9860dc7b3a40085c6f75de47aacc72acf26da1b4f0cedb9efb2d4b81bfb65e34",
+      ".tools/v91-warm-audit.py": "7f388ff9facb9fbd5487aaf4111ae2b7956d571c7628135e8791f045201b6f8e",
+      ".tools/v91-write-documents-inline.py": "8cc714d52e3efa9969c8b6714a04b5f97e250a24291d579b0caba111de6a6305",
+      "build/release/_deps/highs-src/highs/Highs.h": "0d42bac7e810d76d64ba742503bc20f254087266a9cadc564d01834c4e6f981c",
+      "build/release/_deps/highs-src/highs/lp_data/HConst.h": "cb478020958392d70f485018aa725cadf683e480f52fdbef2fad693faa876b2c",
+      "build/release/_deps/highs-src/highs/lp_data/Highs.cpp": "1c3fb263a08ccd3f22094a33a6d4f945139f8939e83789096da64a4e568d928c",
+      "build/release/_deps/highs-src/highs/lp_data/HighsOptions.h": "ed35e76f39dfcc401fd523cb2b5961a0f04ec31f10fee8882b1745d40de1a260",
+      "build/release/_deps/highs-src/highs/presolve/HighsPostsolveStack.h": "4e3c1ef5c2d264c7efd20dbf5045535adbb07206b8a69f20adeb65f99a153bc8",
+      "build/release/_deps/highs-src/highs/presolve/HPresolve.cpp": "2e1439b6bc883dbb4c983724c310945a66ec47ec348c217ec4ed92b15a0e5d79",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-identity.json": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-source.zip": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v47-profile-build.py": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-plan.json": "5f134f630f8f969097c2b9c2b85912a89b4f20ef224043303367d43754d1dd06",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-closeout.json": "3627f27712e22ba66bd798ac445dd1e2aa687208736852a6e9fad9aac8dc411b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-run.py": "e30c862694b39012149ad624d01c8511dca606f1ac1c852330da636adc533c9e",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-warm-pdhg.hpp": "38ee5158a5e78c94152d369db0f9612316a11476004f5fb1996d45351fb5ec30",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v84-warm-self-test.cpp": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v85-closeout.json": "bbb225ace441229cbf08a9190b3c2130e5b0c817a7e579aec03cc921ebd2c50d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v85-plan.json": "5a12611f867d4c78fc3399050343a389eee1df883934e7e5917005a54ff451ec",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v86-closeout.json": "8ec1575ed30b608eb4fe11cb6782d57677c518391b1100f612a018612afdeb22",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v87-closeout.json": "db049ee142811d656a5eb66a5d956322553eb1d3411dcf2672afd01fd72389ac",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-closeout.json": "af3e24df1c8c055235eaf4a9951ca2ddd7083d8f4f88b06235a74f3061eaa97b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-highs-runs.jsonl.gz": "416e8745dd5c9480d19bc58878a742a37390424dbfeeb07ce3183a7af21a6e4c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-ipm-instrumentation.py": "c2d9c678a219c7d1737900ab1aa334405b6977c1f440833d739cdb1d2a3d2019",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-netlib-runs.jsonl.gz": "221797af96551f642b584f92b8f6b6c6a693032796ccf5608d63578e772501da",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-plan.json": "8a47239e7f9cf412b2f64eb604eda9ab25c8143a11e4075335b1011ccde3964f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-probe-runs.jsonl.gz": "d3a25fd24960523c5c187bd68f7b4aac1e2fa5af098d68cdc445d69751852e0b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-run-identity.json": "5f2e34e39dc8dbd7e9290ac8de4596ebccdddf179710c007f5a29a662b09bdbc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-run.py": "6080b97380f79d64b3aafd79a265554c29910fbbd767477ed0ee5b0cacfc2d04",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v90-closeout.json": "9449b74599ac7b930cd6cdd082f77e74ca786683d1c2fd1aee01f13a7f2d68df",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v90-highs-runs.jsonl.gz": "42a631485d2ac1110519d9b652352e64736f43243841ad5dd7b3469897ca2db3",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v90-netlib-runs.jsonl.gz": "a7f3ddbd706fe7d3b5a1dad19140163a2b39c52dc0b984b1cc598d8f1bb4d15a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v90-probe-runs.jsonl.gz": "a367ecd3bfff8a75e312b0811f834789e22f52e58785368424cfa9a7f1095c21",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-baseline-check.json": "ff80e1cbe5f20ee2ea685380a9602679455646c609b14034a3eee6cf3fde6097",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-build-attempt1.json": "d1aedc7b2ac5f4e9027366987b2eb11b9211b079bc8fc826f39ccbd1c14038a4",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-build-self-check-attempt1.json": "6b48f0506117d944e9ed270cb9b6d7c38b807c52eaac3ad9fc0b94bf26886354",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-build.py": "25deee0a631c4fd257d883414aeacf8d390915df5ed385f6f19fde3cbb39b53e",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-closeout-attempt1.json": "fd0c426f75541d2f3672b73857653f9e1a5d3fc99e86b2401f8086dc70f86d25",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-compatibility.json": "222e614ae740399538288fdc0532095abf49debd3fffe6b91ca8a021742892e0",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-diagnostic-attempt1.json": "270d3694e07d4fedcb991636f16f9173ff570501c5552032bc4de9fc74b42dec",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-diagnostic-manifest.json": "9848f2fd172b84001402f4ad8f6d2122eb5df01a50a91afa4e1a03f49d60021f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-diagnostic-runs.jsonl.gz": "0ac968200aefe453b91c62cfb918cda043291ce4890431e3daa5c2a7cbcc6889",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-diagnostic-summary.json": "2b0a894952a8fe3f806658a6cda883c4732a13dd2adf1f90ed7f89cbb17f68e5",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-ipm-instrumentation.py": "22dbb71518b55316c8a916c731524f27562173abace2738c938f21643129fd93",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-ipm-self-test.cpp": "6138820520eba8838df069158ad17034f76b84fddca4ce3fc313daeaa42fbec2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-plan-attempt1.json": "3870cc0c9f94318bfd76ff072db75c1f345b8ad88ec2872c147bd98ce500c104",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-plan.json": "55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-predecessor-counter-attempt1.json": "0d04a0f9984b032b75be1f05fb74651cc2ee7f16333cede6221af33cf3a53dc9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-predecessor-counter-audit.json": "aa628ef13caf9e62ab0fe20c55fadbb25eaf35583ef925071072a0d1999a83ec",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-pretest-clarification-attempt1.json": "132edab07319511a316daf2abded36738e0728c8514bebe51e451ee83f4a06e2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-pretest-clarification.json": "b0cf18b7591c124ce5229c5a4671b0028b059ff6a5617218df736b97d9892906",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-run-identity.json": "8639173a24fb681bd3798d7c2dbabb1ab36824a25bf0dfeb56ce8f0ce4059df4",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-run.py": "71a3121a9bd69a68f4ce6f0ef63c06f9f78cd544ee0ffe8532c59f54246e4bb6",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-runner-self-check-attempt1.json": "70bb2056cba6c0a6d7f27b64e46b343af413eb9174a301cb361e0bf5d7b64874",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-runner-self-check.json": "94dfdd55d2f8f40f8adbdcd810e56fda5a25961ff4ae0ab0ab44a82aa7f4d8a8",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v91-warm-self-test.cpp": "abb657e8c66adbdd367d568ba12adf4f2c3c3d51a730446f2383ffdde6ace33f",
+      "scripts/benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+      "scripts/compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3"
+    },
+    "original_bytes_readback_verified": true,
+    "excluded_executables_objects_libraries": true,
+    "all_work_directories_included": [
+      "D:\\Documents\\codes\\solver\\.tools\\v91-presolve"
+    ],
+    "late_artifacts_not_included": [
+      "本次closeout结果JSON",
+      "本次outer attempt",
+      "后续文档执行与检查原件"
+    ]
+  },
+  "next_action": "依据约化Cone暖恢复的18条机制诊断决定下一独立方案，不自动扩500或接纳生产；HiGHS目标仍未达。",
+  "verification_scope": "复算18份原始stdout/stderr、质量/工作与六frozen→off公共报告非timing对子；独立父21及暖11/quality13/kernel15、事件/owner提交、inclusive child/fourULP+fsum；九锚、父58加5组合与原暖七组、95+17、六map/3.d/十三来源。额外10既有报告复核0LP单列，不称独立数学证明。",
+  "limitations": [
+    "暖seed为数值失败处最后已提交同Cone点，不声称是最后完整assess点或保存的incumbent。",
+    "暖quality属于core.model，Reduced为约化模型；原模型质量单列在父oracle，不以本地numopt标记原接纳。",
+    "native.time_limit只逐条核合同，不跨运行要求同值；on是算法变化，不要求与off报告相等。",
+    "诊断不生成公开性能胜利、完整公开集覆盖或目标完成结论；生产仍为v66。",
+    "原exe/obj/库仅核身份而不装入来源证据包；本次结果JSON与outer attempt在封包后单列。"
+  ]
+}

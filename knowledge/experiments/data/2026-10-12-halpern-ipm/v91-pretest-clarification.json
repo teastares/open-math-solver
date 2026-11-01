@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-26T00:58:41.703841+00:00",
+  "plan_sha256": "55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd",
+  "before_first_real_build": true,
+  "public_lp_runs": 0,
+  "interpretation": [
+    "计划所说经过父当前点hook，指仍执行父assess的当前点质量路径；暖回调具名隔离active oracle，先完成local assess和所有可能分配的点复制/质量记录，再显式咨询同一父OriginalOracleContext一次，不在assess中和回调后重复咨询。",
+    "显式咨询输入是trial.model坐标的trial.solution/trial.row_dual与最后已提交HSD标签，不能误传Cone point.x/z。local q拒绝不调用原oracle。NotReduced无oracle时，local assess本身已是原模型验收。",
+    "暖seed来自最后已提交Cone point/tau，未断言它等于最后完整assess；seed回调会独立验当前点，因此无须从标量trace重建向量或加checkpoint。",
+    "暖之前原oracle已经terminal则不启动；每次暖回调前检查容量，满204后以oracle_limit有界退出，不创建新的error事件，也不补最后回调。",
+    "在尚未发生oracle接受的正常暖失败中保原KKT错误和解。原oracle已接受但owner后续尚未成功提交时，预算异常把父terminal标budget，普通异常标error；保已完成事件和candidate索引事实，但阻止外层误接纳。该极端失败可由父安全收口改变最终status，不能谎称所有异常都保原错误。",
+    "只有trial.verification_seconds累计到child verification；显式oracle的原验由父独立累计。异常保已支付部分，复制/提取/映射算入solve，callback整体耗时不得再累加到verification。"
+  ],
+  "unchanged": [
+    "旧v84核逐字复用",
+    "PDHG步长/20000步/5亿工作/64评估/256预算批",
+    "oracle204槽/408原验",
+    "共同精度/CPU1/seed0/5秒35秒/IPM200步",
+    "三模型两重复三路18诊断",
+    "off公共报告只排timings六对",
+    "原完整500性能目标与协议"
+  ],
+  "driver_source": "\"\"\"首次构建前澄清暖回调与原验事务；不改变冻结数学、预算和诊断集合。\"\"\"\nimport datetime\nimport hashlib\nimport json\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / 'knowledge/experiments/data/2026-10-12-halpern-ipm'\nPLAN_SHA = '55ca339ebb9100e626b62080e95e9cd15ce0c2673b23be8727944920b96b68cd'\nassert hashlib.sha256((DATA / 'v91-plan.json').read_bytes()).hexdigest() == PLAN_SHA\nassert not list(DATA.glob('v91-build-attempt*.json'))\nassert not (DATA / 'v91-diagnostic-runs.jsonl.gz').exists()\nvalue = dict(passed=True, created_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    plan_sha256=PLAN_SHA, before_first_real_build=True, public_lp_runs=0,\n    interpretation=[\n        '计划所说经过父当前点hook，指仍执行父assess的当前点质量路径；暖回调具名隔离active oracle，先完成local assess和所有可能分配的点复制/质量记录，再显式咨询同一父OriginalOracleContext一次，不在assess中和回调后重复咨询。',\n        '显式咨询输入是trial.model坐标的trial.solution/trial.row_dual与最后已提交HSD标签，不能误传Cone point.x/z。local q拒绝不调用原oracle。NotReduced无oracle时，local assess本身已是原模型验收。',\n        '暖seed来自最后已提交Cone point/tau，未断言它等于最后完整assess；seed回调会独立验当前点，因此无须从标量trace重建向量或加checkpoint。',\n        '暖之前原oracle已经terminal则不启动；每次暖回调前检查容量，满204后以oracle_limit有界退出，不创建新的error事件，也不补最后回调。',\n        '在尚未发生oracle接受的正常暖失败中保原KKT错误和解。原oracle已接受但owner后续尚未成功提交时，预算异常把父terminal标budget，普通异常标error；保已完成事件和candidate索引事实，但阻止外层误接纳。该极端失败可由父安全收口改变最终status，不能谎称所有异常都保原错误。',\n        '只有trial.verification_seconds累计到child verification；显式oracle的原验由父独立累计。异常保已支付部分，复制/提取/映射算入solve，callback整体耗时不得再累加到verification。'],\n    unchanged=['旧v84核逐字复用', 'PDHG步长/20000步/5亿工作/64评估/256预算批',\n        'oracle204槽/408原验', '共同精度/CPU1/seed0/5秒35秒/IPM200步',\n        '三模型两重复三路18诊断', 'off公共报告只排timings六对', '原完整500性能目标与协议'],\n    driver_source=Path(__file__).read_text(encoding='utf-8'),\n    driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())\nwith (DATA / 'v91-pretest-clarification.json').open('x', encoding='utf-8') as stream:\n    json.dump(value, stream, ensure_ascii=False, indent=2, allow_nan=False)\n    stream.write('\\n')\nprint(json.dumps(dict(passed=True, public_lp_runs=0,\n    clarification_sha256=hashlib.sha256((DATA / 'v91-pretest-clarification.json').read_bytes()).hexdigest()), ensure_ascii=False))\n",
+  "driver_sha256": "62f0c19cbd39c2b24ad148d6b7d0d64dc74c08e3e68aac127a32ea6cc3b6f03a"
+}

@@ -1,0 +1,35 @@
+{
+  "created_at_utc": "2026-10-25T22:15:58.220837+00:00",
+  "public_lp_runs": 0,
+  "numerical_execution_before_correction": false,
+  "original_plan_sha256": "50bb660db5b5311c6bf2de7fd7771f5461c6903b2d9f30fa329ca3dafb049373",
+  "corrected_plan_sha256": "63aac4070053778773e1a368595c0b8f393731b217649bfd052dcd5b46e85933",
+  "original_plan_file": "v86-plan-attempt1.json",
+  "changes": {
+    "reference_linear_solver": {
+      "before": "normal_cholmod",
+      "after": "normal_cholmod_aat"
+    },
+    "compatibility_linear_solver": {
+      "before": "normal_cholmod",
+      "after": "normal_cholmod_aat"
+    },
+    "reference_backend_version": {
+      "before": "ipm-cpu-0.47.0",
+      "after": "ipm-cpu-0.53.0"
+    }
+  },
+  "reason": "当前参考是冻结v66的AAT/.53；从v66开发当时计划继承的旧normal/.47属于计划源错误，不符合本轮已明确意图。数值运行前仅修三个参考字段，其余固定协议不动。",
+  "source_before_sha256": {
+    "v86-ipm-instrumentation.py": "8c7e825b7f1191d06d5f662e34f2c97288e58a877bbad3597b1db6f50096fef2",
+    "v86-build.py": "38aa4bc90a5ddb115a1e6965873d965ed1d52dcf3fe1439e7415444bd5cb867a",
+    "v86-run.py": "a82ab30488e1cdaf277f25f0c0f828c65410050fcec849daebc062ea2832fcba"
+  },
+  "source_after_sha256": {
+    "v86-ipm-instrumentation.py": "589b8b810785b5dd14cfa8707896e2fd3b90def192cf1cc10504a9fe525491e2",
+    "v86-build.py": "a70c93e8de46bcbe3e326bc94af27b257df1ba74f7463ce735f056fcae8d2719",
+    "v86-run.py": "bde794a17459403b5cff0ddafd7e148e03b18bdcaa194080a3b081582adea8d2"
+  },
+  "driver_source": "\"\"\"数值运行前纠正继承的旧参考配置，保留原冻结计划与失败自检。\"\"\"\nimport datetime\nimport hashlib\nimport json\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / 'knowledge/experiments/data/2026-10-12-halpern-ipm'\nOLD_SHA = '50bb660db5b5311c6bf2de7fd7771f5461c6903b2d9f30fa329ca3dafb049373'\nplan_path = DATA / 'v86-plan.json'\nbefore = plan_path.read_bytes()\nassert hashlib.sha256(before).hexdigest() == OLD_SHA\nassert not any(DATA.glob('v86-build-attempt*.json')) and not (DATA / 'v86-run-identity.json').exists()\nfailure = json.loads((DATA / 'v86-runner-self-check-attempt1.json').read_text(encoding='utf-8'))\nassert failure['returncode'] != 0 and 'linear_solver' in failure['stderr']\nold = json.loads(before)\nchanges = {'reference_linear_solver': ('normal_cholmod', 'normal_cholmod_aat'),\n    'compatibility_linear_solver': ('normal_cholmod', 'normal_cholmod_aat'),\n    'reference_backend_version': ('ipm-cpu-0.47.0', 'ipm-cpu-0.53.0')}\nfor key, (previous, current) in changes.items():\n    assert old[key] == previous\nnew = dict(old)\nfor key, (_, current) in changes.items():\n    new[key] = current\nafter = (json.dumps(new, ensure_ascii=False, indent=2, allow_nan=False) + '\\n').encode('utf-8')\nnew_sha = hashlib.sha256(after).hexdigest()\nsources = {}\nfor name in ('v86-ipm-instrumentation.py', 'v86-build.py', 'v86-run.py'):\n    text = (DATA / name).read_text(encoding='utf-8')\n    assert text.count(OLD_SHA) == 1\n    sources[name] = text\nwith (DATA / 'v86-plan-attempt1.json').open('xb') as stream:\n    stream.write(before)\nplan_path.write_bytes(after)\nfor name, text in sources.items():\n    (DATA / name).write_text(text.replace(OLD_SHA, new_sha), encoding='utf-8', newline='\\n')\nrecord = dict(created_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(), public_lp_runs=0,\n    numerical_execution_before_correction=False, original_plan_sha256=OLD_SHA, corrected_plan_sha256=new_sha,\n    original_plan_file='v86-plan-attempt1.json', changes={key: dict(before=a, after=b) for key, (a,b) in changes.items()},\n    reason='当前参考是冻结v66的AAT/.53；从v66开发当时计划继承的旧normal/.47属于计划源错误，不符合本轮已明确意图。数值运行前仅修三个参考字段，其余固定协议不动。',\n    source_before_sha256={name: hashlib.sha256(text.encode('utf-8')).hexdigest() for name,text in sources.items()},\n    source_after_sha256={name: hashlib.sha256((DATA/name).read_bytes()).hexdigest() for name in sources},\n    driver_source=Path(__file__).read_text(encoding='utf-8'), driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())\nwith (DATA / 'v86-plan-correction.json').open('x', encoding='utf-8') as stream:\n    json.dump(record, stream, ensure_ascii=False, indent=2, allow_nan=False)\n    stream.write('\\n')\nprint(json.dumps(dict(passed=True, public_lp_runs=0, changed_plan_fields=list(changes), plan_sha256=new_sha), ensure_ascii=False))\n",
+  "driver_sha256": "8c6114a3122944a2183f0fd4d93299bb401e2f784fe3ea021be97e3ebf9217b7"
+}

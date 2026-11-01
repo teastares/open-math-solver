@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "version": 109,
+  "decision": "not_adopted_restore_v106",
+  "reason": "原型有明确局部收益，但完整LP与父跨轮时间接近，新增范围/环境/补偿内核未形成足够明确的整体收益；保原型及全部负结果，不据此证明无效",
+  "evaluation_valid": true,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "closeout_sha256": "d52840de434cf555dda7145f09b4937161cbbde22f2b1da147c2edd659f19f86",
+  "candidate_executable_sha256": "f77755dd7d983c8062bd7635655b4d86c2d99d214a9ab75d2d8ad7318d6f1669",
+  "goal": {
+    "achieved": false,
+    "evaluated": true,
+    "status": "progress",
+    "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+    "models": 91,
+    "no_per_model_coverage_loss": true,
+    "candidate_coverage": 91,
+    "highs_coverage": 91,
+    "candidate_wall_sgm10_seconds": 0.11452461198228489,
+    "highs_wall_sgm10_seconds": 0.09487771605651814,
+    "candidate_numerical_sgm10_seconds": 0.09393119566924817,
+    "highs_numerical_sgm10_seconds": 0.07837396435549566,
+    "candidate_to_highs_wall_ratio": 1.2070759788743566
+  },
+  "micro_scope": "安全长向量约3.1~3.3倍局部吞吐，短向量更慢，晚unsafe需整次重扫；不能外推端到端",
+  "cross_round_comparison": {
+    "causal_isolation": false,
+    "parent_version": 106,
+    "parent_netlib": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.11714823630157839,
+      "penalized_numerical_sgm10_seconds": 0.09638884413976592,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "candidate_netlib": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.1164599557274694,
+      "penalized_numerical_sgm10_seconds": 0.09566457633014172,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "parent_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期完整91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.1166788956459437,
+      "highs_wall_sgm10_seconds": 0.09600763014726628,
+      "candidate_numerical_sgm10_seconds": 0.09592325793640119,
+      "highs_numerical_sgm10_seconds": 0.07959727682708528,
+      "candidate_to_highs_wall_ratio": 1.2153085694019292
+    },
+    "candidate_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.11452461198228489,
+      "highs_wall_sgm10_seconds": 0.09487771605651814,
+      "candidate_numerical_sgm10_seconds": 0.09393119566924817,
+      "highs_numerical_sgm10_seconds": 0.07837396435549566,
+      "candidate_to_highs_wall_ratio": 1.2070759788743566
+    }
+  },
+  "archive": {
+    "members": 144,
+    "bytes": 49942472,
+    "sha256": "db938ba820525903e73329264f7c1530b680dfbb8967fd245110ee501a735a3a"
+  },
+  "source_generation": false,
+  "goal_achieved": false
+}

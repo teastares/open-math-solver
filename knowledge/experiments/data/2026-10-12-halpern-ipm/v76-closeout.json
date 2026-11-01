@@ -1,0 +1,3174 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-25T17:23:19.874225+00:00",
+  "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+  "run_identity_sha256": "4ce17830dd1f7e0130bb9e1440ae0978baf898ddb2f23b81fab62252ba056337",
+  "build_manifest_sha256": "eb6870677f6d5acc109e1a27e7bb85d7c2f4f45197f57e2b88afab35d9407633",
+  "production_unchanged": true,
+  "candidate_integrated_in_production": false,
+  "production_source_count": 95,
+  "production_library_count": 17,
+  "production_files": {
+    "CMakeLists.txt": "b4620b57b0b8a07fc56d0f9b003bf0dd0daa1b0f1aef85d2dfe1cb641978c7e8",
+    "benchmarks/development.txt": "7820566b72b30ad276a5a20ddcfacc830867dc860d40ee714af6563b12a072d8",
+    "benchmarks/modern-lp-smoke.lock.json": "14483cf7aeb7176b167941c0a7d044b9a7cd4562e961e05bfe4fd56d80e66519",
+    "benchmarks/modern-lp-smoke.txt": "97b6bd399e621eb99314003d0a570adf8b3fd2abf42326d0b8904ed79b67ceaa",
+    "benchmarks/netlib-all.txt": "3107852474cdec44d3989be33433b39aa79481cc929a1f9ca13f8f2be5882272",
+    "benchmarks/netlib-validation.txt": "551390d8ac7297c8e8d50999f7ad4b94fd98048c377719f7c839cca4d8dcacb9",
+    "benchmarks/netlib.lock.json": "db779aa12f1dc7dde381ce7f424f525ec0a9e34e552671410bdcc5e825da9578",
+    "benchmarks/readme.md": "dcc636b9b399f0e0d0a61da91e25325947ae6a259583eb202778212a3839f88a",
+    "dependencies.lock.json": "3b5c2dbf53a41455cd9c8a28a954af9bec06bc0cc9a5c3d4c9cb83c2bbf09e93",
+    "include/solver/backend.hpp": "329de23ffcf4424a715ea0c6f56ceae147d2ff200a8a3c93e31565144fa7e7d6",
+    "include/solver/detail/extended_ldl.hpp": "29157d9003d767d22d86697c3c1a188a06293505a591c1d2d28d31547a53c7f1",
+    "include/solver/detail/ipm_centrality.hpp": "ffcea2bc7141687c5e2cbec36767b92be077730dab82d29786a15094be57c950",
+    "include/solver/detail/ipm_full_newton.hpp": "baff00d877151a92d060a2f310697b1b7745eab2a25dd60423db0fd6f73f7aa5",
+    "include/solver/detail/ipm_homogeneous.hpp": "092ea7e99a8ea37a255cebbb63663a90cbb7548fb8184acb9b03dcc5b69c2a0e",
+    "include/solver/detail/ipm_presolve.hpp": "d3c5dfa34dcb2d02f00188bf7ba63ed02f002086e472846e364fcb4356010866",
+    "include/solver/detail/ipm_recycling.hpp": "940d7e4a3fac5f86c9308c533818753cfed08c26aa0294b4bccf4a37ec5f507e",
+    "include/solver/detail/ipm_residual.hpp": "4821650cc018d76aa1e2647bf6e8f7e9c1c6edbcdd6d339ec5bb49d2358c3c62",
+    "include/solver/detail/multifrontal_ldl.hpp": "c974c7f8ac3a4da3da7f394b60dc4d4d0acda9a27b1fd073725aac3969773897",
+    "include/solver/detail/normal_cholesky.hpp": "6f67567c381497ca6a86934aeb420c24e35c1bb1eb6b3f708b6b93271b0db852",
+    "include/solver/detail/regularized_ldl.hpp": "1e6df5c63e720a4bf087a387704c82697b46fef4c4485514f84326a97d94e5db",
+    "include/solver/detail/sparse_lu.hpp": "a0505dc2ab33e88b822050572d8fcf96363822e4724ec9720de9188ecbec4e83",
+    "include/solver/highs_options.hpp": "3d33b407345f69bbbd399d44c3ec4e8a84073127703341f0f55fedb6cb0c79cc",
+    "include/solver/ipm.hpp": "8bcb5f95d6c07ff47885901b6f984114d82d826d3693fe95d5e074679cfc8d7d",
+    "include/solver/ipm_options.hpp": "2854759d57e460236bfdd264ecaa70c123ca9ce70fd0f92304687e452b726cf4",
+    "include/solver/lp_optimality.hpp": "c67cf886832a7948851ff8b7acdabfb4ff3f7756b9b89d299e49cbf1c2c55212",
+    "include/solver/model.hpp": "ea31d5e8f6723ada0c14442094238d1c8ebb979938ba67ac6c07e55251f4d175",
+    "include/solver/pdlp.hpp": "8475e334fc3f0d8c1badd17ed8a965f4eefecd66e1541dacb2488114ed81b0db",
+    "include/solver/pdlp_options.hpp": "2547bdced7e842ff91837095a8a3196dc1f880cddb953b14b67d38a72a894e82",
+    "include/solver/verification.hpp": "546dbef9be9e2d4b0e88a0b5408885b7a5ca6874ad8f1b077a7fdefe323c972d",
+    "scripts/benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+    "scripts/bootstrap-windows.ps1": "ce4ef435de552cdb2e9df844c818b1ea91f237110aa2310c2f118907750b4d8f",
+    "scripts/build-windows.ps1": "e3723d96ea10654c94cacb02ceaf3292a449c97145835cfb11a7ce9e50162858",
+    "scripts/compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3",
+    "scripts/fetch_modern_lp.py": "ecd996ae1b2ccb7ff85e242d9dcad176db6c3e3acef6a98de510873df1b1cf6f",
+    "scripts/fetch_netlib.py": "e46ab1069040ba3b22df5f99018ad80bc331be22af1e8ebd56c2a0c7518db321",
+    "src/highs_backend.cpp": "20c24c54c0a0bfeb0e768633722a592ac8a69f5597f2e8005140157f6e35819e",
+    "src/ipm.cpp": "be24effdff79d1dd258138343b699ee6f1a8d8281883d189306967308aa9234f",
+    "src/lp_optimality.cpp": "a9a43c200f8463e8bc7c64091f733bfba3ff15166e8cfb08dc58b0555acc8751",
+    "src/main.cpp": "ec2abb835b744c9b7aab190d264b47a563a7395f4b44e3d8af754906f6de7cd2",
+    "src/model.cpp": "99fe94b7dae2cab1e2c6a405d6ac638348cb7206f5b27f0edafeb30807dc9227",
+    "src/multifrontal_ldl.cpp": "80f2b24d1ff829d55e11dcfd99c3cf35409689ba752b7e5185a075a574869fd6",
+    "src/normal_cholesky.cpp": "5e8f244f50a379bf426c17ca5d02ed5a41978a7cd88eaf4307eceb6b43f13719",
+    "src/pdlp.cpp": "d06640efd607b945e23ecf37f200b61eec9ac8dd76c2ddf775417bc32b0322fe",
+    "src/regularized_ldl.cpp": "1cb47da1eb57f31769aeb52fb2b2e3ab50e4028a34e4738550ccd200fd352295",
+    "src/sparse_lu.cpp": "ca7f9c419c9d634d51d6c460dab20c70fbd14a484d0370c82b27ebc14f763927",
+    "src/verification.cpp": "c5a9715b4a646d1684bf4ff14bbb74db842cc1c9438ce846c68d6fc829261a68",
+    "tests/fixtures/empty.mps": "cb2f3cd842124163618085ad37934d509d4d619e4c8012a0abe1a269285049e6",
+    "tests/fixtures/fixed_spaces.mps": "1c056475eb3c6c89358d1f2b21a6fc7f084c89921a78179dbd494979b90d82f8",
+    "tests/fixtures/fixed_spaces_huge_bound.mps": "266339cee0b5564008c19486c2f223202aa9059ac4e793a93fbc9aa7a663b0ce",
+    "tests/fixtures/fixed_spaces_unknown_row.mps": "a7e285acda36bbfa44449c94266ed539675ee630a8c0e275c62dfb1d1455c2d0",
+    "tests/fixtures/huge_bounds.mps": "7f6d5a89ce743c98a36a84cd06bf9496ba25c23b3e5f272a2778ecd00b12af88",
+    "tests/fixtures/huge_column_lower.lp": "f982b7de5f128d952580b4c92d2738c6ef76d0c1c6434f8a897f4053e1b1e36c",
+    "tests/fixtures/huge_column_upper.lp": "8679cbbfc09fe749b72f21f2d627feae8fb2925be458b8a485eb263dc6471f0b",
+    "tests/fixtures/huge_negative_cost.lp": "c5333ae0fc57cc7063adaff5babfaa0629ec78e6a936713ef6c51ad9ecbf4bf3",
+    "tests/fixtures/huge_positive_cost.lp": "d2d0e0523f1a0150652a481005d4691754162ee3cbb451106accb8002b4d58ff",
+    "tests/fixtures/huge_row_lower.lp": "41e221ca4862149244854f1bb45ce08f1fc29f5df615ae094c5b189722eda4d6",
+    "tests/fixtures/huge_row_upper.lp": "37e68407d502e43f968d5021134006c8884d73a835a709daa4ee000b5d39a159",
+    "tests/fixtures/infeasible.lp": "9eaa8bc82f00db63c3606f414d3f55d44df595ee4c31f279c67d3abf56304656",
+    "tests/fixtures/lp_min.lp": "3210050c5da7866335becbff494cf26229e651875263ff6a896cfd47485386f3",
+    "tests/fixtures/lp_min.mps": "395e3ca0d3950e4f300f76c10d2c8001dad24bd53d808964ed8046f478497628",
+    "tests/fixtures/max_offset.lp": "4686759bbcb433f29bcdd5a3e6e92edc7bd4f6f521170d97b4fdf2b31d07b3a5",
+    "tests/fixtures/milp_max_offset.lp": "6ffb31a5a13dd85dfeb0955e2c91321dea37682edc4570c4ce91096914883885",
+    "tests/fixtures/milp_min.lp": "9783883b9d744213e1f723a13581df064a37a44655fbd441568440be3efba49f",
+    "tests/fixtures/quadratic.lp": "d6fe642f830b9741bc2e189ac70324d3ca7dd871c1a32605420e1f0f39f940c3",
+    "tests/fixtures/read_warning.lp": "25ba0942464ee3f722048af15c7cde65893cc901d7b23433bb36f3d6331c396a",
+    "tests/fixtures/semi_continuous.mps": "5e1e0e02e36c0fe322ba2942d4cd25b9faa38ab1a9bc0dd9bf21cdf18170c530",
+    "tests/fixtures/semi_integer.mps": "54ccdc8a9b13876c980ee44d32cb790c22de875d559414149d587e9df940546c",
+    "tests/fixtures/small_matrix_value.lp": "cfb1a5385929870a24730904a590ddb9f64f9ce699eee64d54ddad33bd643a1a",
+    "tests/fixtures/unbounded.lp": "f74426d4e1d5bfea0d3439547e2bb8d9eedeb71be82344bc4887ecfe9f9c6e78",
+    "tests/test_backend.cpp": "4a733f228d75d999a3375fc5f9af5f4f5ed28dc28880e3786e8b6bbd79fa9088",
+    "tests/test_cli.py": "3fdec902919d387c8eaeb07f3e7135768b01aab598a6f674467732e7226c8e46",
+    "tests/test_compare_lp.py": "74c453bdb8375bd5c829f95214ea1cdce86b1021898ef13f04fdae1945f1a174",
+    "tests/test_extended_ldl.cpp": "616fc01023c0db1d354250f39c7e5d648559d79d3c3b372628a3545c563784fe",
+    "tests/test_fetch_modern_lp.py": "6071781d394fb8e55c06253b103e11feb6dc3e88ec11e17b6d2cb53aaf837716",
+    "tests/test_ipm.cpp": "5564b76d9cb61e70168a8bd2f12367dda32276fc49c1250d82df35f6283b68d3",
+    "tests/test_lp_optimality.cpp": "817cc842ded31996d7c9b0a4ccbc9104c917bbc92d1910381a4b5827626e50e2",
+    "tests/test_multifrontal_ldl.cpp": "1b951f70fea0908458dab9242c78eccf4738201fc8f1fae572262a898e1fc826",
+    "tests/test_normal_cholesky.cpp": "b98a8a7412ccb8beba5816dd29a96f772955cf30f6f0164407684714d5d851e9",
+    "tests/test_openblas.cpp": "979a7f622223303b66e6b658e09748c6ded5f300c24b9b23a82c57df243322b9",
+    "tests/test_pdlp.cpp": "414caaa893a624179d67f9b6278ad1ebd8a3920f2de5032250e0417aea2d8430",
+    "tests/test_pdlp_acceleration.cpp": "95803178af8e8ebf0569c5cbf61f1811057e9dbdc515011b73f0eeaf347403ba",
+    "tests/test_pdlp_adversarial.cpp": "ac1a894fc2445ddaaef2b35cbb067a674eba07be9c9890d469cd4d172b9c459c",
+    "tests/test_pdlp_comparison.py": "ff501574ba4374161d1608972f9cbf0bd364c6011e4c0a23e8980341c8517408",
+    "tests/test_pdlp_halpern.cpp": "88e6a2699f54a2a1032ed9cd39de73a645e378175ff138acfb80808469b73c85",
+    "tests/test_regularized_ldl.cpp": "cc88ffe0912409e32d8ad5094d41af429efffd46bcd326dc352ed6b6a8448d08",
+    "tests/test_sparse_lu.cpp": "30ee6d2faaca6a26f96d359d83cf1d810ea51b41a68631d8e934f0c9652f47af",
+    "tests/test_verification.cpp": "7dadf4178733c807c2d60f9e0c050a97977b195f444b6af72acce37567c8c7b9",
+    "third_party/cholmod/NOTICE.txt": "09101b0e650a11997790a29b1588cdc21aa07e7d0bab9f56773e7f646c9ed770",
+    "third_party/factorhighs/NOTICE.txt": "14920026672f4e05a372c4259be9b9a670c11ac01aea8be82d2106491e6ba2b7",
+    "third_party/factorhighs/build.cmake": "1b29337f3df8102c2ef2c64f2fbd1ac5a81970a7755cafa5920841f110e864ff",
+    "third_party/factorhighs/serial.hpp": "44ab852c2bf62947d2ff514b5afcfb31162250b2a44ae4fd7c0efd58c6a64fc3",
+    "third_party/openblas/CMakeLists.txt": "eabb214ebb062b0b7a0e760659b943a13aa81412b4eb0de7a1c77dccc1c61a7b",
+    "third_party/openblas/NOTICE.txt": "b580d04dce8314e9419941001f93cadd9266fbbc26f7503d2db8e73e6c878f66",
+    "third_party/openblas/patch_dgemm_stack.cmake": "893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+    "third_party/qdldl/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "production_libraries": {
+    "build/openblas/install/lib/libopenblas.a": "8684f3ef1937fe87f9817b9f8e5700b7d48a72d94e94f4e5e8d97070d3082d0c",
+    "build/release/_deps/qdldl-build/out/libqdldl.a": "1d2fbc92517864eda8d919299cae04fe4a6f586387f295189960201b632a40e2",
+    "build/release/_deps/suitesparse-build/AMD/libamd.a": "f24f03fbebba7d95c0dcf11135abc7f499f0ba6a041000d243d9a3c98d4682e4",
+    "build/release/_deps/suitesparse-build/CHOLMOD/libcholmod.a": "2621aaa96792ac42c4de35f5a49bd7d33d43c35d5023c725ce358be8d2469342",
+    "build/release/_deps/suitesparse-build/COLAMD/libcolamd.a": "4e99c7dfbb4a00563159cf021e3d73d6add49db690a026a4311f86bdf4d4bd0f",
+    "build/release/_deps/suitesparse-build/SuiteSparse_config/libsuitesparseconfig.a": "74e28e6e3502853c64fd63c21269897b86cd7e8589d01a19c68806a578b2aa6d",
+    "build/release/bin/libhighs.a": "2e5afe0a93589c5e75cf4a4ae68ca04f47b54c06283ebb1588a61b28e210830e",
+    "build/release/bin/libhighs_extras.a": "4c29c5c490e734d5b21d4dc1d5c59f3c73bfc9c7e4fabd24fb8d94c4b1cee9a8",
+    "build/release/libsolver_core.a": "0f1ce866a5a50a4404fd7c5bf1d28923cc752e83ab342dda9f9b8bb696b6a98a",
+    "build/release/libsolver_factorhighs_kernel.a": "862aa63cef27b4206ee273560fa9cbb21ca61a78f040e44412bb61435d56c845",
+    "build/release/libsolver_highs.a": "533446dcbb0fe0671213526eb9e75f4aff177cc86a80656b9efa1479ee1769a5",
+    "build/release/libsolver_ipm.a": "97cf3c0256090dee2cf2b98bbeda186ecbfaefb082f2b51e413a238a2b6c87ff",
+    "build/release/libsolver_multifrontal_ldl.a": "066edf4d50730310821e5c56ba8c8b0d15603540cb406d4c78f0b00785728343",
+    "build/release/libsolver_normal_cholesky.a": "9f022ab920304be2adf1cd71bbf2851714985914db1a90ac4f6e581d4c7693d7",
+    "build/release/libsolver_pdlp.a": "b2dd8187fc7060e7937ef2a917f061d51537fd9c63793ee6924089a0afdf6d15",
+    "build/release/libsolver_qdldl_extended.a": "a3d4cce6070142c19ab6a9865c31d51c8294c181252a8779d3b260c2bb148284",
+    "build/release/libsolver_sparse_lu.a": "300e8b8a7106dd21094a7df1131a75c03c9bd08c54195720fb3a44eabe6cdea4"
+  },
+  "production_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "candidate_solver_sha256": "0c7f812aadbd57acb19c65c4dac7804e45e5555d450222eba13547afba0d4053",
+  "reference_solver_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "protocol_self_check": {
+    "passed": true,
+    "solver_runs": 0,
+    "inherited_count_and_budget_checks": {
+      "trajectory_cases": 16,
+      "count_cases": 293,
+      "all_status_count_cases": 2280,
+      "invalid_budget_cases": 2280,
+      "factor_path_cases": 14,
+      "typed_comparison_cases": 2
+    },
+    "environment_cases": 4,
+    "configuration_cases": 12,
+    "marker_cases": {
+      "valid_and_parse_cases": 49,
+      "mutation_cases": 225,
+      "guard_refinement_valid_cases": 7,
+      "guard_refinement_mutation_cases": 70,
+      "forward_valid_cases": 10,
+      "forward_mutation_cases": 78,
+      "transition_history_valid_cases": 11,
+      "transition_history_mutation_cases": 113,
+      "full_report_and_budget_cases": 7,
+      "sidecar_cases": 13
+    }
+  },
+  "kernel_self_check": {
+    "passed": true,
+    "details": {
+      "passed": true,
+      "cases": 24,
+      "public_lp_runs": 0
+    },
+    "lp_runs": 0
+  },
+  "repair_self_check": {
+    "passed": true,
+    "details": {
+      "passed": true,
+      "public_lp_runs": 0,
+      "cases": 35,
+      "details": [
+        "不等式可行性恢复",
+        "非对称基方向与原行映射",
+        "基外等式负残差与负乘子",
+        "基外等式正残差",
+        "选中等式进入限制及失败事务",
+        "零不等式断点拒绝伪下降",
+        "零等式断点拒绝伪下降",
+        "同点断点合并与离基选择",
+        "阶段切换恢复原成本",
+        "微小负slack的第二阶段零步",
+        "无阻挡方向保守退出",
+        "换基上限与中间状态回退",
+        "换基后预算中断",
+        "工作额度精确边界",
+        "累计因子填充边界",
+        "初始完整守卫与同因子修正",
+        "无需修复时复用初始因子和点",
+        "坏输入与映射验证",
+        "完整选中行扫描与首次失败坐标",
+        "修正通过后进入阶段I与阶段II",
+        "残差下降但原守卫仍拒绝",
+        "精修回代失败与非有限修正",
+        "修正右端表示失败",
+        "精修候选更新溢出",
+        "精修守卫通过后的预算事务",
+        "多右端方向与空对偶重建点统一修正",
+        "方向修正一次上限与原守卫拒绝",
+        "方向局部提交前后预算事务",
+        "重建点局部提交与换基事务分离",
+        "真实近退化接纳后继续严格下降",
+        "近退化三项必要条件逐项拒绝",
+        "碰撞预筛与精确集合重放判重",
+        "真实近退化循环在重复基提交前停止",
+        "近退化与历史提交前后预算事务",
+        "精确历史回放中的部分预算账本"
+      ]
+    },
+    "lp_runs": 0
+  },
+  "compatibility": {
+    "passed": true,
+    "runs": 34,
+    "pairs": [
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal",
+        "report_and_exit_equal": true,
+        "basis_sidecar_compatible": true,
+        "basis_sidecar_equal_excluding_durations": null
+      }
+    ],
+    "non_budget_equal": 17,
+    "budget_pairs": 0,
+    "invalid_pairs": 0,
+    "different_pairs": 0,
+    "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2"
+  },
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [],
+    "development_speed_gate": false,
+    "eligible_for_netlib": false,
+    "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+    "valid_processes": true
+  },
+  "completed_stages": [
+    "compatibility-development",
+    "compatibility-probe",
+    "development",
+    "probe"
+  ],
+  "runs_by_stage": {
+    "compatibility-development": 22,
+    "compatibility-probe": 12,
+    "development": 66,
+    "probe": 36
+  },
+  "total_public_lp_runs_revalidated": 136,
+  "additional_public_lp_runs_by_this_driver": 0,
+  "stage_summaries": {
+    "compatibility-development": {
+      "schema_version": 1,
+      "model_count": 11,
+      "repeats": 1,
+      "run_count": 22,
+      "quality_pass_count": 22,
+      "reference_variant": "frozen_v66",
+      "candidate_variant": "diagnostic_off",
+      "both_variants_all_repeats_pass_count": 11,
+      "both_backends_all_repeats_pass_count": 11,
+      "wall_winner_counts": {
+        "frozen_v66": 9,
+        "diagnostic_off": 2
+      },
+      "failure_wall_penalty_seconds": 35,
+      "failure_numerical_penalty_seconds": 5,
+      "variants": {
+        "frozen_v66": {
+          "run_count": 11,
+          "quality_pass_count": 11,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 11
+          },
+          "penalized_wall_sgm10_seconds": 0.2680950626536411,
+          "penalized_numerical_sgm10_seconds": 0.24522173281896337,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_off": {
+          "run_count": 11,
+          "quality_pass_count": 11,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 11
+          },
+          "penalized_wall_sgm10_seconds": 0.26746650459080934,
+          "penalized_numerical_sgm10_seconds": 0.2382855159470671,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "backends": {
+        "frozen_v66": {
+          "run_count": 11,
+          "quality_pass_count": 11,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 11
+          },
+          "penalized_wall_sgm10_seconds": 0.2680950626536411,
+          "penalized_numerical_sgm10_seconds": 0.24522173281896337,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_off": {
+          "run_count": 11,
+          "quality_pass_count": 11,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 11
+          },
+          "penalized_wall_sgm10_seconds": 0.26746650459080934,
+          "penalized_numerical_sgm10_seconds": 0.2382855159470671,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "models": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+          "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.011419699992984533,
+            "diagnostic_off": 0.029346399998757988
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0005578,
+            "diagnostic_off": 0.0006735
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.011419699992984533,
+              0.011419699992984533
+            ],
+            "diagnostic_off": [
+              0.029346399998757988,
+              0.029346399998757988
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0005578,
+              0.0005578
+            ],
+            "diagnostic_off": [
+              0.0006735,
+              0.0006735
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.3891346125408174,
+          "numerical_speedup_reference_over_candidate": 0.828210838901262,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+          "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.011382999990019016,
+            "diagnostic_off": 0.014215500006685033
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.001665,
+            "diagnostic_off": 0.0017174
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.011382999990019016,
+              0.011382999990019016
+            ],
+            "diagnostic_off": [
+              0.014215500006685033,
+              0.014215500006685033
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.001665,
+              0.001665
+            ],
+            "diagnostic_off": [
+              0.0017174,
+              0.0017174
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.8007456638645144,
+          "numerical_speedup_reference_over_candidate": 0.9694887620822173,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+          "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.020351200000732206,
+            "diagnostic_off": 0.024146900002961047
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0094826,
+            "diagnostic_off": 0.0098493
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.020351200000732206,
+              0.020351200000732206
+            ],
+            "diagnostic_off": [
+              0.024146900002961047,
+              0.024146900002961047
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0094826,
+              0.0094826
+            ],
+            "diagnostic_off": [
+              0.0098493,
+              0.0098493
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.8428079794191641,
+          "numerical_speedup_reference_over_candidate": 0.9627689277410578,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+          "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.01915210000879597,
+            "diagnostic_off": 0.022313599998597056
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0088246,
+            "diagnostic_off": 0.0084804
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.01915210000879597,
+              0.01915210000879597
+            ],
+            "diagnostic_off": [
+              0.022313599998597056,
+              0.022313599998597056
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0088246,
+              0.0088246
+            ],
+            "diagnostic_off": [
+              0.0084804,
+              0.0084804
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.8583151087229375,
+          "numerical_speedup_reference_over_candidate": 1.040587708126975,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+          "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.02861029999621678,
+            "diagnostic_off": 0.031140099992626347
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.01632,
+            "diagnostic_off": 0.0162969
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.02861029999621678,
+              0.02861029999621678
+            ],
+            "diagnostic_off": [
+              0.031140099992626347,
+              0.031140099992626347
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.01632,
+              0.01632
+            ],
+            "diagnostic_off": [
+              0.0162969,
+              0.0162969
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9187606977174577,
+          "numerical_speedup_reference_over_candidate": 1.0014174474900135,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.07550129998708144,
+            "diagnostic_off": 0.07880049999221228
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0589365,
+            "diagnostic_off": 0.0593907
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.07550129998708144,
+              0.07550129998708144
+            ],
+            "diagnostic_off": [
+              0.07880049999221228,
+              0.07880049999221228
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0589365,
+              0.0589365
+            ],
+            "diagnostic_off": [
+              0.0593907,
+              0.0593907
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9581322452845236,
+          "numerical_speedup_reference_over_candidate": 0.992352337992312,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 6,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+          "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.4086032999912277,
+            "diagnostic_off": 0.4455546000099275
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.3718168,
+            "diagnostic_off": 0.4010139
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.4086032999912277,
+              0.4086032999912277
+            ],
+            "diagnostic_off": [
+              0.4455546000099275,
+              0.4455546000099275
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.3718168,
+              0.3718168
+            ],
+            "diagnostic_off": [
+              0.4010139,
+              0.4010139
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9170667298286753,
+          "numerical_speedup_reference_over_candidate": 0.9271918005834711,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 7,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+          "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.13512659999832977,
+            "diagnostic_off": 0.14985990000423044
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.1192836,
+            "diagnostic_off": 0.1297788
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.13512659999832977,
+              0.13512659999832977
+            ],
+            "diagnostic_off": [
+              0.14985990000423044,
+              0.14985990000423044
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.1192836,
+              0.1192836
+            ],
+            "diagnostic_off": [
+              0.1297788,
+              0.1297788
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9016861748507455,
+          "numerical_speedup_reference_over_candidate": 0.9191300890438192,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 8,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 1.545316699994146,
+            "diagnostic_off": 1.448877699993318
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 1.5019949,
+            "diagnostic_off": 1.4035062
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              1.545316699994146,
+              1.545316699994146
+            ],
+            "diagnostic_off": [
+              1.448877699993318,
+              1.448877699993318
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              1.5019949,
+              1.5019949
+            ],
+            "diagnostic_off": [
+              1.4035062,
+              1.4035062
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 1.0665611735215972,
+          "numerical_speedup_reference_over_candidate": 1.0701733273426222,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "diagnostic_off"
+        },
+        {
+          "model_index": 9,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.6343709000066156,
+            "diagnostic_off": 0.6588478000048781
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.5610294,
+            "diagnostic_off": 0.5652507
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.6343709000066156,
+              0.6343709000066156
+            ],
+            "diagnostic_off": [
+              0.6588478000048781,
+              0.6588478000048781
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.5610294,
+              0.5610294
+            ],
+            "diagnostic_off": [
+              0.5652507,
+              0.5652507
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9628489311217533,
+          "numerical_speedup_reference_over_candidate": 0.9925319862496411,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 10,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.15870439998980146,
+            "diagnostic_off": 0.1290191999869421
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.1414362,
+            "diagnostic_off": 0.1094465
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.15870439998980146,
+              0.15870439998980146
+            ],
+            "diagnostic_off": [
+              0.1290191999869421,
+              0.1290191999869421
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.1414362,
+              0.1414362
+            ],
+            "diagnostic_off": [
+              0.1094465,
+              0.1094465
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 1.230083584504196,
+          "numerical_speedup_reference_over_candidate": 1.2922861854878869,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "diagnostic_off"
+        }
+      ],
+      "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+      "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+      "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+      "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+      "stage": "compatibility-development",
+      "raw_sha256": "be698e565243659a6887d29faa6ae059903affdd656e8207109cdf9561453286",
+      "valid_process_count": 22,
+      "basis_marker_error_count": 0
+    },
+    "compatibility-probe": {
+      "schema_version": 1,
+      "model_count": 6,
+      "repeats": 1,
+      "run_count": 12,
+      "quality_pass_count": 10,
+      "reference_variant": "frozen_v66",
+      "candidate_variant": "diagnostic_off",
+      "both_variants_all_repeats_pass_count": 5,
+      "both_backends_all_repeats_pass_count": 5,
+      "wall_winner_counts": {
+        "diagnostic_off": 1,
+        "frozen_v66": 4
+      },
+      "failure_wall_penalty_seconds": 35,
+      "failure_numerical_penalty_seconds": 5,
+      "variants": {
+        "frozen_v66": {
+          "run_count": 6,
+          "quality_pass_count": 5,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 5,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 3.532799300237392,
+          "penalized_numerical_sgm10_seconds": 1.2486858782400916,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_off": {
+          "run_count": 6,
+          "quality_pass_count": 5,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 5,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 3.489479280388333,
+          "penalized_numerical_sgm10_seconds": 1.2103672520551139,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "backends": {
+        "frozen_v66": {
+          "run_count": 6,
+          "quality_pass_count": 5,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 5,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 3.532799300237392,
+          "penalized_numerical_sgm10_seconds": 1.2486858782400916,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_off": {
+          "run_count": 6,
+          "quality_pass_count": 5,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 1
+          },
+          "status_counts": {
+            "optimal": 5,
+            "numerical_error": 1
+          },
+          "penalized_wall_sgm10_seconds": 3.489479280388333,
+          "penalized_numerical_sgm10_seconds": 1.2103672520551139,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "models": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 3.2678054999996675,
+            "diagnostic_off": 3.0027733000024455
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 3.2058178,
+            "diagnostic_off": 2.9418873
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              3.2678054999996675,
+              3.2678054999996675
+            ],
+            "diagnostic_off": [
+              3.0027733000024455,
+              3.0027733000024455
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              3.2058178,
+              3.2058178
+            ],
+            "diagnostic_off": [
+              2.9418873,
+              2.9418873
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 1.0882624738927198,
+          "numerical_speedup_reference_over_candidate": 1.0897146875748775,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "diagnostic_off"
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.029568700003437698,
+            "diagnostic_off": 0.0323530000023311
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0174659,
+            "diagnostic_off": 0.0173883
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.029568700003437698,
+              0.029568700003437698
+            ],
+            "diagnostic_off": [
+              0.0323530000023311,
+              0.0323530000023311
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0174659,
+              0.0174659
+            ],
+            "diagnostic_off": [
+              0.0173883,
+              0.0173883
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9139399746949962,
+          "numerical_speedup_reference_over_candidate": 1.0044627709436806,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+          "quality_pass_counts": {
+            "frozen_v66": 0,
+            "diagnostic_off": 0
+          },
+          "all_repeats_quality_pass": false,
+          "median_wall_seconds": null,
+          "median_numerical_seconds": null,
+          "wall_range_seconds": null,
+          "numerical_range_seconds": null,
+          "wall_speedup_reference_over_candidate": null,
+          "numerical_speedup_reference_over_candidate": null,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": null
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.19220389999100007,
+            "diagnostic_off": 0.19295460000284947
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.1700041,
+            "diagnostic_off": 0.1679715
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.19220389999100007,
+              0.19220389999100007
+            ],
+            "diagnostic_off": [
+              0.19295460000284947,
+              0.19295460000284947
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.1700041,
+              0.1700041
+            ],
+            "diagnostic_off": [
+              0.1679715,
+              0.1679715
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9961094474459883,
+          "numerical_speedup_reference_over_candidate": 1.0121008623486722,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.033498300006613135,
+            "diagnostic_off": 0.03713519999291748
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0201252,
+            "diagnostic_off": 0.0199416
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.033498300006613135,
+              0.033498300006613135
+            ],
+            "diagnostic_off": [
+              0.03713519999291748,
+              0.03713519999291748
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0201252,
+              0.0201252
+            ],
+            "diagnostic_off": [
+              0.0199416,
+              0.0199416
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9020632718553291,
+          "numerical_speedup_reference_over_candidate": 1.0092068841015767,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+          "quality_pass_counts": {
+            "frozen_v66": 1,
+            "diagnostic_off": 1
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.03024389999336563,
+            "diagnostic_off": 0.03251779999118298
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0184844,
+            "diagnostic_off": 0.0178875
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.03024389999336563,
+              0.03024389999336563
+            ],
+            "diagnostic_off": [
+              0.03251779999118298,
+              0.03251779999118298
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0184844,
+              0.0184844
+            ],
+            "diagnostic_off": [
+              0.0178875,
+              0.0178875
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9300721451502283,
+          "numerical_speedup_reference_over_candidate": 1.033369671558351,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        }
+      ],
+      "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+      "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+      "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+      "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+      "stage": "compatibility-probe",
+      "raw_sha256": "b73a365dcbb396c8ea4f9a189616f455a66477d40254b3e54c7dfd1cf740fc55",
+      "valid_process_count": 12,
+      "basis_marker_error_count": 0
+    },
+    "development": {
+      "schema_version": 1,
+      "model_count": 11,
+      "repeats": 3,
+      "run_count": 66,
+      "quality_pass_count": 66,
+      "reference_variant": "frozen_v66",
+      "candidate_variant": "diagnostic_on",
+      "both_variants_all_repeats_pass_count": 11,
+      "both_backends_all_repeats_pass_count": 11,
+      "wall_winner_counts": {
+        "frozen_v66": 9,
+        "diagnostic_on": 2
+      },
+      "failure_wall_penalty_seconds": 35,
+      "failure_numerical_penalty_seconds": 5,
+      "variants": {
+        "frozen_v66": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.2443081597413556,
+          "penalized_numerical_sgm10_seconds": 0.2222927524780756,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_on": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.249322606944879,
+          "penalized_numerical_sgm10_seconds": 0.22370357502676852,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "backends": {
+        "frozen_v66": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.2443081597413556,
+          "penalized_numerical_sgm10_seconds": 0.2222927524780756,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_on": {
+          "run_count": 33,
+          "quality_pass_count": 33,
+          "all_repeats_quality_pass_model_count": 11,
+          "quality_failure_counts": {},
+          "status_counts": {
+            "optimal": 33
+          },
+          "penalized_wall_sgm10_seconds": 0.249322606944879,
+          "penalized_numerical_sgm10_seconds": 0.22370357502676852,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "models": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+          "sha256": "9cd304f02717cbd6f85068cb777b69d28539b22a4868ae0f0fb425f514f0eea5",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.00914069999998901,
+            "diagnostic_on": 0.012258200003998354
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0007226,
+            "diagnostic_on": 0.0006
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.008578799999668263,
+              0.010780000011436641
+            ],
+            "diagnostic_on": [
+              0.011715500004356727,
+              0.01460640000004787
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0005757,
+              0.0007319
+            ],
+            "diagnostic_on": [
+              0.0005754,
+              0.000755
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.7456804422351989,
+          "numerical_speedup_reference_over_candidate": 1.2043333333333335,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+          "sha256": "ed99da009e35279828219ff7f04a2cd4f170692bedf58f704b622338e4adc1f9",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.01166180000291206,
+            "diagnostic_on": 0.01438189999316819
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0018438999999999999,
+            "diagnostic_on": 0.0016962
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.010383700006059371,
+              0.011822300002677366
+            ],
+            "diagnostic_on": [
+              0.013346799998544157,
+              0.015752599996631034
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0017229,
+              0.0024097
+            ],
+            "diagnostic_on": [
+              0.0016772,
+              0.0017946
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.8108664368721619,
+          "numerical_speedup_reference_over_candidate": 1.087076995637307,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+          "sha256": "f3cc263fdb5845ef52e504b5b1f4e21215ec3b48ddf8d8547b08dbdee4a709e0",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.025603300004149787,
+            "diagnostic_on": 0.024829799993312918
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0141318,
+            "diagnostic_on": 0.01133
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.01937290000205394,
+              0.02771799999754876
+            ],
+            "diagnostic_on": [
+              0.022028499995940365,
+              0.03005750000011176
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0092563,
+              0.0147457
+            ],
+            "diagnostic_on": [
+              0.0090067,
+              0.0139852
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 1.031152083828512,
+          "numerical_speedup_reference_over_candidate": 1.2472903795233892,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "diagnostic_on"
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+          "sha256": "09ff7b847b40ac47e23ab8925846806d76e31b65b76b98a31437d08d74e339eb",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.020249699999112636,
+            "diagnostic_on": 0.02406850000261329
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0099811,
+            "diagnostic_on": 0.0098851
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.019371799993677996,
+              0.022128199998405762
+            ],
+            "diagnostic_on": [
+              0.023576300009153783,
+              0.024340199990547262
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0096686,
+              0.0101702
+            ],
+            "diagnostic_on": [
+              0.0096335,
+              0.0101446
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.8413361861733792,
+          "numerical_speedup_reference_over_candidate": 1.0097115861245711,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+          "sha256": "6276b3a0692a12bf975b75001505c975a7eeb8cfe7431647bfaa7265358aeea2",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.03281809999316465,
+            "diagnostic_on": 0.03152859999681823
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0211399,
+            "diagnostic_on": 0.0166148
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.029204399994341657,
+              0.03377809999801684
+            ],
+            "diagnostic_on": [
+              0.030561200008378364,
+              0.03796149999834597
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0180328,
+              0.0211665
+            ],
+            "diagnostic_on": [
+              0.0164101,
+              0.0210055
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 1.0408993737900367,
+          "numerical_speedup_reference_over_candidate": 1.272353564292077,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "diagnostic_on"
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+          "sha256": "e4ee6ed9e3fecb368bdc6fca6f9def3abc31f7937ec627b0eb4afa7c0b528b96",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.07522690000769217,
+            "diagnostic_on": 0.09162859999923967
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0580829,
+            "diagnostic_on": 0.0710209
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.07313069999509025,
+              0.08993590000318363
+            ],
+            "diagnostic_on": [
+              0.0809853000100702,
+              0.1099402999971062
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0575225,
+              0.0730599
+            ],
+            "diagnostic_on": [
+              0.0585897,
+              0.0844762
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.8209980290904412,
+          "numerical_speedup_reference_over_candidate": 0.81782827308581,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 6,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+          "sha256": "abfd9c578df785018be663840ff798199c9a0991e0ea7a809794bf12d581fd56",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.36206150001089554,
+            "diagnostic_on": 0.3712734000000637
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.3285654,
+            "diagnostic_on": 0.3306457
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.34184369999275077,
+              0.42169689999718685
+            ],
+            "diagnostic_on": [
+              0.3573346999910427,
+              0.44179119999171235
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.3095519,
+              0.3787328
+            ],
+            "diagnostic_on": [
+              0.3219252,
+              0.3961364
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9751883652608385,
+          "numerical_speedup_reference_over_candidate": 0.9937083712263611,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 7,
+          "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+          "sha256": "15756f5247186b6a5d44ca48177028e1055748227cf90146510f09f35c14a271",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.11027629999443889,
+            "diagnostic_on": 0.11289629999373574
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0974061,
+            "diagnostic_on": 0.0961842
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.10980409999319818,
+              0.12446079999790527
+            ],
+            "diagnostic_on": [
+              0.11200370000733528,
+              0.13266350000048988
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0971873,
+              0.1082386
+            ],
+            "diagnostic_on": [
+              0.0960178,
+              0.1128374
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9767928621270827,
+          "numerical_speedup_reference_over_candidate": 1.0127037496803009,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 8,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+          "sha256": "0ecfcc173d82c8a0252f58a99b2a529d8ad0155ee9212b8451cc25c0e387caa4",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 1.3165783000004012,
+            "diagnostic_on": 1.322915999990073
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 1.2766286,
+            "diagnostic_on": 1.2781414
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              1.300263500001165,
+              1.3303241999965394
+            ],
+            "diagnostic_on": [
+              1.322492899998906,
+              1.3230574000044726
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              1.259463,
+              1.2892655
+            ],
+            "diagnostic_on": [
+              1.2756672,
+              1.2792404
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.995209295231353,
+          "numerical_speedup_reference_over_candidate": 0.9988164063850838,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 9,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+          "sha256": "e97f59ab32a8280526c26c210aacabd6e0c05300e67a0d4afd00b95d245f8db7",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.6427304999961052,
+            "diagnostic_on": 0.664079700000002
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.5700249,
+            "diagnostic_on": 0.5904094
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.6180535000021337,
+              0.6811861000023782
+            ],
+            "diagnostic_on": [
+              0.6063084000052186,
+              0.6687201000022469
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.5468901,
+              0.6069281
+            ],
+            "diagnostic_on": [
+              0.5340868,
+              0.5955337
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.967851449150009,
+          "numerical_speedup_reference_over_candidate": 0.9654739575623288,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 10,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+          "sha256": "416e77d83daf74dee5ec1d253b77f8e252ff3e27cd123459218b02ef2be0df17",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.12860039999941364,
+            "diagnostic_on": 0.1374015000037616
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.1139209,
+            "diagnostic_on": 0.1171015
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.12771689999499358,
+              0.14474790000531357
+            ],
+            "diagnostic_on": [
+              0.1240574999974342,
+              0.1468892999982927
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.1132588,
+              0.1283456
+            ],
+            "diagnostic_on": [
+              0.1050693,
+              0.1286199
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.935946114095501,
+          "numerical_speedup_reference_over_candidate": 0.9728389474088719,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        }
+      ],
+      "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+      "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+      "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+      "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+      "stage": "development",
+      "raw_sha256": "97b53557baf1a5fe2175c13e2b012c3993d2854c491ddd47203f29b3b7b8db08",
+      "valid_process_count": 66,
+      "basis_marker_error_count": 0
+    },
+    "probe": {
+      "schema_version": 1,
+      "model_count": 6,
+      "repeats": 3,
+      "run_count": 36,
+      "quality_pass_count": 30,
+      "reference_variant": "frozen_v66",
+      "candidate_variant": "diagnostic_on",
+      "both_variants_all_repeats_pass_count": 5,
+      "both_backends_all_repeats_pass_count": 5,
+      "wall_winner_counts": {
+        "frozen_v66": 5
+      },
+      "failure_wall_penalty_seconds": 35,
+      "failure_numerical_penalty_seconds": 5,
+      "variants": {
+        "frozen_v66": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4783173556633167,
+          "penalized_numerical_sgm10_seconds": 1.2059481292073333,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_on": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4690452891957313,
+          "penalized_numerical_sgm10_seconds": 1.195866635519353,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "backends": {
+        "frozen_v66": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4783173556633167,
+          "penalized_numerical_sgm10_seconds": 1.2059481292073333,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        },
+        "diagnostic_on": {
+          "run_count": 18,
+          "quality_pass_count": 15,
+          "all_repeats_quality_pass_model_count": 5,
+          "quality_failure_counts": {
+            "incomplete": 3
+          },
+          "status_counts": {
+            "optimal": 15,
+            "numerical_error": 3
+          },
+          "penalized_wall_sgm10_seconds": 3.4690452891957313,
+          "penalized_numerical_sgm10_seconds": 1.195866635519353,
+          "numerical_budget_exceeded_count": 0,
+          "wall_budget_exceeded_count": 0
+        }
+      },
+      "models": [
+        {
+          "model_index": 0,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+          "sha256": "85d47c5f8a5fc53772eabac1805b7a1af72431cad9e14d26d673043980952730",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 2.8553031999908853,
+            "diagnostic_on": 2.8696477000048617
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 2.8108216,
+            "diagnostic_on": 2.823672
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              2.84557119999954,
+              3.176020499988226
+            ],
+            "diagnostic_on": [
+              2.8548391000076663,
+              2.944108600000618
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              2.8010928,
+              3.1194391
+            ],
+            "diagnostic_on": [
+              2.8078914,
+              2.8910789
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9950013027682972,
+          "numerical_speedup_reference_over_candidate": 0.9954490464898189,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 1,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+          "sha256": "891821f24a8cd14af78b95bb460a56f0e0b5410a59ad01ab58d9daf3387e7546",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.02795699999842327,
+            "diagnostic_on": 0.030514499987475574
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0175797,
+            "diagnostic_on": 0.0175478
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.027812600004835986,
+              0.029471700006979518
+            ],
+            "diagnostic_on": [
+              0.030498399995849468,
+              0.03262320000794716
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0174796,
+              0.0178615
+            ],
+            "diagnostic_on": [
+              0.0173355,
+              0.0176387
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9161873866489043,
+          "numerical_speedup_reference_over_candidate": 1.001817891701524,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 2,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "sha256": "cb701e3ba5153e385b8cb6426e34b5d23bad4b1b9c9a037802e351c24b0f653d",
+          "quality_pass_counts": {
+            "frozen_v66": 0,
+            "diagnostic_on": 0
+          },
+          "all_repeats_quality_pass": false,
+          "median_wall_seconds": null,
+          "median_numerical_seconds": null,
+          "wall_range_seconds": null,
+          "numerical_range_seconds": null,
+          "wall_speedup_reference_over_candidate": null,
+          "numerical_speedup_reference_over_candidate": null,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": null
+        },
+        {
+          "model_index": 3,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+          "sha256": "eafd7e49005db1a020d420b3fbed2e124bebf46740c0b2550edcbaa17b07ad6b",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.18821890000253916,
+            "diagnostic_on": 0.19243720000667963
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.1678772,
+            "diagnostic_on": 0.16798819999999998
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.18810070000472479,
+              0.18915270001161844
+            ],
+            "diagnostic_on": [
+              0.19038109999382868,
+              0.1931477000034647
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.1670652,
+              0.1682434
+            ],
+            "diagnostic_on": [
+              0.1669264,
+              0.1690053
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.978079602052025,
+          "numerical_speedup_reference_over_candidate": 0.9993392393037132,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 4,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+          "sha256": "671111a1623539730f4caa9366c7eda43fb472137773cd9444dc96ed87f9810e",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.0333262000058312,
+            "diagnostic_on": 0.035588700004154816
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0206791,
+            "diagnostic_on": 0.0203839
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.0326401999918744,
+              0.03484459999890532
+            ],
+            "diagnostic_on": [
+              0.03531749999092426,
+              0.03710709999722894
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.0202258,
+              0.0209051
+            ],
+            "diagnostic_on": [
+              0.0200613,
+              0.0204363
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.936426450023196,
+          "numerical_speedup_reference_over_candidate": 1.0144820176708087,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        },
+        {
+          "model_index": 5,
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+          "sha256": "65ec816c0b3c58ec4d61574df130a3ce464abb42f3d49de21710a787bf3cfdc7",
+          "quality_pass_counts": {
+            "frozen_v66": 3,
+            "diagnostic_on": 3
+          },
+          "all_repeats_quality_pass": true,
+          "median_wall_seconds": {
+            "frozen_v66": 0.029533900000387803,
+            "diagnostic_on": 0.031950200005667284
+          },
+          "median_numerical_seconds": {
+            "frozen_v66": 0.0181529,
+            "diagnostic_on": 0.0181138
+          },
+          "wall_range_seconds": {
+            "frozen_v66": [
+              0.028183499991428107,
+              0.02962080000725109
+            ],
+            "diagnostic_on": [
+              0.03154050000011921,
+              0.03337639999517705
+            ]
+          },
+          "numerical_range_seconds": {
+            "frozen_v66": [
+              0.018102,
+              0.0193378
+            ],
+            "diagnostic_on": [
+              0.0180804,
+              0.018248
+            ]
+          },
+          "wall_speedup_reference_over_candidate": 0.9243729302210665,
+          "numerical_speedup_reference_over_candidate": 1.0021585752299351,
+          "wall_speedup_highs_over_pdlp": null,
+          "numerical_speedup_highs_over_pdlp": null,
+          "wall_winner": "frozen_v66"
+        }
+      ],
+      "timing_definition": "墙钟截至子进程结束与输出收集完成，不含驱动 JSON 解析；数值阶段为 solve_seconds + verification_seconds，保留全部停止检查和共同质量复核成本。后端预算并非硬中断；完整数值时间超出 time_limit 的结果不计预算内达标。",
+      "aggregation_rule": "SGM 对所有预定模型和重复等权计入，失败不删除；逐模型速度比另外使用中位数，不将两种聚合混用。",
+      "interpretation": "速度比只来自双方所有重复均达标的模型；失败的预算惩罚是评分，不是精确耗时。wall_winner 仅表示观测中位数更小，不代表统计显著；同时给出重复测量范围。结果仅描述此冻结列表，不代表广泛性能领先。",
+      "plan_sha256": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+      "stage": "probe",
+      "raw_sha256": "aeb833cf7dd5862b9402ab1c6dbb3c9141f597cf64df4cd16f4a4afc439909c0",
+      "valid_process_count": 36,
+      "basis_marker_error_count": 0
+    }
+  },
+  "basis_recovery": {
+    "compatibility-development": {
+      "on_runs": 0,
+      "complete_marker_runs": 0,
+      "known_attempted": 0,
+      "known_accepted": 0,
+      "known_candidate_available": 0,
+      "stages": {},
+      "recovery_statuses": {},
+      "known_extra_work_counts": {
+        "budget_checks": 0,
+        "qr_analyze_calls": 0,
+        "qr_factor_calls": 0,
+        "lu_analyze_calls": 0,
+        "lu_factor_calls": 0,
+        "primal_solves": 0,
+        "dual_solves": 0,
+        "slack_matvecs": 0,
+        "selection_candidates": 0,
+        "selection_pivots": 0,
+        "selection_rejected": 0,
+        "work_units": 0,
+        "l_nonzeros": 0
+      },
+      "known_attempt_seconds_sum": 0,
+      "known_verification_seconds_sum": 0,
+      "missing_or_invalid_marker_events": [],
+      "interpretation": "已知工作只汇总完整合法账本；硬超时缺失账本的实际恢复工作未知，不能按零次处理。",
+      "events": []
+    },
+    "compatibility-probe": {
+      "on_runs": 0,
+      "complete_marker_runs": 0,
+      "known_attempted": 0,
+      "known_accepted": 0,
+      "known_candidate_available": 0,
+      "stages": {},
+      "recovery_statuses": {},
+      "known_extra_work_counts": {
+        "budget_checks": 0,
+        "qr_analyze_calls": 0,
+        "qr_factor_calls": 0,
+        "lu_analyze_calls": 0,
+        "lu_factor_calls": 0,
+        "primal_solves": 0,
+        "dual_solves": 0,
+        "slack_matvecs": 0,
+        "selection_candidates": 0,
+        "selection_pivots": 0,
+        "selection_rejected": 0,
+        "work_units": 0,
+        "l_nonzeros": 0
+      },
+      "known_attempt_seconds_sum": 0,
+      "known_verification_seconds_sum": 0,
+      "missing_or_invalid_marker_events": [],
+      "interpretation": "已知工作只汇总完整合法账本；硬超时缺失账本的实际恢复工作未知，不能按零次处理。",
+      "events": []
+    },
+    "development": {
+      "on_runs": 33,
+      "complete_marker_runs": 33,
+      "known_attempted": 0,
+      "known_accepted": 0,
+      "known_candidate_available": 0,
+      "stages": {
+        "not_attempted": 33
+      },
+      "recovery_statuses": {
+        "not_started": 33
+      },
+      "known_extra_work_counts": {
+        "budget_checks": 0,
+        "qr_analyze_calls": 0,
+        "qr_factor_calls": 0,
+        "lu_analyze_calls": 0,
+        "lu_factor_calls": 0,
+        "primal_solves": 0,
+        "dual_solves": 0,
+        "slack_matvecs": 0,
+        "selection_candidates": 0,
+        "selection_pivots": 0,
+        "selection_rejected": 0,
+        "work_units": 0,
+        "l_nonzeros": 0
+      },
+      "known_attempt_seconds_sum": 0,
+      "known_verification_seconds_sum": 0,
+      "missing_or_invalid_marker_events": [],
+      "interpretation": "已知工作只汇总完整合法账本；硬超时缺失账本的实际恢复工作未知，不能按零次处理。",
+      "events": []
+    },
+    "probe": {
+      "on_runs": 18,
+      "complete_marker_runs": 18,
+      "known_attempted": 3,
+      "known_accepted": 0,
+      "known_candidate_available": 0,
+      "stages": {
+        "not_attempted": 15,
+        "candidate_unavailable": 3
+      },
+      "recovery_statuses": {
+        "not_started": 15,
+        "repair_unavailable": 3
+      },
+      "known_extra_work_counts": {
+        "budget_checks": 7140180,
+        "qr_analyze_calls": 0,
+        "qr_factor_calls": 0,
+        "lu_analyze_calls": 3,
+        "lu_factor_calls": 3,
+        "primal_solves": 3,
+        "dual_solves": 3,
+        "slack_matvecs": 0,
+        "selection_candidates": 23931,
+        "selection_pivots": 15906,
+        "selection_rejected": 8025,
+        "work_units": 1800596079,
+        "l_nonzeros": 2491983
+      },
+      "known_attempt_seconds_sum": 9.6550129,
+      "known_verification_seconds_sum": 0,
+      "missing_or_invalid_marker_events": [],
+      "interpretation": "已知工作只汇总完整合法账本；硬超时缺失账本的实际恢复工作未知，不能按零次处理。",
+      "events": [
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 0,
+          "run_index": 13,
+          "status": "numerical_error",
+          "quality_pass": false,
+          "quality_failure": "incomplete",
+          "numerical_seconds": 4.1501214,
+          "elapsed_wall_seconds": 4.177685600006953,
+          "basis_marker": {
+            "schema": 1,
+            "enabled": true,
+            "attempted": true,
+            "accepted": false,
+            "stage": "candidate_unavailable",
+            "candidate_available": false,
+            "attempt_seconds": 3.2091671,
+            "verification_seconds": 0,
+            "recovery_status": "repair_unavailable",
+            "stats": {
+              "n": 5302,
+              "m": 7984,
+              "input_nonzeros": 36307,
+              "rank": 5302,
+              "qr_q_nonzeros": 0,
+              "qr_r_nonzeros": 0,
+              "lu_l_nonzeros": 67511,
+              "lu_u_nonzeros": 128029,
+              "budget_checks": 2380060,
+              "qr_analyze_calls": 0,
+              "qr_factor_calls": 0,
+              "lu_analyze_calls": 1,
+              "lu_factor_calls": 1,
+              "primal_solves": 1,
+              "dual_solves": 1,
+              "slack_matvecs": 0,
+              "selection_candidates": 7977,
+              "selection_pivots": 5302,
+              "selection_rejected": 2675,
+              "work_units": 600198693,
+              "l_nonzeros": 830661,
+              "pivot_columns_count": 5302,
+              "ordered_rows_count": 7984,
+              "qr_columns_permutation_count": 0,
+              "selected_rows_count": 5302,
+              "qr_default_threshold": 0,
+              "min_abs_pivot": 5.966783748122058e-07,
+              "selection_threshold": 6.030971940633543e-10
+            },
+            "repair": {
+              "status": "pivot_limit",
+              "candidate_available": false,
+              "stats": {
+                "phase": "phase1",
+                "attempts": 1,
+                "iterations": 128,
+                "phase1_iterations": 128,
+                "phase2_iterations": 0,
+                "pivots": 128,
+                "zero_steps": 0,
+                "work_units": 79483108,
+                "budget_checks": 1083954,
+                "lu_analyze_calls": 128,
+                "lu_factor_calls": 128,
+                "factor_nonzeros": 24038436,
+                "primal_solves": 128,
+                "dual_solves": 129,
+                "direction_solves": 128,
+                "slack_matvecs": 258,
+                "direction_matvecs": 248,
+                "pricing_matvecs": 129,
+                "roundoff_rows": 1601,
+                "final_selected_rows_count": 5302,
+                "initial_phi": 32449505.756851804,
+                "final_phi": 31778.177270954617,
+                "initial_max_violation": 8705704.905710522,
+                "final_max_violation": 5309.069725659392,
+                "max_roundoff_bound": 1.7901360810987807e-05,
+                "last_right_derivative": -77.45058215115547,
+                "last_step": 1.7608815467404981,
+                "max_selected_residual": 5.178665381071201e-09,
+                "max_direction_residual": 1.9484858843586694e-10,
+                "last_point_error": 5.000911187380552e-06,
+                "last_point_bound": 2.243387081198315e-05,
+                "initial_guard": {
+                  "complete": true,
+                  "passed": false,
+                  "checked_rows": 5302,
+                  "violations": 373,
+                  "failure_row": 50,
+                  "failure_basis_position": 49,
+                  "failure_abs_residual": 6.063013149901587e-13,
+                  "failure_threshold": 1.4210854716209815e-14,
+                  "failure_ratio": 42.664662126098044,
+                  "max_ratio": 68009.5556419366,
+                  "max_abs_residual": 7.94961252381654e-08
+                },
+                "refined_guard": {
+                  "complete": true,
+                  "passed": true,
+                  "checked_rows": 5302,
+                  "violations": 0,
+                  "failure_row": null,
+                  "failure_basis_position": null,
+                  "failure_abs_residual": null,
+                  "failure_threshold": null,
+                  "failure_ratio": null,
+                  "max_ratio": 0.00591338799404194,
+                  "max_abs_residual": 2.4714657480269875e-08
+                },
+                "initial_refinement": {
+                  "status": "accepted",
+                  "attempts": 1,
+                  "solves": 1,
+                  "accepted": 1,
+                  "double_digits": 53,
+                  "long_double_digits": 64,
+                  "correction_max_abs": 0.003583090761015752
+                },
+                "direction_forward": {
+                  "systems": 128,
+                  "guard_failures": 120,
+                  "attempts": 120,
+                  "solves": 120,
+                  "accepted": 120,
+                  "tag": "direction",
+                  "pivot_sequence": 127,
+                  "entering_row": 5894,
+                  "entering_basis_position": 3207,
+                  "before": {
+                    "complete": true,
+                    "passed": false,
+                    "checked_rows": 5302,
+                    "violations": 25,
+                    "failure_row": 1868,
+                    "failure_basis_position": 1733,
+                    "failure_abs_residual": 1.4817050373726395e-14,
+                    "failure_threshold": 1.421085471520262e-14,
+                    "failure_ratio": 1.0426572272162684,
+                    "max_ratio": 45147.65404134636,
+                    "max_abs_residual": 6.415867527254093e-10
+                  },
+                  "after": {
+                    "complete": true,
+                    "passed": true,
+                    "checked_rows": 5302,
+                    "violations": 0,
+                    "failure_row": null,
+                    "failure_basis_position": null,
+                    "failure_abs_residual": null,
+                    "failure_threshold": null,
+                    "failure_ratio": null,
+                    "max_ratio": 0.005283485202525828,
+                    "max_abs_residual": 1.9484858843586694e-10
+                  },
+                  "refinement": {
+                    "status": "accepted",
+                    "attempts": 1,
+                    "solves": 1,
+                    "accepted": 1,
+                    "double_digits": 53,
+                    "long_double_digits": 64,
+                    "correction_max_abs": 2.6642613300017833e-05
+                  }
+                },
+                "rebuild_forward": {
+                  "systems": 128,
+                  "guard_failures": 128,
+                  "attempts": 128,
+                  "solves": 128,
+                  "accepted": 128,
+                  "tag": "rebuild",
+                  "pivot_sequence": 128,
+                  "entering_row": 5894,
+                  "entering_basis_position": 3207,
+                  "before": {
+                    "complete": true,
+                    "passed": false,
+                    "checked_rows": 5302,
+                    "violations": 325,
+                    "failure_row": 50,
+                    "failure_basis_position": 49,
+                    "failure_abs_residual": 2.3345700372878753e-12,
+                    "failure_threshold": 1.3951996305495539e-12,
+                    "failure_ratio": 1.6732874537590823,
+                    "max_ratio": 737396.4926227967,
+                    "max_abs_residual": 2.776324835220695e-08
+                  },
+                  "after": {
+                    "complete": true,
+                    "passed": true,
+                    "checked_rows": 5302,
+                    "violations": 0,
+                    "failure_row": null,
+                    "failure_basis_position": null,
+                    "failure_abs_residual": null,
+                    "failure_threshold": null,
+                    "failure_ratio": null,
+                    "max_ratio": 0.0061212585359584305,
+                    "max_abs_residual": 5.178665381071201e-09
+                  },
+                  "refinement": {
+                    "status": "accepted",
+                    "attempts": 1,
+                    "solves": 1,
+                    "accepted": 1,
+                    "double_digits": 53,
+                    "long_double_digits": 64,
+                    "correction_max_abs": 0.004422880456883321
+                  }
+                },
+                "phase1_transition": {
+                  "status": "strict_accepted",
+                  "trials": 128,
+                  "strict_accepted": 119,
+                  "near_attempts": 9,
+                  "near_accepted": 9,
+                  "checked_rows": 0,
+                  "blocking_row": 7602,
+                  "released_row": 5894,
+                  "max_slack_change_row": null,
+                  "old_phi": 31862.271246856562,
+                  "new_phi": 31778.177270954617,
+                  "delta_phi": -84.09397590194409,
+                  "blocking_slack": -86.98215840016901,
+                  "blocking_tau": 1.6482056025803475e-12,
+                  "released_step": 1.7608815467404981,
+                  "released_tau": 1.4210854715202004e-14,
+                  "max_slack_change_ratio": null,
+                  "blocking_near": false,
+                  "released_near": false,
+                  "all_rows_near": false
+                },
+                "history": {
+                  "status": "unique",
+                  "initialized": true,
+                  "states": 129,
+                  "swaps": 128,
+                  "candidate_checks": 128,
+                  "hash_comparisons": 8256,
+                  "hash_matches": 0,
+                  "exact_checks": 0,
+                  "replay_swaps": 0,
+                  "membership_comparisons": 0,
+                  "repeats": 0,
+                  "repeated_state": null
+                }
+              }
+            },
+            "trial_verification": null,
+            "additional_work_in_legacy_ipm_counts": false,
+            "work_in_total_seconds": true,
+            "marker_in_total_seconds": false
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 1,
+          "run_index": 14,
+          "status": "numerical_error",
+          "quality_pass": false,
+          "quality_failure": "incomplete",
+          "numerical_seconds": 4.160223,
+          "elapsed_wall_seconds": 4.186338899991824,
+          "basis_marker": {
+            "schema": 1,
+            "enabled": true,
+            "attempted": true,
+            "accepted": false,
+            "stage": "candidate_unavailable",
+            "candidate_available": false,
+            "attempt_seconds": 3.2179789,
+            "verification_seconds": 0,
+            "recovery_status": "repair_unavailable",
+            "stats": {
+              "n": 5302,
+              "m": 7984,
+              "input_nonzeros": 36307,
+              "rank": 5302,
+              "qr_q_nonzeros": 0,
+              "qr_r_nonzeros": 0,
+              "lu_l_nonzeros": 67511,
+              "lu_u_nonzeros": 128029,
+              "budget_checks": 2380060,
+              "qr_analyze_calls": 0,
+              "qr_factor_calls": 0,
+              "lu_analyze_calls": 1,
+              "lu_factor_calls": 1,
+              "primal_solves": 1,
+              "dual_solves": 1,
+              "slack_matvecs": 0,
+              "selection_candidates": 7977,
+              "selection_pivots": 5302,
+              "selection_rejected": 2675,
+              "work_units": 600198693,
+              "l_nonzeros": 830661,
+              "pivot_columns_count": 5302,
+              "ordered_rows_count": 7984,
+              "qr_columns_permutation_count": 0,
+              "selected_rows_count": 5302,
+              "qr_default_threshold": 0,
+              "min_abs_pivot": 5.966783748122058e-07,
+              "selection_threshold": 6.030971940633543e-10
+            },
+            "repair": {
+              "status": "pivot_limit",
+              "candidate_available": false,
+              "stats": {
+                "phase": "phase1",
+                "attempts": 1,
+                "iterations": 128,
+                "phase1_iterations": 128,
+                "phase2_iterations": 0,
+                "pivots": 128,
+                "zero_steps": 0,
+                "work_units": 79483108,
+                "budget_checks": 1083954,
+                "lu_analyze_calls": 128,
+                "lu_factor_calls": 128,
+                "factor_nonzeros": 24038436,
+                "primal_solves": 128,
+                "dual_solves": 129,
+                "direction_solves": 128,
+                "slack_matvecs": 258,
+                "direction_matvecs": 248,
+                "pricing_matvecs": 129,
+                "roundoff_rows": 1601,
+                "final_selected_rows_count": 5302,
+                "initial_phi": 32449505.756851804,
+                "final_phi": 31778.177270954617,
+                "initial_max_violation": 8705704.905710522,
+                "final_max_violation": 5309.069725659392,
+                "max_roundoff_bound": 1.7901360810987807e-05,
+                "last_right_derivative": -77.45058215115547,
+                "last_step": 1.7608815467404981,
+                "max_selected_residual": 5.178665381071201e-09,
+                "max_direction_residual": 1.9484858843586694e-10,
+                "last_point_error": 5.000911187380552e-06,
+                "last_point_bound": 2.243387081198315e-05,
+                "initial_guard": {
+                  "complete": true,
+                  "passed": false,
+                  "checked_rows": 5302,
+                  "violations": 373,
+                  "failure_row": 50,
+                  "failure_basis_position": 49,
+                  "failure_abs_residual": 6.063013149901587e-13,
+                  "failure_threshold": 1.4210854716209815e-14,
+                  "failure_ratio": 42.664662126098044,
+                  "max_ratio": 68009.5556419366,
+                  "max_abs_residual": 7.94961252381654e-08
+                },
+                "refined_guard": {
+                  "complete": true,
+                  "passed": true,
+                  "checked_rows": 5302,
+                  "violations": 0,
+                  "failure_row": null,
+                  "failure_basis_position": null,
+                  "failure_abs_residual": null,
+                  "failure_threshold": null,
+                  "failure_ratio": null,
+                  "max_ratio": 0.00591338799404194,
+                  "max_abs_residual": 2.4714657480269875e-08
+                },
+                "initial_refinement": {
+                  "status": "accepted",
+                  "attempts": 1,
+                  "solves": 1,
+                  "accepted": 1,
+                  "double_digits": 53,
+                  "long_double_digits": 64,
+                  "correction_max_abs": 0.003583090761015752
+                },
+                "direction_forward": {
+                  "systems": 128,
+                  "guard_failures": 120,
+                  "attempts": 120,
+                  "solves": 120,
+                  "accepted": 120,
+                  "tag": "direction",
+                  "pivot_sequence": 127,
+                  "entering_row": 5894,
+                  "entering_basis_position": 3207,
+                  "before": {
+                    "complete": true,
+                    "passed": false,
+                    "checked_rows": 5302,
+                    "violations": 25,
+                    "failure_row": 1868,
+                    "failure_basis_position": 1733,
+                    "failure_abs_residual": 1.4817050373726395e-14,
+                    "failure_threshold": 1.421085471520262e-14,
+                    "failure_ratio": 1.0426572272162684,
+                    "max_ratio": 45147.65404134636,
+                    "max_abs_residual": 6.415867527254093e-10
+                  },
+                  "after": {
+                    "complete": true,
+                    "passed": true,
+                    "checked_rows": 5302,
+                    "violations": 0,
+                    "failure_row": null,
+                    "failure_basis_position": null,
+                    "failure_abs_residual": null,
+                    "failure_threshold": null,
+                    "failure_ratio": null,
+                    "max_ratio": 0.005283485202525828,
+                    "max_abs_residual": 1.9484858843586694e-10
+                  },
+                  "refinement": {
+                    "status": "accepted",
+                    "attempts": 1,
+                    "solves": 1,
+                    "accepted": 1,
+                    "double_digits": 53,
+                    "long_double_digits": 64,
+                    "correction_max_abs": 2.6642613300017833e-05
+                  }
+                },
+                "rebuild_forward": {
+                  "systems": 128,
+                  "guard_failures": 128,
+                  "attempts": 128,
+                  "solves": 128,
+                  "accepted": 128,
+                  "tag": "rebuild",
+                  "pivot_sequence": 128,
+                  "entering_row": 5894,
+                  "entering_basis_position": 3207,
+                  "before": {
+                    "complete": true,
+                    "passed": false,
+                    "checked_rows": 5302,
+                    "violations": 325,
+                    "failure_row": 50,
+                    "failure_basis_position": 49,
+                    "failure_abs_residual": 2.3345700372878753e-12,
+                    "failure_threshold": 1.3951996305495539e-12,
+                    "failure_ratio": 1.6732874537590823,
+                    "max_ratio": 737396.4926227967,
+                    "max_abs_residual": 2.776324835220695e-08
+                  },
+                  "after": {
+                    "complete": true,
+                    "passed": true,
+                    "checked_rows": 5302,
+                    "violations": 0,
+                    "failure_row": null,
+                    "failure_basis_position": null,
+                    "failure_abs_residual": null,
+                    "failure_threshold": null,
+                    "failure_ratio": null,
+                    "max_ratio": 0.0061212585359584305,
+                    "max_abs_residual": 5.178665381071201e-09
+                  },
+                  "refinement": {
+                    "status": "accepted",
+                    "attempts": 1,
+                    "solves": 1,
+                    "accepted": 1,
+                    "double_digits": 53,
+                    "long_double_digits": 64,
+                    "correction_max_abs": 0.004422880456883321
+                  }
+                },
+                "phase1_transition": {
+                  "status": "strict_accepted",
+                  "trials": 128,
+                  "strict_accepted": 119,
+                  "near_attempts": 9,
+                  "near_accepted": 9,
+                  "checked_rows": 0,
+                  "blocking_row": 7602,
+                  "released_row": 5894,
+                  "max_slack_change_row": null,
+                  "old_phi": 31862.271246856562,
+                  "new_phi": 31778.177270954617,
+                  "delta_phi": -84.09397590194409,
+                  "blocking_slack": -86.98215840016901,
+                  "blocking_tau": 1.6482056025803475e-12,
+                  "released_step": 1.7608815467404981,
+                  "released_tau": 1.4210854715202004e-14,
+                  "max_slack_change_ratio": null,
+                  "blocking_near": false,
+                  "released_near": false,
+                  "all_rows_near": false
+                },
+                "history": {
+                  "status": "unique",
+                  "initialized": true,
+                  "states": 129,
+                  "swaps": 128,
+                  "candidate_checks": 128,
+                  "hash_comparisons": 8256,
+                  "hash_matches": 0,
+                  "exact_checks": 0,
+                  "replay_swaps": 0,
+                  "membership_comparisons": 0,
+                  "repeats": 0,
+                  "repeated_state": null
+                }
+              }
+            },
+            "trial_verification": null,
+            "additional_work_in_legacy_ipm_counts": false,
+            "work_in_total_seconds": true,
+            "marker_in_total_seconds": false
+          }
+        },
+        {
+          "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+          "repetition": 2,
+          "run_index": 17,
+          "status": "numerical_error",
+          "quality_pass": false,
+          "quality_failure": "incomplete",
+          "numerical_seconds": 4.1625095,
+          "elapsed_wall_seconds": 4.188167900007102,
+          "basis_marker": {
+            "schema": 1,
+            "enabled": true,
+            "attempted": true,
+            "accepted": false,
+            "stage": "candidate_unavailable",
+            "candidate_available": false,
+            "attempt_seconds": 3.2278669,
+            "verification_seconds": 0,
+            "recovery_status": "repair_unavailable",
+            "stats": {
+              "n": 5302,
+              "m": 7984,
+              "input_nonzeros": 36307,
+              "rank": 5302,
+              "qr_q_nonzeros": 0,
+              "qr_r_nonzeros": 0,
+              "lu_l_nonzeros": 67511,
+              "lu_u_nonzeros": 128029,
+              "budget_checks": 2380060,
+              "qr_analyze_calls": 0,
+              "qr_factor_calls": 0,
+              "lu_analyze_calls": 1,
+              "lu_factor_calls": 1,
+              "primal_solves": 1,
+              "dual_solves": 1,
+              "slack_matvecs": 0,
+              "selection_candidates": 7977,
+              "selection_pivots": 5302,
+              "selection_rejected": 2675,
+              "work_units": 600198693,
+              "l_nonzeros": 830661,
+              "pivot_columns_count": 5302,
+              "ordered_rows_count": 7984,
+              "qr_columns_permutation_count": 0,
+              "selected_rows_count": 5302,
+              "qr_default_threshold": 0,
+              "min_abs_pivot": 5.966783748122058e-07,
+              "selection_threshold": 6.030971940633543e-10
+            },
+            "repair": {
+              "status": "pivot_limit",
+              "candidate_available": false,
+              "stats": {
+                "phase": "phase1",
+                "attempts": 1,
+                "iterations": 128,
+                "phase1_iterations": 128,
+                "phase2_iterations": 0,
+                "pivots": 128,
+                "zero_steps": 0,
+                "work_units": 79483108,
+                "budget_checks": 1083954,
+                "lu_analyze_calls": 128,
+                "lu_factor_calls": 128,
+                "factor_nonzeros": 24038436,
+                "primal_solves": 128,
+                "dual_solves": 129,
+                "direction_solves": 128,
+                "slack_matvecs": 258,
+                "direction_matvecs": 248,
+                "pricing_matvecs": 129,
+                "roundoff_rows": 1601,
+                "final_selected_rows_count": 5302,
+                "initial_phi": 32449505.756851804,
+                "final_phi": 31778.177270954617,
+                "initial_max_violation": 8705704.905710522,
+                "final_max_violation": 5309.069725659392,
+                "max_roundoff_bound": 1.7901360810987807e-05,
+                "last_right_derivative": -77.45058215115547,
+                "last_step": 1.7608815467404981,
+                "max_selected_residual": 5.178665381071201e-09,
+                "max_direction_residual": 1.9484858843586694e-10,
+                "last_point_error": 5.000911187380552e-06,
+                "last_point_bound": 2.243387081198315e-05,
+                "initial_guard": {
+                  "complete": true,
+                  "passed": false,
+                  "checked_rows": 5302,
+                  "violations": 373,
+                  "failure_row": 50,
+                  "failure_basis_position": 49,
+                  "failure_abs_residual": 6.063013149901587e-13,
+                  "failure_threshold": 1.4210854716209815e-14,
+                  "failure_ratio": 42.664662126098044,
+                  "max_ratio": 68009.5556419366,
+                  "max_abs_residual": 7.94961252381654e-08
+                },
+                "refined_guard": {
+                  "complete": true,
+                  "passed": true,
+                  "checked_rows": 5302,
+                  "violations": 0,
+                  "failure_row": null,
+                  "failure_basis_position": null,
+                  "failure_abs_residual": null,
+                  "failure_threshold": null,
+                  "failure_ratio": null,
+                  "max_ratio": 0.00591338799404194,
+                  "max_abs_residual": 2.4714657480269875e-08
+                },
+                "initial_refinement": {
+                  "status": "accepted",
+                  "attempts": 1,
+                  "solves": 1,
+                  "accepted": 1,
+                  "double_digits": 53,
+                  "long_double_digits": 64,
+                  "correction_max_abs": 0.003583090761015752
+                },
+                "direction_forward": {
+                  "systems": 128,
+                  "guard_failures": 120,
+                  "attempts": 120,
+                  "solves": 120,
+                  "accepted": 120,
+                  "tag": "direction",
+                  "pivot_sequence": 127,
+                  "entering_row": 5894,
+                  "entering_basis_position": 3207,
+                  "before": {
+                    "complete": true,
+                    "passed": false,
+                    "checked_rows": 5302,
+                    "violations": 25,
+                    "failure_row": 1868,
+                    "failure_basis_position": 1733,
+                    "failure_abs_residual": 1.4817050373726395e-14,
+                    "failure_threshold": 1.421085471520262e-14,
+                    "failure_ratio": 1.0426572272162684,
+                    "max_ratio": 45147.65404134636,
+                    "max_abs_residual": 6.415867527254093e-10
+                  },
+                  "after": {
+                    "complete": true,
+                    "passed": true,
+                    "checked_rows": 5302,
+                    "violations": 0,
+                    "failure_row": null,
+                    "failure_basis_position": null,
+                    "failure_abs_residual": null,
+                    "failure_threshold": null,
+                    "failure_ratio": null,
+                    "max_ratio": 0.005283485202525828,
+                    "max_abs_residual": 1.9484858843586694e-10
+                  },
+                  "refinement": {
+                    "status": "accepted",
+                    "attempts": 1,
+                    "solves": 1,
+                    "accepted": 1,
+                    "double_digits": 53,
+                    "long_double_digits": 64,
+                    "correction_max_abs": 2.6642613300017833e-05
+                  }
+                },
+                "rebuild_forward": {
+                  "systems": 128,
+                  "guard_failures": 128,
+                  "attempts": 128,
+                  "solves": 128,
+                  "accepted": 128,
+                  "tag": "rebuild",
+                  "pivot_sequence": 128,
+                  "entering_row": 5894,
+                  "entering_basis_position": 3207,
+                  "before": {
+                    "complete": true,
+                    "passed": false,
+                    "checked_rows": 5302,
+                    "violations": 325,
+                    "failure_row": 50,
+                    "failure_basis_position": 49,
+                    "failure_abs_residual": 2.3345700372878753e-12,
+                    "failure_threshold": 1.3951996305495539e-12,
+                    "failure_ratio": 1.6732874537590823,
+                    "max_ratio": 737396.4926227967,
+                    "max_abs_residual": 2.776324835220695e-08
+                  },
+                  "after": {
+                    "complete": true,
+                    "passed": true,
+                    "checked_rows": 5302,
+                    "violations": 0,
+                    "failure_row": null,
+                    "failure_basis_position": null,
+                    "failure_abs_residual": null,
+                    "failure_threshold": null,
+                    "failure_ratio": null,
+                    "max_ratio": 0.0061212585359584305,
+                    "max_abs_residual": 5.178665381071201e-09
+                  },
+                  "refinement": {
+                    "status": "accepted",
+                    "attempts": 1,
+                    "solves": 1,
+                    "accepted": 1,
+                    "double_digits": 53,
+                    "long_double_digits": 64,
+                    "correction_max_abs": 0.004422880456883321
+                  }
+                },
+                "phase1_transition": {
+                  "status": "strict_accepted",
+                  "trials": 128,
+                  "strict_accepted": 119,
+                  "near_attempts": 9,
+                  "near_accepted": 9,
+                  "checked_rows": 0,
+                  "blocking_row": 7602,
+                  "released_row": 5894,
+                  "max_slack_change_row": null,
+                  "old_phi": 31862.271246856562,
+                  "new_phi": 31778.177270954617,
+                  "delta_phi": -84.09397590194409,
+                  "blocking_slack": -86.98215840016901,
+                  "blocking_tau": 1.6482056025803475e-12,
+                  "released_step": 1.7608815467404981,
+                  "released_tau": 1.4210854715202004e-14,
+                  "max_slack_change_ratio": null,
+                  "blocking_near": false,
+                  "released_near": false,
+                  "all_rows_near": false
+                },
+                "history": {
+                  "status": "unique",
+                  "initialized": true,
+                  "states": 129,
+                  "swaps": 128,
+                  "candidate_checks": 128,
+                  "hash_comparisons": 8256,
+                  "hash_matches": 0,
+                  "exact_checks": 0,
+                  "replay_swaps": 0,
+                  "membership_comparisons": 0,
+                  "repeats": 0,
+                  "repeated_state": null
+                }
+              }
+            },
+            "trial_verification": null,
+            "additional_work_in_legacy_ipm_counts": false,
+            "work_in_total_seconds": true,
+            "marker_in_total_seconds": false
+          }
+        }
+      ]
+    }
+  },
+  "next_action": "initial_gate_failed_no_full_expansion",
+  "archive": {
+    "file": "v76-candidate-evidence.zip",
+    "sha256": "01cd5c33b47f2d6fa4abd27df76d0aaecea5e4563464228e1c5cfd87b0e78576",
+    "members": {
+      ".tools/v76-attempt-inline.py": "1dfa72ed6bda93837937db1c0b895b3400d7a78317855801a7b9569f03174d12",
+      ".tools/v76-basis-attempt2/basis-self-build.json": "b6d1a4cc81a646ea4acbf6bba2d009ca2cfd73201945505c2ab0e69fd1e3c856",
+      ".tools/v76-basis-attempt2/basis-self-check.json": "a0709556780283c2c123b2514487b27f77a990bb883156c66f8abdfb7f4bdeee",
+      ".tools/v76-basis-attempt2/basis-self-run.json": "25e2277bd91061d4003d2a0d38c01ecde201521b3aaef1b7006b69e1921edcc2",
+      ".tools/v76-basis-attempt2/build-manifest.json": "eb6870677f6d5acc109e1a27e7bb85d7c2f4f45197f57e2b88afab35d9407633",
+      ".tools/v76-basis-attempt2/highs-compile.json": "ea29962f1482ccbc637b2bdae5d6367195f0fc0711b2c019cb88bf0af1a64840",
+      ".tools/v76-basis-attempt2/ipm-basis.cpp": "d4c9a2ad709ba2ff192ede9631c88216f35e7ead22714a561f01ccb2bfe2ff58",
+      ".tools/v76-basis-attempt2/ipm-compile.json": "efc82ccd74f0d0009d2889cab306bbfde6c64c9543859068fdcbbe1f2c16fcd6",
+      ".tools/v76-basis-attempt2/link.json": "2acf8f88ea1bfa8f28eb4b0d8b98354a366712848bf326913a01a16692fdcea3",
+      ".tools/v76-basis-attempt2/main-compile.json": "8bb66e647d81ef1b287c59a9fb8dfec7b7065739d0a8ad7c394b52f31864b4b4",
+      ".tools/v76-basis-attempt2/ninja-commands.txt": "fd52ec7d60493f23aa436f6f609d241725d7fd19fb2545085c169d18698b3ade",
+      ".tools/v76-basis-attempt2/pdlp-compile.json": "b4aa8aaad49f8777fcd318d61d46d875f3a6e043ddd69a66c4339af735ef3646",
+      ".tools/v76-basis-attempt2/repair-self-build.json": "980e1e7fd387f3b3e9f352c38fd0691b7c14f112a157e10563157336a76f3e88",
+      ".tools/v76-basis-attempt2/repair-self-check.json": "bab2060ede2f8e25391c7dcdf175de7f5cd8c51a95e29b6074f2421a1d5521f1",
+      ".tools/v76-basis-attempt2/repair-self-run.json": "a0335283a2dbadff8c5acc8b0c53746f9972c95463a00388fc935112cca45d15",
+      ".tools/v76-basis-attempt2/static-check.json": "62d4402b4256b9c320578c24e0090f1bdc51450ce850d4496c6cb977610a675f",
+      ".tools/v76-basis-attempt2/transforms.json": "5173c212890bc2115c738a8b5a85a066dd9b80aed451178993d518a75068b9c6",
+      ".tools/v76-closeout-inline.py": "36474967e91a99e3660c9bceba500b5aa454ac46213fe35edbe7e30476068fcc",
+      ".tools/v76-document-check-inline.py": "659f6ea287d7f14c67c9f0f94211c4f750d00c5c7ff34298408d9c9772d11863",
+      ".tools/v76-freeze-failed-build-inline.py": "2352f763c1594c99cafb9fa9585e9ad72866faa2a6989f5cee10f69cf1a20700",
+      ".tools/v76-plan-inline.py": "c646aa167d6833fcf6e3d5cffa77330b30fc5fefe7e5924d21494c97301fd23c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-baseline-check.json": "c8a8e5a6ff6998497d4f74f3cae4a72b54190eac18ed794156fa17447398fea4",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-instrumentation.py": "ab1a7a3de3892bed77423f8a72dd434067d77e0062343e6f22ff6fc642c46765",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-recovery.hpp": "1f74191b37711e968f46734cfca55afd253e61957f0c22cff243b5071999a37f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-repair.hpp": "fc6a0a36d6f18eda7ae44ed199e799f70f6959abe9995fbd9fceb613a9bfde59",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-self-test.cpp": "a1546b9d9d86e79e519838c41e0e9763b47fccdca2ed242f77b3561bec9a703a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build-attempt1-forensics.json": "56f8337d659d0a56b08e7eaad95e5afcec6c32eda8b9e5901fe494994a674ead",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build-attempt1-sources.zip": "2fd3ec1b0019b159e7df500737f29c612e10d5485f7f70fdf263c5ffe5b45702",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build-attempt1.json": "f2b3543fa71cdd5342684758d031addd8b16f26ef94ec36c7a1cced7243d2e3d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build-attempt2.json": "8a7604a711dcb470766153adcc39ab886f69467ab64a4b8bc5271228e8c13f5d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build-self-check-attempt1.json": "63ea86e961dd169ea24dc20109084b517f06495a3b27844d409bf0c74025a09c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-build.py": "27bc4e177b4fbebc43eb56b11624df0b1d5edd93ca02edbcdd17b181c90e27d9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-check-attempt1.json": "872acae11521a0dd16783e3a764009138cc02c2b6d24baca8733c38e6811321f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-development-attempt1.json": "da0291cd1548452edc1289dc8c39f418c07948bd99f6ed5f0aae2a89ed4e20fe",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-development-manifest.json": "e441221e988964bf4a193beb432d7caa167d522130809f1dcf4ddcab6d905a37",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-development-runs.jsonl.gz": "be698e565243659a6887d29faa6ae059903affdd656e8207109cdf9561453286",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-development-summary.json": "e670cf65b94052db2ac443c6b9ce438845fe76b6c5dade0576285fd0ef4cfde3",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-probe-attempt1.json": "039e3ce6a07a192038ea93f622648e377601bb9404cc6e143214f1d630924647",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-probe-manifest.json": "36253f25645330a5e0ea6b2c96682cedc27ac0a23f1f03a03607a162bdb2ed83",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-probe-runs.jsonl.gz": "b73a365dcbb396c8ea4f9a189616f455a66477d40254b3e54c7dfd1cf740fc55",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility-probe-summary.json": "51d776fc48afbfe0f8a27c6fb97310253c749488105b7753121adc7df81c9216",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-compatibility.json": "7842f1d3ca57720a6f259aa5ac83d5fb2d81a95851ec5cff464a29029a083855",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-development-attempt1.json": "eca929342d679a92c69e57f52a679af71906b6f0bf21a690df56e4c5b26cddd8",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-development-manifest.json": "0fb5098c639e844883133dff41885aa1dcf28b2372ffee6bdb6e9bb8c48d41f1",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-development-runs.jsonl.gz": "97b53557baf1a5fe2175c13e2b012c3993d2854c491ddd47203f29b3b7b8db08",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-development-summary.json": "d2425ab4d949b4af744a297eb27e5da75670e7e567ccb7129d4bc3b7b83b3e8a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-gate-attempt1.json": "d84896405aee2143051ccea364383bc89d85136e9cbc7df8952fcaef06e89b4d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-gate.json": "4a1e1692d6c64db560f46f7e737f1b5b598a5b446d13baf64e8675752b8d0b64",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-plan.json": "f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-probe-attempt1.json": "8d3d16b1f6bccdf8ab682f0d387e214a53f54600498961eee0c6b4283cfc1507",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-probe-manifest.json": "c973646e2930d18f38ca75675e1defcd52164d42259029b38f5e659b95db1073",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-probe-runs.jsonl.gz": "aeb833cf7dd5862b9402ab1c6dbb3c9141f597cf64df4cd16f4a4afc439909c0",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-probe-summary.json": "2661e25407557cf718e7242536e8787d45cbab89be07413817b37885c6b261a3",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-repair-self-test.cpp": "8025e0020856e67f276bf08e88049d7ea27a84687936db97bec5918307a96d5c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-run-identity.json": "4ce17830dd1f7e0130bb9e1440ae0978baf898ddb2f23b81fab62252ba056337",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-run.py": "24460eda4ef7e156614e6d9c892da9edc44810652f7b933e272dcccdd5dda72c",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-runner-self-check-attempt1.json": "bad7c6ea026a2b7aa04d4a8758fd0b2b19b5208d824e314b6a5261acffabcd29",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-runner-self-check-attempt2.json": "2151862a0d3cc30c6dc979f2238b1fff05d3e8cb63697b8d752f6f64f7e3c7e0",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v76-runner-self-check.json": "f078943d96b1f0088c83c3fc18dda35fddba8d87927414ed09d8e96e6f9aa432"
+    },
+    "original_bytes_readback_verified": true
+  },
+  "driver_source": "\"\"\"只读复核第73轮原件与生产身份，并封存小型候选证据；不执行LP。\"\"\"\nimport collections\nimport datetime\nimport hashlib\nimport importlib.util\nimport json\nfrom pathlib import Path\nimport sys\nimport zipfile\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / \"knowledge/experiments/data/2026-10-12-halpern-ipm\"\nPLAN_SHA = \"f3e313b85f17e60060b4af76d4f58c59e1fd553ad8d8eadcd682fa79234ec2e2\"\nOUTPUT = DATA / \"v76-closeout.json\"\nARCHIVE = DATA / \"v76-candidate-evidence.zip\"\nsys.dont_write_bytecode = True\nHASHES = {}\n\n\ndef require(condition, message):\n    if not condition:\n        raise ValueError(message)\n\n\ndef sha(path):\n    path = Path(path).resolve()\n    if path not in HASHES:\n        digest = hashlib.sha256()\n        with path.open(\"rb\") as stream:\n            for chunk in iter(lambda: stream.read(1024 * 1024), b\"\"):\n                digest.update(chunk)\n        HASHES[path] = digest.hexdigest()\n    return HASHES[path]\n\n\ndef unique(items):\n    value = {}\n    for key, item in items:\n        require(key not in value, \"JSON重复字段：\" + key)\n        value[key] = item\n    return value\n\n\ndef read(path):\n    return json.loads(Path(path).read_text(encoding=\"utf-8\"), object_pairs_hook=unique,\n        parse_constant=lambda value: (_ for _ in ()).throw(ValueError(\"非有限JSON：\" + value)))\n\n\ndef verify_files(mapping):\n    for name, expected in mapping.items():\n        require(sha(name) == expected, \"原件身份变化：\" + name)\n\n\ndef marker_summary(rows):\n    selected = [row for row in rows if row[\"requested_variant\"] == \"diagnostic_on\"]\n    complete = [row for row in selected if row[\"basis_marker_error\"] is None and isinstance(row[\"basis_marker\"], dict)]\n    events = [row for row in complete if row[\"basis_marker\"][\"attempted\"]]\n    work = (\"budget_checks\", \"qr_analyze_calls\", \"qr_factor_calls\", \"lu_analyze_calls\", \"lu_factor_calls\",\n        \"primal_solves\", \"dual_solves\", \"slack_matvecs\", \"selection_candidates\", \"selection_pivots\",\n        \"selection_rejected\", \"work_units\", \"l_nonzeros\")\n    return {\"on_runs\": len(selected), \"complete_marker_runs\": len(complete), \"known_attempted\": len(events),\n        \"known_accepted\": sum(row[\"basis_marker\"][\"accepted\"] for row in complete),\n        \"known_candidate_available\": sum(row[\"basis_marker\"][\"candidate_available\"] for row in complete),\n        \"stages\": dict(collections.Counter(row[\"basis_marker\"][\"stage\"] for row in complete)),\n        \"recovery_statuses\": dict(collections.Counter(row[\"basis_marker\"][\"recovery_status\"] for row in complete)),\n        \"known_extra_work_counts\": {key: sum(row[\"basis_marker\"][\"stats\"][key] for row in complete) for key in work},\n        \"known_attempt_seconds_sum\": sum(row[\"basis_marker\"][\"attempt_seconds\"] for row in complete),\n        \"known_verification_seconds_sum\": sum(row[\"basis_marker\"][\"verification_seconds\"] for row in complete),\n        \"missing_or_invalid_marker_events\": [{\"input\": row[\"input\"], \"repetition\": row[\"repetition\"], \"run_index\": row[\"run_index\"],\n            \"returncode\": row[\"returncode\"], \"status\": row[\"status\"], \"classification\": row[\"classification\"], \"error\": row[\"error\"],\n            \"quality_pass\": row[\"quality_pass\"], \"quality_failure\": row[\"quality_failure\"],\n            \"numerical_seconds\": row[\"numerical_seconds\"], \"elapsed_wall_seconds\": row[\"elapsed_wall_seconds\"],\n            \"numerical_budget_exceeded\": row[\"numerical_budget_exceeded\"], \"wall_budget_exceeded\": row[\"wall_budget_exceeded\"],\n            \"basis_marker_error\": row[\"basis_marker_error\"], \"basis_marker\": row[\"basis_marker\"]}\n            for row in selected if row[\"basis_marker_error\"] is not None],\n        \"interpretation\": \"已知工作只汇总完整合法账本；硬超时缺失账本的实际恢复工作未知，不能按零次处理。\",\n        \"events\": [{\"input\": row[\"input\"], \"repetition\": row[\"repetition\"], \"run_index\": row[\"run_index\"],\n            \"status\": row[\"status\"], \"quality_pass\": row[\"quality_pass\"], \"quality_failure\": row[\"quality_failure\"],\n            \"numerical_seconds\": row[\"numerical_seconds\"], \"elapsed_wall_seconds\": row[\"elapsed_wall_seconds\"],\n            \"basis_marker\": row[\"basis_marker\"]} for row in events]}\n\n\ndef main():\n    require(not OUTPUT.exists() and not ARCHIVE.exists(), \"禁止覆盖既有结项记录或证据包\")\n    require(sha(DATA / \"v76-plan.json\") == PLAN_SHA, \"计划身份变化\")\n    plan = read(DATA / \"v76-plan.json\")\n    baseline_path = DATA / plan[\"baseline_identity_file\"]\n    require(sha(baseline_path) == plan[\"baseline_identity_sha256\"], \"生产基线身份变化\")\n    baseline = read(baseline_path)\n    identity_path = DATA / \"v76-run-identity.json\"\n    identity = read(identity_path)\n    require(identity[\"plan_sha256\"] == PLAN_SHA, \"运行身份引用了其他计划\")\n    verify_files(identity[\"protected\"])\n    build_path = Path(identity[\"build_manifest\"])\n    require(sha(build_path) == identity[\"build_manifest_sha256\"], \"构建证据身份变化\")\n    build, work = read(build_path), build_path.parent\n    require(build[\"plan_sha256\"] == PLAN_SHA and build[\"production_changes\"] is False,\n        \"构建范围与独立候选合同不符\")\n    require(build[\"baseline_identity_sha256\"] == plan[\"baseline_identity_sha256\"] and\n        build[\"parent_identity_sha256\"] == plan[\"parent_identity_sha256\"], \"构建来源与计划不符\")\n    require(build[\"current_files\"] == baseline[\"files\"] and build[\"actual_libraries\"] == baseline[\"libraries\"],\n        \"构建记录不对应生产基线\")\n    require(len(baseline[\"files\"]) == 95 and len(baseline[\"libraries\"]) == 17, \"生产基线集合不完整\")\n    sources = {name: sha(ROOT / name) for name in baseline[\"files\"]}\n    libraries = {name: sha(ROOT / name) for name in baseline[\"libraries\"]}\n    require(sources == baseline[\"files\"] and libraries == baseline[\"libraries\"], \"生产来源或库已变化\")\n    production_sha = sha(ROOT / \"build/release/solver.exe\")\n    require(production_sha == baseline[\"solver_sha256\"] == build[\"production_sha256\"], \"生产程序已变化\")\n    require(sha(identity[\"reference\"]) == identity[\"reference_sha256\"] == plan[\"parent_solver_sha256\"], \"参考程序已变化\")\n    require(sha(identity[\"candidate\"]) == identity[\"candidate_sha256\"] == build[\"executable_sha256\"], \"候选程序已变化\")\n    for group in (\"protected_before_and_after\", \"link_explicit_before_and_after\", \"compile_inputs_after_and_final\", \"outputs\"):\n        verify_files(build[group])\n    verify_files({str(work / \"frozen\" / name): digest for name, digest in build[\"frozen_files\"].items()})\n    checks = read(work / \"basis-self-check.json\")\n    require(checks[\"passed\"] is True and checks[\"details\"][\"passed\"] is True\n        and type(checks[\"details\"][\"cases\"]) is int and checks[\"details\"][\"cases\"] > 0\n        and checks[\"lp_runs\"] == checks[\"details\"][\"public_lp_runs\"] == 0, \"内核自检证据不完整\")\n    self_run = read(work / \"basis-self-run.json\")\n    require(self_run[\"returncode\"] == 0 and self_run[\"wall_timeout\"] is False and\n        json.loads(self_run[\"stdout\"]) == checks[\"details\"], \"内核自检摘要与原执行输出不同\")\n    repair_checks = read(work / \"repair-self-check.json\")\n    repair_run = read(work / \"repair-self-run.json\")\n    require(repair_checks[\"passed\"] is True and repair_checks[\"details\"][\"passed\"] is True\n        and repair_checks[\"details\"][\"cases\"] > 0 and repair_checks[\"lp_runs\"] == 0,\n        \"两阶段修复自检证据不完整\")\n    require(repair_run[\"returncode\"] == 0 and repair_run[\"wall_timeout\"] is False\n        and json.loads(repair_run[\"stdout\"]) == repair_checks[\"details\"], \"修复自检摘要与原输出不同\")\n    runner_check = read(DATA / \"v76-runner-self-check.json\")\n    require(runner_check[\"passed\"] is True and runner_check[\"solver_runs\"] == 0, \"协议自检证据不完整\")\n    runner_path = DATA / \"v76-run.py\"\n    require(sha(runner_path) == build[\"protected_before_and_after\"][str(runner_path)], \"协议源码与构建冻结不同\")\n    final_runner_check = read(DATA / \"v76-runner-self-check-attempt2.json\")\n    require(final_runner_check[\"returncode\"] == 0 and json.loads(final_runner_check[\"stdout\"]) == runner_check\n        and final_runner_check[\"source_sha256\"] == sha(runner_path)\n        and hashlib.sha256(final_runner_check[\"source\"].encode(\"utf-8\")).hexdigest() == sha(runner_path),\n        \"最终协议自检未对应冻结源码或规范摘要\")\n    failed_snapshot = read(DATA / \"v76-build-attempt1-forensics.json\")\n    failed_archive = DATA / failed_snapshot[\"archive_file\"]\n    require(failed_snapshot[\"passed\"] and failed_snapshot[\"test_run\"][\"wall_timeout\"]\n        and sha(failed_archive) == failed_snapshot[\"archive_sha256\"], \"首次失败构建证据不完整\")\n    with zipfile.ZipFile(failed_archive) as prior:\n        require({name: hashlib.sha256(prior.read(name)).hexdigest() for name in prior.namelist()}\n            == failed_snapshot[\"archive_members\"], \"首次失败来源包已变化\")\n        helper_name = \"knowledge/experiments/data/2026-10-12-halpern-ipm/v76-basis-repair.hpp\"\n        original_helper = prior.read(helper_name)\n    require(original_helper.count(b\"  const std::function<void()>& budget_;\") == 1 and\n        original_helper.replace(b\"  const std::function<void()>& budget_;\", b\"  std::function<void()> budget_;\")\n        == (DATA / \"v76-basis-repair.hpp\").read_bytes(), \"失败后内核修改超出已记录的回调所有权修复\")\n    spec = importlib.util.spec_from_file_location(\"v76_closeout_protocol\", runner_path)\n    runner = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(runner)\n    stages = [\"compatibility-development\", \"compatibility-probe\", \"development\", \"probe\"]\n    summaries, marker_results, row_counts = {}, {}, {}\n    for stage in stages:\n        _, summary, rows = runner.archive(stage)\n        summaries[stage], marker_results[stage], row_counts[stage] = summary, marker_summary(rows), len(rows)\n    compatible = runner.compatibility()\n    require(compatible[\"passed\"] is True and compatible[\"non_budget_equal\"] == 17 and compatible[\"runs\"] == 34,\n        \"完整非预算兼容要求未通过\")\n    require(compatible == read(DATA / \"v76-compatibility.json\"), \"已保存兼容结果不一致\")\n    gate = runner.gate()\n    require(gate == read(DATA / \"v76-gate.json\"), \"已保存门槛结果不一致\")\n    for stage in (\"netlib\", \"highs\"):\n        artifacts = [DATA / f\"v76-{stage}-{name}\" for name in (\"manifest.json\", \"summary.json\", \"runs.jsonl.gz\")]\n        exists = [path.exists() for path in artifacts]\n        if not any(exists):\n            continue\n        require(gate[\"eligible_for_netlib\"] is True and all(exists), \"完整集未获准扩集或记录尚不完整\")\n        require(stage != \"highs\" or \"netlib\" in summaries, \"HiGHS阶段缺少前置完整旧新评估\")\n        _, summary, rows = runner.archive(stage)\n        summaries[stage], marker_results[stage], row_counts[stage] = summary, marker_summary(rows), len(rows)\n        stages.append(stage)\n    require(sum(row_counts.values()) <= plan[\"maximum_solver_runs\"], \"公开LP运行数超过冻结上限\")\n    if not gate[\"eligible_for_netlib\"]:\n        action = \"initial_gate_failed_no_full_expansion\"\n    elif \"netlib\" not in summaries:\n        action = \"run_frozen_netlib_stage\"\n    elif \"highs\" not in summaries:\n        action = \"run_frozen_highs_stage\"\n    else:\n        action = \"full_results_ready_for_engineering_assessment\"\n    # 只封存候选来源、执行记录和数值原件；不打包程序、目标文件、依赖库或外部源码树。\n    members = {str(build_path), str(work / \"ipm-basis.cpp\"), str(work / \"ninja-commands.txt\"), str(Path(__file__))}\n    members.update(str(path) for path in work.glob(\"*.json\"))\n    members.update(str(DATA / name) for name in (\"v76-plan.json\", \"v76-baseline-check.json\", \"v76-run-identity.json\",\n        \"v76-runner-self-check.json\", \"v76-compatibility.json\", \"v76-gate.json\", \"v76-basis-recovery.hpp\",\n        \"v76-basis-instrumentation.py\", \"v76-basis-self-test.cpp\", \"v76-build.py\", \"v76-run.py\",\n        \"v76-basis-repair.hpp\", \"v76-repair-self-test.cpp\"))\n    for stage in stages:\n        members.update(str(DATA / f\"v76-{stage}-{name}\") for name in (\"manifest.json\", \"summary.json\", \"runs.jsonl.gz\"))\n    members.update(str(path) for path in DATA.glob(\"v76-*attempt*.json\"))\n    members.add(str(failed_archive))\n    members.update(str(path) for path in (ROOT / \".tools\").glob(\"v76-*.py\"))\n    archived = {}\n    with zipfile.ZipFile(ARCHIVE, \"x\", compression=zipfile.ZIP_DEFLATED) as archive:\n        for name in sorted(members):\n            path = Path(name).resolve()\n            require(path.is_relative_to(ROOT), \"证据包来源越界\")\n            relative = path.relative_to(ROOT).as_posix()\n            raw = path.read_bytes()\n            digest = hashlib.sha256(raw).hexdigest()\n            require(digest == sha(path), \"核验后原件发生变化：\" + name)\n            archive.writestr(relative, raw)\n            archived[relative] = digest\n    with zipfile.ZipFile(ARCHIVE) as archive:\n        require(len(archive.namelist()) == len(archived) and set(archive.namelist()) == set(archived), \"证据包成员不一致\")\n        require({name: hashlib.sha256(archive.read(name)).hexdigest() for name in archive.namelist()} == archived, \"证据包原字节回读不一致\")\n    result = {\"passed\": True, \"created_at_utc\": datetime.datetime.now(datetime.timezone.utc).isoformat(),\n        \"plan_sha256\": PLAN_SHA, \"run_identity_sha256\": sha(identity_path), \"build_manifest_sha256\": sha(build_path),\n        \"production_unchanged\": True, \"candidate_integrated_in_production\": False,\n        \"production_source_count\": len(sources), \"production_library_count\": len(libraries),\n        \"production_files\": sources, \"production_libraries\": libraries, \"production_solver_sha256\": production_sha,\n        \"candidate_solver_sha256\": identity[\"candidate_sha256\"], \"reference_solver_sha256\": identity[\"reference_sha256\"],\n        \"protocol_self_check\": runner_check, \"kernel_self_check\": checks, \"repair_self_check\": repair_checks,\n        \"compatibility\": compatible, \"gate\": gate, \"completed_stages\": stages, \"runs_by_stage\": row_counts,\n        \"total_public_lp_runs_revalidated\": sum(row_counts.values()), \"additional_public_lp_runs_by_this_driver\": 0,\n        \"stage_summaries\": summaries, \"basis_recovery\": marker_results, \"next_action\": action,\n        \"archive\": {\"file\": ARCHIVE.name, \"sha256\": sha(ARCHIVE), \"members\": archived, \"original_bytes_readback_verified\": True},\n        \"driver_source\": Path(__file__).read_text(encoding=\"utf-8\"), \"driver_sha256\": sha(__file__),\n        \"verification_scope\": \"复用冻结v76-run.archive重新解析原始stdout/stderr、身份、计数、质量与SGM；这不是独立数学求解验证。\",\n        \"limits\": [\"候选始终独立，当前只证明尚未集成生产；不以通过扩集门槛自动宣称生产接纳。\",\n            \"当前结项外层attempt在脚本退出后生成，单列保留，未包含在当时证据包内。\",\n            \"额外恢复统计只来自侧账本；原模型验收摘要与最终原报告均保留，未用摘要替代共同质量检查。\",\n            \"选基工作按固定上限计账；Eigen LU不能细粒度中断，实际超出共同预算的结果仍按失败计入。\",\n            \"证据包不含可执行文件或依赖库；重建仍需锁定依赖与v66来源，包内保留其身份。\"]}\n    with OUTPUT.open(\"x\", encoding=\"utf-8\") as stream:\n        json.dump(result, stream, ensure_ascii=False, indent=2, allow_nan=False)\n        stream.write(\"\\n\")\n    print(json.dumps({key: result[key] for key in (\"passed\", \"production_unchanged\", \"candidate_integrated_in_production\",\n        \"total_public_lp_runs_revalidated\", \"completed_stages\", \"next_action\")}, ensure_ascii=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+  "driver_sha256": "36474967e91a99e3660c9bceba500b5aa454ac46213fe35edbe7e30476068fcc",
+  "verification_scope": "复用冻结v76-run.archive重新解析原始stdout/stderr、身份、计数、质量与SGM；这不是独立数学求解验证。",
+  "limits": [
+    "候选始终独立，当前只证明尚未集成生产；不以通过扩集门槛自动宣称生产接纳。",
+    "当前结项外层attempt在脚本退出后生成，单列保留，未包含在当时证据包内。",
+    "额外恢复统计只来自侧账本；原模型验收摘要与最终原报告均保留，未用摘要替代共同质量检查。",
+    "选基工作按固定上限计账；Eigen LU不能细粒度中断，实际超出共同预算的结果仍按失败计入。",
+    "证据包不含可执行文件或依赖库；重建仍需锁定依赖与v66来源，包内保留其身份。"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "version": 113,
+  "phase": "independent_metis_prototype",
+  "plan_sha256": "b419f37fb23b0743512da3f3c446bd5cac050eab603fd2a941dddbc995a34ab9",
+  "identity_sha256": "ab077f50e736c32ab92bd4ca3376ffc6cd8c2b19dc8665e97d29d6b0e8aeacab",
+  "source_generation": false,
+  "production_changes": false,
+  "public_lp_runs": 0,
+  "compiled_units": 25,
+  "external_c_units": 24,
+  "snapshot_sources": 53,
+  "protected_inputs_revalidated": 918,
+  "outputs_revalidated": 140,
+  "actual_c_flags": [
+    "-O3",
+    "-DNDEBUG",
+    "-std=c11",
+    "-fwrapv"
+  ],
+  "cpp_fwrapv_applied": false,
+  "archive_file": "D:\\Documents\\codes\\solver\\.tools\\v113-metis-prototype\\build\\libhighs_metis_prototype.a",
+  "archive_sha256": "662639e5b9cae0097faf130d166df0029716a3da80ba05c2e868fab282cae22b",
+  "archive_members": 24,
+  "executable_sha256": "9db8d5be089becf95763ecaa8d6e24879a60f81d4ca6fbb617196d541cdc7f41",
+  "self_test": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "cases": 14,
+    "details": [
+      "metis_upper_graph_path",
+      "metis_diagonals_empty_identity",
+      "metis_disconnected_graph",
+      "metis_invalid_column_pointers",
+      "metis_invalid_rows",
+      "metis_resource_and_index_caps",
+      "metis_native_permutation_direction",
+      "metis_deterministic_seed_zero",
+      "metis_input_immutability",
+      "metis_graph_budget_prefixes",
+      "metis_order_budget_prefixes",
+      "metis_cholmod_given_spd",
+      "metis_cholmod_given_aat",
+      "metis_cholmod_given_nonpositive_and_stats"
+    ],
+    "native_probe": {
+      "index_bits": 32,
+      "option_count": 13,
+      "seed": 0
+    },
+    "executable_sha256": "9db8d5be089becf95763ecaa8d6e24879a60f81d4ca6fbb617196d541cdc7f41",
+    "raw_sha256": "fbc49aace5bb25955598542bab827ccdfefe46bf070579e3fd8748b7cb550655"
+  },
+  "symbol_summary": {
+    "passed": true,
+    "public_api": {
+      "Highs_METIS_NodeND": 1,
+      "Highs_METIS_SetDefaultOptions": 1
+    },
+    "unresolved_highs": [],
+    "compiler_symbol_overlap": []
+  },
+  "native_hash_regression": {
+    "dimension": 65537,
+    "upper_nonzeros": 131073,
+    "independent_hash_sum": 2147516416,
+    "exceeds_signed32": true,
+    "executed_in_case": "metis_resource_and_index_caps",
+    "actual_native_and_inverse_checks_passed": true,
+    "not_a_full_library_ub_proof": true
+  },
+  "attempts": {
+    "selfcheck": {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v113-prototype-selfcheck-attempt1.json",
+      "sha256": "af1f662e9e1683fbab55d8ae674b0c85dce9162bb1a2092a30e3e3b776502a40",
+      "returncode": 0,
+      "elapsed_seconds": 0.2295224000699818
+    },
+    "build": {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v113-prototype-build-attempt1.json",
+      "sha256": "6710845a857f58b4d29d817c0e8b6c4da5a1d82ec27d38c53eaea189c51764f4",
+      "returncode": 0,
+      "elapsed_seconds": 5.050822000019252
+    },
+    "symbols": {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v113-prototype-symbols-attempt1.json",
+      "sha256": "cd0e6a4952d5dc8f93288b048e7cc274902674f698d36a289e48530bacb1c151",
+      "returncode": 0,
+      "elapsed_seconds": 0.5924337999895215
+    },
+    "test": {
+      "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v113-prototype-test-attempt1.json",
+      "sha256": "d48ae8a78f53cf8477948aec1051992030d44bbe7a990b45b6c5c3485d07ac66",
+      "returncode": 0,
+      "elapsed_seconds": 0.4628570000641048
+    }
+  },
+  "decision": "allow_frozen_uniform_outer_ND_integration",
+  "goal_achieved": false
+}

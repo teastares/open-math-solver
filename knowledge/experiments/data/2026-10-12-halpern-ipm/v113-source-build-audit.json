@@ -1,0 +1,630 @@
+{
+  "passed": true,
+  "public_lp_runs": 0,
+  "prototype_evidence": {
+    "passed": true,
+    "public_lp_runs": 0,
+    "source_count": 53,
+    "compiled_units": 25,
+    "component_cases": 14,
+    "identity_sha256": "ab077f50e736c32ab92bd4ca3376ffc6cd8c2b19dc8665e97d29d6b0e8aeacab",
+    "archive_sha256": "662639e5b9cae0097faf130d166df0029716a3da80ba05c2e868fab282cae22b",
+    "c_flags": [
+      "-O3",
+      "-DNDEBUG",
+      "-std=c11",
+      "-fwrapv"
+    ],
+    "native_probe": {
+      "index_bits": 32,
+      "option_count": 13,
+      "seed": 0
+    },
+    "test_raw_sha256": "fbc49aace5bb25955598542bab827ccdfefe46bf070579e3fd8748b7cb550655",
+    "symbols_sha256": "d88fd9e2a951b814dd4ccb3fa2e3e55706ccb85cddce1336d5c4c896492e9544"
+  },
+  "source_evidence": {
+    "passed": true,
+    "source_files": 13,
+    "source_parent_version": 112,
+    "algorithm_parent_version": 106,
+    "unchanged_parent_sources": 10,
+    "changed_parent_sources": [
+      "src/experimental/normal_cholesky.cpp",
+      "tests/experimental/ipm_self_test.cpp"
+    ],
+    "new_sources": [
+      "include/solver/experimental/metis_order.hpp"
+    ],
+    "normal": {
+      "passed": true,
+      "full_parent_bytes_restored": true,
+      "unchanged_factor_and_solve": true,
+      "source_generation": false
+    },
+    "parent_test_bytes_preserved": true,
+    "source_generation": false,
+    "source_snapshot_sha256": {
+      "src/experimental/ipm.cpp": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+      "src/experimental/presolve_state.hpp": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      "src/experimental/coupled_state.hpp": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+      "include/solver/experimental/coupled.hpp": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      "include/solver/experimental/energy.hpp": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      "include/solver/experimental/legacy_coupled.hpp": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      "tests/experimental/ipm_self_test.cpp": "ae572fd17444c4e7064ec6bdeca1e0264349be0313422a728ae27fa2effaf2a2",
+      "tests/experimental/coupled_self_test.cpp": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      "include/solver/experimental/fma_axpy.hpp": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+      "src/experimental/normal_cholesky.cpp": "d8d7dde91df8b0a3c16c76e5924ce2efff6e35dfc0ef637f4e43f03adb821729",
+      "src/experimental/diagnostic_state.hpp": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+      "include/solver/experimental/profile.hpp": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      "include/solver/experimental/metis_order.hpp": "fd5d6d603e83d2146567d0b57f5e5db13e5d91101b4f53054888d84486e6e937"
+    }
+  },
+  "build_evidence": {
+    "passed": true,
+    "compiled_units": 4,
+    "dependency_files": 4,
+    "dependency_counts": {
+      "ipm": 8,
+      "ipm_self": 10,
+      "coupled_self": 6,
+      "normal": 8
+    },
+    "executables": 3,
+    "production_sources": 95,
+    "production_libraries": 17,
+    "component_cases": {
+      "ipm": 112,
+      "coupled": 57
+    },
+    "math_self_checks": {
+      "ipm": {
+        "passed": true,
+        "public_lp_runs": 0,
+        "explicit_highs_lp_solve_calls": 0,
+        "scope": "仅组件自测；component_ipm_calls计harness进入真实solve_ipm或v100_core的API次数(含零预算入口)，不含内部调用拦截；synthetic_core_calls另计，不是公开LP成绩",
+        "cases": 112,
+        "wrapper_cases": 3,
+        "mapping_cases": 27,
+        "transaction_cases": 46,
+        "budget_cases": 29,
+        "exception_cases": 7,
+        "component_ipm_calls": 44,
+        "synthetic_core_calls": 12,
+        "details": [
+          {
+            "id": "off_wrapper_is_original_core",
+            "group": "wrapper"
+          },
+          {
+            "id": "minimum_column_lower_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_column_upper_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_column_upper_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_original_row_lower",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_original_row_upper",
+            "group": "mapping"
+          },
+          {
+            "id": "ranged_row_lower",
+            "group": "mapping"
+          },
+          {
+            "id": "ranged_row_upper",
+            "group": "mapping"
+          },
+          {
+            "id": "fixed_column_equality_offset",
+            "group": "mapping"
+          },
+          {
+            "id": "minimum_real_reduced_child",
+            "group": "mapping"
+          },
+          {
+            "id": "maximum_real_reduced_child",
+            "group": "mapping"
+          },
+          {
+            "id": "not_reduced_is_original_core",
+            "group": "wrapper"
+          },
+          {
+            "id": "mip_is_original_core_rejection",
+            "group": "wrapper"
+          },
+          {
+            "id": "time_zero_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "iteration_zero_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "adopt_child_clears_all_coordinate_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "commit_valid_original_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "reject_bad_original_primal_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "nonoptimal_child_passes_original_quality",
+            "group": "transaction"
+          },
+          {
+            "id": "false_optimal_child_dual_rejected",
+            "group": "transaction"
+          },
+          {
+            "id": "false_optimal_child_primal_rejected",
+            "group": "transaction"
+          },
+          {
+            "id": "missing_candidate_drops_child_bait",
+            "group": "transaction"
+          },
+          {
+            "id": "bad_child_dimension_drops_bait",
+            "group": "transaction"
+          },
+          {
+            "id": "native_infeasible_is_not_original_certificate",
+            "group": "transaction"
+          },
+          {
+            "id": "entry_deadline_stops_before_native",
+            "group": "budget"
+          },
+          {
+            "id": "child_deadline_keeps_legacy_only",
+            "group": "budget"
+          },
+          {
+            "id": "post_verify_deadline_cannot_commit",
+            "group": "budget"
+          },
+          {
+            "id": "after_assessment_exception_keeps_cost_only",
+            "group": "exception"
+          },
+          {
+            "id": "child_standard_exception_partial_cost",
+            "group": "exception"
+          },
+          {
+            "id": "child_nonstandard_exception_partial_cost",
+            "group": "exception"
+          },
+          {
+            "id": "projection_skips_already_accepted_raw",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_unchanged_avoids_second_assessment",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_removes_tiny_wrong_lower_dual_sign",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_removes_tiny_wrong_upper_dual_sign",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_original_lower_bound",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_original_upper_bound",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_repairs_both_sides_transactionally",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_rejects_broken_row_keeps_raw_incumbent",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_rejects_broken_gap_keeps_raw_incumbent",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_nonfinite_second_vector_never_selects_partial_point",
+            "group": "transaction"
+          },
+          {
+            "id": "projection_copy_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_primal_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_after_dual_api_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_scan_loop_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_post_assessment_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_final_commit_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_exception_cannot_fallback_after_deadline",
+            "group": "budget"
+          },
+          {
+            "id": "projection_clock_exception_raw_fallback",
+            "group": "exception"
+          },
+          {
+            "id": "projection_allocation_exception_raw_fallback",
+            "group": "exception"
+          },
+          {
+            "id": "oracle_old_incumbent_cannot_trigger_current",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_reject_then_accept_same_core",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_tls_scope_restores_previous",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_owner_commits_without_tail_recovery",
+            "group": "transaction"
+          },
+          {
+            "id": "native_postsolve_replays_A_B_A_without_lp",
+            "group": "transaction"
+          },
+          {
+            "id": "oracle_budget_preserves_event_work",
+            "group": "budget"
+          },
+          {
+            "id": "oracle_error_preserves_event_work",
+            "group": "exception"
+          },
+          {
+            "id": "oracle_real_core_budget_bridge",
+            "group": "budget"
+          },
+          {
+            "id": "oracle_real_core_error_bridge",
+            "group": "exception"
+          },
+          {
+            "id": "coupled_mixed_physical_equations",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_imperfect_constant_strict",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_equality_scalar_blocks",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_real_core_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "coupled_disabled_and_scope",
+            "group": "transaction"
+          },
+          {
+            "id": "coupled_budget_and_count_partial",
+            "group": "budget"
+          },
+          {
+            "id": "energy_nominal_full_kkt_identity",
+            "group": "transaction"
+          },
+          {
+            "id": "energy_stored_diagonal_singleton",
+            "group": "mapping"
+          },
+          {
+            "id": "energy_scope_off_budget",
+            "group": "budget"
+          },
+          {
+            "id": "wide_direction_physical_dense",
+            "group": "transaction"
+          },
+          {
+            "id": "wide_direction_consumers",
+            "group": "mapping"
+          },
+          {
+            "id": "wide_direction_scope_budget",
+            "group": "budget"
+          },
+          {
+            "id": "restart_real_hsd_contract",
+            "group": "transaction"
+          },
+          {
+            "id": "restart_disabled_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "restart_budget_prefix",
+            "group": "budget"
+          },
+          {
+            "id": "initial_forcing_real_hsd",
+            "group": "transaction"
+          },
+          {
+            "id": "initial_forcing_strict_fallback",
+            "group": "mapping"
+          },
+          {
+            "id": "initial_forcing_delivery_budget",
+            "group": "budget"
+          },
+          {
+            "id": "candidate_forcing_real_hsd",
+            "group": "transaction"
+          },
+          {
+            "id": "candidate_forcing_default_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "candidate_forcing_delivery_budget",
+            "group": "budget"
+          },
+          {
+            "id": "forcing_weights_real_hsd",
+            "group": "transaction"
+          },
+          {
+            "id": "forcing_weights_default_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "forcing_weights_budget",
+            "group": "budget"
+          },
+          {
+            "id": "warm_regularization_seed_scope",
+            "group": "mapping"
+          },
+          {
+            "id": "warm_regularization_real_factor",
+            "group": "transaction"
+          },
+          {
+            "id": "warm_regularization_hsd_budget",
+            "group": "budget"
+          },
+          {
+            "id": "fma_production_binding",
+            "group": "transaction"
+          },
+          {
+            "id": "fma_real_hsd_mapping",
+            "group": "mapping"
+          },
+          {
+            "id": "fma_hsd_budget_prefix",
+            "group": "budget"
+          },
+          {
+            "id": "normal_inverse_multi_rhs",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_inverse_refactor",
+            "group": "mapping"
+          },
+          {
+            "id": "normal_inverse_factor_failure",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_inverse_budget_prefix",
+            "group": "budget"
+          },
+          {
+            "id": "normal_inverse_scope_and_fallback",
+            "group": "mapping"
+          },
+          {
+            "id": "normal_inverse_extreme_recovery",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_budget_short_columns",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_budget_long_boundaries",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_budget_shared_passes",
+            "group": "mapping"
+          },
+          {
+            "id": "normal_budget_all_cutoffs",
+            "group": "budget"
+          },
+          {
+            "id": "normal_budget_scope_snapshot",
+            "group": "mapping"
+          },
+          {
+            "id": "normal_budget_fallback_rejection",
+            "group": "transaction"
+          },
+          {
+            "id": "product_budget_double_wide",
+            "group": "transaction"
+          },
+          {
+            "id": "product_budget_work_boundaries",
+            "group": "transaction"
+          },
+          {
+            "id": "product_budget_shared_columns",
+            "group": "mapping"
+          },
+          {
+            "id": "product_budget_all_cutoffs",
+            "group": "budget"
+          },
+          {
+            "id": "product_budget_scope_snapshot",
+            "group": "mapping"
+          },
+          {
+            "id": "product_budget_kernel_boundaries",
+            "group": "budget"
+          },
+          {
+            "id": "normal_nd_multi_rhs",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_nd_refactor_failure",
+            "group": "transaction"
+          },
+          {
+            "id": "normal_nd_scope_binding",
+            "group": "mapping"
+          },
+          {
+            "id": "normal_nd_empty_disconnected",
+            "group": "mapping"
+          },
+          {
+            "id": "normal_nd_constructor_budget",
+            "group": "budget"
+          },
+          {
+            "id": "normal_nd_factor_solve_budget",
+            "group": "budget"
+          }
+        ]
+      },
+      "coupled": {
+        "passed": true,
+        "public_lp_runs": 0,
+        "cases": 57,
+        "default_limits": {
+          "max_window": 32,
+          "max_cycles": 3
+        },
+        "details": [
+          "exact_initial_physical",
+          "fgmres_variable_preconditioner",
+          "block_tolerances_are_independent",
+          "happy_breakdown_requires_true_residual",
+          "fixed_window_and_cycle_exhaustion",
+          "invalid_dimension_and_callback_values",
+          "budget_boundaries_keep_partial",
+          "pure_tau_kappa_has_search_space",
+          "energy_nominal_schur_identity",
+          "energy_stored_diagonal_contract",
+          "energy_budget_partial_boundaries",
+          "wide_exact_initial_physical",
+          "wide_fgmres_variable_preconditioner",
+          "wide_block_tolerances_are_independent",
+          "wide_happy_breakdown_requires_true_residual",
+          "wide_fixed_window_and_cycle_exhaustion",
+          "wide_invalid_dimension_and_callback_values",
+          "wide_budget_boundaries_keep_partial",
+          "wide_pure_tau_kappa_has_search_space",
+          "wide_direction_late_narrow_bridge",
+          "wide_double_column_wide_true_product",
+          "wide_promotion_budget_prefix",
+          "residual_gap_improvement_restarts",
+          "residual_gap_without_improvement_keeps_basis",
+          "residual_gap_restart_budget_and_caps",
+          "initial_forcing_strict_precedence",
+          "initial_forcing_linear_boundaries",
+          "initial_forcing_complementarity_stays_strict",
+          "initial_forcing_empty_zero_extreme_rhs",
+          "initial_forcing_rejection_strict_fallback",
+          "initial_forcing_only_initial_point",
+          "initial_forcing_budget_partial_snapshot",
+          "initial_forcing_invalid_norms_callbacks",
+          "candidate_forcing_strict_precedence",
+          "candidate_forcing_same_bounds",
+          "candidate_forcing_actual_nonbest_direction",
+          "candidate_forcing_default_and_invalid_policy",
+          "candidate_forcing_rejection_snapshot_and_caps",
+          "candidate_forcing_budget_partial_snapshot",
+          "forcing_weights_early_candidate",
+          "forcing_weights_consistent_physical_system",
+          "forcing_weights_default_and_invalid_policy",
+          "forcing_weights_budget_and_true_gate",
+          "fma_hardware_probe_and_default_control",
+          "fma_environment_predicate",
+          "fma_exact_cancellation_and_tails",
+          "fma_overflow_underflow_and_finite_prefix",
+          "fma_budget_chunk_boundaries",
+          "fma_control_reads_and_callback_recheck",
+          "fma_default_and_invalid_dimensions",
+          "fma_coupled_true_direction_and_budget",
+          "profile_off_zero_clock",
+          "profile_hierarchy_recursion",
+          "profile_exception_unwind",
+          "profile_nested_reports",
+          "profile_context_restore",
+          "profile_thread_isolation_and_real_clock"
+        ],
+        "hardware_probe": {
+          "cpu_avx": true,
+          "fma": true,
+          "mxcsr": 8114,
+          "cw": 895,
+          "selected": true,
+          "cancellation_actual": 4.930380657631324e-32,
+          "cancellation_legacy": 0,
+          "cancellation_expected": 4.930380657631324e-32,
+          "long_double_digits": 64
+        }
+      }
+    },
+    "source_generation": false,
+    "candidate_sha256": "56d7fd27fc9ee149f44230f22db0f8fd7b4901e3f02f7df3552512d0ab564ec7",
+    "build_manifest_sha256": "3d0838c7bb42aa89cc37f5824e96b174b894aea846eaf95ea20332a63b7c942a"
+  },
+  "driver_sha256": "ba8c681e19ab6c2befb92a6b19713f224538ff899b14ccfc451726be9bf6a314"
+}

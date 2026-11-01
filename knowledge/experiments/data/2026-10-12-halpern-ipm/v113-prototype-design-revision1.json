@@ -1,0 +1,52 @@
+{
+  "version": 113,
+  "round": 110,
+  "task_date": "2026-11-01",
+  "phase": "independent_metis_prototype",
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "production_changes": false,
+  "public_lp_runs": 0,
+  "hypothesis": "在当前25.49%数值调用热点下，先验证可用的通用嵌套剖分依赖与C++置换，再独立评测是否改善整体",
+  "cpp_files": [
+    ".tools/v113-metis-prototype/source/metis_order.hpp",
+    ".tools/v113-metis-prototype/source/self_test.cpp"
+  ],
+  "external_source": "锁定HiGHS1.15.1 cmake/sources.cmake中的24个METIS C源及metis所有.h、OrderingPrint.h和HConfig；逐字快照后新目录编译，不改原缓存、HIPO或CHOLMOD",
+  "compiler": "原Clang23，C用clang -O3 -DNDEBUG -std=c11（c11为显式新增标准），C++沿原-O3 -DNDEBUG -std=c++20，无fastmath/新ISA",
+  "archive": "新静态archive，公开及内部Highs前缀；核ar成员和真实定义/未定义符号，原17库及生产程序不改",
+  "adapter": "namespace solver::experimental::metis_order；Index=int64_t；make_graph和order_upper_csc。输入严格升序upper CSC：p0=0、单调且末=rows.size，行0<=row<=col，无重复；diag允许但剔除；两遍构造对称无自环、天然有序邻接，int64逐项checked到锁idx32",
+  "limits": {
+    "max_dimension": 16777216,
+    "max_upper_nonzeros": 16777216,
+    "origin": "沿用Normal既有结构项资源上限，不作为模型启发式；双向边数及所有idx32运算额外检查"
+  },
+  "native": "n0或无边图数学上可identity且native_called=false；非空图NodeND先锁头SetDefaultOptions，固定seed0与dbglvl0，其余默认。缓存API仅13个option且没有NUMBERING选项，直接使用其既定0基CSR，不设置通用METIS的40项或NUMBERING索引。返回perm[new]=old、iperm[old]=new，核范围及双向互逆后交付",
+  "budget": "适配器首末、自己的每4096遍历和native前后check；失败/异常不提交Result，所有分配和计算付费；不承诺native递归内中断，也不把abort/OOM/错误码伪装成结构预算或免费回退",
+  "tests": "14组：结构/diag/空图/断连，p及row非法与容量先验拒绝，置换方向/固定seed/输入不变/全部实际预算前缀，真实锁CHOLMOD_GIVEN SPD及矩形AAT完整解与非正定拒绝；以独立真值/原系统残差核，不构造OOM注入",
+  "runtime": "独立程序CPU1/BLAS1，超时120秒，保存原退出/全部stdoutstderr，不跑公开LP或择优补跑；真实库不能安全恢复的异常如实记录",
+  "later_integration": "原型成功后另冻结C++集成和原条件500协议；先统一ND单项消融，不同轮加入模型路由或未验证加权selector；原值/预算/最终共同精度保持，图/ordering/符号成本计入每次求解",
+  "research": [
+    {
+      "url": "https://karypis.github.io/glaros/files/sw/metis/manual.pdf",
+      "observation": "NodeND是多级嵌套剖分，定义perm/new-to-old及iperm/old-to-new；本缓存API有修改，具体ABI/选项数和错误边界以锁源为准"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/extern/metis/libmetis/ometis.c",
+      "observation": "实际Highs_METIS_NodeND使用给定CSR与ctrl随机状态；输入无自环，返回互逆置换"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_analyze.c",
+      "observation": "GIVEN可用且无须Partition；多method最小lnz不是最小flops，不预称ND优于AMD"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_solve.c",
+      "observation": "CHOLMOD_A负责内部置换及逆置换，原型验证原系统完整解，不重复手动重排RHS"
+    }
+  ],
+  "source_generation": false,
+  "goal_achieved": false,
+  "design_revision": 1,
+  "replaces": "v113-prototype-design.json",
+  "revision_reason": "实现前核锁头发现HiGHS裁剪API无NUMBERING，纠正通用手册假设；此时0编译/0LP，实际源仍按锁头而非通用METIS ABI"
+}

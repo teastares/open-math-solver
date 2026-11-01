@@ -1,0 +1,40 @@
+{
+  "status": "下一轮依赖原型待测前冻结，尚未构建或LP集成",
+  "version": 112,
+  "basis": "v112完整91开关诊断的数值调用为自身25.49%，dot4.76%，优先分解结构而非继续单独点积",
+  "facts": [
+    "项目CMakeLists.txt:97及实际CMakeCache关闭CHOLMOD_PARTITION，CHOLMOD无可直接使用的METIS/NESDIS分支",
+    "实际HIPO=OFF，HiGHS extras未编译metis；存在源码/头不等于可调用后端",
+    "锁CHOLMOD analyze多method按最小lnz选，不按最小fl；默认AMD后的500/5门槛也不是本项目已验证策略",
+    "SuiteSparse CHOLMOD CMake configure_file将头写回PROJECT_SOURCE_DIR/Include，不能仅另建binary目录就对冻结原source重新configure"
+  ],
+  "chosen_next_prototype": "从缓存HiGHS1.15.1 extern/metis逐字快照并锁24个C来源、全部实际头及HConfig，独立静态编译Highs_METIS_*，先正确性/符号/ABI/实际调用；不打开HIPO、不覆盖libhighs或旧CHOLMOD",
+  "boundary": "现HConfig的HIGHSINT64未定义，对应idx_t32；C++适配图必须校验并逐项复制int64索引，不能reinterpret；若以后改64需整库同ABI重新编译并另锁协议",
+  "possible_integration": "成功后以外部perm传给CHOLMOD_GIVEN分析，原CHOLMOD_A solve2负责内部置换恢复；可绕过关闭的CHOLMOD partition，不必为本原型重编整套CHOLMOD。图转换/ND/符号候选/存储成本按原每问题总预算计入，不能免费预计算",
+  "selection_guard": "先验证24源是否足够和随机/线程行为，不预称可链接；下一算法候选另冻结通用结构选择，区分minlnz与flops/超节点成本，不按模型身份、已知最优值或已测输赢路由；不跳过D/R数值刷新",
+  "source_locations": [
+    "build/release/_deps/highs-src/cmake/sources.cmake:49-73",
+    "build/release/_deps/highs-src/extern/metis/metis.h:35-38,179",
+    "build/release/_deps/highs-build/HConfig.h:11",
+    "build/release/_deps/suitesparse-src/CHOLMOD/CMakeLists.txt:353"
+  ],
+  "primary_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_analyze.c",
+      "observation": "支持given/AMD/METIS等；多method最小lnz，fl另保存，求解需正确处理内部Perm"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/cmake/sources.cmake",
+      "observation": "提供24个METIS C来源列表，可作隔离原型起点，尚未实际编译确认"
+    },
+    {
+      "url": "https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#parameterbarorder",
+      "observation": "公开BarOrder提供自动、AMD与Nested Dissection选项，说明通用排序是可研究素材；文档没有证明其内部具体METIS版本或本项目会加速"
+    }
+  ],
+  "current_state_file": "v112-canonical-state.json",
+  "new_dependency_builds": 0,
+  "new_cpp_algorithm_changes": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

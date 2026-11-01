@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "version": 111,
+  "decision": "not_adopted_restore_v106",
+  "reason": "AUTO实现与正定性、容量校验通过，但Netlib端到端与父近乎持平，同期HiGHS仍慢23.41%，未形成足够明确的整体收益，不增加活动数值分支；下一轮先刷新当前C++阶段剖析",
+  "evaluation_valid": true,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "closeout_sha256": "b56059f50a90fddd93c95ca5490b5950d56a5f4010eaed4b0debc393b20861f6",
+  "candidate_executable_sha256": "92cee249c67ccf1e052d0ac10371f6b99fc16e6a0e030941877638cff81dbb08",
+  "goal": {
+    "achieved": false,
+    "evaluated": true,
+    "status": "progress",
+    "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+    "models": 91,
+    "no_per_model_coverage_loss": true,
+    "candidate_coverage": 91,
+    "highs_coverage": 91,
+    "candidate_wall_sgm10_seconds": 0.11730040965999364,
+    "highs_wall_sgm10_seconds": 0.09504934344574166,
+    "candidate_numerical_sgm10_seconds": 0.096580219890321,
+    "highs_numerical_sgm10_seconds": 0.07822642986007955,
+    "candidate_to_highs_wall_ratio": 1.2341001569038073
+  },
+  "micro_scope": "本轮无独立微基准；不由CHOLMOD结构选择外推端到端收益",
+  "cross_round_comparison": {
+    "causal_isolation": false,
+    "parent_version": 106,
+    "parent_netlib": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.11714823630157839,
+      "penalized_numerical_sgm10_seconds": 0.09638884413976592,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "candidate_netlib": {
+      "run_count": 91,
+      "quality_pass_count": 91,
+      "all_repeats_quality_pass_model_count": 91,
+      "quality_failure_counts": {},
+      "status_counts": {
+        "optimal": 91
+      },
+      "penalized_wall_sgm10_seconds": 0.11712808492329314,
+      "penalized_numerical_sgm10_seconds": 0.09649072853374617,
+      "numerical_budget_exceeded_count": 0,
+      "wall_budget_exceeded_count": 0
+    },
+    "parent_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期完整91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.1166788956459437,
+      "highs_wall_sgm10_seconds": 0.09600763014726628,
+      "candidate_numerical_sgm10_seconds": 0.09592325793640119,
+      "highs_numerical_sgm10_seconds": 0.07959727682708528,
+      "candidate_to_highs_wall_ratio": 1.2153085694019292
+    },
+    "previous_trial_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.115567814851589,
+      "highs_wall_sgm10_seconds": 0.09479012719676196,
+      "candidate_numerical_sgm10_seconds": 0.0947077640838348,
+      "highs_numerical_sgm10_seconds": 0.07826338757997224,
+      "candidate_to_highs_wall_ratio": 1.2191967483248278
+    },
+    "candidate_highs_comparison": {
+      "achieved": false,
+      "evaluated": true,
+      "status": "progress",
+      "criterion": "同期91例逐例覆盖不低于HiGHS且惩罚wallSGM10不高于HiGHS",
+      "models": 91,
+      "no_per_model_coverage_loss": true,
+      "candidate_coverage": 91,
+      "highs_coverage": 91,
+      "candidate_wall_sgm10_seconds": 0.11730040965999364,
+      "highs_wall_sgm10_seconds": 0.09504934344574166,
+      "candidate_numerical_sgm10_seconds": 0.096580219890321,
+      "highs_numerical_sgm10_seconds": 0.07822642986007955,
+      "candidate_to_highs_wall_ratio": 1.2341001569038073
+    }
+  },
+  "archive": {
+    "members": 118,
+    "bytes": 47790522,
+    "sha256": "03fcb1e0144d5eec6413abc5d69b19010392f8258bf788f88bc5737eb9912adb"
+  },
+  "source_generation": false,
+  "goal_achieved": false
+}

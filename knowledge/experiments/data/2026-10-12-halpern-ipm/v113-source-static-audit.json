@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "version": 113,
+  "public_lp_runs": 0,
+  "source_generation": false,
+  "source_file": "src/experimental/normal_cholesky.cpp",
+  "source_sha256": "d8d7dde91df8b0a3c16c76e5924ce2efff6e35dfc0ef637f4e43f03adb821729",
+  "parent_sha256": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "complete_normal_parent_bytes_restored": true,
+  "amd_else_original_bytes_preserved": true,
+  "unchanged_parent_sources": [
+    "src/experimental/ipm.cpp",
+    "src/experimental/presolve_state.hpp",
+    "src/experimental/coupled_state.hpp",
+    "include/solver/experimental/coupled.hpp",
+    "include/solver/experimental/energy.hpp",
+    "include/solver/experimental/legacy_coupled.hpp",
+    "tests/experimental/coupled_self_test.cpp",
+    "include/solver/experimental/fma_axpy.hpp",
+    "src/experimental/diagnostic_state.hpp",
+    "include/solver/experimental/profile.hpp"
+  ],
+  "test_source": "tests/experimental/ipm_self_test.cpp",
+  "test_source_sha256": "ae572fd17444c4e7064ec6bdeca1e0264349be0313422a728ae27fa2effaf2a2",
+  "test_parent_sha256": "ca7360cbfb2e7b651e38c28f3e726599bcf34a4e36341fde4e16cd8422380ba7",
+  "complete_test_parent_bytes_restored": true,
+  "test_new_groups": 6,
+  "mechanical_text_rebindings": [
+    [
+      "同一 AMD 坐标",
+      "同一外部排列坐标"
+    ],
+    [
+      "同一 AMD 后",
+      "同一外部排列后"
+    ],
+    [
+      "同一 AMD 排列",
+      "同一外部排列"
+    ],
+    [
+      "已固定的 AMD 排列",
+      "已固定的外部排列"
+    ],
+    [
+      "相同的 AMD 及因子预算",
+      "相同的外部排列及因子预算"
+    ]
+  ],
+  "promoted_header": "include/solver/experimental/metis_order.hpp",
+  "promoted_header_sha256": "fd5d6d603e83d2146567d0b57f5e5db13e5d91101b4f53054888d84486e6e937",
+  "prototype_header": ".tools/v113-metis-prototype/build/source/own/metis_order.hpp",
+  "header_equals_tested_prototype": true,
+  "canonical_sources": 13,
+  "component_cases": {
+    "ipm": 112,
+    "coupled": 57
+  },
+  "design_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v113-design-revision1.json",
+  "design_sha256": "3afc68b0ac8156bf61a2394b2b401de3a867954cd6168587315961a2872ab325",
+  "inverse_source_emitted": false,
+  "goal_achieved": false
+}

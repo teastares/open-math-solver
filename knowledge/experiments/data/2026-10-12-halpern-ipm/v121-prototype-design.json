@@ -1,0 +1,88 @@
+{
+  "version": 121,
+  "round": 118,
+  "date": "2026-11-01",
+  "scope": "先测真实C++诊断serializer的I/O成本，零公开LP、当前15源不改。",
+  "hypothesis": "默认stderr的小写入可能主导部分诊断成本；相同输出字节可否通过独立新缓冲流降低费用。",
+  "prototype": {
+    "source": ".tools/v121-diagnostic-prototype/source/self_test.cpp",
+    "driver": ".tools/v121-prototype-build.ps1",
+    "output": ".tools/v121-diagnostic-build",
+    "parent": 120,
+    "snapshots": 16,
+    "translation_units": 1,
+    "executables": 1,
+    "experimental_dependencies": 11,
+    "link": "保父120真实link.ipm，仅替self对象与输出；不重编Normal/IPM、不新链接库。"
+  },
+  "fixture": "固定synthetic日志：P/E/C/X四真实serializer，oracle.events2、forcing、nativeInfo、warmStats完整；秒数/残差固定，构造在计时前。无prepare/native/solver调用。",
+  "modes": {
+    "default": "不修改stderr，调用原序列化及prefix/newline。",
+    "full": "进程首个stderr I/O前一次setvbuf，静态64KiB，作为缓冲上限对照，仅原型。",
+    "duplicate": "每marker复制stderr描述符，保窄字符text/binary模式，新FILE在首I/O前设64KiB缓冲；调用原序列化，检查fflush/fclose，关闭副本；不改全局stderr。当前测量失败明确非0，不掩盖为快。"
+  },
+  "timing": "计时包含循环、formatter、duplicate创建/关闭、全部实际输出和最终fflush(stderr)；stdoutJSON计时/元数据在stop后，外部wall及完整stdout/stderr同时保留。",
+  "schedule": {
+    "correctness": [
+      [
+        "default",
+        1
+      ],
+      [
+        "full",
+        1
+      ],
+      [
+        "duplicate",
+        1
+      ]
+    ],
+    "rounds": [
+      [
+        "default",
+        "full",
+        "duplicate"
+      ],
+      [
+        "full",
+        "duplicate",
+        "default"
+      ],
+      [
+        "duplicate",
+        "default",
+        "full"
+      ],
+      [
+        "default",
+        "duplicate",
+        "full"
+      ],
+      [
+        "duplicate",
+        "full",
+        "default"
+      ]
+    ],
+    "repeats": 64,
+    "total_process_runs": 18,
+    "per_run_timeout_seconds": 35
+  },
+  "checks": [
+    "所有18运行rc0，stdout passed/zeroLP/repeats/blocks一致",
+    "所有单块stderr严格同字节；64块必须等singleblock重复64次，不仅比较hash长度",
+    "输入/编译器/库/快照/.d前后身份不变",
+    "default/full/duplicate内部含flush时钟与外部wall均保留，不能把推迟写出说成省时",
+    "观察默认/duplicate五轮配对及中位数，只有配对均改善才进入独立正式候选；否则仅记结论"
+  ],
+  "production_boundary": "本设计未授权改全局流或更改求解数学；若duplicate有效，另冻结可回退的生产helper，验证原stderr不关闭、普通文件不截断、text/binary字节一致、关闭零工作、完整schema/字段/原预算，再走原公开LP协议。一次fwrite不是一次系统调用保证。",
+  "source_refs": [
+    "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setvbuf?view=msvc-170",
+    "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setbuf?view=msvc-170",
+    "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/dup-dup2?view=msvc-170",
+    "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/fdopen-wfdopen?view=msvc-170",
+    "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setmode?view=msvc-170"
+  ],
+  "public_lp_runs": 0,
+  "goal_achieved": false
+}

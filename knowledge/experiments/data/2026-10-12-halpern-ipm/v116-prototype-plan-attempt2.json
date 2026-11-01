@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "version": 116,
+  "round": 113,
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "public_lp_runs": 0,
+  "production_changes": false,
+  "source_generation": false,
+  "design_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v116-prototype-design-revision1.json",
+  "design_sha256": "f29952a6a9d69d333b4f8115dd5b0956d060aed4d26789e65b681141ac340b54",
+  "parent_identity_file": ".tools/v112-profile/identity.json",
+  "parent_identity_sha256": "548b7048613cea1d0fb667df449f7dd35b6ce3580bdbcf96bdff786ca0c40681",
+  "parent_build_manifest_file": ".tools/v112-profile/build-manifest.json",
+  "parent_build_manifest_sha256": "f85212395069eec8d90ff3a900405006fa4d88faa557ef39f8203650cd192002",
+  "production_identity_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-identity.json",
+  "production_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "source_archive_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-source.zip",
+  "source_archive_sha256": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+  "tools": {
+    "compiler": {
+      "file": ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang++.exe",
+      "sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe"
+    }
+  },
+  "sources": [
+    {
+      "source": ".tools/v112-profile/source/src/experimental/ipm.cpp",
+      "sha256": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+      "snapshot": "src/experimental/ipm.cpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/src/experimental/presolve_state.hpp",
+      "sha256": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      "snapshot": "src/experimental/presolve_state.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/src/experimental/coupled_state.hpp",
+      "sha256": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+      "snapshot": "src/experimental/coupled_state.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/include/solver/experimental/coupled.hpp",
+      "sha256": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      "snapshot": "include/solver/experimental/coupled.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/include/solver/experimental/energy.hpp",
+      "sha256": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      "snapshot": "include/solver/experimental/energy.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/include/solver/experimental/legacy_coupled.hpp",
+      "sha256": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      "snapshot": "include/solver/experimental/legacy_coupled.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/tests/experimental/ipm_self_test.cpp",
+      "sha256": "ca7360cbfb2e7b651e38c28f3e726599bcf34a4e36341fde4e16cd8422380ba7",
+      "snapshot": "tests/experimental/ipm_self_test.cpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/tests/experimental/coupled_self_test.cpp",
+      "sha256": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      "snapshot": "tests/experimental/coupled_self_test.cpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/include/solver/experimental/fma_axpy.hpp",
+      "sha256": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+      "snapshot": "include/solver/experimental/fma_axpy.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/src/experimental/normal_cholesky.cpp",
+      "sha256": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+      "snapshot": "src/experimental/normal_cholesky.cpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/src/experimental/diagnostic_state.hpp",
+      "sha256": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+      "snapshot": "src/experimental/diagnostic_state.hpp"
+    },
+    {
+      "source": ".tools/v112-profile/source/include/solver/experimental/profile.hpp",
+      "sha256": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      "snapshot": "include/solver/experimental/profile.hpp"
+    },
+    {
+      "source": ".tools/v116-crossover-prototype/source/ipx_crossover.hpp",
+      "sha256": "5d9041d0822cca49936f71fa87ff772e3eb1038de1236b8f2ba4772c4ce35796",
+      "snapshot": "own/ipx_crossover.hpp"
+    },
+    {
+      "source": ".tools/v116-crossover-prototype/source/self_test.cpp",
+      "sha256": "6fe23affcb1ddcada9d6c27e0df2d0171d07e33e6d658437fdd19b55658f412c",
+      "snapshot": "own/self_test.cpp"
+    }
+  ],
+  "inputs": {
+    ".tools/v116-build.ps1": "b5491ff3e15404d4d44d68c8e828680b759612f9e88dcfb0fca63c1d7ce219cf",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v116-baseline-check.json": "d8804570db7e51f1133ee0c6ddedc64fec7ce5e4ffe1f3798fbd5751117fb8ad",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v116-prototype-design.json": "d0aeba76f97605766c051ea8016c72992b1ae036a3368738fb4ca37c0c8d08b5",
+    "build/release/_deps/highs-src/LICENSE.txt": "795e6090936bcf2e1a0bfb339053de0c5bb6f3102035ead0ecc0ed4a7c41f1b7",
+    "build/release/_deps/highs-src/THIRD_PARTY_NOTICES.md": "a93082ab82d5f0a01c86b48a142ccea2ed2175f7dccb9e95a04770f4e2ae39a2",
+    "build/release/_deps/highs-src/highs/ipm/ipx/lp_solver.cc": "87a2b2ca94eaa84f1f6c22ccfd9eedd29b7b53dd4d16f1e04c56dcd9126e9ac0",
+    "build/release/_deps/highs-src/highs/ipm/ipx/iterate.cc": "063f85c29ffeacf0dc888c3086f4b86c708bb902ff88500c9e4624b18535281c",
+    "build/release/_deps/highs-src/highs/ipm/ipx/control.cc": "799c49979239720e20e6da08db69a53268d5187012237487d59539654197ba6a",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang.exe": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v116-prototype-build-attempt1.json": "70a886ee2b25d766f9b987c50b3d04babe1eb037ce7f69b18184a8d8a28d7149"
+  },
+  "dependency_roots": [
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/include",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/lib/clang/23/include",
+    "build/release/_deps/highs-src",
+    "build/release/_deps/highs-build"
+  ],
+  "required_cases": {
+    "crossover_min_ranged_sign": "mapping",
+    "crossover_max_offset_sign": "mapping",
+    "crossover_equalities_free_columns": "mapping",
+    "crossover_one_sided_rows": "mapping",
+    "crossover_free_rows_fixed_columns": "mapping",
+    "crossover_sparse_empty_support": "mapping",
+    "crossover_invalid_model_shapes": "exception",
+    "crossover_invalid_warm_point": "exception",
+    "crossover_drop_residual_contract": "transaction",
+    "crossover_native_rc_status": "transaction",
+    "crossover_remaining_budget": "budget",
+    "crossover_callback_transaction": "budget",
+    "crossover_hsd_initialized_point": "transaction",
+    "crossover_hsd_one_update": "transaction"
+  },
+  "required_thread_conflict_cases": {
+    "crossover_thread_conflict": "budget"
+  },
+  "compiler_timeout_seconds": 300,
+  "test_timeout_seconds": 35,
+  "actual_hsd_options": {
+    "presolve_singleton_rows": false,
+    "eliminate_presolved_fixed_variables": false,
+    "linear_solver": "normal_cholmod_aat",
+    "objective_scaling": false,
+    "eliminate_singletons": true,
+    "eliminate_fixed_variables": false,
+    "scaling_passes": 0
+  },
+  "scope_note": "独立复用IPX crossover原型，原Model验证；不改当前LP流程，不代表新公开性能成绩。",
+  "attempt": 2,
+  "revision_reason": "首测实际main11组通过；中断夹具freecol成基无InterruptCheck，改成合法互补的有界列/固定slack基以确实执行原生中断回调，保持adapter、14+1及预算不变。",
+  "previous_plan": {
+    "sha256": "61ddfae83f3cb542ac012210f6a31462a958f28db9b703f434d9d3af813e889d",
+    "file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v116-prototype-plan.json"
+  }
+}

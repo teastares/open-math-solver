@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "version": 117,
+  "round": 114,
+  "status": "首实现前冻结，混合路线首候选，不宣称性能收益",
+  "source_parent_version": 112,
+  "numerical_parent_version": 106,
+  "component_parent_version": 116,
+  "hypothesis": "复用当前HSD点及现有原验质量，在通用接近条件下最多一次交叉，争取省掉病态末期迭代；也可能因准备/选基及更差起点而失败。",
+  "research": {
+    "report": "https://cdn.gurobi.com/wp-content/uploads/New-Options-for-Solving-Giant-LPs.pdf",
+    "interpretation": "IPX原终止先feasible/optimal再检查Drop损失；本轮1e-4是新的可证伪启发式，非原生算法安全性保证，不采用论文中网络专门规则。",
+    "ipx": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/iterate.cc",
+    "paper": "https://arxiv.org/abs/2102.09420",
+    "gurobi": "https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#parameterbarconvtol"
+  },
+  "source_files": {
+    "modify_tests": "tests/experimental/ipm_self_test.cpp",
+    "copy_adapter": "include/solver/experimental/ipx_crossover.hpp",
+    "new_state": "src/experimental/crossover_state.hpp",
+    "modify_core": "src/experimental/ipm.cpp"
+  },
+  "adapter_origin": {
+    "sha256": "5d9041d0822cca49936f71fa87ff772e3eb1038de1236b8f2ba4772c4ce35796",
+    "file": ".tools/v116-crossover-prototype/source/ipx_crossover.hpp",
+    "license": "保留HiGHS/IPX/BASICLU归属，不称自研crossover；不改冻结库",
+    "byte_identical_copy": true
+  },
+  "identity": {
+    "environment": "SOLVER_V117_CROSSOVER",
+    "marker_on_only": true,
+    "on_backend_version": "ipm-ipx-crossover-cpu-0.1.0",
+    "old_native_presolve_zero_optimization_invariants_unchanged": true,
+    "marker": "V117_CROSSOVER ",
+    "full_solve_calls_forbidden": true,
+    "off_backend_version": "ipm-cpu-0.53.0",
+    "on_value": "1"
+  },
+  "gate": {
+    "retry": false,
+    "scope": "仅HSD，真实提交iteration>=1，当前独立原验未optimal；不是旧incumbent。",
+    "required": "primal.valid_input/objective_consistent/objective有值、optimality.valid_input/dual_feasible、有限relativegap",
+    "norm_cost": "首次需要门判断时O(n+m)扫描缓存，属于付费计算，不额外A乘",
+    "normalized_measures": [
+      "max(row_violation,bound_violation)/(1+finite_model_bounds_inf)",
+      "max_dual_residual/(1+model_cost_inf)",
+      "abs(relative_objective_gap)"
+    ],
+    "threshold": 0.0001,
+    "caveat": "max_dual_residual只是现检查器proxy，必须保dual_feasible符号门；最终容差完全不变。",
+    "attempt_budget": 1,
+    "input": "assess当次Point/tau恢复的x/y及刚完成的checks，在move前"
+  },
+  "transaction": {
+    "verification_cost": "adapter本地verify耗时加入原verification_seconds，全部准备与native成本已在solve+verify总耗时，不重复相加。",
+    "insertion": "assess现verify计时之后、feasible声明之前",
+    "accepted": "局部原验成功后若原oracle活动则先consult新候选；仅oracleaccept才替换x/y/checks，重新算feasible，复用这次decision不重复postsolve。",
+    "native": "逐字116 adapter的run，共享绝对deadline",
+    "default_off": "不开启时无新扫描/时钟/native及第四marker，旧三marker与完整非时间报告须兼容。",
+    "rejected": "原oracle拒绝或adapter失败不改HSD Point/tau/kappa与原assess点/checks；仍有预算才继续；原oracle事件和原坐标candidate副作用如实保留。"
+  },
+  "budget": {
+    "shared_solve_verify_seconds": 5,
+    "wall_seconds": 35,
+    "norm_checks": "生产budget回调沿原异常类型，每4096项和前后检查；不引入测试专用native hook。",
+    "native_interrupt": "合法callback+remaining time，但不称原生LU/crash可任意硬抢占",
+    "failure": "超时沿原core/controller失败收口，不能称保证能回退。",
+    "cpu_threads": 1,
+    "deadline": "原solve_start+原time_limit，不换epoch、不重授5s；处理巨大通用time_limit安全转换"
+  },
+  "components": {
+    "coupled_unchanged": 57,
+    "new_ipm_cases": {
+      "crossover_hsd_actual_handoff": "transaction",
+      "crossover_gate_gap_and_domain": "exception",
+      "crossover_remaining_deadline": "budget",
+      "crossover_single_attempt_scope": "transaction",
+      "crossover_original_postsolve": "transaction",
+      "crossover_gate_current_snapshot": "mapping"
+    },
+    "parent_ipm": 106,
+    "total_expected": 169
+  },
+  "evaluation": {
+    "protocol": "继承原v100全部输入/顺序/次数/精度/CPU/时限/罚分/gate，新增混合身份和第四侧账本；先136，原gate允许才500",
+    "public_performance_claim": "同期完整91达标覆盖>=HiGHS且惩罚wallSGM10<=对照且全部原件合法才可能达目标；本轮启发式不因验证输赢调参。",
+    "reference": "HiGHS choose/presolve choose/crossover on，CPU1，共同条件",
+    "candidate_configuration": "仅诊断on启用混合env且明确新版本；compat off无第四marker/新优化。",
+    "runner": "复用未修改B/C/v100/v66，仅薄包装明确桥接唯一backend_version和第四marker；任何新marker非法/漏发/多发都invalid process，归档必须从raw重解析。"
+  },
+  "build": "直接B快照14 canonical源、4TU/3link、原17库及顺序/两次BLAS；不生成C++，不改原normal",
+  "source_generation": false,
+  "no_model_specific_routing": true,
+  "new_dependency_builds": 0,
+  "goal_achieved": false
+}

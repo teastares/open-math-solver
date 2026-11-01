@@ -1,0 +1,26 @@
+{
+  "created_at_utc": "2026-10-31T16:35:10.244886+00:00",
+  "previous_plan_file": "v102-plan.json",
+  "previous_plan_sha256": "1762092c529273262b56a03b6d453e86e0e5c44436070197b07a8bcb549af975",
+  "failure_record_file": "v102-build-attempt1.json",
+  "failure_record_sha256": "acaf5794921542a69424070542966a3929d30844f48aa0f19a1927363840edb1",
+  "failed_normal_compile_sha256": "8b99b8cb1b9102897c46415b98d945fd364a5b3aa5c33651eb8d70f1e9ef276e",
+  "reason": "coupled_state.hpp隐含依赖先包含presolve_state.hpp，独立normal TU因emit_diagnostics未声明编译失败",
+  "correction": "把原同namespace/type/TLS/初值的inline变量定义移入独立diagnostic_state.hpp，两状态头显式include；避免extern或重复定义",
+  "math_changed_by_correction": false,
+  "source_count": 11,
+  "compiled_units": 4,
+  "expected_dependency_counts": {
+    "ipm": 7,
+    "ipm_self": 8,
+    "coupled_self": 5,
+    "normal": 6
+  },
+  "component_cases": {
+    "ipm": 94,
+    "coupled": 51
+  },
+  "public_lp_runs_before_correction": 0,
+  "old_work_preserved": true,
+  "new_work": ".tools/v102-normal-inverse-attempt2"
+}

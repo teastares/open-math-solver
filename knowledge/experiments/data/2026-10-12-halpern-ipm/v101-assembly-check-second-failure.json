@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "recorded_at_utc": "2026-10-31T15:43:11.112301+00:00",
+  "public_lp_runs": 0,
+  "exec_chunk_id": "01b12a",
+  "returncode": 1,
+  "observation": "过滤已正确返回函数；只接受packed vfnmadd的断言过窄。实际Clang预先对packed scalar变号，再用vfmadd213pd；scalar仍vfnmadd。",
+  "additional_read_chunks": [
+    "3201ac",
+    "08d211"
+  ],
+  "action": "保留两次只读检查失败，按实际等价融合指令记录；不改C++、不重编译、不重跑LP"
+}

@@ -1,0 +1,4777 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-25T20:13:09.993306+00:00",
+  "diagnostic_only": true,
+  "new_solver_runs": 0,
+  "scope": "85条冻结诊断、68对完整轨迹、51条on整数账本、17组阶段中位数及前轮182条共同成功分析的独立核验",
+  "plan_sha256": "b5df77438c3905566b0a8ddb02b84c2c2f65484facfe26bf559ec2ae085ec44b",
+  "verifier_sha256": "50a25a4db15fda3165eae3e12c3d2ccc90fd8cbf961bf78eaa15ea4f5a7914e7",
+  "helper_sha256": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5",
+  "instrumentation_sha256": "83b485c66dc049b3be0ec4d9530ed38fc84c08e9a23b2eb930862292b2273807",
+  "option_verifier_sha256": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+  "parent_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "production_sha256": "e8ae61ff3572b3603bf11509d58363d97d6886d373239994ff4235fa39a06787",
+  "diagnostic_sha256": "9f1998a92bdee970136855798d6b9aba7f38ad9eef500cdc07c7cecb45078704",
+  "source_checks": {
+    "source_files": 95,
+    "linked_libraries": 17,
+    "explicit_link_inputs": 19,
+    "compile_dependencies": 1080,
+    "anchors": {
+      "ipm": 21,
+      "normal": 20
+    },
+    "stages": 35,
+    "header_core_unchanged": true,
+    "self_test_two_translation_units": true,
+    "runner_self_check_protected_at_build": true,
+    "build_input_snapshots": 7,
+    "instrumentation_sha256": "83b485c66dc049b3be0ec4d9530ed38fc84c08e9a23b2eb930862292b2273807"
+  },
+  "run_count": 85,
+  "pairs": {
+    "non_budget_pairs": 68,
+    "non_budget_equal": 68,
+    "budget_pairs": 0,
+    "invalid_pairs": 0,
+    "different_pairs": 0,
+    "profile_errors": 0
+  },
+  "record_checks": {
+    "missing_reports": [],
+    "invalid_process_reports": [],
+    "profile_failures": [],
+    "enabled_profiles": 51,
+    "quality_pass_by_variant": {
+      "production": 16,
+      "off": 16,
+      "on1": 16,
+      "on2": 16,
+      "on3": 16
+    }
+  },
+  "cases": [
+    {
+      "case_index": 0,
+      "model": "afiro",
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.0006871,
+        "off": 0.000668,
+        "on1": 0.0005745,
+        "on2": 0.0007296,
+        "on3": 0.0005756
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 575600,
+          "exclusive_ns": 6800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 26500,
+          "exclusive_ns": 26500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 115200,
+          "exclusive_ns": 26700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 72600,
+          "exclusive_ns": 38000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 17400,
+          "exclusive_ns": 17400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 1700,
+          "exclusive_ns": 1700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 134800,
+          "exclusive_ns": 30800,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 104000,
+          "exclusive_ns": 4800,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 8600,
+          "exclusive_ns": 8600,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 171200,
+          "exclusive_ns": 11300,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 139500,
+          "exclusive_ns": 30900,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 108600,
+          "exclusive_ns": 4600,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 104900,
+          "exclusive_ns": 72900,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 20400,
+          "exclusive_ns": 20400,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 59600,
+          "exclusive_ns": 7800,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 51800,
+          "exclusive_ns": 9500,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 42300,
+          "exclusive_ns": 42300,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 110200,
+          "exclusive_ns": 27400,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 103000,
+          "exclusive_ns": 2700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 542500,
+          "exclusive_ns": 31900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 1200,
+          "exclusive_ns": 1200,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 900,
+          "exclusive_ns": 900,
+          "started": 8,
+          "completed": 8,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 29500,
+          "exclusive_ns": 29500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 32000,
+          "exclusive_ns": 32000,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 6000,
+          "exclusive_ns": 6000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 17500,
+          "exclusive_ns": 17500,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 73600,
+          "exclusive_ns": 73600,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 1,
+      "model": "adlittle",
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 0.0018429,
+        "on1": 0.0017039,
+        "on2": 0.0017233,
+        "on3": 0.0017062,
+        "production": 0.0016883
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 1706300,
+          "exclusive_ns": 8000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 64800,
+          "exclusive_ns": 64800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 274600,
+          "exclusive_ns": 86000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 139500,
+          "exclusive_ns": 84200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 47300,
+          "exclusive_ns": 47300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 2900,
+          "exclusive_ns": 2900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 393500,
+          "exclusive_ns": 114300,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 279200,
+          "exclusive_ns": 8400,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 33600,
+          "exclusive_ns": 33600,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 609300,
+          "exclusive_ns": 21000,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 494200,
+          "exclusive_ns": 102000,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 392200,
+          "exclusive_ns": 5800,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 386200,
+          "exclusive_ns": 293100,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 92000,
+          "exclusive_ns": 92000,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 178200,
+          "exclusive_ns": 19600,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 158600,
+          "exclusive_ns": 19300,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 140200,
+          "exclusive_ns": 140200,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 421000,
+          "exclusive_ns": 76200,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 159800,
+          "exclusive_ns": 3900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 1634400,
+          "exclusive_ns": 90800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 4400,
+          "exclusive_ns": 4400,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 3300,
+          "exclusive_ns": 3300,
+          "started": 13,
+          "completed": 13,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 33900,
+          "exclusive_ns": 33900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 92800,
+          "exclusive_ns": 92800,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 17400,
+          "exclusive_ns": 17400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 80000,
+          "exclusive_ns": 80000,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 157200,
+          "exclusive_ns": 157200,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 2,
+      "model": "e226",
+      "status": {
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal"
+      },
+      "numerical_seconds": {
+        "on1": 0.0093289,
+        "on2": 0.0090039,
+        "on3": 0.0091111,
+        "production": 0.0090357,
+        "off": 0.0090733
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 9111100,
+          "exclusive_ns": 37600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 253400,
+          "exclusive_ns": 253400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 1090100,
+          "exclusive_ns": 267800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 608500,
+          "exclusive_ns": 427800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 216600,
+          "exclusive_ns": 216600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 9600,
+          "exclusive_ns": 9600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 2692800,
+          "exclusive_ns": 631100,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 2059100,
+          "exclusive_ns": 36000,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 166200,
+          "exclusive_ns": 166200,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 3146400,
+          "exclusive_ns": 64900,
+          "started": 68,
+          "completed": 68,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 2442900,
+          "exclusive_ns": 493100,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 1949800,
+          "exclusive_ns": 7700,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 1941300,
+          "exclusive_ns": 1595700,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 638600,
+          "exclusive_ns": 638600,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 1068900,
+          "exclusive_ns": 82100,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 986800,
+          "exclusive_ns": 85100,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 900900,
+          "exclusive_ns": 900900,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 2279400,
+          "exclusive_ns": 330500,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 386500,
+          "exclusive_ns": 8600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 8811600,
+          "exclusive_ns": 415700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 31600,
+          "exclusive_ns": 31600,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 26500,
+          "exclusive_ns": 26500,
+          "started": 22,
+          "completed": 22,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 70300,
+          "exclusive_ns": 70300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 345600,
+          "exclusive_ns": 345600,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 101100,
+          "exclusive_ns": 101100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 553200,
+          "exclusive_ns": 553200,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 1297700,
+          "exclusive_ns": 1297700,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 3,
+      "model": "israel",
+      "status": {
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal"
+      },
+      "numerical_seconds": {
+        "on2": 0.0086895,
+        "on3": 0.0083741,
+        "production": 0.0088647,
+        "off": 0.0095986,
+        "on1": 0.0112373
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 8689500,
+          "exclusive_ns": 26900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 222200,
+          "exclusive_ns": 222200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 1494700,
+          "exclusive_ns": 225400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 1062200,
+          "exclusive_ns": 909300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 207100,
+          "exclusive_ns": 207100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 18000,
+          "exclusive_ns": 18000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 3559400,
+          "exclusive_ns": 406200,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 3153200,
+          "exclusive_ns": 30100,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 186400,
+          "exclusive_ns": 186400,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 2104200,
+          "exclusive_ns": 45600,
+          "started": 62,
+          "completed": 62,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 1616800,
+          "exclusive_ns": 296700,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 1320100,
+          "exclusive_ns": 7800,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 1312500,
+          "exclusive_ns": 975800,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 441800,
+          "exclusive_ns": 441800,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 766400,
+          "exclusive_ns": 48700,
+          "started": 22,
+          "completed": 22,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 718300,
+          "exclusive_ns": 53800,
+          "started": 22,
+          "completed": 22,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 664500,
+          "exclusive_ns": 664500,
+          "started": 22,
+          "completed": 22,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 1456900,
+          "exclusive_ns": 194900,
+          "started": 40,
+          "completed": 40,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 413900,
+          "exclusive_ns": 6300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 8440400,
+          "exclusive_ns": 277300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 21000,
+          "exclusive_ns": 21000,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 16800,
+          "exclusive_ns": 16800,
+          "started": 20,
+          "completed": 20,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 61800,
+          "exclusive_ns": 61800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 336700,
+          "exclusive_ns": 336700,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 77300,
+          "exclusive_ns": 77300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 388700,
+          "exclusive_ns": 388700,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 2548000,
+          "exclusive_ns": 2548000,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 4,
+      "model": "stair",
+      "status": {
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal"
+      },
+      "numerical_seconds": {
+        "on3": 0.0204691,
+        "production": 0.0194679,
+        "off": 0.0227253,
+        "on1": 0.0223149,
+        "on2": 0.0182269
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 20469200,
+          "exclusive_ns": 46500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 838300,
+          "exclusive_ns": 484100,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 2033700,
+          "exclusive_ns": 456900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 1211200,
+          "exclusive_ns": 875700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 365600,
+          "exclusive_ns": 365600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 25300,
+          "exclusive_ns": 25300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 6114500,
+          "exclusive_ns": 921000,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 5193500,
+          "exclusive_ns": 59600,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 363700,
+          "exclusive_ns": 363700,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 8850500,
+          "exclusive_ns": 271200,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 6896000,
+          "exclusive_ns": 1482600,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 5413400,
+          "exclusive_ns": 14100,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 5398300,
+          "exclusive_ns": 3914300,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 1683300,
+          "exclusive_ns": 1683300,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 1854000,
+          "exclusive_ns": 131800,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 1722200,
+          "exclusive_ns": 145800,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 1576400,
+          "exclusive_ns": 1576400,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 5871100,
+          "exclusive_ns": 468100,
+          "started": 34,
+          "completed": 34,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 807200,
+          "exclusive_ns": 10800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 19877800,
+          "exclusive_ns": 579000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 42700,
+          "exclusive_ns": 42700,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 34900,
+          "exclusive_ns": 34900,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 113000,
+          "exclusive_ns": 113000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 1484000,
+          "exclusive_ns": 1484000,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 195600,
+          "exclusive_ns": 195600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 778900,
+          "exclusive_ns": 778900,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 3991300,
+          "exclusive_ns": 3991300,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 5,
+      "model": "25fv47",
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.0583982,
+        "off": 0.0566329,
+        "on1": 0.0551484,
+        "on2": 0.0555719,
+        "on3": 0.055175699999999994
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 55175800,
+          "exclusive_ns": 98800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 1048700,
+          "exclusive_ns": 1048700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 5127700,
+          "exclusive_ns": 1138500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 2703500,
+          "exclusive_ns": 1734700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 1309200,
+          "exclusive_ns": 1309200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 65300,
+          "exclusive_ns": 65300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 20069600,
+          "exclusive_ns": 3482100,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 16504800,
+          "exclusive_ns": 137400,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 1061800,
+          "exclusive_ns": 1061800,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 19710700,
+          "exclusive_ns": 376500,
+          "started": 74,
+          "completed": 74,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 585700,
+          "exclusive_ns": 83300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 15489100,
+          "exclusive_ns": 2993900,
+          "started": 84,
+          "completed": 84,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 12464000,
+          "exclusive_ns": 12400,
+          "started": 84,
+          "completed": 84,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 12450400,
+          "exclusive_ns": 10119300,
+          "started": 84,
+          "completed": 84,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 3729100,
+          "exclusive_ns": 3729100,
+          "started": 85,
+          "completed": 85,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 5270500,
+          "exclusive_ns": 416900,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 4851800,
+          "exclusive_ns": 364000,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 4484900,
+          "exclusive_ns": 4484900,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 12299900,
+          "exclusive_ns": 1574100,
+          "started": 48,
+          "completed": 48,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 1690700,
+          "exclusive_ns": 35700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 54029100,
+          "exclusive_ns": 1869400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 275400,
+          "exclusive_ns": 275400,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 246100,
+          "exclusive_ns": 246100,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 305400,
+          "exclusive_ns": 305400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 2331100,
+          "exclusive_ns": 2331100,
+          "started": 84,
+          "completed": 84,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 605400,
+          "exclusive_ns": 605400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 2819500,
+          "exclusive_ns": 2819500,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 12392800,
+          "exclusive_ns": 12392800,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 6,
+      "model": "80bau3b",
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 0.3599872,
+        "on1": 0.3725353,
+        "on2": 0.3165573,
+        "on3": 0.3113522,
+        "production": 0.312652
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 316557500,
+          "exclusive_ns": 277300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 8670900,
+          "exclusive_ns": 4827700,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 11171800,
+          "exclusive_ns": 3227100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 5494500,
+          "exclusive_ns": 3563000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 2513000,
+          "exclusive_ns": 2513000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 86800,
+          "exclusive_ns": 86800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 82062100,
+          "exclusive_ns": 25356900,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 56705200,
+          "exclusive_ns": 603100,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 4695200,
+          "exclusive_ns": 4695200,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 148068600,
+          "exclusive_ns": 4479600,
+          "started": 122,
+          "completed": 122,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 117840800,
+          "exclusive_ns": 26537700,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 91303100,
+          "exclusive_ns": 28800,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 91274300,
+          "exclusive_ns": 79964400,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 25757700,
+          "exclusive_ns": 25757700,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 28314900,
+          "exclusive_ns": 3938600,
+          "started": 42,
+          "completed": 42,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 24376300,
+          "exclusive_ns": 2426100,
+          "started": 42,
+          "completed": 42,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 21950200,
+          "exclusive_ns": 21950200,
+          "started": 42,
+          "completed": 42,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 110155100,
+          "exclusive_ns": 20057800,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 4821800,
+          "exclusive_ns": 275300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 311469600,
+          "exclusive_ns": 20060700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 812500,
+          "exclusive_ns": 812500,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 654200,
+          "exclusive_ns": 654200,
+          "started": 40,
+          "completed": 40,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 518900,
+          "exclusive_ns": 518900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 11309900,
+          "exclusive_ns": 11309900,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 1180500,
+          "exclusive_ns": 1180500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 18369700,
+          "exclusive_ns": 18369700,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 33037200,
+          "exclusive_ns": 33037200,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 7,
+      "model": "perold",
+      "status": {
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal"
+      },
+      "numerical_seconds": {
+        "on1": 0.0972561,
+        "on2": 0.0989451,
+        "on3": 0.0957172,
+        "production": 0.0979863,
+        "off": 0.1073024
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 97256100,
+          "exclusive_ns": 62700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 1546700,
+          "exclusive_ns": 877500,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 3108200,
+          "exclusive_ns": 696300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 1739000,
+          "exclusive_ns": 1061300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 667800,
+          "exclusive_ns": 667800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 47200,
+          "exclusive_ns": 47200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 31993500,
+          "exclusive_ns": 6769400,
+          "started": 52,
+          "completed": 52,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 25224100,
+          "exclusive_ns": 231100,
+          "started": 64,
+          "completed": 64,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 1661800,
+          "exclusive_ns": 1661800,
+          "started": 52,
+          "completed": 52,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 46873100,
+          "exclusive_ns": 1492100,
+          "started": 155,
+          "completed": 155,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 37420300,
+          "exclusive_ns": 8076300,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 29344000,
+          "exclusive_ns": 32600,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 29311400,
+          "exclusive_ns": 24350500,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 7960700,
+          "exclusive_ns": 7960700,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 7178700,
+          "exclusive_ns": 723300,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 6456900,
+          "exclusive_ns": 562200,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 5897300,
+          "exclusive_ns": 5897300,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 30688800,
+          "exclusive_ns": 2935200,
+          "started": 102,
+          "completed": 102,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 1713700,
+          "exclusive_ns": 46900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 96315900,
+          "exclusive_ns": 3722900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 241500,
+          "exclusive_ns": 241500,
+          "started": 52,
+          "completed": 52,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 203800,
+          "exclusive_ns": 203800,
+          "started": 51,
+          "completed": 51,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 188100,
+          "exclusive_ns": 188100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 4960900,
+          "exclusive_ns": 4960900,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 444900,
+          "exclusive_ns": 444900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 5148100,
+          "exclusive_ns": 5148100,
+          "started": 64,
+          "completed": 64,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 18147500,
+          "exclusive_ns": 18147500,
+          "started": 64,
+          "completed": 64,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 8,
+      "model": "pilot87",
+      "status": {
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal"
+      },
+      "numerical_seconds": {
+        "on2": 1.2122663,
+        "on3": 1.1611479999999998,
+        "production": 1.1934362,
+        "off": 1.1840061,
+        "on1": 1.1797285
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 1179728600,
+          "exclusive_ns": 297600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 10700400,
+          "exclusive_ns": 5867200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 42826700,
+          "exclusive_ns": 5847000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 29788500,
+          "exclusive_ns": 22475200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 7392700,
+          "exclusive_ns": 7392700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 526700,
+          "exclusive_ns": 526700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 729182500,
+          "exclusive_ns": 42114100,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 687607400,
+          "exclusive_ns": 2314000,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 18400700,
+          "exclusive_ns": 18400700,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 274535500,
+          "exclusive_ns": 3696400,
+          "started": 239,
+          "completed": 239,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 209579000,
+          "exclusive_ns": 31069100,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 177843000,
+          "exclusive_ns": 61500,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 177781200,
+          "exclusive_ns": 140602100,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 59067900,
+          "exclusive_ns": 59067900,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 80387800,
+          "exclusive_ns": 4299400,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 76088400,
+          "exclusive_ns": 3296400,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 72832500,
+          "exclusive_ns": 72832500,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 176978200,
+          "exclusive_ns": 20208800,
+          "started": 158,
+          "completed": 158,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 13066600,
+          "exclusive_ns": 121200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 1173622000,
+          "exclusive_ns": 18908100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 2973600,
+          "exclusive_ns": 2973600,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 2548200,
+          "exclusive_ns": 2548200,
+          "started": 79,
+          "completed": 79,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 1254600,
+          "exclusive_ns": 1254600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 34987400,
+          "exclusive_ns": 34987400,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 5598800,
+          "exclusive_ns": 5598800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 43426200,
+          "exclusive_ns": 43426200,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 623365900,
+          "exclusive_ns": 623365900,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 9,
+      "model": "maros-r7",
+      "status": {
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal"
+      },
+      "numerical_seconds": {
+        "on3": 0.5362349,
+        "production": 0.553028,
+        "off": 0.5329345,
+        "on1": 0.6417929,
+        "on2": 0.5498474
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 549847600,
+          "exclusive_ns": 580100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 8775200,
+          "exclusive_ns": 8775200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 91738300,
+          "exclusive_ns": 7964300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 58377600,
+          "exclusive_ns": 49761900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 25396400,
+          "exclusive_ns": 25396400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 1280900,
+          "exclusive_ns": 1280900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 288785300,
+          "exclusive_ns": 15871500,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 272913800,
+          "exclusive_ns": 1136200,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 8547600,
+          "exclusive_ns": 8547600,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 106636400,
+          "exclusive_ns": 1188600,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 84394700,
+          "exclusive_ns": 10836600,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 73558100,
+          "exclusive_ns": 23600,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 73535200,
+          "exclusive_ns": 58333600,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 21053100,
+          "exclusive_ns": 21053100,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 32928600,
+          "exclusive_ns": 1588600,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 31361300,
+          "exclusive_ns": 1115900,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 30245400,
+          "exclusive_ns": 30245400,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 68156100,
+          "exclusive_ns": 6210000,
+          "started": 30,
+          "completed": 30,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 23979800,
+          "exclusive_ns": 233600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 539903700,
+          "exclusive_ns": 7890800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 1016700,
+          "exclusive_ns": 1016700,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 873800,
+          "exclusive_ns": 873800,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 3081900,
+          "exclusive_ns": 3081900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 15201600,
+          "exclusive_ns": 15201600,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 4134300,
+          "exclusive_ns": 4134300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 17077700,
+          "exclusive_ns": 17077700,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 246247400,
+          "exclusive_ns": 246247400,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 10,
+      "model": "fit1p",
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.1142713,
+        "off": 0.1056208,
+        "on1": 0.1070519,
+        "on2": 0.1063504,
+        "on3": 0.1078221
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 107052000,
+          "exclusive_ns": 87400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 983800,
+          "exclusive_ns": 983800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 27116500,
+          "exclusive_ns": 1042600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 25090600,
+          "exclusive_ns": 23737500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 992400,
+          "exclusive_ns": 992400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 263100,
+          "exclusive_ns": 263100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 58691400,
+          "exclusive_ns": 2444600,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 56201100,
+          "exclusive_ns": 105900,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 1484100,
+          "exclusive_ns": 1484100,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 13799200,
+          "exclusive_ns": 237700,
+          "started": 53,
+          "completed": 53,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 11146300,
+          "exclusive_ns": 1985400,
+          "started": 55,
+          "completed": 55,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 9149200,
+          "exclusive_ns": 10200,
+          "started": 55,
+          "completed": 55,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 9139500,
+          "exclusive_ns": 7017100,
+          "started": 55,
+          "completed": 55,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 2380600,
+          "exclusive_ns": 2380600,
+          "started": 55,
+          "completed": 55,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 3609800,
+          "exclusive_ns": 341300,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 3269200,
+          "exclusive_ns": 222100,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 3055500,
+          "exclusive_ns": 3055500,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 9702100,
+          "exclusive_ns": 1266300,
+          "started": 34,
+          "completed": 34,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 4293000,
+          "exclusive_ns": 39700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 105976100,
+          "exclusive_ns": 1466400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 97700,
+          "exclusive_ns": 97700,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 81000,
+          "exclusive_ns": 81000,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 120400,
+          "exclusive_ns": 120400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 2074700,
+          "exclusive_ns": 2074700,
+          "started": 55,
+          "completed": 55,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 952500,
+          "exclusive_ns": 952500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 2075000,
+          "exclusive_ns": 2075000,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 52456400,
+          "exclusive_ns": 52456400,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 11,
+      "model": "dfl001",
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 2.698391,
+        "on1": 2.7388773,
+        "on2": 2.6876743,
+        "on3": 2.6793362,
+        "production": 2.6952623
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 2687674500,
+          "exclusive_ns": 368200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 6328800,
+          "exclusive_ns": 6328800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 37117900,
+          "exclusive_ns": 6122300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 19371500,
+          "exclusive_ns": 7148100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 11282600,
+          "exclusive_ns": 11282600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 1862700,
+          "exclusive_ns": 1862700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 2015979100,
+          "exclusive_ns": 74772700,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 1941206400,
+          "exclusive_ns": 2060000,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 47162200,
+          "exclusive_ns": 47162200,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 524288000,
+          "exclusive_ns": 9124300,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 60694300,
+          "exclusive_ns": 10051500,
+          "started": 6,
+          "completed": 6,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 434321200,
+          "exclusive_ns": 68779500,
+          "started": 220,
+          "completed": 220,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 365541700,
+          "exclusive_ns": 103500,
+          "started": 220,
+          "completed": 220,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 365438200,
+          "exclusive_ns": 240628300,
+          "started": 220,
+          "completed": 220,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 70840700,
+          "exclusive_ns": 70840700,
+          "started": 226,
+          "completed": 226,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 53892900,
+          "exclusive_ns": 5647500,
+          "started": 45,
+          "completed": 45,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 48372800,
+          "exclusive_ns": 4767800,
+          "started": 45,
+          "completed": 45,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 43489700,
+          "exclusive_ns": 43489700,
+          "started": 45,
+          "completed": 45,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 359017600,
+          "exclusive_ns": 23031000,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 43902900,
+          "exclusive_ns": 283800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 2681443500,
+          "exclusive_ns": 27356000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 3339200,
+          "exclusive_ns": 3339200,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 3140000,
+          "exclusive_ns": 3140000,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 1702100,
+          "exclusive_ns": 1702100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 124809900,
+          "exclusive_ns": 124809900,
+          "started": 220,
+          "completed": 220,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 8660600,
+          "exclusive_ns": 8660600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 50656100,
+          "exclusive_ns": 50656100,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 1841899400,
+          "exclusive_ns": 1841899400,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 12,
+      "model": "finnis",
+      "status": {
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal"
+      },
+      "numerical_seconds": {
+        "on1": 0.0174951,
+        "on2": 0.0212886,
+        "on3": 0.0199454,
+        "production": 0.025224,
+        "off": 0.0174517
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 19945400,
+          "exclusive_ns": 29100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 721000,
+          "exclusive_ns": 421200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 1397700,
+          "exclusive_ns": 322200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 794200,
+          "exclusive_ns": 446100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 265600,
+          "exclusive_ns": 265600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 17400,
+          "exclusive_ns": 17400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 6305800,
+          "exclusive_ns": 1556900,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 4748900,
+          "exclusive_ns": 53800,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 524400,
+          "exclusive_ns": 524400,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 7599000,
+          "exclusive_ns": 172200,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 6220400,
+          "exclusive_ns": 1475000,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 4745400,
+          "exclusive_ns": 11800,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 4732600,
+          "exclusive_ns": 3521700,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 1206400,
+          "exclusive_ns": 1206400,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 2084600,
+          "exclusive_ns": 228600,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 1856000,
+          "exclusive_ns": 208800,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 1647200,
+          "exclusive_ns": 1647200,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 5381600,
+          "exclusive_ns": 910400,
+          "started": 52,
+          "completed": 52,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 551800,
+          "exclusive_ns": 16800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 19490300,
+          "exclusive_ns": 1059400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 51100,
+          "exclusive_ns": 51100,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 45000,
+          "exclusive_ns": 45000,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 107600,
+          "exclusive_ns": 107600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 1210900,
+          "exclusive_ns": 1210900,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 222700,
+          "exclusive_ns": 222700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 1079100,
+          "exclusive_ns": 1079100,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 3088900,
+          "exclusive_ns": 3088900,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 13,
+      "model": "greenbea",
+      "status": {
+        "on2": "numerical_error",
+        "on3": "numerical_error",
+        "production": "numerical_error",
+        "off": "numerical_error",
+        "on1": "numerical_error"
+      },
+      "numerical_seconds": {
+        "on2": 0.9821994,
+        "on3": 1.0104225,
+        "production": 0.9543649,
+        "off": 0.9406644,
+        "on1": 0.9235902
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 982199500,
+          "exclusive_ns": 277700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 6644300,
+          "exclusive_ns": 3655200,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 15150900,
+          "exclusive_ns": 3123500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 7899100,
+          "exclusive_ns": 4860400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 3906800,
+          "exclusive_ns": 3906800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 154600,
+          "exclusive_ns": 154600,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 212354800,
+          "exclusive_ns": 39800800,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 172028500,
+          "exclusive_ns": 1477600,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 12008100,
+          "exclusive_ns": 12008100,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 656295100,
+          "exclusive_ns": 7883900,
+          "started": 240,
+          "completed": 239,
+          "unwound": 1
+        },
+        "krylov": {
+          "inclusive_ns": 349880400,
+          "exclusive_ns": 148641000,
+          "started": 43,
+          "completed": 42,
+          "unwound": 1
+        },
+        "direct": {
+          "inclusive_ns": 391441800,
+          "exclusive_ns": 74997300,
+          "started": 592,
+          "completed": 592,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 316444500,
+          "exclusive_ns": 120200,
+          "started": 592,
+          "completed": 592,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 316324300,
+          "exclusive_ns": 247757000,
+          "started": 592,
+          "completed": 592,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 108328400,
+          "exclusive_ns": 108328400,
+          "started": 752,
+          "completed": 752,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 48839800,
+          "exclusive_ns": 4461700,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 44378100,
+          "exclusive_ns": 3245700,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 41132400,
+          "exclusive_ns": 41132400,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 158397300,
+          "exclusive_ns": 19840600,
+          "started": 158,
+          "completed": 158,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 4486500,
+          "exclusive_ns": 85800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 978142300,
+          "exclusive_ns": 19371500,
+          "started": 1,
+          "completed": 0,
+          "unwound": 1
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 1773000,
+          "exclusive_ns": 1773000,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 1507200,
+          "exclusive_ns": 1507200,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 749500,
+          "exclusive_ns": 749500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 68567300,
+          "exclusive_ns": 68567300,
+          "started": 592,
+          "completed": 592,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 2148300,
+          "exclusive_ns": 2148300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 31487100,
+          "exclusive_ns": 31487100,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 127016300,
+          "exclusive_ns": 127016300,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 14,
+      "model": "bnl2",
+      "status": {
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal"
+      },
+      "numerical_seconds": {
+        "on3": 0.1821358,
+        "production": 0.1737666,
+        "off": 0.1702547,
+        "on1": 0.1700065,
+        "on2": 0.1716838
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 171683900,
+          "exclusive_ns": 127200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 1949700,
+          "exclusive_ns": 1949700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 8095100,
+          "exclusive_ns": 1961100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 4379600,
+          "exclusive_ns": 2724300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 1754400,
+          "exclusive_ns": 1754400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 133000,
+          "exclusive_ns": 133000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 69640100,
+          "exclusive_ns": 11785200,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 57854900,
+          "exclusive_ns": 378900,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 4845300,
+          "exclusive_ns": 4845300,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 62358000,
+          "exclusive_ns": 1064400,
+          "started": 113,
+          "completed": 113,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 51172000,
+          "exclusive_ns": 11015600,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 40156400,
+          "exclusive_ns": 21400,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 40135000,
+          "exclusive_ns": 30545800,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 9941900,
+          "exclusive_ns": 9941900,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 13953100,
+          "exclusive_ns": 1499200,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 12453900,
+          "exclusive_ns": 1366800,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 11087100,
+          "exclusive_ns": 11087100,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 44487200,
+          "exclusive_ns": 6597300,
+          "started": 74,
+          "completed": 74,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 3559600,
+          "exclusive_ns": 129200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 169626400,
+          "exclusive_ns": 8318200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 431700,
+          "exclusive_ns": 431700,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 375100,
+          "exclusive_ns": 375100,
+          "started": 37,
+          "completed": 37,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 429900,
+          "exclusive_ns": 429900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 9589200,
+          "exclusive_ns": 9589200,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 1077500,
+          "exclusive_ns": 1077500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 8121600,
+          "exclusive_ns": 8121600,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 44596400,
+          "exclusive_ns": 44596400,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 15,
+      "model": "grow22",
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.020565,
+        "off": 0.02047,
+        "on1": 0.0201482,
+        "on2": 0.0202114,
+        "on3": 0.0200737
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 20148300,
+          "exclusive_ns": 80800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 808100,
+          "exclusive_ns": 808100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 2817800,
+          "exclusive_ns": 817100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 1601100,
+          "exclusive_ns": 1300200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 408700,
+          "exclusive_ns": 408700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 11200,
+          "exclusive_ns": 11200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 4924200,
+          "exclusive_ns": 1366300,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 3514800,
+          "exclusive_ns": 75200,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 259100,
+          "exclusive_ns": 259100,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 7207900,
+          "exclusive_ns": 159300,
+          "started": 47,
+          "completed": 47,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 5383400,
+          "exclusive_ns": 1189600,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 4193800,
+          "exclusive_ns": 6500,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 4186700,
+          "exclusive_ns": 3694700,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 1658400,
+          "exclusive_ns": 1658400,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 2380300,
+          "exclusive_ns": 226400,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 2153900,
+          "exclusive_ns": 120600,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 2017300,
+          "exclusive_ns": 2017300,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 5109100,
+          "exclusive_ns": 828000,
+          "started": 30,
+          "completed": 30,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 830800,
+          "exclusive_ns": 33100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 19215100,
+          "exclusive_ns": 946300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 62200,
+          "exclusive_ns": 62200,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 46400,
+          "exclusive_ns": 46400,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 118700,
+          "exclusive_ns": 118700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 492000,
+          "exclusive_ns": 492000,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 159100,
+          "exclusive_ns": 159100,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 1177800,
+          "exclusive_ns": 1177800,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 2013900,
+          "exclusive_ns": 2013900,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        }
+      }
+    },
+    {
+      "case_index": 16,
+      "model": "forplan",
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 0.0182282,
+        "on1": 0.0181433,
+        "on2": 0.0184509,
+        "on3": 0.0181952,
+        "production": 0.0183309
+      },
+      "stage_medians": {
+        "total": {
+          "inclusive_ns": 18195300,
+          "exclusive_ns": 36700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "canonicalize": {
+          "inclusive_ns": 730700,
+          "exclusive_ns": 417400,
+          "started": 2,
+          "completed": 2,
+          "unwound": 0
+        },
+        "kkt_setup": {
+          "inclusive_ns": 1856700,
+          "exclusive_ns": 388200,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "normal_setup": {
+          "inclusive_ns": 958800,
+          "exclusive_ns": 761500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "ordering": {
+          "inclusive_ns": 528900,
+          "exclusive_ns": 528900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "symbolic_analysis": {
+          "inclusive_ns": 8700,
+          "exclusive_ns": 8700,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "factor": {
+          "inclusive_ns": 5402900,
+          "exclusive_ns": 1325600,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        },
+        "normal_factor": {
+          "inclusive_ns": 4052400,
+          "exclusive_ns": 81300,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        },
+        "gram_assembly": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "numeric_factor": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "factor_check": {
+          "inclusive_ns": 268900,
+          "exclusive_ns": 268900,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        },
+        "solve": {
+          "inclusive_ns": 6661900,
+          "exclusive_ns": 117100,
+          "started": 105,
+          "completed": 105,
+          "unwound": 0
+        },
+        "krylov": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "direct": {
+          "inclusive_ns": 5060800,
+          "exclusive_ns": 908300,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "solve_factored": {
+          "inclusive_ns": 4155400,
+          "exclusive_ns": 12300,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "normal_solve": {
+          "inclusive_ns": 4143100,
+          "exclusive_ns": 3650200,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "triangular_solve": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "kkt_product": {
+          "inclusive_ns": 1486000,
+          "exclusive_ns": 1486000,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "assess_homogeneous": {
+          "inclusive_ns": 2288100,
+          "exclusive_ns": 156000,
+          "started": 36,
+          "completed": 36,
+          "unwound": 0
+        },
+        "assess": {
+          "inclusive_ns": 2132100,
+          "exclusive_ns": 110400,
+          "started": 36,
+          "completed": 36,
+          "unwound": 0
+        },
+        "verify_original": {
+          "inclusive_ns": 2021700,
+          "exclusive_ns": 2021700,
+          "started": 36,
+          "completed": 36,
+          "unwound": 0
+        },
+        "homogeneous_direction": {
+          "inclusive_ns": 5001800,
+          "exclusive_ns": 648400,
+          "started": 68,
+          "completed": 68,
+          "unwound": 0
+        },
+        "initialize": {
+          "inclusive_ns": 452700,
+          "exclusive_ns": 9800,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "run_homogeneous": {
+          "inclusive_ns": 17747600,
+          "exclusive_ns": 695500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "fallback_factor_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "fallback_solve_adapter": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cone_multiply": {
+          "inclusive_ns": 74800,
+          "exclusive_ns": 74800,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        },
+        "cone_transpose": {
+          "inclusive_ns": 59300,
+          "exclusive_ns": 59300,
+          "started": 34,
+          "completed": 34,
+          "unwound": 0
+        },
+        "cholmod_symbolic": {
+          "inclusive_ns": 97900,
+          "exclusive_ns": 97900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "cholmod_numeric": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "cholmod_backsolve": {
+          "inclusive_ns": 492900,
+          "exclusive_ns": 492900,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        "cholmod_values_copy": {
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "started": 0,
+          "completed": 0,
+          "unwound": 0
+        },
+        "normal_ordering": {
+          "inclusive_ns": 73300,
+          "exclusive_ns": 73300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        "aat_scaling": {
+          "inclusive_ns": 1326700,
+          "exclusive_ns": 1326700,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        },
+        "cholmod_aat_numeric": {
+          "inclusive_ns": 2374000,
+          "exclusive_ns": 2374000,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        }
+      }
+    }
+  ],
+  "self_test": {
+    "passed": true,
+    "trajectory_cases": 17,
+    "accounting_positive_cases": 2,
+    "accounting_rejection_cases": 20,
+    "solver_runs": 0
+  },
+  "common_success_analysis": {
+    "passed": true,
+    "new_solver_runs": 0,
+    "original_public_runs": 182,
+    "common_success_count": 90,
+    "analysis_sha256": "7f04294218dec05c05510cf1f2f6305057e0ceea7893ef47285c87af833a1edf"
+  },
+  "cost_analysis": {
+    "passed": true,
+    "new_solver_runs": 0,
+    "all_on": 51,
+    "quality_pass_on": 48,
+    "analysis_sha256": "7ca49070e582c9790453502e5fef3b3588448e31ce6232d4b81c4c28889f00c6"
+  },
+  "artifacts": {
+    "v82-build.py": "d9e392be83e4ca15414cf83784ef2a9040332307892b9f0df902397ee9107a7a",
+    "v82-run.py": "ce10649ff972a455288a37b571aa186621f0151e16b9bfe8f18fcb12e8172ddc",
+    "v82-run-manifest.json": "072d6e1fdf1bb5b8e5f05e7ac0b3c48da955f9c4978f510e1a2e5e5748325bde",
+    "v82-runs.jsonl.gz": "8d7123642c956821ec96f2fac7e91a134d0b9ff3d704f8f75b35088096f6ae4b",
+    "v82-summary.json": "727808db15b00569e566ea82b91bb0c83f282d60aed8d9955ab297e0d6789fd6",
+    "v82-runner-self-check.json": "3e99155e219494a8210706ea21a6c8915572fb45c8feddca956691488d9e7b7d",
+    "v82-common-success-analysis.json": "7f04294218dec05c05510cf1f2f6305057e0ceea7893ef47285c87af833a1edf",
+    "v82-cost-analysis.json": "7ca49070e582c9790453502e5fef3b3588448e31ce6232d4b81c4c28889f00c6"
+  },
+  "build_manifest_sha256": "0d5f76ef011d94672c2c5eb7577351573a963b52a81fa765bb433a91653682bb",
+  "limits": [
+    "不运行LP或重构原矩阵；重新检查冻结报告、真实命令与共同质量合同。",
+    "仅剔timings比较轨迹；合法预算分叉单列，缺报告和异常退出不获豁免。",
+    "每条原始计时账本严格守恒；分别取各阶段中位数后的合计不要求守恒，包含时间与子阶段不能重复相加。",
+    "复用v47计时核心；AAt C API包含库内部矩形乘积与分解，不能全部称纯Cholesky；Normal独占也不全是稀疏遍历。",
+    "计时覆盖solve_ipm作用域及局部析构，不含输入、JSON、Report初始化与诊断输出，不能要求与生产timings逐纳秒相等。",
+    "仅核显式链接输入与依赖文件列举的编译依赖；隐式运行库未逐项核验。",
+    "本轮为17个已观察输入的成本诊断，不新增公开性能或覆盖成绩，不把单次off与production差异称为统计显著开销。",
+    "共同成功子集仅用于归因，91例含失败主指标完整保留；含失败wall/numerical的SGM不能相减推阶段耗时。"
+  ],
+  "evidence_package": {
+    "file": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v82-verification-evidence.zip",
+    "sha256": "50013ec311a794ff26c0df7e911896df4115f33c29391896d56336fc1d64f6db",
+    "members": 161,
+    "member_sha256": {
+      ".tools/v82-attempt-inline.py": "060888dec07a65e5836dff29d070218f432a7ec9664b2b2b899e9517f4c3b2be",
+      ".tools/v82-common-success-inline.py": "c1af220f2ea0a8e793ea338cb33d4d6a6f3ce5918a69f6a074b3648a65fa45ec",
+      ".tools/v82-cost-analysis-inline.py": "d1240caafa0daf3a7d3e0f772e9474d2eaef846c9acb0667681521123fe41795",
+      ".tools/v82-diagnostic/build-manifest.json": "0d5f76ef011d94672c2c5eb7577351573a963b52a81fa765bb433a91653682bb",
+      ".tools/v82-diagnostic/commands.json": "cb81ef5a617cfaa8867fd697f04e265789dbfe1ce1c1dbf85d28cbc595548db5",
+      ".tools/v82-diagnostic/frozen/benchmarks/development.txt": "7820566b72b30ad276a5a20ddcfacc830867dc860d40ee714af6563b12a072d8",
+      ".tools/v82-diagnostic/frozen/benchmarks/modern-lp-smoke.lock.json": "14483cf7aeb7176b167941c0a7d044b9a7cd4562e961e05bfe4fd56d80e66519",
+      ".tools/v82-diagnostic/frozen/benchmarks/modern-lp-smoke.txt": "97b6bd399e621eb99314003d0a570adf8b3fd2abf42326d0b8904ed79b67ceaa",
+      ".tools/v82-diagnostic/frozen/benchmarks/netlib-all.txt": "3107852474cdec44d3989be33433b39aa79481cc929a1f9ca13f8f2be5882272",
+      ".tools/v82-diagnostic/frozen/benchmarks/netlib-validation.txt": "551390d8ac7297c8e8d50999f7ad4b94fd98048c377719f7c839cca4d8dcacb9",
+      ".tools/v82-diagnostic/frozen/benchmarks/netlib.lock.json": "db779aa12f1dc7dde381ce7f424f525ec0a9e34e552671410bdcc5e825da9578",
+      ".tools/v82-diagnostic/frozen/benchmarks/readme.md": "dcc636b9b399f0e0d0a61da91e25325947ae6a259583eb202778212a3839f88a",
+      ".tools/v82-diagnostic/frozen/CMakeLists.txt": "b4620b57b0b8a07fc56d0f9b003bf0dd0daa1b0f1aef85d2dfe1cb641978c7e8",
+      ".tools/v82-diagnostic/frozen/dependencies.lock.json": "3b5c2dbf53a41455cd9c8a28a954af9bec06bc0cc9a5c3d4c9cb83c2bbf09e93",
+      ".tools/v82-diagnostic/frozen/include/solver/backend.hpp": "329de23ffcf4424a715ea0c6f56ceae147d2ff200a8a3c93e31565144fa7e7d6",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/extended_ldl.hpp": "29157d9003d767d22d86697c3c1a188a06293505a591c1d2d28d31547a53c7f1",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/ipm_centrality.hpp": "ffcea2bc7141687c5e2cbec36767b92be077730dab82d29786a15094be57c950",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/ipm_full_newton.hpp": "baff00d877151a92d060a2f310697b1b7745eab2a25dd60423db0fd6f73f7aa5",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/ipm_homogeneous.hpp": "092ea7e99a8ea37a255cebbb63663a90cbb7548fb8184acb9b03dcc5b69c2a0e",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/ipm_presolve.hpp": "d3c5dfa34dcb2d02f00188bf7ba63ed02f002086e472846e364fcb4356010866",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/ipm_recycling.hpp": "940d7e4a3fac5f86c9308c533818753cfed08c26aa0294b4bccf4a37ec5f507e",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/ipm_residual.hpp": "4821650cc018d76aa1e2647bf6e8f7e9c1c6edbcdd6d339ec5bb49d2358c3c62",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/multifrontal_ldl.hpp": "c974c7f8ac3a4da3da7f394b60dc4d4d0acda9a27b1fd073725aac3969773897",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/normal_cholesky.hpp": "6f67567c381497ca6a86934aeb420c24e35c1bb1eb6b3f708b6b93271b0db852",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/regularized_ldl.hpp": "1e6df5c63e720a4bf087a387704c82697b46fef4c4485514f84326a97d94e5db",
+      ".tools/v82-diagnostic/frozen/include/solver/detail/sparse_lu.hpp": "a0505dc2ab33e88b822050572d8fcf96363822e4724ec9720de9188ecbec4e83",
+      ".tools/v82-diagnostic/frozen/include/solver/highs_options.hpp": "3d33b407345f69bbbd399d44c3ec4e8a84073127703341f0f55fedb6cb0c79cc",
+      ".tools/v82-diagnostic/frozen/include/solver/ipm.hpp": "8bcb5f95d6c07ff47885901b6f984114d82d826d3693fe95d5e074679cfc8d7d",
+      ".tools/v82-diagnostic/frozen/include/solver/ipm_options.hpp": "2854759d57e460236bfdd264ecaa70c123ca9ce70fd0f92304687e452b726cf4",
+      ".tools/v82-diagnostic/frozen/include/solver/lp_optimality.hpp": "c67cf886832a7948851ff8b7acdabfb4ff3f7756b9b89d299e49cbf1c2c55212",
+      ".tools/v82-diagnostic/frozen/include/solver/model.hpp": "ea31d5e8f6723ada0c14442094238d1c8ebb979938ba67ac6c07e55251f4d175",
+      ".tools/v82-diagnostic/frozen/include/solver/pdlp.hpp": "8475e334fc3f0d8c1badd17ed8a965f4eefecd66e1541dacb2488114ed81b0db",
+      ".tools/v82-diagnostic/frozen/include/solver/pdlp_options.hpp": "2547bdced7e842ff91837095a8a3196dc1f880cddb953b14b67d38a72a894e82",
+      ".tools/v82-diagnostic/frozen/include/solver/verification.hpp": "546dbef9be9e2d4b0e88a0b5408885b7a5ca6874ad8f1b077a7fdefe323c972d",
+      ".tools/v82-diagnostic/frozen/scripts/benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+      ".tools/v82-diagnostic/frozen/scripts/bootstrap-windows.ps1": "ce4ef435de552cdb2e9df844c818b1ea91f237110aa2310c2f118907750b4d8f",
+      ".tools/v82-diagnostic/frozen/scripts/build-windows.ps1": "e3723d96ea10654c94cacb02ceaf3292a449c97145835cfb11a7ce9e50162858",
+      ".tools/v82-diagnostic/frozen/scripts/compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3",
+      ".tools/v82-diagnostic/frozen/scripts/fetch_modern_lp.py": "ecd996ae1b2ccb7ff85e242d9dcad176db6c3e3acef6a98de510873df1b1cf6f",
+      ".tools/v82-diagnostic/frozen/scripts/fetch_netlib.py": "e46ab1069040ba3b22df5f99018ad80bc331be22af1e8ebd56c2a0c7518db321",
+      ".tools/v82-diagnostic/frozen/src/highs_backend.cpp": "20c24c54c0a0bfeb0e768633722a592ac8a69f5597f2e8005140157f6e35819e",
+      ".tools/v82-diagnostic/frozen/src/ipm.cpp": "be24effdff79d1dd258138343b699ee6f1a8d8281883d189306967308aa9234f",
+      ".tools/v82-diagnostic/frozen/src/lp_optimality.cpp": "a9a43c200f8463e8bc7c64091f733bfba3ff15166e8cfb08dc58b0555acc8751",
+      ".tools/v82-diagnostic/frozen/src/main.cpp": "ec2abb835b744c9b7aab190d264b47a563a7395f4b44e3d8af754906f6de7cd2",
+      ".tools/v82-diagnostic/frozen/src/model.cpp": "99fe94b7dae2cab1e2c6a405d6ac638348cb7206f5b27f0edafeb30807dc9227",
+      ".tools/v82-diagnostic/frozen/src/multifrontal_ldl.cpp": "80f2b24d1ff829d55e11dcfd99c3cf35409689ba752b7e5185a075a574869fd6",
+      ".tools/v82-diagnostic/frozen/src/normal_cholesky.cpp": "5e8f244f50a379bf426c17ca5d02ed5a41978a7cd88eaf4307eceb6b43f13719",
+      ".tools/v82-diagnostic/frozen/src/pdlp.cpp": "d06640efd607b945e23ecf37f200b61eec9ac8dd76c2ddf775417bc32b0322fe",
+      ".tools/v82-diagnostic/frozen/src/regularized_ldl.cpp": "1cb47da1eb57f31769aeb52fb2b2e3ab50e4028a34e4738550ccd200fd352295",
+      ".tools/v82-diagnostic/frozen/src/sparse_lu.cpp": "ca7f9c419c9d634d51d6c460dab20c70fbd14a484d0370c82b27ebc14f763927",
+      ".tools/v82-diagnostic/frozen/src/verification.cpp": "c5a9715b4a646d1684bf4ff14bbb74db842cc1c9438ce846c68d6fc829261a68",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/empty.mps": "cb2f3cd842124163618085ad37934d509d4d619e4c8012a0abe1a269285049e6",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/fixed_spaces.mps": "1c056475eb3c6c89358d1f2b21a6fc7f084c89921a78179dbd494979b90d82f8",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/fixed_spaces_huge_bound.mps": "266339cee0b5564008c19486c2f223202aa9059ac4e793a93fbc9aa7a663b0ce",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/fixed_spaces_unknown_row.mps": "a7e285acda36bbfa44449c94266ed539675ee630a8c0e275c62dfb1d1455c2d0",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_bounds.mps": "7f6d5a89ce743c98a36a84cd06bf9496ba25c23b3e5f272a2778ecd00b12af88",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_column_lower.lp": "f982b7de5f128d952580b4c92d2738c6ef76d0c1c6434f8a897f4053e1b1e36c",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_column_upper.lp": "8679cbbfc09fe749b72f21f2d627feae8fb2925be458b8a485eb263dc6471f0b",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_negative_cost.lp": "c5333ae0fc57cc7063adaff5babfaa0629ec78e6a936713ef6c51ad9ecbf4bf3",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_positive_cost.lp": "d2d0e0523f1a0150652a481005d4691754162ee3cbb451106accb8002b4d58ff",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_row_lower.lp": "41e221ca4862149244854f1bb45ce08f1fc29f5df615ae094c5b189722eda4d6",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/huge_row_upper.lp": "37e68407d502e43f968d5021134006c8884d73a835a709daa4ee000b5d39a159",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/infeasible.lp": "9eaa8bc82f00db63c3606f414d3f55d44df595ee4c31f279c67d3abf56304656",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/lp_min.lp": "3210050c5da7866335becbff494cf26229e651875263ff6a896cfd47485386f3",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/lp_min.mps": "395e3ca0d3950e4f300f76c10d2c8001dad24bd53d808964ed8046f478497628",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/max_offset.lp": "4686759bbcb433f29bcdd5a3e6e92edc7bd4f6f521170d97b4fdf2b31d07b3a5",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/milp_max_offset.lp": "6ffb31a5a13dd85dfeb0955e2c91321dea37682edc4570c4ce91096914883885",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/milp_min.lp": "9783883b9d744213e1f723a13581df064a37a44655fbd441568440be3efba49f",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/quadratic.lp": "d6fe642f830b9741bc2e189ac70324d3ca7dd871c1a32605420e1f0f39f940c3",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/read_warning.lp": "25ba0942464ee3f722048af15c7cde65893cc901d7b23433bb36f3d6331c396a",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/semi_continuous.mps": "5e1e0e02e36c0fe322ba2942d4cd25b9faa38ab1a9bc0dd9bf21cdf18170c530",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/semi_integer.mps": "54ccdc8a9b13876c980ee44d32cb790c22de875d559414149d587e9df940546c",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/small_matrix_value.lp": "cfb1a5385929870a24730904a590ddb9f64f9ce699eee64d54ddad33bd643a1a",
+      ".tools/v82-diagnostic/frozen/tests/fixtures/unbounded.lp": "f74426d4e1d5bfea0d3439547e2bb8d9eedeb71be82344bc4887ecfe9f9c6e78",
+      ".tools/v82-diagnostic/frozen/tests/test_backend.cpp": "4a733f228d75d999a3375fc5f9af5f4f5ed28dc28880e3786e8b6bbd79fa9088",
+      ".tools/v82-diagnostic/frozen/tests/test_cli.py": "3fdec902919d387c8eaeb07f3e7135768b01aab598a6f674467732e7226c8e46",
+      ".tools/v82-diagnostic/frozen/tests/test_compare_lp.py": "74c453bdb8375bd5c829f95214ea1cdce86b1021898ef13f04fdae1945f1a174",
+      ".tools/v82-diagnostic/frozen/tests/test_extended_ldl.cpp": "616fc01023c0db1d354250f39c7e5d648559d79d3c3b372628a3545c563784fe",
+      ".tools/v82-diagnostic/frozen/tests/test_fetch_modern_lp.py": "6071781d394fb8e55c06253b103e11feb6dc3e88ec11e17b6d2cb53aaf837716",
+      ".tools/v82-diagnostic/frozen/tests/test_ipm.cpp": "5564b76d9cb61e70168a8bd2f12367dda32276fc49c1250d82df35f6283b68d3",
+      ".tools/v82-diagnostic/frozen/tests/test_lp_optimality.cpp": "817cc842ded31996d7c9b0a4ccbc9104c917bbc92d1910381a4b5827626e50e2",
+      ".tools/v82-diagnostic/frozen/tests/test_multifrontal_ldl.cpp": "1b951f70fea0908458dab9242c78eccf4738201fc8f1fae572262a898e1fc826",
+      ".tools/v82-diagnostic/frozen/tests/test_normal_cholesky.cpp": "b98a8a7412ccb8beba5816dd29a96f772955cf30f6f0164407684714d5d851e9",
+      ".tools/v82-diagnostic/frozen/tests/test_openblas.cpp": "979a7f622223303b66e6b658e09748c6ded5f300c24b9b23a82c57df243322b9",
+      ".tools/v82-diagnostic/frozen/tests/test_pdlp.cpp": "414caaa893a624179d67f9b6278ad1ebd8a3920f2de5032250e0417aea2d8430",
+      ".tools/v82-diagnostic/frozen/tests/test_pdlp_acceleration.cpp": "95803178af8e8ebf0569c5cbf61f1811057e9dbdc515011b73f0eeaf347403ba",
+      ".tools/v82-diagnostic/frozen/tests/test_pdlp_adversarial.cpp": "ac1a894fc2445ddaaef2b35cbb067a674eba07be9c9890d469cd4d172b9c459c",
+      ".tools/v82-diagnostic/frozen/tests/test_pdlp_comparison.py": "ff501574ba4374161d1608972f9cbf0bd364c6011e4c0a23e8980341c8517408",
+      ".tools/v82-diagnostic/frozen/tests/test_pdlp_halpern.cpp": "88e6a2699f54a2a1032ed9cd39de73a645e378175ff138acfb80808469b73c85",
+      ".tools/v82-diagnostic/frozen/tests/test_regularized_ldl.cpp": "cc88ffe0912409e32d8ad5094d41af429efffd46bcd326dc352ed6b6a8448d08",
+      ".tools/v82-diagnostic/frozen/tests/test_sparse_lu.cpp": "30ee6d2faaca6a26f96d359d83cf1d810ea51b41a68631d8e934f0c9652f47af",
+      ".tools/v82-diagnostic/frozen/tests/test_verification.cpp": "7dadf4178733c807c2d60f9e0c050a97977b195f444b6af72acce37567c8c7b9",
+      ".tools/v82-diagnostic/frozen/third_party/cholmod/NOTICE.txt": "09101b0e650a11997790a29b1588cdc21aa07e7d0bab9f56773e7f646c9ed770",
+      ".tools/v82-diagnostic/frozen/third_party/factorhighs/build.cmake": "1b29337f3df8102c2ef2c64f2fbd1ac5a81970a7755cafa5920841f110e864ff",
+      ".tools/v82-diagnostic/frozen/third_party/factorhighs/NOTICE.txt": "14920026672f4e05a372c4259be9b9a670c11ac01aea8be82d2106491e6ba2b7",
+      ".tools/v82-diagnostic/frozen/third_party/factorhighs/serial.hpp": "44ab852c2bf62947d2ff514b5afcfb31162250b2a44ae4fd7c0efd58c6a64fc3",
+      ".tools/v82-diagnostic/frozen/third_party/openblas/CMakeLists.txt": "eabb214ebb062b0b7a0e760659b943a13aa81412b4eb0de7a1c77dccc1c61a7b",
+      ".tools/v82-diagnostic/frozen/third_party/openblas/NOTICE.txt": "b580d04dce8314e9419941001f93cadd9266fbbc26f7503d2db8e73e6c878f66",
+      ".tools/v82-diagnostic/frozen/third_party/openblas/patch_dgemm_stack.cmake": "893bf335126ec025ac1d214644df0a729ef2a52227da312103e36e8fbb22eb03",
+      ".tools/v82-diagnostic/frozen/third_party/qdldl/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      ".tools/v82-diagnostic/ipm-compile.json": "37a02351cf31f2c730a787d35f80f2084cfe612f1589d1cb14cdafe1958d1ebc",
+      ".tools/v82-diagnostic/ipm-profile.cpp": "3db99961d5c9c548f64c50e4ed1e7f03707a100d458dcaaf4bf2c0a8ba179dbe",
+      ".tools/v82-diagnostic/ipm-profile.obj.d": "b5e42b9c15a1fe190d75c387d00075bdc8868d562f969da528e09e896e27c6eb",
+      ".tools/v82-diagnostic/link.json": "09456c3f619481a432356f34e4f6db5960485e41ee5cb923b58b7763c411f063",
+      ".tools/v82-diagnostic/ninja-commands.txt": "fd52ec7d60493f23aa436f6f609d241725d7fd19fb2545085c169d18698b3ade",
+      ".tools/v82-diagnostic/normal-compile.json": "3789934da4ff70ef0e7775e0610a35ef605eac295bb3f6da202db7b6ec99b7fb",
+      ".tools/v82-diagnostic/normal-profile.cpp": "e16d8421466d93a690618ecbed291867d790b0fd37e9b2cc56c17a6efa86f4d5",
+      ".tools/v82-diagnostic/normal-profile.obj.d": "b06fffd27da185ab2ee9c1c6b28be8e1c33053ebf8a14d83e3e2b21fec75dc2f",
+      ".tools/v82-diagnostic/self-cross-build.json": "e7218659b0c9e16e1bbb90e09ab993eafd0cbd18b63ad681a0ea2415de51c822",
+      ".tools/v82-diagnostic/self-cross.cpp": "5e8f8a3125a1a538c1ea2bd06edfcc152e44ca768ae704e8a1b1529a3d285913",
+      ".tools/v82-diagnostic/self-cross.obj.d": "2cd1ecc2e0dd4bda844cfe5bf50d1cc75ed763744b96f9109aba79e8c1325294",
+      ".tools/v82-diagnostic/self-link.json": "9e076eedda8b56a94e3dee1e7fc881e4f04f6ad9aef1b43457f092eb591c8c1d",
+      ".tools/v82-diagnostic/self-main-build.json": "16609a28577bf5f13f840dc35e3b3a1140c9c004b81e0bd73d0e20f722d6ff8a",
+      ".tools/v82-diagnostic/self-main.cpp": "e6eb4bb3c28adbd0c3c6f355e7b7107370aa517e875c8d635e51e25b4f16fe4d",
+      ".tools/v82-diagnostic/self-main.obj.d": "f666ac239e011298b3ec74d98697bbc4a99d44331f5f74daf565dccf66dda841",
+      ".tools/v82-diagnostic/self-off-run.json": "ac04edaf90e0267f31f9e0a9adac911458710362a965e659d83e17ef5ed2fc25",
+      ".tools/v82-diagnostic/self-on-run.json": "58cb435078991422d0e9efae921a44a3c6a9a91d61c119d3caec61505800ae89",
+      ".tools/v82-diagnostic/static-check.json": "f382d97cd975a77fd6a57b65cc60b6fd7381cedeb6995aad44bf284fcaacc505",
+      ".tools/v82-diagnostic/timer-self-check.json": "b49a0ab7ab302b95c914c047b4fabced7fe38280f1369107a90bb4c896808aed",
+      ".tools/v82-diagnostic/transforms.json": "8d4bf1e2ea8ecf6ba9e8a7be6daf1f546f618a437eba8645882eda4a55a34c09",
+      ".tools/v82-diagnostic/v47-profile.hpp": "5dab8cdfcb60c58fa04b86a2653a15b88bd808c2a33b40cc80d32f87f07dcea9",
+      ".tools/v82-document-check-inline.py": "e266e2e2594d9f71375cfb7db2058544d3da975d3258d759ef2c5d9d18832918",
+      ".tools/v82-plan-inline.py": "e700555fa6e42c5e6e90f4b737346f814b34dc6f683d2fd26d0f5e87fbfa2b13",
+      ".tools/v82-prepare-drivers-inline.py": "0fc4643077e1c22e04dc1b4dd8507d34ac9908a77ac1ef33006ea1b6d494d9fb",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-identity.json": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-source.zip": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v47-profile-build.py": "157f157a6de6f6e5cec8935ccd8977e9e13b7f30f674d4e76701bd1c25aed6b5",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-accepted-state.json": "db238b695c6ff1d26eddf32bae34b5490fa060f21e3d307d1a49591a3eac3f22",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-plan.json": "5f134f630f8f969097c2b9c2b85912a89b4f20ef224043303367d43754d1dd06",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-closeout.json": "d2393139095abd450fac5a24794298c52619c9770aa62e622186aceff7c20c44",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-highs-manifest.json": "9daccfab6533fa563c4343df0560a4b523bdc7922ff8159d6ba98e73448b5f24",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-highs-runs.jsonl.gz": "f44687371d3dc1071ae079059546947046e0d309aefa5ca02a9e160274c15611",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-highs-summary.json": "ab3e88c538395d24b78820bda06d5010198c8a8f88d0a8b51fe3f095302cb417",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-plan.json": "c57b41bf3bb129e20bda63304f861db2fef958a544a5e7d0a00d24a56df8ab4f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-run-identity.json": "63bc65e73dd5ed2f8fd78b9c0ef403d06f99a46e2902b8f4ba1bae12c1988db2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v81-run.py": "d3b0e4e0c67e93766dec8cf05ccb3e0943fa90df62dafc6f17ea404052d95bec",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-baseline-check.json": "ead667cd765d883dd906601cbb847d5e719abe87864f18f72c44fbbba6ff492a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-build-attempt1.json": "e56203438ff702f1ff8b8cefb33678a4d3fc464d4ee2e3f6e2062c0586b393fd",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-build-self-check-attempt1.json": "c50050b15cadf4a8f71d43189024e2c9fc2390b9724e8fc9125379bc29ef3906",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-build.py": "d9e392be83e4ca15414cf83784ef2a9040332307892b9f0df902397ee9107a7a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-common-success-analysis.json": "7f04294218dec05c05510cf1f2f6305057e0ceea7893ef47285c87af833a1edf",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-common-success-attempt1.json": "8603a6f686d21d232a754686b582ae37e3d107de4650ece070fa500f1d346bb2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-cost-analysis-attempt1.json": "debb988bd1a119cbabc548a7f7f36a04a564f6037eb05532f2d1088f8aff2f27",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-cost-analysis.json": "7ca49070e582c9790453502e5fef3b3588448e31ce6232d4b81c4c28889f00c6",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-instrumentation.py": "83b485c66dc049b3be0ec4d9530ed38fc84c08e9a23b2eb930862292b2273807",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-plan-preparation-attempt1-forensics.json": "c3742bc017388372d108b5fd6c6e2aac9708755c8e9ea053708e19372bc87609",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-plan-preparation-attempt2.json": "00b5e915935b6131af7cc544665611bfb02512e25c31d2d75035e57d2d071756",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-plan.json": "b5df77438c3905566b0a8ddb02b84c2c2f65484facfe26bf559ec2ae085ec44b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-profile-run-attempt1.json": "334d24fc68acbb55c2ade9ab21711856db1e4d7936e326dd7f103bbeb44d8153",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-run-manifest.json": "072d6e1fdf1bb5b8e5f05e7ac0b3c48da955f9c4978f510e1a2e5e5748325bde",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-run.py": "ce10649ff972a455288a37b571aa186621f0151e16b9bfe8f18fcb12e8172ddc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-runner-self-check-attempt1.json": "cc91fdeb7806246a8e572c294b1a287e0a71fe10ebc11e814c3bb8674eb5c0ab",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-runner-self-check.json": "3e99155e219494a8210706ea21a6c8915572fb45c8feddca956691488d9e7b7d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-runs.jsonl.gz": "8d7123642c956821ec96f2fac7e91a134d0b9ff3d704f8f75b35088096f6ae4b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-summary.json": "727808db15b00569e566ea82b91bb0c83f282d60aed8d9955ab297e0d6789fd6",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-verification-attempt1.json": "4669ed2d446a2b09bef9e8a19d5ee8a32543750f79935615e01ac4f51463d5cc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-verifier-self-check-attempt1.json": "f9473ce954a812145d51cc4f14abd973b9ef9ef51eee3c5c814fd8882929ea16",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-verifier-self-check-attempt2.json": "eb2e8f00fbbdfe05c47b6aec4a1cfd6c3718223ba77307fe50f6bd805a5bfadb",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-verify.py": "50a25a4db15fda3165eae3e12c3d2ccc90fd8cbf961bf78eaa15ea4f5a7914e7",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v82-wrapper-precheck-failure.json": "4e3a7c5b8d334505031366aa4f04d8a044bdd33e4709d6255319a75a8caefc16"
+    },
+    "source_and_execution_originals_read_back": true,
+    "excluded_binaries_and_libraries": true,
+    "late_artifacts_not_included": [
+      "本次核验返回后生成的outer attempt",
+      "本次verification JSON自身",
+      "后续文档检查记录"
+    ]
+  }
+}

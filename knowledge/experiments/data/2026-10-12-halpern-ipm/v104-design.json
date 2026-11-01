@@ -1,0 +1,43 @@
+{
+  "version": 104,
+  "round": 101,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T17:41:40.966724+00:00",
+  "algorithm_parent_version": 102,
+  "previous_trial_version": 103,
+  "source_parent_identity_file": ".tools/v102-normal-inverse-attempt2/identity.json",
+  "source_parent_identity_sha256": "f0bed5f3aaa86b96d43db18f1642139062d3136b1dd20121b1b49a4b5d5582d7",
+  "source_parent_build_file": ".tools/v102-normal-inverse-attempt2/build-manifest.json",
+  "source_parent_build_sha256": "cd0261ff5f3f04067623c48c2f6b804e1db39581bbf7c4fda804870b246676f0",
+  "hypothesis": "在真实AAT且含singleton的KktFactor成功因子中缓存实际已舍入regularized_h_的LD倒数，供同一因子的多个RHS两处消元恢复复用，减少重复LD除法。",
+  "capability": "constructor成功normal创建分支保存私有capable=(真实normal_cholmod_aat && factor_dimension_!=dimension_)；结构fallback及其它实际内核false，不从后续可变options/result猜内核。constructor Scope不影响能力。",
+  "activation": "factor入口在任何旧check/分配前，快照existing coupled context enabled && capable && 独立binary64/LD4096宽指数guard；置pending或disabled。vector保容量，在原regularized_h_.resize后仅活动resize，不加新全量扫描/预算callback。",
+  "factor": "每trial保原finite(LD(h[row])+dual_regularization)及正性，原regularized_h_赋值后只singleton计算1.0L/该已舍入double R；保原a*a/R装配、Ruiz/排列/Normal输入及原正则8trial，不能用原h或未舍入h+eta。",
+  "commit": "只有normal完整成功且原末check_budget正常返回后，原return前发布ready；任何异常、预算或全trial失败保持pending，下一factor重新绑定，off置disabled。",
+  "solve": "private direct在分配前若pending抛NumericalFailure；ready仅将原(LD(a)*rhs)/R与(LD(a)*answer-rhs)/R改为同一完整原分子乘invR，保原乘/减次序及finite。solve不读TLS，其余已有检查/计数/完整原LP验收不变。",
+  "failure_semantics": "父KktFactor没有统一factor_valid，旧子因子可在早期factor失败后仍valid且R部分改写；本轮仅活动缓存pending明确拒绝direct，这是新active失败契约，不能冒称父已有保证。disabled保父语义。",
+  "precision": "finite(LD)只拒非有限，允许非零LD窄double0；不能新增Normal representable的下溢拒绝。scaled()原拒绝保持。倒数舍入不与直接除法逐位等价，保原strict/forcing与原LP精度。",
+  "cost": "每活动factor每singleton新增一次LD除法和LD槽，同因子q个RHS两处2q除变乘；所有失败trial、分配/访存计入原共享预算，不称免费计算。",
+  "unchanged": "Normal.cpp保v102逆D，不含弃用v103换侧；不改完整G真算子、能量/forcing、FMA、算子或分解额度，不扩LP/marker字段。",
+  "component_plan": {
+    "parent_ipm": 94,
+    "parent_standalone": 51,
+    "new_case_groups": 6,
+    "planned_ipm": 100,
+    "planned_total": 151,
+    "scope": "真实完整Kdelta独立6x6、多RHS/H/reglevel/Scope绑定/早失败及部分填充失败/预算过期入口/极端范围与finite下溢原义，不增加testhook或假时钟。"
+  },
+  "protocol": "冻结v100共同条件：CPU1 seed0 200步scaling5、数值solve+verification5秒/wall35、LP绝1e-7相1e-9、shift10失败罚5/35，34兼容+102初始，gate false止136，true再364至500。",
+  "research": [
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/kkt_solver_diag.cc",
+      "observation": "IPX在Factor保存W=1/g、Solve右端/恢复乘用；矩阵角色/正则和精度规则不同，仅借鉴同factor复用组织。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osqp/qdldl/v0.1.8/src/qdldl.c",
+      "observation": "QDLDL保存因子Dinv用于solve，与本轮singleton实际R不同，不继承其数值保证。"
+    }
+  ],
+  "no_model_specific_routing": true,
+  "source_generation": false
+}

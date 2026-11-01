@@ -1,0 +1,45 @@
+{
+  "version": 109,
+  "round": 106,
+  "phase": "独立C++原型，先正确性和微基准，再决定是否集成",
+  "algorithm_parent_version": 106,
+  "baseline_file": "v109-baseline-check.json",
+  "source_directory": ".tools/v109-dot2-prototype/source",
+  "canonical_sources_changed_at_design": 0,
+  "public_lp_runs_at_design": 0,
+  "sources": [
+    {"url": "https://ogilab.w.waseda.jp/ogita/math/doc/2005_OgRuOi.pdf", "basis": "算法3.5、5.3和未最终舍入pair的分析，以及Sum2；四lane组合界是本项目推导"},
+    {"url": "https://raw.githubusercontent.com/riakymch/exblas/master/src/gpu/blas1/ExDOT.FPE.cl", "basis": "核对TwoProductFMA/TwoSum实现；本原型不继承ExBLAS超累加器的精确与可复现保证"}
+  ],
+  "kernel": {
+    "namespace": "solver::experimental::compensated_dot",
+    "api": "evaluate(spanD,spanD,const Budget&={},bool hardware=false)->Result{long double value;bool target_started;bool selected;const char* fallback_reason;};parent(spanD,spanD,const Budget&={})->long double",
+    "eligibility": "binary64及LD64，AVX+AVX2+FMA且OS支持，默认RN/渐进下溢/屏蔽异常；0<n<=2^20",
+    "range": "两个输入每个都须为0或abs在[2^-450,2^450]；零乘无限/NaN不例外，回退原LD",
+    "lane": "四lane每项p=x*y,e=fma(x,y,-p),(H,q)=TwoSum(H,p),C=C+(q+e)；跨4096保H/C；尾global_i%4",
+    "reduction": "固定H0,C0,H1,C1,H2,C2,H3,C3作Sum2，保R/T pair，再作一次LD(R)+LD(T)；不作double(H+C)或普通hadd",
+    "budget": "入口每4096及末尾；回调返回后复核环境；target无异常并vzeroupper返回；任何unsafe整次原LD从索引0重放，所有额外成本计入共享预算",
+    "errors": "尺寸先拒绝；helper返回LD，最终finite/narrow仍由调用者负责；不改输入，不改FP控制态",
+    "bounds": "u=2^-53,v=2^-64,γ_k=ku/(1-ku),m=ceil(n/4),A=sum|xy|,S=sumxy；lane pair误差<=γ_m²A，8项Sum2误差<=2γ_8²A；δ=γ_m²+2γ_8²，|r-S|<=v|S|+(1+v)δA。仅比较标准最坏情况界，不宣称逐输入支配LD或正确舍入。n=1重建产品后一次LD舍入与原乘积相同",
+    "range_proof": "最小乘积格点2^-1004，A<=2^920，中间保守<2^924；非零EFT中间仍为同格点整数倍，因此正常范围且无上下溢",
+    "counterexample": "theta=2^-60，[1,theta,theta²,-theta,-theta²,-1]放同lane，其余0，right=1；exact与父LD为0，Dot2为-theta²，必须保留测试"
+  },
+  "correctness": {
+    "oracle": "可控整数dyadic及解析乘积残差/跨lane相消，不仅比较LD",
+    "required": ["全部尾长和4096边界", "精确整数长向量至2^20", "TwoProduct/横向相消/范围两端", "晚unsafe整次回退", "非有限/极端指数与尺寸", "预算每个实际前缀中断", "默认与sticky环境，非默认仅读改恢复及资格，不执行数值"],
+    "no_new_library": true
+  },
+  "microbenchmark": {
+    "lengths": [0,1,3,4,7,8,15,16,31,32,63,64,127,128,255,256,4095,4096,4097,16384,65536,1048576],
+    "groups": ["uniform_safe", "wide_exponent", "late_unsafe"],
+    "repetitions": "n>0:max(1,ceil(2^18/n));n=0:4096",
+    "order": "每case一次预热和四个测量block，偶数case ABBA，奇数BAAB；不选best-of",
+    "comparison": "同exe同编译flags，同std::function预算，两侧checksum，准备和oracle在计时外；保所有rawns和真实started/selected/fallback/callback",
+    "data": "uniform_safe为固定整数PRNG/2^10及独立int64乘和；wide_exponent选相反指数使乘积和最终结果有限但输入超guard；late_unsafe在最后坐标超guard，n0/1明示退化",
+    "timeout_seconds": 120,
+    "inference_limit": "primitive收益不代表LP；若准确性通过且有可用长度收益，再测前冻结通用长度阈值与LP集成，不按模型名选择。若无收益保负结果并保持106"
+  },
+  "implementation": "直接编辑独立C++头和两个TU；Python仅逐字快照、编译、执行和证据记录，不生成数学C++；保留完整命令和汇编核对EFT",
+  "production_changes": false,
+  "goal_achieved": false
+}

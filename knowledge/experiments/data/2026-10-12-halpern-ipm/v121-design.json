@@ -1,0 +1,84 @@
+{
+  "version": 121,
+  "round": 118,
+  "date": "2026-11-01",
+  "scope": "仅改变C++诊断I/O实现，数值算法、版本0.3.0、schema3及公开协议保持。",
+  "pre_evidence": {
+    "prototype_analysis": "v121-prototype-analysis.json",
+    "processes": 18,
+    "identical_bytes": true,
+    "bytes_per_four_markers": 13526,
+    "median_default_seconds_per_four_markers": 0.0083541453125,
+    "median_duplicate_seconds_per_four_markers": 0.0000946484375,
+    "paired_rounds_improved": 5
+  },
+  "implementation": {
+    "source_parent": 120,
+    "source_count": 15,
+    "cpp_changes": [
+      "src/experimental/diagnostic_state.hpp",
+      "src/experimental/presolve_state.hpp",
+      "src/experimental/coupled_state.hpp",
+      "src/experimental/crossover_state.hpp",
+      "tests/experimental/ipm_self_test.cpp"
+    ],
+    "math_changes": false,
+    "public_helper": "solver_v100_presolve::EmitStatus{buffered,direct,failed}; emit_buffered(FILE*,const char*,nothrowWriter) noexcept; emit_direct同签名做原路径对照。",
+    "buffer": "每marker局部64KiB，在owner之前声明，owner关闭FILE前始终有效，不共享静态buffer。",
+    "io": "锁原FILE、先刷新pending字节，复制描述符，新FILE首I/O前setvbuf；写prefix/原serializer/newline，检查ferror/flush/close；不改全局流缓冲和原描述符模式，不重开路径。",
+    "windows": "只对dup查询/恢复TEXT/BINARY，wt/wb明确对应，Unicode窄字符不支持返回failed；_lock_file/_unlock_file成对。",
+    "posix": "dup+fdopen(w)与flockfile/funlockfile；未测平台需明确验证边界，不声称已跨平台实测。",
+    "fallback": "dup/fdopen/setvbuf等在本marker尚未写出前失败时，先清副本再direct原stream一次；null参数/目标先flush失败/模式不支持/写出后错误都failed，不重放半行；writer最多一次。",
+    "reports": "四Report保原if条件，唯一替换原prefix+writer+newline为helper+noexcept lambda；原serializer函数全文保持。关闭不调用helper、不分配流/缓冲。",
+    "budget": "文件操作和清理保在原求解/原wall时钟，不能移出评分或推迟刷新。"
+  },
+  "identity": {
+    "candidate_version": 121,
+    "on_backend_version": "ipm-ipx-crossover-cpu-0.3.0",
+    "off_backend_version": "ipm-cpu-0.53.0",
+    "schema": 3,
+    "environment": "SOLVER_V117_CROSSOVER",
+    "marker": "V117_CROSSOVER ",
+    "numerical_algorithm_parent": 120,
+    "pure_hsd": 106,
+    "new_algorithm_round": true,
+    "note": "沿性能轮公共协议，虽无数学变化仍显式实现候选SHA。"
+  },
+  "tests": {
+    "inherit_ipm": 121,
+    "new_cases": {
+      "diagnostic_buffered_serializers": "mapping",
+      "diagnostic_buffered_file_modes": "transaction",
+      "diagnostic_buffered_large_concurrent": "transaction",
+      "diagnostic_buffered_disabled_errors": "exception"
+    },
+    "ipm": 125,
+    "coupled": 57,
+    "total": 182,
+    "requirements": [
+      "四真实serializer及可选/特殊值UTF8字节等",
+      "普通文件无截断/当前offset及pending顺序、text/binary/原FD继续可写",
+      "大于64KiB多次flush字节等，两个线程同目标完整行与独立目标不共buffer",
+      "真实关闭Report零输出，null/只读目标错误不重发callback最多一次"
+    ]
+  },
+  "evaluation": {
+    "reuse_original_fixed500": true,
+    "gate_unchanged": true,
+    "same_precision_resources_penalties": true,
+    "archive_only_reparse_all": true,
+    "compare_parent120": "额外只读核同输入公共报告排除timings及非时间诊断；保存真实预算分歧，不修改协议/不补跑。",
+    "goal": "最终逐例覆盖不低于HiGHS且惩罚wall SGM10不高，所有过程合法。"
+  },
+  "tools": {
+    "builder_unchanged": true,
+    "thin_wrapper": ".tools/v121-benchmark.py",
+    "reuse": [
+      ".tools/v120-benchmark.py",
+      ".tools/v118-benchmark.py",
+      "scripts/benchmark_experimental.py"
+    ],
+    "new_dependency_builds": 0
+  },
+  "goal_achieved": false
+}

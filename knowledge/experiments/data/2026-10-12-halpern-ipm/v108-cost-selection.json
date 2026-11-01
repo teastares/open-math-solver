@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "version": 108,
+  "algorithm_parent_version": 106,
+  "stages": {
+    "netlib": {
+      "raw_sha256": "1ccf503238fb654be06a274af5f6c0a45a124677af7a5ae8746fcf792c5447d2",
+      "coupled_totals": {
+        "constant_calls_completed": 1923,
+        "preconditioner_completed": 4604,
+        "directions_completed": 3846,
+        "products_completed": 4816,
+        "krylov_completed": 758,
+        "cycles_started": 212,
+        "true_checks_completed": 4058
+      },
+      "homogeneous_direct_entries": 6527
+    },
+    "highs": {
+      "raw_sha256": "97ee72dcc5d64c5686a8f096ea382031e7d289b47607e77facf5ba060178dbde",
+      "coupled_totals": {
+        "constant_calls_completed": 1923,
+        "preconditioner_completed": 4604,
+        "directions_completed": 3846,
+        "products_completed": 4816,
+        "krylov_completed": 758,
+        "cycles_started": 212,
+        "true_checks_completed": 4058
+      },
+      "homogeneous_direct_entries": 6527
+    }
+  },
+  "selected": "KktFactor direct的LD约化与Double置换scratch，含K0/constant/P；answer及Normal输出保持独立。",
+  "cost_limit": "6527为已完成homogeneous direct接口次数，初始化等另计；无singleton每warm调用可避1个容量申请点、有singleton可避2个，但未测实际malloc次数或耗时，不能直接乘2或预报整体收益。",
+  "already_reused": "CHOLMOD solve2 solution/work/extra已持久化，不作为新增收益。",
+  "memory_limit": "缓存保留k*(sizeof(LD)+sizeof(double))量级payload，capacity可更大；首次/增容仍分配，嵌套临时增加缓冲，非RSS实测。",
+  "additional_public_lp_runs": 0
+}

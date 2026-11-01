@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-25T23:16:26.908892+00:00",
+  "before_sha256": "45c869c3d7f08616a64032a7e5dc52e3919530757ac565635d16f5ef83eb6200",
+  "after_sha256": "8a47239e7f9cf412b2f64eb604eda9ab25c8143a11e4075335b1011ccde3964f",
+  "preserved_before_file": "v88-plan-preflight1.json",
+  "reason": "primary_linear_solver和changed_source_files是未被命令构造使用的历史描述，分别残留旧normal_cholmod与v86头名。首次自检/构建/数值前改成与已明确候选AAT与v88插桩一致，所有算法参数、精度、预算、集合和门槛不变。",
+  "changed": {
+    "primary_linear_solver": {
+      "before": "normal_cholmod",
+      "after": "normal_cholmod_aat"
+    },
+    "changed_source_files": {
+      "before": [
+        "独立生成ipm-presolve.cpp与v86-presolve-state.hpp，不改生产来源"
+      ],
+      "after": [
+        "独立生成ipm-presolve.cpp与v88-presolve-state.hpp；原assess增加可逆停止回调，不改生产来源"
+      ]
+    }
+  },
+  "public_lp_runs": 0,
+  "driver_source": "\"\"\"在首次构建/自检前更正两项继承的描述元数据，保留原计划；不运行LP。\"\"\"\nimport datetime\nimport hashlib\nimport json\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / 'knowledge/experiments/data/2026-10-12-halpern-ipm'\npath = DATA / 'v88-plan.json'\nraw = path.read_bytes()\nbefore_sha = hashlib.sha256(raw).hexdigest()\nassert before_sha == '45c869c3d7f08616a64032a7e5dc52e3919530757ac565635d16f5ef83eb6200'\nassert not list(DATA.glob('v88-*-attempt*.json'))\nassert not (ROOT / '.tools/v88-presolve').exists()\nwith (DATA / 'v88-plan-preflight1.json').open('xb') as stream:\n    stream.write(raw)\nplan = json.loads(raw)\nbefore = {key: plan[key] for key in ('primary_linear_solver', 'changed_source_files')}\nassert before == dict(primary_linear_solver='normal_cholmod',\n    changed_source_files=['独立生成ipm-presolve.cpp与v86-presolve-state.hpp，不改生产来源'])\nplan['primary_linear_solver'] = 'normal_cholmod_aat'\nplan['changed_source_files'] = ['独立生成ipm-presolve.cpp与v88-presolve-state.hpp；原assess增加可逆停止回调，不改生产来源']\npath.write_text(json.dumps(plan, ensure_ascii=False, indent=2, allow_nan=False) + '\\n', encoding='utf-8')\nafter_sha = hashlib.sha256(path.read_bytes()).hexdigest()\nrecord = dict(passed=True, created_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    before_sha256=before_sha, after_sha256=after_sha, preserved_before_file='v88-plan-preflight1.json',\n    reason='primary_linear_solver和changed_source_files是未被命令构造使用的历史描述，分别残留旧normal_cholmod与v86头名。首次自检/构建/数值前改成与已明确候选AAT与v88插桩一致，所有算法参数、精度、预算、集合和门槛不变。',\n    changed={key: dict(before=value, after=plan[key]) for key, value in before.items()},\n    public_lp_runs=0, driver_source=Path(__file__).read_text(encoding='utf-8'))\nwith (DATA / 'v88-plan-metadata.json').open('x', encoding='utf-8') as stream:\n    json.dump(record, stream, ensure_ascii=False, indent=2, allow_nan=False)\n    stream.write('\\n')\nprint(json.dumps(dict(passed=True, plan_sha256=after_sha, public_lp_runs=0), ensure_ascii=False))\n"
+}

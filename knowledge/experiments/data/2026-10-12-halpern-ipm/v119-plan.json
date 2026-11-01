@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "version": 119,
+  "round": 116,
+  "attempt": 1,
+  "source_parent_version": 118,
+  "algorithm_parent_version": 106,
+  "public_lp_runs": 0,
+  "production_changes": false,
+  "source_generation": false,
+  "design_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v119-prototype-design.json",
+  "design_sha256": "802c8a889320a524b6ee6834ce75b73c43dc4dcb24420c9d2501b7d700e68e08",
+  "parent_identity_file": ".tools/v118-dual-projection/identity.json",
+  "parent_identity_sha256": "9f92126b924d3c44fa1befeabc04aea07facf1d73131aba6af7d9de1225c5fe4",
+  "parent_build_manifest_file": ".tools/v118-dual-projection/build-manifest.json",
+  "parent_build_manifest_sha256": "6bdfe95d6fd411921f14c4a67d0897358240466bacb0c9666d88069dc3184f64",
+  "production_identity_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-identity.json",
+  "production_identity_sha256": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+  "source_archive_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-source.zip",
+  "source_archive_sha256": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+  "tools": {
+    "compiler": {
+      "file": ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang++.exe",
+      "sha256": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe"
+    }
+  },
+  "sources": [
+    {
+      "sha256": "a84cf0d1090374e3b1bed035e0625197fbf52991f2e4280ab5ec7dd6ced9a636",
+      "snapshot": "src/experimental/ipm.cpp",
+      "source": ".tools/v118-dual-projection/source/src/experimental/ipm.cpp"
+    },
+    {
+      "sha256": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      "snapshot": "src/experimental/presolve_state.hpp",
+      "source": ".tools/v118-dual-projection/source/src/experimental/presolve_state.hpp"
+    },
+    {
+      "sha256": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+      "snapshot": "src/experimental/coupled_state.hpp",
+      "source": ".tools/v118-dual-projection/source/src/experimental/coupled_state.hpp"
+    },
+    {
+      "sha256": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      "snapshot": "include/solver/experimental/coupled.hpp",
+      "source": ".tools/v118-dual-projection/source/include/solver/experimental/coupled.hpp"
+    },
+    {
+      "sha256": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      "snapshot": "include/solver/experimental/energy.hpp",
+      "source": ".tools/v118-dual-projection/source/include/solver/experimental/energy.hpp"
+    },
+    {
+      "sha256": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      "snapshot": "include/solver/experimental/legacy_coupled.hpp",
+      "source": ".tools/v118-dual-projection/source/include/solver/experimental/legacy_coupled.hpp"
+    },
+    {
+      "sha256": "a9c8ac92bc2534d18b002ffec71cb38d97ec7013417c232e90acc680873db6a1",
+      "snapshot": "tests/experimental/ipm_self_test.cpp",
+      "source": ".tools/v118-dual-projection/source/tests/experimental/ipm_self_test.cpp"
+    },
+    {
+      "sha256": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      "snapshot": "tests/experimental/coupled_self_test.cpp",
+      "source": ".tools/v118-dual-projection/source/tests/experimental/coupled_self_test.cpp"
+    },
+    {
+      "sha256": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+      "snapshot": "include/solver/experimental/fma_axpy.hpp",
+      "source": ".tools/v118-dual-projection/source/include/solver/experimental/fma_axpy.hpp"
+    },
+    {
+      "sha256": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+      "snapshot": "src/experimental/normal_cholesky.cpp",
+      "source": ".tools/v118-dual-projection/source/src/experimental/normal_cholesky.cpp"
+    },
+    {
+      "sha256": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+      "snapshot": "src/experimental/diagnostic_state.hpp",
+      "source": ".tools/v118-dual-projection/source/src/experimental/diagnostic_state.hpp"
+    },
+    {
+      "sha256": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      "snapshot": "include/solver/experimental/profile.hpp",
+      "source": ".tools/v118-dual-projection/source/include/solver/experimental/profile.hpp"
+    },
+    {
+      "sha256": "b2e7575b7f5bc015a0cd5776333d0336c67827e939ecd7de9ad58afb61c36eb9",
+      "snapshot": "include/solver/experimental/ipx_crossover.hpp",
+      "source": ".tools/v118-dual-projection/source/include/solver/experimental/ipx_crossover.hpp"
+    },
+    {
+      "sha256": "092480b20e706a87c8b97da93ee516faec63468dd5ca683730158d2aa510c0f0",
+      "snapshot": "src/experimental/crossover_state.hpp",
+      "source": ".tools/v118-dual-projection/source/src/experimental/crossover_state.hpp"
+    },
+    {
+      "sha256": "7ffe8ea7c111732bc0cb60e1dae2941285bb3240a559a6ee235384d03a506cb8",
+      "snapshot": "own/warm_cleanup.hpp",
+      "source": ".tools/v119-warm-simplex-prototype/source/warm_cleanup.hpp"
+    },
+    {
+      "sha256": "0e0bdf9dad87b715100bc4b1ea2a342cedc348b10fe8c5a2af0b176ccd3460b5",
+      "snapshot": "own/self_test.cpp",
+      "source": ".tools/v119-warm-simplex-prototype/source/self_test.cpp"
+    }
+  ],
+  "inputs": {
+    ".tools/v119-build.ps1": "33eab1a4cfd93ee2bd1c95f7fa12da97673453aea57a20c36beb9a4f72e62fdd",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v119-baseline-check.json": "440b125df932788fc39defb6f43c24c43352b5b6ddfd03363acc0766027a2e2f",
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v119-research.json": "7319cefb3158a7462ebfda386744aa47950a86b460c8516fdf5f4fce143c5492",
+    "build/release/_deps/highs-src/LICENSE.txt": "795e6090936bcf2e1a0bfb339053de0c5bb6f3102035ead0ecc0ed4a7c41f1b7",
+    "build/release/_deps/highs-src/THIRD_PARTY_NOTICES.md": "a93082ab82d5f0a01c86b48a142ccea2ed2175f7dccb9e95a04770f4e2ae39a2",
+    "build/release/_deps/highs-src/highs/ipm/ipx/lp_solver.cc": "87a2b2ca94eaa84f1f6c22ccfd9eedd29b7b53dd4d16f1e04c56dcd9126e9ac0",
+    "build/release/_deps/highs-src/highs/ipm/ipx/model.cc": "3ec5d22235455812d810b2ac029b509a451e742c6a92b44c9a19d8e58e4f2ff8",
+    "build/release/_deps/highs-src/highs/simplex/HEkkPrimal.cpp": "fa871277ab15737e3c96ce3e54baa62e87bcf4e540b93a4c147b97f1c67167f2",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang++.exe": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang.exe": "ee85bef2c733e24a26c22be3df94bd631cf9528a048fce91241c182a936737fe",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/clang-23.exe": "6fb0b2960b4980f8b11bf8f11f530de6df5e4673605dae03fe1f07e2876edffa",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/libclang-cpp.dll": "de0e788d706e25df582ffba132c50ed57568cb669d09acd78cba84b0b5a04d48",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/libLLVM-23.dll": "7913a4fecb6172756dbb35d08ac487fb0b0f0642e7adee166305984f3fa96511",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/bin/ld.lld.exe": "2b75169112a886e55356b18209b66cc1e47f402b7ff36ba3c3bc899ad347cef8"
+  },
+  "dependency_roots": [
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/include",
+    ".tools/llvm-mingw-20261006-ucrt-x86_64/lib/clang/23/include",
+    "build/release/_deps/highs-src",
+    "build/release/_deps/highs-build"
+  ],
+  "required_cases": {
+    "phase2_single_pivot": "transaction",
+    "phase2_multiple_pivots": "transaction",
+    "phase2_bound_flip": "transaction",
+    "phase2_upper_entry": "mapping",
+    "phase2_free_bidirectional": "mapping",
+    "phase2_fixed_and_slack": "mapping",
+    "phase2_ranged_auxiliary": "mapping",
+    "phase2_upper_only_native": "mapping",
+    "phase2_native_basis_bridge": "transaction",
+    "phase2_degenerate_tie": "transaction",
+    "phase2_missing_basis": "exception",
+    "phase2_singular_basis": "exception",
+    "phase2_infeasible_start": "exception",
+    "phase2_invalid_shape_indices": "exception",
+    "phase2_budget_and_step_cap": "budget",
+    "phase2_reuse_isolation": "transaction"
+  },
+  "compiler_timeout_seconds": 300,
+  "test_timeout_seconds": 35,
+  "scope_note": "独立C++算法组件；父14只保来源，实际仅own2及adapter进入TU，不接HSD/公开LP，BASICLU只做数值原语。"
+}

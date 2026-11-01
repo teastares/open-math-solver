@@ -1,0 +1,665 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-11-01T00:44:25.5439790Z",
+  "version": 115,
+  "round": 112,
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "plan_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-plan.json",
+  "plan_sha256": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+  "production_unchanged": true,
+  "source_generation": false,
+  "source_count": 13,
+  "component_cases": 169,
+  "build_evidence_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-source-build-audit.json",
+  "build_evidence_sha256": "3283485f33b10f66d663ff5c33d841ab17e1796512995949206e935608db42d9",
+  "source_static_audit_sha256": "57f792d87a2a10732f7f63ddb9805af1998718d6d340606b7633a8ed3405f70b",
+  "evaluation_check_sha256": "3dcb74b0cf6902998c10cde546782fe8a0ab6e9c77412e62c91091accf114556",
+  "evaluation_valid": true,
+  "public_lp_runs_observed": 500,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "stage_order": [
+    "compatibility-development",
+    "compatibility-probe",
+    "development",
+    "probe",
+    "netlib",
+    "highs"
+  ],
+  "stages": {
+    "compatibility-development": {
+      "runs": 22,
+      "valid_processes": 22,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/manifest.json",
+      "manifest_sha256": "4b6cdb7bd464cc6b7a983b13d3640b679be66ba978f25243d143d68fa099037e",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/summary.json",
+      "summary_sha256": "e8d845cdd0ad15e4ea2e15bd795b84957ec18ea57a8b755946e935820c62bb23",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/runs.jsonl.gz",
+      "raw_sha256": "8d4be86b9db020ea467dae197120bf064c2f5d74335c623fd6daa881effe44de",
+      "actual_call_sha256": "eda4e48fb4d115b152d9d2c84464da0174a4dab3fceea2b1be8023568fa123e2",
+      "read_only_revalidation_sha256": "0ff9fd9ac89a7128d988c3489060888d5a9a47d6c743969e5591ac5945137588",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 11,
+          "wall_sgm10_seconds": 0.2361062750339991,
+          "numerical_sgm10_seconds": 0.21271285479151586
+        },
+        "diagnostic_off": {
+          "quality": 11,
+          "wall_sgm10_seconds": 0.23445845848583893,
+          "numerical_sgm10_seconds": 0.20923233875815764
+        }
+      }
+    },
+    "compatibility-probe": {
+      "runs": 12,
+      "valid_processes": 12,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/manifest.json",
+      "manifest_sha256": "959ddfbc2b28f0a165bbac02721fd56fe48700739e1c02063d11f6d8208768a4",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/summary.json",
+      "summary_sha256": "fdaaa41c29f0a8a95668999e84d67fe3810975e5132a4bd3d0bc0f67224e4fc7",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/runs.jsonl.gz",
+      "raw_sha256": "1e45f36cba75d5353c449c582779cf3a24d329fb0474ab005ffd7fa7f7b98619",
+      "actual_call_sha256": "d0cf6aed4076a1add1ba9cb899903de4e10d68820e9542582d99eb16f1ee2172",
+      "read_only_revalidation_sha256": "f61bbd3d98d3fa17b72a37375e84c4dc4b16e48cb0a3eb3341890b9a6cfa149a",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 5,
+          "wall_sgm10_seconds": 3.482146640277599,
+          "numerical_sgm10_seconds": 1.2081742440044505
+        },
+        "diagnostic_off": {
+          "quality": 5,
+          "wall_sgm10_seconds": 3.446732410632235,
+          "numerical_sgm10_seconds": 1.1779986232705264
+        }
+      }
+    },
+    "development": {
+      "runs": 66,
+      "valid_processes": 66,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/manifest.json",
+      "manifest_sha256": "e068f5fbdd80a6cd6c2b0b9834cbfa64034d3e4be603ac5bed1f35735bcdaf4f",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/summary.json",
+      "summary_sha256": "2f013add23b69990cba1f45a3e2806760a951bd05d5e237e6f7d0170d71ed9e1",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/runs.jsonl.gz",
+      "raw_sha256": "542c12d6f29e667418d9f856cdd4c1877f099a64b4373096a0bf17db1e57924a",
+      "actual_call_sha256": "8a624a04343e13cfa1d14af3323fbbfc752caffac5699ea3faa41c4445912507",
+      "read_only_revalidation_sha256": "08e08bf92c66c2eab65880e72ffd98f1d1017db7b2eb6274a85b514a78dee0ff",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 33,
+          "wall_sgm10_seconds": 0.2297471121920329,
+          "numerical_sgm10_seconds": 0.20799052139423851
+        },
+        "diagnostic_on": {
+          "quality": 33,
+          "wall_sgm10_seconds": 0.2115916582157258,
+          "numerical_sgm10_seconds": 0.1865820765003698
+        }
+      }
+    },
+    "probe": {
+      "runs": 36,
+      "valid_processes": 36,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/manifest.json",
+      "manifest_sha256": "feeaeab1f2e7f35494fa7bf6c28b4bdf96d8750bb7a0005b3b78b88d1622e853",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/summary.json",
+      "summary_sha256": "5303846a2dbbc78eb3472e991252facd67040cbc4544928490ff4f296f32c765",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/runs.jsonl.gz",
+      "raw_sha256": "8180cc7e2c61341ecdc530ae5c23c611d25c42d6d9587edcddb8dbfa5660d728",
+      "actual_call_sha256": "399f73dbb03db552cfeccfd011afd04832521e16b25cbb977c4b25b70fa29805",
+      "read_only_revalidation_sha256": "e50fd57ecea27258a14c6e0d1b86b54871e34ceeab401eb8058530843adbca1a",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 15,
+          "wall_sgm10_seconds": 3.436970974713065,
+          "numerical_sgm10_seconds": 1.1713345992690853
+        },
+        "diagnostic_on": {
+          "quality": 18,
+          "wall_sgm10_seconds": 0.5343584870852699,
+          "numerical_sgm10_seconds": 0.5103238953930631
+        }
+      }
+    },
+    "netlib": {
+      "runs": 182,
+      "valid_processes": 182,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/manifest.json",
+      "manifest_sha256": "aae67fe993a070d2fed09fb38ee5c81bf6584e238f01e8758ce07545bd1d478f",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/summary.json",
+      "summary_sha256": "85c8e6efa5f3a486f46879e61ecb214a07644049ebfdcf9d2956ba19876d4a1b",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/runs.jsonl.gz",
+      "raw_sha256": "4f155245b2901fc7fae0effaee3a63f949c525d6fd5420a11a2c2cf46947e313",
+      "actual_call_sha256": "9f1d73190f88063977872d5fd37d81ebfe3a43fb1e01df941ee721eae934258d",
+      "read_only_revalidation_sha256": "da94fc2a79632d8bd885b4e74c1a17ba9ee3b8731d7c2da56cdde46d6240b49e",
+      "metrics": {
+        "frozen_v66": {
+          "quality": 90,
+          "wall_sgm10_seconds": 0.2890461526455222,
+          "numerical_sgm10_seconds": 0.14828305868774755
+        },
+        "diagnostic_on": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.11689616982095044,
+          "numerical_sgm10_seconds": 0.09626479119318235
+        }
+      }
+    },
+    "highs": {
+      "runs": 182,
+      "valid_processes": 182,
+      "marker_errors": 0,
+      "manifest_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/manifest.json",
+      "manifest_sha256": "deee0e325a7f4249a500370481d34d607cb70ac21acbe16a0c8a25ea2121896d",
+      "summary_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/summary.json",
+      "summary_sha256": "4578af97ce5063af0b89c3c7f79f32fbaba96c6788aedb59650618e35ce55af6",
+      "raw_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/runs.jsonl.gz",
+      "raw_sha256": "634e1a33f29b5ff9f64416ba801d273791cdd00236b0e4f1a89076e2af42314f",
+      "actual_call_sha256": "4c58bb702230de6270d373d3d64e1bfa7463fe93dec08d7b7975f0c613b6bdba",
+      "read_only_revalidation_sha256": "a1e2382b80bff3357c2c7966a2e098ea0de813d5eedd9d8bc06524d0d3c49ebb",
+      "metrics": {
+        "highs": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.0950516626101452,
+          "numerical_sgm10_seconds": 0.07817082391375091
+        },
+        "diagnostic_on": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.11634781764714669,
+          "numerical_sgm10_seconds": 0.09557683497919654
+        }
+      }
+    }
+  },
+  "compatibility": {
+    "passed": true,
+    "plan_sha256": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+    "runs": 34,
+    "pairs": [
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      }
+    ],
+    "non_budget_equal": 17,
+    "budget_pairs": 0,
+    "invalid_pairs": 0,
+    "different_pairs": 0
+  },
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [
+      "greenbea"
+    ],
+    "development_speed_gate": true,
+    "eligible_for_netlib": true,
+    "plan_sha256": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+    "valid_processes": true
+  },
+  "goal": {
+    "models": 91,
+    "no_per_model_coverage_loss": true,
+    "candidate_coverage": 91,
+    "highs_coverage": 91,
+    "candidate_wall_sgm10_seconds": 0.11634781764714669,
+    "highs_wall_sgm10_seconds": 0.0950516626101452,
+    "candidate_numerical_sgm10_seconds": 0.09557683497919654,
+    "highs_numerical_sgm10_seconds": 0.07817082391375091,
+    "candidate_to_highs_wall_ratio": 1.2240482118061182,
+    "achieved": false
+  },
+  "attempts": {
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-build-self-check-attempt1.json": {
+      "sha256": "eeefd88e26a50d0cdaf0378f36612dbe7366050ac708d76ae2dfdc1a742b21e1",
+      "returncode": 0,
+      "elapsed_seconds": 0.19250610005110502,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-build-attempt1.json": {
+      "sha256": "6c7980fbcf5fcfd947ab848ce5c9c9173273a942b408538a7b3630c484ae7045",
+      "returncode": 0,
+      "elapsed_seconds": 27.094576599891298,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-runner-self-check-attempt1.json": {
+      "sha256": "22b0e17a625e958a370c6ca4b9a12eec5aa9e0e1b201bf06cf6647dd0ba5d475",
+      "returncode": 0,
+      "elapsed_seconds": 0.14852400007657707,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-development-attempt1.json": {
+      "sha256": "eda4e48fb4d115b152d9d2c84464da0174a4dab3fceea2b1be8023568fa123e2",
+      "returncode": 0,
+      "elapsed_seconds": 8.105122899985872,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-probe-attempt1.json": {
+      "sha256": "d0cf6aed4076a1add1ba9cb899903de4e10d68820e9542582d99eb16f1ee2172",
+      "returncode": 0,
+      "elapsed_seconds": 10.337816299987026,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-attempt1.json": {
+      "sha256": "27f98c1f9155889e3209822a1e28a2a35709cd3c05dfc2c4be6a31378cee5f52",
+      "returncode": 0,
+      "elapsed_seconds": 2.0788191999308765,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-development-attempt1.json": {
+      "sha256": "8a624a04343e13cfa1d14af3323fbbfc752caffac5699ea3faa41c4445912507",
+      "returncode": 0,
+      "elapsed_seconds": 22.846899600001052,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-probe-attempt1.json": {
+      "sha256": "399f73dbb03db552cfeccfd011afd04832521e16b25cbb977c4b25b70fa29805",
+      "returncode": 0,
+      "elapsed_seconds": 28.33346530003473,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-gate-attempt1.json": {
+      "sha256": "0352c9f3dff7b3ed290397f078492e58caf78973451705903e7c5acb69ced144",
+      "returncode": 0,
+      "elapsed_seconds": 3.7596141999820247,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-netlib-attempt1.json": {
+      "sha256": "9f1d73190f88063977872d5fd37d81ebfe3a43fb1e01df941ee721eae934258d",
+      "returncode": 0,
+      "elapsed_seconds": 42.30753240000922,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-highs-attempt1.json": {
+      "sha256": "4c58bb702230de6270d373d3d64e1bfa7463fe93dec08d7b7975f0c613b6bdba",
+      "returncode": 0,
+      "elapsed_seconds": 43.20640240004286,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-compatibility-development-attempt1.json": {
+      "sha256": "0ff9fd9ac89a7128d988c3489060888d5a9a47d6c743969e5591ac5945137588",
+      "returncode": 0,
+      "elapsed_seconds": 1.1397415000246838,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-compatibility-probe-attempt1.json": {
+      "sha256": "f61bbd3d98d3fa17b72a37375e84c4dc4b16e48cb0a3eb3341890b9a6cfa149a",
+      "returncode": 0,
+      "elapsed_seconds": 0.9205845999531448,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-development-attempt1.json": {
+      "sha256": "08e08bf92c66c2eab65880e72ffd98f1d1017db7b2eb6274a85b514a78dee0ff",
+      "returncode": 0,
+      "elapsed_seconds": 2.329306700034067,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-probe-attempt1.json": {
+      "sha256": "e50fd57ecea27258a14c6e0d1b86b54871e34ceeab401eb8058530843adbca1a",
+      "returncode": 0,
+      "elapsed_seconds": 1.6459675999358296,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-netlib-attempt1.json": {
+      "sha256": "da94fc2a79632d8bd885b4e74c1a17ba9ee3b8731d7c2da56cdde46d6240b49e",
+      "returncode": 0,
+      "elapsed_seconds": 4.757387600024231,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-highs-attempt1.json": {
+      "sha256": "a1e2382b80bff3357c2c7966a2e098ea0de813d5eedd9d8bc06524d0d3c49ebb",
+      "returncode": 0,
+      "elapsed_seconds": 4.567984899971634,
+      "changed_inputs": []
+    }
+  },
+  "archive": {
+    "path": "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v115-candidate-evidence.zip",
+    "sha256": "78d5e0ed9d55921a2088d32f9883c8b653756d33dc6ffba28b89825634522c43",
+    "members": 194,
+    "bytes": 50784695,
+    "member_sha256": {
+      "scripts/benchmark.py": "fc787d3a4f86f2b1df941e5cdc44c29293b1484ddf0674c474f1aa1d203c881c",
+      "scripts/compare_lp.py": "8ef084687483ed0f88d60849fc2e1cddaa2497ec5b269acdc6b9228474221bd3",
+      "scripts/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "scripts/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "scripts/record_experiment.py": "8362bca9e380df3457e10b6a8529d3967e0f924cf22fe11b42fa6b4f5ccab650",
+      ".tools/v115-build.py": "e9e6161291d148c81540480d9e6ae0ff5ae289908090785a66de145b295b1aa2",
+      "dependencies.lock.json": "3b5c2dbf53a41455cd9c8a28a954af9bec06bc0cc9a5c3d4c9cb83c2bbf09e93",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v100-run.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v66-run.py": "d7265080bc6ff915fdfa7bc4792f651ae929432a1778eb88704b54a135c2a347",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v88-run.py": "6080b97380f79d64b3aafd79a265554c29910fbbd767477ed0ee5b0cacfc2d04",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-identity.json": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/ipm-v66-source.zip": "749d95e81199edef5e06f02809df73e47ad1f09a3507701951d1bcfb4660cf86",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-development-attempt1.json": "8a624a04343e13cfa1d14af3323fbbfc752caffac5699ea3faa41c4445912507",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-design.json": "13ca22b79cab20a8db135a068f88361bed1d64aa7461a2482152b6eef86a0144",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-probe-attempt1.json": "d0cf6aed4076a1add1ba9cb899903de4e10d68820e9542582d99eb16f1ee2172",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-development-attempt1.json": "eda4e48fb4d115b152d9d2c84464da0174a4dab3fceea2b1be8023568fa123e2",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-compatibility-attempt1.json": "27f98c1f9155889e3209822a1e28a2a35709cd3c05dfc2c4be6a31378cee5f52",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-candidate-analysis.json": "bfb8515c06995bc9269aed0a0391a7f742dbf8d03cffbc855941ad1c301bca9a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-build-self-check-attempt1.json": "eeefd88e26a50d0cdaf0378f36612dbe7366050ac708d76ae2dfdc1a742b21e1",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-build-attempt1.json": "6c7980fbcf5fcfd947ab848ce5c9c9173273a942b408538a7b3630c484ae7045",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-blas-binding-observation.json": "14635e24c2683da8efa596ecf2bb5b4d93ebf09c97dc87edd08d048c0b5baeba",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-baseline-check.json": "e2c9b2c1193e593aeea9f8ab81f8f1084a65759fd1605b43823546b37581ab5f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-source-static-audit.json": "57f792d87a2a10732f7f63ddb9805af1998718d6d340606b7633a8ed3405f70b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-source-build-audit.json": "3283485f33b10f66d663ff5c33d841ab17e1796512995949206e935608db42d9",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-runner-self-check-attempt1.json": "22b0e17a625e958a370c6ca4b9a12eec5aa9e0e1b201bf06cf6647dd0ba5d475",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-probe-attempt1.json": "e50fd57ecea27258a14c6e0d1b86b54871e34ceeab401eb8058530843adbca1a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-netlib-attempt1.json": "da94fc2a79632d8bd885b4e74c1a17ba9ee3b8731d7c2da56cdde46d6240b49e",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-highs-attempt1.json": "a1e2382b80bff3357c2c7966a2e098ea0de813d5eedd9d8bc06524d0d3c49ebb",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-development-attempt1.json": "08e08bf92c66c2eab65880e72ffd98f1d1017db7b2eb6274a85b514a78dee0ff",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-compatibility-probe-attempt1.json": "f61bbd3d98d3fa17b72a37375e84c4dc4b16e48cb0a3eb3341890b9a6cfa149a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-revalidate-compatibility-development-attempt1.json": "0ff9fd9ac89a7128d988c3489060888d5a9a47d6c743969e5591ac5945137588",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-probe-attempt1.json": "399f73dbb03db552cfeccfd011afd04832521e16b25cbb977c4b25b70fa29805",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-next-research.json": "d033dc0b28e7689053cc6a5dbfb0650de0b22af60dcad66624337d10b5902dc3",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-netlib-attempt1.json": "9f1d73190f88063977872d5fd37d81ebfe3a43fb1e01df941ee721eae934258d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-highs-attempt1.json": "4c58bb702230de6270d373d3d64e1bfa7463fe93dec08d7b7975f0c613b6bdba",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-gate-attempt1.json": "0352c9f3dff7b3ed290397f078492e58caf78973451705903e7c5acb69ced144",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115-evaluation-check.json": "3dcb74b0cf6902998c10cde546782fe8a0ab6e9c77412e62c91091accf114556",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility.json": "8480775811f4528e00bacdb4499aed5826d0faca66154c0875e2d8fc0d07a46a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/gate.json": "f62103f087e73f95941f9fd62b5187d1df9a6507f9a467c914392192e380c6e7",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/summary.json": "4578af97ce5063af0b89c3c7f79f32fbaba96c6788aedb59650618e35ce55af6",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/runs.jsonl.gz": "634e1a33f29b5ff9f64416ba801d273791cdd00236b0e4f1a89076e2af42314f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/summary.json": "85c8e6efa5f3a486f46879e61ecb214a07644049ebfdcf9d2956ba19876d4a1b",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/runs.jsonl.gz": "4f155245b2901fc7fae0effaee3a63f949c525d6fd5420a11a2c2cf46947e313",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/summary.json": "5303846a2dbbc78eb3472e991252facd67040cbc4544928490ff4f296f32c765",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/summary.json": "2f013add23b69990cba1f45a3e2806760a951bd05d5e237e6f7d0170d71ed9e1",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/runs.jsonl.gz": "8180cc7e2c61341ecdc530ae5c23c611d25c42d6d9587edcddb8dbfa5660d728",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/runs.jsonl.gz": "542c12d6f29e667418d9f856cdd4c1877f099a64b4373096a0bf17db1e57924a",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/summary.json": "fdaaa41c29f0a8a95668999e84d67fe3810975e5132a4bd3d0bc0f67224e4fc7",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/runs.jsonl.gz": "1e45f36cba75d5353c449c582779cf3a24d329fb0474ab005ffd7fa7f7b98619",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/summary.json": "e8d845cdd0ad15e4ea2e15bd795b84957ec18ea57a8b755946e935820c62bb23",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/runs.jsonl.gz": "8d4be86b9db020ea467dae197120bf064c2f5d74335c623fd6daa881effe44de",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/provenance/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/provenance/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/netlib/manifest.json": "aae67fe993a070d2fed09fb38ee5c81bf6584e238f01e8758ce07545bd1d478f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/manifest.json": "959ddfbc2b28f0a165bbac02721fd56fe48700739e1c02063d11f6d8208768a4",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/highs/manifest.json": "deee0e325a7f4249a500370481d34d607cb70ac21acbe16a0c8a25ea2121896d",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/manifest.json": "4b6cdb7bd464cc6b7a983b13d3640b679be66ba978f25243d143d68fa099037e",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/manifest.json": "feeaeab1f2e7f35494fa7bf6c28b4bdf96d8750bb7a0005b3b78b88d1622e853",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/manifest.json": "e068f5fbdd80a6cd6c2b0b9834cbfa64034d3e4be603ac5bed1f35735bcdaf4f",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/development/provenance/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-development/provenance/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/probe/provenance/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/provenance/benchmark_experimental.py": "568dcbba11dc7f297d9e2d5dde63e309e5b69d1bf01a4be93c608690273b2f45",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/provenance/protocol-runner.py": "ecd1f8eff16d24a74474817864d8fb86499d9174a82339beb3ea5ada134f8ccc",
+      "knowledge/experiments/data/2026-10-12-halpern-ipm/v115/compatibility-probe/provenance/protocol.json": "6332b0c43bbf488ef4171ec3d67cb152db70f074a89a34f2a61ffb0895a57181",
+      ".tools/v115-transpose-cache/coupled_self.obj.d": "f834b52e94985c032baa7163e2a7abab7f11c37a437a147aac68ab3e880a84db",
+      ".tools/v115-transpose-cache/coupled_self.obj": "e11387d2466c596844e3699ca600617f2c1a34c7c9008096f75199f2869aa404",
+      ".tools/v115-transpose-cache/coupled_self-compile.json": "1a21b7abe4cd94edf7a409537f9c49519afc28d72f9751d75ea013274b3955bd",
+      ".tools/v115-transpose-cache/coupled-self-test.exe": "cab80b4a00e77fd246fc8ab7358b8734ca7393363185a4317e2838cb4f389029",
+      ".tools/v115-transpose-cache/coupled-self-run.json": "46437f62d86351a056c69cc15bcf40dde3de20a00c756de7887aced10450da0b",
+      ".tools/v115-transpose-cache/coupled-self-check.json": "5939c6b1415ba85301c7ec0951e91ccaf93f4db5049077be36dc764f31dc6eeb",
+      ".tools/v115-transpose-cache/coupled-link.json": "43311c32647e73d13ea6ccdc0a21cf057e3d7a4be7b0d862bbf4532b4fcfbf73",
+      ".tools/v115-transpose-cache/build-manifest.json": "f88a20f9bdf3eeda435cd53cfd3209de937b0a5a42bd463ffd5cf5049cc50ad2",
+      ".tools/v115-transpose-cache/build-before.json": "d507d3317bc381e3d701d0e6da87433a577512f04d0035b12f4af56059dc434c",
+      ".tools/v115-transpose-cache/ipm.obj.d": "70d9f50c77ee142c4d17bdcac53774c7f58f2d90b591c624a67628da6a9952c9",
+      ".tools/v115-transpose-cache/ipm.obj": "7afed3f30fedf0f0a28f5a6483977a26705eda3532e60b40ecf535fd6c03262c",
+      ".tools/v115-transpose-cache/ipm-self-test.exe": "5d88b593ccfd31356e54b6de17289e9596a13ab32971e78a9f38a5e1f681dd09",
+      ".tools/v115-transpose-cache/ipm-self-run.json": "286c7c7ca69eaa9b392425b41e8aedecf1b510b8bc61b8fc924045ef54609623",
+      ".tools/v115-transpose-cache/ipm-self-check.json": "f3a482db510686f56e72c4a1c5431da9677ffab5cb6906ca7dbf31cb8de8386b",
+      ".tools/v115-transpose-cache/ipm-link.json": "225ec1510e0b8c1d153796c75c04591a985e2442b64c6e2ab10ca7353470af19",
+      ".tools/v115-transpose-cache/ipm-compile.json": "a8daebed8ba559d31f78cdf852530a07bb8821419071e605713c6c84b090245b",
+      ".tools/v115-transpose-cache/identity.json": "13539b33d8a7b61eff84586c4c843d50a565da9382ec55eeb1d28860b5d38c0d",
+      ".tools/v115-transpose-cache/normal.obj": "574478f571da81e1b053e9832d05107a5bc6deedfd139b7ae1856ecc6ae08c39",
+      ".tools/v115-transpose-cache/normal-compile.json": "7a2a58cc1907a6e6f2f9378e00de6ebceb338e0b495c0ea679bc7ee0f4a55efa",
+      ".tools/v115-transpose-cache/ipm_self.obj.d": "0cb7f3a43cf2bc9cbdab38a0053db461d950d74c1f74a5313f317080bfcdb457",
+      ".tools/v115-transpose-cache/ipm_self.obj": "8a0599bc875c5e91a66b73a8a1a38dad8ba9062d20c7ab591fa5ae167c9b7494",
+      ".tools/v115-transpose-cache/ipm_self-compile.json": "fa20e5f59595bfc51a8ba34f592dc9719e8a198705b6c18e261995927d06468f",
+      ".tools/v115-transpose-cache/solver-experimental.exe": "689bd96e97fe0f8d340f3665effd03f3b8c5ad7627e025dd140e2568b22fa031",
+      ".tools/v115-transpose-cache/solver-link.json": "831ad92d925bacb5bc0482514f56ae6b530a5543b4ec3eb5aac9194b1c193955",
+      ".tools/v115-transpose-cache/normal.obj.d": "614df43992f870bfc42f43db4441e407b56ba6de045efb541ca0fabd750d46dd",
+      ".tools/v115-transpose-cache/provenance/production-identity.json": "65666c21a39398fef278735be14c79f064579a231d19f014eabaa9c7f106cb5b",
+      ".tools/v115-transpose-cache/provenance/plan.json": "691cd37abf62d516f0c3d37d0662f82bca95ef5456ad7995d9e989f2b6dae238",
+      ".tools/v115-transpose-cache/provenance/normal-command-template.json": "9952b77653065cfe5ac9a181f8f11dc7b6af7c8b6ce39c7fc44d7b21765d4077",
+      ".tools/v115-transpose-cache/provenance/command-template.json": "c227a1d45337788325db93ac6be02a811d6cb8d1f7550696378bb6cc72717d16",
+      ".tools/v115-transpose-cache/provenance/build_experimental.py": "2b6c28bf5315e9ecb168a5deca92fcc7da9d3e676d1f424cf52585ccbd36bd03",
+      ".tools/v115-transpose-cache/source/tests/experimental/ipm_self_test.cpp": "b71e53b7bc1f121a58675204bac968192a7ebb82098ec8462f3964461fc95ae2",
+      ".tools/v115-transpose-cache/source/tests/experimental/coupled_self_test.cpp": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      ".tools/v115-transpose-cache/source/src/experimental/presolve_state.hpp": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      ".tools/v115-transpose-cache/source/src/experimental/normal_cholesky.cpp": "280a9af56fe4087e5762f885e6df197cdcec98fdc0bd1adc3519e390e21c32be",
+      ".tools/v115-transpose-cache/source/src/experimental/ipm.cpp": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+      ".tools/v115-transpose-cache/source/src/experimental/diagnostic_state.hpp": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+      ".tools/v115-transpose-cache/source/src/experimental/coupled_state.hpp": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+      ".tools/v115-transpose-cache/source/include/solver/experimental/transpose_pattern.hpp": "79af4a88ffd8857afd84ec2156f593920b2c325e0e831f58651c63a9a37acee5",
+      ".tools/v115-transpose-cache/source/include/solver/experimental/profile.hpp": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      ".tools/v115-transpose-cache/source/include/solver/experimental/legacy_coupled.hpp": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      ".tools/v115-transpose-cache/source/include/solver/experimental/fma_axpy.hpp": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+      ".tools/v115-transpose-cache/source/include/solver/experimental/energy.hpp": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      ".tools/v115-transpose-cache/source/include/solver/experimental/coupled.hpp": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      ".tools/v112-profile/source/tests/experimental/ipm_self_test.cpp": "ca7360cbfb2e7b651e38c28f3e726599bcf34a4e36341fde4e16cd8422380ba7",
+      ".tools/v112-profile/source/tests/experimental/coupled_self_test.cpp": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      ".tools/v112-profile/source/include/solver/experimental/profile.hpp": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      ".tools/v112-profile/source/include/solver/experimental/legacy_coupled.hpp": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      ".tools/v112-profile/source/include/solver/experimental/fma_axpy.hpp": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+      ".tools/v112-profile/source/include/solver/experimental/energy.hpp": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      ".tools/v112-profile/source/include/solver/experimental/coupled.hpp": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      ".tools/v112-profile/source/src/experimental/presolve_state.hpp": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      ".tools/v112-profile/source/src/experimental/normal_cholesky.cpp": "048e2df4a2b6442c7c87e5dbbecbb7c2b342499353fe1f8959e9e586e052b7a3",
+      ".tools/v112-profile/source/src/experimental/ipm.cpp": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+      ".tools/v112-profile/source/src/experimental/diagnostic_state.hpp": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+      ".tools/v112-profile/source/src/experimental/coupled_state.hpp": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+      ".tools/v112-profile/identity.json": "548b7048613cea1d0fb667df449f7dd35b6ce3580bdbcf96bdff786ca0c40681",
+      ".tools/v112-profile/build-manifest.json": "f85212395069eec8d90ff3a900405006fa4d88faa557ef39f8203650cd192002",
+      ".tools/v112-profile/ipm-self-run.json": "00bd682501089755960474dd34e76f965a863fe9d601149c7f1c4410f83148ac",
+      ".tools/v112-profile/ipm-self-check.json": "1511579e2dbd6143d1656e44b6a7813272e87e62f4d1f62d6050ccda56d5405d",
+      ".tools/v112-profile/coupled-self-run.json": "dea441bc011dd4fb9ed98215586fe3364b4fdf41b049afa0116740728b0dd026",
+      ".tools/v112-profile/coupled-self-check.json": "5939c6b1415ba85301c7ec0951e91ccaf93f4db5049077be36dc764f31dc6eeb",
+      "src/experimental/ipm.cpp": "e71dca5df01898988139d7c82b0831b79cf32604c752b9a7b96eddd3af8bc8d7",
+      "src/experimental/presolve_state.hpp": "f6ff35b0e6bed130b98ddf8879b2fd280cd3139018ec75896bae43422686b68a",
+      "src/experimental/coupled_state.hpp": "2d889487397866c500a960dd555c30dd002bc50f4d324a7124c79fb7f90b015f",
+      "include/solver/experimental/coupled.hpp": "a701dcb6b77acd8ecc82e116d94266fd6569461f3cb73cc86fdb03957fa8d90e",
+      "include/solver/experimental/energy.hpp": "ca598cbade3325e1c5c1d1d2af4bb951d415e34c70c998c95550f211904e3353",
+      "include/solver/experimental/legacy_coupled.hpp": "601878a7525336108d126e57ad6fd326e1ab7685eb2dc61421e73a6b666c2017",
+      "tests/experimental/ipm_self_test.cpp": "b71e53b7bc1f121a58675204bac968192a7ebb82098ec8462f3964461fc95ae2",
+      "tests/experimental/coupled_self_test.cpp": "3775aadc5fee582e8e5d7979538cd6a7012f5b5f72aa903fd4d20a5f2f755241",
+      "include/solver/experimental/fma_axpy.hpp": "10b4b1daa4b9dcd6dd07217f23be8cea0b70169ce695eafa184b25c137d57af1",
+      "src/experimental/normal_cholesky.cpp": "280a9af56fe4087e5762f885e6df197cdcec98fdc0bd1adc3519e390e21c32be",
+      "src/experimental/diagnostic_state.hpp": "bd241bd30c01d39284afbb8d41ec188b589084db85778008a1772cf4e2b831aa",
+      "include/solver/experimental/profile.hpp": "93eb0a6d85494937fec32295eb736f4b4e6e05a41a44dd6e440d9043037d0bbc",
+      "include/solver/experimental/transpose_pattern.hpp": "79af4a88ffd8857afd84ec2156f593920b2c325e0e831f58651c63a9a37acee5",
+      "AGENTS.md": "207dbef30978aee7df0e4d28d406b831d2afa438e205f7f8652316590f1dc095",
+      "readme.md": "376fb289071256c0b2500c3513ce8e44f8fa47848c7860c7dae57aa3b1276c2c",
+      "benchmarks/readme.md": "dcc636b9b399f0e0d0a61da91e25325947ae6a259583eb202778212a3839f88a",
+      "knowledge/design-principles.md": "5a321940844528e2a0295df127c2dec9fdc5c43e6bf26ea017527f853f715e58",
+      "knowledge/development.md": "bf4142a63420d1c890e8b934a948362f7a304fe6f2563860a6c1da8845245c5b",
+      "knowledge/project.md": "fe93c9fbb4ff77f89b7489cfa130c3ba4f89a693e2e7fbed5785218af9772a42",
+      "knowledge/governance.md": "8d0ba7f9b64a66da744eeac69d067d7aa8cf1abd3f85f60fd0afe06fb2febb6d",
+      "changelog/readme.md": "61ccd08ba8bf15b5b9d422346756538676938e3f090d137060600f33fa120390",
+      "changelog/2026-11-01.md": "f22caaa69c752e82fa6468b911f8d4e7ccf5954e71c6fdc376b5649e7f90078e",
+      "changelog/2026-10-31.md": "9d7635141f1ed437d179fc033def15a383e87aed77e5ac21b8ca1be4bfabb996",
+      "changelog/2026-10-26.md": "63d30bcee99217b12cadc0f798a7d45de68423f1dd0ab9ef150d74a0a17d64f3",
+      "changelog/2026-10-24.md": "45f022fd6ac4cbb7a16a2d094891d3f1dce3c5f03c894e8499016da0ae1f7895",
+      "changelog/2026-10-23.md": "aa465f7786c656bb7f8833981489f6bcd562333b50dacbc4983cd68f8a4a0217",
+      "changelog/2026-10-18.md": "19d1d9ec31504a2eb58a9e1532581e90546db757799b25f90d05d6e3660ba431",
+      "changelog/2026-10-14.md": "90b6314f6825e9de3bf7f60183c40e564609cfcc42a3565f2e063a9894c32236",
+      "changelog/2026-10-13.md": "b50171a2ff484ad32463c4b1e5f0dd9630451a27017ba1cb7e2e3236b50e00ab",
+      "changelog/2026-10-12.md": "8d5ccdc7f3fd7341868805cc58ed743570f5245c5651165b0dd2fa976b8ef599",
+      "changelog/2026-10-11.md": "448596ce311c6faf16761c5213c03bacedd4b10dba583b03e62521320fc437c9",
+      "knowledge/decisions/readme.md": "21ff59bbb4555b0d0e9132449c1ea75aaf0e8b3e6c0e903f8a007fdadab94b4d",
+      "knowledge/decisions/2026-10-12-自主稀疏内点法.md": "888b4750e25f00c537b55489d4c0a2c674ca6c47d93035a6e621b9dedcd398b5",
+      "knowledge/decisions/2026-10-12-自主CPU原始对偶原型.md": "5c1970583a2023fe1a8e803ba1e7ee604962b4a7146be088c382c8d9bc604985",
+      "knowledge/decisions/2026-10-11-通用求解器架构与研发路线.md": "3b2f33de1f2a32078759180ac7211795696366881232a44583cd1899a200eb47",
+      "knowledge/experiments/readme.md": "0df5119dfd41c153bd5cf19234456e9158a44c9cf584cd80bfbcb68d9f53d6f3",
+      "knowledge/experiments/2026-10-12-自适应CPU优化与Netlib验证.md": "791849d5552a00ffd563fbb8da280e9a682957d2614ec0b7077140dcbf6a15ec",
+      "knowledge/experiments/2026-10-12-自主PDHG验证与公开LP对照.md": "5ad60f9d2c1790b319e1b41248a165934a02d01412916fd19ff3fcf0e87070db",
+      "knowledge/experiments/2026-10-12-历史信息搜索与CPU回归.md": "c676790fed2aa99fb262e7ee68b9f4a53ae514a141d2d36d7cd922e07628fcc0",
+      "knowledge/experiments/2026-10-12-Halpern与稀疏内点法迭代.md": "a147da69757bb870f375392e28298668536a20cc6c51dcf75bb7dfbfb9902655",
+      "knowledge/experiments/2026-10-11-求解器基线与扩展性实验计划.md": "069e8f3b8b22f3fa2dd76bff7ced3c0c7bb3592c8b09a9dc038f1af58692f6c4",
+      "knowledge/experiments/data/2026-10-12-subspace-cpu/readme.md": "5319da898f6195ae19b47af4a3b9db9b15ea89887309fc1009e5ec0854df96d8",
+      "knowledge/experiments/data/2026-10-12-subspace-cpu/exploration.md": "99a63b404fe63d7225b1ab14ec4e30684fa69d2b20b533fdca2e3e5d59d7d1fc",
+      "knowledge/experiments/2026-10-12-首版基线验证.md": "33ef5f3ca83d1e803d600fa0418d0d065c9306bafbeb0bc393394cb3d1937392",
+      "knowledge/experiments/data/2026-10-12-adaptive-cpu/readme.md": "00e23b7243f963fb8c21b71146edb63f8dafa591300a52232b14e22ae546335b"
+    },
+    "read_back_verified": true
+  },
+  "candidate_analysis_sha256": "bfb8515c06995bc9269aed0a0391a7f742dbf8d03cffbc855941ad1c301bca9a",
+  "blas_binding_observation_sha256": "14635e24c2683da8efa596ecf2bb5b4d93ebf09c97dc87edd08d048c0b5baeba",
+  "next_research_sha256": "d033dc0b28e7689053cc6a5dbfb0650de0b22af60dcad66624337d10b5902dc3",
+  "new_dependency_builds": 0,
+  "validation_method": "复用既有C CLI逐例重解析和B构建审计，PS仅补全量合法性/身份/调度/目标与归档，不新建Python评测或结项脚本",
+  "decision": "不采用，待恢复112"
+}

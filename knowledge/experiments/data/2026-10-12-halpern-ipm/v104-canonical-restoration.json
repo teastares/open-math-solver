@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T18:11:02.433629+00:00",
+  "after_primary_closeout": true,
+  "public_lp_runs": 0,
+  "compilations": 0,
+  "component_runs": 0,
+  "reason": "完整覆盖无增益，跨轮约0.3%耗时差不足证明稳定加速，方向工作有增有减；新增容量和三态成本不值得继承，精确恢复已验证父v102。",
+  "closeout_sha256": "940e7e63e743efd2d0f4254c6e720be88d2e939fb64d3f733f70c0f302d28c33",
+  "restored_files": {
+    "src/experimental/ipm.cpp": {
+      "trial_sha256": "25f0c7a16d3f5f43558a2f77be7cbc1b00d3dc227f2327d7cefc00e268866ddd",
+      "restored_sha256": "bd3b1fd94a02fe2b4b0ff8e855fe4960982cee305de05d1ca294f90d2a56fb34",
+      "parent_snapshot": ".tools/v102-normal-inverse-attempt2/source/src/experimental/ipm.cpp"
+    },
+    "tests/experimental/ipm_self_test.cpp": {
+      "trial_sha256": "bea087ff227d50f14dd6bb4580fdbde274c7240326926f1d55cd91ee5bab0bb2",
+      "restored_sha256": "822a7df20e16baf9ac743c739d98bd91fa425bce33aba5359eb70bb93aa13058",
+      "parent_snapshot": ".tools/v102-normal-inverse-attempt2/source/tests/experimental/ipm_self_test.cpp"
+    }
+  },
+  "all_canonical_sources_equal_parent_v102": 11,
+  "v104_frozen_snapshots_unchanged": 11,
+  "verified_parent_component_evidence": ".tools/v102-normal-inverse-attempt2/build-manifest.json",
+  "restored_component_cases": {
+    "ipm": 94,
+    "coupled": 51
+  }
+}

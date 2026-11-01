@@ -1,0 +1,49 @@
+{
+  "version": 115,
+  "round": 112,
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "status": "实现前冻结，尚未编译或运行本轮公开LP",
+  "hypothesis": "固定矩形C每次分解重复构造F=C转置；复用固定p/i/source槽，仅刷新本次已舍入值，检验能否改善端到端时间。AAT和数值分解仍支付，不从旧profile占比推算收益。",
+  "cpp_scope": "只改Normal与IPM组件，新增纯C++transpose_pattern.hpp；其余十份父来源保持，共13来源。复用原17库，不增加METIS、GPU或新依赖。Python仅最小构建包装，不生成或补丁C++，不新建评测或结项工具。",
+  "activation": "Normal::Impl体首profileScope之后、首budget callback之前快照rectangular && coupled_state::enabled()，作为新增私有第4实参传给CholmodFactor并存const bool；不在后者才读TLS。整个构造及后续factor固定策略，Scope变化不重选。关闭与对称路径保父原文。",
+  "production_helper": {
+    "file": "include/solver/experimental/transpose_pattern.hpp",
+    "namespace": "solver::experimental::transpose_pattern",
+    "types": "Index=int64_t；Budget=function<void()>；Result仅vector<Index> starts,rows,sources",
+    "api": "build(size_t nrow,size_t ncol,span<const Index> starts,span<const Index> rows,const Budget&={})",
+    "input": "普通packed矩形CSC，每列严格升序且无重复，不要求上三角或对角；允许空行和空列。维数和q沿原16M结构上限，先核大小/端点/边界再分配与索引。",
+    "output": "F=C转置，按原列递增scatter生成天然排序的F行索引；sources记录F每个槽对应的C原数值槽。只构造结构，不算C*C转置，不依赖模型身份。"
+  },
+  "adapter": "活动矩形构造一次helper，move到已有lower_starts/rows/sources持有，resize lower_values，lower_matrix复制描述后交换nrow/ncol、stype0、REAL/DOUBLE/LONG、packed/sorted1并绑定新p/i/x。原对称cache_lower_pattern保持。每次factor仍matrix.x指向当次values，完整逐槽复制已舍入Double到F.x；不缓存旧数值、不删显式0/-0、不作额外算术或RHS重排。",
+  "native_call": "原numeric lambda仅在cache bool真时调用公开cholmod_l_super_numeric(&matrix,&lower_matrix,beta={0,0},L,common)，否则保原cholmod_l_factorize。当前super、NATURAL/内部恒等排列、final_asis1、fset=null、实Double前置已由原构造验证或固定；必要时额外核NATURAL但不扩成新算法。",
+  "wrapper_audit": "锁定实现的原wrapper预申请工作区、生成F、调用同一super_numeric、final_asis1跳过后转换、释放F。super_numeric自行重置status、申请Flag/Head/Iwork、首次数值分配、强制LL、分配并释放dense更新工作区、清Flag和重置BLAS状态；不手工模拟或绕过这些步骤。Common容量/分配统计可不同，不称逐指令相同或免全部分配。",
+  "failure_and_budget": "valid=false仍是factor首动作；保原native前后check、check_status、success且statusOK、minor==n、finite_factor及末budget后才valid=true。错误不静默回退，预算/分配异常不吞；中断后的下次刷新必须全覆盖。helper及新复制loop按4096支付首末/遍历预算；旧数学循环与检查频率不改。不宣称库内部可抢占或注入OOM保证。",
+  "cost": "构造、结构/源槽存储、每次数值复制、析构全部计入原预算。约24q+8(m+1)仅为缓存数组容量推导，不是完整峰值或RSS；构造期与Gram共存及Common变化也须计入。",
+  "components": {
+    "parent_ipm": 106,
+    "parent_coupled": 57,
+    "new_ipm": 6,
+    "total": 169,
+    "required_cases": {
+      "normal_transpose_native_reference": "transaction",
+      "normal_transpose_refresh_multi_rhs": "transaction",
+      "normal_transpose_scope_controls": "mapping",
+      "normal_transpose_empty_invalid": "mapping",
+      "normal_transpose_constructor_budget": "budget",
+      "normal_transpose_factor_solve_transaction": "budget"
+    },
+    "proofs": "真实helper对原生cholmod_l_transpose逐项核p/i和源槽刷新后的Double位，含矩形非upper/空行列/长短列/显式0；原factorize与helper F加super_numeric的实际两因子参照，含重复更新、rank-def非正定及恢复，不比较未用padding。真实Normal完整Mu=b、多RHS、D/R/G更新、入口Scope持久翻转、对称/off控制、构造和factor/solve全部实际callback前缀与事务；长稀疏q>4096验证刷新中断后全覆盖，不建立巨大dense矩阵。无测试hook或新LP字段。"
+  },
+  "build": "极小包装复用稳定B，只给IPMself加入锁定原Normal已有CHOLMOD-I，FP/ISA/库序不改；正常Normal已有该头。预期四TU内部来源数8/10/6/8。",
+  "protocol": "原v100六阶段22/12/66/36/182/182，原gate决定136或500；共同精度、CPU1、seed0、200步、scaling5、数值5秒/墙钟35秒、失败惩罚与shift10不变。先169组件及来源/实际编译核验，再唯一正式运行，不补跑挑选。",
+  "source_audit": "Normal新增include/member/helper/入口快照/构造参数/矩形构造与刷新/低层调用均可机械逆剥，除声明的绑定外恢复父全文bytes；原off/对称/native验收和solve原文保留。测试剔新块/include/六注册后恢复父全文，十份未改来源逐字核验。",
+  "primary_sources": [
+    "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_factorize.c",
+    "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Supernodal/cholmod_super_numeric.c",
+    "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Utility/t_cholmod_transpose_unsym.c"
+  ],
+  "source_generation": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

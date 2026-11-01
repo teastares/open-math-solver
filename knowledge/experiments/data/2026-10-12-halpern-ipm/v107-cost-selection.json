@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T19:17:30.955691+00:00",
+  "parent_version": 106,
+  "scope": "原件只读账本；不新增计时或LP",
+  "stages": {
+    "netlib": {
+      "raw_sha256": "1ccf503238fb654be06a274af5f6c0a45a124677af7a5ae8746fcf792c5447d2",
+      "ledger": {
+        "directions_started": 3846,
+        "directions_completed": 3846,
+        "constant_calls_completed": 1923,
+        "preconditioner_completed": 4604,
+        "products_completed": 4816,
+        "krylov_started": 758,
+        "krylov_completed": 758,
+        "cycles_started": 212,
+        "true_checks_completed": 4058,
+        "initial_forcing_returns": 3289,
+        "candidate_forcing_returns": 205
+      },
+      "norm_calls_source_derived": 970
+    },
+    "highs": {
+      "raw_sha256": "97ee72dcc5d64c5686a8f096ea382031e7d289b47607e77facf5ba060178dbde",
+      "ledger": {
+        "directions_started": 3846,
+        "directions_completed": 3846,
+        "constant_calls_completed": 1923,
+        "preconditioner_completed": 4604,
+        "products_completed": 4816,
+        "krylov_started": 758,
+        "krylov_completed": 758,
+        "cycles_started": 212,
+        "true_checks_completed": 4058,
+        "initial_forcing_returns": 3289,
+        "candidate_forcing_returns": 205
+      },
+      "norm_calls_source_derived": 970
+    }
+  },
+  "selected": "受保护宽指数norm，省一遍扫描及逐项LD除法；只作用FG子集，无法由调用数推出耗时占比。",
+  "not_selected": [
+    "工作区复用另轮消融",
+    "CHOLMOD矩形转置缓存另轮消融"
+  ],
+  "previous_profile_file": "v99-profile-runs.jsonl.gz",
+  "previous_profile_sha256": "628731e201e88f37d1f0c9e92ea1b812d9cca3d06c488213f6e021bed94d49a2",
+  "profile_limit": "旧二进制剖析，coupled自耗混合norm/dot/MGS/向量通道，不能当当前norm可省比例。",
+  "additional_public_lp_runs": 0
+}

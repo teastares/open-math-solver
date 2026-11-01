@@ -1,0 +1,10 @@
+{
+  "recorded_at_utc": "2026-10-31T15:42:09.157879+00:00",
+  "passed": false,
+  "public_lp_runs": 0,
+  "exec_chunk_id": "e5b9ec",
+  "returncode": 1,
+  "stage": "仅汇编读取",
+  "observed": "llvm-objdump同时使用--demangle和mangled --disassemble-symbols过滤，退出0但只输出coff-x86-64文件头，指令断言失败",
+  "action": "去掉demangle以原mangled名称过滤，不修改源码、不重新编译、不运行LP"
+}

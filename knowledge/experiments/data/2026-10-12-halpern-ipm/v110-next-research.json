@@ -1,0 +1,22 @@
+{
+  "status": "下一轮独立候选研究，未实现/未编译/未测性能，不混入v110",
+  "candidate": "复用CHOLMOD符号分析已有结构信息选择simplicial或supernodal",
+  "current_source": "src/experimental/normal_cholesky.cpp当前强制CHOLMOD_SUPERNODAL，并在constructor和finite_factor拒绝simplicial",
+  "primary_sources": [
+    {"url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_analyze.c", "local": "build/release/_deps/suitesparse-src/CHOLMOD/Cholesky/cholmod_analyze.c", "observation": "AUTO使用已有fl/lnz和默认supernodal_switch=40；不是按模型名或已知最优值选择"},
+    {"url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_factorize.c", "local": "build/release/_deps/suitesparse-src/CHOLMOD/Cholesky/cholmod_factorize.c", "observation": "需显式final_ll=1保SPD LL语义；不能把默认simplicial LDL成功状态直接当正定证明"}
+  ],
+  "minimal_contract_to_verify": [
+    "仅活动context在constructor选CHOLMOD_AUTO并显式final_ll=1，保NATURAL/nmethods1/postorder0和外AMD，不调阈值",
+    "symbolic simplicial用已有ColCount核同16,777,216结构预算，xsize不可用于simplicial",
+    "数值因子仍要求statusOK/minor==n/is_ll，simplicial独立验证p/nz/i/x边界、每列正对角及全部active值finite，保预算回调",
+    "stored_nonzeros区分super xsize和simplicial nzmax，原solve2与末结果提交不变",
+    "不作数值失败后的换核重试；只在构造时依据已付费的符号结构选择",
+    "首轮可保当前lower输入以最小改动，simplicial库内转置成本照计；输入朝向缓存优化另作候选"
+  ],
+  "rationale": "探索比MGS点积更大的数值分解范围，复用库中已有通用结构信息；当前未对活动父重新测分解占比，不能从历史profile预报收益",
+  "required_next_action": "先复核锁源码、格式/预算/LL验证，冻结独立C++改动及两种因子组件后，按原LP精度资源协议测试，不缩小整体目标",
+  "new_cpp_implementation": false,
+  "new_public_lp_runs": 0,
+  "goal_achieved": false
+}

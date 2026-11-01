@@ -1,0 +1,42 @@
+{
+  "version": 113,
+  "round": 110,
+  "task_date": "2026-11-01",
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "production_changes": false,
+  "new_algorithm_round": true,
+  "prototype_gate": {
+    "cases": 14,
+    "actual_passed": true,
+    "evidence": ".tools/v113-metis-prototype/build/self-test-check.json",
+    "public_lp_runs": 0
+  },
+  "hypothesis": "把活动AAT构造的外层AMD统一替换为ND，检验减少填充/数值成本能否改善固定公开LP整体；不做双候选selector或模型路由",
+  "scope": "新增canonical metis_order.hpp逐字等已测原型，只改Normal构造排序块与IPM六组组件；其余11源、profile和联立数学原样",
+  "activation": "Normal::Impl体首、原首budget callback之前只读一次 rectangular && coupled_state::enabled()，整个构造绑定；false或非AAT完整执行原AMD块，之后factor/solve Scope不重选",
+  "ordering": "活动分支将当前upper Gram CSC交给已测order_upper_csc，检查native状态/双射后取perm[new]=old；原inverse写入、矩阵物理重排、QDLDL所选图计数、矩形映射、AAT、CHOLMOD NATURAL/内部恒等和solve2全保持。不给METIS返回码套AMD状态。Native失败/预算/分配异常不隐式换AMD重试",
+  "unchanged_limits": "8M Gram工作与16M图/因子数值容量、原LL/finite/全系统验收、原公共schema及三个marker保持；QDLDL现在自然检查选定ND图，无AMD预拒的额外限制",
+  "cost": "own图/复制/排序/检查/临时存储/native及释放计入原共享预算；无内部抢占保证。保idx32，24C-fwrapv/默认COMPRESS，C++FP不改；库abort不能当预算恢复",
+  "component_plan": {
+    "parent_ipm": 106,
+    "parent_coupled": 57,
+    "new_ipm": 6,
+    "total_ipm": 112,
+    "total_coupled": 57,
+    "total": 169,
+    "groups": [
+      "原系统非恒等ND及多rhs",
+      "D/R/G重分解与失败失效",
+      "构造入口Scope绑定及off/非AAT原路径",
+      "空/单点/断连及交错布局",
+      "构造实际预算全部前缀",
+      "factor/solve预算与RHS提交及可恢复极值"
+    ]
+  },
+  "build": "独立wrapper复用稳定B。normal/ipm_self追加原型snapshot extern/config include；static_check返回的两原模板在normal archive原位后各插新metis archive一次，B照旧用normal.obj换旧normal库，原实际库序/两次BLAS及coupled link不改。所有真实命令从build-before起完整记录",
+  "protocol": "原v100条件500：34完整off兼容+102开发探针，原gate true才182Netlib+182HiGHS；CPU1 seed0 200步scaling5，数值5秒/墙钟35秒，共同精度/失败罚分/shift10保持，PROFILE关闭成本照计；不改性能门槛",
+  "verification": "先组件与完整源码/build审计；新头等已测原型，两改动源逆剥恢复112完整原字节/原测试前序；169通过再按原schedule唯一运行，所有SHA异常严格失败，不覆盖或补跑",
+  "source_generation": false,
+  "goal_achieved": false
+}

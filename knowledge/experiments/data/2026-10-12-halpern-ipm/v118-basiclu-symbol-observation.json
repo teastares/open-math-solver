@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "version": 118,
+  "kind": "只读BASICLU静态符号探针，不是链接或数值验证",
+  "command": [
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\llvm-nm.exe",
+    "--defined-only",
+    "--extern-only",
+    "D:\\Documents\\codes\\solver\\build\\release\\bin\\libhighs.a"
+  ],
+  "returncode": 0,
+  "wall_timeout": false,
+  "elapsed_seconds": 0.0847262,
+  "inputs": {
+    "D:\\Documents\\codes\\solver\\build\\release\\bin\\libhighs.a": "2e5afe0a93589c5e75cf4a4ae68ca04f47b54c06283ebb1588a61b28e210830e",
+    "D:\\Documents\\codes\\solver\\.tools\\llvm-mingw-20261006-ucrt-x86_64\\bin\\llvm-nm.exe": "782b029b55d009059826b9b762926b640daade08bad4c1085bd815c927736b10"
+  },
+  "changed_inputs": [],
+  "stderr": "",
+  "selected_stdout_lines": [
+    "00000340 T basiclu_obj_factorize",
+    "00000240 T basiclu_obj_free",
+    "00000000 T basiclu_obj_initialize",
+    "00000710 T basiclu_obj_solve_dense",
+    "00000940 T basiclu_obj_solve_for_update",
+    "00000b10 T basiclu_obj_update"
+  ],
+  "stdout_sha256": "7773ee0f345605d094dc8813de1ecbe848ec5e743271696a87c8a7c31ff98ea3",
+  "expected_symbols": [
+    "basiclu_obj_initialize",
+    "basiclu_obj_factorize",
+    "basiclu_obj_solve_dense",
+    "basiclu_obj_solve_for_update",
+    "basiclu_obj_update",
+    "basiclu_obj_free"
+  ],
+  "public_lp_runs": 0,
+  "new_builds": 0,
+  "source_generation": false
+}

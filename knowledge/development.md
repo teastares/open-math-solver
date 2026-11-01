@@ -4,9 +4,9 @@
 
 ## 当前实现
 
-当前有三个 CPU 求解路径：默认 `highs` 支持 LP/MILP；实验性 `pdlp` 使用自主 PDHG 内核，实验性 `ipm` 使用自主稀疏内点法求解连续 LP。自主部分还包括稀疏模型表示、候选解与对偶数值复核、后端接口、命令行和基准运行器。当前没有自研 simplex、分支割、GPU、跨机器通信或芯片实现。
+当前有三个 CPU 求解路径：默认 `highs` 支持 LP/MILP；实验性 `pdlp` 使用自主 PDHG 内核，实验性 `ipm` 使用自主稀疏内点法求解连续 LP。自主部分还包括稀疏模型表示、候选解与对偶数值复核、后端接口、命令行和基准运行器。已有默认关闭的自主有界单纯形暖基PhaseII模块；分支割、GPU、跨机器通信及芯片仍处于规划阶段。
 
-`pdlp` 支持 `baseline`、`adaptive`、`subspace`、`halpern` 与 `halpern_reflected`，默认仍为 `adaptive`。当前自主内点法已验证并保留的版本为 `ipm-cpu-0.53.0`；工作区候选源码标识以 [ipm_version()](../src/ipm.cpp) 为准，它不是主程序的项目版本号。具体算法取舍见[自主原始对偶设计](decisions/2026-10-12-自主CPU原始对偶原型.md)；`ipm` 的数值方案、信息复用及未实现能力见[自主内点法设计](decisions/2026-10-12-自主稀疏内点法.md)。历次实际构建与测量见[实验索引](experiments/readme.md)，源码版本不代表已经通过新一轮验证。
+`pdlp` 支持 `baseline`、`adaptive`、`subspace`、`halpern` 与 `halpern_reflected`，默认仍为 `adaptive`。当前自主内点法已验证并保留的版本为 `ipm-cpu-0.53.0`；直接维护实验候选的源码标识以 [ipm_version()](../src/experimental/ipm.cpp) 为准，它不是主程序的项目版本号。具体算法取舍见[自主原始对偶设计](decisions/2026-10-12-自主CPU原始对偶原型.md)；`ipm` 的数值方案、信息复用及未实现能力见[自主内点法设计](decisions/2026-10-12-自主稀疏内点法.md)。历次实际构建与测量见[实验索引](experiments/readme.md)，源码版本不代表已经通过新一轮验证。
 
 | 入口或模块 | 权威实现 |
 | --- | --- |
@@ -23,6 +23,38 @@
 | 命令行和 JSON 字段 | [main.cpp](../src/main.cpp) |
 | 基准参数、统计口径与原始记录 | [benchmark.py](../scripts/benchmark.py) |
 | 共同精度的交替重复 LP 对照 | [compare_lp.py](../scripts/compare_lp.py)、[公开输入索引](../benchmarks/readme.md) |
+
+## 直接维护的内点法实验源码
+
+当前实验算法直接维护在 [experimental/ipm.cpp](../src/experimental/ipm.cpp)、[Normal实验实现](../src/experimental/normal_cholesky.cpp)、[预处理状态](../src/experimental/presolve_state.hpp)、[联立状态](../src/experimental/coupled_state.hpp)、[共享诊断状态](../src/experimental/diagnostic_state.hpp)、[联立数值内核](../include/solver/experimental/coupled.hpp)和[能量归约](../include/solver/experimental/energy.hpp)；[可关闭分层计时](../include/solver/experimental/profile.hpp)维护实验诊断。[IPM组件测试](../tests/experimental/ipm_self_test.cpp)、[数值内核测试](../tests/experimental/coupled_self_test.cpp)及其[旧核对照](../include/solver/experimental/legacy_coupled.hpp)一起维护。后续数值实现直接修改这些C++文件。
+
+[构建入口](../scripts/build_experimental.py)逐字快照当前源码后编译，保存真实命令、编译依赖、组件输出和程序身份。每次使用尚不存在的新目录，例如：
+
+```powershell
+./.tools/python-3.14.8/python.exe scripts/build_experimental.py --output .tools/experimental-local-01
+```
+
+输出程序为该目录下的`solver-experimental.exe`。当前保持原实验开关`SOLVER_V100_PRESOLVE=1`及既有homogeneous/normal_cholmod_aat/homogeneous_repair参数；完整固定配置见[迁移计划引用的数值协议](experiments/data/2026-10-12-halpern-ipm/v100-plan.json)。当前15源可用通用入口构建；复现历史候选须先恢复对应source快照，并使用匹配的计划与包装；`--plan`不自动恢复C++。本机入口复用现有Windows/Clang依赖和已锁定命令模板。
+
+源码清单包含Normal实验实现时，构建入口会额外编译可选的第四个翻译单元。它在`solver-experimental.exe`和IPM组件测试两条链接中，分别以新normal对象替换原`libsolver_normal_cholesky.a`，其余依赖沿原顺序链接。第99轮以[正式计划v102-plan-attempt2.json](experiments/data/2026-10-12-halpern-ipm/v102-plan-attempt2.json)为准，实际构建工作目录为`.tools/v102-normal-inverse-attempt2`；复现时显式传入该计划的`--plan`路径，并为`--output`另选尚不存在的新目录。
+
+第100轮[正式计划v103-plan.json](experiments/data/2026-10-12-halpern-ipm/v103-plan.json)对应已封存、未采用的候选，历史工作目录`.tools/v103-schur-side`保留；当轮结项时把活动源码恢复为v102，v103不作为后续算法父。该候选的Normal在构造时固定消去侧，后续factor或solve的Scope改变不重新选择方向。复现冻结计划前，须先把该计划对应的source快照恢复到活动源码路径，再以该计划的`--plan`路径和新的`--output`目录构建；`--plan`不会自动恢复历史C++。实际验证、性能与取舍统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第101轮从v102继续的候选已封存、未采用，保留[正式计划v104-plan-attempt3.json](experiments/data/2026-10-12-halpern-ipm/v104-plan-attempt3.json)和历史构建工作目录`.tools/v104-singleton-inverse-attempt3`。该候选在C++的KktFactor中缓存singleton实际已舍入R的LD倒数，供同一成功因子的右端消元与完整方向恢复复用；第101轮结项后源码恢复v102，v104未继承为下一轮算法父。实际验证、性能与未采用依据统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第102轮从v102独立评估Normal回代的预算检查频率，当轮保留v105并由下一轮继承，以[正式计划v105-plan.json](experiments/data/2026-10-12-halpern-ipm/v105-plan.json)为准，历史构建工作目录为`.tools/v105-budget-batch`。100组IPM组件与51组独立数值核组件已实际验证。本轮属于预算检查组织的工程消融，数值表达式、顺序与精度保持；结果与保留依据统一由[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)维护。
+
+第103轮从v105继续，仅直接修改C++的v94_hsd_product模板预算组织，保留v106数值算法。纯父实现使用[正式计划v106-plan.json](experiments/data/2026-10-12-halpern-ipm/v106-plan.json)，构建目录为`.tools/v106-product-budget`；该轮106组IPM与51组独立核组件已通过。完整固定评测与保留依据统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第104轮的v107宽指数单遍范数候选已封存、未采用，当轮源码精确恢复v106；正式计划为[v107-plan.json](experiments/data/2026-10-12-halpern-ipm/v107-plan.json)，历史构建目录为`.tools/v107-wide-norm`。候选的106组IPM与57组独立核组件及固定500条评测已完成；实际取舍见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。复现时先恢复该目录的source快照，再显式传计划并另选新构建目录；`--plan`不自动恢复历史C++。
+
+第105轮v108 direct工作区候选也未采用，当轮活动源码恢复v106。历史计划为[v108-plan.json](experiments/data/2026-10-12-halpern-ipm/v108-plan.json)，构建目录`.tools/v108-direct-workspace`。候选112+51组组件通过，500次预定运行均有原件；其中同期HiGHS阶段出现一次程序身份不一致，只有前五阶段318次通过严格复核，不能称500次有效对照或目标达成。身份异常、当前读取诊断、恢复和取舍统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第109轮保留可关闭的v112 C++诊断功能，已评测基线的12源为v106数值算法加计时及其测试，历史基线状态见[来源记录](experiments/data/2026-10-12-halpern-ipm/v112-canonical-state.json)。用[正式计划](experiments/data/2026-10-12-halpern-ipm/v112-plan.json)和通用构建器生成新目录；已建诊断程序为`.tools/v112-profile/solver-experimental.exe`。`SOLVER_V100_PRESOLVE=1`保持既有算法激活，额外`SOLVER_V112_PROFILE=1`才开启分层计时，默认关闭。固定诊断入口为[v112-profile.py](../.tools/v112-profile.py)，实际216次及分析见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。此轮不属于性能胜出；后续性能候选的源码父为112、数值算法父仍106，关闭计时的分支成本也须计入新评测，不能继承纯106耗时。
+
+Python负责构建、评测与核验记录，求解循环和数值运算来自上述C++，运行求解程序不需要经过Python。早期实验曾在Python脚本中生成或修改C++；后续数值实现已改为直接维护实验源码，通用构建入口仅逐字快照并编译。历史身份保护每次构建的不可变快照，活动源码可以继续修改。默认CMake构建仍使用原[生产源](../src/ipm.cpp)，生产保留v66；因此近期实验修改不会出现在该生产文件中。工程调整的等价验证与边界统一见[实验记录](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+当前活动实验还包含[受控FMA向量更新](../include/solver/experimental/fma_axpy.hpp)。无计划构建会自动收集三个实验目录的C++源和头；固定评测使用[通用评测入口](../scripts/benchmark_experimental.py)和明确的`--plan`，支持兼容聚合、原扩集门槛及`--archive-only`只读核验。[第98轮计划](experiments/data/2026-10-12-halpern-ipm/v101-plan.json)固定136/条件500条，实际结果统一由实验正文维护。内部开关与marker仍用V100名称，候选身份由源码快照和计划确定。
 
 ## Windows 安装与构建
 
@@ -296,3 +328,116 @@ HiGHS 使用进程级线程调度器，其后端求解在同一进程内串行�
 [第69轮同因子基精修](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v72-build](experiments/data/2026-10-12-halpern-ipm/v72-build.py)与[v72-run](experiments/data/2026-10-12-halpern-ipm/v72-run.py)，独立程序以SOLVER_V72_BASIS_RECOVERY开启。新增两侧最多一次残差修正和独立账本，平台有效位数明确记录；原模型终验仍决定提交。实际29组自测、136条对照、未扩集和不集成决定由本轮实验维护，生产继续保持v66。
 
 [第70轮有限两阶段换基](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v73-build](experiments/data/2026-10-12-halpern-ipm/v73-build.py)与[v73-run](experiments/data/2026-10-12-halpern-ipm/v73-run.py)，仅独立程序支持SOLVER_V73_BASIS_RECOVERY。初始构基和两阶段修复分别记账，最终仍须原模型终验。42组内核测试、500条对照、入口残差守卫失败及下一分辨实验统一由该轮正文维护，生产接口与保留状态不变。
+
+[第71轮入口同LU修正](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v74-build](experiments/data/2026-10-12-halpern-ipm/v74-build.py)与[v74-run](experiments/data/2026-10-12-halpern-ipm/v74-run.py)，仅独立程序支持SOLVER_V74_BASIS_RECOVERY。原点/修正点完整逐行诊断及单次原始修正分别记账；实际49组内核测试、136条对照、进入phase I后的方向阻断和不集成取舍由该轮正文维护。
+
+[第72轮通用forward修正](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v75-build](experiments/data/2026-10-12-halpern-ipm/v75-build.py)与[v75-run](experiments/data/2026-10-12-halpern-ipm/v75-run.py)，仅独立程序支持SOLVER_V75_BASIS_RECOVERY。初始、方向及重建点共享有限修正，聚合账本与最后右端快照分别解释；53组测试、500条对照、7次真实换基后的停滞及不集成取舍由该轮正文维护。
+
+[第73轮近退化与历史判重](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v76-build](experiments/data/2026-10-12-halpern-ipm/v76-build.py)与[v76-run](experiments/data/2026-10-12-halpern-ipm/v76-run.py)。正式评估使用第二次独立构建目录，通过`--work .tools/v76-basis-attempt2`选择，生产无SOLVER_V76_BASIS_RECOVERY接口。59组最终测试、136条对照、失败构建与所有权修复、128次换基后的限额和下一方案由该轮正文维护。
+
+[第74轮统一修复额度](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v77-build](experiments/data/2026-10-12-halpern-ipm/v77-build.py)与[v77-run](experiments/data/2026-10-12-halpern-ipm/v77-run.py)，仅独立程序支持SOLVER_V77_BASIS_RECOVERY。累计修复额度与单因子限制分别记账；60组测试、500条对照、147次换基后的no_descent及不集成决定由该轮正文维护，生产继续保留v66。
+
+[第75轮有限方向搜索](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v78-build](experiments/data/2026-10-12-halpern-ipm/v78-build.py)与[v78-run](experiments/data/2026-10-12-halpern-ipm/v78-run.py)，仅独立程序支持SOLVER_V78_BASIS_RECOVERY。正式运行使用`--work .tools/v78-basis-attempt2`；方向试算与换基分别记账。64组测试、136条对照、首次测试编译失败与修正、192–196次换基后的时间中断及下一方案由该轮正文维护，生产仍保留v66。
+
+[第76轮有限行逆更新](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v79-build](experiments/data/2026-10-12-halpern-ipm/v79-build.py)与[v79-run](experiments/data/2026-10-12-halpern-ipm/v79-run.py)，仅独立程序支持SOLVER_V79_BASIS_RECOVERY。链与真实LU分别计数，逻辑存储不称进程峰值。69组测试、500条对照、256次换基的速度及内部目标退步、构建前源码快照与未接纳决定由该轮正文维护，生产继续保持v66。
+
+[第77轮统一资源分辨](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v80-build](experiments/data/2026-10-12-halpern-ipm/v80-build.py)与[v80-run](experiments/data/2026-10-12-halpern-ipm/v80-run.py)，仅独立程序支持SOLVER_V80_BASIS_RECOVERY。只提高提交/工作额度，保留原时间；69组测试、500条运行、447–456次提交后的时间中断及未接纳决定由该轮正文维护，生产仍为v66。
+
+[第78轮回代预算批量](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v81-build](experiments/data/2026-10-12-halpern-ipm/v81-build.py)与[v81-run](experiments/data/2026-10-12-halpern-ipm/v81-run.py)。候选Normal批量始终启用，SOLVER_V81_BASIS_RECOVERY仅控制基恢复；生产无新增接口。69组基恢复测试、Normal双版本120快照、500条结果与覆盖限制统一见该轮正文，生产继续v66。
+
+[第79轮当前AAT成本诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v82-build](experiments/data/2026-10-12-halpern-ipm/v82-build.py)、[v82-run](experiments/data/2026-10-12-halpern-ipm/v82-run.py)及[独立核验](experiments/data/2026-10-12-halpern-ipm/v82-verify.py)。独立诊断程序复用SOLVER_V47_PROFILE=1，生产无该接口。35阶段、85次五模式运行、共同成功归因及范围限制由该轮正文维护，不作为新的公开覆盖或优化成绩。
+
+[第80轮同因子双右端](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v83-build](experiments/data/2026-10-12-halpern-ipm/v83-build.py)与[v83-run](experiments/data/2026-10-12-halpern-ipm/v83-run.py)。公开运行使用`--work .tools/v83-pair-attempt2`；独立候选以SOLVER_V83_PAIR_RHS=1启用常量/预测首次配对，生产无该接口。组件验证、失败构建、500条结果及舍入轨迹区别统一由该轮正文维护，生产继续v66。
+
+
+[第81轮已提交点PDHG恢复](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v84-build](experiments/data/2026-10-12-halpern-ipm/v84-build.py)与[v84-run](experiments/data/2026-10-12-halpern-ipm/v84-run.py)，独立候选以SOLVER_V84_WARM_PDHG=1开启，生产无此接口。7组kernel、16组验收/预算测试、500条对照、恢复退步及未接纳决定统一由该轮正文维护，生产继续v66。下一预处理消融尚未实现，不应当作当前能力。
+
+
+[第82轮预处理结构和无基恢复审计](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v85-build](experiments/data/2026-10-12-halpern-ipm/v85-build.py)与[v85-run](experiments/data/2026-10-12-halpern-ipm/v85-run.py)。实际扫描使用`--work .tools/v85-presolve-attempt2`，不调用LP迭代；6组扫描和17组恢复测试、首构建合同修正、91例缩减/成本/系数变化由该轮正文维护。生产继续v66，预处理接自主IPM的完整候选尚未实现。
+
+
+[第83轮预处理接自主内核](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v86-build](experiments/data/2026-10-12-halpern-ipm/v86-build.py)与[v86-run](experiments/data/2026-10-12-halpern-ipm/v86-run.py)。实际运行使用`--work .tools/v86-presolve-attempt3`，仅独立候选以SOLVER_V86_PRESOLVE=1开启；生产无此接口。共享epoch、30组组件、计划和测试配置纠错、136条及原域质量拒绝由该轮正文维护。门槛false未扩完整集，生产继续v66；后续投影尚未接入本路径。
+
+
+[第84轮一次原域投影](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v87-build](experiments/data/2026-10-12-halpern-ipm/v87-build.py)与[v87-run](experiments/data/2026-10-12-halpern-ipm/v87-run.py)。独立候选以SOLVER_V87_PRESOLVE=1开启，原终验优先、最多一次域trial；生产无此接口。49组件、17关闭兼容、136条及一例修复/一例投影破行的实际得失由该轮正文维护。门槛false，未扩集，生产仍v66；原q停止oracle尚未实现。
+
+
+[第85轮原模型停止回调](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v88-build](experiments/data/2026-10-12-halpern-ipm/v88-build.py)与[v88-run](experiments/data/2026-10-12-halpern-ipm/v88-run.py)。独立候选以SOLVER_V88_PRESOLVE=1开启，在本次约化最优时恢复并按原模型决定是否停止，同预算继续；计时包含恢复与校验。生产仍v66，实际组数、全部成绩、门槛与限制由该轮正文维护。
+
+
+[第86轮最后完整质量诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v89-build](experiments/data/2026-10-12-halpern-ipm/v89-build.py)与[v89-run](experiments/data/2026-10-12-halpern-ipm/v89-run.py)。主pipeline始终开启，SOLVER_V89_ASSESS_TRACE只控制当前core的最后完整assess标量；三路18条用于诊断，实际结果与限制由该轮正文维护。生产仍v66。
+
+
+[第87轮预测互补量反馈](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v90-build](experiments/data/2026-10-12-halpern-ipm/v90-build.py)与[v90-run](experiments/data/2026-10-12-halpern-ipm/v90-run.py)。SOLVER_V90_PRESOLVE=1在父原q pipeline上启用LD预测互补比中心参数；off沿父行为。本轮没有v89 trace，实际结果、原500协议和数值反馈限制由该轮正文维护，生产仍v66。
+
+
+[第88轮预处理与同Cone暖PDHG诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v91-build](experiments/data/2026-10-12-halpern-ipm/v91-build.py)与[v91-run](experiments/data/2026-10-12-halpern-ipm/v91-run.py)。SOLVER_V91_PRESOLVE=1启父pipeline，SOLVER_V91_WARM_PDHG=1启数值失败处一次暖恢复；诊断off只关暖。坐标、事务、共享预算与18条实际结果由该轮正文维护，生产仍v66。
+
+
+[第89轮严格联立HSD五块FGMRES](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v92-build](experiments/data/2026-10-12-halpern-ipm/v92-build.py)与[v92-run](experiments/data/2026-10-12-halpern-ipm/v92-run.py)。SOLVER_V92_PRESOLVE=1在父原q pipeline启严格耦合方向，V92_COUPLED只是第二诊断marker；关闭/旁路沿旧路径。数学边界、原500协议及实际取舍由该轮正文维护，生产仍v66。
+
+
+[第90轮名义正则能量P](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v93-build](experiments/data/2026-10-12-halpern-ipm/v93-build.py)与[v93-run](experiments/data/2026-10-12-halpern-ipm/v93-run.py)。SOLVER_V93_PRESOLVE=1在父严格耦合路径仅换名义能量D；V93_ENERGY是第三marker，纯FG核仍复用v92。真实边界与结果由该轮正文维护，生产仍v66。
+
+
+[第91轮完整方向精度桥](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v94-build](experiments/data/2026-10-12-halpern-ipm/v94-build.py)与[v94-run](experiments/data/2026-10-12-halpern-ipm/v94-run.py)。SOLVER_V94_PRESOLVE=1的严格FG路径只将完整方向/真验/消费者保LD到末Point提交，持久Point和P等保double，三marker字段不扩。结果及边界由实验正文维护，生产仍v66。
+
+
+[第92轮改善后提前重启](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v95-build](experiments/data/2026-10-12-halpern-ipm/v95-build.py)与[v95-run](experiments/data/2026-10-12-halpern-ipm/v95-run.py)。SOLVER_V95_PRESOLVE=1只在估计过线但真验失败且候选严格改善时消耗下一既有cycle，原LD方向桥/strict/3周期保持。结果由实验正文维护，生产仍v66。
+
+
+[第93轮初P受控forcing](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v96-build](experiments/data/2026-10-12-halpern-ipm/v96-build.py)与[v96-run](experiments/data/2026-10-12-halpern-ipm/v96-run.py)。SOLVER_V96_PRESOLVE=1仅对初P增加三线性块受控返回，互补保持strict；coupled schema2明确区分accepted和forced_initial，最终原模型精度不改。结果由实验正文维护，生产仍v66。
+
+
+[第94轮已有FG候选受控forcing](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v97-build](experiments/data/2026-10-12-halpern-ipm/v97-build.py)与[v97-run](experiments/data/2026-10-12-halpern-ipm/v97-run.py)。SOLVER_V97_PRESOLVE=1仅将父同界gate扩展到已有完整真验的FG候选，三线性块10%/两互补strict、原LP质量与预算不改；coupled schema3区分三类线性返回。实际得失由实验正文维护，生产仍v66。
+
+
+[第95轮一致FG搜索尺度](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v98-build](experiments/data/2026-10-12-halpern-ipm/v98-build.py)/[v98-run](experiments/data/2026-10-12-halpern-ipm/v98-run.py)。仅将活动FG三处T改为已有forcing界，真实验收、schema3和原LP协议保持；结果与成本由实验正文维护，生产仍v66。
+
+
+[第96轮纯阶段诊断](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v99-build](experiments/data/2026-10-12-halpern-ipm/v99-build.py)/[v99-run](experiments/data/2026-10-12-halpern-ipm/v99-run.py)。保持v98数值算法，另开SOLVER_V99_PROFILE采集31阶段；216条诊断不作新性能成绩。边界和结果由实验正文维护。
+
+
+[第97轮已有正则层级起点](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)入口为[v100-build](experiments/data/2026-10-12-halpern-ipm/v100-build.py)/[v100-run](experiments/data/2026-10-12-halpern-ipm/v100-run.py)。活动HSD只以当前因子已有成功层级首试，旧八级trial及所有真实验收保持；结果由实验正文维护，未链接v99计时核，生产仍v66。
+
+第106轮的v109补偿点积候选先通过独立C++原型，再接入固定LP评测，最终因端到端收益证据不足未采用，当轮11源精确恢复v106。候选[正式计划](experiments/data/2026-10-12-halpern-ipm/v109-plan.json)、构建目录`.tools/v109-compensated-dot`和[原型计划](experiments/data/2026-10-12-halpern-ipm/v109-prototype-plan.json)保留；该候选新增的补偿头只保于不可变source快照。原型14组、完整163组件及500条公开评测的实际结果与取舍统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。复现历史候选须先恢复该计划的12份source快照，再选择新输出目录；`--plan`不自动恢复数学源码。
+
+第107轮的v110四路LD点积候选先通过独立C++原型，再完成固定500条LP对照，因整体收益证据不足未采用，当轮11源精确恢复v106。候选[正式计划](experiments/data/2026-10-12-halpern-ipm/v110-plan.json)、历史构建目录`.tools/v110-independent-dot`与[原型计划](experiments/data/2026-10-12-halpern-ipm/v110-prototype-plan.json)保留；新增LD4头只保于候选source快照。复现历史候选须先恢复对应12源，再指定计划与尚不存在的新输出目录；`--plan`不自动恢复C++。14原型、163组件、固定500与取舍的权威记录见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第108轮v111直接修改实验Normal C++及IPM组件，验证CHOLMOD按已有符号统计选择分解实现；完成163组组件和固定500条LP对照后，因整体收益证据不足未采用，当轮11源精确恢复v106。[正式计划](experiments/data/2026-10-12-halpern-ipm/v111-plan.json)、历史构建目录`.tools/v111-cholmod-auto`及两份修改的source快照保留。该候选用[纯构建包装](../.tools/v111-build.py)只给IPM测试添加锁定CHOLMOD头目录，求解数学仍由C++实现。复现须先恢复计划对应的11源，使用该包装和新的输出目录；实际结果、恢复及下一轮剖析方向见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第110轮v113已完成独立METIS原型、169组件及原固定500对照，统一外ND未采用，当轮12源精确恢复112，数值算法仍106、可关闭profile保留。[历史候选计划](experiments/data/2026-10-12-halpern-ipm/v113-plan.json)、`.tools/v113-metis-order`的13源/程序及[独立原型计划](experiments/data/2026-10-12-halpern-ipm/v113-prototype-plan.json)保留；新排序头只保于候选和原型快照。[已测静态库](../.tools/v113-metis-prototype/build/libhighs_metis_prototype.a)可供后续候选显式复用，不影响当前构建。复现历史ND需先恢复对应13源，用[v113-build.py](../.tools/v113-build.py)及新输出目录，它会显式注入该库和私有快照头；普通构建器不自动恢复或链接此历史候选。实际结果、恢复及后续研究统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第111轮v114已完成169组件及原固定500评测，双候选符号选择暂未采用，当前12源精确恢复112、数值算法仍106。[历史正式计划](experiments/data/2026-10-12-halpern-ipm/v114-plan-attempt2.json)、`.tools/v114-minlnz-attempt2`的14源和程序保留，含[C++排序选择器](../.tools/v114-minlnz-attempt2/source/include/solver/experimental/normal_order.hpp)与[METIS适配](../.tools/v114-minlnz-attempt2/source/include/solver/experimental/metis_order.hpp)。复现须先恢复这14份source，再用[v114-build.py](../.tools/v114-build.py)、该计划和新的输出目录；普通构建器不自动恢复或链接历史METIS候选。实际得失、恢复与下一方向见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+第112轮v115已完成[C++矩形转置缓存候选](../.tools/v115-transpose-cache/source/src/experimental/normal_cholesky.cpp)、169组件和原固定500对照，未采用，当前12源继续精确等于112、数值算法106。[历史计划](experiments/data/2026-10-12-halpern-ipm/v115-plan.json)和`.tools/v115-transpose-cache`的13源/程序保留；复现先恢复其source，再用[v115-build.py](../.tools/v115-build.py)、该计划及新目录构建。包装只给IPM测试增加锁定CHOLMOD头目录，没有增加库。当前通用入口仍可构建恢复后的12源。完整结果、静态BLAS路径证据及下一独立原型研究见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)；IPX crossover尚未接入当前求解器。
+
+
+第113轮已完成独立[C++ IPX crossover适配器](../.tools/v116-crossover-prototype/source/ipx_crossover.hpp)及[合成组件](../.tools/v116-crossover-prototype/source/self_test.cpp)，该轮未接入LP流程；后续混合实验入口见下文。复现使用[v116-build.ps1](../.tools/v116-build.ps1)、[修订后的原型计划](experiments/data/2026-10-12-halpern-ipm/v116-prototype-plan-attempt2.json)和尚不存在的新输出目录；驱动逐字快照父112的12源及新两文件，按父实际命令编译两个翻译单元、链接一个程序，然后运行主14组和独立线程冲突1组。需保留计划绑定的父112来源、冻结95源包及17库，不会重新下载依赖或生成数学源码。已有构建目录为.tools/v116-crossover-prototype/build-attempt2；首次失败原件与[证据包](experiments/data/2026-10-12-halpern-ipm/v116-prototype-evidence.zip)均保留。实际结果、初期外部组件归属和后续混合集成边界统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。
+
+
+第114轮已在[C++核心](../src/experimental/ipm.cpp)接入默认关闭的混合实验，新增[交叉适配器](../include/solver/experimental/ipx_crossover.hpp)和[状态/侧账本](../src/experimental/crossover_state.hpp)。当前保留14份直接维护的来源，关闭路径仍为106数值算法；默认生产程序及95源/17库不变。该混合候选尚未获得整体速度优势，不作为更快默认方案。开启SOLVER_V117_CROSSOVER=1时报告明确的新后端版本和第四标记，原生交叉工作不计入旧纯预处理对象的零优化声明。
+
+复现历史候选先恢复[计划2](experiments/data/2026-10-12-halpern-ipm/v117-plan-attempt2.json)对应的14份source快照，再用现有[直接构建工具](../scripts/build_experimental.py)及新目录构建；无需新的构建包装。评测使用[v117薄包装](../.tools/v117-benchmark.py)的原有阶段参数，它复用原500调度、gate和归档，只增加混合身份与第四标记的严格检查。已测目录为.tools/v117-crossover-attempt2和[原件目录](experiments/data/2026-10-12-halpern-ipm/v117/)，首次失败构建另留.tools/v117-crossover。169组件、500对照、未达标结论及下一步由[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)维护。
+
+
+第115轮的行对偶域投影候选已完成173组件及原固定500对照，当前保留14来源，交叉实验仍默认关闭；开启后的明确版本为ipm-ipx-crossover-cpu-0.2.0，第四标记升级schema2，开关和前缀沿用V117。[适配器](../include/solver/experimental/ipx_crossover.hpp)只在raw原验拒绝且y确有域变化时重验，x保持；[状态层](../src/experimental/crossover_state.hpp)区分原生未投影质量和最后完整质量，原门与native次数不改。当前候选未获得整体速度优势。
+
+复现使用[计划](experiments/data/2026-10-12-halpern-ipm/v118-plan.json)及.tools/v118-dual-projection/source的14份快照，先恢复对应源码，再用[既有构建工具](../scripts/build_experimental.py)与新的输出目录；[v118薄包装](../.tools/v118-benchmark.py)复用原阶段参数和调度，旧117工具/原件不改。实际[阶段目录](experiments/data/2026-10-12-halpern-ipm/v118/)及[证据包](experiments/data/2026-10-12-halpern-ipm/v118-candidate-evidence.zip)保留，完整结果和下一步由[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)维护。
+
+
+第116轮新增独立的[C++暖基PhaseII内核](../.tools/v119-warm-simplex-prototype/source/warm_cleanup.hpp)和[C++组件](../.tools/v119-warm-simplex-prototype/source/self_test.cpp)，尚未接入公开LP流程，当前14份实验来源保持118。复现使用[v119构建驱动](../.tools/v119-build.ps1)与[冻结计划](experiments/data/2026-10-12-halpern-ipm/v119-plan.json)，例如：
+
+    pwsh -NoProfile -File .tools/v119-build.ps1 -Plan knowledge/experiments/data/2026-10-12-halpern-ipm/v119-plan.json -Output .tools/v119-reproduce-001
+
+输出目录必须尚不存在；原型不下载依赖，需保留计划锁定的父118快照、冻结95源包、原静态库和编译器。仅编译一个自测翻译单元，保留父链接中Normal对象及库序；不重新编译IPM或Normal。原始构建为.tools/v119-warm-simplex-build，完整[组件分析](experiments/data/2026-10-12-halpern-ipm/v119-component-analysis.json)、[证据包](experiments/data/2026-10-12-halpern-ipm/v119-prototype-evidence.zip)与边界统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)。这是自主选择优化步骤、复用BASICLU数值原语的组件，不能作为公开LP速度结果。
+
+
+第117轮已把119的已测[C++暖基内核](../include/solver/experimental/warm_cleanup.hpp)逐字接入当前实验路径，当前15来源、纯HSD数值106不变。开启SOLVER_V117_CROSSOVER=1时版本为ipm-ipx-crossover-cpu-0.3.0，第四标记schema3；原生两验与自主暖基两验分账，原模型oracle仍必需，实验默认关闭。复现先恢复[v120计划](experiments/data/2026-10-12-halpern-ipm/v120-plan.json)对应的15份source快照，再用既有[构建入口](../scripts/build_experimental.py)指定该计划与新目录；无需新构建包装或依赖。历史构建为.tools/v120-warm-cleanup。
+
+[v120薄评测桥](../.tools/v120-benchmark.py)导入逐字锁定的118运输层，只新增导出基/自主阶段合同，不修改旧包装；计划同时锁定两份脚本。按该脚本原有stage参数执行固定协议，或加--archive-only重解析已有原件。178组件、固定500、修复收益与未达速度目标的权威记录见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)及[证据包](experiments/data/2026-10-12-halpern-ipm/v120-candidate-evidence.zip)。本路径仍复用外部IPX交叉优化，只有暖基步骤自主实现，不称完整自主优化栈。
+
+
+第118轮保留C++诊断输出缓冲实现：当前15来源、数值算法120、纯HSD106及backend版本0.3.0/schema3保持。共享[diagnostic_state.hpp](../src/experimental/diagnostic_state.hpp)为每条标记建立独立缓冲副本，四个Report沿原条件调用；不在已使用的全局stderr上设置缓冲，不改序列化字段或数值。原流仍由调用者持有，所有写出、刷新和关闭保留在原端到端计时中。已实测Windows/UCRT；POSIX分支尚未实测。
+
+复现正式候选先恢复[v121计划](experiments/data/2026-10-12-halpern-ipm/v121-plan.json)对应的15源，再用既有[构建入口](../scripts/build_experimental.py)、该计划及新目录。历史目录为.tools/v121-buffered-diagnostics。[v121身份桥](../.tools/v121-benchmark.py)复用锁定120校验和118运输层，根provenance保存三份包装；数值版本相同的实现用candidate_version、来源及exe SHA区分。原型可用[v121-prototype-build.ps1](../.tools/v121-prototype-build.ps1)和[原型计划](experiments/data/2026-10-12-halpern-ipm/v121-prototype-plan.json)在新目录仅编译链接，再按计划顺序运行三种模式；每次stdout与原始stderr字节分别保存。原型18次及正式182组件/500LP的结果统一见[实验正文](experiments/2026-10-12-Halpern与稀疏内点法迭代.md)，未达到HiGHS目标。

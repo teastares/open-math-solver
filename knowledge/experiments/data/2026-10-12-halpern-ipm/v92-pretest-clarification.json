@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T09:09:06.220070+00:00",
+  "plan_sha256": "f8d194d1157e0bed6a554033d4203727c2d99efd79a79119d450440be810ef41",
+  "before_first_check_and_real_build": true,
+  "public_lp_runs": 0,
+  "interpretation": [
+    "计划的measure摘要是LD归一残差的有限double舍入值，不要求逐位精确可表示。只对此类非负残差量，正LD窄化下溢为0仍可记录0，不能由摘要0反推精确残差0；LD非finite或窄化溢出为null。算法始终用原LD量判<=1，未改变任何门槛。",
+    "accepted必须final_measure和5个block_measures摘要有限且<=1，5个tolerances是有限正double。initial_measure或失败快照可以因无完成检查或摘要窄溢为null，不能据其猜原真实方向。",
+    "独立核Work内部可使用not_started与arithmetic_error，但第二marker last非空时只输出冻结的7种状态。adapter须将内部arithmetic_error归numerical_error，并在原BudgetExpired捕获桥标budget；其他外部异常标exception。未实际开始方向时last为null，不输出not_started末记录。",
+    "以上只澄清schema显示与C++异常桥；同一主env、原5块算子、固定容差、初始P+32列3周期、96耗尽失败、公共计数语义、预算/精度/集合/门槛/罚分全部不变。"
+  ],
+  "driver_source": "\"\"\"首次检查/构建前明确标量摘要与状态映射，不改变数学或公开协议。\"\"\"\nimport datetime\nimport hashlib\nimport json\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / 'knowledge/experiments/data/2026-10-12-halpern-ipm'\nPLAN_SHA = 'f8d194d1157e0bed6a554033d4203727c2d99efd79a79119d450440be810ef41'\nassert hashlib.sha256((DATA / 'v92-plan.json').read_bytes()).hexdigest() == PLAN_SHA\nassert not list(DATA.glob('v92-build-attempt*.json')) and not list(DATA.glob('v92-build-self-check-attempt*.json'))\nassert not list(DATA.glob('v92-runner-self-check-attempt*.json')) and not (DATA / 'v92-run-identity.json').exists()\nvalue = dict(passed=True, created_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    plan_sha256=PLAN_SHA, before_first_check_and_real_build=True, public_lp_runs=0,\n    interpretation=[\n        '计划的measure摘要是LD归一残差的有限double舍入值，不要求逐位精确可表示。只对此类非负残差量，正LD窄化下溢为0仍可记录0，不能由摘要0反推精确残差0；LD非finite或窄化溢出为null。算法始终用原LD量判<=1，未改变任何门槛。',\n        'accepted必须final_measure和5个block_measures摘要有限且<=1，5个tolerances是有限正double。initial_measure或失败快照可以因无完成检查或摘要窄溢为null，不能据其猜原真实方向。',\n        '独立核Work内部可使用not_started与arithmetic_error，但第二marker last非空时只输出冻结的7种状态。adapter须将内部arithmetic_error归numerical_error，并在原BudgetExpired捕获桥标budget；其他外部异常标exception。未实际开始方向时last为null，不输出not_started末记录。',\n        '以上只澄清schema显示与C++异常桥；同一主env、原5块算子、固定容差、初始P+32列3周期、96耗尽失败、公共计数语义、预算/精度/集合/门槛/罚分全部不变。'],\n    driver_source=Path(__file__).read_text(encoding='utf-8'),\n    driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())\nwith (DATA / 'v92-pretest-clarification.json').open('x', encoding='utf-8') as stream:\n    json.dump(value, stream, ensure_ascii=False, indent=2, allow_nan=False)\n    stream.write('\\n')\nprint(json.dumps(dict(passed=True, public_lp_runs=0,\n    clarification_sha256=hashlib.sha256((DATA / 'v92-pretest-clarification.json').read_bytes()).hexdigest()), ensure_ascii=False))\n",
+  "driver_sha256": "aa1ee05ec3eccf80ab6ad02c963fca7113e05de27b92705cc98a682e7fd5bfcf"
+}

@@ -1,0 +1,43 @@
+{
+  "version": 105,
+  "round": 102,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T18:18:14.750229+00:00",
+  "algorithm_parent_version": 102,
+  "previous_trial_version": 104,
+  "source_parent_identity_file": ".tools/v102-normal-inverse-attempt2/identity.json",
+  "source_parent_identity_sha256": "f0bed5f3aaa86b96d43db18f1642139062d3136b1dd20121b1b49a4b5d5582d7",
+  "source_parent_build_file": ".tools/v102-normal-inverse-attempt2/build-manifest.json",
+  "source_parent_build_sha256": "cd0261ff5f3f04067623c48c2f6b804e1db39581bbf7c4fda804870b246676f0",
+  "hypothesis": "独立重评Normal回代预算批量组织，减少短列频繁std::function/chrono读取；保全部浮点表达式、顺序及原5秒质量验收。",
+  "scope": "只NormalCholesky::solve预算调用组织；不改factor、v102 inverseD算术、IPM/Coupled数学，不叠弃用103/104。",
+  "activation": "在原入口check之前快照budget_check非空 && state.rectangular && existing coupled_state::enabled()。本solve内callback改变TLS不重新选；off、非AAT或无callback保原列检查且不增加entry tick。",
+  "work_units": "共享remaining=256，原三类列头和三类G entry每项各一个tick；先--，到0就在对应项算术前调用原check，正常返回后reset256。约化与实际一种恢复合计W=2p+2E，batchchecks=floor(W/256)；不在列、约化/恢复转换或固定库检查之间重置。",
+  "bound": "首次批量检查前完成255项；后续相邻批检查之间至多256个完整计数项，不能误称255。固定边界检查可插入但不重置counter；不承诺分配、有限扫描和同步外库可硬中断。",
+  "preserved": "原入口check、输入验证、约化value finite、全部representable/因子/输出finite、retained库前后/CHOLMOD内部check、两rhs=move前原check均保持。数值式/稀疏顺序/精度逐字不改，异常仍不提交RHS。",
+  "off_contract": "关闭完整报告仅排timings仍须与frozen66相等；预算callback轨迹对active发生变化，不声称与父超时前缀相同。",
+  "cost": "新增col/entry整数递减与分支；平均列度高时可增加check数量，不能把全部旧normal_solve自身11%当时钟成本。所有检查和工作计入原共享epoch。",
+  "historical": "v81曾采用同256机制但和基恢复组合，500数值SGM约降6.55%/wall约降2.02%仍90/91；不能称全新算法，不能把组合覆盖归咎局部检查，也不能把旧比例预测本轮。",
+  "protocol": "原CPU1 seed0 200步scaling5、solve+verification5秒/wall35、LP绝1e-7相1e-9、shift10失败罚5/35，34兼容+102初始，gate false止136，true再364至500。",
+  "research": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/sysinfo/acquiring-high-resolution-time-stamps",
+      "observation": "官方说明QPC有平台相关调用成本；未在本机分离测QPC成本，不据文档直接填本机比例。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/control.cc",
+      "observation": "IPX集中InterruptCheck读取Elapsed及处理回调；本地调用位于IPM/CR/basis等边界，只作频率选择素材，不照搬其所有检查策略。"
+    },
+    {
+      "url": "https://arxiv.org/abs/2006.08814",
+      "observation": "Tulip论文第6.2节说明每IPM迭代开始检查限时，不是本轮256计数机制；其历史基准条件不移作本轮共同协议。"
+    }
+  ],
+  "component_plan": {
+    "parent_ipm": 94,
+    "parent_standalone": 51,
+    "scope": "真实Normal的短/长列、共享计数跨恢复、所有实际callback截断的RHS事务、入口Scope快照、非AAT/空/无callback及原数值拒绝；最终组数待测试冻结。"
+  },
+  "no_model_specific_routing": true,
+  "source_generation": false
+}

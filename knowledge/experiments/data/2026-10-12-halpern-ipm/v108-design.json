@@ -1,0 +1,60 @@
+{
+  "version": 108,
+  "round": 105,
+  "task_date": "2026-11-01",
+  "created_at_utc": "2026-10-31T19:51:46.549854+00:00",
+  "algorithm_parent_version": 106,
+  "previous_trial_version": 107,
+  "source_parent_identity_file": ".tools/v106-product-budget/identity.json",
+  "source_parent_identity_sha256": "42cad2f3978879e5a6b4455e8bc5f52fa9a2cb03ca8f344c4560a3b8deca3f71",
+  "source_parent_build_file": ".tools/v106-product-budget/build-manifest.json",
+  "source_parent_build_sha256": "db2e5d93f751015627c7774326d990dd84586f89bad14615df05049077d59d9b",
+  "hypothesis": "仅复用每factor direct的LD约化与Double置换scratch容量，减少重复分配/无用零填；覆盖constant、初P、ArnoldiP及其他direct调用，不预报整体收益。",
+  "scope": "只src/experimental/ipm.cpp的两个私有辅助类型、KktFactor私有workspace成员、direct入口借出和原三声明改引用+resize；IPM组件增6组，其他9源含Normal与coupled均保父106。",
+  "types": "V108DirectWorkspace{vector<LD> reduced_rhs;vector<double> permuted;noexcept swap}；V108DirectWorkspaceLease(pool*)持raw owner和独有workspace，noexcept构造/析构借出归还，get返回局部引用，copy/move构造和赋值全部delete。",
+  "activation": "direct原入口第一处if之前快照coupled_state::enabled()，活动传per-factor mutable pool指针，关闭传nullptr取得冷local；不按backend或模型身份选。借出后不随Scope重选，nullptr不改原pool。",
+  "ownership": "swap借出使pool暂空，局部对象独有vectors；嵌套lease得到空pool后冷分配，outer缓冲不受影响；归还接当前vector，包括Normal或extended solve的move替换。answer仍独立分配并按值返回，旧constant/方向不受后续P改写。无全局池、busy标志、新hook或返回scratch引用。",
+  "lifetime": "pool只活至该KktFactor析构；首次/增容仍分配，稳态保留容量增加常驻内存，不能称免费或RSS峰值不变。关闭期间既有warm pool可保留容量但不借用。const不承诺线程安全，lease隔离不新增CHOLMOD或其他后端整体并发/重入保证。",
+  "overwrite_proof": "有singleton时首n个原始列赋值，所有retained row由构造期唯一映射赋值，singleton累加只读已赋值原始列，故在最终扫描前覆盖所有k槽；permuted由inverse双射覆盖所有k槽后才solve。保持原所有FP表达式和遍历位置，resize复用槽旧内容不参与数学。",
+  "exceptions": "预算、数值或分配异常均由RAII归还有效容器；下次仍按完整overwrite执行。原rhs只读，answer不提前返回，不声明缓存对业务结果作额外回滚。noexcept swap使用标准allocator，禁复制移动防双归还。",
+  "budget": "原check_budget与库前后check及public/private计数位置全保；不新增check或重置epoch。direct内部只有真实chrono检查不可逐点注入；用源审计核位置，重跑既有实际HSD回调前缀，以真实数值异常和lease异常核RAII，不虚称覆盖全部内部时钟截止。",
+  "preserved": "不改Normal::solve/其输出分配、adapter reduced/recover、FG scratch、dot/norm/MGS、invD、预条件器/真验、forcing、32x3和原精度。不是107范数候选的延伸。",
+  "report_expectation": "存储组织变化应保持无预算公共报告的数学字段；完整91例对父106仅排timings比较并记录，不放宽固定质量或失败惩罚。",
+  "protocol": "原CPU1 seed0 200步scaling5、solve+verification5秒/wall35、LP绝1e-7相1e-9、失败罚5/35及shift10；34兼容+102初始，原gate false止136，true再364至500。",
+  "component_plan": {
+    "parent_ipm": 106,
+    "parent_standalone": 51,
+    "ipm": 112,
+    "coupled": 51,
+    "total": 163,
+    "new_groups": {
+      "direct_workspace_multi_rhs": "transaction",
+      "direct_workspace_refactor": "mapping",
+      "direct_workspace_numeric_recovery": "exception",
+      "direct_workspace_lease_ownership": "transaction",
+      "direct_workspace_scope_empty_extreme": "mapping",
+      "direct_workspace_hsd_entry_budget": "budget"
+    },
+    "scope": "实际同factor固定inverseD后多RHS on/off逐位与独立良态完整KKT；重factor/H/层级与旧返回值独立；真实数值异常后再成功；Lease嵌套/null/异常/move替换；Scope/空块/极值；真实HSD原质量和expired入口不启动。"
+  },
+  "research": [
+    {
+      "url": "https://raw.githubusercontent.com/petsc/petsc/v3.24.0/src/ksp/ksp/impls/gmres/fgmres/fgmres.c",
+      "observation": "FGMRES setup保存工作向量，预条件方向独立保留；本轮只借鉴存储生命周期，不实现PETSc算法或预分配全部basis。"
+    },
+    {
+      "url": "https://petsc.org/release/manualpages/KSP/KSPGMRESSetPreAllocateVectors/",
+      "observation": "官方文档说明减少分离分配可能加快，也警告提前分配全部向量可浪费GPU内存；本轮按实际direct懒分配两个scratch，不把K0路由加满窗口。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ERGO-Code/HiGHS/v1.15.1/highs/ipm/ipx/kkt_solver_basis.cc",
+      "observation": "原Solve中rhs/work局部构建，并将不再需要的rhs move给lhs；说明需区分真实复制与所有权转移，不能把所有局部vector都计成新分配。"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/v7.14.1/CHOLMOD/Cholesky/cholmod_solve.c",
+      "observation": "solve2支持复用解和工作空间，我方已使用；本轮不再重复认领此机制。"
+    }
+  ],
+  "no_model_specific_routing": true,
+  "source_generation": false
+}

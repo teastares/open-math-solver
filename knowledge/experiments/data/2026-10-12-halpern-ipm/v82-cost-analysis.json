@@ -1,0 +1,1569 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-25T20:05:51.071256+00:00",
+  "new_solver_runs": 0,
+  "actual_profile_runs": 85,
+  "actual_on_profiles": 51,
+  "aggregate_observed_time": {
+    "all_on": {
+      "profiles": 51,
+      "total_inclusive_ns": 18904152700,
+      "exclusive_sum_ns": 18904152700,
+      "conserved": true,
+      "stages_by_exclusive": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "exclusive_ns": 9090843400,
+          "exclusive_fraction": 0.48089134404844286,
+          "inclusive_ns": 9090843400,
+          "started": 1794
+        },
+        {
+          "stage": "normal_solve",
+          "exclusive_ns": 2598630800,
+          "exclusive_fraction": 0.13746348970192143,
+          "inclusive_ns": 3451398200,
+          "started": 7005
+        },
+        {
+          "stage": "kkt_product",
+          "exclusive_ns": 960674000,
+          "exclusive_fraction": 0.050818146427689406,
+          "inclusive_ns": 960674000,
+          "started": 7506
+        },
+        {
+          "stage": "cholmod_backsolve",
+          "exclusive_ns": 852767400,
+          "exclusive_fraction": 0.04511005669140622,
+          "inclusive_ns": 852767400,
+          "started": 7005
+        },
+        {
+          "stage": "verify_original",
+          "exclusive_ns": 739250100,
+          "exclusive_fraction": 0.03910516973342053,
+          "inclusive_ns": 739250100,
+          "started": 1722
+        },
+        {
+          "stage": "direct",
+          "exclusive_ns": 736139300,
+          "exclusive_fraction": 0.03894061329709847,
+          "inclusive_ns": 4188976800,
+          "started": 7005
+        },
+        {
+          "stage": "factor",
+          "exclusive_ns": 697092000,
+          "exclusive_fraction": 0.03687507242786925,
+          "inclusive_ns": 10686351200,
+          "started": 1674
+        },
+        {
+          "stage": "aat_scaling",
+          "exclusive_ns": 564242500,
+          "exclusive_fraction": 0.029847542439709558,
+          "inclusive_ns": 564242500,
+          "started": 1794
+        },
+        {
+          "stage": "krylov",
+          "exclusive_ns": 485802000,
+          "exclusive_fraction": 0.02569816313428319,
+          "inclusive_ns": 1265134400,
+          "started": 150
+        },
+        {
+          "stage": "normal_setup",
+          "exclusive_ns": 367581500,
+          "exclusive_fraction": 0.019444484279901104,
+          "inclusive_ns": 486608400,
+          "started": 51
+        },
+        {
+          "stage": "run_homogeneous",
+          "exclusive_ns": 345503000,
+          "exclusive_fraction": 0.018276566291172625,
+          "inclusive_ns": 18784457400,
+          "started": 51
+        },
+        {
+          "stage": "homogeneous_direction",
+          "exclusive_ns": 322018400,
+          "exclusive_fraction": 0.017034267819895466,
+          "inclusive_ns": 3022785900,
+          "started": 3240
+        },
+        {
+          "stage": "factor_check",
+          "exclusive_ns": 307011500,
+          "exclusive_fraction": 0.016240426369387082,
+          "inclusive_ns": 307011500,
+          "started": 1674
+        },
+        {
+          "stage": "ordering",
+          "exclusive_ns": 177651200,
+          "exclusive_fraction": 0.009397469583495272,
+          "inclusive_ns": 177651200,
+          "started": 51
+        },
+        {
+          "stage": "canonicalize",
+          "exclusive_ns": 112256400,
+          "exclusive_fraction": 0.005938187327485986,
+          "inclusive_ns": 152883100,
+          "started": 72
+        },
+        {
+          "stage": "kkt_setup",
+          "exclusive_ns": 103826900,
+          "exclusive_fraction": 0.00549228001104752,
+          "inclusive_ns": 768086500,
+          "started": 51
+        },
+        {
+          "stage": "solve",
+          "exclusive_ns": 91748500,
+          "exclusive_fraction": 0.004853351613055897,
+          "inclusive_ns": 5727201300,
+          "started": 4968
+        },
+        {
+          "stage": "normal_ordering",
+          "exclusive_ns": 77752700,
+          "exclusive_fraction": 0.004112995765210889,
+          "inclusive_ns": 77752700,
+          "started": 51
+        },
+        {
+          "stage": "assess_homogeneous",
+          "exclusive_ns": 72772400,
+          "exclusive_fraction": 0.0038495457138367274,
+          "inclusive_ns": 867256800,
+          "started": 1722
+        },
+        {
+          "stage": "assess",
+          "exclusive_ns": 55234300,
+          "exclusive_fraction": 0.0029218077570860924,
+          "inclusive_ns": 794484400,
+          "started": 1722
+        },
+        {
+          "stage": "cone_multiply",
+          "exclusive_ns": 33954500,
+          "exclusive_fraction": 0.0017961397444700073,
+          "inclusive_ns": 33954500,
+          "started": 1674
+        },
+        {
+          "stage": "cone_transpose",
+          "exclusive_ns": 29898300,
+          "exclusive_fraction": 0.0015815731323414457,
+          "inclusive_ns": 29898300,
+          "started": 1623
+        },
+        {
+          "stage": "cholmod_symbolic",
+          "exclusive_ns": 27627600,
+          "exclusive_fraction": 0.0014614566671374803,
+          "inclusive_ns": 27627600,
+          "started": 51
+        },
+        {
+          "stage": "normal_factor",
+          "exclusive_ns": 27161800,
+          "exclusive_fraction": 0.001436816578401845,
+          "inclusive_ns": 9989259200,
+          "started": 1794
+        },
+        {
+          "stage": "symbolic_analysis",
+          "exclusive_ns": 13646600,
+          "exclusive_fraction": 0.0007218837160577951,
+          "inclusive_ns": 13646600,
+          "started": 51
+        },
+        {
+          "stage": "total",
+          "exclusive_ns": 7438900,
+          "exclusive_fraction": 0.00039350613159192264,
+          "inclusive_ns": 18904152700,
+          "started": 51
+        },
+        {
+          "stage": "initialize",
+          "exclusive_ns": 4187400,
+          "exclusive_fraction": 0.00022150688615628881,
+          "inclusive_ns": 325263600,
+          "started": 51
+        },
+        {
+          "stage": "solve_factored",
+          "exclusive_ns": 1439300,
+          "exclusive_fraction": 7.613671042765117e-05,
+          "inclusive_ns": 3452837500,
+          "started": 7005
+        },
+        {
+          "stage": "gram_assembly",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "numeric_factor",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "triangular_solve",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "fallback_factor_adapter",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "fallback_solve_adapter",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "cholmod_numeric",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "cholmod_values_copy",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        }
+      ]
+    },
+    "quality_pass_on": {
+      "profiles": 48,
+      "total_inclusive_ns": 15987940200,
+      "exclusive_sum_ns": 15987940200,
+      "conserved": true,
+      "stages_by_exclusive": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "exclusive_ns": 8720634400,
+          "exclusive_fraction": 0.5454507767048066,
+          "inclusive_ns": 8720634400,
+          "started": 1551
+        },
+        {
+          "stage": "normal_solve",
+          "exclusive_ns": 1859012500,
+          "exclusive_fraction": 0.11627592277334137,
+          "inclusive_ns": 2506435300,
+          "started": 5229
+        },
+        {
+          "stage": "cholmod_backsolve",
+          "exclusive_ns": 647422800,
+          "exclusive_fraction": 0.04049444718338389,
+          "inclusive_ns": 647422800,
+          "started": 5229
+        },
+        {
+          "stage": "kkt_product",
+          "exclusive_ns": 635606700,
+          "exclusive_fraction": 0.03975538387365247,
+          "inclusive_ns": 635606700,
+          "started": 5250
+        },
+        {
+          "stage": "verify_original",
+          "exclusive_ns": 618342400,
+          "exclusive_fraction": 0.03867555121328262,
+          "inclusive_ns": 618342400,
+          "started": 1479
+        },
+        {
+          "stage": "factor",
+          "exclusive_ns": 580604400,
+          "exclusive_fraction": 0.03631514708817837,
+          "inclusive_ns": 10067640100,
+          "started": 1431
+        },
+        {
+          "stage": "direct",
+          "exclusive_ns": 513299000,
+          "exclusive_fraction": 0.032105386533782504,
+          "inclusive_ns": 3020827500,
+          "started": 5229
+        },
+        {
+          "stage": "aat_scaling",
+          "exclusive_ns": 472083300,
+          "exclusive_fraction": 0.029527462205544152,
+          "inclusive_ns": 472083300,
+          "started": 1551
+        },
+        {
+          "stage": "normal_setup",
+          "exclusive_ns": 352923500,
+          "exclusive_fraction": 0.02207435702067487,
+          "inclusive_ns": 462713000,
+          "started": 48
+        },
+        {
+          "stage": "run_homogeneous",
+          "exclusive_ns": 288529000,
+          "exclusive_fraction": 0.018046664948121335,
+          "inclusive_ns": 15880061700,
+          "started": 48
+        },
+        {
+          "stage": "factor_check",
+          "exclusive_ns": 271377800,
+          "exclusive_fraction": 0.01697390636975237,
+          "inclusive_ns": 271377800,
+          "started": 1431
+        },
+        {
+          "stage": "homogeneous_direction",
+          "exclusive_ns": 263767300,
+          "exclusive_fraction": 0.01649789132936587,
+          "inclusive_ns": 2555367200,
+          "started": 2766
+        },
+        {
+          "stage": "ordering",
+          "exclusive_ns": 165844400,
+          "exclusive_fraction": 0.010373093589629514,
+          "inclusive_ns": 165844400,
+          "started": 48
+        },
+        {
+          "stage": "canonicalize",
+          "exclusive_ns": 101248400,
+          "exclusive_fraction": 0.006332798267534176,
+          "inclusive_ns": 132915900,
+          "started": 66
+        },
+        {
+          "stage": "kkt_setup",
+          "exclusive_ns": 94266800,
+          "exclusive_fraction": 0.005896119126089801,
+          "inclusive_ns": 722824200,
+          "started": 48
+        },
+        {
+          "stage": "normal_ordering",
+          "exclusive_ns": 71219800,
+          "exclusive_fraction": 0.004454595095370697,
+          "inclusive_ns": 71219800,
+          "started": 48
+        },
+        {
+          "stage": "solve",
+          "exclusive_ns": 68501100,
+          "exclusive_fraction": 0.004284548174629775,
+          "inclusive_ns": 3755629400,
+          "started": 4248
+        },
+        {
+          "stage": "assess_homogeneous",
+          "exclusive_ns": 59506000,
+          "exclusive_fraction": 0.0037219303584835775,
+          "inclusive_ns": 723613300,
+          "started": 1479
+        },
+        {
+          "stage": "assess",
+          "exclusive_ns": 45764900,
+          "exclusive_fraction": 0.002862463796305668,
+          "inclusive_ns": 664107300,
+          "started": 1479
+        },
+        {
+          "stage": "krylov",
+          "exclusive_ns": 30694100,
+          "exclusive_fraction": 0.001919828296580694,
+          "inclusive_ns": 190536500,
+          "started": 21
+        },
+        {
+          "stage": "cone_multiply",
+          "exclusive_ns": 28718500,
+          "exclusive_fraction": 0.0017962601586413239,
+          "inclusive_ns": 28718500,
+          "started": 1431
+        },
+        {
+          "stage": "cone_transpose",
+          "exclusive_ns": 25445900,
+          "exclusive_fraction": 0.0015915683747678767,
+          "inclusive_ns": 25445900,
+          "started": 1383
+        },
+        {
+          "stage": "cholmod_symbolic",
+          "exclusive_ns": 25386900,
+          "exclusive_fraction": 0.0015878780932643219,
+          "inclusive_ns": 25386900,
+          "started": 48
+        },
+        {
+          "stage": "normal_factor",
+          "exclusive_ns": 22940200,
+          "exclusive_fraction": 0.0014348439957262288,
+          "inclusive_ns": 9487035700,
+          "started": 1551
+        },
+        {
+          "stage": "symbolic_analysis",
+          "exclusive_ns": 13182800,
+          "exclusive_fraction": 0.0008245464916112208,
+          "inclusive_ns": 13182800,
+          "started": 48
+        },
+        {
+          "stage": "total",
+          "exclusive_ns": 6630100,
+          "exclusive_fraction": 0.00041469382028336586,
+          "inclusive_ns": 15987940200,
+          "started": 48
+        },
+        {
+          "stage": "initialize",
+          "exclusive_ns": 3894000,
+          "exclusive_fraction": 0.00024355857923461584,
+          "inclusive_ns": 310534200,
+          "started": 48
+        },
+        {
+          "stage": "solve_factored",
+          "exclusive_ns": 1093200,
+          "exclusive_fraction": 6.837653796078121e-05,
+          "inclusive_ns": 2507528500,
+          "started": 5229
+        },
+        {
+          "stage": "gram_assembly",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "numeric_factor",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "triangular_solve",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "fallback_factor_adapter",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "fallback_solve_adapter",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "cholmod_numeric",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        },
+        {
+          "stage": "cholmod_values_copy",
+          "exclusive_ns": 0,
+          "exclusive_fraction": 0.0,
+          "inclusive_ns": 0,
+          "started": 0
+        }
+      ]
+    }
+  },
+  "per_model_medians": [
+    {
+      "model": "afiro",
+      "case_index": 0,
+      "median_total_ns": 575600,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 73600,
+          "exclusive_ns": 73600,
+          "started": 9,
+          "completed": 9,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 104900,
+          "exclusive_ns": 72900,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 42300,
+          "exclusive_ns": 42300,
+          "started": 10,
+          "completed": 10,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_setup",
+          "inclusive_ns": 72600,
+          "exclusive_ns": 38000,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_backsolve",
+          "inclusive_ns": 32000,
+          "exclusive_ns": 32000,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.0006871,
+        "off": 0.000668,
+        "on1": 0.0005745,
+        "on2": 0.0007296,
+        "on3": 0.0005756
+      }
+    },
+    {
+      "model": "adlittle",
+      "case_index": 1,
+      "median_total_ns": 1706300,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 386200,
+          "exclusive_ns": 293100,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 157200,
+          "exclusive_ns": 157200,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 140200,
+          "exclusive_ns": 140200,
+          "started": 15,
+          "completed": 15,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 393500,
+          "exclusive_ns": 114300,
+          "started": 14,
+          "completed": 14,
+          "unwound": 0
+        },
+        {
+          "stage": "direct",
+          "inclusive_ns": 494200,
+          "exclusive_ns": 102000,
+          "started": 43,
+          "completed": 43,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 0.0018429,
+        "on1": 0.0017039,
+        "on2": 0.0017233,
+        "on3": 0.0017062,
+        "production": 0.0016883
+      }
+    },
+    {
+      "model": "e226",
+      "case_index": 2,
+      "median_total_ns": 9111100,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 1941300,
+          "exclusive_ns": 1595700,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 1297700,
+          "exclusive_ns": 1297700,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 900900,
+          "exclusive_ns": 900900,
+          "started": 24,
+          "completed": 24,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 638600,
+          "exclusive_ns": 638600,
+          "started": 70,
+          "completed": 70,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 2692800,
+          "exclusive_ns": 631100,
+          "started": 23,
+          "completed": 23,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal"
+      },
+      "numerical_seconds": {
+        "on1": 0.0093289,
+        "on2": 0.0090039,
+        "on3": 0.0091111,
+        "production": 0.0090357,
+        "off": 0.0090733
+      }
+    },
+    {
+      "model": "israel",
+      "case_index": 3,
+      "median_total_ns": 8689500,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 2548000,
+          "exclusive_ns": 2548000,
+          "started": 21,
+          "completed": 21,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 1312500,
+          "exclusive_ns": 975800,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_setup",
+          "inclusive_ns": 1062200,
+          "exclusive_ns": 909300,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 664500,
+          "exclusive_ns": 664500,
+          "started": 22,
+          "completed": 22,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 441800,
+          "exclusive_ns": 441800,
+          "started": 65,
+          "completed": 65,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal"
+      },
+      "numerical_seconds": {
+        "on2": 0.0086895,
+        "on3": 0.0083741,
+        "production": 0.0088647,
+        "off": 0.0095986,
+        "on1": 0.0112373
+      }
+    },
+    {
+      "model": "stair",
+      "case_index": 4,
+      "median_total_ns": 20469200,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 3991300,
+          "exclusive_ns": 3991300,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 5398300,
+          "exclusive_ns": 3914300,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 1683300,
+          "exclusive_ns": 1683300,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 1576400,
+          "exclusive_ns": 1576400,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_backsolve",
+          "inclusive_ns": 1484000,
+          "exclusive_ns": 1484000,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal"
+      },
+      "numerical_seconds": {
+        "on3": 0.0204691,
+        "production": 0.0194679,
+        "off": 0.0227253,
+        "on1": 0.0223149,
+        "on2": 0.0182269
+      }
+    },
+    {
+      "model": "25fv47",
+      "case_index": 5,
+      "median_total_ns": 55175800,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 12392800,
+          "exclusive_ns": 12392800,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 12450400,
+          "exclusive_ns": 10119300,
+          "started": 84,
+          "completed": 84,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 4484900,
+          "exclusive_ns": 4484900,
+          "started": 26,
+          "completed": 26,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 3729100,
+          "exclusive_ns": 3729100,
+          "started": 85,
+          "completed": 85,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 20069600,
+          "exclusive_ns": 3482100,
+          "started": 25,
+          "completed": 25,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.0583982,
+        "off": 0.0566329,
+        "on1": 0.0551484,
+        "on2": 0.0555719,
+        "on3": 0.055175699999999994
+      }
+    },
+    {
+      "model": "80bau3b",
+      "case_index": 6,
+      "median_total_ns": 316557500,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 91274300,
+          "exclusive_ns": 79964400,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 33037200,
+          "exclusive_ns": 33037200,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        },
+        {
+          "stage": "direct",
+          "inclusive_ns": 117840800,
+          "exclusive_ns": 26537700,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 25757700,
+          "exclusive_ns": 25757700,
+          "started": 131,
+          "completed": 131,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 82062100,
+          "exclusive_ns": 25356900,
+          "started": 41,
+          "completed": 41,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 0.3599872,
+        "on1": 0.3725353,
+        "on2": 0.3165573,
+        "on3": 0.3113522,
+        "production": 0.312652
+      }
+    },
+    {
+      "model": "perold",
+      "case_index": 7,
+      "median_total_ns": 97256100,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 29311400,
+          "exclusive_ns": 24350500,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 18147500,
+          "exclusive_ns": 18147500,
+          "started": 64,
+          "completed": 64,
+          "unwound": 0
+        },
+        {
+          "stage": "direct",
+          "inclusive_ns": 37420300,
+          "exclusive_ns": 8076300,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 7960700,
+          "exclusive_ns": 7960700,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 31993500,
+          "exclusive_ns": 6769400,
+          "started": 52,
+          "completed": 52,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal"
+      },
+      "numerical_seconds": {
+        "on1": 0.0972561,
+        "on2": 0.0989451,
+        "on3": 0.0957172,
+        "production": 0.0979863,
+        "off": 0.1073024
+      }
+    },
+    {
+      "model": "pilot87",
+      "case_index": 8,
+      "median_total_ns": 1179728600,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 623365900,
+          "exclusive_ns": 623365900,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 177781200,
+          "exclusive_ns": 140602100,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 72832500,
+          "exclusive_ns": 72832500,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 59067900,
+          "exclusive_ns": 59067900,
+          "started": 266,
+          "completed": 266,
+          "unwound": 0
+        },
+        {
+          "stage": "aat_scaling",
+          "inclusive_ns": 43426200,
+          "exclusive_ns": 43426200,
+          "started": 80,
+          "completed": 80,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal"
+      },
+      "numerical_seconds": {
+        "on2": 1.2122663,
+        "on3": 1.1611479999999998,
+        "production": 1.1934362,
+        "off": 1.1840061,
+        "on1": 1.1797285
+      }
+    },
+    {
+      "model": "maros-r7",
+      "case_index": 9,
+      "median_total_ns": 549847600,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 246247400,
+          "exclusive_ns": 246247400,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 73535200,
+          "exclusive_ns": 58333600,
+          "started": 49,
+          "completed": 49,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_setup",
+          "inclusive_ns": 58377600,
+          "exclusive_ns": 49761900,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 30245400,
+          "exclusive_ns": 30245400,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        {
+          "stage": "ordering",
+          "inclusive_ns": 25396400,
+          "exclusive_ns": 25396400,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal"
+      },
+      "numerical_seconds": {
+        "on3": 0.5362349,
+        "production": 0.553028,
+        "off": 0.5329345,
+        "on1": 0.6417929,
+        "on2": 0.5498474
+      }
+    },
+    {
+      "model": "fit1p",
+      "case_index": 10,
+      "median_total_ns": 107052000,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 52456400,
+          "exclusive_ns": 52456400,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_setup",
+          "inclusive_ns": 25090600,
+          "exclusive_ns": 23737500,
+          "started": 1,
+          "completed": 1,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 9139500,
+          "exclusive_ns": 7017100,
+          "started": 55,
+          "completed": 55,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 3055500,
+          "exclusive_ns": 3055500,
+          "started": 19,
+          "completed": 19,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 58691400,
+          "exclusive_ns": 2444600,
+          "started": 18,
+          "completed": 18,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.1142713,
+        "off": 0.1056208,
+        "on1": 0.1070519,
+        "on2": 0.1063504,
+        "on3": 0.1078221
+      }
+    },
+    {
+      "model": "dfl001",
+      "case_index": 11,
+      "median_total_ns": 2687674500,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 1841899400,
+          "exclusive_ns": 1841899400,
+          "started": 72,
+          "completed": 72,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 365438200,
+          "exclusive_ns": 240628300,
+          "started": 220,
+          "completed": 220,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_backsolve",
+          "inclusive_ns": 124809900,
+          "exclusive_ns": 124809900,
+          "started": 220,
+          "completed": 220,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 2015979100,
+          "exclusive_ns": 74772700,
+          "started": 44,
+          "completed": 44,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 70840700,
+          "exclusive_ns": 70840700,
+          "started": 226,
+          "completed": 226,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 2.698391,
+        "on1": 2.7388773,
+        "on2": 2.6876743,
+        "on3": 2.6793362,
+        "production": 2.6952623
+      }
+    },
+    {
+      "model": "finnis",
+      "case_index": 12,
+      "median_total_ns": 19945400,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 4732600,
+          "exclusive_ns": 3521700,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 3088900,
+          "exclusive_ns": 3088900,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 1647200,
+          "exclusive_ns": 1647200,
+          "started": 28,
+          "completed": 28,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 6305800,
+          "exclusive_ns": 1556900,
+          "started": 27,
+          "completed": 27,
+          "unwound": 0
+        },
+        {
+          "stage": "direct",
+          "inclusive_ns": 6220400,
+          "exclusive_ns": 1475000,
+          "started": 86,
+          "completed": 86,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal"
+      },
+      "numerical_seconds": {
+        "on1": 0.0174951,
+        "on2": 0.0212886,
+        "on3": 0.0199454,
+        "production": 0.025224,
+        "off": 0.0174517
+      }
+    },
+    {
+      "model": "greenbea",
+      "case_index": 13,
+      "median_total_ns": 982199500,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 316324300,
+          "exclusive_ns": 247757000,
+          "started": 592,
+          "completed": 592,
+          "unwound": 0
+        },
+        {
+          "stage": "krylov",
+          "inclusive_ns": 349880400,
+          "exclusive_ns": 148641000,
+          "started": 43,
+          "completed": 42,
+          "unwound": 1
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 127016300,
+          "exclusive_ns": 127016300,
+          "started": 81,
+          "completed": 81,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 108328400,
+          "exclusive_ns": 108328400,
+          "started": 752,
+          "completed": 752,
+          "unwound": 0
+        },
+        {
+          "stage": "direct",
+          "inclusive_ns": 391441800,
+          "exclusive_ns": 74997300,
+          "started": 592,
+          "completed": 592,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on2": "numerical_error",
+        "on3": "numerical_error",
+        "production": "numerical_error",
+        "off": "numerical_error",
+        "on1": "numerical_error"
+      },
+      "numerical_seconds": {
+        "on2": 0.9821994,
+        "on3": 1.0104225,
+        "production": 0.9543649,
+        "off": 0.9406644,
+        "on1": 0.9235902
+      }
+    },
+    {
+      "model": "bnl2",
+      "case_index": 14,
+      "median_total_ns": 171683900,
+      "top_exclusive_medians": [
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 44596400,
+          "exclusive_ns": 44596400,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 40135000,
+          "exclusive_ns": 30545800,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 69640100,
+          "exclusive_ns": 11785200,
+          "started": 38,
+          "completed": 38,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 11087100,
+          "exclusive_ns": 11087100,
+          "started": 39,
+          "completed": 39,
+          "unwound": 0
+        },
+        {
+          "stage": "direct",
+          "inclusive_ns": 51172000,
+          "exclusive_ns": 11015600,
+          "started": 118,
+          "completed": 118,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "on3": "optimal",
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal"
+      },
+      "numerical_seconds": {
+        "on3": 0.1821358,
+        "production": 0.1737666,
+        "off": 0.1702547,
+        "on1": 0.1700065,
+        "on2": 0.1716838
+      }
+    },
+    {
+      "model": "grow22",
+      "case_index": 15,
+      "median_total_ns": 20148300,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 4186700,
+          "exclusive_ns": 3694700,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 2017300,
+          "exclusive_ns": 2017300,
+          "started": 17,
+          "completed": 17,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 2013900,
+          "exclusive_ns": 2013900,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 1658400,
+          "exclusive_ns": 1658400,
+          "started": 50,
+          "completed": 50,
+          "unwound": 0
+        },
+        {
+          "stage": "factor",
+          "inclusive_ns": 4924200,
+          "exclusive_ns": 1366300,
+          "started": 16,
+          "completed": 16,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "production": "optimal",
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal"
+      },
+      "numerical_seconds": {
+        "production": 0.020565,
+        "off": 0.02047,
+        "on1": 0.0201482,
+        "on2": 0.0202114,
+        "on3": 0.0200737
+      }
+    },
+    {
+      "model": "forplan",
+      "case_index": 16,
+      "median_total_ns": 18195300,
+      "top_exclusive_medians": [
+        {
+          "stage": "normal_solve",
+          "inclusive_ns": 4143100,
+          "exclusive_ns": 3650200,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        {
+          "stage": "cholmod_aat_numeric",
+          "inclusive_ns": 2374000,
+          "exclusive_ns": 2374000,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        },
+        {
+          "stage": "verify_original",
+          "inclusive_ns": 2021700,
+          "exclusive_ns": 2021700,
+          "started": 36,
+          "completed": 36,
+          "unwound": 0
+        },
+        {
+          "stage": "kkt_product",
+          "inclusive_ns": 1486000,
+          "exclusive_ns": 1486000,
+          "started": 106,
+          "completed": 106,
+          "unwound": 0
+        },
+        {
+          "stage": "aat_scaling",
+          "inclusive_ns": 1326700,
+          "exclusive_ns": 1326700,
+          "started": 35,
+          "completed": 35,
+          "unwound": 0
+        }
+      ],
+      "status": {
+        "off": "optimal",
+        "on1": "optimal",
+        "on2": "optimal",
+        "on3": "optimal",
+        "production": "optimal"
+      },
+      "numerical_seconds": {
+        "off": 0.0182282,
+        "on1": 0.0181433,
+        "on2": 0.0184509,
+        "on3": 0.0181952,
+        "production": 0.0183309
+      }
+    }
+  ],
+  "source_sha256": {
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v82-plan.json": "b5df77438c3905566b0a8ddb02b84c2c2f65484facfe26bf559ec2ae085ec44b",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v82-run-manifest.json": "072d6e1fdf1bb5b8e5f05e7ac0b3c48da955f9c4978f510e1a2e5e5748325bde",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v82-runs.jsonl.gz": "8d7123642c956821ec96f2fac7e91a134d0b9ff3d704f8f75b35088096f6ae4b",
+    "D:\\Documents\\codes\\solver\\knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v82-summary.json": "727808db15b00569e566ea82b91bb0c83f282d60aed8d9955ab297e0d6789fd6"
+  },
+  "driver_source": "\"\"\"汇总当前85条诊断的实际计时；逐条守恒与阶段中位数分开解释。\"\"\"\nimport collections\nimport datetime\nimport gzip\nimport hashlib\nimport json\nfrom pathlib import Path\nimport sys\n\nROOT = Path(__file__).resolve().parents[1]\nDATA = ROOT / 'knowledge/experiments/data/2026-10-12-halpern-ipm'\nOUTPUT = DATA / 'v82-cost-analysis.json'\nsys.dont_write_bytecode = True\nsys.path.insert(0, str(ROOT / 'scripts'))\nimport benchmark\n\n\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n\ndef read(path):\n    return benchmark.strict_json(Path(path).read_text(encoding='utf-8'))\n\n\nassert not OUTPUT.exists()\nplan = read(DATA / 'v82-plan.json')\nassert sha(DATA / 'v82-plan.json') == 'b5df77438c3905566b0a8ddb02b84c2c2f65484facfe26bf559ec2ae085ec44b'\nrows = [benchmark.strict_json(line) for line in gzip.decompress((DATA / 'v82-runs.jsonl.gz').read_bytes()).splitlines()]\nsummary = read(DATA / 'v82-summary.json')\nassert len(rows) == plan['runs'] == 85 and summary['non_budget_equal'] == summary['non_budget_pairs'] == 68\nassert summary['budget_pairs'] == summary['invalid_pairs'] == summary['different_pairs'] == summary['profile_errors'] == 0\non = [row for row in rows if row['variant'].startswith('on')]\nassert len(on) == 51\nfor row in on:\n    p = row['profile']\n    assert row['profile_error'] is None and list(p['stages']) == plan['profile_stages']\n    assert sum(s['exclusive_ns'] for s in p['stages'].values()) == p['total_inclusive_ns']\naggregates = {}\nfor name, selected in (('all_on', on), ('quality_pass_on', [row for row in on if row['quality_pass']])):\n    exclusive, inclusive, calls = collections.Counter(), collections.Counter(), collections.Counter()\n    total = sum(row['profile']['total_inclusive_ns'] for row in selected)\n    for row in selected:\n        stages = row['profile']['stages']\n        exclusive.update({key: value['exclusive_ns'] for key, value in stages.items()})\n        inclusive.update({key: value['inclusive_ns'] for key, value in stages.items()})\n        calls.update({key: value['started'] for key, value in stages.items()})\n    assert sum(exclusive.values()) == total\n    aggregates[name] = {'profiles': len(selected), 'total_inclusive_ns': total,\n        'exclusive_sum_ns': sum(exclusive.values()), 'conserved': True,\n        'stages_by_exclusive': [{'stage': key, 'exclusive_ns': value,\n            'exclusive_fraction': value / total, 'inclusive_ns': inclusive[key], 'started': calls[key]}\n            for key, value in exclusive.most_common()]}\ncases = []\nfor case in summary['cases']:\n    medians = case['stage_medians']\n    assert medians is not None\n    cases.append({'model': case['model'], 'case_index': case['case_index'],\n        'median_total_ns': medians['total']['inclusive_ns'],\n        'top_exclusive_medians': [{'stage': key, **medians[key]} for key in sorted(medians,\n            key=lambda key: medians[key]['exclusive_ns'], reverse=True)[:5]],\n        'status': case['status'], 'numerical_seconds': case['numerical_seconds']})\nsources = [DATA / ('v82-' + name) for name in ('plan.json', 'run-manifest.json', 'runs.jsonl.gz', 'summary.json')]\nresult = {'passed': True, 'created_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    'new_solver_runs': 0, 'actual_profile_runs': 85, 'actual_on_profiles': 51,\n    'aggregate_observed_time': aggregates, 'per_model_medians': cases,\n    'source_sha256': {str(path): sha(path) for path in sources},\n    'driver_source': Path(__file__).read_text(encoding='utf-8'), 'driver_sha256': sha(__file__),\n    'interpretation': [\n        '聚合按实际观察到的纳秒加权，大输入贡献更大；这不是每模型等权，也不是公开成绩。成功子集仅用于诊断，失败仍在all_on及85条原件。',\n        'exclusive逐条和聚合守恒，inclusive含嵌套不可相加；各stage分别取中位数不承诺相加仍守恒。',\n        'total不是进程wall，不含MPS解析、Report初始化/输出；开启profile自身扰动时间，不能据此宣称优化加速。',\n        'AAt C API阶段包含库内部矩形乘积形成与分解，不等于纯Cholesky；normal_solve exclusive包含消元/恢复、分配、检查等，不能全部当稀疏矩阵遍历。',\n        '本轮来自生产v66，不包含v81预算批量与v80基恢复；不将此占比直接当叠加优化后的比例。']}\nwith OUTPUT.open('x', encoding='utf-8') as stream:\n    json.dump(result, stream, ensure_ascii=False, indent=2, allow_nan=False)\n    stream.write('\\n')\nprint(json.dumps({'passed': True, 'new_solver_runs': 0,\n    'aggregate_top': {name: {'profiles': value['profiles'], 'total_ns': value['total_inclusive_ns'],\n        'top': value['stages_by_exclusive'][:5]} for name, value in aggregates.items()}}, ensure_ascii=False))\n",
+  "driver_sha256": "d1240caafa0daf3a7d3e0f772e9474d2eaef846c9acb0667681521123fe41795",
+  "interpretation": [
+    "聚合按实际观察到的纳秒加权，大输入贡献更大；这不是每模型等权，也不是公开成绩。成功子集仅用于诊断，失败仍在all_on及85条原件。",
+    "exclusive逐条和聚合守恒，inclusive含嵌套不可相加；各stage分别取中位数不承诺相加仍守恒。",
+    "total不是进程wall，不含MPS解析、Report初始化/输出；开启profile自身扰动时间，不能据此宣称优化加速。",
+    "AAt C API阶段包含库内部矩形乘积形成与分解，不等于纯Cholesky；normal_solve exclusive包含消元/恢复、分配、检查等，不能全部当稀疏矩阵遍历。",
+    "本轮来自生产v66，不包含v81预算批量与v80基恢复；不将此占比直接当叠加优化后的比例。"
+  ]
+}

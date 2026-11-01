@@ -1,0 +1,40 @@
+{
+  "version": 117,
+  "status": "依据完整500及源码形成的下一研究合同，尚未实现新路线",
+  "direction": "独立验证crossover取回点的行对偶域投影，再研究warm basis修复",
+  "evidence": {
+    "analysis_sha256": "959efa6ad1943c550a576de117375e41036f68efc2a964781184d3e65fc0fbd3",
+    "analysis_file": "knowledge/experiments/data/2026-10-12-halpern-ipm/v117-candidate-analysis.json",
+    "adopted": 22,
+    "native_imprecise_rejected": 30,
+    "rejected": 37,
+    "rejected_failure_classes": {
+      "primal+gap": 1,
+      "primal+dual": 6,
+      "dual+gap": 5,
+      "gap": 1,
+      "primal+dual+gap": 6,
+      "primal": 4,
+      "dual": 14
+    },
+    "native_optimal_rejected": 7,
+    "highs_attempted": 59
+  },
+  "minimal_hypothesis": "保持1e-4门和一次native调用，在原native点第一次完整原验拒绝后，仅对y投影到原行对偶合法域，x不动；只有确有修改才再全原验。扫描/复制/原验/清理与失败都付费，同一deadline，仍失败回HSD。",
+  "reason": "5个native optimal拒绝点原始与gap过、dual残差远低原tol，源码指向严格行乘子域错误；不是所有37都属舍入，30个imprecise可真不可行。",
+  "existing_mechanism": "原presolve bounded_projection在原oracle内；本轮local reject在进入oracle之前，不能自动受益。",
+  "source_boundary": {
+    "fact": "独立IPX push后重算基解/评估，无simplex cleanup；完整HiGHS会对imprecise转Unknown后的点调用额外simplexSolve。",
+    "highs_solve_sha256": "5cf9fdd270cad14c48de041dd5fa0bd7f5e25fbc9dcb908fb8a5c77837a95084",
+    "ipx": "build/release/_deps/highs-src/highs/ipm/ipx/lp_solver.cc",
+    "highs_solve": "build/release/_deps/highs-src/highs/lp_data/HighsSolve.cpp",
+    "highs_wrapper": "build/release/_deps/highs-src/highs/ipm/IpxWrapper.cpp",
+    "highs_wrapper_sha256": "3c5876d912706520c3fea40c8c5d7ae6876088f638a51ea4853805a3600f417b",
+    "ipx_sha256": "87a2b2ca94eaa84f1f6c22ccfd9eedd29b7b53dd4d16f1e04c56dcd9126e9ac0"
+  },
+  "longer_term": "给定IPX列基的warm可行性/最优性修复需独立研究；v80是锥模型活跃行基且使用Eigen一般LU，不能直接拷状态或称自研通用LU，也不能重复历史冷选基/PhaseI失败组合。",
+  "separate_hypothesis": "真正交给native的Drop后残差可能比current点差很多；post-Drop就绪门与域投影分轮验证，不混调参数。",
+  "new_public_lp_runs": 0,
+  "source_generation": false,
+  "goal_achieved": false
+}

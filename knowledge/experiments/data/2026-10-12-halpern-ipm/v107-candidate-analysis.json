@@ -1,0 +1,1220 @@
+{
+  "passed": true,
+  "created_at_utc": "2026-10-31T19:35:48.035593+00:00",
+  "version": 107,
+  "algorithm_parent_version": 106,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "source_generation": false,
+  "decision": "not_adopted_restore_v106",
+  "decision_reason": "163组件和91/91保持，但FG子集范数改变未形成明确整体收益：开发/探针跨轮略降，Netlib略升，同期HiGHS候选略降而总体仍慢。新增数值分支与环境guard有复杂度，当前不保留；不称统计证实无效或退步。",
+  "goal_achieved": false,
+  "candidate_to_highs_wall_ratio": 1.2193431279755087,
+  "stages": {
+    "development": {
+      "frozen_v66": {
+        "run_count": 33,
+        "quality_pass_count": 33,
+        "all_repeats_quality_pass_model_count": 11,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 33
+        },
+        "penalized_wall_sgm10_seconds": 0.23032763047845792,
+        "penalized_numerical_sgm10_seconds": 0.2084745768980571,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 33,
+        "quality_pass_count": 33,
+        "all_repeats_quality_pass_model_count": 11,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 33
+        },
+        "penalized_wall_sgm10_seconds": 0.21385823896278194,
+        "penalized_numerical_sgm10_seconds": 0.18858560257286686,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    },
+    "probe": {
+      "frozen_v66": {
+        "run_count": 18,
+        "quality_pass_count": 15,
+        "all_repeats_quality_pass_model_count": 5,
+        "quality_failure_counts": {
+          "incomplete": 3
+        },
+        "status_counts": {
+          "optimal": 15,
+          "numerical_error": 3
+        },
+        "penalized_wall_sgm10_seconds": 3.4475034756156804,
+        "penalized_numerical_sgm10_seconds": 1.1803139375614264,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 18,
+        "quality_pass_count": 18,
+        "all_repeats_quality_pass_model_count": 6,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 18
+        },
+        "penalized_wall_sgm10_seconds": 0.5276862915257048,
+        "penalized_numerical_sgm10_seconds": 0.503382411103753,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    },
+    "netlib": {
+      "frozen_v66": {
+        "run_count": 91,
+        "quality_pass_count": 90,
+        "all_repeats_quality_pass_model_count": 90,
+        "quality_failure_counts": {
+          "incomplete": 1
+        },
+        "status_counts": {
+          "optimal": 90,
+          "numerical_error": 1
+        },
+        "penalized_wall_sgm10_seconds": 0.2896948995858416,
+        "penalized_numerical_sgm10_seconds": 0.14889961554804243,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 91,
+        "quality_pass_count": 91,
+        "all_repeats_quality_pass_model_count": 91,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 91
+        },
+        "penalized_wall_sgm10_seconds": 0.11760211533757639,
+        "penalized_numerical_sgm10_seconds": 0.09680975265661973,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    },
+    "highs": {
+      "highs": {
+        "run_count": 91,
+        "quality_pass_count": 91,
+        "all_repeats_quality_pass_model_count": 91,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 91
+        },
+        "penalized_wall_sgm10_seconds": 0.09500723122454127,
+        "penalized_numerical_sgm10_seconds": 0.07857949349082327,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 91,
+        "quality_pass_count": 91,
+        "all_repeats_quality_pass_model_count": 91,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 91
+        },
+        "penalized_wall_sgm10_seconds": 0.11584641450162458,
+        "penalized_numerical_sgm10_seconds": 0.09517589376150883,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    }
+  },
+  "parent_stages": {
+    "development": {
+      "frozen_v66": {
+        "run_count": 33,
+        "quality_pass_count": 33,
+        "all_repeats_quality_pass_model_count": 11,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 33
+        },
+        "penalized_wall_sgm10_seconds": 0.23462927642182768,
+        "penalized_numerical_sgm10_seconds": 0.21314543624181853,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 33,
+        "quality_pass_count": 33,
+        "all_repeats_quality_pass_model_count": 11,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 33
+        },
+        "penalized_wall_sgm10_seconds": 0.2177304128210571,
+        "penalized_numerical_sgm10_seconds": 0.19266489633252276,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    },
+    "probe": {
+      "frozen_v66": {
+        "run_count": 18,
+        "quality_pass_count": 15,
+        "all_repeats_quality_pass_model_count": 5,
+        "quality_failure_counts": {
+          "incomplete": 3
+        },
+        "status_counts": {
+          "optimal": 15,
+          "numerical_error": 3
+        },
+        "penalized_wall_sgm10_seconds": 3.450196595507765,
+        "penalized_numerical_sgm10_seconds": 1.1823147988094471,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 18,
+        "quality_pass_count": 18,
+        "all_repeats_quality_pass_model_count": 6,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 18
+        },
+        "penalized_wall_sgm10_seconds": 0.5392928091390501,
+        "penalized_numerical_sgm10_seconds": 0.5151521586272,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    },
+    "netlib": {
+      "frozen_v66": {
+        "run_count": 91,
+        "quality_pass_count": 90,
+        "all_repeats_quality_pass_model_count": 90,
+        "quality_failure_counts": {
+          "incomplete": 1
+        },
+        "status_counts": {
+          "optimal": 90,
+          "numerical_error": 1
+        },
+        "penalized_wall_sgm10_seconds": 0.28945821739287264,
+        "penalized_numerical_sgm10_seconds": 0.14870051040344712,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 91,
+        "quality_pass_count": 91,
+        "all_repeats_quality_pass_model_count": 91,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 91
+        },
+        "penalized_wall_sgm10_seconds": 0.11714823630157839,
+        "penalized_numerical_sgm10_seconds": 0.09638884413976592,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    },
+    "highs": {
+      "highs": {
+        "run_count": 91,
+        "quality_pass_count": 91,
+        "all_repeats_quality_pass_model_count": 91,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 91
+        },
+        "penalized_wall_sgm10_seconds": 0.09600763014726628,
+        "penalized_numerical_sgm10_seconds": 0.07959727682708528,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      },
+      "diagnostic_on": {
+        "run_count": 91,
+        "quality_pass_count": 91,
+        "all_repeats_quality_pass_model_count": 91,
+        "quality_failure_counts": {},
+        "status_counts": {
+          "optimal": 91
+        },
+        "penalized_wall_sgm10_seconds": 0.1166788956459437,
+        "penalized_numerical_sgm10_seconds": 0.09592325793640119,
+        "numerical_budget_exceeded_count": 0,
+        "wall_budget_exceeded_count": 0
+      }
+    }
+  },
+  "parent_reports_equal_except_timings": 89,
+  "public_report_pairs": [
+    {
+      "model_index": 0,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\25fv47.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0542555,
+      "candidate_numerical_seconds": 0.0538362,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 1,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\80bau3b.mps",
+      "equal_except_timings": false,
+      "changed_top_level_fields": [
+        "solution",
+        "objective",
+        "ipm_homogeneous_tau",
+        "ipm_homogeneous_kappa",
+        "lp_optimality",
+        "row_dual",
+        "verification"
+      ],
+      "parent_numerical_seconds": 0.38514060000000006,
+      "candidate_numerical_seconds": 0.38677570000000006,
+      "parent_krylov": 14,
+      "candidate_krylov": 14
+    },
+    {
+      "model_index": 2,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\adlittle.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0036675,
+      "candidate_numerical_seconds": 0.0025536000000000005,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 3,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\afiro.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0008471,
+      "candidate_numerical_seconds": 0.0006987,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 4,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0066694,
+      "candidate_numerical_seconds": 0.0069001,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 5,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0148089,
+      "candidate_numerical_seconds": 0.0150145,
+      "parent_krylov": 3,
+      "candidate_krylov": 3
+    },
+    {
+      "model_index": 6,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\agg3.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0149426,
+      "candidate_numerical_seconds": 0.0145524,
+      "parent_krylov": 5,
+      "candidate_krylov": 5
+    },
+    {
+      "model_index": 7,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bandm.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0086783,
+      "candidate_numerical_seconds": 0.0084861,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 8,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\beaconfd.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0024352,
+      "candidate_numerical_seconds": 0.0021168,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 9,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\blend.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0018928,
+      "candidate_numerical_seconds": 0.0019215,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 10,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0797716,
+      "candidate_numerical_seconds": 0.079891,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 11,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.1102362,
+      "candidate_numerical_seconds": 0.1102447,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 12,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\boeing1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.016614,
+      "candidate_numerical_seconds": 0.0162487,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 13,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\boeing2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0059985,
+      "candidate_numerical_seconds": 0.006206,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 14,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bore3d.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0027799,
+      "candidate_numerical_seconds": 0.0027219,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 15,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\brandy.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0066831,
+      "candidate_numerical_seconds": 0.0066073,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 16,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\capri.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0086068,
+      "candidate_numerical_seconds": 0.0084345,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 17,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\cycle.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0856979,
+      "candidate_numerical_seconds": 0.0847364,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 18,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\czprob.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0606589,
+      "candidate_numerical_seconds": 0.0656712,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 19,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\d2q06c.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.2350141,
+      "candidate_numerical_seconds": 0.2346852,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 20,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\d6cube.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.1580359,
+      "candidate_numerical_seconds": 0.1573252,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 21,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\degen2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0144919,
+      "candidate_numerical_seconds": 0.0146239,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 22,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\degen3.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.1010674,
+      "candidate_numerical_seconds": 0.10112860000000001,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 23,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+      "equal_except_timings": false,
+      "changed_top_level_fields": [
+        "solution",
+        "objective",
+        "ipm_homogeneous_tau",
+        "ipm_homogeneous_kappa",
+        "lp_optimality",
+        "row_dual",
+        "verification"
+      ],
+      "parent_numerical_seconds": 2.8195368,
+      "candidate_numerical_seconds": 2.8318323,
+      "parent_krylov": 385,
+      "candidate_krylov": 385
+    },
+    {
+      "model_index": 24,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\e226.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0107839,
+      "candidate_numerical_seconds": 0.0106558,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 25,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\etamacro.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0244981,
+      "candidate_numerical_seconds": 0.023587,
+      "parent_krylov": 44,
+      "candidate_krylov": 44
+    },
+    {
+      "model_index": 26,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fffff800.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0275789,
+      "candidate_numerical_seconds": 0.0275687,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 27,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0156678,
+      "candidate_numerical_seconds": 0.0157995,
+      "parent_krylov": 14,
+      "candidate_krylov": 14
+    },
+    {
+      "model_index": 28,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1d.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0355751,
+      "candidate_numerical_seconds": 0.0344332,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 29,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.1179241,
+      "candidate_numerical_seconds": 0.1111286,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 30,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2d.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.4183465,
+      "candidate_numerical_seconds": 0.4128942,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 31,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit2p.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.5660104,
+      "candidate_numerical_seconds": 0.5772511,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 32,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0219524,
+      "candidate_numerical_seconds": 0.0211846,
+      "parent_krylov": 21,
+      "candidate_krylov": 21
+    },
+    {
+      "model_index": 33,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ganges.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0230235,
+      "candidate_numerical_seconds": 0.0225479,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 34,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\gfrd-pnc.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.023442,
+      "candidate_numerical_seconds": 0.023825,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 35,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.3516614,
+      "candidate_numerical_seconds": 0.3340002,
+      "parent_krylov": 105,
+      "candidate_krylov": 105
+    },
+    {
+      "model_index": 36,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbeb.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.228433,
+      "candidate_numerical_seconds": 0.2300333,
+      "parent_krylov": 4,
+      "candidate_krylov": 4
+    },
+    {
+      "model_index": 37,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow15.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0212118,
+      "candidate_numerical_seconds": 0.0213763,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 38,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0291328,
+      "candidate_numerical_seconds": 0.031337,
+      "parent_krylov": 1,
+      "candidate_krylov": 1
+    },
+    {
+      "model_index": 39,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow7.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0092204,
+      "candidate_numerical_seconds": 0.0092471,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 40,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\israel.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0099285,
+      "candidate_numerical_seconds": 0.0097923,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 41,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\kb2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0017816,
+      "candidate_numerical_seconds": 0.0018176,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 42,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\lotfi.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0055672,
+      "candidate_numerical_seconds": 0.0058944,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 43,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.3068927,
+      "candidate_numerical_seconds": 0.30213,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 44,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.031445,
+      "candidate_numerical_seconds": 0.0313034,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 45,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\modszk1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0418831,
+      "candidate_numerical_seconds": 0.0419748,
+      "parent_krylov": 11,
+      "candidate_krylov": 11
+    },
+    {
+      "model_index": 46,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\nesm.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.1168891,
+      "candidate_numerical_seconds": 0.1163369,
+      "parent_krylov": 8,
+      "candidate_krylov": 8
+    },
+    {
+      "model_index": 47,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\perold.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0567785,
+      "candidate_numerical_seconds": 0.0575979,
+      "parent_krylov": 4,
+      "candidate_krylov": 4
+    },
+    {
+      "model_index": 48,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.3247184,
+      "candidate_numerical_seconds": 0.3322062,
+      "parent_krylov": 6,
+      "candidate_krylov": 6
+    },
+    {
+      "model_index": 49,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot4.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0460357,
+      "candidate_numerical_seconds": 0.046015,
+      "parent_krylov": 15,
+      "candidate_krylov": 15
+    },
+    {
+      "model_index": 50,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 1.1939274,
+      "candidate_numerical_seconds": 1.1797822,
+      "parent_krylov": 94,
+      "candidate_krylov": 94
+    },
+    {
+      "model_index": 51,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilotnov.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0676718,
+      "candidate_numerical_seconds": 0.0843349,
+      "parent_krylov": 4,
+      "candidate_krylov": 4
+    },
+    {
+      "model_index": 52,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\recipe.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0016002,
+      "candidate_numerical_seconds": 0.0016237,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 53,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc105.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0014245,
+      "candidate_numerical_seconds": 0.0014317,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 54,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc205.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0022164,
+      "candidate_numerical_seconds": 0.0022593,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 55,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc50a.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0008457,
+      "candidate_numerical_seconds": 0.0008807,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 56,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sc50b.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0008603,
+      "candidate_numerical_seconds": 0.0008592,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 57,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scagr25.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0098331,
+      "candidate_numerical_seconds": 0.0097045,
+      "parent_krylov": 2,
+      "candidate_krylov": 2
+    },
+    {
+      "model_index": 58,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scagr7.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0028671,
+      "candidate_numerical_seconds": 0.0028479,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 59,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0129092,
+      "candidate_numerical_seconds": 0.0129397,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 60,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.030356,
+      "candidate_numerical_seconds": 0.0281723,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 61,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scfxm3.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0464097,
+      "candidate_numerical_seconds": 0.0440683,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 62,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scorpion.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0029944,
+      "candidate_numerical_seconds": 0.0028677,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 63,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scrs8.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0212917,
+      "candidate_numerical_seconds": 0.0208086,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 64,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0067033,
+      "candidate_numerical_seconds": 0.0067034,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 65,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd6.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.014913,
+      "candidate_numerical_seconds": 0.0149151,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 66,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\scsd8.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0278032,
+      "candidate_numerical_seconds": 0.0276015,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 67,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0109567,
+      "candidate_numerical_seconds": 0.0118637,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 68,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0307789,
+      "candidate_numerical_seconds": 0.0308793,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 69,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sctap3.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0428298,
+      "candidate_numerical_seconds": 0.043264,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 70,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\seba.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0023568,
+      "candidate_numerical_seconds": 0.0024644,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 71,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\share1b.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0069318,
+      "candidate_numerical_seconds": 0.007094300000000001,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 72,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\share2b.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0031752,
+      "candidate_numerical_seconds": 0.0032785,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 73,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\shell.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.024866,
+      "candidate_numerical_seconds": 0.0249762,
+      "parent_krylov": 4,
+      "candidate_krylov": 4
+    },
+    {
+      "model_index": 74,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship04l.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.024253,
+      "candidate_numerical_seconds": 0.0244758,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 75,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship04s.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0163245,
+      "candidate_numerical_seconds": 0.0162808,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 76,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship08l.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0486817,
+      "candidate_numerical_seconds": 0.0490946,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 77,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship08s.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0257927,
+      "candidate_numerical_seconds": 0.0255554,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 78,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12l.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0599681,
+      "candidate_numerical_seconds": 0.0890054,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 79,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\ship12s.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0254874,
+      "candidate_numerical_seconds": 0.0324795,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 80,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\sierra.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0531787,
+      "candidate_numerical_seconds": 0.0551353,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 81,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stair.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0133425,
+      "candidate_numerical_seconds": 0.0138091,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 82,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standata.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0062776,
+      "candidate_numerical_seconds": 0.0063175,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 83,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standgub.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0064513,
+      "candidate_numerical_seconds": 0.0064538,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 84,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\standmps.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0172928,
+      "candidate_numerical_seconds": 0.0176123,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 85,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stocfor1.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0019495,
+      "candidate_numerical_seconds": 0.0018307,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 86,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\stocfor2.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0439429,
+      "candidate_numerical_seconds": 0.0464795,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 87,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\tuff.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0151092,
+      "candidate_numerical_seconds": 0.0149473,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 88,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\vtpbase.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0015893,
+      "candidate_numerical_seconds": 0.0016223,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 89,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\wood1p.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.0966073,
+      "candidate_numerical_seconds": 0.0941296,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    },
+    {
+      "model_index": 90,
+      "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\woodw.mps",
+      "equal_except_timings": true,
+      "changed_top_level_fields": [],
+      "parent_numerical_seconds": 0.1035579,
+      "candidate_numerical_seconds": 0.1046658,
+      "parent_krylov": 0,
+      "candidate_krylov": 0
+    }
+  ],
+  "coupled_totals": {
+    "106": {
+      "directions_completed": 3846,
+      "preconditioner_completed": 4604,
+      "products_completed": 4816,
+      "krylov_completed": 758,
+      "cycles_started": 212,
+      "true_checks_completed": 4058
+    },
+    "107": {
+      "directions_completed": 3846,
+      "preconditioner_completed": 4604,
+      "products_completed": 4816,
+      "krylov_completed": 758,
+      "cycles_started": 212,
+      "true_checks_completed": 4058
+    }
+  },
+  "numerical_interpretation": "89/91非计时报告相同，另外2例解/目标/质量浮点尾数改变但仍过原质量；迭代与P/A/K/true总数保持。范数不受全局成本单独剖析，未预测或证明局部速度；跨轮时间非同期父/候选消融。",
+  "next_direction": "优先研究覆盖每次预条件器与真验的向量通道/工作区复用；CHOLMOD矩形转置缓存保留为另一独立备选，不继续堆FG子集微调。",
+  "input_sha256": {
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\development\\summary.json": "faf164414bbdf95a045af9fdc244c2353f97924e6bf6ad342e7a613f9f243c31",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\development\\runs.jsonl.gz": "257061985b2f5831a5525f3a18440dcd39264a67b7dd1a6b0ed4728de621b9d4",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\probe\\summary.json": "8d60475f4def8044dd41cee540582474350abb309e5edd35b528ed750d4d3aea",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\probe\\runs.jsonl.gz": "a2910d045298aa4ed776c5d2307c4d188a4d05f777ae479747458ec62104e341",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\netlib\\summary.json": "fc245268c7e208858422551c1849b678e388751adde6c53a15822726961a4bf1",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\netlib\\runs.jsonl.gz": "1ccf503238fb654be06a274af5f6c0a45a124677af7a5ae8746fcf792c5447d2",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\highs\\summary.json": "34cab27e239ced0cbf5d0be067778db4bc6e8ed4b3225f5cc20b00c434ffe313",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v106\\highs\\runs.jsonl.gz": "97ee72dcc5d64c5686a8f096ea382031e7d289b47607e77facf5ba060178dbde",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\development\\summary.json": "215ed04f65c66f57d9ce7cbaeccba447d384c75a2cd93580283c44123df3827e",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\development\\runs.jsonl.gz": "2e556abda31648896b85b85270339bfaa4c6bf0ac684652f8718b7eea4eae9be",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\probe\\summary.json": "6f81699b34d912fd72bca999a030b4996787efc742919a79cbef5d5f699201cb",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\probe\\runs.jsonl.gz": "aeaa674ae198aa9b83ad0e4e63d9bc02a3974bc6858021ebc2f87100a11b5010",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\netlib\\summary.json": "f907922421e56cbafd9f978e061a325e2188df576c7b6f0437cc4994c564f0c2",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\netlib\\runs.jsonl.gz": "e72ac9418df4eee096f8513c4fdf67a84472fd8848da02e242fb7b6c56b4b257",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\highs\\summary.json": "19932bae66e72393db86b7ecf1e3e841a9894d5e4fc00690545d9888aa837de7",
+    "knowledge\\experiments\\data\\2026-10-12-halpern-ipm\\v107\\highs\\runs.jsonl.gz": "ebc1aad4d0a258db7e8c09b3968ac2e7060931df993bf125adb57538d4632569"
+  }
+}

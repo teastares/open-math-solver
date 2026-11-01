@@ -1,0 +1,456 @@
+{
+  "passed": true,
+  "version": 114,
+  "round": 111,
+  "plan_sha256": "5bdb838c40abb14ce5f1ec75a7d3a7ca9c5cdcc4c19432dbc5c61f57be3cc9f0",
+  "source_parent_version": 112,
+  "algorithm_parent_version": 106,
+  "production_unchanged": true,
+  "source_generation": false,
+  "evaluation_valid": true,
+  "public_lp_runs_observed": 500,
+  "public_lp_runs_revalidated": 500,
+  "additional_public_lp_runs": 0,
+  "new_prototype_runs": 0,
+  "new_dependency_builds": 0,
+  "stage_order": [
+    "compatibility-development",
+    "compatibility-probe",
+    "development",
+    "probe",
+    "netlib",
+    "highs"
+  ],
+  "stages": {
+    "compatibility-development": {
+      "runs": 22,
+      "valid_processes": 22,
+      "marker_errors": 0,
+      "manifest_sha256": "1fd4954dfa5698c6e0131c901a01a2ba51a862ebdab9d2a956e74fe9ab691693",
+      "summary_sha256": "7c12c6807ecb079820ab54077f7ab3dadecbcf283a87a9e06572a821145f5e41",
+      "raw_sha256": "4f2b9ae029728ae755406f56f44af077e0ef79cc4c6af68d6aa71a1125b9e478",
+      "actual_call_sha256": "821d92fb161ed9083bda3d3f890d4508c3d856dba6b6ad961b30b919e7dc7749",
+      "read_only_revalidation_sha256": "eb9990a1fcd4e8ac786451e424221e3c63a47e836a369250bb81bb2d0ed45687",
+      "actual_elapsed_seconds": 8.523887399933301,
+      "revalidation_elapsed_seconds": 1.2148855000268668,
+      "metrics": {
+        "frozen_v66": {
+          "quality": 11,
+          "wall_sgm10_seconds": 0.24463148346449143,
+          "numerical_sgm10_seconds": 0.22112674887207845
+        },
+        "diagnostic_off": {
+          "quality": 11,
+          "wall_sgm10_seconds": 0.24372934155806505,
+          "numerical_sgm10_seconds": 0.21813192369603834
+        }
+      }
+    },
+    "compatibility-probe": {
+      "runs": 12,
+      "valid_processes": 12,
+      "marker_errors": 0,
+      "manifest_sha256": "b7525369f620492467229a2bd40359ed94c111aafb84d035370c0e41d63d5ede",
+      "summary_sha256": "bf2761c6a18dbac63c1871070af4334a0adcf39be4a612db0caa67515561ce92",
+      "raw_sha256": "bf7b56cd76db2a561184a9e3c34feb8013b89525adec814b0b5e6b4ab2faa443",
+      "actual_call_sha256": "48cbbdcfdd0a156bba552c4cd1d184bc8469f8fe9ef80e3ab3cbe8ef46251bd3",
+      "read_only_revalidation_sha256": "d3dcce913d1442cdfcf96ee2ab1a47ab8229198bfa70d74041701682399bbddb",
+      "actual_elapsed_seconds": 10.33856529998593,
+      "revalidation_elapsed_seconds": 0.9984783000545576,
+      "metrics": {
+        "frozen_v66": {
+          "quality": 5,
+          "wall_sgm10_seconds": 3.4528797672476426,
+          "numerical_sgm10_seconds": 1.18357477401885
+        },
+        "diagnostic_off": {
+          "quality": 5,
+          "wall_sgm10_seconds": 3.4426561287159996,
+          "numerical_sgm10_seconds": 1.1744839618532321
+        }
+      }
+    },
+    "development": {
+      "runs": 66,
+      "valid_processes": 66,
+      "marker_errors": 0,
+      "manifest_sha256": "3a42c35fae7f69ba654081e605293be9e026a305d8df707bb0a3910cf0b3ff7d",
+      "summary_sha256": "e58132e452fa8ed86a6bb7f391cb8ad7fb12d3e36ce2b19f58aad3266eecca64",
+      "raw_sha256": "de52bf4733172ba7526d8041d2e1c09691d7ce32a8944297fdc8ce2e5cbb2063",
+      "actual_call_sha256": "c3608646134ae5511b2f4c42777b8364202b95cf17027b8553ef888278546744",
+      "read_only_revalidation_sha256": "f49972ad044203e9196a6e06b550fb920d0320ccbaaf0a007c9eb298efd4d293",
+      "actual_elapsed_seconds": 23.49520600005053,
+      "revalidation_elapsed_seconds": 2.316438699956052,
+      "metrics": {
+        "frozen_v66": {
+          "quality": 33,
+          "wall_sgm10_seconds": 0.22863903262549792,
+          "numerical_sgm10_seconds": 0.20713187230502528
+        },
+        "diagnostic_on": {
+          "quality": 33,
+          "wall_sgm10_seconds": 0.22113231221111587,
+          "numerical_sgm10_seconds": 0.19546037335084082
+        }
+      }
+    },
+    "probe": {
+      "runs": 36,
+      "valid_processes": 36,
+      "marker_errors": 0,
+      "manifest_sha256": "6bf34cef21fa6c6304311fc7fcbabf821064f03312a8457c724f1683849e2cc5",
+      "summary_sha256": "d1131d3b347c0d1015a57648b29cdb6668f55091f2631ee4e367f53b45d7ed5c",
+      "raw_sha256": "bd8c9e0b75f24d72da8c799d0faceba080835d577d6fa7b72f1d40c2aba620d2",
+      "actual_call_sha256": "e7e15b083eaf2c6cb56a31cc3cfe0f80b8e0502f56d1826bbd01fefcd1cf0581",
+      "read_only_revalidation_sha256": "74eb871e250badd54ae02642b305b5d18ee480478f0e693d6abd075daa952865",
+      "actual_elapsed_seconds": 27.344156099949032,
+      "revalidation_elapsed_seconds": 1.7060025000246242,
+      "metrics": {
+        "frozen_v66": {
+          "quality": 15,
+          "wall_sgm10_seconds": 3.454875808560356,
+          "numerical_sgm10_seconds": 1.1858511748238352
+        },
+        "diagnostic_on": {
+          "quality": 18,
+          "wall_sgm10_seconds": 0.4657697056503569,
+          "numerical_sgm10_seconds": 0.44144432460068816
+        }
+      }
+    },
+    "netlib": {
+      "runs": 182,
+      "valid_processes": 182,
+      "marker_errors": 0,
+      "manifest_sha256": "7bfede0caa6dd4cc3dd098d940a06a0a16150df82dc83e6107856ff40380fab2",
+      "summary_sha256": "4e2e2c778f9966f2fab7619673e69210fe643e512e0036c959831a4ef7b7aa73",
+      "raw_sha256": "569cd3f22b736d24e5934d8c3b03234a796dc42c0be1e987d43ef2c2ceb0f529",
+      "actual_call_sha256": "80a597751def76edc97002fb55551d3173b041c760b385432e96fb3e7b33697e",
+      "read_only_revalidation_sha256": "0f5821fb6033a9f75718bbc527b280262986df2f9132623c38f2ea1e93388e61",
+      "actual_elapsed_seconds": 42.377498500049114,
+      "revalidation_elapsed_seconds": 4.856631899951026,
+      "metrics": {
+        "frozen_v66": {
+          "quality": 90,
+          "wall_sgm10_seconds": 0.28876009137184006,
+          "numerical_sgm10_seconds": 0.14789793328568995
+        },
+        "diagnostic_on": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.1142061640497208,
+          "numerical_sgm10_seconds": 0.09344202722947229
+        }
+      }
+    },
+    "highs": {
+      "runs": 182,
+      "valid_processes": 182,
+      "marker_errors": 0,
+      "manifest_sha256": "9bfbf6ab908c75fbe45183279677b201ca53a8dde89f03d5f40d336259a74ee8",
+      "summary_sha256": "be3e255a4e412f8f91e083eb0a687880630bf13b3f7f211863566e1a325306ea",
+      "raw_sha256": "9385a51d80f3bdbdd45b44bc8f4b2cfb161cc70c37123aedab9fdb306bbaf7e4",
+      "actual_call_sha256": "1e1e7b2b9c02b0639d268f27ba0f6cbdaa3092b78a497b4b5a75fe65516c3eb5",
+      "read_only_revalidation_sha256": "ee50922df61765045c43d743df12155f7d6179246b31014aa16a1f05cd4cf8e0",
+      "actual_elapsed_seconds": 43.633901400025934,
+      "revalidation_elapsed_seconds": 4.623843400040641,
+      "metrics": {
+        "highs": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.09547667245114584,
+          "numerical_sgm10_seconds": 0.07853042102848957
+        },
+        "diagnostic_on": {
+          "quality": 91,
+          "wall_sgm10_seconds": 0.11525066237333659,
+          "numerical_sgm10_seconds": 0.09430441035010519
+        }
+      }
+    }
+  },
+  "compatibility": {
+    "passed": true,
+    "plan_sha256": "5bdb838c40abb14ce5f1ec75a7d3a7ca9c5cdcc4c19432dbc5c61f57be3cc9f0",
+    "runs": 34,
+    "pairs": [
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\afiro.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\adlittle.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\e226.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\israel.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\stair.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\25fv47.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\80bau3b.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\build\\release\\_deps\\highs-src\\check\\instances\\perold.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\pilot87.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\maros-r7.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-development",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\fit1p.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\dfl001.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\finnis.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\greenbea.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\bnl2.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\grow22.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      },
+      {
+        "stage": "compatibility-probe",
+        "input": "D:\\Documents\\codes\\solver\\.deps\\netlib\\forplan.mps",
+        "equal": true,
+        "valid_processes": true,
+        "budget_limited": false,
+        "category": "equal"
+      }
+    ],
+    "non_budget_equal": 17,
+    "budget_pairs": 0,
+    "invalid_pairs": 0,
+    "different_pairs": 0
+  },
+  "gate": {
+    "development_lost": [],
+    "probe_lost": [],
+    "probe_gain": [
+      "greenbea"
+    ],
+    "development_speed_gate": true,
+    "eligible_for_netlib": true,
+    "plan_sha256": "5bdb838c40abb14ce5f1ec75a7d3a7ca9c5cdcc4c19432dbc5c61f57be3cc9f0",
+    "valid_processes": true
+  },
+  "goal": {
+    "models": 91,
+    "no_per_model_coverage_loss": true,
+    "candidate_coverage": 91,
+    "highs_coverage": 91,
+    "candidate_wall_sgm10_seconds": 0.11525066237333659,
+    "highs_wall_sgm10_seconds": 0.09547667245114584,
+    "candidate_numerical_sgm10_seconds": 0.09430441035010519,
+    "highs_numerical_sgm10_seconds": 0.07853042102848957,
+    "candidate_to_highs_wall_ratio": 1.2071080758738093,
+    "achieved": false
+  },
+  "attempts": {
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-build-self-check-attempt1.json": {
+      "sha256": "bc8443ef14bcbb05bfd16d0ad6e3b021ff8db2b0e85d29a04ad02acaadbd4250",
+      "returncode": 0,
+      "elapsed_seconds": 0.3732919000321999,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-build-attempt1.json": {
+      "sha256": "a249bf1aeff0ef21ec3a01fd0995c257ad21a8fd787279530c311d650d602743",
+      "returncode": 0,
+      "elapsed_seconds": 27.52402610005811,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-build-attempt2.json": {
+      "sha256": "366c680c5e7213efac5b686e779c9ce1bcdc6ddf959b82f9ee6a70a7e5a2ab10",
+      "returncode": 0,
+      "elapsed_seconds": 27.146671000053175,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-runner-self-check-attempt1.json": {
+      "sha256": "1c34aa3002b7fbd62f69b4d48b96ab899fa853a580eaf8cdf112a791fd369896",
+      "returncode": 0,
+      "elapsed_seconds": 0.14781640004366636,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-compatibility-development-attempt1.json": {
+      "sha256": "821d92fb161ed9083bda3d3f890d4508c3d856dba6b6ad961b30b919e7dc7749",
+      "returncode": 0,
+      "elapsed_seconds": 8.523887399933301,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-compatibility-probe-attempt1.json": {
+      "sha256": "48cbbdcfdd0a156bba552c4cd1d184bc8469f8fe9ef80e3ab3cbe8ef46251bd3",
+      "returncode": 0,
+      "elapsed_seconds": 10.33856529998593,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-compatibility-attempt1.json": {
+      "sha256": "11cdc45c1ee7fd40cdf9c0edd8b6a599b61fdba60de3108b2501e6b18500bf4b",
+      "returncode": 0,
+      "elapsed_seconds": 2.1273646999616176,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-development-attempt1.json": {
+      "sha256": "c3608646134ae5511b2f4c42777b8364202b95cf17027b8553ef888278546744",
+      "returncode": 0,
+      "elapsed_seconds": 23.49520600005053,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-probe-attempt1.json": {
+      "sha256": "e7e15b083eaf2c6cb56a31cc3cfe0f80b8e0502f56d1826bbd01fefcd1cf0581",
+      "returncode": 0,
+      "elapsed_seconds": 27.344156099949032,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-gate-attempt1.json": {
+      "sha256": "4ea7bef7178e832b2962346e42c9264305e7d2a028d3013b4385d9b5b136e2ed",
+      "returncode": 0,
+      "elapsed_seconds": 3.772805899963714,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-netlib-attempt1.json": {
+      "sha256": "80a597751def76edc97002fb55551d3173b041c760b385432e96fb3e7b33697e",
+      "returncode": 0,
+      "elapsed_seconds": 42.377498500049114,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-highs-attempt1.json": {
+      "sha256": "1e1e7b2b9c02b0639d268f27ba0f6cbdaa3092b78a497b4b5a75fe65516c3eb5",
+      "returncode": 0,
+      "elapsed_seconds": 43.633901400025934,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-revalidate-compatibility-development-attempt1.json": {
+      "sha256": "eb9990a1fcd4e8ac786451e424221e3c63a47e836a369250bb81bb2d0ed45687",
+      "returncode": 0,
+      "elapsed_seconds": 1.2148855000268668,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-revalidate-compatibility-probe-attempt1.json": {
+      "sha256": "d3dcce913d1442cdfcf96ee2ab1a47ab8229198bfa70d74041701682399bbddb",
+      "returncode": 0,
+      "elapsed_seconds": 0.9984783000545576,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-revalidate-development-attempt1.json": {
+      "sha256": "f49972ad044203e9196a6e06b550fb920d0320ccbaaf0a007c9eb298efd4d293",
+      "returncode": 0,
+      "elapsed_seconds": 2.316438699956052,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-revalidate-probe-attempt1.json": {
+      "sha256": "74eb871e250badd54ae02642b305b5d18ee480478f0e693d6abd075daa952865",
+      "returncode": 0,
+      "elapsed_seconds": 1.7060025000246242,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-revalidate-netlib-attempt1.json": {
+      "sha256": "0f5821fb6033a9f75718bbc527b280262986df2f9132623c38f2ea1e93388e61",
+      "returncode": 0,
+      "elapsed_seconds": 4.856631899951026,
+      "changed_inputs": []
+    },
+    "knowledge/experiments/data/2026-10-12-halpern-ipm/v114-revalidate-highs-attempt1.json": {
+      "sha256": "ee50922df61765045c43d743df12155f7d6179246b31014aa16a1f05cd4cf8e0",
+      "returncode": 0,
+      "elapsed_seconds": 4.623843400040641,
+      "changed_inputs": []
+    }
+  },
+  "source_build_audit_sha256": "073e78dda2ff5e9f52d137fbd76b4e73688e5e03697a7fabcfb251fb375a95b8",
+  "core_document_check_sha256": "8448aebd129593f24d7b26af384832e43043258f16f60c70d16bebc8a389d0bc",
+  "evaluation_start_check_sha256": "1d819010aba5c4e4442ddd7f8cabb52fef5c8c1dff55bbcc082e9aac7b460f12",
+  "prototype_identity_sha256": "ab077f50e736c32ab92bd4ca3376ffc6cd8c2b19dc8665e97d29d6b0e8aeacab",
+  "prototype_archive_sha256": "662639e5b9cae0097faf130d166df0029716a3da80ba05c2e868fab282cae22b",
+  "outer_output_handling_event": "compatibility-probe外层PowerShell输出截断管道报错；已核记录中真实子调用rc0、12条完整且合法，未重启或补跑阶段。后续先完整收集输出再显示元数据。"
+}
