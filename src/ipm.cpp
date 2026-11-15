@@ -1,3 +1,8 @@
+#include "solver/detail/ipm_presolve_state.hpp"
+#include "solver/detail/ipm_crossover_state.hpp"
+#include "solver/detail/ipm_profile.hpp"
+#include "solver/detail/factor_reuse_state.hpp"
+#include "solver/detail/current_diagonal_preconditioner.hpp"
 #include "solver/ipm.hpp"
 #include "solver/detail/extended_ldl.hpp"
 #include "solver/detail/ipm_centrality.hpp"
@@ -27,6 +32,8 @@
 #ifdef SOLVER_IPM_TRACE
 #include <iostream>
 #endif
+
+#include "solver/detail/ipm_coupled_state.hpp"
 
 namespace solver {
 namespace {
@@ -209,6 +216,7 @@ struct ConeModel {
   }
 
   void multiply(const std::vector<double>& x, std::vector<double>& output) const {
+    solver::detail::ipm_profile::Scope v112_cone_multiply_scope(solver::detail::ipm_profile::Stage::cone_multiply);
     output.assign(rhs.size(), 0);
     for (std::size_t col = 0; col < costs.size(); ++col) {
       for (Index k = starts[col]; k < starts[col + 1]; ++k) {
@@ -219,6 +227,7 @@ struct ConeModel {
   }
 
   void transpose(const std::vector<double>& z, std::vector<double>& output) const {
+    solver::detail::ipm_profile::Scope v112_cone_transpose_scope(solver::detail::ipm_profile::Stage::cone_transpose_multiply);
     output.assign(costs.size(), 0);
     for (std::size_t col = 0; col < costs.size(); ++col) {
       for (Index k = starts[col]; k < starts[col + 1]; ++k) {
@@ -513,6 +522,7 @@ class KktFactor {
       : model_(model), dimension_(model.costs.size() + model.rhs.size()),
         factor_dimension_(model.costs.size()),
         krylov_history_(static_cast<std::size_t>(options.ipm.krylov_history_size)) {
+    solver::detail::ipm_profile::Scope v112_kkt_setup_scope(solver::detail::ipm_profile::Stage::kkt_setup);
     check_budget(options, start);
     const auto n = model.costs.size();
     std::vector<Index> starts(n + 1, 0);
@@ -628,10 +638,19 @@ class KktFactor {
         for (std::size_t i = 0; i < factor_dimension_; ++i) signs[inverse_[i]] = i < n ? 1 : -1;
         if (options.ipm.linear_solver != "factorhighs") {
           try {
+            // 一次组合外层AMD和完整坐标；当前均衡数值仍在每次回代传入。
+            std::vector<Index> external_coordinates(factor_dimension_);
+            for (std::size_t col = 0; col < n; ++col) external_coordinates[inverse_[col]] = static_cast<Index>(col);
+            for (std::size_t row = 0; row < model.rhs.size(); ++row) {
+              if (retained_index_[row] >= 0)
+                external_coordinates[inverse_[static_cast<std::size_t>(retained_index_[row])]] = static_cast<Index>(n + row);
+            }
+            check_budget(options, start);
             normal_cholesky_ = std::make_unique<detail::NormalCholesky>(factor_dimension_, starts, rows, signs,
                 [&options, &start] { check_budget(options, start); }, normal_multifrontal, normal_extended, normal_refined ? 2 : 0,
                 normal_cholmod_aat ? detail::NormalCholeskyKernel::cholmod_supernodal_aat :
-                normal_cholmod ? detail::NormalCholeskyKernel::cholmod_supernodal : detail::NormalCholeskyKernel::eigen);
+                normal_cholmod ? detail::NormalCholeskyKernel::cholmod_supernodal : detail::NormalCholeskyKernel::eigen,
+                external_coordinates);
           } catch (const detail::NormalCholeskyBudgetExceeded&) {
             if (!normal_augmented) throw;
             // 仅结构预算触发一次切换；已消耗的分析时间不重置，其他异常继续传播。
@@ -687,6 +706,7 @@ class KktFactor {
   void factor(const std::vector<double>& h, const SolveOptions& options,
                 Clock::time_point start, SolveResult& result, int starting_level = 0,
                 bool allow_curvature = true) {
+    solver::detail::ipm_profile::Scope v112_factor_scope(solver::detail::ipm_profile::Stage::factor);
     if (krylov_history_.capacity() > 0 && diagonal_h_ != h) {
       // G 固定而 H 改变时 K0 才改变；同一 H 的正则重试仅更换预条件器。
       check_budget(options, start);
@@ -754,6 +774,8 @@ class KktFactor {
         *result.ipm_regularized_pivots += multifrontal_ldl_->regularized_pivots();
         if (success) {
           result.ipm_factor_nonzeros = multifrontal_ldl_->factor_nonzeros();
+          primal_regularization_ = regularization;
+          dual_regularization_ = dual_regularization;
           return;
         }
         continue;
@@ -769,6 +791,8 @@ class KktFactor {
 #endif
         if (success) {
           result.ipm_factor_nonzeros = normal_cholesky_->factor_nonzeros();
+          primal_regularization_ = regularization;
+          dual_regularization_ = dual_regularization;
           return;
         }
         continue;
@@ -782,6 +806,8 @@ class KktFactor {
 #endif
         if (success) {
           result.ipm_factor_nonzeros = sparse_lu_->factor_nonzeros();
+          primal_regularization_ = regularization;
+          dual_regularization_ = dual_regularization;
           return;
         }
         continue;
@@ -799,7 +825,11 @@ class KktFactor {
           return std::all_of(values.begin(), values.end(), [](long double value) { return std::isfinite(value); });
         };
         if (positives == static_cast<QDLDL_int>(model_.costs.size()) &&
-            finite_vector(extended_d_) && finite_vector(extended_inverse_) && finite_vector(extended_lx_)) return;
+            finite_vector(extended_d_) && finite_vector(extended_inverse_) && finite_vector(extended_lx_)) {
+          primal_regularization_ = regularization;
+          dual_regularization_ = dual_regularization;
+          return;
+        }
         continue;
       } else if (options.ipm.dynamic_regularization) {
         const auto factored = detail::factor_regularized_ldl(static_cast<QDLDL_int>(factor_dimension_),
@@ -819,13 +849,20 @@ class KktFactor {
 #endif
       check_budget(options, start);
       if (positives == static_cast<QDLDL_int>(model_.costs.size()) &&
-          std::isfinite(norm_inf(dinv_)) && std::isfinite(norm_inf(lx_))) return;
+          std::isfinite(norm_inf(dinv_)) && std::isfinite(norm_inf(lx_))) {
+        primal_regularization_ = regularization;
+        dual_regularization_ = dual_regularization;
+        return;
+      }
     }
     throw NumericalFailure(multifrontal_ldl_ ? "分块 LDL 分解重试未成功" : normal_cholesky_ ? "正则化正规方程 Cholesky 分解重试未成功" :
         sparse_lu_ ? "正则化 KKT 稀疏 LU 分解重试未成功" :
         "正则化 KKT 分解未得到可靠惯性");
   }
 
+  std::span<const double> v93_regularized_h() const noexcept { return regularized_h_; }
+  double nominal_primal_regularization() const noexcept { return primal_regularization_; }
+  double nominal_dual_regularization() const noexcept { return dual_regularization_; }
   int regularization_level() const { return regularization_level_; }
   int next_regularization_level() const { return last_unshifted_ ? 0 : regularization_level_ + 1; }
   double last_dual_error() const { return last_dual_error_; }
@@ -948,6 +985,7 @@ class KktFactor {
   std::vector<double> solve_homogeneous_direct(const std::vector<double>& rhs,
       const SolveOptions& options, Clock::time_point start, SolveResult& result,
       bool constant, bool refinement = false) const {
+    solver::detail::ipm_profile::Scope v112_hsd_direct_scope(constant ? solver::detail::ipm_profile::Stage::hsd_constant_direct : solver::detail::ipm_profile::Stage::hsd_direction_direct);
     check_budget(options, start);
     if (constant) {
       ++*result.ipm_homogeneous_constant_solves;
@@ -1200,31 +1238,40 @@ class KktFactor {
     throw NumericalFailure("KKT Krylov 改进未达到原方程精度");
   }
 
+  template <class Solve>
+  void apply_normal_solve(Solve&& solve, const SolveOptions& options,
+      Clock::time_point start, SolveResult& result) const {
+    check_budget(options, start);
+    const auto collect = [&] {
+      const auto statistics = normal_cholesky_->refinement_statistics();
+      result.ipm_schur_residual_products = statistics.residual_products;
+      result.ipm_schur_refinement_steps = statistics.refinement_steps;
+      result.ipm_schur_refinement_acceptances = statistics.refinement_acceptances;
+    };
+    bool success;
+    try {
+      success = solve();
+    } catch (...) {
+      // 中断及数值失败也上报已经启动的内部工作，不吞掉原异常。
+      collect();
+      throw;
+    }
+    collect();
+    check_budget(options, start);
+    if (!success) throw NumericalFailure("正规方程 Cholesky 方向恢复失败");
+  }
+
   void solve_factored(std::vector<double>& rhs, const SolveOptions& options,
       Clock::time_point start, SolveResult& result) const {
+    solver::detail::ipm_profile::Scope v112_solve_factored_scope(solver::detail::ipm_profile::Stage::solve_factored);
     if (multifrontal_ldl_) {
       const bool success = multifrontal_ldl_->solve(rhs,
           [&options, &start] { check_budget(options, start); });
       if (!success) throw NumericalFailure("分块 LDL 三角求解失败");
     } else if (normal_cholesky_) {
-      check_budget(options, start);
-      const auto collect = [&] {
-        const auto statistics = normal_cholesky_->refinement_statistics();
-        result.ipm_schur_residual_products = statistics.residual_products;
-        result.ipm_schur_refinement_steps = statistics.refinement_steps;
-        result.ipm_schur_refinement_acceptances = statistics.refinement_acceptances;
-      };
-      bool success;
-      try {
-        success = normal_cholesky_->solve(rhs, [&options, &start] { check_budget(options, start); });
-      } catch (...) {
-        // 中断及数值失败也上报已经启动的内部工作，不吞掉原异常。
-        collect();
-        throw;
-      }
-      collect();
-      check_budget(options, start);
-      if (!success) throw NumericalFailure("正规方程 Cholesky 方向恢复失败");
+      apply_normal_solve([&] {
+        return normal_cholesky_->solve(rhs, [&options, &start] { check_budget(options, start); });
+      }, options, start, result);
     } else if (sparse_lu_) {
       check_budget(options, start);
       const bool success = sparse_lu_->solve(rhs);
@@ -1249,6 +1296,38 @@ class KktFactor {
 
   std::vector<double> direct(const std::vector<double>& rhs, const SolveOptions& options,
       Clock::time_point start, SolveResult& result) const {
+    solver::detail::ipm_profile::Scope v112_direct_scope(solver::detail::ipm_profile::Stage::direct);
+    if (normal_cholesky_) {
+      const auto n = model_.costs.size();
+      std::vector<long double> primal_rhs;
+      if (factor_dimension_ != dimension_) {
+        primal_rhs.assign(rhs.begin(), rhs.begin() + static_cast<std::ptrdiff_t>(n));
+        for (std::size_t row = 0; row < model_.rhs.size(); ++row) {
+          if (singleton_column_[row] >= 0) {
+            const auto col = static_cast<std::size_t>(singleton_column_[row]);
+            primal_rhs[col] += static_cast<long double>(singleton_value_[row]) * rhs[n + row] / regularized_h_[row];
+          }
+        }
+      }
+      // 输出仅是尚未发布的完整候选，失败或预算中断不会改动输入。
+      std::vector<double> answer(dimension_);
+      {
+        solver::detail::ipm_profile::Scope scope(solver::detail::ipm_profile::Stage::solve_factored);
+        apply_normal_solve([&] {
+          return normal_cholesky_->solve_into({rhs, primal_rhs, equilibration_}, answer,
+              [&options, &start] { check_budget(options, start); });
+        }, options, start, result);
+      }
+      for (std::size_t row = 0; row < model_.rhs.size(); ++row) {
+        if (singleton_column_[row] >= 0) {
+          const auto col = static_cast<std::size_t>(singleton_column_[row]);
+          // 原LD分子和除法保持，最终仍恢复完整KKT方向供原物理方程验算。
+          answer[n + row] = finite((static_cast<long double>(singleton_value_[row]) * answer[col] -
+                                      rhs[n + row]) / regularized_h_[row]);
+        }
+      }
+      return answer;
+    }
     if (factor_dimension_ == dimension_) {
       std::vector<double> permuted(dimension_);
       // 没有消元时不需要构造扩展精度的约化右端；均衡与置换可在同一次扫描完成。
@@ -1392,6 +1471,8 @@ class KktFactor {
   std::vector<double> off_diagonal_max_, equilibration_, factor_values_;
   bool extended_ = false;
   int regularization_level_ = 0;
+  double primal_regularization_ = std::numeric_limits<double>::quiet_NaN();
+  double dual_regularization_ = std::numeric_limits<double>::quiet_NaN();
   bool last_unshifted_ = false;
   mutable double last_dual_error_ = 0;
   std::vector<long double> extended_ax_, extended_lx_, extended_d_, extended_inverse_, extended_work_;
@@ -1399,6 +1480,23 @@ class KktFactor {
   std::unique_ptr<detail::NormalCholesky> normal_cholesky_;
   std::unique_ptr<detail::MultifrontalLdl> multifrontal_ldl_;
   detail::IpmInexactPrefilter inexact_prefilter_;
+};
+
+int v100_regularization_seed(const KktFactor& factor) {
+  return solver::detail::ipm_coupled_state::enabled() ? factor.regularization_level() : 0;
+}
+
+// 即使交叉返回后的原预算检查抛出，也归入已经实际完成的独立验算子项。
+struct CrossoverVerificationCollect {
+  solver::detail::ipm_crossover::Log* log = solver::detail::ipm_crossover::current();
+  double& seconds;
+  double before;
+  explicit CrossoverVerificationCollect(double& destination) noexcept
+      : seconds(destination), before(log && log->last ? log->last->verification_seconds_total : 0) {}
+  ~CrossoverVerificationCollect() noexcept {
+    if (log && log->last)
+      seconds += std::max(0.0, log->last->verification_seconds_total - before);
+  }
 };
 
 bool assess(const ConeModel& model, const Point& point, const SolveOptions& options,
@@ -1465,10 +1563,45 @@ bool assess(const ConeModel& model, const Point& point, const SolveOptions& opti
     }
   }
   const auto start = Clock::now();
-  auto checks = verify_lp_solution(result.model, x, y, options.tolerances, options.pdlp.optimality);
+  auto checks = solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::verify_local, [&] { return verify_lp_solution(result.model, x, y, options.tolerances, options.pdlp.optimality); });
   result.verification_seconds += elapsed(start);
+  CrossoverVerificationCollect crossover_verification(result.verification_seconds);
+  std::optional<solver::detail::ipm_presolve::OracleDecision> crossover_oracle_decision;
+  if (auto trial = solver::detail::ipm_crossover::try_current(result.model, x, y, checks,
+      options, solve_start, result.ipm_iterations, [&] { check_budget(options, solve_start); })) {
+    // 准备、原生交叉和清理都使用原求解时钟，不另授预算或重复加总。
+    check_budget(options, solve_start);
+    if (trial->status == detail::ipx_crossover::Status::accepted) {
+      const bool oracle_active = solver::detail::ipm_presolve::oracle_active();
+      const auto decision = oracle_active
+          ? solver::detail::ipm_presolve::consult_current(true, result.model, trial->x, trial->y, result.ipm_iterations)
+          : solver::detail::ipm_presolve::OracleDecision::accept;
+      const char* decision_name = !oracle_active ? "not_active"
+          : decision == solver::detail::ipm_presolve::OracleDecision::accept ? "accept"
+          : decision == solver::detail::ipm_presolve::OracleDecision::budget ? "budget"
+          : decision == solver::detail::ipm_presolve::OracleDecision::error ? "error" : "reject";
+      solver::detail::ipm_crossover::note_oracle(decision_name, false);
+      if (decision == solver::detail::ipm_presolve::OracleDecision::budget) throw BudgetExpired{};
+      if (decision == solver::detail::ipm_presolve::OracleDecision::error) throw NumericalFailure("交叉候选原模型停止oracle失败");
+      check_budget(options, solve_start);
+      if (decision == solver::detail::ipm_presolve::OracleDecision::accept) {
+        // 原模型先接受，再选择交叉点；拒绝时保留当次HSD点和已付费oracle事件。
+        x = std::move(trial->x);
+        y = std::move(trial->y);
+        checks = std::move(*trial->verification);
+        crossover_oracle_decision = decision;
+        solver::detail::ipm_crossover::note_oracle(decision_name, true);
+      }
+    }
+  }
   const bool feasible = checks.primal.valid_input && checks.primal.feasible &&
       checks.primal.objective_consistent && checks.primal.objective.has_value();
+  // 当前局部质量和坐标在move前咨询；旧incumbent不能触发原模型停止oracle。
+  const bool v92_oracle_active = solver::detail::ipm_presolve::oracle_active();
+  const bool v92_current_local_optimal = feasible && checks.optimality.numerically_optimal;
+  const auto v92_oracle_decision = crossover_oracle_decision ? *crossover_oracle_decision : v92_oracle_active
+      ? solver::detail::ipm_presolve::consult_current(v92_current_local_optimal, result.model, x, y, result.ipm_iterations)
+      : solver::detail::ipm_presolve::OracleDecision::reject;
   bool replace = !result.has_solution || checks.optimality.numerically_optimal;
   if (feasible && result.has_solution) {
     const double sense = result.model.sense == ObjectiveSense::minimize ? 1 : -1;
@@ -1498,6 +1631,18 @@ bool assess(const ConeModel& model, const Point& point, const SolveOptions& opti
         result.relative_gap = finite(nonnegative / scale);
       }
     }
+  }
+  if (v92_oracle_active) {
+    // 先保留原局部质量和计数，再把回调结果桥接到core已有异常处理。
+    if (v92_oracle_decision == solver::detail::ipm_presolve::OracleDecision::budget) throw BudgetExpired{};
+    if (v92_oracle_decision == solver::detail::ipm_presolve::OracleDecision::error) throw NumericalFailure("原模型停止oracle失败");
+    if (v92_oracle_decision == solver::detail::ipm_presolve::OracleDecision::accept) {
+      result.status = "optimal";
+      result.verification_level = "primal_dual_residuals_checked";
+      return true;
+    }
+    result.status = "iteration_limit";
+    return false;
   }
   if (result.has_solution && result.lp_optimality && result.lp_optimality->numerically_optimal) {
     result.status = "optimal";
@@ -1614,6 +1759,7 @@ bool retry_direction_factor(const std::vector<double>& diagonal, KktFactor& fact
 
 void initialize(const ConeModel& model, Point& point, KktFactor& factor,
                   const SolveOptions& options, Clock::time_point start, SolveResult& result) {
+  solver::detail::ipm_profile::Scope v112_initialize_scope(solver::detail::ipm_profile::Stage::initialize);
   const auto n = point.x.size();
   const auto m = point.s.size();
   // 同一个增广矩阵分别求原始最小残差点和最小范数对偶点。
@@ -1803,13 +1949,100 @@ void run_ipm(const ConeModel& model, const SolveOptions& options,
   assess(model, point, options, start, result);
 }
 
+struct V94WideDirection {
+  std::vector<long double> x, s, z;
+  long double tau = 0, kappa = 0;
+};
 struct HomogeneousDirection {
   Point point;
   detail::IpmHomogeneousScalarDirection scalars;
+  std::optional<V94WideDirection> v94_wide;
 };
+void v94_wide_shape(const V94WideDirection& wide, std::size_t n, std::size_t m) {
+  if (wide.x.size() != n || wide.s.size() != m || wide.z.size() != m ||
+      !std::isfinite(wide.tau) || !std::isfinite(wide.kappa))
+    throw NumericalFailure("完整LD方向的维数或标量无效");
+}
+
+HomogeneousDirection v94_deliver_direction(const detail::IpmHomogeneousScaling& scaling,
+    std::vector<long double> solution, const std::function<void()>& budget) {
+  if (budget) budget();
+  if (solution.size() != scaling.dimension()) throw NumericalFailure("完整LD解维数不一致");
+  const auto n = scaling.layout.columns, m = scaling.layout.rows;
+  HomogeneousDirection direction;
+  auto& wide = direction.v94_wide.emplace();
+  wide.x.resize(n); wide.z.resize(m); wide.s.assign(m, 0);
+  const auto coordinate = [&](std::size_t i) {
+    if (!std::isfinite(solution[i])) throw NumericalFailure("完整LD方向非有限");
+    return solution[i];
+  };
+  for (std::size_t col = 0; col < n; ++col) {
+    if ((col & 4095) == 0 && budget) budget();
+    wide.x[col] = coordinate(col);
+  }
+  for (std::size_t row = 0; row < m; ++row) {
+    if ((row & 4095) == 0 && budget) budget();
+    wide.z[row] = coordinate(n + row);
+  }
+  for (std::size_t i = 0; i < scaling.layout.inequality_rows.size(); ++i) {
+    if ((i & 4095) == 0 && budget) budget();
+    wide.s[scaling.layout.inequality_rows[i]] = coordinate(n + m + i);
+  }
+  wide.tau = coordinate(solution.size() - 2); wide.kappa = coordinate(solution.size() - 1);
+  if (budget) budget();
+  return direction;
+}
+
+long double v94_corrector_rhs(const ConeModel& model, const Point& point, double tau, double kappa,
+    const HomogeneousDirection& affine, double sigma, double mu, std::vector<double>& h,
+    const std::function<void()>& budget) {
+  solver::detail::ipm_profile::Scope v112_corrector_rhs_scope(solver::detail::ipm_profile::Stage::corrector_rhs);
+  if (budget) budget();
+  if (!affine.v94_wide || h.size() != point.s.size()) throw NumericalFailure("LD校正方向或右端维数无效");
+  const auto& wide = *affine.v94_wide;
+  v94_wide_shape(wide, point.x.size(), point.s.size());
+  for (std::size_t row = 0; row < point.s.size(); ++row) {
+    if ((row & 4095) == 0 && budget) budget();
+    if (model.inequality[row]) h[row] = finite(-static_cast<long double>(point.s[row]) * point.z[row] +
+        static_cast<long double>(sigma) * mu - wide.s[row] * wide.z[row]);
+  }
+  const long double h_tau = -static_cast<long double>(tau) * kappa +
+      static_cast<long double>(sigma) * mu - wide.tau * wide.kappa;
+  if (budget) budget();
+  return h_tau;
+}
+
+struct V94UpdatedPoint { Point point; double tau, kappa; };
+V94UpdatedPoint v94_update_point(const ConeModel& model, const Point& point, double tau, double kappa,
+    const HomogeneousDirection& corrected, double step, const std::function<void()>& budget) {
+  solver::detail::ipm_profile::Scope v112_point_update_scope(solver::detail::ipm_profile::Stage::point_update);
+  if (budget) budget();
+  if (!corrected.v94_wide) throw NumericalFailure("缺少完整LD更新方向");
+  const auto& wide = *corrected.v94_wide;
+  v94_wide_shape(wide, point.x.size(), point.s.size());
+  Point candidate;
+  candidate.x.resize(point.x.size()); candidate.s.resize(point.s.size()); candidate.z.resize(point.z.size());
+  for (std::size_t col = 0; col < point.x.size(); ++col) {
+    if ((col & 4095) == 0 && budget) budget();
+    candidate.x[col] = finite(static_cast<long double>(point.x[col]) + static_cast<long double>(step) * wide.x[col]);
+  }
+  for (std::size_t row = 0; row < point.s.size(); ++row) {
+    if ((row & 4095) == 0 && budget) budget();
+    candidate.s[row] = finite(static_cast<long double>(point.s[row]) + static_cast<long double>(step) * wide.s[row]);
+    candidate.z[row] = finite(static_cast<long double>(point.z[row]) + static_cast<long double>(step) * wide.z[row]);
+    if (model.inequality[row] && (!(candidate.s[row] > 0) || !(candidate.z[row] > 0)))
+      throw NumericalFailure("齐次更新不能保持严格内点");
+  }
+  const double next_tau = finite(static_cast<long double>(tau) + static_cast<long double>(step) * wide.tau);
+  const double next_kappa = finite(static_cast<long double>(kappa) + static_cast<long double>(step) * wide.kappa);
+  if (!(next_tau > 0) || !(next_kappa > 0)) throw NumericalFailure("齐次更新的 tau、kappa 不再严格为正");
+  if (budget) budget();
+  return {std::move(candidate), next_tau, next_kappa};
+}
 
 bool assess_homogeneous(const ConeModel& model, const Point& point, double tau,
     const SolveOptions& options, Clock::time_point start, SolveResult& result) {
+  solver::detail::ipm_profile::Scope v112_assess_homogeneous_scope(solver::detail::ipm_profile::Stage::assess_homogeneous);
   check_budget(options, start);
   if (!(tau > 0) || !std::isfinite(tau)) throw NumericalFailure("齐次解提取要求有限正 tau");
   Point extracted;
@@ -1899,12 +2132,288 @@ HomogeneousDirection homogeneous_direction(const ConeModel& model, const Point& 
   return direction;
 }
 
+long double v100_energy_denominator(const KktFactor& factor, std::size_t columns,
+    const std::vector<double>& constant, const SolveResult& result, const std::function<void()>& budget,
+    std::int64_t attempt_iteration) {
+  auto* log = solver::detail::ipm_energy_state::current();
+  if (!log || !solver::detail::ipm_coupled_state::enabled() || attempt_iteration < 1 || attempt_iteration > 200)
+    throw NumericalFailure("名义正则能量作用域或本次迭代标签无效");
+  if (budget) budget();
+  log->last.emplace();
+  auto& call = *log->last;
+  call.attempt_iteration = attempt_iteration;
+  ++log->started;
+  solver::detail::ipm_energy_state::Collect collect{*log, call};
+  // 缺失正则是非法内部输入，不能用默认0掩盖缺失的分解状态。
+  const double reported_regularization = result.ipm_primal_regularization.value_or(std::numeric_limits<double>::quiet_NaN());
+  const double factor_regularization = factor.nominal_primal_regularization();
+  if (std::isfinite(reported_regularization) && reported_regularization != factor_regularization)
+    throw std::invalid_argument("名义能量的公共正则与当前成功因子不一致");
+  // 缺失/非有限值仍交给原能量入口，保留原数值错误状态及已启动费用。
+  const double regularization = std::isfinite(reported_regularization) ? factor_regularization : reported_regularization;
+  try {
+    const long double denominator = ::solver::detail::ipm_energy::compute(columns, constant, factor.v93_regularized_h(),
+        regularization, call.work, budget);
+    ++log->completed;
+    return denominator;
+  } catch (const ::solver::detail::ipm_energy::Failure& error) {
+    throw NumericalFailure(error.what());
+  } catch (const BudgetExpired&) {
+    call.work.status = "budget";
+    throw;
+  }
+}
+
+std::vector<double> v124_current_rows(const KktFactor& factor, std::span<const double> diagonal,
+    const SolveResult& result, detail::factor_reuse::Probe& event, const std::function<void()>& budget = {}) {
+  const double delta = factor.nominal_dual_regularization();
+  const double reported = result.ipm_dual_regularization.value_or(std::numeric_limits<double>::quiet_NaN());
+  if (!(delta >= 0) || !std::isfinite(delta) || reported != delta ||
+      diagonal.size() != factor.v93_regularized_h().size())
+    throw std::invalid_argument("当前R的对偶正则不属于上一成功因子世代");
+  if (budget) budget();
+  ++event.current_rows_started;
+  std::vector<double> rows(diagonal.size());
+  for (std::size_t row = 0; row < diagonal.size(); ++row) {
+    if ((row & 4095) == 0 && budget) budget();
+    ++event.current_rows_terms;
+    if (!(diagonal[row] >= 0) || !std::isfinite(diagonal[row]))
+      throw std::invalid_argument("当前R的原始对角必须有限非负");
+    rows[row] = finite(static_cast<long double>(diagonal[row]) + delta);
+    if (!(rows[row] > 0)) throw NumericalFailure("当前R必须逐行有限正");
+  }
+  if (budget) budget();
+  ++event.current_rows_completed;
+  return rows;
+}
+
+std::vector<double> v124_apply_current(const detail::current_diagonal::ValidatedView& view,
+    std::span<const double> rhs, const KktFactor& factor, const SolveOptions& options,
+    Clock::time_point start, SolveResult& result, bool constant, bool refinement,
+    detail::current_diagonal::Work& work, const std::function<void()>& budget = {},
+    std::span<const double> scales = {}, detail::schur_diagonal_transport::Work* transport = nullptr) {
+  if ((!transport && !scales.empty()) || (transport && scales.size() != view.columns()))
+    throw std::invalid_argument("Schur对角缩放的系数与账本不匹配");
+  try {
+    return detail::current_diagonal::apply(view, rhs, [&](std::vector<double>& reduced) {
+      const auto direct = [&](const std::vector<double>& input) {
+        return factor.solve_homogeneous_direct(input, options, start, result, constant, refinement);
+      };
+      return transport ? detail::schur_diagonal_transport::apply(scales, reduced, direct, *transport, budget) :
+          direct(reduced);
+    }, work, budget);
+  } catch (const detail::current_diagonal::Failure& error) {
+    throw NumericalFailure(error.what());
+  } catch (const detail::schur_diagonal_transport::Failure& error) {
+    throw NumericalFailure(error.what());
+  }
+}
+
+long double v124_energy_denominator(const KktFactor& factor, std::size_t columns,
+    const std::vector<double>& constant, std::span<const double> current_rows, const SolveResult& result,
+    const std::function<void()>& budget, std::int64_t attempt_iteration) {
+  auto* log = detail::ipm_energy_state::current();
+  if (!log || !detail::ipm_coupled_state::enabled() || attempt_iteration < 1 || attempt_iteration > 200)
+    throw NumericalFailure("当前对角近似能量的作用域或迭代标签无效");
+  if (budget) budget();
+  log->last.emplace();
+  auto& call = *log->last;
+  call.attempt_iteration = attempt_iteration;
+  ++log->started;
+  detail::ipm_energy_state::Collect collect{*log, call};
+  const double regularization = factor.nominal_primal_regularization();
+  if (result.ipm_primal_regularization.value_or(std::numeric_limits<double>::quiet_NaN()) != regularization)
+    throw std::invalid_argument("当前对角近似能量的原始正则不属于上一成功因子世代");
+  try {
+    // 此正分母只定义本点固定的近似预条件器，不冒充组合算子的精确Schur分母。
+    const long double denominator = detail::ipm_energy::compute(columns, constant, current_rows,
+        regularization, call.work, budget);
+    ++log->completed;
+    return denominator;
+  } catch (const detail::ipm_energy::Failure& error) {
+    throw NumericalFailure(error.what());
+  } catch (const BudgetExpired&) {
+    call.work.status = "budget";
+    throw;
+  }
+}
+
+void v125_scalar_diagnostics(const detail::IpmHomogeneousScaling& scaling,
+    std::span<const double> costs, std::span<const double> bounds, std::span<const double> constant,
+    long double denominator, detail::factor_reuse::ScalarConsistency& work,
+    const std::function<void()>& budget = {}) {
+  const auto n = scaling.layout.columns, m = scaling.layout.rows;
+  if (costs.size() != n || bounds.size() != m || constant.size() != n + m || work.started != 0 ||
+      !(scaling.d > 0) || !std::isfinite(scaling.d) || !(denominator >= 1) || !std::isfinite(denominator))
+    throw std::invalid_argument("常量标量差异观察的维数、分母或账本无效");
+  const auto check = [&] { ++work.budget_checks; if (budget) budget(); };
+  check();
+  ++work.started;
+  long double dot = 0;
+  for (std::size_t i = 0; i < n + m; ++i) {
+    if ((i & 4095) == 0) check();
+    ++work.terms;
+    dot += (static_cast<long double>(i < n ? costs[i] : bounds[i - n]) / scaling.d) * constant[i];
+  }
+  const long double natural = 1 - dot;
+  work.positive_denominator = denominator;
+  // 观察量不用于接受或调整候选；宽值无法表示时保留null，不引入新的数值放行条件。
+  if (std::isfinite(natural)) {
+    work.natural_denominator = natural;
+    const long double scale = std::max({1.0L, std::abs(natural), std::abs(denominator)});
+    const long double difference = natural - denominator;
+    const long double relative = std::isfinite(difference) ? difference / scale :
+        natural / scale - denominator / scale;
+    if (std::isfinite(relative)) work.relative_difference = relative;
+  }
+  check();
+  ++work.completed;
+}
+
+template<class Scalar>
+void v94_hsd_product(const detail::IpmHomogeneousScaling& scaling,
+    std::span<const std::int64_t> starts, std::span<const std::int64_t> rows,
+    std::span<const double> values, std::span<const double> costs, std::span<const double> bounds,
+    std::span<const double> slack, std::span<const double> dual, double tau, double kappa,
+    std::span<const Scalar> direction, std::vector<long double>& product,
+    const std::function<void()>& check) {
+  solver::detail::ipm_profile::Scope v112_hsd_product_scope(std::is_same_v<Scalar, double> ? solver::detail::ipm_profile::Stage::hsd_column_product : solver::detail::ipm_profile::Stage::hsd_true_product);
+  const bool v106_batched_budget = static_cast<bool>(check) && solver::detail::ipm_coupled_state::enabled();
+  std::size_t v106_budget_remaining = 256;
+  const auto v106_budget_tick = [&] {
+    if (--v106_budget_remaining == 0) {
+      if (check) check();
+      v106_budget_remaining = 256;
+    }
+  };
+  if (check) check();
+  const auto n = scaling.layout.columns, m = scaling.layout.rows, gap = n + m;
+  const auto tau_index = scaling.dimension() - 2;
+  if (starts.size() != n + 1 || rows.size() != values.size() || costs.size() != n || bounds.size() != m ||
+      slack.size() != m || dual.size() != m || direction.size() != scaling.dimension())
+    throw std::invalid_argument("齐次五块算子维数不一致");
+  product.assign(scaling.dimension(), 0);
+  const long double dt = direction[tau_index], dk = direction[tau_index + 1];
+  long double gap_product = dk;
+  for (std::size_t row = 0; row < m; ++row) {
+    if ((row & 4095) == 0) if (check) check();
+    product[n + row] = -static_cast<long double>(bounds[row]) * dt;
+    gap_product += static_cast<long double>(bounds[row]) * direction[n + row];
+  }
+  for (std::size_t col = 0; col < n; ++col) {
+    if (v106_batched_budget) v106_budget_tick();
+    else if (check) check();
+    long double value = static_cast<long double>(costs[col]) * dt;
+    for (Index k = starts[col]; k < starts[col + 1]; ++k) {
+      if (v106_batched_budget) v106_budget_tick();
+      else if ((k & 4095) == 0) if (check) check();
+      const auto position = static_cast<std::size_t>(k), row = static_cast<std::size_t>(rows[position]);
+      value += static_cast<long double>(values[position]) * direction[n + row];
+      product[n + row] += static_cast<long double>(values[position]) * direction[col];
+    }
+    product[col] = value;
+    gap_product += static_cast<long double>(costs[col]) * direction[col];
+  }
+  product[gap] = gap_product / scaling.d;
+  for (std::size_t i = 0; i < scaling.layout.inequality_rows.size(); ++i) {
+    if ((i & 4095) == 0) if (check) check();
+    const auto row = scaling.layout.inequality_rows[i];
+    const long double ds = direction[gap + i];
+    product[n + row] += ds;
+    product[gap + 1 + i] = (static_cast<long double>(dual[row]) * ds +
+        static_cast<long double>(slack[row]) * direction[n + row]) / scaling.lambda[i];
+  }
+  product.back() = (static_cast<long double>(kappa) * dt + static_cast<long double>(tau) * dk) / scaling.lambda_tau;
+  if (check) check();
+}
+
+struct V96ToleranceData {
+  std::array<double, 5> tolerances{};
+  std::array<double, 3> rhs_norms{};
+};
+V96ToleranceData v100_tolerances_and_rhs_norms(const detail::IpmHomogeneousScaling& scaling,
+    std::span<const double> rhs, const std::function<void()>& budget = {}) {
+  if (budget) budget();
+  if (rhs.size() != scaling.dimension()) throw std::invalid_argument("齐次五块门槛维数不一致");
+  const ::solver::detail::ipm_coupled::Layout layout{scaling.layout.columns, scaling.layout.rows,
+      scaling.layout.inequality_rows.size()};
+  V96ToleranceData data;
+  for (std::size_t i = 0; i < rhs.size(); ++i) {
+    if ((i & 4095) == 0 && budget) budget();
+    if (!std::isfinite(rhs[i])) throw NumericalFailure("齐次五块右端非有限");
+    const auto block = layout.block(i);
+    data.tolerances[block] = std::max(data.tolerances[block], std::abs(rhs[i]));
+  }
+  // 在原max扫描的结果乘strict系数前保留三项，不能从已舍入门槛反推原范数。
+  data.rhs_norms = {data.tolerances[0], data.tolerances[1], data.tolerances[2]};
+  for (auto& value : data.tolerances) value = 1e-12 + 1e-10 * value;
+  if (budget) budget();
+  return data;
+}
+
+HomogeneousDirection v100_deliver_direction(const detail::IpmHomogeneousScaling& scaling,
+    std::vector<long double> solution, bool forced, SolveResult& result,
+    const std::function<void()>& budget = {}) {
+  auto direction = v94_deliver_direction(scaling, std::move(solution), budget);
+  // 初始或候选forcing均在原pack的最后预算成功后才记公共inexact。
+  if (forced) ++*result.ipm_homogeneous_scaled_inexact_returns;
+  return direction;
+}
+
+std::vector<long double> v100_solve_coupled(const detail::IpmHomogeneousScaling& scaling,
+    std::span<const double> rhs, const detail::IpmHomogeneousScaledPreconditioner& precondition,
+    const ::solver::detail::ipm_coupled::ProductDouble& multiply,
+    const ::solver::detail::ipm_coupled::ProductWide& multiply_wide, const std::function<void()>& budget,
+    const char* role, std::int64_t attempt_iteration, bool* forced = nullptr, bool allow_candidates = false,
+    bool forcing_weights = false, bool initial_only = false,
+    std::size_t krylov_budget = ::solver::detail::ipm_coupled::max_window * ::solver::detail::ipm_coupled::max_cycles) {
+  if (forced) *forced = false;
+  auto* log = solver::detail::ipm_coupled_state::current();
+  if (!log || !role || (std::string_view(role) != "affine" && std::string_view(role) != "corrector") ||
+      attempt_iteration < 1 || attempt_iteration > 200)
+    throw NumericalFailure("联立Newton调用站或本次迭代标签无效");
+  // 原门槛准备仍只扫一遍完整RHS，准备失败不启动新的方向或forcing决策。
+  const auto data = v100_tolerances_and_rhs_norms(scaling, rhs, budget);
+  const ::solver::detail::ipm_coupled::InitialForcing forcing{data.rhs_norms};
+  if (budget) budget();
+  log->last.emplace();
+  auto& call = *log->last;
+  call.role = role; call.attempt_iteration = attempt_iteration;
+  ++log->directions_started;
+  solver::detail::ipm_coupled_state::Collect collect{*log, call};
+  const ::solver::detail::ipm_coupled::Layout layout{scaling.layout.columns, scaling.layout.rows,
+      scaling.layout.inequality_rows.size()};
+  try {
+    auto answer = ::solver::detail::ipm_coupled::solve(layout, rhs, data.tolerances, precondition,
+        multiply, multiply_wide, call.work, budget, &forcing, allow_candidates, forcing_weights, true, initial_only,
+        krylov_budget);
+    if (forced) *forced = std::string_view(call.work.status) == "forced_initial" ||
+        std::string_view(call.work.status) == "forced_candidate";
+    ++log->directions_completed;
+    return answer;
+  } catch (const ::solver::detail::ipm_coupled::Failure& error) {
+    throw NumericalFailure(error.what());
+  } catch (const BudgetExpired&) {
+    call.work.status = "budget";
+    throw;
+  }
+}
+
 HomogeneousDirection homogeneous_scaled_direction(const ConeModel& model, const Point& point,
     double tau, double kappa, const std::vector<double>& primal_residual,
     const std::vector<double>& dual_residual, long double gap_residual, double theta,
     const std::vector<double>& h, long double h_tau, const std::vector<double>& constant,
     const detail::IpmHomogeneousScaling& scaling, long double denominator,
-    const KktFactor& factor, const SolveOptions& options, Clock::time_point start, SolveResult& result) {
+    const KktFactor& factor, const SolveOptions& options, Clock::time_point start, SolveResult& result,
+    const char* v100_role = nullptr, std::int64_t v100_iteration = 0, bool initial_only = false,
+    std::size_t krylov_budget = ::solver::detail::ipm_coupled::max_window * ::solver::detail::ipm_coupled::max_cycles,
+    const detail::current_diagonal::ValidatedView* current_view = nullptr,
+    detail::current_diagonal::Work* current_work = nullptr, std::span<const double> scales = {},
+    detail::schur_diagonal_transport::Work* transport = nullptr) {
+  if ((current_view == nullptr) != (current_work == nullptr))
+    throw std::invalid_argument("当前对角预条件器的视图与费用账本必须同时提供");
+  if ((transport && !current_view) || (!transport && !scales.empty()))
+    throw std::invalid_argument("Schur对角缩放必须属于本次当前R预条件上下文");
   const auto budget = [&] { check_budget(options, start); };
   budget();
   const auto n = point.x.size(), m = point.s.size(), gap = n + m;
@@ -1924,10 +2433,15 @@ HomogeneousDirection homogeneous_scaled_direction(const ConeModel& model, const 
   }
   rhs.back() = finite(h_tau / scaling.lambda_tau);
   const auto precondition = [&](std::span<const double> input, bool refinement) {
+    solver::detail::ipm_profile::Scope v112_preconditioner_scope(solver::detail::ipm_profile::Stage::preconditioner);
     const auto reduced_rhs = detail::ipm_homogeneous_scaled_reduced_rhs(scaling, input, budget);
-    const auto reduced = factor.solve_homogeneous_direct(reduced_rhs, options, start, result, false, refinement);
+    const auto reduced = current_view ? v124_apply_current(*current_view, reduced_rhs, factor, options,
+        start, result, false, refinement, *current_work, budget, scales, transport) :
+        factor.solve_homogeneous_direct(reduced_rhs, options, start, result, false, refinement);
     return detail::ipm_homogeneous_scaled_recover(scaling, model.costs, model.rhs,
-        input, reduced, constant, denominator, budget);
+        input, reduced, constant, denominator, budget, current_view
+            ? detail::IpmScalarDenominatorPolicy::signed_schur
+            : detail::IpmScalarDenominatorPolicy::positive_energy);
   };
   const auto multiply = [&](std::span<const double> direction, std::vector<long double>& product) {
     budget();
@@ -1936,6 +2450,21 @@ HomogeneousDirection homogeneous_scaled_direction(const ConeModel& model, const 
         model.costs, model.rhs, point.s, point.z, tau, kappa, direction, product, budget);
     budget();
   };
+  if (solver::detail::ipm_coupled_state::enabled()) {
+    const auto product = [&]<class Scalar>(std::span<const Scalar> value, std::vector<long double>& image) {
+      budget();
+      ++*result.ipm_homogeneous_scaled_products;
+      v94_hsd_product(scaling, model.starts, model.rows, model.values, model.costs, model.rhs,
+          point.s, point.z, tau, kappa, value, image, budget);
+      budget();
+    };
+    bool forced = false;
+    auto solution = v100_solve_coupled(scaling, rhs, precondition,
+        [&](std::span<const double> value, std::vector<long double>& image) { product(value, image); },
+        [&](std::span<const long double> value, std::vector<long double>& image) { product(value, image); },
+        budget, v100_role, v100_iteration, &forced, true, true, initial_only, krylov_budget);
+    return v100_deliver_direction(scaling, std::move(solution), forced, result, budget);
+  }
   detail::IpmBoundedNewtonInfo info;
   const auto solution = detail::solve_ipm_homogeneous_scaled(scaling, rhs, precondition, multiply, info, budget);
   HomogeneousDirection direction;
@@ -1954,9 +2483,88 @@ HomogeneousDirection homogeneous_scaled_direction(const ConeModel& model, const 
   return direction;
 }
 
+template <class Pair>
+std::optional<HomogeneousDirection> v122_try_reuse_pair(std::vector<double>& h, Pair&& pair,
+    detail::factor_reuse::Log& reuse, Index iteration, Index factor_epoch, SolveResult& result,
+    const std::function<void()>& budget = {}) {
+  auto* main_coupled = detail::ipm_coupled_state::current();
+  auto* main_energy = detail::ipm_energy_state::current();
+  if (!reuse.enabled || !main_coupled || !main_energy || iteration < 2 || iteration > 200 ||
+      factor_epoch < 1 || factor_epoch >= iteration || reuse.events.size() >= 199)
+    throw std::invalid_argument("旧因子探测的作用域、迭代或成功世代无效");
+  if (budget) budget();
+  reuse.events.emplace_back();
+  auto& event = reuse.events.back();
+  event.attempt_iteration = iteration; event.factor_epoch = factor_epoch;
+  event.coupled.enabled = true; event.energy.enabled = true;
+  detail::factor_reuse::Collect collect{event, result, detail::factor_reuse::counts(result)};
+  struct Restore {
+    std::vector<double>& target;
+    std::vector<double> saved;
+    bool keep = false;
+    ~Restore() noexcept { if (!keep) target.swap(saved); }
+  } restore{h, h};
+  detail::ipm_coupled_state::Scope coupled_scope(&event.coupled);
+  detail::ipm_energy_state::Scope energy_scope(&event.energy);
+  try {
+    auto direction = pair(true);
+    if (budget) budget();
+    // 真验、完整交付与末预算都通过，才并入选定尝试的旧合同账本。
+    detail::factor_reuse::merge(*main_coupled, event.coupled);
+    detail::factor_reuse::merge(*main_energy, event.energy);
+    ++reuse.reused_steps;
+    event.status = "accepted";
+    restore.keep = true;
+    return std::optional<HomogeneousDirection>(std::move(direction));
+  } catch (const detail::ipm_coupled::InitialRejected&) {
+    event.status = "initial_rejected";
+    return std::nullopt;
+  } catch (const detail::ipm_coupled::BoundedRejected&) {
+    event.status = "bounded_rejected";
+    return std::nullopt;
+  } catch (const detail::current_diagonal::Failure&) {
+    event.status = "numerical_error";
+    return std::nullopt;
+  } catch (const detail::schur_diagonal_transport::Failure&) {
+    event.status = "numerical_error";
+    return std::nullopt;
+  } catch (const detail::natural_schur::Failure&) {
+    event.status = "numerical_error";
+    return std::nullopt;
+  } catch (const NumericalFailure&) {
+    event.status = "numerical_error";
+    return std::nullopt;
+  } catch (const BudgetExpired&) {
+    event.status = "budget";
+    throw;
+  }
+  // 分配失败、非法输入及其它异常由RAII保留前缀并原样传播，不能伪装数值拒绝。
+}
+
 double homogeneous_step(const ConeModel& model, const Point& point, double tau, double kappa,
     const HomogeneousDirection& direction, const SolveOptions& options, Clock::time_point start) {
+  solver::detail::ipm_profile::Scope v112_homogeneous_step_scope(solver::detail::ipm_profile::Stage::homogeneous_step);
   check_budget(options, start);
+  if (direction.v94_wide) {
+    const auto& wide = *direction.v94_wide;
+    v94_wide_shape(wide, point.x.size(), point.s.size());
+    if (!(tau > 0) || !(kappa > 0) || !std::isfinite(tau) || !std::isfinite(kappa))
+      throw NumericalFailure("齐次步长边界输入无效");
+    long double limit = 1;
+    for (std::size_t row = 0; row < point.s.size(); ++row) {
+      if ((row & 4095) == 0) check_budget(options, start);
+      if (model.inequality[row]) {
+        if (!std::isfinite(wide.s[row]) || !std::isfinite(wide.z[row])) throw NumericalFailure("LD锥方向非有限");
+        if (wide.s[row] < 0) limit = std::min(limit, -static_cast<long double>(point.s[row]) / wide.s[row]);
+        if (wide.z[row] < 0) limit = std::min(limit, -static_cast<long double>(point.z[row]) / wide.z[row]);
+      }
+    }
+    if (wide.tau < 0) limit = std::min(limit, -static_cast<long double>(tau) / wide.tau);
+    if (wide.kappa < 0) limit = std::min(limit, -static_cast<long double>(kappa) / wide.kappa);
+    const double result = finite(limit);
+    check_budget(options, start);
+    return result;
+  }
   const double cone_limit = std::min(boundary_step(model, point.s, direction.point.s),
       boundary_step(model, point.z, direction.point.z));
   return detail::ipm_homogeneous_step_limit(cone_limit, tau, kappa, direction.scalars,
@@ -1965,6 +2573,7 @@ double homogeneous_step(const ConeModel& model, const Point& point, double tau, 
 
 void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
     Clock::time_point start, SolveResult& result) {
+  solver::detail::ipm_profile::Scope v112_run_homogeneous_scope(solver::detail::ipm_profile::Stage::run_homogeneous);
   const auto n = model.costs.size(), m = model.rhs.size();
   Point point;
   point.x.resize(n);
@@ -2001,7 +2610,18 @@ void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
   std::vector<double> primal_residual, dual_residual, diagonal(m), h(m), constant_rhs(n + m);
   for (std::size_t col = 0; col < n; ++col) constant_rhs[col] = -model.costs[col];
   std::copy(model.rhs.begin(), model.rhs.end(), constant_rhs.begin() + static_cast<std::ptrdiff_t>(n));
-  const bool scaled_direction = options.ipm.linear_accuracy == "homogeneous_scaled";
+  const bool scaled_direction = options.ipm.linear_accuracy == "homogeneous_scaled" || solver::detail::ipm_coupled_state::enabled();
+  auto* reuse = options.ipm.factor_reuse ? detail::factor_reuse::current() : nullptr;
+  if (options.ipm.factor_reuse && (!reuse || !detail::ipm_coupled_state::enabled() || !detail::ipm_energy_state::enabled()))
+    throw std::invalid_argument("因子复用要求本次求解的联立、能量与探测账本作用域");
+  if (reuse) {
+    check_budget(options, start);
+    reuse->events.reserve(static_cast<std::size_t>(std::max<Index>(0, options.ipm.max_iterations - 1)));
+    check_budget(options, start);
+  }
+  // 初始化因子不作为可复用世代；第一外层仍按原流程重新分解。
+  Index factor_epoch = 0;
+  detail::schur_diagonal_transport::Cache diagonal_cache;
   for (std::int64_t iteration = 1; iteration <= options.ipm.max_iterations; ++iteration) {
     check_budget(options, start);
     model.multiply(point.x, primal_residual);
@@ -2033,48 +2653,118 @@ void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
     }
     if (!std::isfinite(gap_residual)) throw NumericalFailure("齐次间隙残差非有限");
     const double mu = finite(complementarity / (static_cast<long double>(model.barrier_rows) + 1));
-    factor.factor(diagonal, options, start, result);
-    check_budget(options, start);
-    std::vector<double> constant;
-    detail::IpmHomogeneousScaling scaling;
-    long double denominator = 0;
-    if (scaled_direction) {
-      const auto budget = [&] { check_budget(options, start); };
-      scaling = detail::make_ipm_homogeneous_scaling(n, model.inequality, point.s, point.z, tau, kappa, budget);
-      const auto scaled_rhs = detail::ipm_homogeneous_scaled_constant_rhs(scaling, model.costs, model.rhs, budget);
-      constant = factor.solve_homogeneous_direct(scaled_rhs, options, start, result, true);
-      denominator = detail::ipm_homogeneous_scaled_denominator(scaling, constant, budget);
-    } else {
-      ++*result.ipm_homogeneous_constant_solves;
-      constant = factor.solve(constant_rhs, options, start, result);
-    }
-    const long double affine_h_tau = -static_cast<long double>(tau) * kappa;
-    detail::IpmHomogeneousRepairInfo repair_info;
-    auto* repair = options.ipm.linear_accuracy == "homogeneous_repair" ? &repair_info : nullptr;
-    const auto affine = scaled_direction ? homogeneous_scaled_direction(model, point, tau, kappa, primal_residual,
-        dual_residual, gap_residual, 1, h, affine_h_tau, constant, scaling, denominator, factor, options, start, result) :
-        homogeneous_direction(model, point, tau, kappa, primal_residual,
-            dual_residual, gap_residual, 1, h, affine_h_tau, constant, factor, options, start, result, repair);
-    const double affine_step = homogeneous_step(model, point, tau, kappa, affine, options, start);
-    const double remaining = 1 - affine_step;
-    const double sigma = remaining * remaining * remaining;
-    // 初版各轮的二阶项系数均为 1，不复制其他实现针对首轮的额外减弱。
-    for (std::size_t row = 0; row < m; ++row) {
-      if ((row & 4095) == 0) check_budget(options, start);
-      if (model.inequality[row]) {
-        h[row] = finite(-static_cast<long double>(point.s[row]) * point.z[row] +
-            static_cast<long double>(sigma) * mu -
-            static_cast<long double>(affine.point.s[row]) * affine.point.z[row]);
+    // 新旧路径共用整组预测/校正数学；探测拒绝后从同一点和原h重新执行。
+    const auto pair = [&](bool reuse_probe) {
+      const std::size_t krylov_budget = reuse_probe ? detail::factor_reuse::reuse_krylov_budget :
+          ::solver::detail::ipm_coupled::max_window * ::solver::detail::ipm_coupled::max_cycles;
+      std::vector<double> current_rows;
+      std::optional<detail::current_diagonal::ValidatedView> current_view;
+      detail::current_diagonal::Work* current_work = nullptr;
+      std::vector<double> current_scales;
+      detail::schur_diagonal_transport::Work* transport = nullptr;
+      detail::factor_reuse::ScalarConsistency* scalar_observation = nullptr;
+      if (reuse_probe) {
+        auto& event = reuse->events.back();
+        current_work = &event.current_diagonal;
+        current_work->columns = n; current_work->rows = m; current_work->nonzeros = model.values.size();
+        transport = &event.transport; scalar_observation = &event.scalar_consistency;
+        transport->columns = n; transport->rows = m; transport->nonzeros = model.values.size();
+        const auto budget = [&] { check_budget(options, start); };
+        current_rows = v124_current_rows(factor, diagonal, result, event, budget);
+        current_view.emplace(n, m, model.starts, model.rows, model.values, current_rows, *current_work, budget);
+        current_scales = detail::schur_diagonal_transport::prepare(*current_view, factor.v93_regularized_h(),
+            factor.nominal_primal_regularization(), factor_epoch, &factor, diagonal_cache, *transport, budget);
       }
+      std::vector<double> constant;
+      detail::IpmHomogeneousScaling scaling;
+      long double denominator = 0;
+      if (scaled_direction) {
+        const auto budget = [&] { check_budget(options, start); };
+        scaling = detail::make_ipm_homogeneous_scaling(n, model.inequality, point.s, point.z, tau, kappa, budget);
+        const auto scaled_rhs = detail::ipm_homogeneous_scaled_constant_rhs(scaling, model.costs, model.rhs, budget);
+        const auto apply_constant = [&] {
+          return current_view ? v124_apply_current(*current_view, scaled_rhs, factor, options,
+              start, result, true, false, *current_work, budget, current_scales, transport) :
+              factor.solve_homogeneous_direct(scaled_rhs, options, start, result, true);
+        };
+        if (auto* coupled = solver::detail::ipm_coupled_state::current()) {
+          budget(); ++coupled->constant_calls_started;
+          constant = apply_constant();
+          ++coupled->constant_calls_completed;
+        } else {
+          constant = apply_constant();
+        }
+        denominator = current_view ? v124_energy_denominator(factor, n, constant, current_rows,
+            result, budget, iteration) : solver::detail::ipm_coupled_state::enabled()
+                ? v100_energy_denominator(factor, n, constant, result, budget, iteration)
+                : detail::ipm_homogeneous_scaled_denominator(scaling, constant, budget);
+        if (scalar_observation) {
+          v125_scalar_diagnostics(scaling, model.costs, model.rhs, constant, denominator, *scalar_observation, budget);
+          denominator = detail::natural_schur::compute(model.costs, model.rhs, constant, scaling.d,
+              reuse->events.back().natural_schur, budget);
+        }
+      } else {
+        ++*result.ipm_homogeneous_constant_solves;
+        constant = factor.solve(constant_rhs, options, start, result);
+      }
+      const long double affine_h_tau = -static_cast<long double>(tau) * kappa;
+      detail::IpmHomogeneousRepairInfo repair_info;
+      auto* repair = options.ipm.linear_accuracy == "homogeneous_repair" ? &repair_info : nullptr;
+      const auto affine = scaled_direction ? homogeneous_scaled_direction(model, point, tau, kappa, primal_residual,
+          dual_residual, gap_residual, 1, h, affine_h_tau, constant, scaling, denominator, factor, options, start, result,
+          "affine", iteration, false, krylov_budget, current_view ? &*current_view : nullptr, current_work,
+          current_scales, transport) :
+          homogeneous_direction(model, point, tau, kappa, primal_residual,
+              dual_residual, gap_residual, 1, h, affine_h_tau, constant, factor, options, start, result, repair);
+      const double affine_step = homogeneous_step(model, point, tau, kappa, affine, options, start);
+      const double remaining = 1 - affine_step;
+      const double sigma = remaining * remaining * remaining;
+      long double h_tau;
+      if (affine.v94_wide) {
+        h_tau = v94_corrector_rhs(model, point, tau, kappa, affine, sigma, mu, h,
+            [&] { check_budget(options, start); });
+      } else {
+        // 初版各轮的二阶项系数均为1；本轮仍保同一形成次序和公式。
+        for (std::size_t row = 0; row < m; ++row) {
+          if ((row & 4095) == 0) check_budget(options, start);
+          if (model.inequality[row]) {
+            h[row] = finite(-static_cast<long double>(point.s[row]) * point.z[row] +
+                static_cast<long double>(sigma) * mu -
+                static_cast<long double>(affine.point.s[row]) * affine.point.z[row]);
+          }
+        }
+        h_tau = affine_h_tau + static_cast<long double>(sigma) * mu -
+            static_cast<long double>(affine.scalars.tau) * affine.scalars.kappa;
+      }
+      return scaled_direction ? homogeneous_scaled_direction(model, point, tau, kappa, primal_residual,
+          dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, scaling, denominator, factor, options, start, result,
+          "corrector", iteration, false, krylov_budget, current_view ? &*current_view : nullptr, current_work,
+          current_scales, transport) :
+          homogeneous_direction(model, point, tau, kappa, primal_residual,
+              dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, factor, options, start, result, repair);
+    };
+    std::optional<HomogeneousDirection> chosen;
+    if (reuse && iteration > 1)
+      chosen = v122_try_reuse_pair(h, pair, *reuse, iteration, factor_epoch, result,
+          [&] { check_budget(options, start); });
+    if (!chosen) {
+      if (reuse) ++reuse->fresh_started;
+      diagonal_cache.valid = false;
+      factor.factor(diagonal, options, start, result, v100_regularization_seed(factor));
+      if (reuse) { ++reuse->fresh_completed; factor_epoch = iteration; }
+      check_budget(options, start);
+      chosen = pair(false);
     }
-    const long double h_tau = affine_h_tau + static_cast<long double>(sigma) * mu -
-        static_cast<long double>(affine.scalars.tau) * affine.scalars.kappa;
-    const auto corrected = scaled_direction ? homogeneous_scaled_direction(model, point, tau, kappa, primal_residual,
-        dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, scaling, denominator, factor, options, start, result) :
-        homogeneous_direction(model, point, tau, kappa, primal_residual,
-            dual_residual, gap_residual, 1 - sigma, h, h_tau, constant, factor, options, start, result, repair);
+    const auto& corrected = *chosen;
     const double step = 0.995 * homogeneous_step(model, point, tau, kappa, corrected, options, start);
     if (!(step > 0) || !std::isfinite(step)) throw NumericalFailure("齐次共同步长不是有限正数");
+    if (corrected.v94_wide) {
+      auto updated = v94_update_point(model, point, tau, kappa, corrected, step,
+          [&] { check_budget(options, start); });
+      check_budget(options, start);
+      point = std::move(updated.point);
+      tau = updated.tau; kappa = updated.kappa;
+    } else {
     Point candidate;
     candidate.x.resize(n);
     candidate.s.resize(m);
@@ -2100,6 +2790,7 @@ void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
     point = std::move(candidate);
     tau = next_tau;
     kappa = next_kappa;
+    }
     result.ipm_homogeneous_tau = tau;
     result.ipm_homogeneous_kappa = kappa;
     result.ipm_iterations = iteration;
@@ -2111,6 +2802,24 @@ void run_homogeneous_ipm(const ConeModel& model, const SolveOptions& options,
 void validate_options(const SolveOptions& options) {
   if (options.ipm.method != "mehrotra" && options.ipm.method != "homogeneous") {
     throw std::invalid_argument("内点方法必须为 mehrotra 或 homogeneous");
+  }
+  if (solver::detail::ipm_crossover::requested() && options.ipm.method != "homogeneous") {
+    throw std::invalid_argument("IPX交叉仅支持 homogeneous 方法");
+  }
+  if (options.ipm.warm_dual_cleanup && !solver::detail::ipm_crossover::requested()) {
+    throw std::invalid_argument("对偶暖基清理要求显式启用 IPX交叉");
+  }
+  if (options.ipm.factor_reuse && (options.ipm.method != "homogeneous" ||
+      options.ipm.linear_accuracy != "homogeneous_repair" || !options.ipm.presolve ||
+      options.ipm.max_iterations > 200)) {
+    throw std::invalid_argument("因子复用要求 homogeneous、homogeneous_repair、预处理开启及至多200轮");
+  }
+  if (solver::detail::ipm_presolve::enabled() && options.ipm.method == "homogeneous" &&
+      !solver::detail::ipm_coupled::wide_supported) {
+    throw std::invalid_argument("预处理齐次路线要求 long double 提供比 double 更高的有效精度；本平台不支持");
+  }
+  if (solver::detail::ipm_crossover::requested() && !solver::detail::ipm_crossover::deadline_supported) {
+    throw std::invalid_argument("本平台 long double 无法精确表示交叉所需的时钟整数，暂不支持启用 IPX 交叉");
   }
   if (options.ipm.method == "homogeneous" && ((options.ipm.linear_accuracy != "strict" &&
       options.ipm.linear_accuracy != "homogeneous_scaled" && options.ipm.linear_accuracy != "homogeneous_repair") ||
@@ -3113,14 +3822,19 @@ std::vector<double> detail::ipm_homogeneous_scaled_reduced_rhs(const IpmHomogene
 std::vector<double> detail::ipm_homogeneous_scaled_recover(const IpmHomogeneousScaling& scaling,
     std::span<const double> costs, std::span<const double> bounds,
     std::span<const double> rhs, std::span<const double> reduced,
-    std::span<const double> constant, long double denominator, const std::function<void()>& check) {
+    std::span<const double> constant, long double denominator, const std::function<void()>& check,
+    IpmScalarDenominatorPolicy policy) {
   full_newton_budget(check);
   const auto n = scaling.layout.columns, m = scaling.layout.rows, gap = n + m;
   const auto tau_index = scaling.dimension() - 2, kappa_index = tau_index + 1;
   if (costs.size() != n || bounds.size() != m || rhs.size() != scaling.dimension() ||
       reduced.size() != gap || constant.size() != gap)
     throw std::invalid_argument("齐次缩放方向恢复维数不一致");
-  if (!(denominator > 0) || !std::isfinite(denominator)) throw NumericalFailure("齐次正能量分母无效");
+  if (policy != IpmScalarDenominatorPolicy::positive_energy && policy != IpmScalarDenominatorPolicy::signed_schur)
+    throw std::invalid_argument("齐次标量分母策略无效");
+  if (!std::isfinite(denominator) || (policy == IpmScalarDenominatorPolicy::positive_energy
+          ? !(denominator > 0) : denominator == 0))
+    throw NumericalFailure("齐次标量分母与声明的正值或非零策略不符");
   long double numerator = static_cast<long double>(rhs.back()) - rhs[gap];
   for (std::size_t i = 0; i < gap; ++i) {
     if ((i & 4095) == 0) full_newton_budget(check);
@@ -3350,13 +4064,30 @@ double detail::ipm_homogeneous_step_limit(double cone_limit, double tau, double 
   return result;
 }
 
-std::string ipm_version() { return "ipm-cpu-0.53.0"; }
+std::string ipm_version() {
+  if (solver::detail::factor_reuse::enabled())
+    return solver::detail::ipm_crossover::requested()
+        ? "ipm-ipx-crossover-cpu-0.11.0" : "ipm-factor-reuse-cpu-0.5.0";
+  return solver::detail::ipm_crossover::requested()
+      ? (solver::detail::ipm_crossover::dual_requested()
+          ? "ipm-ipx-crossover-cpu-0.6.0" : "ipm-ipx-crossover-cpu-0.4.0")
+      : "ipm-cpu-0.54.0";
+}
 
-SolveResult solve_ipm(const Model& model, const SolveOptions& options) {
-  const auto start = Clock::now();
+std::string ipm_version(const SolveOptions& options) {
+  if (options.ipm.factor_reuse)
+    return solver::detail::ipm_crossover::requested(options.ipm.crossover)
+        ? "ipm-ipx-crossover-cpu-0.11.0" : "ipm-factor-reuse-cpu-0.5.0";
+  return solver::detail::ipm_crossover::requested(options.ipm.crossover)
+      ? (options.ipm.warm_dual_cleanup
+          ? "ipm-ipx-crossover-cpu-0.6.0" : "ipm-ipx-crossover-cpu-0.4.0")
+      : "ipm-cpu-0.54.0";
+}
+
+SolveResult solve_ipm_core(const Model& model, const SolveOptions& options, Clock::time_point start) {
   SolveResult result;
   result.backend = "ipm";
-  result.backend_version = ipm_version();
+  result.backend_version = options.ipm.factor_reuse ? ipm_version(options) : ipm_version();
   result.model = model;
   result.ipm_iterations = 0;
   result.ipm_factorizations = 0;
@@ -3407,7 +4138,7 @@ SolveResult solve_ipm(const Model& model, const SolveOptions& options) {
       result.status = "iteration_limit";
       result.message = "迭代预算为零，未启动自主内点法";
     } else {
-      const auto working = canonicalize(model, options, start);
+      const auto working = solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::canonicalize, [&] { return canonicalize(model, options, start); });
       result.ipm_eliminated_fixed_variables = static_cast<Index>(model.costs.size() - working.costs.size());
       result.ipm_presolved_singleton_rows = working.presolved_singleton_rows;
       result.ipm_presolved_fixed_columns = static_cast<Index>(working.presolved_fixed_columns.size());
@@ -3431,6 +4162,51 @@ SolveResult solve_ipm(const Model& model, const SolveOptions& options) {
   result.total_seconds = elapsed(start);
   result.solve_seconds = std::max(0.0, result.total_seconds - result.verification_seconds);
   return result;
+}
+
+SolveResult solve_ipm(const Model& model, const SolveOptions& options) {
+  const auto start = Clock::now();
+  // 这些作用域先于Report构造，保证输出结束后才恢复外层选项与诊断状态。
+  solver::detail::ipm_presolve::OptionsScope presolve_options(options.ipm.presolve);
+  solver::detail::ipm_crossover::OptionsScope crossover_options(options.ipm.crossover, options.ipm.warm_dual_cleanup);
+  solver::detail::ipm_presolve::DiagnosticScope diagnostics(options.ipm.diagnostics);
+  solver::detail::ipm_crossover::Log crossover;
+  crossover.enabled = solver::detail::ipm_crossover::requested();
+  solver::detail::ipm_crossover::Report crossover_report(crossover);
+  solver::detail::ipm_crossover::Scope crossover_scope(&crossover);
+  solver::detail::ipm_presolve::Stats stats;
+  stats.enabled = solver::detail::ipm_presolve::enabled();
+  solver::detail::ipm_coupled_state::Log coupled;
+  solver::detail::ipm_coupled_state::Report coupled_report(coupled);
+  solver::detail::ipm_energy_state::Log energy;
+  solver::detail::ipm_energy_state::Report energy_report(energy);
+  solver::detail::factor_reuse::Log reuse;
+  reuse.enabled = options.ipm.factor_reuse;
+  solver::detail::factor_reuse::Report reuse_report(reuse);
+  solver::detail::factor_reuse::Scope reuse_scope(&reuse);
+  solver::detail::ipm_presolve::Log log(stats);
+  solver::detail::ipm_presolve::ScopedOracle isolation(nullptr);
+  solver::detail::ipm_coupled_state::Scope coupled_isolation(nullptr);
+  solver::detail::ipm_energy_state::Scope energy_isolation(nullptr);
+  solver::detail::ipm_profile::Report v112_report(options.ipm.profile, options.ipm.profile);
+  solver::detail::ipm_profile::Scope v112_total_scope(solver::detail::ipm_profile::Stage::total);
+  if (!stats.enabled) {
+    stats.status = "disabled";
+    return solve_ipm_core(model, options, start);
+  }
+  bool bypass = options.time_limit == 0 || options.ipm.max_iterations == 0;
+  try { validate_options(options); bypass = bypass || !validate_model(model).empty() || is_mip(model); }
+  catch (...) { bypass = true; }
+  if (bypass) {
+    stats.status = "bypassed"; stats.phase = "bypass";
+    return solve_ipm_core(model, options, start);
+  }
+  coupled.enabled = true;
+  solver::detail::ipm_coupled_state::Scope coupled_scope(&coupled);
+  energy.enabled = true;
+  solver::detail::ipm_energy_state::Scope energy_scope(&energy);
+  try { return solver::detail::ipm_presolve::control(model, options, start, stats, solve_ipm_core); }
+  catch (...) { stats.oracle.selected_event.reset(); stats.accepted = false; stats.status = "exception"; throw; }
 }
 
 }  // 命名空间 solver

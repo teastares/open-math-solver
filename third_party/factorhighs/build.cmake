@@ -40,6 +40,9 @@ endforeach()
 add_library(solver_factorhighs_kernel STATIC ${solver_factor_sources}
   "${highs_SOURCE_DIR}/highs/ipm/hipo/auxiliary/Auxiliary.cpp"
   "${highs_SOURCE_DIR}/highs/ipm/hipo/auxiliary/Logger.cpp")
+# 私有适配与上游归档不能导出同名类；否则链接顺序可能选入依赖外部调度器的版本。
+# 唯一消费层采用相同私有前缀；不修改下载源码或HiGHS目标的命名空间。
+target_compile_definitions(solver_factorhighs_kernel PRIVATE hipo=solver_factor_hipo)
 target_include_directories(solver_factorhighs_kernel PRIVATE
   "${solver_factor_source}" "${CMAKE_CURRENT_SOURCE_DIR}/third_party/factorhighs")
 target_link_libraries(solver_factorhighs_kernel PRIVATE highs::highs solver_openblas)

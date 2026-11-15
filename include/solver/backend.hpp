@@ -4,6 +4,7 @@
 #include "solver/highs_options.hpp"
 #include "solver/ipm_options.hpp"
 #include "solver/pdlp_options.hpp"
+#include "solver/simplex_options.hpp"
 #include "solver/verification.hpp"
 
 #include <filesystem>
@@ -23,6 +24,7 @@ struct SolveOptions {
   HighsOptions highs;
   PdlpOptions pdlp;
   IpmOptions ipm;
+  SimplexOptions simplex;
 };
 
 // 状态是后端结论与独立候选检查的组合，证明来源另行记录。

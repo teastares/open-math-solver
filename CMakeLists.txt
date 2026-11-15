@@ -4,6 +4,7 @@ project(solver VERSION 0.5.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+find_package(Threads REQUIRED)
 option(SOLVER_BUILD_TESTS "构建本项目的回归测试" ON)
 
 # 第三方版本和校验值只在依赖锁文件维护。
@@ -24,7 +25,7 @@ FetchContent_Declare(highs URL "${highs_url}" URL_HASH "SHA256=${highs_hash}"
                     DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(highs)
 
-# 内点法仅复用稀疏线性代数，不调用第三方 LP 数值算法。
+# 纯内点路径复用稀疏线性代数；显式预处理与交叉另使用HiGHS预处理和IPX。
 string(JSON qdldl_url GET "${dependency_lock}" qdldl url)
 string(JSON qdldl_hash GET "${dependency_lock}" qdldl sha256)
 string(JSON qdldl_version GET "${dependency_lock}" qdldl version)
@@ -140,20 +141,34 @@ add_library(solver_normal_cholesky src/normal_cholesky.cpp)
 target_include_directories(solver_normal_cholesky PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(solver_normal_cholesky SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
 target_compile_definitions(solver_normal_cholesky PRIVATE EIGEN_MPL2_ONLY EIGEN_DONT_PARALLELIZE)
-target_link_libraries(solver_normal_cholesky PRIVATE qdldlstatic SuiteSparse::AMD_static SuiteSparse::CHOLMOD_static solver_multifrontal_ldl)
+include(third_party/cholmod/aat_suffix.cmake)
+target_link_libraries(solver_normal_cholesky PRIVATE qdldlstatic SuiteSparse::AMD_static
+  solver_cholmod_aat_suffix SuiteSparse::CHOLMOD_static solver_multifrontal_ldl)
 solver_target_defaults(solver_normal_cholesky)
+
+# 单独显式构建的数值搬运微测，不进入默认产品或CTest。
+add_executable(benchmark_normal_input_exchange EXCLUDE_FROM_ALL scripts/normal_input_exchange_benchmark.cpp)
+target_link_libraries(benchmark_normal_input_exchange PRIVATE solver_normal_cholesky)
+solver_target_defaults(benchmark_normal_input_exchange)
 
 add_library(solver_multifrontal_ldl src/multifrontal_ldl.cpp)
 target_include_directories(solver_multifrontal_ldl PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_compile_definitions(solver_multifrontal_ldl PRIVATE hipo=solver_factor_hipo)
 target_link_libraries(solver_multifrontal_ldl PRIVATE solver_factorhighs_kernel highs::highs qdldlstatic)
 solver_target_defaults(solver_multifrontal_ldl)
 
+set(solver_ipm_private_dependencies qdldlstatic solver_qdldl_extended SuiteSparse::AMD_static
+  solver_sparse_lu solver_normal_cholesky solver_multifrontal_ldl highs::highs)
 add_library(solver_ipm src/ipm.cpp src/regularized_ldl.cpp)
-target_link_libraries(solver_ipm PUBLIC solver_core PRIVATE qdldlstatic solver_qdldl_extended SuiteSparse::AMD_static solver_sparse_lu solver_normal_cholesky solver_multifrontal_ldl)
+target_link_libraries(solver_ipm PUBLIC solver_core PRIVATE ${solver_ipm_private_dependencies})
 solver_target_defaults(solver_ipm)
 
+add_library(solver_simplex src/simplex.cpp)
+target_link_libraries(solver_simplex PUBLIC solver_core PRIVATE highs::highs)
+solver_target_defaults(solver_simplex)
+
 add_library(solver_highs src/highs_backend.cpp)
-target_link_libraries(solver_highs PUBLIC solver_core PRIVATE highs::highs solver_pdlp solver_ipm)
+target_link_libraries(solver_highs PUBLIC solver_core PRIVATE highs::highs solver_pdlp solver_ipm solver_simplex)
 solver_target_defaults(solver_highs)
 
 add_executable(solver src/main.cpp)
@@ -202,10 +217,31 @@ if(SOLVER_BUILD_TESTS)
   solver_target_defaults(test_pdlp_halpern)
   add_test(NAME pdlp_halpern COMMAND test_pdlp_halpern)
 
+  add_executable(test_cold_simplex tests/test_cold_simplex.cpp)
+  target_link_libraries(test_cold_simplex PRIVATE solver_simplex highs::highs)
+  solver_target_defaults(test_cold_simplex)
+  add_test(NAME cold_simplex COMMAND test_cold_simplex)
+  set_tests_properties(cold_simplex PROPERTIES TIMEOUT 120)
+
   add_executable(test_ipm tests/test_ipm.cpp)
   target_link_libraries(test_ipm PRIVATE solver_ipm)
   solver_target_defaults(test_ipm)
   add_test(NAME ipm COMMAND test_ipm)
+
+  # 白盒测试包含真实内核CPP，不能再次链接定义同一接口的solver_ipm。
+  if(WIN32)
+    add_executable(test_ipm_kernel tests/test_ipm_kernel.cpp src/regularized_ldl.cpp)
+    target_link_libraries(test_ipm_kernel PRIVATE solver_core ${solver_ipm_private_dependencies} Threads::Threads)
+    solver_target_defaults(test_ipm_kernel)
+    add_test(NAME ipm_kernel COMMAND test_ipm_kernel)
+    set_tests_properties(ipm_kernel PROPERTIES TIMEOUT 120)
+  endif()
+  add_executable(test_ipm_coupled tests/test_ipm_coupled.cpp)
+  target_include_directories(test_ipm_coupled PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+  target_link_libraries(test_ipm_coupled PRIVATE Threads::Threads)
+  solver_target_defaults(test_ipm_coupled)
+  add_test(NAME ipm_coupled COMMAND test_ipm_coupled)
+  set_tests_properties(ipm_coupled PROPERTIES TIMEOUT 120)
 
   add_executable(test_regularized_ldl tests/test_regularized_ldl.cpp)
   target_link_libraries(test_regularized_ldl PRIVATE solver_ipm qdldlstatic)

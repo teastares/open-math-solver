@@ -6,6 +6,7 @@ import importlib.util
 import io
 import json
 import math
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -54,9 +55,9 @@ class CliTests(unittest.TestCase):
     def tearDownClass(cls):
         cls.temporary.cleanup()
 
-    def cli(self, *args):
+    def cli(self, *args, env=None):
         process = subprocess.run([str(SOLVER), *map(str, args)], capture_output=True,
-                                 timeout=30, check=False)
+                                 timeout=30, check=False, env=env)
         process.stderr = process.stderr.decode("utf-8", errors="replace")
         try:
             process.stdout = process.stdout.decode("utf-8", errors="strict")
@@ -77,10 +78,11 @@ class CliTests(unittest.TestCase):
         self.assertEqual(process.returncode, 0)
         self.assertEqual(version["backend"], "highs")
         self.assertTrue(version["backend_version"])
-        self.assertEqual(version["supported_backends"], ["highs", "pdlp", "ipm"])
+        self.assertEqual(version["supported_backends"], ["highs", "pdlp", "ipm", "simplex"])
         process, help_report = self.cli("--help")
         self.assertEqual(process.returncode, 0)
         self.assertIn("usage", help_report)
+        self.assertEqual(help_report["defaults"]["simplex"]["max_iterations"], 64)
         self.assertEqual(help_report["defaults"]["ipm"]["method"], "mehrotra")
         self.assertEqual(help_report["defaults"]["ipm"]["max_iterations"], 200)
         self.assertEqual(help_report["defaults"]["ipm"]["scaling_passes"], 5)
@@ -88,6 +90,173 @@ class CliTests(unittest.TestCase):
         self.assertIs(help_report["defaults"]["ipm"]["eliminate_presolved_fixed_variables"], False)
         self.assertIs(type(help_report["defaults"]["ipm"]["krylov_history_size"]), int)
         self.assertEqual(help_report["defaults"]["ipm"]["krylov_history_size"], 0)
+        for name in ("presolve", "crossover", "diagnostics", "profile"):
+            self.assertIs(help_report["defaults"]["ipm"][name], False)
+            self.assertIn(f"--ipm-{name} on|off", help_report["usage"])
+        self.assertIs(help_report["defaults"]["ipm"]["warm_dual_cleanup"], False)
+        self.assertIn("--ipm-warm-dual-cleanup on|off", help_report["usage"])
+        self.assertIs(help_report["defaults"]["ipm"]["factor_reuse"], False)
+        self.assertIn("--ipm-factor-reuse on|off", help_report["usage"])
+
+    def test_simplex_solves_and_reports_shared_iteration_budget(self):
+        process, report = self.cli("solve", self.minimum, "--backend", "simplex")
+        self.assertEqual(process.returncode, 0, report)
+        self.assertEqual(report["status"], "optimal")
+        self.assertEqual(report["options"]["simplex"]["max_iterations"], 64)
+        self.assertAlmostEqual(report["objective"], 8 / 3)
+        self.assertGreater(report["simplex_iterations"], 0)
+        self.assertTrue(report["lp_optimality"]["numerically_optimal"])
+
+        process, report = self.cli("solve", self.minimum, "--backend", "simplex",
+                                   "--iteration-limit", "1")
+        self.assertEqual(process.returncode, 4, report)
+        self.assertEqual(report["status"], "iteration_limit")
+        self.assertEqual(report["options"]["simplex"]["max_iterations"], 1)
+        self.assertIsNone(report["objective"])
+
+    def test_ipm_runtime_controls_work_without_experimental_environment(self):
+        environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("SOLVER_V")}
+        names = ("presolve", "crossover", "diagnostics", "profile")
+        configurations = [dict.fromkeys(names, False)]
+        configurations += [dict.fromkeys(names, False) | {name: True} for name in names]
+        configurations += [dict.fromkeys(names, True)]
+        common = ("--backend", "ipm", "--ipm-method", "homogeneous", "--ipm-linear-solver", "normal_cholmod_aat",
+                  "--ipm-linear-accuracy", "homogeneous_repair", "--ipm-singleton-elimination", "on",
+                  "--ipm-kkt-equilibration", "on", "--ipm-objective-scaling", "off", "--time-limit", "5")
+        for requested in configurations:
+            with self.subTest(requested=requested):
+                flags = [item for name, enabled in requested.items() for item in (f"--ipm-{name}", "on" if enabled else "off")]
+                process, result = self.cli("solve", self.minimum, *common, *flags, env=environment)
+                self.assertEqual(process.returncode, 0, result)
+                self.assertAlmostEqual(result["objective"], 8 / 3, delta=1e-6)
+                self.assertTrue(self.benchmark.valid_lp_optimality(result))
+                for name, enabled in requested.items():
+                    self.assertIs(result["options"]["ipm"][name], enabled)
+                self.assertIs(result["options"]["ipm"]["warm_dual_cleanup"], False)
+                self.assertEqual("ipx-crossover" in result["backend_version"], requested["crossover"])
+                if requested["crossover"]:
+                    self.assertEqual(result["backend_version"], "ipm-ipx-crossover-cpu-0.4.0")
+                for marker in ("V100_PRESOLVE ", "V100_COUPLED ", "V100_ENERGY "):
+                    self.assertEqual(marker in process.stderr, requested["diagnostics"])
+                self.assertEqual("V117_CROSSOVER " in process.stderr, requested["diagnostics"] and requested["crossover"])
+                self.assertEqual("V112_PROFILE " in process.stderr, requested["profile"])
+
+    def test_ipm_runtime_controls_reject_invalid_or_ignored_arguments(self):
+        for name in ("presolve", "crossover", "diagnostics", "profile", "warm-dual-cleanup", "factor-reuse"):
+            flag = f"--ipm-{name}"
+            cases = [("--backend", "ipm", flag, value) for value in ("true", "1", "invalid")]
+            cases += [("--backend", "ipm", flag), ("--backend", "ipm", flag, "on", flag, "off")]
+            cases += [(flag, value, "--backend", backend) for backend in ("highs", "pdlp") for value in ("on", "off")]
+            for arguments in cases:
+                with self.subTest(arguments=arguments):
+                    process, result = self.cli("solve", self.minimum, *arguments)
+                    self.assertEqual(process.returncode, 2, result)
+                    self.assertEqual(result["status"], "error")
+                    self.assertIn(flag, result["message"])
+        for arguments in (("--backend", "ipm", "--ipm-crossover", "on"),
+                          ("--ipm-crossover", "on", "--ipm-method", "mehrotra", "--backend", "ipm")):
+            with self.subTest(arguments=arguments):
+                process, result = self.cli("solve", self.minimum, *arguments)
+                self.assertEqual(process.returncode, 2, result)
+                self.assertIn("--ipm-crossover", result["message"])
+
+    def test_ipm_warm_dual_cleanup_requires_homogeneous_crossover(self):
+        flag = "--ipm-warm-dual-cleanup"
+        for arguments in (("--ipm-method", "homogeneous"),
+                          ("--ipm-method", "homogeneous", "--ipm-crossover", "off"),
+                          ("--ipm-crossover", "on"),
+                          ("--ipm-crossover", "on", "--ipm-method", "mehrotra")):
+            with self.subTest(arguments=arguments):
+                process, result = self.cli("solve", self.minimum, "--backend", "ipm", flag, "on", *arguments)
+                self.assertEqual(process.returncode, 2, result)
+                self.assertEqual(result["status"], "error")
+                self.assertIn(flag, result["message"])
+        process, result = self.cli("solve", self.minimum, "--backend", "ipm", flag, "off")
+        self.assertEqual(process.returncode, 0, result)
+        self.assertIs(result["options"]["ipm"]["warm_dual_cleanup"], False)
+
+    def test_ipm_warm_dual_cleanup_reports_typed_choice_and_version(self):
+        environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("SOLVER_V")}
+        common = ("--backend", "ipm", "--ipm-method", "homogeneous", "--ipm-crossover", "on",
+                  "--ipm-linear-solver", "normal_cholmod_aat", "--ipm-linear-accuracy", "homogeneous_repair",
+                  "--ipm-singleton-elimination", "on", "--ipm-kkt-equilibration", "on",
+                  "--ipm-objective-scaling", "off", "--time-limit", "5")
+        for enabled, version in ((False, "0.4.0"), (True, "0.6.0")):
+            with self.subTest(enabled=enabled):
+                process, result = self.cli("solve", self.minimum, *common, "--ipm-warm-dual-cleanup",
+                                           "on" if enabled else "off", env=environment)
+                self.assertEqual(process.returncode, 0, result)
+                self.assertAlmostEqual(result["objective"], 8 / 3, delta=1e-6)
+                self.assertTrue(self.benchmark.valid_lp_optimality(result))
+                self.assertIs(result["options"]["ipm"]["warm_dual_cleanup"], enabled)
+                self.assertEqual(result["backend_version"], f"ipm-ipx-crossover-cpu-{version}")
+                self.assertEqual(process.stderr, "")
+
+    def test_ipm_runtime_controls_default_off_despite_legacy_environment(self):
+        environment = dict(os.environ)
+        environment.update(SOLVER_V100_PRESOLVE="1", SOLVER_V117_CROSSOVER="1", SOLVER_V112_PROFILE="1")
+        process, result = self.cli("solve", self.minimum, "--backend", "ipm", env=environment)
+        self.assertEqual(process.returncode, 0, result)
+        for name in ("presolve", "crossover", "diagnostics", "profile", "warm_dual_cleanup", "factor_reuse"):
+            self.assertIs(result["options"]["ipm"][name], False)
+        self.assertNotIn("ipx-crossover", result["backend_version"])
+        self.assertEqual(process.stderr, "")
+
+    def test_ipm_factor_reuse_requires_current_point_validation_mode(self):
+        flag = "--ipm-factor-reuse"
+        configurations = [(), ("--ipm-method", "homogeneous"),
+                          ("--ipm-method", "homogeneous", "--ipm-presolve", "on"),
+                          ("--ipm-method", "homogeneous", "--ipm-linear-accuracy", "homogeneous_repair"),
+                          ("--ipm-method", "homogeneous", "--ipm-presolve", "on",
+                           "--ipm-linear-accuracy", "strict"),
+                          ("--ipm-method", "homogeneous", "--ipm-presolve", "on",
+                           "--ipm-linear-accuracy", "homogeneous_repair", "--iteration-limit", "201")]
+        for arguments in configurations:
+            with self.subTest(arguments=arguments):
+                process, result = self.cli("solve", self.minimum, "--backend", "ipm", flag, "on", *arguments)
+                self.assertEqual(process.returncode, 2, result)
+                self.assertIn(flag, result["message"])
+        process, result = self.cli("solve", self.minimum, "--backend", "ipm", flag, "off")
+        self.assertEqual(process.returncode, 0, result)
+        self.assertIs(result["options"]["ipm"]["factor_reuse"], False)
+
+    def test_ipm_factor_reuse_reports_typed_choice_version_and_diagnostics(self):
+        common = ("--backend", "ipm", "--ipm-method", "homogeneous", "--ipm-presolve", "on",
+                  "--ipm-linear-accuracy", "homogeneous_repair", "--ipm-linear-solver", "normal_cholmod_aat",
+                  "--ipm-singleton-elimination", "on", "--ipm-kkt-equilibration", "on",
+                  "--ipm-objective-scaling", "off", "--time-limit", "5")
+        for crossover in (False, True):
+            for diagnostics in (False, True):
+                with self.subTest(crossover=crossover, diagnostics=diagnostics):
+                    process, result = self.cli("solve", self.minimum, *common, "--ipm-factor-reuse", "on",
+                                               "--ipm-crossover", "on" if crossover else "off",
+                                               "--ipm-diagnostics", "on" if diagnostics else "off")
+                    self.assertEqual(process.returncode, 0, result)
+                    self.assertAlmostEqual(result["objective"], 8 / 3, delta=1e-6)
+                    self.assertTrue(self.benchmark.valid_lp_optimality(result))
+                    self.assertIs(result["options"]["ipm"]["factor_reuse"], True)
+                    self.assertEqual(result["backend_version"], "ipm-ipx-crossover-cpu-0.11.0" if crossover else
+                                     "ipm-factor-reuse-cpu-0.5.0")
+                    markers = [line[len("V122_FACTOR_REUSE "):] for line in process.stderr.splitlines()
+                               if line.startswith("V122_FACTOR_REUSE ")]
+                    self.assertEqual(len(markers), int(diagnostics))
+                    if diagnostics:
+                        ledger = json.loads(markers[0])
+                        self.assertEqual(ledger["schema"], 5)
+                        self.assertEqual(ledger["preconditioner"], "current_diagonal_congruence")
+                        self.assertEqual(ledger["energy_model"], "current_positive_approximation")
+                        self.assertEqual(ledger["scalar_model"], "natural_schur_enclosed")
+                        self.assertIs(type(ledger["max_krylov_steps"]), int)
+                        self.assertEqual(ledger["max_krylov_steps"], 1)
+                        self.assertIs(ledger["enabled"], True)
+                        self.assertIsInstance(ledger["events"], list)
+                        for event in ledger["events"]:
+                            self.assertIsInstance(event["current_diagonal"], dict)
+                            self.assertIsInstance(event["transport"], dict)
+                            self.assertIsInstance(event["scalar_consistency"], dict)
+                            self.assertIsInstance(event["natural_schur"], dict)
+                    else:
+                        self.assertEqual(process.stderr, "")
 
     def test_minimum_and_path_with_spaces(self):
         process, report = self.cli("solve", self.minimum, "--threads", 1, "--seed", 42)

@@ -1,6 +1,7 @@
 #include "solver/backend.hpp"
 #include "solver/pdlp.hpp"
 #include "solver/ipm.hpp"
+#include "solver/simplex.hpp"
 
 #include "Highs.h"
 
@@ -93,8 +94,9 @@ std::unique_ptr<Highs> make_reader(const SolveOptions& options,
 }
 
 void check_options(const SolveOptions& options) {
-  if (options.backend != "highs" && options.backend != "pdlp" && options.backend != "ipm") {
-    throw std::invalid_argument("求解后端必须是 highs、pdlp 或 ipm");
+  if (options.backend != "highs" && options.backend != "pdlp" &&
+      options.backend != "ipm" && options.backend != "simplex") {
+    throw std::invalid_argument("求解后端必须是 highs、pdlp、ipm 或 simplex");
   }
   if (options.highs.solver != "choose" && options.highs.solver != "simplex" &&
       options.highs.solver != "ipm") {
@@ -281,8 +283,10 @@ SolveResult solve_file(const std::filesystem::path& path,
   const auto total_start = Clock::now();
   SolveResult result;
   result.backend = options.backend;
-  result.backend_version = options.backend == "pdlp" ? pdlp_version() :
-      (options.backend == "ipm" ? ipm_version() : backend_version());
+  if (options.backend == "pdlp") result.backend_version = pdlp_version();
+  else if (options.backend == "ipm") result.backend_version = ipm_version(options);
+  else if (options.backend == "simplex") result.backend_version = simplex_version();
+  else result.backend_version = backend_version();
   try {
     check_options(options);
     std::string extension = path.extension().string();
@@ -335,12 +339,13 @@ SolveResult solve_file(const std::filesystem::path& path,
     Highs& highs = *reader;
     result.model = convert_model(highs);
     set_option(highs, "output_flag", false);
-    if (options.backend == "pdlp" || options.backend == "ipm") {
+    if (options.backend != "highs") {
       const double read_seconds = result.read_seconds;
-      // 自主路径只复用文件解析；迭代内核不执行 HiGHS 的求解或预处理。
+      // 自主后端复用文件解析；IPM可显式请求HiGHS预处理与IPX交叉。
       lock.unlock();
-      result = options.backend == "pdlp" ? solve_pdlp(result.model, options) :
-          solve_ipm(result.model, options);
+      if (options.backend == "pdlp") result = solve_pdlp(result.model, options);
+      else if (options.backend == "ipm") result = solve_ipm(result.model, options);
+      else result = solve_simplex(result.model, options);
       result.read_seconds = read_seconds;
       result.total_seconds = elapsed(total_start);
       return result;

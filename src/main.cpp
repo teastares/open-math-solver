@@ -28,7 +28,7 @@
 namespace {
 
 constexpr std::string_view version = SOLVER_VERSION;
-constexpr std::string_view usage = "solver solve <模型.mps|模型.lp> [--backend highs|pdlp|ipm] [--time-limit 秒] [--threads 数量] [--seed 种子] [--mip-gap 比例] [--iteration-limit 迭代次数] [--scaling-passes 缩放轮数] [--pdlp-mode baseline|adaptive|subspace|halpern|halpern_reflected] [--pdlp-history-size 历史数量] [--highs-solver choose|simplex|ipm] [--highs-crossover on|off] [--highs-presolve choose|on|off] [--ipm-method mehrotra|homogeneous] [--ipm-singleton-elimination on|off] [--ipm-dynamic-regularization on|off] [--ipm-kkt-equilibration on|off] [--ipm-objective-scaling on|off] [--ipm-linear-accuracy strict|backward|inexact|blockwise|blockwise_weighted|blockwise_forcing|blockwise_forcing_weighted|adaptive_regularization|primal_dual_regularization|curvature_regularization|full_newton|bounded_newton|homogeneous_scaled|homogeneous_repair] [--ipm-central-corrections 0|1] [--ipm-direction-retries 0..8] [--ipm-krylov-history-size 0..8] [--ipm-linear-solver qdldl|sparselu|normal|qdldl_extended|factorhighs|normal_augmented|normal_multifrontal|normal_extended|normal_refined|normal_cholmod|normal_cholmod_aat] [--ipm-inexact-prefilter on|off] [--ipm-fixed-variable-elimination on|off] [--ipm-singleton-presolve on|off] [--ipm-presolve-fixed-elimination on|off] [--output 报告.json]；homogeneous_scaled 仅用于 homogeneous，以有限精化保留最佳有限方向，未达内层精度仍须通过原模型终验；homogeneous_repair 仅用于 homogeneous，在有限非正标量分母时每轮至多按块严格重算一次常数方向";
+constexpr std::string_view usage = "solver solve <模型.mps|模型.lp> [--backend highs|pdlp|ipm|simplex] [--time-limit 秒] [--threads 数量] [--seed 种子] [--mip-gap 比例] [--iteration-limit 迭代次数] [--scaling-passes 缩放轮数] [--pdlp-mode baseline|adaptive|subspace|halpern|halpern_reflected] [--pdlp-history-size 历史数量] [--highs-solver choose|simplex|ipm] [--highs-crossover on|off] [--highs-presolve choose|on|off] [--ipm-method mehrotra|homogeneous] [--ipm-singleton-elimination on|off] [--ipm-dynamic-regularization on|off] [--ipm-kkt-equilibration on|off] [--ipm-objective-scaling on|off] [--ipm-linear-accuracy strict|backward|inexact|blockwise|blockwise_weighted|blockwise_forcing|blockwise_forcing_weighted|adaptive_regularization|primal_dual_regularization|curvature_regularization|full_newton|bounded_newton|homogeneous_scaled|homogeneous_repair] [--ipm-central-corrections 0|1] [--ipm-direction-retries 0..8] [--ipm-krylov-history-size 0..8] [--ipm-linear-solver qdldl|sparselu|normal|qdldl_extended|factorhighs|normal_augmented|normal_multifrontal|normal_extended|normal_refined|normal_cholmod|normal_cholmod_aat] [--ipm-inexact-prefilter on|off] [--ipm-fixed-variable-elimination on|off] [--ipm-singleton-presolve on|off] [--ipm-presolve-fixed-elimination on|off] [--ipm-presolve on|off] [--ipm-crossover on|off] [--ipm-diagnostics on|off] [--ipm-profile on|off] [--ipm-warm-dual-cleanup on|off] [--ipm-factor-reuse on|off] [--output 报告.json]；homogeneous_scaled 仅用于 homogeneous，以有限精化保留最佳有限方向，未达内层精度仍须通过原模型终验；homogeneous_repair 仅用于 homogeneous，在有限非正标量分母时每轮至多按块严格重算一次常数方向";
 
 // 部分第三方解析诊断直接写入 stdout，在命令行边界将它们转发至 stderr。
 class DiagnosticRedirect {
@@ -189,7 +189,21 @@ std::string ipm_options(const solver::IpmOptions& options) {
          ",\"eliminate_fixed_variables\":" + boolean(options.eliminate_fixed_variables) +
          ",\"presolve_singleton_rows\":" + boolean(options.presolve_singleton_rows) +
          ",\"eliminate_presolved_fixed_variables\":" + boolean(options.eliminate_presolved_fixed_variables) +
-         ",\"inexact_prefilter\":" + boolean(options.inexact_prefilter) + "}";
+         ",\"inexact_prefilter\":" + boolean(options.inexact_prefilter) +
+         ",\"presolve\":" + boolean(options.presolve) +
+         ",\"crossover\":" + boolean(options.crossover) +
+         ",\"diagnostics\":" + boolean(options.diagnostics) +
+         ",\"profile\":" + boolean(options.profile) +
+         ",\"warm_dual_cleanup\":" + boolean(options.warm_dual_cleanup) +
+         ",\"factor_reuse\":" + boolean(options.factor_reuse) + "}";
+}
+
+std::string simplex_options(const solver::SimplexOptions& options) {
+  return "{\"max_iterations\":" + std::to_string(options.max_iterations) +
+         ",\"optimality\":{\"dual_absolute\":" + number(options.optimality.dual_absolute) +
+         ",\"dual_relative\":" + number(options.optimality.dual_relative) +
+         ",\"gap_absolute\":" + number(options.optimality.gap_absolute) +
+         ",\"gap_relative\":" + number(options.optimality.gap_relative) + "}}";
 }
 
 std::string highs_options(const solver::HighsOptions& options) {
@@ -251,6 +265,9 @@ Arguments parse(const std::vector<std::string>& args) {
         option != "--highs-presolve" && option != "--ipm-singleton-elimination" &&
         option != "--ipm-dynamic-regularization" && option != "--ipm-kkt-equilibration" &&
         option != "--ipm-objective-scaling" &&
+        option != "--ipm-presolve" && option != "--ipm-crossover" &&
+        option != "--ipm-diagnostics" && option != "--ipm-profile" &&
+        option != "--ipm-warm-dual-cleanup" && option != "--ipm-factor-reuse" &&
         option != "--ipm-method" && option != "--ipm-linear-accuracy" && option != "--ipm-central-corrections" &&
         option != "--ipm-direction-retries" && option != "--ipm-krylov-history-size" &&
         option != "--ipm-linear-solver" && option != "--ipm-inexact-prefilter" &&
@@ -268,8 +285,8 @@ Arguments parse(const std::vector<std::string>& args) {
     else if (option == "--seed") parsed.options.seed = parse_integer(value, option, 0);
     else if (option == "--mip-gap") parsed.options.mip_relative_gap = parse_number(value, option, true);
     else if (option == "--backend") {
-      if (value != "highs" && value != "pdlp" && value != "ipm")
-        throw std::invalid_argument("--backend 仅支持 highs、pdlp 或 ipm");
+      if (value != "highs" && value != "pdlp" && value != "ipm" && value != "simplex")
+        throw std::invalid_argument("--backend 仅支持 highs、pdlp、ipm 或 simplex");
       parsed.options.backend = value;
     } else if (option == "--iteration-limit") iteration_limit = parse_iteration_limit(value);
     else if (option == "--scaling-passes") {
@@ -298,6 +315,17 @@ Arguments parse(const std::vector<std::string>& args) {
       if (value != "choose" && value != "on" && value != "off")
         throw std::invalid_argument("--highs-presolve 仅支持 choose、on 或 off");
       parsed.options.highs.presolve = value;
+    } else if (option == "--ipm-presolve" || option == "--ipm-crossover" ||
+               option == "--ipm-diagnostics" || option == "--ipm-profile" || option == "--ipm-warm-dual-cleanup" ||
+               option == "--ipm-factor-reuse") {
+      if (value != "on" && value != "off")
+        throw std::invalid_argument(option + " 仅支持 on 或 off");
+      if (option == "--ipm-presolve") parsed.options.ipm.presolve = value == "on";
+      else if (option == "--ipm-crossover") parsed.options.ipm.crossover = value == "on";
+      else if (option == "--ipm-diagnostics") parsed.options.ipm.diagnostics = value == "on";
+      else if (option == "--ipm-profile") parsed.options.ipm.profile = value == "on";
+      else if (option == "--ipm-warm-dual-cleanup") parsed.options.ipm.warm_dual_cleanup = value == "on";
+      else parsed.options.ipm.factor_reuse = value == "on";
     } else if (option == "--ipm-method") {
       if (value != "mehrotra" && value != "homogeneous")
         throw std::invalid_argument("--ipm-method 仅支持 mehrotra 或 homogeneous");
@@ -356,8 +384,15 @@ Arguments parse(const std::vector<std::string>& args) {
       parsed.options.ipm.inexact_prefilter = value == "on";
     } else parsed.output = utf8_path(value);
   }
-  if (parsed.options.backend == "highs" && (iteration_limit || scaling_passes))
-    throw std::invalid_argument("--iteration-limit 和 --scaling-passes 仅适用于 pdlp 或 ipm 后端");
+  if (parsed.options.backend == "highs" && iteration_limit)
+    throw std::invalid_argument("--iteration-limit 仅适用于 pdlp、ipm 或 simplex 后端");
+  if (scaling_passes && parsed.options.backend != "pdlp" && parsed.options.backend != "ipm")
+    throw std::invalid_argument("--scaling-passes 仅适用于 pdlp 或 ipm 后端");
+  if (parsed.options.backend != "ipm") {
+    for (const auto option : {"--ipm-presolve", "--ipm-crossover", "--ipm-diagnostics", "--ipm-profile", "--ipm-warm-dual-cleanup", "--ipm-factor-reuse"})
+      if (std::find(seen.begin(), seen.end(), option) != seen.end())
+        throw std::invalid_argument(std::string(option) + " 仅适用于 ipm 后端");
+  }
   if (parsed.options.backend != "ipm" &&
       std::find(seen.begin(), seen.end(), "--ipm-method") != seen.end())
     throw std::invalid_argument("--ipm-method 仅适用于 ipm 后端");
@@ -405,18 +440,29 @@ Arguments parse(const std::vector<std::string>& args) {
       std::find(seen.begin(), seen.end(), "--ipm-presolve-fixed-elimination") != seen.end())
     throw std::invalid_argument("--ipm-presolve-fixed-elimination 仅适用于 ipm 后端");
   if (parsed.options.backend != "highs" && parsed.options.threads != 1)
-    throw std::invalid_argument("当前 pdlp 和 ipm 后端仅支持 --threads 1");
+    throw std::invalid_argument("当前自主后端仅支持 --threads 1");
   if (parsed.options.backend != "highs" &&
       (std::find(seen.begin(), seen.end(), "--highs-solver") != seen.end() ||
        std::find(seen.begin(), seen.end(), "--highs-crossover") != seen.end() ||
        std::find(seen.begin(), seen.end(), "--highs-presolve") != seen.end()))
     throw std::invalid_argument("HiGHS 算法、crossover 与 presolve 参数仅适用于 highs 后端");
+  if (parsed.options.backend == "ipm" && parsed.options.ipm.warm_dual_cleanup &&
+      (!parsed.options.ipm.crossover || parsed.options.ipm.method != "homogeneous"))
+    throw std::invalid_argument("--ipm-warm-dual-cleanup on 要求 --ipm-crossover on 和 --ipm-method homogeneous");
+  if (parsed.options.backend == "ipm" && parsed.options.ipm.factor_reuse &&
+      (!parsed.options.ipm.presolve || parsed.options.ipm.method != "homogeneous" ||
+       parsed.options.ipm.linear_accuracy != "homogeneous_repair" || (iteration_limit && *iteration_limit > 200)))
+    throw std::invalid_argument("--ipm-factor-reuse on 要求 --ipm-presolve on、--ipm-method homogeneous、--ipm-linear-accuracy homogeneous_repair 且最多200轮");
+  if (parsed.options.backend == "ipm" && parsed.options.ipm.crossover && parsed.options.ipm.method != "homogeneous")
+    throw std::invalid_argument("--ipm-crossover on 要求 --ipm-method homogeneous");
   if (parsed.options.backend == "ipm") {
     if (iteration_limit) parsed.options.ipm.max_iterations = *iteration_limit;
     if (scaling_passes) parsed.options.ipm.scaling_passes = *scaling_passes;
   } else if (parsed.options.backend == "pdlp") {
     if (iteration_limit) parsed.options.pdlp.max_iterations = *iteration_limit;
     if (scaling_passes) parsed.options.pdlp.scaling_passes = *scaling_passes;
+  } else if (parsed.options.backend == "simplex" && iteration_limit) {
+    parsed.options.simplex.max_iterations = *iteration_limit;
   }
   return parsed;
 }
@@ -437,8 +483,9 @@ std::string report(const Arguments& args, const solver::SolveResult& result) {
       << ",\"mip_relative_gap\":" << number(options.mip_relative_gap)
       << ",\"pdlp\":" << (options.backend == "pdlp" ? pdlp_options(options.pdlp) : "null")
       << ",\"ipm\":" << (options.backend == "ipm" ? ipm_options(options.ipm) : "null")
-      << ",\"highs\":" << (options.backend == "highs" ? highs_options(options.highs) : "null")
-      << ",\"tolerances\":{\"feasibility_absolute\":" << number(tolerances.feasibility_absolute)
+      << ",\"highs\":" << (options.backend == "highs" ? highs_options(options.highs) : "null");
+  if (options.backend == "simplex") out << ",\"simplex\":" << simplex_options(options.simplex);
+  out << ",\"tolerances\":{\"feasibility_absolute\":" << number(tolerances.feasibility_absolute)
       << ",\"feasibility_relative\":" << number(tolerances.feasibility_relative)
       << ",\"integrality\":" << number(tolerances.integrality)
       << ",\"objective_absolute\":" << number(tolerances.objective_absolute)
@@ -558,7 +605,7 @@ int run(const std::vector<std::string>& args) {
     if (args.size() == 2 && args[1] == "--version") {
       std::cout << "{\"schema_version\":1,\"solver_version\":" << quote(version)
                 << ",\"backend\":\"highs\",\"backend_version\":" << quote(solver::backend_version())
-                << ",\"supported_backends\":[\"highs\",\"pdlp\",\"ipm\"]}\n";
+                << ",\"supported_backends\":[\"highs\",\"pdlp\",\"ipm\",\"simplex\"]}\n";
       return 0;
     }
     if (args.size() == 2 && args[1] == "--help") {
@@ -570,6 +617,7 @@ int run(const std::vector<std::string>& args) {
                 << ",\"mip_gap\":" << number(defaults.mip_relative_gap)
                 << ",\"pdlp\":" << pdlp_options(defaults.pdlp)
                 << ",\"ipm\":" << ipm_options(defaults.ipm)
+                << ",\"simplex\":" << simplex_options(defaults.simplex)
                 << ",\"highs\":" << highs_options(defaults.highs) << "}"
                 << ",\"exit_codes\":{\"0\":\"后端已判定结束\",\"2\":\"参数、输入或运行错误\",\"3\":\"独立候选解检查失败\",\"4\":\"预算耗尽或求解未完成\"}}\n";
       return 0;

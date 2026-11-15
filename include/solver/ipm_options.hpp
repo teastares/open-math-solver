@@ -42,6 +42,15 @@ struct IpmOptions {
   bool presolve_singleton_rows = false;
   // 仅消除本次单行归并新产生的固定列，并恢复定义该固定点的原行对偶。
   bool eliminate_presolved_fixed_variables = false;
+  // 预处理、交叉、诊断与分层计时均需显式请求。
+  bool presolve = false;
+  bool crossover = false;
+  bool diagnostics = false;
+  bool profile = false;
+  // 仅显式启用时，允许齐次交叉的暖基阶段尝试对偶清理。
+  bool warm_dual_cleanup = false;
+  // 仅显式启用时，按新旧Schur对角两侧缩放并认证自然有符号分母，保当前R与完整真验。
+  bool factor_reuse = false;
 };
 
 }  // 命名空间 solver

@@ -1,10 +1,13 @@
 #include "solver/detail/normal_cholesky.hpp"
+#include "solver/detail/normal_gram_pattern.hpp"
 
 #include <algorithm>
+#include <bit>
 #include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <limits>
+#include <memory>
 #include <new>
 #include <span>
 #include <stdexcept>
@@ -16,6 +19,7 @@ namespace {
 using Index = std::int64_t;
 using solver::detail::NormalCholesky;
 using solver::detail::NormalCholeskyKernel;
+using solver::detail::NormalSolveInput;
 
 void require(bool condition, const std::string& message) {
   if (!condition) throw std::runtime_error(message);
@@ -375,16 +379,400 @@ void check_rectangular_normal() {
   }
 }
 
+void check_mapped_layouts() {
+  struct Mode { NormalCholeskyKernel kernel; bool multifrontal, extended; int refinement; };
+  std::vector<Mode> modes{{NormalCholeskyKernel::eigen, false, false, 0},
+      {NormalCholeskyKernel::eigen, true, false, 0},
+      {NormalCholeskyKernel::cholmod_supernodal, false, false, 0},
+      {NormalCholeskyKernel::cholmod_supernodal_aat, false, false, 0}};
+  if constexpr (std::numeric_limits<long double>::digits > std::numeric_limits<double>::digits) {
+    modes.push_back({NormalCholeskyKernel::eigen, false, true, 0});
+    modes.push_back({NormalCholeskyKernel::eigen, false, false, 2});
+  }
+  const std::vector<Index> starts{0, 1, 3, 5, 8, 11}, rows{0, 0, 1, 1, 2, 0, 2, 3, 1, 3, 4};
+  const std::vector<double> original_values{-3, 1, 2, 3, -4, 2, -1, 5, -2, 4, -2};
+  const std::vector<std::int8_t> signs{-1, 1, -1, 1, -1};
+  const std::vector<Index> map{4, 0, 6, 2, 7};
+  const std::vector<double> scales{0.5, 2, 0.25, 4, 1};
+  for (const auto mode : modes) {
+    NormalCholesky mapped(5, starts, rows, signs, {}, mode.multifrontal, mode.extended,
+        mode.refinement, mode.kernel, map);
+    NormalCholesky reference(5, starts, rows, signs, {}, mode.multifrontal, mode.extended,
+        mode.refinement, mode.kernel);
+    // 连续求解再改变因子，不能持有上次CHOLMOD借用的解，也不能缓存旧数值尺度。
+    for (int epoch : {0, 1, 0}) {
+      auto values = original_values;
+      if (epoch) for (double& value : values) value *= 2;
+      require(mapped.factor(values) && reference.factor(values), "映射夹具的两份真实因子应成功");
+      for (const auto& point : std::vector<std::vector<double>>{{-1, 2, 3, -2, 0.5}, {2, -1, 0.5, 3, -4}}) {
+        const auto normal_rhs = multiply(starts, rows, values, point);
+        auto legacy = normal_rhs;
+        require(reference.solve(legacy), "恒等入口应提供同核坐标对照");
+        std::vector<double> input(9, 0), output(9, 73);
+        for (std::size_t i = 0; i < map.size(); ++i) input[static_cast<std::size_t>(map[i])] = normal_rhs[i] / scales[i];
+        std::vector<long double> prefix(input.begin(), input.begin() + 3);
+        input[0] = -999; input[2] = 999;
+        const auto saved_input = input;
+        const auto saved_prefix = prefix;
+        require(mapped.solve_into(NormalSolveInput{input, prefix, scales}, output), "带间隙的组合映射应成功求解");
+        require(input == saved_input && prefix == saved_prefix, "映射入口不能改原右端及扩展前缀");
+        std::vector<double> recovered(5);
+        for (std::size_t i = 0; i < map.size(); ++i) {
+          const auto external = static_cast<std::size_t>(map[i]);
+          require(output[external] == static_cast<double>(static_cast<long double>(legacy[i]) * scales[i]),
+              "融合映射的舍入结果须与旧Normal回代加独立外层缩放一致");
+          recovered[i] = output[external] / scales[i];
+          require(std::abs(recovered[i] - point[i]) <= 1e-11 * std::max(1.0, std::abs(point[i])),
+              "融合映射须恢复独立指定的原坐标解析向量");
+        }
+        const auto product = multiply(starts, rows, values, recovered);
+        for (std::size_t i = 0; i < product.size(); ++i)
+          require(std::abs(product[i] - normal_rhs[i]) <= 1e-11 * std::max(1.0, std::abs(normal_rhs[i])),
+              "组合映射后的完整不定系统残差须合格");
+        for (std::size_t i = 0; i < output.size(); ++i)
+          if (std::find(map.begin(), map.end(), static_cast<Index>(i)) == map.end())
+            require(output[i] == 73, "Normal不能覆盖外部单例恢复预留的位置");
+        auto wrapper = normal_rhs;
+        require(mapped.solve(wrapper) && wrapper == legacy, "有外部映射的对象仍须保旧solve的内部坐标语义");
+      }
+    }
+  }
+  std::cout << "Normal组合映射、多内核、重复回代和重分解检查通过\n";
+}
+
+void check_mapped_rounding() {
+  const std::vector<Index> starts{0, 1}, rows{0}, map{2};
+  const std::vector<std::int8_t> signs{1};
+  NormalCholesky primal(1, starts, rows, signs, {}, false, false, 0,
+      NormalCholeskyKernel::cholmod_supernodal_aat, map);
+  require(primal.factor(std::vector<double>{1}), "纯原始映射系统应无Schur分解成功");
+  std::vector<double> input{0, 0, 99}, output(3, 17), scale{3};
+  std::vector<long double> prefix{0, 0, 1};
+  if constexpr (std::numeric_limits<long double>::digits > std::numeric_limits<double>::digits) {
+    prefix[2] = 1 + std::ldexp(1.0L, -53);
+    require(primal.solve_into(NormalSolveInput{input, prefix, scale}, output) && output[2] == 9,
+        "LD前缀须先舍入double再外层缩放，不能合并两次舍入");
+    if constexpr (std::numeric_limits<long double>::max_exponent > std::numeric_limits<double>::max_exponent) {
+      prefix[2] = static_cast<long double>(std::numeric_limits<double>::max()) * 2;
+      scale[0] = 0.25;
+      require(!primal.solve_into(NormalSolveInput{input, prefix, scale}, output),
+          "前缀先转double溢出必须拒绝，不能用后续缩放掩盖溢出");
+    }
+    if constexpr (std::numeric_limits<long double>::min_exponent < -1075) {
+      prefix[2] = std::ldexp(1.0L, -1075); scale[0] = 3;
+      require(primal.solve_into(NormalSolveInput{input, prefix, scale}, output) && output[2] == 0,
+          "原finite允许的LD前缀舍入下溢应保持，不应误加Normal输出的非零约束");
+    }
+  }
+  if constexpr (std::numeric_limits<double>::is_iec559 && std::numeric_limits<double>::digits == 53 &&
+      std::numeric_limits<double>::has_denorm == std::denorm_present) {
+    input[2] = std::numeric_limits<double>::denorm_min(); scale[0] = 0.5;
+    require(!primal.solve_into(NormalSolveInput{input, {}, scale}, output),
+        "非零double的外层输入缩放下溢仍须按原scaled拒绝");
+    require(primal.factor(std::vector<double>{std::ldexp(1.0, -1022)}), "小正对角的空Schur仍应成功");
+    input[2] = 1; scale[0] = 2;
+    require(!primal.solve_into(NormalSolveInput{input, {}, scale}, output),
+        "Normal解有限但外层输出缩放溢出不能被提交");
+    require(primal.factor(std::vector<double>{std::ldexp(1.0, 1022)}), "大正对角的空Schur仍应成功");
+    input[2] = std::ldexp(1.0, 1022); scale[0] = std::numeric_limits<double>::denorm_min();
+    require(!primal.solve_into(NormalSolveInput{input, {}, scale}, output),
+        "可表示的Normal非零解在外层输出缩放下溢仍须拒绝");
+  }
+  NormalCholesky empty(0, std::vector<Index>{0}, {}, {}, {}, false, false, 0,
+      NormalCholeskyKernel::cholmod_supernodal_aat);
+  std::vector<double> nothing;
+  require(empty.factor({}) && empty.solve_into(NormalSolveInput{}, nothing), "空映射系统不能解引用空Schur工作区");
+  std::cout << "Normal映射分步舍入、可表示边界与空Schur检查通过\n";
+}
+
+void check_mapped_contract_and_budget() {
+  constexpr auto kernel = NormalCholeskyKernel::cholmod_supernodal_aat;
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2}, map{4, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+  const std::vector<double> values{3, 2, -5, 4, -7}, scale{2, 0.5, 4};
+  for (const auto& invalid : std::vector<std::vector<Index>>{{1, 2}, {1, -1, 2}, {1, 1, 2}}) {
+    bool rejected = false;
+    try { NormalCholesky bad(3, starts, rows, signs, {}, false, false, 0, kernel, invalid); }
+    catch (const std::invalid_argument&) { rejected = true; }
+    require(rejected, "错误长度、负坐标或重复外部映射必须在构造时拒绝");
+  }
+  NormalCholesky factor(3, starts, rows, signs, {}, false, false, 0, kernel, map);
+  require(factor.factor(values), "映射预算夹具应分解成功");
+  const auto normal_rhs = multiply(starts, rows, values, {1, 2, -3});
+  std::vector<double> input(6, 0);
+  for (std::size_t i = 0; i < map.size(); ++i) input[static_cast<std::size_t>(map[i])] = normal_rhs[i] / scale[i];
+  const auto saved = input;
+  std::vector<double> output(6, 43);
+  const auto original_output = output;
+  int callbacks = 0;
+  require(factor.solve_into(NormalSolveInput{input, {}, scale}, output, [&] { ++callbacks; }),
+      "映射回代预算基准须真实成功");
+  const auto expected_output = output;
+  require(callbacks > 1, "映射预算基准须覆盖入口、库调用和末次检查");
+  for (int stop = 1; stop <= callbacks; ++stop) {
+    int calls = 0; bool interrupted = false; output = original_output;
+    try { factor.solve_into(NormalSolveInput{input, {}, scale}, output,
+        [&] { if (++calls == stop) throw std::runtime_error("映射回代预算前缀"); }); }
+    catch (const std::runtime_error& error) { interrupted = std::string(error.what()) == "映射回代预算前缀"; }
+    require(interrupted && calls == stop && input == saved, "每个真实预算前缀须原样传播且保持输入");
+    require(output[1] == 43 && output[3] == 43 && output[5] == 43, "中断也不能覆盖未映射位置");
+  }
+  output = original_output;
+  require(factor.solve_into(NormalSolveInput{input, {}, scale}, output) && output == expected_output,
+      "预算中断之后必须用当前输入重算，不得采用部分旧解");
+  int wrapper_callbacks = 0; auto wrapper = normal_rhs;
+  require(factor.solve(wrapper, [&] { ++wrapper_callbacks; }), "映射对象的旧wrapper预算基准须成功");
+  for (int stop = 1; stop <= wrapper_callbacks; ++stop) {
+    int calls = 0; bool interrupted = false; wrapper = normal_rhs;
+    try { factor.solve(wrapper, [&] { if (++calls == stop) throw std::runtime_error("旧wrapper预算前缀"); }); }
+    catch (const std::runtime_error& error) { interrupted = std::string(error.what()) == "旧wrapper预算前缀"; }
+    require(interrupted && wrapper == normal_rhs, "旧wrapper任一预算中断含末次检查不得提交rhs");
+  }
+  auto alias = saved;
+  require(!factor.solve_into(NormalSolveInput{alias, {}, scale}, alias) && alias == saved,
+      "输入输出重叠须在任何写入前拒绝");
+  std::vector<double> scale_alias(6, 1);
+  require(!factor.solve_into(NormalSolveInput{input, {}, std::span<const double>(scale_alias.data(), 3)}, scale_alias),
+      "外层缩放存储与输出重叠也须拒绝");
+  output = original_output;
+  require(!factor.solve_into(NormalSolveInput{input, {}, std::span<const double>(scale.data(), 2)}, output) && output == original_output,
+      "错误缩放长度不能访问越界或写出");
+  std::vector<long double> too_long(7, 1);
+  require(!factor.solve_into(NormalSolveInput{input, too_long, scale}, output), "扩展前缀不能超出外部向量");
+  std::vector<double> short_output(5, 43), short_input(4, 1), mapped_short_output(4, 43);
+  require(!factor.solve_into(NormalSolveInput{input, {}, scale}, short_output) &&
+      !factor.solve_into(NormalSolveInput{short_input, {}, scale}, mapped_short_output),
+      "输出维数不符或映射外部坐标越界必须拒绝");
+  input[4] = std::numeric_limits<double>::infinity();
+  require(!factor.solve_into(NormalSolveInput{input, {}, scale}, output) && std::isinf(input[4]),
+      "映射位置的非有限右端必须拒绝并保持输入");
+  std::cout << "Normal映射合同及全部真实预算回调前缀检查通过\n";
+}
+
+struct ExchangeMode {
+  NormalCholeskyKernel kernel;
+  bool multifrontal = false, extended = false;
+  int refinement = 0;
+};
+
+std::vector<ExchangeMode> exchange_modes() {
+  std::vector<ExchangeMode> result{{NormalCholeskyKernel::eigen}, {NormalCholeskyKernel::eigen, true},
+      {NormalCholeskyKernel::cholmod_supernodal}, {NormalCholeskyKernel::cholmod_supernodal_aat}};
+  if constexpr (std::numeric_limits<long double>::digits > std::numeric_limits<double>::digits) {
+    result.push_back({NormalCholeskyKernel::eigen, false, true});
+    result.push_back({NormalCholeskyKernel::eigen, false, false, 2});
+  }
+  return result;
+}
+
+struct ExchangeLayout {
+  const std::vector<Index> starts{0, 1, 3, 5}, rows{0, 0, 1, 0, 2};
+  const std::vector<std::int8_t> signs{1, -1, -1};
+};
+
+std::unique_ptr<NormalCholesky> exchange_factor(const ExchangeMode& mode, const ExchangeLayout& layout) {
+  return std::make_unique<NormalCholesky>(3, layout.starts, layout.rows, layout.signs,
+      std::function<void()>{}, mode.multifrontal, mode.extended, mode.refinement, mode.kernel);
+}
+
+bool same_double_bits(const std::vector<double>& left, const std::vector<double>& right) {
+  if (left.size() != right.size()) return false;
+  for (std::size_t i = 0; i < left.size(); ++i)
+    if (std::bit_cast<std::uint64_t>(left[i]) != std::bit_cast<std::uint64_t>(right[i])) return false;
+  return true;
+}
+
+void exchange_copy_solution(NormalCholesky& copy, NormalCholesky& exchanged,
+    const ExchangeLayout& layout, const std::vector<double>& values) {
+  for (const auto& point : std::vector<std::vector<double>>{{1, 2, -3}, {-1, 3, 2}}) {
+    auto expected = multiply(layout.starts, layout.rows, values, point), actual = expected;
+    require(copy.solve(expected) && exchanged.solve(actual) && same_double_bits(actual, expected),
+        "exchange与同后端旧span-copy分解的完整回代须逐位相同");
+    check_solution(copy, layout.starts, layout.rows, values, point, false);
+    check_solution(exchanged, layout.starts, layout.rows, values, point, false);
+  }
+  const auto first = copy.refinement_statistics(), second = exchanged.refinement_statistics();
+  require(copy.factor_nonzeros() == exchanged.factor_nonzeros() && copy.factor_dimension() == exchanged.factor_dimension() &&
+      copy.regularized_pivots() == exchanged.regularized_pivots() && first.residual_products == second.residual_products &&
+      first.refinement_steps == second.refinement_steps && first.refinement_acceptances == second.refinement_acceptances,
+      "交换输入只能改变所有权，不能改变存储报告、主元正则或实际校正统计");
+}
+
+void check_factor_exchange_copy_paths() {
+  const ExchangeLayout layout;
+  const std::vector<std::vector<double>> epochs{{3, 2, -5, 4, -7}, {5, -3, -11, 0, -13}, {2, 5, -7, -4, -3}};
+  for (const auto mode : exchange_modes()) {
+    auto copy = exchange_factor(mode, layout), exchanged = exchange_factor(mode, layout);
+    std::vector<double> scratch = epochs[0], owned;
+    std::uintptr_t initial_address = 0;
+    for (int step = 0; step < 7; ++step) {
+      const auto& values = epochs[static_cast<std::size_t>(step % 3)];
+      const bool transfer = step != 3 && step != 5;
+      scratch = values;
+      const auto address = reinterpret_cast<std::uintptr_t>(scratch.data());
+      if (step == 0) initial_address = address;
+      require(copy->factor(values), "旧copy参考须真实分解本次数值");
+      if (transfer) {
+        require(exchanged->factor_exchange(scratch), "相同数值的exchange应真实分解成功");
+        require(same_double_bits(scratch, owned.empty() ? values : owned),
+            "首次无等长owned时保持Caller，后续交换返回上一份完整存储输入");
+        if (step == 0) require(reinterpret_cast<std::uintptr_t>(scratch.data()) == address,
+            "首个非空exchange应保留旧copy路径，Caller存储不转移");
+        if (step == 1) require(reinterpret_cast<std::uintptr_t>(scratch.data()) != address,
+            "已有等长owned后必须交换两个独立buffer，而非再次复制当前输入");
+        if (step == 2) require(reinterpret_cast<std::uintptr_t>(scratch.data()) == initial_address,
+            "第三次应用须取回原先Caller所有的buffer，不借用跨调用span");
+      } else {
+        require(exchanged->factor(scratch) && same_double_bits(scratch, values),
+            "跨API旧span-copy仍保持Caller，并替换下一次exchange将返回的owned输入");
+      }
+      owned = values;
+      exchange_copy_solution(*copy, *exchanged, layout, values);
+    }
+  }
+  std::cout << "Normal各类内核copy/exchange逐位、首copy后swap及跨API重复数值检查通过\n";
+}
+
+struct ExchangeBudgetStop : std::runtime_error { using std::runtime_error::runtime_error; };
+
+void check_factor_exchange_budget() {
+  const ExchangeLayout layout;
+  const std::vector<double> previous{3, 2, -5, 4, -7}, current{5, -3, -11, 0, -13}, next{2, 5, -7, -4, -3};
+  for (const auto mode : exchange_modes()) for (bool warm : {false, true}) {
+    int total = 0, copy_total = 0;
+    {
+      auto factor = exchange_factor(mode, layout), copy = exchange_factor(mode, layout);
+      if (warm) require(factor->factor(previous) && copy->factor(previous), "warm预算夹具须先支付同一旧copy分解");
+      auto scratch = current;
+      require(factor->factor_exchange(scratch, [&] { ++total; }) &&
+          copy->factor(current, [&] { ++copy_total; }) && total == copy_total && total > 1,
+          "exchange不能增加、减少或移动原copy数值体的预算检查次数");
+    }
+    for (int cutoff = 1; cutoff <= total; ++cutoff) {
+      auto factor = exchange_factor(mode, layout), reference = exchange_factor(mode, layout);
+      if (warm) require(factor->factor(previous) && reference->factor(previous), "每个warm预算前缀从同一完整owned输入开始");
+      auto scratch = current;
+      int checks = 0;
+      bool original = false;
+      try { factor->factor_exchange(scratch, [&] { if (++checks == cutoff) throw ExchangeBudgetStop("交换分解预算"); }); }
+      catch (const ExchangeBudgetStop&) { original = true; }
+      int copy_checks = 0;
+      bool copy_original = false;
+      try { reference->factor(current, [&] { if (++copy_checks == cutoff) throw ExchangeBudgetStop("旧copy分解预算"); }); }
+      catch (const ExchangeBudgetStop&) { copy_original = true; }
+      require(original && checks == cutoff && same_double_bits(scratch, warm && cutoff > 1 ? previous : current),
+          "首预算在接收输入前中断保持Caller，warm接收后的任意中断均保已交换的旧owned语义");
+      std::vector<double> rhs{1, 2, 3}, copy_rhs = rhs;
+      require(copy_original && copy_checks == cutoff && !factor->solve(rhs) && !reference->solve(copy_rhs) &&
+          rhs == std::vector<double>({1, 2, 3}) && copy_rhs == rhs &&
+          factor->factor_nonzeros() == reference->factor_nonzeros() &&
+          factor->regularized_pivots() == reference->regularized_pivots() &&
+          factor->factor_dimension() == reference->factor_dimension(),
+          "预算中断必须拒绝回代并保rhs，nnz/主元/维数保同cutoff旧copy的真实前缀，不强求完成库分解费用归零");
+      auto retry = next;
+      require(factor->factor_exchange(retry), "预算中断后Caller全量覆盖的新数值应能重新分解");
+      const auto& returned = cutoff > 1 ? current : warm ? previous : next;
+      require(same_double_bits(retry, returned), "中断后的下一次交换须返回实际持有输入，不能假装上次已回滚");
+      auto copy = exchange_factor(mode, layout);
+      require(copy->factor(next), "恢复对照须独立用旧copy入口分解");
+      exchange_copy_solution(*copy, *factor, layout, next);
+    }
+  }
+  std::cout << "Normal各内核cold/warm exchange全部实际预算前缀及失效恢复检查通过\n";
+}
+
+void check_factor_exchange_failure_ownership() {
+  const ExchangeLayout layout;
+  const std::vector<double> previous{3, 2, -5, 4, -7}, next{2, 5, -7, -4, -3};
+  for (const auto mode : exchange_modes()) {
+    auto factor = exchange_factor(mode, layout);
+    for (int invalid = 0; invalid < 4; ++invalid) {
+      require(factor->factor(previous), "校验失败夹具须从旧copy owned开始");
+      auto scratch = next;
+      if (invalid == 0) scratch.pop_back();
+      if (invalid == 1) scratch[1] = std::numeric_limits<double>::quiet_NaN();
+      if (invalid == 2) scratch[0] = 0;
+      if (invalid == 3) scratch[2] = 1;
+      const auto original = scratch;
+      require(!factor->factor_exchange(scratch) && same_double_bits(scratch, original),
+          "长度、非有限和符号校验失败须发生在交换前，Caller逐位保持");
+      std::vector<double> rhs{1, 2, 3};
+      require(!factor->solve(rhs) && rhs == std::vector<double>({1, 2, 3}) && factor->factor_nonzeros() == 0,
+          "校验前失败也必须作废先前因子，不能保留旧成功状态");
+      auto retry = next;
+      require(factor->factor_exchange(retry) && same_double_bits(retry, previous),
+          "校验前失败不能替换owned，下一次成功交换仍返回先前输入");
+    }
+    for (int failure = 0; failure < 3; ++failure) {
+      require(factor->factor(previous), "原异常夹具须先建立旧owned");
+      auto scratch = next;
+      int checks = 0;
+      bool original = false;
+      try { factor->factor_exchange(scratch, [&] {
+        if (++checks != 2) return;
+        if (failure == 0) throw std::bad_alloc{};
+        if (failure == 1) throw std::invalid_argument("交换后原输入异常");
+        throw ExchangeBudgetStop("交换后原始回调异常");
+      }); }
+      catch (const std::bad_alloc&) { original = failure == 0; }
+      catch (const std::invalid_argument&) { original = failure == 1; }
+      catch (const ExchangeBudgetStop&) { original = failure == 2; }
+      std::vector<double> rhs{1, 2, 3};
+      require(original && same_double_bits(scratch, previous) && !factor->solve(rhs) && rhs == std::vector<double>({1, 2, 3}),
+          "交换后原异常不可转换为结构回退或回滚Caller，失败因子必须保持不可用");
+    }
+  }
+  {
+    auto factor = exchange_factor({NormalCholeskyKernel::cholmod_supernodal_aat}, layout);
+    require(factor->factor(previous), "数值false夹具应先建立旧owned");
+    const double tiny = std::numeric_limits<double>::denorm_min();
+    const std::vector<double> rejected{1, 1, -tiny, 1, -tiny};
+    auto scratch = rejected;
+    require(!factor->factor_exchange(scratch) && same_double_bits(scratch, previous),
+        "已通过验证但Gram数值退化返回false时，输入已经归Normal且Caller保持旧scratch");
+    std::vector<double> rhs{1, 2, 3};
+    require(!factor->solve(rhs) && rhs == std::vector<double>({1, 2, 3}) && factor->factor_nonzeros() == 0,
+        "接收输入后的数值false必须使因子失效，不能对外回代上一份成功数值");
+    auto retry = next;
+    require(factor->factor_exchange(retry) && same_double_bits(retry, rejected),
+        "下一次交换返回最后已验证输入，即使它未形成成功因子，也不能误记为最后成功输入");
+    auto copy = exchange_factor({NormalCholeskyKernel::cholmod_supernodal_aat}, layout);
+    require(copy->factor(next), "数值失败恢复对照用旧copy入口");
+    exchange_copy_solution(*copy, *factor, layout, next);
+  }
+  NormalCholesky empty(0, std::vector<Index>{0}, {}, {});
+  std::vector<double> nothing;
+  require(empty.factor_exchange(nothing) && empty.solve(nothing) && nothing.empty(), "空维exchange须保持原空因子语义");
+  bool interrupted = false;
+  try { empty.factor_exchange(nothing, [] { throw ExchangeBudgetStop("空维入口预算"); }); }
+  catch (const ExchangeBudgetStop&) { interrupted = true; }
+  require(interrupted && !empty.solve(nothing) && nothing.empty(), "空维预算中断也必须使因子失效且不访问不存在的存储");
+  std::cout << "Normal exchange校验前/接收后失败、原异常、空维及完整owned语义检查通过\n";
+}
+
 }  // 匿名命名空间
 
 int main() {
   try {
+    {
+      struct StructureEntry { Index row; };
+      const std::vector<std::vector<StructureEntry>> columns{
+          {{0}, {1}, {3}}, {{0}, {1}}, {{1}, {2}}, {{1}, {3}}, {}};
+      const auto pattern = solver::detail::build_normal_gram_pattern(5, columns, {});
+      require(pattern.starts == std::vector<Index>({0, 1, 3, 5, 8, 9}) &&
+              pattern.rows == std::vector<Index>({0, 0, 1, 1, 2, 0, 1, 3, 4}),
+          "Gram 结构须稳定去重、按行升序并保留孤立对角");
+    }
     check_multifrontal_normal();
     check_extended_normal();
     check_refined_normal();
     check_cholmod_normal();
     check_rectangular_normal();
     check_extreme_gram_ranges();
+    check_mapped_layouts();
+    check_mapped_rounding();
+    check_mapped_contract_and_budget();
+    check_factor_exchange_copy_paths(); check_factor_exchange_budget(); check_factor_exchange_failure_ownership();
     const std::vector<Index> starts{0, 1, 3}, rows{0, 0, 1};
     NormalCholesky reversed(2, starts, rows, std::vector<std::int8_t>{-1, 1});
     std::vector<double> rhs{11, 0};

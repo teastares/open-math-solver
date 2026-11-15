@@ -64,11 +64,14 @@ long double ipm_homogeneous_scaled_denominator(const IpmHomogeneousScaling& scal
     std::span<const double> constant, const std::function<void()>& budget_check = {});
 std::vector<double> ipm_homogeneous_scaled_reduced_rhs(const IpmHomogeneousScaling& scaling,
     std::span<const double> rhs, const std::function<void()>& budget_check = {});
+// 有符号分母须由调用方先认证有限非零；正能量路径保留原正值语义。
+enum class IpmScalarDenominatorPolicy { positive_energy, signed_schur };
 std::vector<double> ipm_homogeneous_scaled_recover(const IpmHomogeneousScaling& scaling,
     std::span<const double> costs, std::span<const double> bounds,
     std::span<const double> rhs, std::span<const double> reduced,
     std::span<const double> constant, long double denominator,
-    const std::function<void()>& budget_check = {});
+    const std::function<void()>& budget_check = {},
+    IpmScalarDenominatorPolicy policy = IpmScalarDenominatorPolicy::positive_energy);
 
 // 对实际交付的物理 double 方向，用原 S/Z/tau/kappa 独立形成五块乘积；每次恰好一遍 CSC。
 // 不以舍入后的 W 或 H 代替原系数，不在验算后重算 ds。

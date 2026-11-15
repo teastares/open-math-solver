@@ -1,5 +1,9 @@
 #include "solver/detail/normal_cholesky.hpp"
+#include "solver/detail/normal_gram_pattern.hpp"
 #include "solver/detail/multifrontal_ldl.hpp"
+#include "solver/detail/ipm_coupled_state.hpp"
+#include "solver/detail/ipm_profile.hpp"
+#include "cholmod_aat_pattern.hpp"
 
 #include <Eigen/SparseCholesky>
 #include <amd.h>
@@ -8,10 +12,14 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <limits>
 #include <new>
 #include <stdexcept>
 #include <string>
+
+extern "C" int solver_cholmod_aat_numeric(cholmod_sparse* matrix, cholmod_sparse* transpose, double beta[2],
+    cholmod_factor* factor, cholmod_common* common, const std::uint32_t* source_slots);
 
 namespace solver::detail {
 namespace {
@@ -41,6 +49,7 @@ class CheckedCholesky : public Eigen::SimplicialLLT<Eigen::SparseMatrix<Scalar, 
  public:
   Index stored_nonzeros() const { return this->m_matrix.nonZeros(); }
   bool finite_factor(const std::function<void()>& budget_check) const {
+    solver::detail::ipm_profile::Scope v112_eigen_factor_check_scope(solver::detail::ipm_profile::Stage::factor_check);
     // Eigen 的 info() 不保证捕获分解中间产生的 NaN，独立核对存储因子。
     for (Index col = 0; col < this->m_matrix.cols(); ++col) {
       if (budget_check) budget_check();
@@ -65,6 +74,14 @@ bool representable(long double value, double& output) {
 
 void check(const std::function<void()>& budget_check) {
   if (budget_check) budget_check();
+}
+
+template <class Scalar>
+bool overlaps(std::span<const Scalar> input, std::span<double> output) {
+  if (input.empty() || output.empty()) return false;
+  const auto left = reinterpret_cast<std::uintptr_t>(input.data());
+  const auto right = reinterpret_cast<std::uintptr_t>(output.data());
+  return left <= right ? right - left < input.size_bytes() : left - right < output.size_bytes();
 }
 
 // 输入已经经过同一 AMD 排列；本适配器不再排序、均衡或修改主元。
@@ -104,10 +121,26 @@ class CholmodFactor {
 
   mutable Resources resources_;
   cholmod_sparse matrix_{};
+  cholmod_sparse transpose_{};
+  cholmod_aat::TransposePattern transpose_pattern_;
   cholmod_sparse lower_matrix_{};
   std::vector<Index> lower_starts_, lower_rows_, lower_sources_;
   std::vector<double> lower_values_;
   bool valid_ = false;
+
+  void cache_rectangular_transpose(const std::function<void()>& budget_check) {
+    transpose_pattern_ = cholmod_aat::build_transpose_pattern(matrix_.nrow, matrix_.ncol,
+        {static_cast<const Index*>(matrix_.p), matrix_.ncol + 1},
+        {static_cast<const Index*>(matrix_.i), matrix_.nzmax},
+        static_cast<std::size_t>(structural_budget), budget_check);
+    transpose_ = matrix_;
+    transpose_.nrow = matrix_.ncol;
+    transpose_.ncol = matrix_.nrow;
+    transpose_.p = transpose_pattern_.starts.data();
+    transpose_.i = transpose_pattern_.rows.data();
+    // 私有数值入口通过 source_slots 读取本次输入，转置头没有独立数值。
+    transpose_.xtype = CHOLMOD_REAL;
+  }
 
   void cache_lower_pattern(const std::function<void()>& budget_check) {
     check(budget_check);
@@ -197,6 +230,7 @@ class CholmodFactor {
   }
 
   bool finite_factor(const std::function<void()>& budget_check) const {
+    solver::detail::ipm_profile::Scope v112_cholmod_factor_check_scope(solver::detail::ipm_profile::Stage::factor_check);
     const auto& factor = *resources_.factor;
     if (!factor.is_super || !factor.is_ll || factor.itype != CHOLMOD_LONG ||
         factor.xtype != CHOLMOD_REAL || factor.dtype != CHOLMOD_DOUBLE || !factor.x) return false;
@@ -229,6 +263,7 @@ class CholmodFactor {
 
  public:
   CholmodFactor(const Matrix& matrix, const std::function<void()>& budget_check, bool rectangular = false) {
+    solver::detail::ipm_profile::Scope v112_cholmod_symbolic_scope(solver::detail::ipm_profile::Stage::symbolic_analysis);
     matrix_.nrow = static_cast<std::size_t>(matrix.rows());
     matrix_.ncol = static_cast<std::size_t>(matrix.cols());
     matrix_.nzmax = static_cast<std::size_t>(matrix.nonZeros());
@@ -260,20 +295,19 @@ class CholmodFactor {
       }
     }
     check(budget_check);
-    // 对称输入缓存原上三角的转置；矩形输入按自己的模式分析，由上游形成乘积。
-    if (!rectangular) cache_lower_pattern(budget_check);
+    if (rectangular) cache_rectangular_transpose(budget_check);
+    else cache_lower_pattern(budget_check);
   }
 
   bool factor(std::span<const double> values, const std::function<void()>& budget_check) {
+    solver::detail::ipm_profile::Scope v112_cholmod_adapter_scope(solver::detail::ipm_profile::Stage::cholmod_factor_adapter);
     valid_ = false;
     check(budget_check);
-    cholmod_sparse* input = &lower_matrix_;
     if (matrix_.stype == 0) {
       if (values.size() != matrix_.nzmax) return false;
       // 数值由外层每次重建；模式和行排列与本对象实际分析的矩形输入相同。
       matrix_.x = const_cast<double*>(values.data());
       matrix_.xtype = CHOLMOD_REAL;
-      input = &matrix_;
     } else {
       if (values.size() != lower_values_.size()) return false;
       for (std::size_t destination = 0; destination < lower_values_.size(); ++destination) {
@@ -283,7 +317,14 @@ class CholmodFactor {
       }
     }
     check(budget_check);
-    const int success = cholmod_l_factorize(input, resources_.factor, &resources_.common);
+    const int success = solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::cholmod_numeric, [&] {
+      if (matrix_.stype == 0) {
+        double beta[2]{};
+        return solver_cholmod_aat_numeric(&matrix_, &transpose_, beta, resources_.factor,
+            &resources_.common, transpose_pattern_.source_slots.data());
+      }
+      return cholmod_l_factorize(&lower_matrix_, resources_.factor, &resources_.common);
+    });
     check(budget_check);
     check_status();
     // 非正定时上游可能返回真；状态、minor 和存储数值都必须独立通过。
@@ -294,17 +335,21 @@ class CholmodFactor {
     return true;
   }
 
-  bool solve(Eigen::VectorXd& rhs, const std::function<void()>& budget_check) const {
-    if (!valid_) return false;
+  bool solve_view(std::span<const double> rhs, std::span<const double>& output,
+                  const std::function<void()>& budget_check) const {
+    output = {};
+    if (!valid_ || rhs.size() != matrix_.nrow) return false;
     cholmod_dense input{};
     input.nrow = input.d = input.nzmax = matrix_.nrow;
     input.ncol = 1;
-    input.x = rhs.data();
+    input.x = const_cast<double*>(rhs.data());
     input.xtype = CHOLMOD_REAL;
     input.dtype = CHOLMOD_DOUBLE;
     check(budget_check);
-    const int success = cholmod_l_solve2(CHOLMOD_A, resources_.factor, &input, nullptr,
+    const int success = solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::cholmod_solve, [&] {
+      return cholmod_l_solve2(CHOLMOD_A, resources_.factor, &input, nullptr,
         &resources_.solution, nullptr, &resources_.work, &resources_.extra, &resources_.common);
+    });
     check(budget_check);
     check_status();
     if (!success || resources_.common.status != CHOLMOD_OK || !resources_.solution) return false;
@@ -314,7 +359,8 @@ class CholmodFactor {
       if (!std::isfinite(values[row])) return false;
     }
     check(budget_check);
-    std::copy(values, values + matrix_.nrow, rhs.data());
+    // 仅在本次 Normal 恢复期间借用；下次 solve2 或 factor 可以改写该存储。
+    output = std::span<const double>(values, matrix_.nrow);
     return true;
   }
 
@@ -328,10 +374,14 @@ struct NormalCholesky::Impl {
   std::size_t dimension;
   std::size_t input_nonzeros;
   std::vector<Index> primal_coordinates, dual_coordinates;
+  std::vector<Index> primal_external_coordinates, dual_external_coordinates;
+  std::size_t required_external_size = 0;
   std::vector<Index> primal_diagonal, dual_diagonal;
   std::vector<std::vector<Entry>> columns;
   std::vector<Index> inverse, diagonal_slots, product_slots;
   std::vector<double> input_values;
+  std::vector<long double> inverse_primal_diagonal;
+  bool inverse_primal_ready = false;
   std::vector<long double> sums;
   Matrix matrix;
   Matrix rectangular_matrix;
@@ -349,6 +399,10 @@ struct NormalCholesky::Impl {
   bool valid = false;
   Index factor_nnz = 0;
   Index modified_pivots = 0;
+
+  template <bool Mapped>
+  bool solve_worker(const NormalSolveInput& input, std::span<double> output,
+                    const std::function<void()>& budget_check, bool batched_budget) const;
 
   Index slot(Index row, Index col) const {
     if (row > col) std::swap(row, col);
@@ -423,9 +477,11 @@ struct NormalCholesky::Impl {
 
   Impl(std::size_t size, std::span<const Index> starts, std::span<const Index> rows,
        std::span<const std::int8_t> signs, const std::function<void()>& budget_check, bool use_multifrontal,
-       bool use_extended, int refinement_budget, NormalCholeskyKernel kernel)
+       bool use_extended, int refinement_budget, NormalCholeskyKernel kernel,
+       std::span<const Index> external_coordinates)
       : dimension(size), input_nonzeros(rows.size()), extended(use_extended),
         rectangular(kernel == NormalCholeskyKernel::cholmod_supernodal_aat), max_refinement_steps(refinement_budget) {
+    solver::detail::ipm_profile::Scope v112_normal_setup_scope(solver::detail::ipm_profile::Stage::normal_setup);
     check(budget_check);
     if (kernel != NormalCholeskyKernel::eigen && kernel != NormalCholeskyKernel::cholmod_supernodal && !rectangular) {
       throw std::invalid_argument("未知的正规方程 Cholesky 内核");
@@ -452,14 +508,33 @@ struct NormalCholesky::Impl {
     if (size > static_cast<std::size_t>(structural_budget) || rows.size() > static_cast<std::size_t>(structural_budget)) {
       throw NormalCholeskyBudgetExceeded("正规方程输入结构超过 16777216 项预算");
     }
+    if (!external_coordinates.empty() && external_coordinates.size() != size) {
+      throw std::invalid_argument("正规方程外部坐标映射维数无效");
+    }
+    if (!external_coordinates.empty()) {
+      std::vector<Index> sorted(external_coordinates.begin(), external_coordinates.end());
+      std::sort(sorted.begin(), sorted.end());
+      check(budget_check);
+      if (sorted.front() < 0 || std::adjacent_find(sorted.begin(), sorted.end()) != sorted.end()) {
+        throw std::invalid_argument("正规方程外部坐标必须非负且互异");
+      }
+      if (static_cast<std::uint64_t>(sorted.back()) >= static_cast<std::uint64_t>(std::numeric_limits<std::size_t>::max())) {
+        throw std::invalid_argument("正规方程外部坐标范围无法表示");
+      }
+      required_external_size = static_cast<std::size_t>(sorted.back()) + 1;
+    } else {
+      required_external_size = size;
+    }
     std::vector<Index> local(size), diagonal(size, -1);
     for (std::size_t coordinate = 0; coordinate < size; ++coordinate) {
       if (signs[coordinate] == 1) {
         local[coordinate] = static_cast<Index>(primal_coordinates.size());
         primal_coordinates.push_back(static_cast<Index>(coordinate));
+        primal_external_coordinates.push_back(external_coordinates.empty() ? static_cast<Index>(coordinate) : external_coordinates[coordinate]);
       } else if (signs[coordinate] == -1) {
         local[coordinate] = static_cast<Index>(dual_coordinates.size());
         dual_coordinates.push_back(static_cast<Index>(coordinate));
+        dual_external_coordinates.push_back(external_coordinates.empty() ? static_cast<Index>(coordinate) : external_coordinates[coordinate]);
       } else {
         throw std::invalid_argument("正规方程坐标标签必须为 +1 或 -1");
       }
@@ -507,7 +582,10 @@ struct NormalCholesky::Impl {
     }
     matrix.resize(retained, retained);
     if (retained == 0) return;
-    {
+    NormalGramPattern pattern;
+    if (rectangular) {
+      pattern = build_normal_gram_pattern(static_cast<std::size_t>(retained), columns, budget_check);
+    } else {
       std::vector<Triplet> entries;
       entries.reserve(static_cast<std::size_t>(contributions));
       for (Index row = 0; row < retained; ++row) entries.emplace_back(row, row, 1.0);
@@ -520,43 +598,65 @@ struct NormalCholesky::Impl {
       matrix.setFromTriplets(entries.begin(), entries.end());
     }
     check(budget_check);
-    if (matrix.nonZeros() > structural_budget) throw NormalCholeskyBudgetExceeded("正规方程矩阵超过 16777216 个结构项预算");
-    std::vector<Index> permutation(static_cast<std::size_t>(retained));
-    inverse.resize(static_cast<std::size_t>(retained));
-    const auto status = amd_l_order(retained, matrix.outerIndexPtr(), matrix.innerIndexPtr(), permutation.data(), nullptr, nullptr);
+    const auto dimension = static_cast<std::size_t>(retained);
+    const std::span<const Index> gram_starts = rectangular ?
+        std::span<const Index>(pattern.starts) : std::span<const Index>(matrix.outerIndexPtr(), dimension + 1);
+    const std::span<const Index> gram_rows = rectangular ?
+        std::span<const Index>(pattern.rows) : std::span<const Index>(matrix.innerIndexPtr(),
+            static_cast<std::size_t>(matrix.nonZeros()));
+    if (gram_rows.size() > static_cast<std::size_t>(structural_budget)) {
+      throw NormalCholeskyBudgetExceeded("正规方程矩阵超过 16777216 个结构项预算");
+    }
+    std::vector<Index> permutation(dimension);
+    inverse.resize(dimension);
+    double amd_info[AMD_INFO]{};
+    const auto status = solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::symbolic_analysis, [&] {
+      return amd_l_order(retained, gram_starts.data(), gram_rows.data(), permutation.data(), nullptr,
+          rectangular ? amd_info : nullptr);
+    });
     check(budget_check);
     if (status != AMD_OK && status != AMD_OK_BUT_JUMBLED) throw std::runtime_error("正规方程 AMD 排序失败");
     for (Index row = 0; row < retained; ++row) inverse[static_cast<std::size_t>(permutation[static_cast<std::size_t>(row)])] = row;
-    {
-      std::vector<Triplet> entries;
-      entries.reserve(static_cast<std::size_t>(matrix.nonZeros()));
-      for (Index col = 0; col < retained; ++col) {
-        check(budget_check);
-        for (Matrix::InnerIterator entry(matrix, col); entry; ++entry) {
-          const auto a = inverse[static_cast<std::size_t>(entry.row())];
-          const auto b = inverse[static_cast<std::size_t>(col)];
-          entries.emplace_back(std::min(a, b), std::max(a, b), 1.0);
+
+    // AMD_LNZ 是严格下三角因子项数的上界。只有原容量已被证实时，才省去精确预检。
+    const double amd_bound = amd_info[AMD_LNZ];
+    const bool certified = rectangular && std::isfinite(amd_bound) && amd_bound >= 0 &&
+        amd_bound <= static_cast<double>(structural_budget - retained);
+    Index lower_nonzeros = 0;
+    if (!certified) {
+      {
+        std::vector<Triplet> entries;
+        entries.reserve(gram_rows.size());
+        for (Index col = 0; col < retained; ++col) {
+          check(budget_check);
+          for (Index entry = gram_starts[static_cast<std::size_t>(col)];
+               entry < gram_starts[static_cast<std::size_t>(col + 1)]; ++entry) {
+            const auto a = inverse[static_cast<std::size_t>(gram_rows[static_cast<std::size_t>(entry)])];
+            const auto b = inverse[static_cast<std::size_t>(col)];
+            entries.emplace_back(std::min(a, b), std::max(a, b), 1.0);
+          }
         }
+        Matrix ordered(retained, retained);
+        ordered.setFromTriplets(entries.begin(), entries.end());
+        matrix.swap(ordered);
       }
-      Matrix ordered(retained, retained);
-      ordered.setFromTriplets(entries.begin(), entries.end());
-      matrix.swap(ordered);
-    }
-    Index lower_nonzeros;
-    {
-      // int64_t 与 QDLDL_int 在不同平台可能是不同类型，不能重解释索引指针。
-      std::vector<QDLDL_int> starts(matrix.outerIndexPtr(), matrix.outerIndexPtr() + retained + 1);
-      std::vector<QDLDL_int> rows(matrix.innerIndexPtr(), matrix.innerIndexPtr() + matrix.nonZeros());
-      std::vector<QDLDL_int> work(static_cast<std::size_t>(retained)), counts(work.size()), tree(work.size());
-      check(budget_check);
-      const auto count = QDLDL_etree(static_cast<QDLDL_int>(retained), starts.data(), rows.data(), work.data(), counts.data(), tree.data());
-      check(budget_check);
-      if (count < 0) throw std::runtime_error("正规方程符号因子计数失败");
-      if (count > structural_budget - retained) throw NormalCholeskyBudgetExceeded("正规方程 Cholesky 因子超过 16777216 个结构项预算");
-      lower_nonzeros = static_cast<Index>(count);
+      {
+        // int64_t 与 QDLDL_int 在不同平台可能是不同类型，不能重解释索引指针。
+        std::vector<QDLDL_int> starts(matrix.outerIndexPtr(), matrix.outerIndexPtr() + retained + 1);
+        std::vector<QDLDL_int> rows(matrix.innerIndexPtr(), matrix.innerIndexPtr() + matrix.nonZeros());
+        std::vector<QDLDL_int> work(static_cast<std::size_t>(retained)), counts(work.size()), tree(work.size());
+        check(budget_check);
+        const auto count = solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::symbolic_analysis, [&] {
+          return QDLDL_etree(static_cast<QDLDL_int>(retained), starts.data(), rows.data(), work.data(), counts.data(), tree.data());
+        });
+        check(budget_check);
+        if (count < 0) throw std::runtime_error("正规方程符号因子计数失败");
+        if (count > structural_budget - retained) throw NormalCholeskyBudgetExceeded("正规方程 Cholesky 因子超过 16777216 个结构项预算");
+        lower_nonzeros = static_cast<Index>(count);
+      }
     }
     if (rectangular) {
-      // 只保留一次 Gram 结构图以复用完全相同的 AMD 及因子预算；不缓存数值展开槽。
+      // 继续使用相同的 AMD 坐标和容量约束，数值输入仍按原次序写入矩形存储。
       const auto rectangular_columns = primal_coordinates.size() + dual_coordinates.size();
       std::size_t rectangular_nonzeros = dual_coordinates.size();
       for (const auto& column : columns) {
@@ -598,7 +698,7 @@ struct NormalCholesky::Impl {
       rectangular_matrix.finalize();
       check(budget_check);
       cholmod = std::make_unique<CholmodFactor>(rectangular_matrix, budget_check, true);
-      // 数值分解与回代只需要矩形模式和原 KKT；释放仅用于固定排序的 Gram 图。
+      // 数值分解与回代只需要矩形模式和原 KKT。
       matrix = Matrix{};
       check(budget_check);
       return;
@@ -613,14 +713,18 @@ struct NormalCholesky::Impl {
           std::vector<std::int8_t>(static_cast<std::size_t>(retained), 1), budget_check);
     } else if (extended) {
       extended_matrix = matrix.cast<long double>();
-      extended_cholesky.analyzePattern(extended_matrix);
+      solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::symbolic_analysis, [&] {
+        extended_cholesky.analyzePattern(extended_matrix);
+      });
       check(budget_check);
       if (extended_cholesky.info() != Eigen::Success ||
           extended_cholesky.stored_nonzeros() != lower_nonzeros + retained) {
         throw std::runtime_error("扩展正规方程 Cholesky 符号结构与预检不一致");
       }
     } else {
-      cholesky.analyzePattern(matrix);
+      solver::detail::ipm_profile::call(solver::detail::ipm_profile::Stage::symbolic_analysis, [&] {
+        cholesky.analyzePattern(matrix);
+      });
       check(budget_check);
       if (cholesky.info() != Eigen::Success || cholesky.stored_nonzeros() != lower_nonzeros + retained) {
         throw std::runtime_error("正规方程 Cholesky 符号结构与预检不一致");
@@ -644,26 +748,54 @@ struct NormalCholesky::Impl {
 
 NormalCholesky::NormalCholesky(std::size_t size, std::span<const Index> starts, std::span<const Index> rows,
     std::span<const std::int8_t> signs, const std::function<void()>& budget_check, bool multifrontal, bool extended,
-    int max_refinement_steps, NormalCholeskyKernel kernel)
-    : impl_(std::make_unique<Impl>(size, starts, rows, signs, budget_check, multifrontal, extended, max_refinement_steps, kernel)) {}
+    int max_refinement_steps, NormalCholeskyKernel kernel, std::span<const Index> external_coordinates)
+    : impl_(std::make_unique<Impl>(size, starts, rows, signs, budget_check, multifrontal, extended,
+          max_refinement_steps, kernel, external_coordinates)) {}
 
 NormalCholesky::~NormalCholesky() = default;
 
 bool NormalCholesky::factor(std::span<const double> values, const std::function<void()>& budget_check) {
+  return factor_impl(values, nullptr, budget_check);
+}
+
+bool NormalCholesky::factor_exchange(std::vector<double>& values,
+    const std::function<void()>& budget_check) {
+  return factor_impl(values, &values, budget_check);
+}
+
+bool NormalCholesky::factor_impl(std::span<const double> values, std::vector<double>* exchange,
+    const std::function<void()>& budget_check) {
+  solver::detail::ipm_profile::Scope v112_normal_factor_scope(solver::detail::ipm_profile::Stage::normal_factor);
   auto& state = *impl_;
   state.valid = false;
+  state.inverse_primal_ready = false;
   state.factor_nnz = 0;
   state.modified_pivots = 0;
   check(budget_check);
   if (values.size() != state.input_nonzeros || !std::all_of(values.begin(), values.end(), [](double x) { return std::isfinite(x); })) return false;
   for (Index source : state.primal_diagonal) if (!(values[static_cast<std::size_t>(source)] > 0)) return false;
   for (Index source : state.dual_diagonal) if (!(values[static_cast<std::size_t>(source)] < 0)) return false;
-  state.input_values.assign(values.begin(), values.end());
+  if (exchange && state.input_values.size() == state.input_nonzeros) {
+    state.input_values.swap(*exchange);
+    // 显式绑定新所有者，后续装配及回代使用同一份数值。
+    values = std::span<const double>(state.input_values);
+  } else {
+    state.input_values.assign(values.begin(), values.end());
+  }
+  // 仅在宽binary64/LD分支缓存正对角倒数；原求和、有限性和最终表示检查均保留。
+  // 缓存绑定本次factor的活动域；旧值在完整数值分解和末次预算检查前始终不可读。
+  const bool cache_inverse_primal = bounded_gram_arithmetic && state.rectangular &&
+      !state.dual_coordinates.empty() && solver::detail::ipm_coupled_state::enabled();
+  if (cache_inverse_primal) state.inverse_primal_diagonal.resize(state.columns.size());
   if (state.rectangular) {
     if (!state.dual_coordinates.empty()) {
+      { // v112矩形装配计时块
+      solver::detail::ipm_profile::Scope v112_rectangular_assembly_scope(solver::detail::ipm_profile::Stage::rectangular_assembly);
       // C=[G D^(-1/2),sqrt(R)]，R 是逐行正对角，不能替换为统一的标量偏移。
       for (std::size_t col = 0; col < state.columns.size(); ++col) {
         check(budget_check);
+        if (cache_inverse_primal) state.inverse_primal_diagonal[col] = 1.0L /
+            static_cast<long double>(values[static_cast<std::size_t>(state.primal_diagonal[col])]);
         const long double divisor = std::sqrt(static_cast<long double>(
             values[static_cast<std::size_t>(state.primal_diagonal[col])]));
         if (!(divisor > 0) || !std::isfinite(divisor)) return false;
@@ -685,15 +817,19 @@ bool NormalCholesky::factor(std::span<const double> values, const std::function<
         if (!representable(std::sqrt(diagonal), state.rectangular_matrix.valuePtr()[entry]) ||
             !(state.rectangular_matrix.valuePtr()[entry] > 0)) return false;
       }
+      } // v112矩形装配计时块结束
       check(budget_check);
       if (!state.cholmod->factor(std::span<const double>(state.rectangular_matrix.valuePtr(),
           static_cast<std::size_t>(state.rectangular_matrix.nonZeros())), budget_check)) return false;
       state.factor_nnz = state.cholmod->stored_nonzeros();
     }
     check(budget_check);
+    state.inverse_primal_ready = cache_inverse_primal;
     state.valid = true;
     return true;
   }
+  { // v112显式Gram装配计时块
+  solver::detail::ipm_profile::Scope v112_explicit_gram_assembly_scope(solver::detail::ipm_profile::Stage::explicit_gram_assembly);
   std::fill(state.sums.begin(), state.sums.end(), 0);
   for (std::size_t row = 0; row < state.dual_coordinates.size(); ++row) {
     state.sums[static_cast<std::size_t>(state.diagonal_slots[row])] = -static_cast<long double>(values[static_cast<std::size_t>(state.dual_diagonal[row])]);
@@ -735,6 +871,7 @@ bool NormalCholesky::factor(std::span<const double> values, const std::function<
       state.extended_matrix.valuePtr()[entry] = state.sums[entry];
     } else if (!representable(state.sums[entry], state.matrix.valuePtr()[entry])) return false;
   }
+  } // v112显式Gram装配计时块结束
   check(budget_check);
   if (!state.dual_coordinates.empty()) {
     if (state.cholmod) {
@@ -783,18 +920,100 @@ bool NormalCholesky::factor(std::span<const double> values, const std::function<
 }
 
 bool NormalCholesky::solve(std::vector<double>& rhs, const std::function<void()>& budget_check) const {
+  solver::detail::ipm_profile::Scope v112_normal_solve_scope(solver::detail::ipm_profile::Stage::normal_solve);
   const auto& state = *impl_;
+  const bool batched_budget = static_cast<bool>(budget_check) && state.rectangular &&
+      solver::detail::ipm_coupled_state::enabled();
   check(budget_check);
-  if (!state.valid || rhs.size() != state.dimension || !std::all_of(rhs.begin(), rhs.end(), [](double x) { return std::isfinite(x); })) return false;
+  if (!state.valid || rhs.size() != state.dimension ||
+      !std::all_of(rhs.begin(), rhs.end(), [](double x) { return std::isfinite(x); })) return false;
+  std::vector<double> solution(rhs.size());
+  if (!state.solve_worker<false>(NormalSolveInput{rhs, {}, {}}, solution, budget_check, batched_budget)) return false;
+  rhs = std::move(solution);
+  return true;
+}
+
+bool NormalCholesky::solve_into(const NormalSolveInput& input, std::span<double> output,
+    const std::function<void()>& budget_check) const {
+  solver::detail::ipm_profile::Scope v112_normal_solve_scope(solver::detail::ipm_profile::Stage::normal_solve);
+  const bool batched_budget = static_cast<bool>(budget_check) && impl_->rectangular &&
+      solver::detail::ipm_coupled_state::enabled();
+  return impl_->solve_worker<true>(input, output, budget_check, batched_budget);
+}
+
+template <bool Mapped>
+bool NormalCholesky::Impl::solve_worker(const NormalSolveInput& input, std::span<double> output,
+    const std::function<void()>& budget_check, bool batched_budget) const {
+  const auto& state = *this;
+  // 策略由公开入口在首个预算回调前快照，回调修改TLS不改变本次检查节奏。
+  const bool v105_batched_budget = batched_budget;
+  std::size_t v105_budget_remaining = 256;
+  const auto v105_budget_tick = [&] {
+    if (--v105_budget_remaining == 0) {
+      check(budget_check);
+      v105_budget_remaining = 256;
+    }
+  };
+  // 原 wrapper 已完成唯一入口检查；保留其既有预算回调边界。
+  if constexpr (Mapped) check(budget_check);
+  if (!state.valid || output.size() != input.values.size()) return false;
+  if constexpr (Mapped) {
+    if (input.values.size() < state.required_external_size || input.extended_prefix.size() > input.values.size() ||
+        (!input.scaling.empty() && input.scaling.size() != state.dimension) ||
+        overlaps(input.values, output) || overlaps(input.extended_prefix, output) || overlaps(input.scaling, output)) return false;
+  } else if (input.values.size() != state.dimension) return false;
+  const auto read = [&](Index normal, Index external, double& value) {
+    const auto coordinate = static_cast<std::size_t>(Mapped ? external : normal);
+    long double wide;
+    if constexpr (Mapped) {
+      wide = coordinate < input.extended_prefix.size() ? input.extended_prefix[coordinate] : input.values[coordinate];
+    } else wide = input.values[coordinate];
+    value = static_cast<double>(wide);
+    // 外层 LD 约化值先按原 finite 舍入；此处非零舍入为零仍允许。
+    if (!std::isfinite(wide) || !std::isfinite(value)) return false;
+    if constexpr (Mapped) {
+      if (!input.scaling.empty()) {
+        const double original = value;
+        wide = static_cast<long double>(value) * input.scaling[static_cast<std::size_t>(normal)];
+        value = static_cast<double>(wide);
+        if (!std::isfinite(wide) || !std::isfinite(value) || (original != 0 && value == 0)) return false;
+      }
+    }
+    return true;
+  };
+  const auto write = [&](Index normal, Index external, long double value) {
+    double converted;
+    // 先保留 Normal 原来的可表示检查，再执行外层 double 缩放及其下溢拒绝。
+    if (!representable(value, converted)) return false;
+    if constexpr (Mapped) {
+      if (!input.scaling.empty()) {
+        const double original = converted;
+        const long double scaled = static_cast<long double>(converted) * input.scaling[static_cast<std::size_t>(normal)];
+        converted = static_cast<double>(scaled);
+        if (!std::isfinite(scaled) || !std::isfinite(converted) || (original != 0 && converted == 0)) return false;
+      }
+    }
+    output[static_cast<std::size_t>(Mapped ? external : normal)] = converted;
+    return true;
+  };
   const auto retained = state.dual_coordinates.size();
   std::vector<long double> reduced_rhs(retained);
-  for (std::size_t row = 0; row < retained; ++row) reduced_rhs[row] = -static_cast<long double>(rhs[static_cast<std::size_t>(state.dual_coordinates[row])]);
+  for (std::size_t row = 0; row < retained; ++row) {
+    double value;
+    if (!read(state.dual_coordinates[row], state.dual_external_coordinates[row], value)) return false;
+    reduced_rhs[row] = -static_cast<long double>(value);
+  }
   for (std::size_t col = 0; col < state.columns.size(); ++col) {
-    check(budget_check);
-    const long double value = static_cast<long double>(rhs[static_cast<std::size_t>(state.primal_coordinates[col])]) /
-        state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];
+    if (v105_batched_budget) v105_budget_tick();
+    else check(budget_check);
+    double rounded;
+    if (!read(state.primal_coordinates[col], state.primal_external_coordinates[col], rounded)) return false;
+    const long double value = state.inverse_primal_ready ?
+        static_cast<long double>(rounded) * state.inverse_primal_diagonal[col] :
+        static_cast<long double>(rounded) / state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];
     if (!std::isfinite(value)) return false;
     for (const auto& entry : state.columns[col]) {
+      if (v105_batched_budget) v105_budget_tick();
       reduced_rhs[static_cast<std::size_t>(entry.row)] += state.input_values[static_cast<std::size_t>(entry.source)] * value;
     }
   }
@@ -813,24 +1032,25 @@ bool NormalCholesky::solve(std::vector<double>& rhs, const std::function<void()>
         permuted = solved;
       } else if (!state.refined_solve(permuted, budget_check)) return false;
     }
-    std::vector<double> solution(rhs.size());
     for (std::size_t row = 0; row < retained; ++row) {
-      if (!representable(permuted[state.inverse[row]], solution[static_cast<std::size_t>(state.dual_coordinates[row])])) return false;
+      if (!write(state.dual_coordinates[row], state.dual_external_coordinates[row], permuted[state.inverse[row]])) return false;
     }
     for (std::size_t col = 0; col < state.columns.size(); ++col) {
-      check(budget_check);
-      const auto coordinate = static_cast<std::size_t>(state.primal_coordinates[col]);
-      long double value = rhs[coordinate];
+      if (v105_batched_budget) v105_budget_tick();
+      else check(budget_check);
+      double rounded;
+      if (!read(state.primal_coordinates[col], state.primal_external_coordinates[col], rounded)) return false;
+      long double value = rounded;
       // 恢复也使用未舍入的 Schur 解；仅完整输出转换回外层 double。
       for (const auto& entry : state.columns[col]) {
+        if (v105_batched_budget) v105_budget_tick();
         value -= static_cast<long double>(state.input_values[static_cast<std::size_t>(entry.source)]) *
             permuted[state.inverse[static_cast<std::size_t>(entry.row)]];
       }
       value /= state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];
-      if (!representable(value, solution[coordinate])) return false;
+      if (!write(state.primal_coordinates[col], state.primal_external_coordinates[col], value)) return false;
     }
     check(budget_check);
-    rhs = std::move(solution);
     return true;
   }
   Eigen::VectorXd permuted(static_cast<Eigen::Index>(retained));
@@ -839,10 +1059,11 @@ bool NormalCholesky::solve(std::vector<double>& rhs, const std::function<void()>
         state.factor_scaling[static_cast<std::size_t>(state.inverse[row])] : reduced_rhs[row];
     if (!representable(value, permuted[state.inverse[row]])) return false;
   }
+  std::span<const double> schur_solution(permuted.data(), retained);
   if (retained != 0) {
     check(budget_check);
     if (state.cholmod) {
-      if (!state.cholmod->solve(permuted, budget_check)) return false;
+      if (!state.cholmod->solve_view(schur_solution, schur_solution, budget_check)) return false;
     } else if (state.multifrontal) {
       std::vector<double> solution(permuted.data(), permuted.data() + permuted.size());
       if (!state.multifrontal->solve(solution, budget_check)) return false;
@@ -857,18 +1078,25 @@ bool NormalCholesky::solve(std::vector<double>& rhs, const std::function<void()>
       permuted = solution;
     }
   }
-  std::vector<double> solution(rhs.size());
-  for (std::size_t row = 0; row < retained; ++row) solution[static_cast<std::size_t>(state.dual_coordinates[row])] = permuted[state.inverse[row]];
+  if (!state.cholmod) schur_solution = std::span<const double>(permuted.data(), retained);
+  for (std::size_t row = 0; row < retained; ++row) {
+    if (!write(state.dual_coordinates[row], state.dual_external_coordinates[row], schur_solution[static_cast<std::size_t>(state.inverse[row])])) return false;
+  }
   for (std::size_t col = 0; col < state.columns.size(); ++col) {
-    check(budget_check);
-    const auto coordinate = static_cast<std::size_t>(state.primal_coordinates[col]);
-    long double value = rhs[coordinate];
-    for (const auto& entry : state.columns[col]) value -= static_cast<long double>(state.input_values[static_cast<std::size_t>(entry.source)]) * permuted[state.inverse[static_cast<std::size_t>(entry.row)]];
-    value /= state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];
-    if (!representable(value, solution[coordinate])) return false;
+    if (v105_batched_budget) v105_budget_tick();
+    else check(budget_check);
+    double rounded;
+    if (!read(state.primal_coordinates[col], state.primal_external_coordinates[col], rounded)) return false;
+    long double value = rounded;
+    for (const auto& entry : state.columns[col]) {
+      if (v105_batched_budget) v105_budget_tick();
+      value -= static_cast<long double>(state.input_values[static_cast<std::size_t>(entry.source)]) * schur_solution[static_cast<std::size_t>(state.inverse[static_cast<std::size_t>(entry.row)])];
+    }
+    if (state.inverse_primal_ready) value *= state.inverse_primal_diagonal[col];
+    else value /= state.input_values[static_cast<std::size_t>(state.primal_diagonal[col])];
+    if (!write(state.primal_coordinates[col], state.primal_external_coordinates[col], value)) return false;
   }
   check(budget_check);
-  rhs = std::move(solution);
   return true;
 }
 
